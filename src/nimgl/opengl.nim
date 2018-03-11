@@ -3,7 +3,7 @@
 
 ## OpenGL Bindings
 ## ====
-## `return <../nimgl.html>`_.  
+## `return <../>`_.  
 ##
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.

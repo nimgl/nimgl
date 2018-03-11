@@ -26,14 +26,20 @@ proc subs(original: string, start: int, ending: int): string =
   for w in countup(start, ending):
     result.add(original[w])
 
-proc genDocs(path: string, output: string) =
+proc genDocs(path: string, output: string, index: bool) =
   var src = path.subs(4, path.len - 5)
   echo "\nGenerating " & src & ".nim"
-  exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
+  if not index:
+    exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
+  else:
+    exec("nim doc -o:" & output & "/index.html " & path)
 
 task docs, "Generate Documentation for all of the Library":
   for file in listFiles(srcDir):
-    genDocs(file, docDir)
+    if file == "src\\nimgl.nim" or file == "src/nimgl.nim":
+      genDocs(file, docDir, true)
+    else:
+      genDocs(file, docDir, false)
   for dir in listDirs(srcDir):
     for file in listFiles(dir):
-      genDocs(file, docDir)
+      genDocs(file, docDir, false)
