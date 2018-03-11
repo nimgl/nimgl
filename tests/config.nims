@@ -1,2 +1,3 @@
 switch("path", "$projectDir/../src")
-switch("cpu", "i386")
+when defined(windows):
+  switch("cpu", "i386")
