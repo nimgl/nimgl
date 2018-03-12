@@ -13,22 +13,18 @@ proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: 
 proc main =
   assert glfw.init()
 
-  var config = defaultWindowConfig()
-  config.size.width  = 1280
-  config.size.height = 720
+  windowHint(whContextVersionMajor, 4);
+  windowHint(whContextVersionMinor, 1);
+  windowHint(whOpenglForwardCompat, glfwTRUE);
+  windowHint(whOpenglProfile      , glfwOpenglCoreProfile);
+  windowHint(whResizable          , glfwFalse);
+  windowHint(whDecorated          , glfwTrue);
+  windowHint(whRefreshRate        , glfwDontCare);
 
-  windowHint(whCONTEXT_VERSION_MAJOR, 4);
-  windowHint(whCONTEXT_VERSION_MINOR, 1);
-  windowHint(whOPENGL_FORWARD_COMPAT, glfwTRUE);
-  windowHint(whOPENGL_PROFILE, glfwOPENGL_CORE_PROFILE);
-  windowHint(whRESIZABLE, glfwFalse);
-  windowHint(whDECORATED, glfwTrue);
-  windowHint(whREFRESH_RATE, glfwDontCare);
-
-  var w: Window = createWindow(config)
-  w.setKeyCallback(keyProc)
+  var w: Window = createWindow(300, 300, "NimGL")
   assert w != nil
 
+  w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
   while not w.windowShouldClose:
