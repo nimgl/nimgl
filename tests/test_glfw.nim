@@ -2,21 +2,33 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/glfw
+  nimgl/glfw,
+  nimgl/opengl,
+  nimgl/math
+
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMods): void {.cdecl.} =
+  if key == keyESCAPE and action == kaPress:
+    window.setWindowShouldClose(true)
 
 proc main =
-  if glfwInit() != 1:
-    echo "GLFW FAILED TO START"
-    return
+  assert glfw.init()
 
-  var window = glfwCreateWindow(1280, 720, "NimGL", nil, nil)
-  window.glfwMakeContextCurrent
+  var config = defaultWindowConfig()
+  config.size.width  = 1280
+  config.size.height = 720
 
-  while window.glfwWindowShouldClose == 0:
-    window.glfwSwapBuffers
-    glfwPollEvents()
+  var w: Window = createWindow(config)
+  w.setKeyCallback(keyProc)
+  assert w != nil
 
-  window.glfwDestroyWindow
-  glfwTerminate()
+  w.makeContextCurrent
+
+  while not w.windowShouldClose:
+    echo getTime()
+    w.swapBuffers
+    glfw.pollEvents()
+
+  w.destroyWindow
+  glfw.terminate()
 
 main()
