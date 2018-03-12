@@ -6,7 +6,7 @@ import
   nimgl/opengl,
   nimgl/math
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMods): void {.cdecl.} =
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
 
@@ -17,6 +17,14 @@ proc main =
   config.size.width  = 1280
   config.size.height = 720
 
+  windowHint(whCONTEXT_VERSION_MAJOR, 4);
+  windowHint(whCONTEXT_VERSION_MINOR, 1);
+  windowHint(whOPENGL_FORWARD_COMPAT, glfwTRUE);
+  windowHint(whOPENGL_PROFILE, glfwOPENGL_CORE_PROFILE);
+  windowHint(whRESIZABLE, glfwFalse);
+  windowHint(whDECORATED, glfwTrue);
+  windowHint(whREFRESH_RATE, glfwDontCare);
+
   var w: Window = createWindow(config)
   w.setKeyCallback(keyProc)
   assert w != nil
@@ -24,7 +32,6 @@ proc main =
   w.makeContextCurrent
 
   while not w.windowShouldClose:
-    echo getTime()
     w.swapBuffers
     glfw.pollEvents()
 

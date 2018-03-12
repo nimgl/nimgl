@@ -90,17 +90,154 @@ type
     ## Pointer reference for a GLFW Monitor
   WindowConfig* = object
     ## Essential Config to create a Window
-    title*  : cstring
-    size*   : tuple[width, height: cint]
-    monitor*: Monitor
-    share*  : Window
+    title*  : cstring ## Title of the window
+    size*   : tuple[width, height: cint] ## Width and Height of the Window
+    monitor*: Monitor ## Monitor attached to the window
+    share*  : Window ## Sharing Window
+
+# Constants
+const 
+  glfwDontCare*               = -1
+  glfwFalse*                  = 0
+  glfwTrue*                   = 1
+
+  glfwNO_API*                 = 0
+  glfwOPENGL_API*             = 0x00030001
+  glfwOPENGL_ES_API*          = 0x00030002
+
+  glfwNO_ROBUSTNESS*          = 0
+  glfwNO_RESET_NOTIFICATION*  = 0x00031001
+  glfwLOSE_CONTEXT_ON_RESET*  = 0x00031002
+
+  glfwOPENGL_ANY_PROFILE*     = 0
+  glfwOPENGL_CORE_PROFILE*    = 0x00032001
+  glfwOPENGL_COMPAT_PROFILE*  = 0x00032002
+
+  glfwCURSOR*                 = 0x00033001
+  glfwSTICKY_KEYS*            = 0x00033002
+  glfwSTICKY_MOUSE_BUTTONS*   = 0x00033003
+
+  glfwCURSOR_NORMAL*          = 0x00034001
+  glfwCURSOR_HIDDEN*          = 0x00034002
+  glfwCURSOR_DISABLED*        = 0x00034003
+
+  glfwANY_RELEASE_BEHAVIOR*   = 0
+  glfwRELEASE_BEHAVIOR_FLUSH* = 0x00035001
+  glfwRELEASE_BEHAVIOR_NONE*  = 0x00035002
+
+  glfwNATIVE_CONTEXT_API*     = 0x00036001
+  glfwEGL_CONTEXT_API*        = 0x00036002
 
 type
-  GLFWConstants* {.size: cint.sizeof.} = enum
-    ## Semantic Sugar
-    glfwFalse = 0
-    glfwTrue  = 1
-  GLFWErrorCodes* {.size: cint.sizeof.} = enum
+  WindowHint* {.size: cint.sizeof.} = enum
+    whFOCUSED               = 0x00020001
+      ## specifies whether the windowed mode window will be given input focus
+      ## when created.
+      ## This hint is ignored for full screen and initially hidden windows
+    whRESIZABLE             = 0x00020003
+      ## specifies whether the windowed mode window will be resizable by the user.
+      ## The window will still be resizable using the glfwSetWindowSize function.
+      ## This hint is ignored for full screen windows.
+    whVISIBLE               = 0x00020004
+      ## specifies whether the windowed mode window will be initially visible.
+      ## This hint is ignored for full screen windows
+    whDECORATED             = 0x00020005
+      ## specifies whether the windowed mode window will have window decorations
+      ## such as a border, a close widget, etc. An undecorated window may still
+      ## allow the user to generate close events on some platforms.
+      ## This hint is ignored for full screen windows.
+    whAUTO_ICONIFY          = 0x00020006
+      ## specifies whether the full screen window will automatically iconify and
+      ## restore the previous video mode on input focus loss.
+      ## This hint is ignored for windowed mode windows.
+    whFLOATING              = 0x00020007
+      ## specifies whether the windowed mode window will be floating above other
+      ## regular windows, also called topmost or always-on-top. This is intended
+      ## primarily for debugging purposes and cannot be used to implement
+      ## proper full screen windows.
+      ## This hint is ignored for full screen windows.
+    whMAXIMIZED             = 0x00020008
+      ## specifies whether the windowed mode window will be maximized when created.
+      ## This hint is ignored for full screen windows
+    whRED_BITS              = 0x00021001
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whGREEN_BITS            = 0x00021002
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whBLUE_BITS             = 0x00021003
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whALPHA_BITS            = 0x00021004
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whDEPTH_BITS            = 0x00021005
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whSTENCIL_BITS          = 0x00021006
+      ## specify the desired bit depths of the various components of the default
+      ## framebuffer. glfwDONT_CARE means the application has no preference.
+    whACCUM_RED_BITS        = 0x00021007
+      ## specify the desired bit depths of the various components of the
+      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+    whACCUM_GREEN_BITS      = 0x00021008
+      ## specify the desired bit depths of the various components of the
+      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+    whACCUM_BLUE_BITS       = 0x00021009
+      ## specify the desired bit depths of the various components of the
+      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+    whACCUM_ALPHA_BITS      = 0x0002100A
+      ## specify the desired bit depths of the various components of the
+      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+    whAUX_BUFFERS           = 0x0002100B
+      ## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.
+    whSTEREO                = 0x0002100C
+      ## specifies whether to use stereoscopic rendering. This is a hard constraint
+    whSAMPLES               = 0x0002100D
+      ## specifies the desired number of samples to use for multisampling. Zero
+      ## disables multisampling. glfwDONT_CARE means the application has no preference
+    whSRGB_CAPABLE          = 0x0002100E
+      ## specifies whether the framebuffer should be sRGB capable.
+      ## If supported, a created OpenGL context will support the
+    whREFRESH_RATE          = 0x0002100F
+      ## specifies the desired refresh rate for full screen windows.
+      ## If set to glfwDONT_CARE, the highest available refresh rate will be used.
+      ## This hint is ignored for windowed mode windows
+    whDOUBLEBUFFER          = 0x00021010
+      ## specifies whether the framebuffer should be double buffered.
+      ## You nearly always want to use double buffering. This is a hard constraint.
+    whCLIENT_API            = 0x00022001
+      ## specifies which client API to create the context for.
+      ## Possible values are glfwOPENGL_API, glfwOPENGL_ES_API and 
+    whCONTEXT_VERSION_MAJOR = 0x00022002
+      ## specify the client API version that the created context must be compatible
+      ## with. The exact behavior of these hints depend on the requested client API.
+    whCONTEXT_VERSION_MINOR = 0x00022003
+      ## specify the client API version that the created context must be compatible
+      ## with. The exact behavior of these hints depend on the requested client API.
+    whCONTEXT_REVISION      = 0x00022004
+      ## indicate the client API version of the window's context.
+    whCONTEXT_ROBUSTNESS    = 0x00022005
+      ## specifies the robustness strategy to be used by the context.
+      ## This can be one of glfwNO_RESET_NOTIFICATION or glfwLOSE_CONTEXT_ON_RESET,
+      ## or glfwNO_ROBUSTNESS to not request a robustness strategy.
+    whOPENGL_FORWARD_COMPAT = 0x00022006
+      ## specifies whether the OpenGL context should be forward-compatible, i.e.
+      ## one where all functionality deprecated in the requested version of OpenGL
+      ## is removed. This must only be used if the requested OpenGL version is 3.0
+      ## or above.
+      ## If OpenGL ES is requested, this hint is ignored.
+    whOPENGL_DEBUG_CONTEXT  = 0x00022007
+      ## ecifies whether to create a debug OpenGL context, which may have additional
+      ## error and performance issue reporting functionality.
+      ## If OpenGL ES is requested, this hint is ignored.
+    whOPENGL_PROFILE        = 0x00022008
+      ## specifies which OpenGL profile to create the context for. Possible values
+      ## are one of glfwOPENGL_CORE_PROFILE or glfwOPENGL_COMPAT_PROFILE, or
+      ## glfwOPENGL_ANY_PROFILE to not request a specific profile. If requesting
+      ## an OpenGL version below 3.2, glfwOPENGL_ANY_PROFILE must be used.
+      ## If OpenGL ES is requested, this hint is ignored.
+  GLFWErrorCode* {.size: cint.sizeof.} = enum
     ## Error Codes documented on the original documentation
     glfwNOT_INITIALIZED     = 0x00010001
       ## GLFW has not been initialized.
@@ -154,7 +291,7 @@ type
     kaRelease = (0, "release")
     kaPress   = (1, "press")
     kaRepeat  = (2, "repeat")
-  KeyMods* {.size: cint.sizeof.} = enum
+  KeyMod* {.size: cint.sizeof.} = enum
     ## Key Modifiers, to modify actions
     kmSHIFT   = 0x0001
     kmCONTROL = 0x0002
@@ -286,7 +423,7 @@ type
     keyLAST          = "last"
 
 type
-  keyProc* = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMods): void {.cdecl.}
+  keyProc* = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
     ## ``window`` The ``Window`` that received the event.
@@ -330,7 +467,7 @@ proc init*(): bool {.glfw_lib, importc: "glfwInit".}
   ## should be terminated in order to free any resources allocated during or
   ## after initialization.
   ##
-  ## Returns ``GLFW_TRUE`` if successful, or ``GLFW_FALSE`` if an error ocurred.
+  ## Returns ``glfwTRUE`` if successful, or ``glfwFALSE`` if an error ocurred.
 
 proc terminate*(): void {.glfw_lib, importc: "glfwTerminate".}
   ## Destroys all remaining windows and cursors, restores any
@@ -347,7 +484,7 @@ proc makeContextCurrent*(window: Window): void {.glfw_lib, importc: "glfwMakeCon
   ## current on the calling thread.  A context can only be made current on
   ## a single thread at a time and each thread can have only a single current
 
-proc setWindowShouldClose*(window: Window, value: bool) {.glfw_lib, importc: "glfwSetWindowShouldClose".}
+proc setWindowShouldClose*(window: Window, value: bool): void {.glfw_lib, importc: "glfwSetWindowShouldClose".}
   ## This function sets the value of the close flag of the specified window.
   ## This can be used to override the user's attempt to close the window, or
   ## to signal that it should be closed.
@@ -390,6 +527,17 @@ proc getKey*(window: Window, key: Key): KeyAction {.glfw_lib, importc: "glfwGetK
   ## ``kaRelease``.  The higher-level action ``kaRepeat`` is only reported to
   ## the key callback.
 
-proc setWindowTitle*(window: Window, title: cstring) {.glfw_lib, importc: "glfwSetWindowTitle".}
+proc setWindowTitle*(window: Window, title: cstring): void {.glfw_lib, importc: "glfwSetWindowTitle".}
   ## This function sets the window title, encoded as UTF-8, of the specified
   ## window.
+
+proc windowHint*(hint: WindowHint, value: cint): void {.glfw_lib, importc: "glfwWindowHint".}
+  ## This function sets hints for the next call to ``createWindow``  The
+  ## hints, once set, retain their values until changed by a call to.
+  ## ``windowHint`` or ``defaultWindowHints``, or until the library is
+  ## terminated.
+  ##
+  ## To read more visit `here <http://www.glfw.org/docs/latest/window_guide.html#window_hints_values>`_.
+
+proc defaultWindowHints*(): void {.glfw_lib, importc: "glfwDefaultWindowHints".}
+  ## Resets all window hints to their default values.

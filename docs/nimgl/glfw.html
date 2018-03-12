@@ -1242,15 +1242,93 @@ function main() {
     title="Monitor = ptr object"><wbr />Monitor<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#WindowConfig"
     title="WindowConfig = object
-  title*: cstring
-  size*: tuple[width, height: cint]
-  monitor*: Monitor
-  share*: Window"><wbr />Window<wbr />Config<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GLFWConstants"
-    title="GLFWConstants = enum
-  glfwFalse = 0, glfwTrue = 1"><wbr />GLFWConstants<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GLFWErrorCodes"
-    title="GLFWErrorCodes = enum
+  title*: cstring              ## Title of the window
+  size*: tuple[width, height: cint] ## Width and Height of the Window
+  monitor*: Monitor            ## Monitor attached to the window
+  share*: Window               ## Sharing Window"><wbr />Window<wbr />Config<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#WindowHint"
+    title="WindowHint = enum
+  whFOCUSED = 0x00020001, ## specifies whether the windowed mode window will be given input focus
+                       ## when created.
+                       ## This hint is ignored for full screen and initially hidden windows
+  whRESIZABLE = 0x00020003, ## specifies whether the windowed mode window will be resizable by the user.
+                         ## The window will still be resizable using the glfwSetWindowSize function.
+                         ## This hint is ignored for full screen windows.
+  whVISIBLE = 0x00020004, ## specifies whether the windowed mode window will be initially visible.
+                       ## This hint is ignored for full screen windows
+  whDECORATED = 0x00020005, ## specifies whether the windowed mode window will have window decorations
+                         ## such as a border, a close widget, etc. An undecorated window may still
+                         ## allow the user to generate close events on some platforms.
+                         ## This hint is ignored for full screen windows.
+  whAUTO_ICONIFY = 0x00020006, ## specifies whether the full screen window will automatically iconify and
+                            ## restore the previous video mode on input focus loss.
+                            ## This hint is ignored for windowed mode windows.
+  whFLOATING = 0x00020007, ## specifies whether the windowed mode window will be floating above other
+                        ## regular windows, also called topmost or always-on-top. This is intended
+                        ## primarily for debugging purposes and cannot be used to implement
+                        ## proper full screen windows.
+                        ## This hint is ignored for full screen windows.
+  whMAXIMIZED = 0x00020008, ## specifies whether the windowed mode window will be maximized when created.
+                         ## This hint is ignored for full screen windows
+  whRED_BITS = 0x00021001, ## specify the desired bit depths of the various components of the default
+                        ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whGREEN_BITS = 0x00021002, ## specify the desired bit depths of the various components of the default
+                          ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whBLUE_BITS = 0x00021003, ## specify the desired bit depths of the various components of the default
+                         ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whALPHA_BITS = 0x00021004, ## specify the desired bit depths of the various components of the default
+                          ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whDEPTH_BITS = 0x00021005, ## specify the desired bit depths of the various components of the default
+                          ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whSTENCIL_BITS = 0x00021006, ## specify the desired bit depths of the various components of the default
+                            ## framebuffer. glfwDONT_CARE means the application has no preference.
+  whACCUM_RED_BITS = 0x00021007, ## specify the desired bit depths of the various components of the
+                              ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+  whACCUM_GREEN_BITS = 0x00021008, ## specify the desired bit depths of the various components of the
+                                ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+  whACCUM_BLUE_BITS = 0x00021009, ## specify the desired bit depths of the various components of the
+                               ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+  whACCUM_ALPHA_BITS = 0x0002100A, ## specify the desired bit depths of the various components of the
+                                ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+  whAUX_BUFFERS = 0x0002100B,   ## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.
+  whSTEREO = 0x0002100C,        ## specifies whether to use stereoscopic rendering. This is a hard constraint
+  whSAMPLES = 0x0002100D, ## specifies the desired number of samples to use for multisampling. Zero
+                       ## disables multisampling. glfwDONT_CARE means the application has no preference
+  whSRGB_CAPABLE = 0x0002100E, ## specifies whether the framebuffer should be sRGB capable.
+                            ## If supported, a created OpenGL context will support the
+  whREFRESH_RATE = 0x0002100F, ## specifies the desired refresh rate for full screen windows.
+                            ## If set to glfwDONT_CARE, the highest available refresh rate will be used.
+                            ## This hint is ignored for windowed mode windows
+  whDOUBLEBUFFER = 0x00021010, ## specifies whether the framebuffer should be double buffered.
+                            ## You nearly always want to use double buffering. This is a hard constraint.
+  whCLIENT_API = 0x00022001, ## specifies which client API to create the context for.
+                          ## Possible values are GLFW_OPENGL_API, GLFW_OPENGL_ES_API and 
+  whCONTEXT_VERSION_MAJOR = 0x00022002, ## specify the client API version that the created context must be compatible
+                                     ## with. The exact behavior of these hints depend on the requested client API.
+  whCONTEXT_VERSION_MINOR = 0x00022003, ## specify the client API version that the created context must be compatible
+                                     ## with. The exact behavior of these hints depend on the requested client API.
+  whCONTEXT_REVISION = 0x00022004, ## indicate the client API version of the window&#x27;s context.
+  whCONTEXT_ROBUSTNESS = 0x00022005, ## specifies the robustness strategy to be used by the context.
+                                  ## This can be one of GLFW_NO_RESET_NOTIFICATION or GLFW_LOSE_CONTEXT_ON_RESET,
+                                  ## or GLFW_NO_ROBUSTNESS to not request a robustness strategy.
+  whOPENGL_FORWARD_COMPAT = 0x00022006, ## specifies whether the OpenGL context should be forward-compatible, i.e.
+                                     ## one where all functionality deprecated in the requested version of OpenGL
+                                     ## is removed. This must only be used if the requested OpenGL version is 3.0
+                                     ## or above.
+                                     ## If OpenGL ES is requested, this hint is ignored.
+  whOPENGL_DEBUG_CONTEXT = 0x00022007, ## ecifies whether to create a debug OpenGL context, which may have additional
+                                    ## error and performance issue reporting functionality.
+                                    ## If OpenGL ES is requested, this hint is ignored.
+  whOPENGL_PROFILE = 0x00022008 ## specifies which OpenGL profile to create the context for. Possible values
+                             ## are one of GLFW_OPENGL_CORE_PROFILE or GLFW_OPENGL_COMPAT_PROFILE, or
+                             ## GLFW_OPENGL_ANY_PROFILE to not request a specific profile. If requesting
+                             ## an OpenGL version below 3.2, GLFW_OPENGL_ANY_PROFILE must be used.
+                             ## If OpenGL ES is requested, this hint is ignored."><wbr />Window<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFWConstant"
+    title="GLFWConstant = enum
+  glfwFalse = 0, glfwTrue = 1"><wbr />GLFWConstant<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFWErrorCode"
+    title="GLFWErrorCode = enum
   glfwNOT_INITIALIZED = 0x00010001, ## GLFW has not been initialized.
   glfwNO_CURRENT_CONTEXT = 0x00010002, ## No context is current for this thread.
   glfwINVALID_ENUM = 0x00010003, ## One of the arguments to the function was an invalid enum value.
@@ -1260,7 +1338,7 @@ function main() {
   glfwVERSION_UNAVAILABLE = 0x00010007, ## The requested OpenGL or OpenGL ES version is not available.
   glfwPLATFORM_ERROR = 0x00010008, ## A platform-specific error occurred that does not match any of the
   glfwFORMAT_UNAVAILABLE = 0x00010009, ## The requested format is not supported or available.
-  glfwNO_WINDOW_CONTEXT = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />GLFWError<wbr />Codes<span class="attachedType" style="visibility:hidden"></span></a></li>
+  glfwNO_WINDOW_CONTEXT = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />GLFWError<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#MouseButton"
     title="MouseButton = enum
   mbLeft = 0, mbRight = 1, mbMiddle = 2, mb4 = 3, mb5 = 4, mb6 = 5, mb7 = 6, mb8 = 7"><wbr />Mouse<wbr />Button<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1271,9 +1349,9 @@ function main() {
   <li><a class="reference" href="#KeyAction"
     title="KeyAction = enum
   kaRelease = (0, &quot;release&quot;), kaPress = (1, &quot;press&quot;), kaRepeat = (2, &quot;repeat&quot;)"><wbr />Key<wbr />Action<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#KeyMods"
-    title="KeyMods = enum
-  kmSHIFT = 0x00000001, kmCONTROL = 0x00000002, kmALT = 0x00000004, kmSUPER = 0x00000008"><wbr />Key<wbr />Mods<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#KeyMod"
+    title="KeyMod = enum
+  kmSHIFT = 0x00000001, kmCONTROL = 0x00000002, kmALT = 0x00000004, kmSUPER = 0x00000008"><wbr />Key<wbr />Mod<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Key"
     title="Key = enum
   keyUNKNOWN = (-1, &quot;unkown&quot;), keySPACE = (32, &quot;space&quot;),
@@ -1317,7 +1395,7 @@ function main() {
   keyRIGHT_ALT = (346, &quot;right_alt&quot;), keyRIGHT_SUPER = (347, &quot;right_super&quot;),
   keyMENU = (348, &quot;menu&quot;), keyLAST = &quot;last&quot;"><wbr />Key<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#keyProc"
-    title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMods): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1339,7 +1417,7 @@ function main() {
   <li><a class="reference" href="#makeContextCurrent,Window"
     title="makeContextCurrent(window: Window): void"><wbr />make<wbr />Context<wbr />Current<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#setWindowShouldClose,Window,bool"
-    title="setWindowShouldClose(window: Window; value: bool)"><wbr />set<wbr />Window<wbr />Should<wbr />Close<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+    title="setWindowShouldClose(window: Window; value: bool): void"><wbr />set<wbr />Window<wbr />Should<wbr />Close<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#windowShouldClose,Window"
     title="windowShouldClose(window: Window): bool"><wbr />window<wbr />Should<wbr />Close<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#swapBuffers,Window"
@@ -1348,6 +1426,20 @@ function main() {
     title="pollEvents(): void"><wbr />poll<wbr />Events<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setKeyCallback,Window,keyProc"
     title="setKeyCallback(window: Window; callback: keyProc): void"><wbr />set<wbr />Key<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#getTime,"
+    title="getTime(): cdouble"><wbr />get<wbr />Time<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setTime,cdouble"
+    title="setTime(time: cdouble): void"><wbr />set<wbr />Time<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getCurrentContext,"
+    title="getCurrentContext(): Window"><wbr />get<wbr />Current<wbr />Context<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#getKey,Window,Key"
+    title="getKey(window: Window; key: Key): KeyAction"><wbr />get<wbr />Key<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setWindowTitle,Window,cstring"
+    title="setWindowTitle(window: Window; title: cstring): void"><wbr />set<wbr />Window<wbr />Title<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#windowHint,WindowHint,GLFWConstant"
+    title="windowHint(hint: WindowHint; value: GLFWConstant): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
+  <li><a class="reference" href="#defaultWindowHints,"
+    title="defaultWindowHints(): void"><wbr />default<wbr />Window<wbr />Hints<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1377,22 +1469,103 @@ Pointer reference for a GLFW Monitor
 
 </dd>
 <dt id="WindowConfig"><a name="WindowConfig"></a><pre><span class="Identifier">WindowConfig</span> <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">title</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cstring</span>
-  <span class="Identifier">size</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">]</span>
-  <span class="Identifier">monitor</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Monitor</span>
-  <span class="Identifier">share</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Window</span>
-</pre></dt>
+  <span class="Identifier">title</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cstring</span>              <span class="Comment">## Title of the window</span>
+  <span class="Identifier">size</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">]</span> <span class="Comment">## Width and Height of the Window</span>
+  <span class="Identifier">monitor</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Monitor</span>            <span class="Comment">## Monitor attached to the window</span>
+  <span class="Identifier">share</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Window</span>               <span class="Comment">## Sharing Window</span>
+  </pre></dt>
 <dd>
 Essential Config to create a Window
 
 </dd>
-<dt id="GLFWConstants"><a name="GLFWConstants"></a><pre><span class="Identifier">GLFWConstants</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="WindowHint"><a name="WindowHint"></a><pre><span class="Identifier">WindowHint</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">whFOCUSED</span> <span class="Other">=</span> <span class="DecNumber">0x00020001</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be given input focus</span>
+                       <span class="Comment">## when created.</span>
+                       <span class="Comment">## This hint is ignored for full screen and initially hidden windows</span>
+  <span class="Identifier">whRESIZABLE</span> <span class="Other">=</span> <span class="DecNumber">0x00020003</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be resizable by the user.</span>
+                         <span class="Comment">## The window will still be resizable using the glfwSetWindowSize function.</span>
+                         <span class="Comment">## This hint is ignored for full screen windows.</span>
+  <span class="Identifier">whVISIBLE</span> <span class="Other">=</span> <span class="DecNumber">0x00020004</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be initially visible.</span>
+                       <span class="Comment">## This hint is ignored for full screen windows</span>
+  <span class="Identifier">whDECORATED</span> <span class="Other">=</span> <span class="DecNumber">0x00020005</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will have window decorations</span>
+                         <span class="Comment">## such as a border, a close widget, etc. An undecorated window may still</span>
+                         <span class="Comment">## allow the user to generate close events on some platforms.</span>
+                         <span class="Comment">## This hint is ignored for full screen windows.</span>
+  <span class="Identifier">whAUTO_ICONIFY</span> <span class="Other">=</span> <span class="DecNumber">0x00020006</span><span class="Other">,</span> <span class="Comment">## specifies whether the full screen window will automatically iconify and</span>
+                            <span class="Comment">## restore the previous video mode on input focus loss.</span>
+                            <span class="Comment">## This hint is ignored for windowed mode windows.</span>
+  <span class="Identifier">whFLOATING</span> <span class="Other">=</span> <span class="DecNumber">0x00020007</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be floating above other</span>
+                        <span class="Comment">## regular windows, also called topmost or always-on-top. This is intended</span>
+                        <span class="Comment">## primarily for debugging purposes and cannot be used to implement</span>
+                        <span class="Comment">## proper full screen windows.</span>
+                        <span class="Comment">## This hint is ignored for full screen windows.</span>
+  <span class="Identifier">whMAXIMIZED</span> <span class="Other">=</span> <span class="DecNumber">0x00020008</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be maximized when created.</span>
+                         <span class="Comment">## This hint is ignored for full screen windows</span>
+  <span class="Identifier">whRED_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021001</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                        <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whGREEN_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021002</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whBLUE_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021003</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                         <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whALPHA_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021004</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whDEPTH_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021005</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whSTENCIL_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021006</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                            <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whACCUM_RED_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021007</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                              <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whACCUM_GREEN_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021008</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                                <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whACCUM_BLUE_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021009</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                               <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whACCUM_ALPHA_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x0002100A</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                                <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whAUX_BUFFERS</span> <span class="Other">=</span> <span class="DecNumber">0x0002100B</span><span class="Other">,</span>   <span class="Comment">## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.</span>
+  <span class="Identifier">whSTEREO</span> <span class="Other">=</span> <span class="DecNumber">0x0002100C</span><span class="Other">,</span>        <span class="Comment">## specifies whether to use stereoscopic rendering. This is a hard constraint</span>
+  <span class="Identifier">whSAMPLES</span> <span class="Other">=</span> <span class="DecNumber">0x0002100D</span><span class="Other">,</span> <span class="Comment">## specifies the desired number of samples to use for multisampling. Zero</span>
+                       <span class="Comment">## disables multisampling. glfwDONT_CARE means the application has no preference</span>
+  <span class="Identifier">whSRGB_CAPABLE</span> <span class="Other">=</span> <span class="DecNumber">0x0002100E</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be sRGB capable.</span>
+                            <span class="Comment">## If supported, a created OpenGL context will support the</span>
+  <span class="Identifier">whREFRESH_RATE</span> <span class="Other">=</span> <span class="DecNumber">0x0002100F</span><span class="Other">,</span> <span class="Comment">## specifies the desired refresh rate for full screen windows.</span>
+                            <span class="Comment">## If set to glfwDONT_CARE, the highest available refresh rate will be used.</span>
+                            <span class="Comment">## This hint is ignored for windowed mode windows</span>
+  <span class="Identifier">whDOUBLEBUFFER</span> <span class="Other">=</span> <span class="DecNumber">0x00021010</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be double buffered.</span>
+                            <span class="Comment">## You nearly always want to use double buffering. This is a hard constraint.</span>
+  <span class="Identifier">whCLIENT_API</span> <span class="Other">=</span> <span class="DecNumber">0x00022001</span><span class="Other">,</span> <span class="Comment">## specifies which client API to create the context for.</span>
+                          <span class="Comment">## Possible values are GLFW_OPENGL_API, GLFW_OPENGL_ES_API and </span>
+  <span class="Identifier">whCONTEXT_VERSION_MAJOR</span> <span class="Other">=</span> <span class="DecNumber">0x00022002</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
+                                     <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
+  <span class="Identifier">whCONTEXT_VERSION_MINOR</span> <span class="Other">=</span> <span class="DecNumber">0x00022003</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
+                                     <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
+  <span class="Identifier">whCONTEXT_REVISION</span> <span class="Other">=</span> <span class="DecNumber">0x00022004</span><span class="Other">,</span> <span class="Comment">## indicate the client API version of the window's context.</span>
+  <span class="Identifier">whCONTEXT_ROBUSTNESS</span> <span class="Other">=</span> <span class="DecNumber">0x00022005</span><span class="Other">,</span> <span class="Comment">## specifies the robustness strategy to be used by the context.</span>
+                                  <span class="Comment">## This can be one of GLFW_NO_RESET_NOTIFICATION or GLFW_LOSE_CONTEXT_ON_RESET,</span>
+                                  <span class="Comment">## or GLFW_NO_ROBUSTNESS to not request a robustness strategy.</span>
+  <span class="Identifier">whOPENGL_FORWARD_COMPAT</span> <span class="Other">=</span> <span class="DecNumber">0x00022006</span><span class="Other">,</span> <span class="Comment">## specifies whether the OpenGL context should be forward-compatible, i.e.</span>
+                                     <span class="Comment">## one where all functionality deprecated in the requested version of OpenGL</span>
+                                     <span class="Comment">## is removed. This must only be used if the requested OpenGL version is 3.0</span>
+                                     <span class="Comment">## or above.</span>
+                                     <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
+  <span class="Identifier">whOPENGL_DEBUG_CONTEXT</span> <span class="Other">=</span> <span class="DecNumber">0x00022007</span><span class="Other">,</span> <span class="Comment">## ecifies whether to create a debug OpenGL context, which may have additional</span>
+                                    <span class="Comment">## error and performance issue reporting functionality.</span>
+                                    <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
+  <span class="Identifier">whOPENGL_PROFILE</span> <span class="Other">=</span> <span class="DecNumber">0x00022008</span> <span class="Comment">## specifies which OpenGL profile to create the context for. Possible values</span>
+                             <span class="Comment">## are one of GLFW_OPENGL_CORE_PROFILE or GLFW_OPENGL_COMPAT_PROFILE, or</span>
+                             <span class="Comment">## GLFW_OPENGL_ANY_PROFILE to not request a specific profile. If requesting</span>
+                             <span class="Comment">## an OpenGL version below 3.2, GLFW_OPENGL_ANY_PROFILE must be used.</span>
+                             <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="GLFWConstant"><a name="GLFWConstant"></a><pre><span class="Identifier">GLFWConstant</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">glfwFalse</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">glfwTrue</span> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
 <dd>
 Semantic Sugar
 
 </dd>
-<dt id="GLFWErrorCodes"><a name="GLFWErrorCodes"></a><pre><span class="Identifier">GLFWErrorCodes</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="GLFWErrorCode"><a name="GLFWErrorCode"></a><pre><span class="Identifier">GLFWErrorCode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">glfwNOT_INITIALIZED</span> <span class="Other">=</span> <span class="DecNumber">0x00010001</span><span class="Other">,</span> <span class="Comment">## GLFW has not been initialized.</span>
   <span class="Identifier">glfwNO_CURRENT_CONTEXT</span> <span class="Other">=</span> <span class="DecNumber">0x00010002</span><span class="Other">,</span> <span class="Comment">## No context is current for this thread.</span>
   <span class="Identifier">glfwINVALID_ENUM</span> <span class="Other">=</span> <span class="DecNumber">0x00010003</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid enum value.</span>
@@ -1426,7 +1599,7 @@ Joystick references
 Action released on the key event
 
 </dd>
-<dt id="KeyMods"><a name="KeyMods"></a><pre><span class="Identifier">KeyMods</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="KeyMod"><a name="KeyMod"></a><pre><span class="Identifier">KeyMod</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">kmSHIFT</span> <span class="Other">=</span> <span class="DecNumber">0x00000001</span><span class="Other">,</span> <span class="Identifier">kmCONTROL</span> <span class="Other">=</span> <span class="DecNumber">0x00000002</span><span class="Other">,</span> <span class="Identifier">kmALT</span> <span class="Other">=</span> <span class="DecNumber">0x00000004</span><span class="Other">,</span> <span class="Identifier">kmSUPER</span> <span class="Other">=</span> <span class="DecNumber">0x00000008</span></pre></dt>
 <dd>
 Key Modifiers, to modify actions
@@ -1477,7 +1650,7 @@ Key Modifiers, to modify actions
 KeyCodes, a lot of them
 
 </dd>
-<dt id="keyProc"><a name="keyProc"></a><pre><span class="Identifier">keyProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">;</span> <span class="Identifier">scancode</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">KeyAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMods</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="keyProc"><a name="keyProc"></a><pre><span class="Identifier">keyProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">;</span> <span class="Identifier">scancode</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">KeyAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This is the function signature for keyboard key callback functions.</p>
@@ -1533,7 +1706,7 @@ Destroys the specified window and its context.  On calling this function, no fur
 Makes the OpenGL or OpenGL ES context of the specified window current on the calling thread.  A context can only be made current on a single thread at a time and each thread can have only a single current
 
 </dd>
-<dt id="setWindowShouldClose"><a name="setWindowShouldClose,Window,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setWindowShouldClose</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+<dt id="setWindowShouldClose"><a name="setWindowShouldClose,Window,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setWindowShouldClose</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetWindowShouldClose&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 This function sets the value of the close flag of the specified window. This can be used to override the user's attempt to close the window, or to signal that it should be closed.
@@ -1561,6 +1734,45 @@ Processes only those events that are already in the event queue and then returns
 This function sets the key callback of the specified window, which is called when a key is pressed, repeated or released.
 
 </dd>
+<dt id="getTime"><a name="getTime,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTime</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cdouble</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetTime&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the value of the GLFW timer. Unless the timer has been set using <tt class="docutils literal"><span class="pre">setTime</span></tt>, the timer measures time elapsed since GLFW was initialized.
+
+</dd>
+<dt id="setTime"><a name="setTime,cdouble"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setTime</span><span class="Other">(</span><span class="Identifier">time</span><span class="Other">:</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetTime&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function sets the value of the GLFW timer.  It then continues to count up from that value.  The value must be a positive finite number less than or equal to 18446744073.0, which is approximately 584.5 years.
+
+</dd>
+<dt id="getCurrentContext"><a name="getCurrentContext,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCurrentContext</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetCurrentContext&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the window whose OpenGL or OpenGL ES context is current on the calling thread.
+
+</dd>
+<dt id="getKey"><a name="getKey,Window,Key"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getKey</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">KeyAction</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetKey&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the last state reported for the specified key to the specified window.  The returned state is one of <tt class="docutils literal"><span class="pre">kaPress</span></tt> or <tt class="docutils literal"><span class="pre">kaRelease</span></tt>.  The higher-level action <tt class="docutils literal"><span class="pre">kaRepeat</span></tt> is only reported to the key callback.
+
+</dd>
+<dt id="setWindowTitle"><a name="setWindowTitle,Window,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setWindowTitle</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetWindowTitle&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function sets the window title, encoded as UTF-8, of the specified window.
+
+</dd>
+<dt id="windowHint"><a name="windowHint,WindowHint,GLFWConstant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">windowHint</span><span class="Other">(</span><span class="Identifier">hint</span><span class="Other">:</span> <span class="Identifier">WindowHint</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">GLFWConstant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwWindowHint&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This function sets hints for the next call to <tt class="docutils literal"><span class="pre">createWindow</span></tt>  The hints, once set, retain their values until changed by a call to. <tt class="docutils literal"><span class="pre">windowHint</span></tt> or <tt class="docutils literal"><span class="pre">defaultWindowHints</span></tt>, or until the library is terminated.</p>
+<p>To read more visit <a class="reference external" href="http://www.glfw.org/docs/latest/window_guide.html#window_hints_values">here</a>.</p>
+
+
+</dd>
+<dt id="defaultWindowHints"><a name="defaultWindowHints,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">defaultWindowHints</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwDefaultWindowHints&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Resets all window hints to their default values.
+
+</dd>
 
 </dl></div>
 
@@ -1571,7 +1783,7 @@ This function sets the key callback of the specified window, which is called whe
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-11 19:55:17 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-11 21:00:26 UTC</small>
       </div>
     </div>
   </div>
