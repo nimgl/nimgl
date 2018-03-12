@@ -8,27 +8,28 @@
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
 
-#[
+const
+  wingdi_h  = "<wingdi.h>"
+  winbase_h = "<Winbase.h>"
+
 type
   ProcGL*  = ptr object
-  HModule* = object {.importc.}
+  #PFNGLCLEARCOLORXOESPROC = ptr object {.importc: ""
+  HInstance* = ptr object {.importc: "HINSTANCE", header: winbase_h.}
+  procGlClearColor = ptr proc(r, g, b, a: cfloat): void {.cdecl.}
 
-proc wglGetProcAddress(procgl: cstring): ProcGL {.importc.}
+proc wglGetProcAddress(procgl: cstring): ProcGL {.importc, header: wingdi_h.}
 
-proc LoadLibraryA(procgl: cstring): HModule {.importc.}
+proc LoadLibrary(procgl: cstring): HInstance {.importc, header: winbase_h.}
 
-proc GetProcAddress(module: HModule, procgl: cstring): ProcGL {.importc.}
+proc GetProcAddress(module: HInstance, procgl: cstring): ProcGL {.importc, header: winbase_h.}
 
 proc getProcGL*(procgl: cstring): ProcGL =
   result = wglGetProcAddress(procgl)
   if result == nil:
-    var ogl32: HModule = LoadLibraryA("opengl32.dll")
+    var ogl32: HInstance = LoadLibrary("opengl32.dll")
     result = GetProcAddress(ogl32, procgl)
-]#
 
-const
-  glColorBufferBit* = 0x00004000
-
-proc glClearColor*(red, green, blue, alpha: cfloat): void {.importc, dynlib: "opengl32.dll".}
-
-proc glClear*(bit: cuint): void {.importc, dynlib: "opengl32.dll".}
+proc init*() =
+  echo getProcGL("glClearColor") == nil
+  echo getProcGL("glClear") == nil

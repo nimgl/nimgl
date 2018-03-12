@@ -4,8 +4,7 @@
 import 
   nimgl/glfw,
   nimgl/opengl,
-  nimgl/math,
-  os
+  nimgl/math
 
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
@@ -22,18 +21,15 @@ proc main =
   windowHint(whDecorated          , glfwTrue);
   windowHint(whRefreshRate        , glfwDontCare);
 
-  echo getCurrentDir()
-
   var w: Window = createWindow(300, 300, "NimGL")
   assert w != nil
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
-  while not w.windowShouldClose:
-    glClear(glColorBufferBit)
-    glClearColor(0.0, 1.0, 0.0, 1.0)
+  opengl.init()
 
+  while not w.windowShouldClose:
     w.swapBuffers
     glfw.pollEvents()
 
