@@ -1,3 +1,11 @@
+
+
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=flat-square&logo=github&label=Stars)](https://github.com/cavariux/nimgl)
+[![Buy Me a Coffee](https://img.shields.io/badge/buy%20me-coffee-orange.svg?longCache=true&style=flat-square)](https://cav.bz/coffee)
+![GitHub last commit](https://img.shields.io/github/last-commit/cavariux/nimgl.svg?style=flat-square)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
+[![docs](https://img.shields.io/badge/docs-passing-ff69b4.svg)](https://nimgl.org)
+
 ## Nim Game Library
 
 NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics. With the power of Nim you can compile to C making it a perfect choice to combine with computer graphics.
