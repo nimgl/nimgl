@@ -1,6 +1,9 @@
 # Copyright (C) CleverByte. All Rights Reserved
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
+import
+  macros
+
 when defined(glfwDLL):
   when defined(windows):
     const
@@ -433,6 +436,8 @@ type
     ##
     ## ``mods`` Bit field describing which ``KeyMods`` were
     ## held down.
+
+converter toBool*(x: cint): bool = x != 0
 
 proc createWindow*(width: cint, height: cint, title: cstring, monitor: Monitor, share: Window): Window {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
