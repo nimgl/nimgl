@@ -2,9 +2,9 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 #[
-  We highly discourage to directly import this file due to all the bindings
-  you are importing at once. Please import each binding independently, only use
-  this import for test cases and not for production.
+  We highly discourage to directly import this module due to all the modules
+  you are importing at once. Please import each module independently, only use
+  this module for test cases and not for production.
 ]#
 
 ## Nim Game Library
@@ -13,8 +13,10 @@
 
 import
   nimgl/glfw,
-  nimgl/opengl
+  nimgl/opengl,
+  nimgl/math
 
 export
   glfw,
-  opengl
+  opengl,
+  math

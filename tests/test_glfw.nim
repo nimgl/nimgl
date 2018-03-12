@@ -2,21 +2,42 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/glfw
+  nimgl/glfw,
+  nimgl/opengl,
+  nimgl/math,
+  os
+
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+  if key == keyESCAPE and action == kaPress:
+    window.setWindowShouldClose(true)
 
 proc main =
-  if glfwInit() != 1:
-    echo "GLFW FAILED TO START"
-    return
+  assert glfw.init()
 
-  var window = glfwCreateWindow(1280, 720, "NimGL", nil, nil)
-  window.glfwMakeContextCurrent
+  windowHint(whContextVersionMajor, 4);
+  windowHint(whContextVersionMinor, 1);
+  windowHint(whOpenglForwardCompat, glfwTRUE);
+  windowHint(whOpenglProfile      , glfwOpenglCoreProfile);
+  windowHint(whResizable          , glfwFalse);
+  windowHint(whDecorated          , glfwTrue);
+  windowHint(whRefreshRate        , glfwDontCare);
 
-  while window.glfwWindowShouldClose == 0:
-    window.glfwSwapBuffers
-    glfwPollEvents()
+  echo getCurrentDir()
 
-  window.glfwDestroyWindow
-  glfwTerminate()
+  var w: Window = createWindow(300, 300, "NimGL")
+  assert w != nil
+
+  w.setKeyCallback(keyProc)
+  w.makeContextCurrent
+
+  while not w.windowShouldClose:
+    glClear(glColorBufferBit)
+    glClearColor(0.0, 1.0, 0.0, 1.0)
+
+    w.swapBuffers
+    glfw.pollEvents()
+
+  w.destroyWindow
+  glfw.terminate()
 
 main()

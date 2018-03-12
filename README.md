@@ -29,4 +29,4 @@ It is currently being developed and tested on
 
 | Library | Description |
 |:-------:|:------------|
-| GLFW    | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
+| [GLFW](src/nimgl/glfw.nim) | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
