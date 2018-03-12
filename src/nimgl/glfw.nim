@@ -1,9 +1,6 @@
 # Copyright (C) CleverByte. All Rights Reserved
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-import
-  macros
-
 when defined(glfwDLL):
   when defined(windows):
     const
@@ -544,3 +541,11 @@ proc windowHint*(hint: WindowHint, value: cint): void {.glfw_lib, importc: "glfw
 
 proc defaultWindowHints*(): void {.glfw_lib, importc: "glfwDefaultWindowHints".}
   ## Resets all window hints to their default values.
+
+proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetProcAddress".}
+  ## This function returns the address of the specified OpenGL or OpenGL ES
+  ## [core or extension function](@ref context_glext), if it is supported
+  ## by the current context.
+  ##
+  ## A context must be current on the calling thread.  Calling this function
+  ## without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.

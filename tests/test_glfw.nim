@@ -3,7 +3,8 @@
 
 import 
   nimgl/glfw,
-  nimgl/math
+  nimgl/math,
+  nimgl/glew
 
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
@@ -20,13 +21,20 @@ proc main =
   windowHint(whDecorated          , glfwTrue);
   windowHint(whRefreshRate        , glfwDontCare);
 
-  var w: Window = createWindow(300, 300, "NimGL")
+  var w: Window = createWindow(1280, 720, "NimGL")
   assert w != nil
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
+  assert glew.init() == GLEW_OK
+
+  glEnable(GL_BLEND)
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
   while not w.windowShouldClose:
+    glClearColor(0.13, 0.13, 0.13, 1)
+    glClear(GL_COLOR_BUFFER_BIT)
     w.swapBuffers
     glfw.pollEvents()
 
