@@ -8,7 +8,7 @@ when defined(glfwDLL):
   when defined(windows):
     const
       glfw_dll* = "glfw3.dll"
-  elif defined(windows):
+  elif defined(macosx):
     const
       glfw_dll* = "libglfw3.dylib"
   else:
@@ -158,54 +158,54 @@ type
       ## This hint is ignored for full screen windows
     whRedBits                = 0x00021001
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whGreenBits              = 0x00021002
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whBlueBits               = 0x00021003
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whAlphaBits              = 0x00021004
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whDepthBits              = 0x00021005
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whStencilBits            = 0x00021006
       ## specify the desired bit depths of the various components of the default
-      ## framebuffer. glfwDONT_CARE means the application has no preference.
+      ## framebuffer. glfwDontCare means the application has no preference.
     whAccumRedBits           = 0x00021007
       ## specify the desired bit depths of the various components of the
-      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+      ## accumulation buffer. glfwDontCare means the application has no preference.
     whAccumGreenBits         = 0x00021008
       ## specify the desired bit depths of the various components of the
-      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+      ## accumulation buffer. glfwDontCare means the application has no preference.
     whAccumBlueBits          = 0x00021009
       ## specify the desired bit depths of the various components of the
-      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+      ## accumulation buffer. glfwDontCare means the application has no preference.
     whAccumAlphaBits         = 0x0002100A
       ## specify the desired bit depths of the various components of the
-      ## accumulation buffer. glfwDONT_CARE means the application has no preference.
+      ## accumulation buffer. glfwDontCare means the application has no preference.
     whAuxBuffers             = 0x0002100B
-      ## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.
+      ## specifies the desired number of auxiliary buffers. glfwDontCare means the application has no preference.
     whStereo                 = 0x0002100C
       ## specifies whether to use stereoscopic rendering. This is a hard constraint
     whSamples                = 0x0002100D
       ## specifies the desired number of samples to use for multisampling. Zero
-      ## disables multisampling. glfwDONT_CARE means the application has no preference
+      ## disables multisampling. glfwDontCare means the application has no preference
     whSrgbCapable            = 0x0002100E
       ## specifies whether the framebuffer should be sRGB capable.
       ## If supported, a created OpenGL context will support the
     whRefreshRate            = 0x0002100F
       ## specifies the desired refresh rate for full screen windows.
-      ## If set to glfwDONT_CARE, the highest available refresh rate will be used.
+      ## If set to glfwDontCare, the highest available refresh rate will be used.
       ## This hint is ignored for windowed mode windows
     whDoubleBuffer           = 0x00021010
       ## specifies whether the framebuffer should be double buffered.
       ## You nearly always want to use double buffering. This is a hard constraint.
     whClientApi              = 0x00022001
       ## specifies which client API to create the context for.
-      ## Possible values are glfwOPENGL_API, glfwOPENGL_ES_API and 
+      ## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and 
     whContextVersionMajor    = 0x00022002
       ## specify the client API version that the created context must be compatible
       ## with. The exact behavior of these hints depend on the requested client API.
@@ -216,8 +216,8 @@ type
       ## indicate the client API version of the window's context.
     whContextRobustness      = 0x00022005
       ## specifies the robustness strategy to be used by the context.
-      ## This can be one of glfwNO_RESET_NOTIFICATION or glfwLOSE_CONTEXT_ON_RESET,
-      ## or glfwNO_ROBUSTNESS to not request a robustness strategy.
+      ## This can be one of glfwNoResetNotification or glfwLoseContextOnReset,
+      ## or glfwNoRobustness to not request a robustness strategy.
     whOpenglForwardCompat    = 0x00022006
       ## specifies whether the OpenGL context should be forward-compatible, i.e.
       ## one where all functionality deprecated in the requested version of OpenGL
@@ -230,13 +230,24 @@ type
       ## If OpenGL ES is requested, this hint is ignored.
     whOpenglProfile          = 0x00022008
       ## specifies which OpenGL profile to create the context for. Possible values
-      ## are one of glfwOPENGL_CORE_PROFILE or glfwOPENGL_COMPAT_PROFILE, or
-      ## glfwOPENGL_ANY_PROFILE to not request a specific profile. If requesting
-      ## an OpenGL version below 3.2, glfwOPENGL_ANY_PROFILE must be used.
+      ## are one of glfwOpenglCoreProfile or glfwOpenglCompatProfile, or
+      ## glfwOpenglAnyProfile to not request a specific profile. If requesting
+      ## an OpenGL version below 3.2, glfwOpenglAnyProfile must be used.
       ## If OpenGL ES is requested, this hint is ignored.
     whContextReleaseBehavior = 0x00022009
+      ## specifies the release behavior to be used by the context. Possible values
+      ## are one of glfwAnyReleaseBehavior, glfwReleaseBehaviorFlush or
+      ## glfwReleaseBehaviorNone. If the behavior is glfwAnyReleaseBehavior,
+      ## the default behavior of the context creation API will be used. If the
+      ## behavior is glfwReleaseBehaviorFlush, the pipeline will be flushed
+      ## whenever the context is released from being the current one. If the
+      ## behavior is glfwReleaseBehaviorNone, the pipeline will not be flushed on release.
     whContextNoError         = 0x0002200A
+      ## specifies whether errors should be generated by the context. If enabled,
+      ## situations that would have generated errors instead cause undefined behavior
     whContextCreationAPI     = 0x0002200B
+      ## indicates the context creation API used to create the window's context;
+      ## either glfwNativeContextAPI or glfwEGLContextAPI.
   GLFWErrorCode* {.size: cint.sizeof.} = enum
     ## Error Codes documented on the original documentation
     glfwNotInitialized     = 0x00010001

@@ -3,7 +3,6 @@
 
 import 
   nimgl/glfw,
-  nimgl/opengl,
   nimgl/math
 
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
@@ -26,8 +25,6 @@ proc main =
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
-
-  opengl.init()
 
   while not w.windowShouldClose:
     w.swapBuffers

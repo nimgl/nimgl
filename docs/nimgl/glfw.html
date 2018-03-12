@@ -1234,111 +1234,119 @@ function main() {
   <ul class="simple simple-toc" id="toc-list">
 <li><a class="reference" id="glfw-bindings_toc" href="#glfw-bindings">GLFW Bindings</a></li>
 <li>
+  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
+  <ul class="simple simple-toc-section">
+    
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#Window"
     title="Window = ptr object"><wbr />Window<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Monitor"
     title="Monitor = ptr object"><wbr />Monitor<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#WindowConfig"
-    title="WindowConfig = object
-  title*: cstring              ## Title of the window
-  size*: tuple[width, height: cint] ## Width and Height of the Window
-  monitor*: Monitor            ## Monitor attached to the window
-  share*: Window               ## Sharing Window"><wbr />Window<wbr />Config<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#WindowHint"
     title="WindowHint = enum
-  whFOCUSED = 0x00020001, ## specifies whether the windowed mode window will be given input focus
+  whFocused = 0x00020001, ## specifies whether the windowed mode window will be given input focus
                        ## when created.
                        ## This hint is ignored for full screen and initially hidden windows
-  whRESIZABLE = 0x00020003, ## specifies whether the windowed mode window will be resizable by the user.
+  whResizable = 0x00020003, ## specifies whether the windowed mode window will be resizable by the user.
                          ## The window will still be resizable using the glfwSetWindowSize function.
                          ## This hint is ignored for full screen windows.
-  whVISIBLE = 0x00020004, ## specifies whether the windowed mode window will be initially visible.
+  whVisible = 0x00020004, ## specifies whether the windowed mode window will be initially visible.
                        ## This hint is ignored for full screen windows
-  whDECORATED = 0x00020005, ## specifies whether the windowed mode window will have window decorations
+  whDecorated = 0x00020005, ## specifies whether the windowed mode window will have window decorations
                          ## such as a border, a close widget, etc. An undecorated window may still
                          ## allow the user to generate close events on some platforms.
                          ## This hint is ignored for full screen windows.
-  whAUTO_ICONIFY = 0x00020006, ## specifies whether the full screen window will automatically iconify and
-                            ## restore the previous video mode on input focus loss.
-                            ## This hint is ignored for windowed mode windows.
-  whFLOATING = 0x00020007, ## specifies whether the windowed mode window will be floating above other
+  whAutoIconify = 0x00020006, ## specifies whether the full screen window will automatically iconify and
+                           ## restore the previous video mode on input focus loss.
+                           ## This hint is ignored for windowed mode windows.
+  whFloating = 0x00020007, ## specifies whether the windowed mode window will be floating above other
                         ## regular windows, also called topmost or always-on-top. This is intended
                         ## primarily for debugging purposes and cannot be used to implement
                         ## proper full screen windows.
                         ## This hint is ignored for full screen windows.
-  whMAXIMIZED = 0x00020008, ## specifies whether the windowed mode window will be maximized when created.
+  whMaximized = 0x00020008, ## specifies whether the windowed mode window will be maximized when created.
                          ## This hint is ignored for full screen windows
-  whRED_BITS = 0x00021001, ## specify the desired bit depths of the various components of the default
-                        ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whGREEN_BITS = 0x00021002, ## specify the desired bit depths of the various components of the default
-                          ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whBLUE_BITS = 0x00021003, ## specify the desired bit depths of the various components of the default
-                         ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whALPHA_BITS = 0x00021004, ## specify the desired bit depths of the various components of the default
-                          ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whDEPTH_BITS = 0x00021005, ## specify the desired bit depths of the various components of the default
-                          ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whSTENCIL_BITS = 0x00021006, ## specify the desired bit depths of the various components of the default
-                            ## framebuffer. glfwDONT_CARE means the application has no preference.
-  whACCUM_RED_BITS = 0x00021007, ## specify the desired bit depths of the various components of the
-                              ## accumulation buffer. glfwDONT_CARE means the application has no preference.
-  whACCUM_GREEN_BITS = 0x00021008, ## specify the desired bit depths of the various components of the
-                                ## accumulation buffer. glfwDONT_CARE means the application has no preference.
-  whACCUM_BLUE_BITS = 0x00021009, ## specify the desired bit depths of the various components of the
-                               ## accumulation buffer. glfwDONT_CARE means the application has no preference.
-  whACCUM_ALPHA_BITS = 0x0002100A, ## specify the desired bit depths of the various components of the
-                                ## accumulation buffer. glfwDONT_CARE means the application has no preference.
-  whAUX_BUFFERS = 0x0002100B,   ## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.
-  whSTEREO = 0x0002100C,        ## specifies whether to use stereoscopic rendering. This is a hard constraint
-  whSAMPLES = 0x0002100D, ## specifies the desired number of samples to use for multisampling. Zero
-                       ## disables multisampling. glfwDONT_CARE means the application has no preference
-  whSRGB_CAPABLE = 0x0002100E, ## specifies whether the framebuffer should be sRGB capable.
-                            ## If supported, a created OpenGL context will support the
-  whREFRESH_RATE = 0x0002100F, ## specifies the desired refresh rate for full screen windows.
-                            ## If set to glfwDONT_CARE, the highest available refresh rate will be used.
-                            ## This hint is ignored for windowed mode windows
-  whDOUBLEBUFFER = 0x00021010, ## specifies whether the framebuffer should be double buffered.
+  whRedBits = 0x00021001, ## specify the desired bit depths of the various components of the default
+                       ## framebuffer. glfwDontCare means the application has no preference.
+  whGreenBits = 0x00021002, ## specify the desired bit depths of the various components of the default
+                         ## framebuffer. glfwDontCare means the application has no preference.
+  whBlueBits = 0x00021003, ## specify the desired bit depths of the various components of the default
+                        ## framebuffer. glfwDontCare means the application has no preference.
+  whAlphaBits = 0x00021004, ## specify the desired bit depths of the various components of the default
+                         ## framebuffer. glfwDontCare means the application has no preference.
+  whDepthBits = 0x00021005, ## specify the desired bit depths of the various components of the default
+                         ## framebuffer. glfwDontCare means the application has no preference.
+  whStencilBits = 0x00021006, ## specify the desired bit depths of the various components of the default
+                           ## framebuffer. glfwDontCare means the application has no preference.
+  whAccumRedBits = 0x00021007, ## specify the desired bit depths of the various components of the
+                            ## accumulation buffer. glfwDontCare means the application has no preference.
+  whAccumGreenBits = 0x00021008, ## specify the desired bit depths of the various components of the
+                              ## accumulation buffer. glfwDontCare means the application has no preference.
+  whAccumBlueBits = 0x00021009, ## specify the desired bit depths of the various components of the
+                             ## accumulation buffer. glfwDontCare means the application has no preference.
+  whAccumAlphaBits = 0x0002100A, ## specify the desired bit depths of the various components of the
+                              ## accumulation buffer. glfwDontCare means the application has no preference.
+  whAuxBuffers = 0x0002100B,    ## specifies the desired number of auxiliary buffers. glfwDontCare means the application has no preference.
+  whStereo = 0x0002100C,        ## specifies whether to use stereoscopic rendering. This is a hard constraint
+  whSamples = 0x0002100D, ## specifies the desired number of samples to use for multisampling. Zero
+                       ## disables multisampling. glfwDontCare means the application has no preference
+  whSrgbCapable = 0x0002100E, ## specifies whether the framebuffer should be sRGB capable.
+                           ## If supported, a created OpenGL context will support the
+  whRefreshRate = 0x0002100F, ## specifies the desired refresh rate for full screen windows.
+                           ## If set to glfwDontCare, the highest available refresh rate will be used.
+                           ## This hint is ignored for windowed mode windows
+  whDoubleBuffer = 0x00021010, ## specifies whether the framebuffer should be double buffered.
                             ## You nearly always want to use double buffering. This is a hard constraint.
-  whCLIENT_API = 0x00022001, ## specifies which client API to create the context for.
-                          ## Possible values are GLFW_OPENGL_API, GLFW_OPENGL_ES_API and 
-  whCONTEXT_VERSION_MAJOR = 0x00022002, ## specify the client API version that the created context must be compatible
-                                     ## with. The exact behavior of these hints depend on the requested client API.
-  whCONTEXT_VERSION_MINOR = 0x00022003, ## specify the client API version that the created context must be compatible
-                                     ## with. The exact behavior of these hints depend on the requested client API.
-  whCONTEXT_REVISION = 0x00022004, ## indicate the client API version of the window&#x27;s context.
-  whCONTEXT_ROBUSTNESS = 0x00022005, ## specifies the robustness strategy to be used by the context.
-                                  ## This can be one of GLFW_NO_RESET_NOTIFICATION or GLFW_LOSE_CONTEXT_ON_RESET,
-                                  ## or GLFW_NO_ROBUSTNESS to not request a robustness strategy.
-  whOPENGL_FORWARD_COMPAT = 0x00022006, ## specifies whether the OpenGL context should be forward-compatible, i.e.
-                                     ## one where all functionality deprecated in the requested version of OpenGL
-                                     ## is removed. This must only be used if the requested OpenGL version is 3.0
-                                     ## or above.
-                                     ## If OpenGL ES is requested, this hint is ignored.
-  whOPENGL_DEBUG_CONTEXT = 0x00022007, ## ecifies whether to create a debug OpenGL context, which may have additional
-                                    ## error and performance issue reporting functionality.
-                                    ## If OpenGL ES is requested, this hint is ignored.
-  whOPENGL_PROFILE = 0x00022008 ## specifies which OpenGL profile to create the context for. Possible values
-                             ## are one of GLFW_OPENGL_CORE_PROFILE or GLFW_OPENGL_COMPAT_PROFILE, or
-                             ## GLFW_OPENGL_ANY_PROFILE to not request a specific profile. If requesting
-                             ## an OpenGL version below 3.2, GLFW_OPENGL_ANY_PROFILE must be used.
-                             ## If OpenGL ES is requested, this hint is ignored."><wbr />Window<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GLFWConstant"
-    title="GLFWConstant = enum
-  glfwFalse = 0, glfwTrue = 1"><wbr />GLFWConstant<span class="attachedType" style="visibility:hidden"></span></a></li>
+  whClientApi = 0x00022001, ## specifies which client API to create the context for.
+                         ## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and 
+  whContextVersionMajor = 0x00022002, ## specify the client API version that the created context must be compatible
+                                   ## with. The exact behavior of these hints depend on the requested client API.
+  whContextVersionMinor = 0x00022003, ## specify the client API version that the created context must be compatible
+                                   ## with. The exact behavior of these hints depend on the requested client API.
+  whContextRevision = 0x00022004, ## indicate the client API version of the window&#x27;s context.
+  whContextRobustness = 0x00022005, ## specifies the robustness strategy to be used by the context.
+                                 ## This can be one of glfwNoResetNotification or glfwLoseContextOnReset,
+                                 ## or glfwNoRobustness to not request a robustness strategy.
+  whOpenglForwardCompat = 0x00022006, ## specifies whether the OpenGL context should be forward-compatible, i.e.
+                                   ## one where all functionality deprecated in the requested version of OpenGL
+                                   ## is removed. This must only be used if the requested OpenGL version is 3.0
+                                   ## or above.
+                                   ## If OpenGL ES is requested, this hint is ignored.
+  whOpenglDebugContext = 0x00022007, ## ecifies whether to create a debug OpenGL context, which may have additional
+                                  ## error and performance issue reporting functionality.
+                                  ## If OpenGL ES is requested, this hint is ignored.
+  whOpenglProfile = 0x00022008, ## specifies which OpenGL profile to create the context for. Possible values
+                             ## are one of glfwOpenglCoreProfile or glfwOpenglCompatProfile, or
+                             ## glfwOpenglAnyProfile to not request a specific profile. If requesting
+                             ## an OpenGL version below 3.2, glfwOpenglAnyProfile must be used.
+                             ## If OpenGL ES is requested, this hint is ignored.
+  whContextReleaseBehavior = 0x00022009, ## specifies the release behavior to be used by the context. Possible values
+                                      ## are one of glfwAnyReleaseBehavior, glfwReleaseBehaviorFlush or
+                                      ## glfwReleaseBehaviorNone. If the behavior is glfwAnyReleaseBehavior,
+                                      ## the default behavior of the context creation API will be used. If the
+                                      ## behavior is glfwReleaseBehaviorFlush, the pipeline will be flushed
+                                      ## whenever the context is released from being the current one. If the
+                                      ## behavior is glfwReleaseBehaviorNone, the pipeline will not be flushed on release.
+  whContextNoError = 0x0002200A, ## specifies whether errors should be generated by the context. If enabled,
+                              ## situations that would have generated errors instead cause undefined behavior
+  whContextCreationAPI = 0x0002200B ## indicates the context creation API used to create the window&#x27;s context;
+                                 ## either glfwNativeContextAPI or glfwEGLContextAPI."><wbr />Window<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GLFWErrorCode"
     title="GLFWErrorCode = enum
-  glfwNOT_INITIALIZED = 0x00010001, ## GLFW has not been initialized.
-  glfwNO_CURRENT_CONTEXT = 0x00010002, ## No context is current for this thread.
-  glfwINVALID_ENUM = 0x00010003, ## One of the arguments to the function was an invalid enum value.
-  glfwINVALID_VALUE = 0x00010004, ## One of the arguments to the function was an invalid value.
-  glfwOUT_OF_MEMORY = 0x00010005, ## A memory allocation failed.
-  glfwAPI_UNAVAILABLE = 0x00010006, ## GLFW could not find support for the requested API on the system.
-  glfwVERSION_UNAVAILABLE = 0x00010007, ## The requested OpenGL or OpenGL ES version is not available.
-  glfwPLATFORM_ERROR = 0x00010008, ## A platform-specific error occurred that does not match any of the
-  glfwFORMAT_UNAVAILABLE = 0x00010009, ## The requested format is not supported or available.
-  glfwNO_WINDOW_CONTEXT = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />GLFWError<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
+  glfwNotInitialized = 0x00010001, ## GLFW has not been initialized.
+  glfwNoCurrentContext = 0x00010002, ## No context is current for this thread.
+  glfwInvalidEnum = 0x00010003, ## One of the arguments to the function was an invalid enum value.
+  glfwInvalidValue = 0x00010004, ## One of the arguments to the function was an invalid value.
+  glfwOutOfMemory = 0x00010005, ## A memory allocation failed.
+  glfwAPIUnavailable = 0x00010006, ## GLFW could not find support for the requested API on the system.
+  glfwVersionUnavailable = 0x00010007, ## The requested OpenGL or OpenGL ES version is not available.
+  glfwPlatformError = 0x00010008, ## A platform-specific error occurred that does not match any of the
+  glfwFormatUnavailable = 0x00010009, ## The requested format is not supported or available.
+  glfwNoWindowContext = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />GLFWError<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#MouseButton"
     title="MouseButton = enum
   mbLeft = 0, mbRight = 1, mbMiddle = 2, mb4 = 3, mb5 = 4, mb6 = 5, mb7 = 6, mb8 = 7"><wbr />Mouse<wbr />Button<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1351,31 +1359,31 @@ function main() {
   kaRelease = (0, &quot;release&quot;), kaPress = (1, &quot;press&quot;), kaRepeat = (2, &quot;repeat&quot;)"><wbr />Key<wbr />Action<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#KeyMod"
     title="KeyMod = enum
-  kmSHIFT = 0x00000001, kmCONTROL = 0x00000002, kmALT = 0x00000004, kmSUPER = 0x00000008"><wbr />Key<wbr />Mod<span class="attachedType" style="visibility:hidden"></span></a></li>
+  kmShift = 0x00000001, kmControl = 0x00000002, kmAlt = 0x00000004, kmSuper = 0x00000008"><wbr />Key<wbr />Mod<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Key"
     title="Key = enum
-  keyUNKNOWN = (-1, &quot;unkown&quot;), keySPACE = (32, &quot;space&quot;),
-  keyAPOSTROPHE = (39, &quot;apostrophe&quot;), keyCOMMA = (44, &quot;comma&quot;),
-  keyMINUS = (45, &quot;minus&quot;), keyPERIOD = (46, &quot;period&quot;), keySLASH = (47, &quot;slash&quot;),
+  keyUnknown = (-1, &quot;unkown&quot;), keySpace = (32, &quot;space&quot;),
+  keyApostrophe = (39, &quot;apostrophe&quot;), keyComma = (44, &quot;comma&quot;),
+  keyMinus = (45, &quot;minus&quot;), keyPeriod = (46, &quot;period&quot;), keySlash = (47, &quot;slash&quot;),
   key0 = (48, &quot;0&quot;), key1 = (49, &quot;1&quot;), key2 = (50, &quot;2&quot;), key3 = (51, &quot;3&quot;), key4 = (52, &quot;4&quot;),
   key5 = (53, &quot;5&quot;), key6 = (54, &quot;6&quot;), key7 = (55, &quot;7&quot;), key8 = (56, &quot;8&quot;), key9 = (57, &quot;9&quot;),
-  keySEMICOLON = (59, &quot;semicolon&quot;), keyEQUAL = (61, &quot;equal&quot;), keyA = (65, &quot;a&quot;),
+  keySemicolon = (59, &quot;semicolon&quot;), keyEqual = (61, &quot;equal&quot;), keyA = (65, &quot;a&quot;),
   keyB = (66, &quot;b&quot;), keyC = (67, &quot;c&quot;), keyD = (68, &quot;d&quot;), keyE = (69, &quot;e&quot;), keyF = (70, &quot;f&quot;),
   keyG = (71, &quot;g&quot;), keyH = (72, &quot;h&quot;), keyI = (73, &quot;i&quot;), keyJ = (74, &quot;j&quot;), keyK = (75, &quot;k&quot;),
   keyL = (76, &quot;l&quot;), keyM = (77, &quot;m&quot;), keyN = (78, &quot;n&quot;), keyO = (79, &quot;o&quot;), keyP = (80, &quot;p&quot;),
   keyQ = (81, &quot;q&quot;), keyR = (82, &quot;r&quot;), keyS = (83, &quot;s&quot;), keyT = (84, &quot;t&quot;), keyU = (85, &quot;u&quot;),
   keyV = (86, &quot;v&quot;), keyW = (87, &quot;w&quot;), keyX = (88, &quot;x&quot;), keyY = (89, &quot;y&quot;), keyZ = (90, &quot;z&quot;),
-  keyLEFT_BRACKET = (91, &quot;left_bracket&quot;), keyBACKSLASH = (92, &quot;back_slash&quot;),
-  keyRIGHT_BRACKET = (93, &quot;right_bracket&quot;), keyGRAVE_ACCENT = (96, &quot;grave_accent&quot;),
-  keyWORLD_1 = (161, &quot;world_1&quot;), keyWORLD_2 = (162, &quot;world_2&quot;),
-  keyESCAPE = (256, &quot;escape&quot;), keyENTER = (257, &quot;enter&quot;), keyTAB = (258, &quot;tab&quot;),
-  keyBACKSPACE = (259, &quot;backspace&quot;), keyINSERT = (260, &quot;insert&quot;),
-  keyDELETE = (261, &quot;delete&quot;), keyRIGHT = (262, &quot;right&quot;), keyLEFT = (263, &quot;left&quot;),
-  keyDOWN = (264, &quot;down&quot;), keyUP = (265, &quot;up&quot;), keyPAGE_UP = (266, &quot;page up&quot;),
-  keyPAGE_DOWN = (267, &quot;page down&quot;), keyHOME = (268, &quot;home&quot;), keyEND = (269, &quot;end&quot;),
-  keyCAPS_LOCK = (280, &quot;caps lock&quot;), keySCROLL_LOCK = (281, &quot;scroll lock&quot;),
-  keyNUM_LOCK = (282, &quot;num lock&quot;), keyPRINT_SCREEN = (283, &quot;print screen&quot;),
-  keyPAUSE = (284, &quot;pause&quot;), keyF1 = (290, &quot;f1&quot;), keyF2 = (291, &quot;f2&quot;), keyF3 = (292, &quot;f3&quot;),
+  keyLeftBracket = (91, &quot;left_bracket&quot;), keyBackslash = (92, &quot;back_slash&quot;),
+  keyRightBracket = (93, &quot;right_bracket&quot;), keyGraveAccent = (96, &quot;grave_accent&quot;),
+  keyWorld1 = (161, &quot;world_1&quot;), keyWorld2 = (162, &quot;world_2&quot;),
+  keyEscape = (256, &quot;escape&quot;), keyEnter = (257, &quot;enter&quot;), keyTab = (258, &quot;tab&quot;),
+  keyBackspace = (259, &quot;backspace&quot;), keyInsert = (260, &quot;insert&quot;),
+  keyDelete = (261, &quot;delete&quot;), keyRight = (262, &quot;right&quot;), keyLeft = (263, &quot;left&quot;),
+  keyDown = (264, &quot;down&quot;), keyUp = (265, &quot;up&quot;), keyPage_up = (266, &quot;page up&quot;),
+  keyPage_down = (267, &quot;page down&quot;), keyHome = (268, &quot;home&quot;), keyEnd = (269, &quot;end&quot;),
+  keyCapsLock = (280, &quot;caps lock&quot;), keyScrollLock = (281, &quot;scroll lock&quot;),
+  keyNumLock = (282, &quot;num lock&quot;), keyPrintScreen = (283, &quot;print screen&quot;),
+  keyPause = (284, &quot;pause&quot;), keyF1 = (290, &quot;f1&quot;), keyF2 = (291, &quot;f2&quot;), keyF3 = (292, &quot;f3&quot;),
   keyF4 = (293, &quot;f4&quot;), keyF5 = (294, &quot;f5&quot;), keyF6 = (295, &quot;f6&quot;), keyF7 = (296, &quot;f7&quot;),
   keyF8 = (297, &quot;f8&quot;), keyF9 = (298, &quot;f9&quot;), keyF10 = (299, &quot;f10&quot;), keyF11 = (300, &quot;f11&quot;),
   keyF12 = (301, &quot;f12&quot;), keyF13 = (302, &quot;f13&quot;), keyF14 = (303, &quot;f14&quot;),
@@ -1386,28 +1394,78 @@ function main() {
   keyKP_1 = (321, &quot;kp1&quot;), keyKP_2 = (322, &quot;kp2&quot;), keyKP_3 = (323, &quot;kp3&quot;),
   keyKP_4 = (324, &quot;kp4&quot;), keyKP_5 = (325, &quot;kp5&quot;), keyKP_6 = (326, &quot;kp6&quot;),
   keyKP_7 = (327, &quot;kp7&quot;), keyKP_8 = (328, &quot;kp8&quot;), keyKP_9 = (329, &quot;kp9&quot;),
-  keyKP_DECIMAL = (330, &quot;decial&quot;), keyKP_DIVIDE = (331, &quot;divide&quot;),
-  keyKP_MULTIPLY = (332, &quot;multiply&quot;), keyKP_SUBTRACT = (333, &quot;substract&quot;),
-  keyKP_ADD = (334, &quot;add&quot;), keyKP_ENTER = (335, &quot;enter&quot;), keyKP_EQUAL = (336, &quot;equal&quot;),
-  keyLEFT_SHIFT = (340, &quot;left_shift&quot;), keyLEFT_CONTROL = (341, &quot;left_control&quot;),
-  keyLEFT_ALT = (342, &quot;left_alt&quot;), keyLEFT_SUPER = (343, &quot;left_super&quot;),
-  keyRIGHT_SHIFT = (344, &quot;right_shift&quot;), keyRIGHT_CONTROL = (345, &quot;right_control&quot;),
-  keyRIGHT_ALT = (346, &quot;right_alt&quot;), keyRIGHT_SUPER = (347, &quot;right_super&quot;),
-  keyMENU = (348, &quot;menu&quot;), keyLAST = &quot;last&quot;"><wbr />Key<span class="attachedType" style="visibility:hidden"></span></a></li>
+  keyKP_Decimal = (330, &quot;decial&quot;), keyKP_Divide = (331, &quot;divide&quot;),
+  keyKP_Multiply = (332, &quot;multiply&quot;), keyKP_Subtract = (333, &quot;substract&quot;),
+  keyKP_Add = (334, &quot;add&quot;), keyKP_Enter = (335, &quot;enter&quot;), keyKP_Equal = (336, &quot;equal&quot;),
+  keyLeftShift = (340, &quot;left_shift&quot;), keyLeftControl = (341, &quot;left_control&quot;),
+  keyLeftAlt = (342, &quot;left_alt&quot;), keyLeftSuper = (343, &quot;left_super&quot;),
+  keyRightShift = (344, &quot;right_shift&quot;), keyRightControl = (345, &quot;right_control&quot;),
+  keyRightAlt = (346, &quot;right_alt&quot;), keyRightSuper = (347, &quot;right_super&quot;),
+  keyMenu = (348, &quot;menu&quot;), keyLast = &quot;last&quot;"><wbr />Key<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#keyProc"
     title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
+  <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#glfwDontCare"
+    title="glfwDontCare = -1"><wbr />glfw<wbr />Dont<wbr />Care<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwFalse"
+    title="glfwFalse = 0"><wbr />glfw<wbr />False<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwTrue"
+    title="glfwTrue = 1"><wbr />glfw<wbr />True<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwNoAPI"
+    title="glfwNoAPI = 0"><wbr />glfw<wbr />No<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwOpenglAPI"
+    title="glfwOpenglAPI = 0x00030001"><wbr />glfw<wbr />Opengl<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwOPENGL_ES_API"
+    title="glfwOPENGL_ES_API = 0x00030002"><wbr />glfw<wbr />OPENGL_<wbr />ES_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwNoRobustness"
+    title="glfwNoRobustness = 0"><wbr />glfw<wbr />No<wbr />Robustness<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwNoResetNotification"
+    title="glfwNoResetNotification = 0x00031001"><wbr />glfw<wbr />No<wbr />Reset<wbr />Notification<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwLoseContextOnReset"
+    title="glfwLoseContextOnReset = 0x00031002"><wbr />glfw<wbr />Lose<wbr />Context<wbr />On<wbr />Reset<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwOpenglAnyProfile"
+    title="glfwOpenglAnyProfile = 0"><wbr />glfw<wbr />Opengl<wbr />Any<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwOpenglCoreProfile"
+    title="glfwOpenglCoreProfile = 0x00032001"><wbr />glfw<wbr />Opengl<wbr />Core<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwOpenglCompatProfile"
+    title="glfwOpenglCompatProfile = 0x00032002"><wbr />glfw<wbr />Opengl<wbr />Compat<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwCursor"
+    title="glfwCursor = 0x00033001"><wbr />glfw<wbr />Cursor<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwStickyKeys"
+    title="glfwStickyKeys = 0x00033002"><wbr />glfw<wbr />Sticky<wbr />Keys<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwStickyMouseButtons"
+    title="glfwStickyMouseButtons = 0x00033003"><wbr />glfw<wbr />Sticky<wbr />Mouse<wbr />Buttons<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwCursorNormal"
+    title="glfwCursorNormal = 0x00034001"><wbr />glfw<wbr />Cursor<wbr />Normal<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwCursorHidden"
+    title="glfwCursorHidden = 0x00034002"><wbr />glfw<wbr />Cursor<wbr />Hidden<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwCursorDisabled"
+    title="glfwCursorDisabled = 0x00034003"><wbr />glfw<wbr />Cursor<wbr />Disabled<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwAnyReleaseBehavior"
+    title="glfwAnyReleaseBehavior = 0"><wbr />glfw<wbr />Any<wbr />Release<wbr />Behavior<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwReleaseBehaviorFlush"
+    title="glfwReleaseBehaviorFlush = 0x00035001"><wbr />glfw<wbr />Release<wbr />Behavior<wbr />Flush<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwReleaseBehaviorNone"
+    title="glfwReleaseBehaviorNone = 0x00035002"><wbr />glfw<wbr />Release<wbr />Behavior<wbr />None<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwNativeContextAPI"
+    title="glfwNativeContextAPI = 0x00036001"><wbr />glfw<wbr />Native<wbr />Context<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#glfwEGLContextAPI"
+    title="glfwEGLContextAPI = 0x00036002"><wbr />glfw<wbr />EGLContext<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#defaultWindowConfig,"
-    title="defaultWindowConfig(): WindowConfig"><wbr />default<wbr />Window<wbr />Config<span class="attachedType" style="visibility:hidden">WindowConfig</span></a></li>
-  <li><a class="reference" href="#createWindow,cint,cint,cstring,Monitor,Window"
+      <li><a class="reference" href="#createWindow,cint,cint,cstring,Monitor,Window"
     title="createWindow(width: cint; height: cint; title: cstring; monitor: Monitor; share: Window): Window"><wbr />create<wbr />Window<span class="attachedType" style="visibility:hidden">Window</span></a></li>
-  <li><a class="reference" href="#createWindow,WindowConfig"
-    title="createWindow(config: WindowConfig): Window"><wbr />create<wbr />Window<span class="attachedType" style="visibility:hidden">WindowConfig</span></a></li>
+  <li><a class="reference" href="#createWindow,cint,cint,cstring"
+    title="createWindow(width: cint; height: cint; title: cstring): Window"><wbr />create<wbr />Window<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#init,"
     title="init(): bool"><wbr />init<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#terminate,"
@@ -1436,10 +1494,18 @@ function main() {
     title="getKey(window: Window; key: Key): KeyAction"><wbr />get<wbr />Key<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#setWindowTitle,Window,cstring"
     title="setWindowTitle(window: Window; title: cstring): void"><wbr />set<wbr />Window<wbr />Title<span class="attachedType" style="visibility:hidden">Window</span></a></li>
-  <li><a class="reference" href="#windowHint,WindowHint,GLFWConstant"
-    title="windowHint(hint: WindowHint; value: GLFWConstant): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
+  <li><a class="reference" href="#windowHint,WindowHint,cint"
+    title="windowHint(hint: WindowHint; value: cint): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
   <li><a class="reference" href="#defaultWindowHints,"
     title="defaultWindowHints(): void"><wbr />default<wbr />Window<wbr />Hints<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#16" id="66">Converters</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#toBool.c,cint"
+    title="toBool(x: cint): bool"><wbr />to<wbr />Bool<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1453,7 +1519,12 @@ function main() {
 <h1><a class="toc-backref" id="glfw-bindings" href="#glfw-bindings">GLFW Bindings</a></h1><p><a class="reference external" href="../">return</a>.</p>
 <p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="http://www.glfw.org/docs/latest/">here</a>. Or continue reading to get the documentation shown here.</p>
 </p>
-  <div class="section" id="7">
+  <div class="section" id="6">
+<h1><a class="toc-backref" href="#6">Imports</a></h1>
+<dl class="item">
+<a class="reference external" href="macros.html">macros</a>
+</dl></div>
+<div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <dt id="Window"><a name="Window"></a><pre><span class="Identifier">Window</span> <span class="Other">=</span> <span class="Keyword">ptr</span> <span class="Keyword">object</span>
@@ -1468,114 +1539,109 @@ Pointer reference for a GLFW Window
 Pointer reference for a GLFW Monitor
 
 </dd>
-<dt id="WindowConfig"><a name="WindowConfig"></a><pre><span class="Identifier">WindowConfig</span> <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">title</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cstring</span>              <span class="Comment">## Title of the window</span>
-  <span class="Identifier">size</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">]</span> <span class="Comment">## Width and Height of the Window</span>
-  <span class="Identifier">monitor</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Monitor</span>            <span class="Comment">## Monitor attached to the window</span>
-  <span class="Identifier">share</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">Window</span>               <span class="Comment">## Sharing Window</span>
-  </pre></dt>
-<dd>
-Essential Config to create a Window
-
-</dd>
 <dt id="WindowHint"><a name="WindowHint"></a><pre><span class="Identifier">WindowHint</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">whFOCUSED</span> <span class="Other">=</span> <span class="DecNumber">0x00020001</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be given input focus</span>
+  <span class="Identifier">whFocused</span> <span class="Other">=</span> <span class="DecNumber">0x00020001</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be given input focus</span>
                        <span class="Comment">## when created.</span>
                        <span class="Comment">## This hint is ignored for full screen and initially hidden windows</span>
-  <span class="Identifier">whRESIZABLE</span> <span class="Other">=</span> <span class="DecNumber">0x00020003</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be resizable by the user.</span>
+  <span class="Identifier">whResizable</span> <span class="Other">=</span> <span class="DecNumber">0x00020003</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be resizable by the user.</span>
                          <span class="Comment">## The window will still be resizable using the glfwSetWindowSize function.</span>
                          <span class="Comment">## This hint is ignored for full screen windows.</span>
-  <span class="Identifier">whVISIBLE</span> <span class="Other">=</span> <span class="DecNumber">0x00020004</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be initially visible.</span>
+  <span class="Identifier">whVisible</span> <span class="Other">=</span> <span class="DecNumber">0x00020004</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be initially visible.</span>
                        <span class="Comment">## This hint is ignored for full screen windows</span>
-  <span class="Identifier">whDECORATED</span> <span class="Other">=</span> <span class="DecNumber">0x00020005</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will have window decorations</span>
+  <span class="Identifier">whDecorated</span> <span class="Other">=</span> <span class="DecNumber">0x00020005</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will have window decorations</span>
                          <span class="Comment">## such as a border, a close widget, etc. An undecorated window may still</span>
                          <span class="Comment">## allow the user to generate close events on some platforms.</span>
                          <span class="Comment">## This hint is ignored for full screen windows.</span>
-  <span class="Identifier">whAUTO_ICONIFY</span> <span class="Other">=</span> <span class="DecNumber">0x00020006</span><span class="Other">,</span> <span class="Comment">## specifies whether the full screen window will automatically iconify and</span>
-                            <span class="Comment">## restore the previous video mode on input focus loss.</span>
-                            <span class="Comment">## This hint is ignored for windowed mode windows.</span>
-  <span class="Identifier">whFLOATING</span> <span class="Other">=</span> <span class="DecNumber">0x00020007</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be floating above other</span>
+  <span class="Identifier">whAutoIconify</span> <span class="Other">=</span> <span class="DecNumber">0x00020006</span><span class="Other">,</span> <span class="Comment">## specifies whether the full screen window will automatically iconify and</span>
+                           <span class="Comment">## restore the previous video mode on input focus loss.</span>
+                           <span class="Comment">## This hint is ignored for windowed mode windows.</span>
+  <span class="Identifier">whFloating</span> <span class="Other">=</span> <span class="DecNumber">0x00020007</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be floating above other</span>
                         <span class="Comment">## regular windows, also called topmost or always-on-top. This is intended</span>
                         <span class="Comment">## primarily for debugging purposes and cannot be used to implement</span>
                         <span class="Comment">## proper full screen windows.</span>
                         <span class="Comment">## This hint is ignored for full screen windows.</span>
-  <span class="Identifier">whMAXIMIZED</span> <span class="Other">=</span> <span class="DecNumber">0x00020008</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be maximized when created.</span>
+  <span class="Identifier">whMaximized</span> <span class="Other">=</span> <span class="DecNumber">0x00020008</span><span class="Other">,</span> <span class="Comment">## specifies whether the windowed mode window will be maximized when created.</span>
                          <span class="Comment">## This hint is ignored for full screen windows</span>
-  <span class="Identifier">whRED_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021001</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                        <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whGREEN_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021002</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whBLUE_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021003</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                         <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whALPHA_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021004</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whDEPTH_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021005</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                          <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whSTENCIL_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021006</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
-                            <span class="Comment">## framebuffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whACCUM_RED_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021007</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
-                              <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whACCUM_GREEN_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021008</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
-                                <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whACCUM_BLUE_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x00021009</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
-                               <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whACCUM_ALPHA_BITS</span> <span class="Other">=</span> <span class="DecNumber">0x0002100A</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
-                                <span class="Comment">## accumulation buffer. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whAUX_BUFFERS</span> <span class="Other">=</span> <span class="DecNumber">0x0002100B</span><span class="Other">,</span>   <span class="Comment">## specifies the desired number of auxiliary buffers. glfwDONT_CARE means the application has no preference.</span>
-  <span class="Identifier">whSTEREO</span> <span class="Other">=</span> <span class="DecNumber">0x0002100C</span><span class="Other">,</span>        <span class="Comment">## specifies whether to use stereoscopic rendering. This is a hard constraint</span>
-  <span class="Identifier">whSAMPLES</span> <span class="Other">=</span> <span class="DecNumber">0x0002100D</span><span class="Other">,</span> <span class="Comment">## specifies the desired number of samples to use for multisampling. Zero</span>
-                       <span class="Comment">## disables multisampling. glfwDONT_CARE means the application has no preference</span>
-  <span class="Identifier">whSRGB_CAPABLE</span> <span class="Other">=</span> <span class="DecNumber">0x0002100E</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be sRGB capable.</span>
-                            <span class="Comment">## If supported, a created OpenGL context will support the</span>
-  <span class="Identifier">whREFRESH_RATE</span> <span class="Other">=</span> <span class="DecNumber">0x0002100F</span><span class="Other">,</span> <span class="Comment">## specifies the desired refresh rate for full screen windows.</span>
-                            <span class="Comment">## If set to glfwDONT_CARE, the highest available refresh rate will be used.</span>
-                            <span class="Comment">## This hint is ignored for windowed mode windows</span>
-  <span class="Identifier">whDOUBLEBUFFER</span> <span class="Other">=</span> <span class="DecNumber">0x00021010</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be double buffered.</span>
+  <span class="Identifier">whRedBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021001</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                       <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whGreenBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021002</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                         <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whBlueBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021003</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                        <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAlphaBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021004</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                         <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whDepthBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021005</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                         <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whStencilBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021006</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the default</span>
+                           <span class="Comment">## framebuffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAccumRedBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021007</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                            <span class="Comment">## accumulation buffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAccumGreenBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021008</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                              <span class="Comment">## accumulation buffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAccumBlueBits</span> <span class="Other">=</span> <span class="DecNumber">0x00021009</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                             <span class="Comment">## accumulation buffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAccumAlphaBits</span> <span class="Other">=</span> <span class="DecNumber">0x0002100A</span><span class="Other">,</span> <span class="Comment">## specify the desired bit depths of the various components of the</span>
+                              <span class="Comment">## accumulation buffer. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whAuxBuffers</span> <span class="Other">=</span> <span class="DecNumber">0x0002100B</span><span class="Other">,</span>    <span class="Comment">## specifies the desired number of auxiliary buffers. glfwDontCare means the application has no preference.</span>
+  <span class="Identifier">whStereo</span> <span class="Other">=</span> <span class="DecNumber">0x0002100C</span><span class="Other">,</span>        <span class="Comment">## specifies whether to use stereoscopic rendering. This is a hard constraint</span>
+  <span class="Identifier">whSamples</span> <span class="Other">=</span> <span class="DecNumber">0x0002100D</span><span class="Other">,</span> <span class="Comment">## specifies the desired number of samples to use for multisampling. Zero</span>
+                       <span class="Comment">## disables multisampling. glfwDontCare means the application has no preference</span>
+  <span class="Identifier">whSrgbCapable</span> <span class="Other">=</span> <span class="DecNumber">0x0002100E</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be sRGB capable.</span>
+                           <span class="Comment">## If supported, a created OpenGL context will support the</span>
+  <span class="Identifier">whRefreshRate</span> <span class="Other">=</span> <span class="DecNumber">0x0002100F</span><span class="Other">,</span> <span class="Comment">## specifies the desired refresh rate for full screen windows.</span>
+                           <span class="Comment">## If set to glfwDontCare, the highest available refresh rate will be used.</span>
+                           <span class="Comment">## This hint is ignored for windowed mode windows</span>
+  <span class="Identifier">whDoubleBuffer</span> <span class="Other">=</span> <span class="DecNumber">0x00021010</span><span class="Other">,</span> <span class="Comment">## specifies whether the framebuffer should be double buffered.</span>
                             <span class="Comment">## You nearly always want to use double buffering. This is a hard constraint.</span>
-  <span class="Identifier">whCLIENT_API</span> <span class="Other">=</span> <span class="DecNumber">0x00022001</span><span class="Other">,</span> <span class="Comment">## specifies which client API to create the context for.</span>
-                          <span class="Comment">## Possible values are GLFW_OPENGL_API, GLFW_OPENGL_ES_API and </span>
-  <span class="Identifier">whCONTEXT_VERSION_MAJOR</span> <span class="Other">=</span> <span class="DecNumber">0x00022002</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
-                                     <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
-  <span class="Identifier">whCONTEXT_VERSION_MINOR</span> <span class="Other">=</span> <span class="DecNumber">0x00022003</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
-                                     <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
-  <span class="Identifier">whCONTEXT_REVISION</span> <span class="Other">=</span> <span class="DecNumber">0x00022004</span><span class="Other">,</span> <span class="Comment">## indicate the client API version of the window's context.</span>
-  <span class="Identifier">whCONTEXT_ROBUSTNESS</span> <span class="Other">=</span> <span class="DecNumber">0x00022005</span><span class="Other">,</span> <span class="Comment">## specifies the robustness strategy to be used by the context.</span>
-                                  <span class="Comment">## This can be one of GLFW_NO_RESET_NOTIFICATION or GLFW_LOSE_CONTEXT_ON_RESET,</span>
-                                  <span class="Comment">## or GLFW_NO_ROBUSTNESS to not request a robustness strategy.</span>
-  <span class="Identifier">whOPENGL_FORWARD_COMPAT</span> <span class="Other">=</span> <span class="DecNumber">0x00022006</span><span class="Other">,</span> <span class="Comment">## specifies whether the OpenGL context should be forward-compatible, i.e.</span>
-                                     <span class="Comment">## one where all functionality deprecated in the requested version of OpenGL</span>
-                                     <span class="Comment">## is removed. This must only be used if the requested OpenGL version is 3.0</span>
-                                     <span class="Comment">## or above.</span>
-                                     <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
-  <span class="Identifier">whOPENGL_DEBUG_CONTEXT</span> <span class="Other">=</span> <span class="DecNumber">0x00022007</span><span class="Other">,</span> <span class="Comment">## ecifies whether to create a debug OpenGL context, which may have additional</span>
-                                    <span class="Comment">## error and performance issue reporting functionality.</span>
-                                    <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
-  <span class="Identifier">whOPENGL_PROFILE</span> <span class="Other">=</span> <span class="DecNumber">0x00022008</span> <span class="Comment">## specifies which OpenGL profile to create the context for. Possible values</span>
-                             <span class="Comment">## are one of GLFW_OPENGL_CORE_PROFILE or GLFW_OPENGL_COMPAT_PROFILE, or</span>
-                             <span class="Comment">## GLFW_OPENGL_ANY_PROFILE to not request a specific profile. If requesting</span>
-                             <span class="Comment">## an OpenGL version below 3.2, GLFW_OPENGL_ANY_PROFILE must be used.</span>
-                             <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span></pre></dt>
+  <span class="Identifier">whClientApi</span> <span class="Other">=</span> <span class="DecNumber">0x00022001</span><span class="Other">,</span> <span class="Comment">## specifies which client API to create the context for.</span>
+                         <span class="Comment">## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and </span>
+  <span class="Identifier">whContextVersionMajor</span> <span class="Other">=</span> <span class="DecNumber">0x00022002</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
+                                   <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
+  <span class="Identifier">whContextVersionMinor</span> <span class="Other">=</span> <span class="DecNumber">0x00022003</span><span class="Other">,</span> <span class="Comment">## specify the client API version that the created context must be compatible</span>
+                                   <span class="Comment">## with. The exact behavior of these hints depend on the requested client API.</span>
+  <span class="Identifier">whContextRevision</span> <span class="Other">=</span> <span class="DecNumber">0x00022004</span><span class="Other">,</span> <span class="Comment">## indicate the client API version of the window's context.</span>
+  <span class="Identifier">whContextRobustness</span> <span class="Other">=</span> <span class="DecNumber">0x00022005</span><span class="Other">,</span> <span class="Comment">## specifies the robustness strategy to be used by the context.</span>
+                                 <span class="Comment">## This can be one of glfwNoResetNotification or glfwLoseContextOnReset,</span>
+                                 <span class="Comment">## or glfwNoRobustness to not request a robustness strategy.</span>
+  <span class="Identifier">whOpenglForwardCompat</span> <span class="Other">=</span> <span class="DecNumber">0x00022006</span><span class="Other">,</span> <span class="Comment">## specifies whether the OpenGL context should be forward-compatible, i.e.</span>
+                                   <span class="Comment">## one where all functionality deprecated in the requested version of OpenGL</span>
+                                   <span class="Comment">## is removed. This must only be used if the requested OpenGL version is 3.0</span>
+                                   <span class="Comment">## or above.</span>
+                                   <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
+  <span class="Identifier">whOpenglDebugContext</span> <span class="Other">=</span> <span class="DecNumber">0x00022007</span><span class="Other">,</span> <span class="Comment">## ecifies whether to create a debug OpenGL context, which may have additional</span>
+                                  <span class="Comment">## error and performance issue reporting functionality.</span>
+                                  <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
+  <span class="Identifier">whOpenglProfile</span> <span class="Other">=</span> <span class="DecNumber">0x00022008</span><span class="Other">,</span> <span class="Comment">## specifies which OpenGL profile to create the context for. Possible values</span>
+                             <span class="Comment">## are one of glfwOpenglCoreProfile or glfwOpenglCompatProfile, or</span>
+                             <span class="Comment">## glfwOpenglAnyProfile to not request a specific profile. If requesting</span>
+                             <span class="Comment">## an OpenGL version below 3.2, glfwOpenglAnyProfile must be used.</span>
+                             <span class="Comment">## If OpenGL ES is requested, this hint is ignored.</span>
+  <span class="Identifier">whContextReleaseBehavior</span> <span class="Other">=</span> <span class="DecNumber">0x00022009</span><span class="Other">,</span> <span class="Comment">## specifies the release behavior to be used by the context. Possible values</span>
+                                      <span class="Comment">## are one of glfwAnyReleaseBehavior, glfwReleaseBehaviorFlush or</span>
+                                      <span class="Comment">## glfwReleaseBehaviorNone. If the behavior is glfwAnyReleaseBehavior,</span>
+                                      <span class="Comment">## the default behavior of the context creation API will be used. If the</span>
+                                      <span class="Comment">## behavior is glfwReleaseBehaviorFlush, the pipeline will be flushed</span>
+                                      <span class="Comment">## whenever the context is released from being the current one. If the</span>
+                                      <span class="Comment">## behavior is glfwReleaseBehaviorNone, the pipeline will not be flushed on release.</span>
+  <span class="Identifier">whContextNoError</span> <span class="Other">=</span> <span class="DecNumber">0x0002200A</span><span class="Other">,</span> <span class="Comment">## specifies whether errors should be generated by the context. If enabled,</span>
+                              <span class="Comment">## situations that would have generated errors instead cause undefined behavior</span>
+  <span class="Identifier">whContextCreationAPI</span> <span class="Other">=</span> <span class="DecNumber">0x0002200B</span> <span class="Comment">## indicates the context creation API used to create the window's context;</span>
+                                 <span class="Comment">## either glfwNativeContextAPI or glfwEGLContextAPI.</span></pre></dt>
 <dd>
 
-
-</dd>
-<dt id="GLFWConstant"><a name="GLFWConstant"></a><pre><span class="Identifier">GLFWConstant</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">glfwFalse</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">glfwTrue</span> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
-<dd>
-Semantic Sugar
 
 </dd>
 <dt id="GLFWErrorCode"><a name="GLFWErrorCode"></a><pre><span class="Identifier">GLFWErrorCode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">glfwNOT_INITIALIZED</span> <span class="Other">=</span> <span class="DecNumber">0x00010001</span><span class="Other">,</span> <span class="Comment">## GLFW has not been initialized.</span>
-  <span class="Identifier">glfwNO_CURRENT_CONTEXT</span> <span class="Other">=</span> <span class="DecNumber">0x00010002</span><span class="Other">,</span> <span class="Comment">## No context is current for this thread.</span>
-  <span class="Identifier">glfwINVALID_ENUM</span> <span class="Other">=</span> <span class="DecNumber">0x00010003</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid enum value.</span>
-  <span class="Identifier">glfwINVALID_VALUE</span> <span class="Other">=</span> <span class="DecNumber">0x00010004</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid value.</span>
-  <span class="Identifier">glfwOUT_OF_MEMORY</span> <span class="Other">=</span> <span class="DecNumber">0x00010005</span><span class="Other">,</span> <span class="Comment">## A memory allocation failed.</span>
-  <span class="Identifier">glfwAPI_UNAVAILABLE</span> <span class="Other">=</span> <span class="DecNumber">0x00010006</span><span class="Other">,</span> <span class="Comment">## GLFW could not find support for the requested API on the system.</span>
-  <span class="Identifier">glfwVERSION_UNAVAILABLE</span> <span class="Other">=</span> <span class="DecNumber">0x00010007</span><span class="Other">,</span> <span class="Comment">## The requested OpenGL or OpenGL ES version is not available.</span>
-  <span class="Identifier">glfwPLATFORM_ERROR</span> <span class="Other">=</span> <span class="DecNumber">0x00010008</span><span class="Other">,</span> <span class="Comment">## A platform-specific error occurred that does not match any of the</span>
-  <span class="Identifier">glfwFORMAT_UNAVAILABLE</span> <span class="Other">=</span> <span class="DecNumber">0x00010009</span><span class="Other">,</span> <span class="Comment">## The requested format is not supported or available.</span>
-  <span class="Identifier">glfwNO_WINDOW_CONTEXT</span> <span class="Other">=</span> <span class="DecNumber">0x0001000A</span> <span class="Comment">## The specified window does not have an OpenGL or OpenGL ES context.</span></pre></dt>
+  <span class="Identifier">glfwNotInitialized</span> <span class="Other">=</span> <span class="DecNumber">0x00010001</span><span class="Other">,</span> <span class="Comment">## GLFW has not been initialized.</span>
+  <span class="Identifier">glfwNoCurrentContext</span> <span class="Other">=</span> <span class="DecNumber">0x00010002</span><span class="Other">,</span> <span class="Comment">## No context is current for this thread.</span>
+  <span class="Identifier">glfwInvalidEnum</span> <span class="Other">=</span> <span class="DecNumber">0x00010003</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid enum value.</span>
+  <span class="Identifier">glfwInvalidValue</span> <span class="Other">=</span> <span class="DecNumber">0x00010004</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid value.</span>
+  <span class="Identifier">glfwOutOfMemory</span> <span class="Other">=</span> <span class="DecNumber">0x00010005</span><span class="Other">,</span> <span class="Comment">## A memory allocation failed.</span>
+  <span class="Identifier">glfwAPIUnavailable</span> <span class="Other">=</span> <span class="DecNumber">0x00010006</span><span class="Other">,</span> <span class="Comment">## GLFW could not find support for the requested API on the system.</span>
+  <span class="Identifier">glfwVersionUnavailable</span> <span class="Other">=</span> <span class="DecNumber">0x00010007</span><span class="Other">,</span> <span class="Comment">## The requested OpenGL or OpenGL ES version is not available.</span>
+  <span class="Identifier">glfwPlatformError</span> <span class="Other">=</span> <span class="DecNumber">0x00010008</span><span class="Other">,</span> <span class="Comment">## A platform-specific error occurred that does not match any of the</span>
+  <span class="Identifier">glfwFormatUnavailable</span> <span class="Other">=</span> <span class="DecNumber">0x00010009</span><span class="Other">,</span> <span class="Comment">## The requested format is not supported or available.</span>
+  <span class="Identifier">glfwNoWindowContext</span> <span class="Other">=</span> <span class="DecNumber">0x0001000A</span> <span class="Comment">## The specified window does not have an OpenGL or OpenGL ES context.</span></pre></dt>
 <dd>
 Error Codes documented on the original documentation
 
@@ -1600,34 +1666,34 @@ Action released on the key event
 
 </dd>
 <dt id="KeyMod"><a name="KeyMod"></a><pre><span class="Identifier">KeyMod</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">kmSHIFT</span> <span class="Other">=</span> <span class="DecNumber">0x00000001</span><span class="Other">,</span> <span class="Identifier">kmCONTROL</span> <span class="Other">=</span> <span class="DecNumber">0x00000002</span><span class="Other">,</span> <span class="Identifier">kmALT</span> <span class="Other">=</span> <span class="DecNumber">0x00000004</span><span class="Other">,</span> <span class="Identifier">kmSUPER</span> <span class="Other">=</span> <span class="DecNumber">0x00000008</span></pre></dt>
+  <span class="Identifier">kmShift</span> <span class="Other">=</span> <span class="DecNumber">0x00000001</span><span class="Other">,</span> <span class="Identifier">kmControl</span> <span class="Other">=</span> <span class="DecNumber">0x00000002</span><span class="Other">,</span> <span class="Identifier">kmAlt</span> <span class="Other">=</span> <span class="DecNumber">0x00000004</span><span class="Other">,</span> <span class="Identifier">kmSuper</span> <span class="Other">=</span> <span class="DecNumber">0x00000008</span></pre></dt>
 <dd>
 Key Modifiers, to modify actions
 
 </dd>
 <dt id="Key"><a name="Key"></a><pre><span class="Identifier">Key</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">keyUNKNOWN</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">-1</span><span class="Other">,</span> <span class="StringLit">&quot;unkown&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keySPACE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">32</span><span class="Other">,</span> <span class="StringLit">&quot;space&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyAPOSTROPHE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">39</span><span class="Other">,</span> <span class="StringLit">&quot;apostrophe&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyCOMMA</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">44</span><span class="Other">,</span> <span class="StringLit">&quot;comma&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyMINUS</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">45</span><span class="Other">,</span> <span class="StringLit">&quot;minus&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPERIOD</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">46</span><span class="Other">,</span> <span class="StringLit">&quot;period&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keySLASH</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">47</span><span class="Other">,</span> <span class="StringLit">&quot;slash&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyUnknown</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">-1</span><span class="Other">,</span> <span class="StringLit">&quot;unkown&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keySpace</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">32</span><span class="Other">,</span> <span class="StringLit">&quot;space&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyApostrophe</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">39</span><span class="Other">,</span> <span class="StringLit">&quot;apostrophe&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyComma</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">44</span><span class="Other">,</span> <span class="StringLit">&quot;comma&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyMinus</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">45</span><span class="Other">,</span> <span class="StringLit">&quot;minus&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPeriod</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">46</span><span class="Other">,</span> <span class="StringLit">&quot;period&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keySlash</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">47</span><span class="Other">,</span> <span class="StringLit">&quot;slash&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">key0</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">48</span><span class="Other">,</span> <span class="StringLit">&quot;0&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">49</span><span class="Other">,</span> <span class="StringLit">&quot;1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">50</span><span class="Other">,</span> <span class="StringLit">&quot;2&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key3</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">51</span><span class="Other">,</span> <span class="StringLit">&quot;3&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key4</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">52</span><span class="Other">,</span> <span class="StringLit">&quot;4&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">key5</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">53</span><span class="Other">,</span> <span class="StringLit">&quot;5&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key6</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">54</span><span class="Other">,</span> <span class="StringLit">&quot;6&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key7</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">55</span><span class="Other">,</span> <span class="StringLit">&quot;7&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key8</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">56</span><span class="Other">,</span> <span class="StringLit">&quot;8&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">key9</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">57</span><span class="Other">,</span> <span class="StringLit">&quot;9&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keySEMICOLON</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">59</span><span class="Other">,</span> <span class="StringLit">&quot;semicolon&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyEQUAL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">61</span><span class="Other">,</span> <span class="StringLit">&quot;equal&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyA</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">65</span><span class="Other">,</span> <span class="StringLit">&quot;a&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keySemicolon</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">59</span><span class="Other">,</span> <span class="StringLit">&quot;semicolon&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyEqual</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">61</span><span class="Other">,</span> <span class="StringLit">&quot;equal&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyA</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">65</span><span class="Other">,</span> <span class="StringLit">&quot;a&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyB</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">66</span><span class="Other">,</span> <span class="StringLit">&quot;b&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyC</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">67</span><span class="Other">,</span> <span class="StringLit">&quot;c&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyD</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">68</span><span class="Other">,</span> <span class="StringLit">&quot;d&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">69</span><span class="Other">,</span> <span class="StringLit">&quot;e&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">70</span><span class="Other">,</span> <span class="StringLit">&quot;f&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyG</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">71</span><span class="Other">,</span> <span class="StringLit">&quot;g&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyH</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">72</span><span class="Other">,</span> <span class="StringLit">&quot;h&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyI</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">73</span><span class="Other">,</span> <span class="StringLit">&quot;i&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyJ</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">74</span><span class="Other">,</span> <span class="StringLit">&quot;j&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyK</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">75</span><span class="Other">,</span> <span class="StringLit">&quot;k&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">76</span><span class="Other">,</span> <span class="StringLit">&quot;l&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyM</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">77</span><span class="Other">,</span> <span class="StringLit">&quot;m&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyN</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">78</span><span class="Other">,</span> <span class="StringLit">&quot;n&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyO</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">79</span><span class="Other">,</span> <span class="StringLit">&quot;o&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyP</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">80</span><span class="Other">,</span> <span class="StringLit">&quot;p&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyQ</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">81</span><span class="Other">,</span> <span class="StringLit">&quot;q&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyR</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">82</span><span class="Other">,</span> <span class="StringLit">&quot;r&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyS</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">83</span><span class="Other">,</span> <span class="StringLit">&quot;s&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">84</span><span class="Other">,</span> <span class="StringLit">&quot;t&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyU</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">85</span><span class="Other">,</span> <span class="StringLit">&quot;u&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyV</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">86</span><span class="Other">,</span> <span class="StringLit">&quot;v&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyW</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">87</span><span class="Other">,</span> <span class="StringLit">&quot;w&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyX</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">88</span><span class="Other">,</span> <span class="StringLit">&quot;x&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyY</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">89</span><span class="Other">,</span> <span class="StringLit">&quot;y&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyZ</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">90</span><span class="Other">,</span> <span class="StringLit">&quot;z&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyLEFT_BRACKET</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">91</span><span class="Other">,</span> <span class="StringLit">&quot;left_bracket&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyBACKSLASH</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">92</span><span class="Other">,</span> <span class="StringLit">&quot;back_slash&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyRIGHT_BRACKET</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">93</span><span class="Other">,</span> <span class="StringLit">&quot;right_bracket&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyGRAVE_ACCENT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">96</span><span class="Other">,</span> <span class="StringLit">&quot;grave_accent&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyWORLD_1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">161</span><span class="Other">,</span> <span class="StringLit">&quot;world_1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyWORLD_2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">162</span><span class="Other">,</span> <span class="StringLit">&quot;world_2&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyESCAPE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">256</span><span class="Other">,</span> <span class="StringLit">&quot;escape&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyENTER</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">257</span><span class="Other">,</span> <span class="StringLit">&quot;enter&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyTAB</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">258</span><span class="Other">,</span> <span class="StringLit">&quot;tab&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyBACKSPACE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">259</span><span class="Other">,</span> <span class="StringLit">&quot;backspace&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyINSERT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">260</span><span class="Other">,</span> <span class="StringLit">&quot;insert&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyDELETE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">261</span><span class="Other">,</span> <span class="StringLit">&quot;delete&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRIGHT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">262</span><span class="Other">,</span> <span class="StringLit">&quot;right&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLEFT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">263</span><span class="Other">,</span> <span class="StringLit">&quot;left&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyDOWN</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">264</span><span class="Other">,</span> <span class="StringLit">&quot;down&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyUP</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">265</span><span class="Other">,</span> <span class="StringLit">&quot;up&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPAGE_UP</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">266</span><span class="Other">,</span> <span class="StringLit">&quot;page up&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyPAGE_DOWN</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">267</span><span class="Other">,</span> <span class="StringLit">&quot;page down&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyHOME</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">268</span><span class="Other">,</span> <span class="StringLit">&quot;home&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyEND</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">269</span><span class="Other">,</span> <span class="StringLit">&quot;end&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyCAPS_LOCK</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">280</span><span class="Other">,</span> <span class="StringLit">&quot;caps lock&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keySCROLL_LOCK</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">281</span><span class="Other">,</span> <span class="StringLit">&quot;scroll lock&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyNUM_LOCK</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">282</span><span class="Other">,</span> <span class="StringLit">&quot;num lock&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPRINT_SCREEN</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">283</span><span class="Other">,</span> <span class="StringLit">&quot;print screen&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyPAUSE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">284</span><span class="Other">,</span> <span class="StringLit">&quot;pause&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">290</span><span class="Other">,</span> <span class="StringLit">&quot;f1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">291</span><span class="Other">,</span> <span class="StringLit">&quot;f2&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF3</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">292</span><span class="Other">,</span> <span class="StringLit">&quot;f3&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyLeftBracket</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">91</span><span class="Other">,</span> <span class="StringLit">&quot;left_bracket&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyBackslash</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">92</span><span class="Other">,</span> <span class="StringLit">&quot;back_slash&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyRightBracket</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">93</span><span class="Other">,</span> <span class="StringLit">&quot;right_bracket&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyGraveAccent</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">96</span><span class="Other">,</span> <span class="StringLit">&quot;grave_accent&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyWorld1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">161</span><span class="Other">,</span> <span class="StringLit">&quot;world_1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyWorld2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">162</span><span class="Other">,</span> <span class="StringLit">&quot;world_2&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyEscape</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">256</span><span class="Other">,</span> <span class="StringLit">&quot;escape&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyEnter</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">257</span><span class="Other">,</span> <span class="StringLit">&quot;enter&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyTab</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">258</span><span class="Other">,</span> <span class="StringLit">&quot;tab&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyBackspace</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">259</span><span class="Other">,</span> <span class="StringLit">&quot;backspace&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyInsert</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">260</span><span class="Other">,</span> <span class="StringLit">&quot;insert&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyDelete</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">261</span><span class="Other">,</span> <span class="StringLit">&quot;delete&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRight</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">262</span><span class="Other">,</span> <span class="StringLit">&quot;right&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLeft</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">263</span><span class="Other">,</span> <span class="StringLit">&quot;left&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyDown</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">264</span><span class="Other">,</span> <span class="StringLit">&quot;down&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyUp</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">265</span><span class="Other">,</span> <span class="StringLit">&quot;up&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPage_up</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">266</span><span class="Other">,</span> <span class="StringLit">&quot;page up&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyPage_down</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">267</span><span class="Other">,</span> <span class="StringLit">&quot;page down&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyHome</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">268</span><span class="Other">,</span> <span class="StringLit">&quot;home&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyEnd</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">269</span><span class="Other">,</span> <span class="StringLit">&quot;end&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyCapsLock</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">280</span><span class="Other">,</span> <span class="StringLit">&quot;caps lock&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyScrollLock</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">281</span><span class="Other">,</span> <span class="StringLit">&quot;scroll lock&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyNumLock</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">282</span><span class="Other">,</span> <span class="StringLit">&quot;num lock&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyPrintScreen</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">283</span><span class="Other">,</span> <span class="StringLit">&quot;print screen&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyPause</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">284</span><span class="Other">,</span> <span class="StringLit">&quot;pause&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">290</span><span class="Other">,</span> <span class="StringLit">&quot;f1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">291</span><span class="Other">,</span> <span class="StringLit">&quot;f2&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF3</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">292</span><span class="Other">,</span> <span class="StringLit">&quot;f3&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyF4</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">293</span><span class="Other">,</span> <span class="StringLit">&quot;f4&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF5</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">294</span><span class="Other">,</span> <span class="StringLit">&quot;f5&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF6</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">295</span><span class="Other">,</span> <span class="StringLit">&quot;f6&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF7</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">296</span><span class="Other">,</span> <span class="StringLit">&quot;f7&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyF8</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">297</span><span class="Other">,</span> <span class="StringLit">&quot;f8&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF9</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">298</span><span class="Other">,</span> <span class="StringLit">&quot;f9&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF10</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">299</span><span class="Other">,</span> <span class="StringLit">&quot;f10&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF11</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">300</span><span class="Other">,</span> <span class="StringLit">&quot;f11&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyF12</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">301</span><span class="Other">,</span> <span class="StringLit">&quot;f12&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF13</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">302</span><span class="Other">,</span> <span class="StringLit">&quot;f13&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyF14</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">303</span><span class="Other">,</span> <span class="StringLit">&quot;f14&quot;</span><span class="Other">)</span><span class="Other">,</span>
@@ -1638,14 +1704,14 @@ Key Modifiers, to modify actions
   <span class="Identifier">keyKP_1</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">321</span><span class="Other">,</span> <span class="StringLit">&quot;kp1&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_2</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">322</span><span class="Other">,</span> <span class="StringLit">&quot;kp2&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_3</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">323</span><span class="Other">,</span> <span class="StringLit">&quot;kp3&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyKP_4</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">324</span><span class="Other">,</span> <span class="StringLit">&quot;kp4&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_5</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">325</span><span class="Other">,</span> <span class="StringLit">&quot;kp5&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_6</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">326</span><span class="Other">,</span> <span class="StringLit">&quot;kp6&quot;</span><span class="Other">)</span><span class="Other">,</span>
   <span class="Identifier">keyKP_7</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">327</span><span class="Other">,</span> <span class="StringLit">&quot;kp7&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_8</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">328</span><span class="Other">,</span> <span class="StringLit">&quot;kp8&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_9</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">329</span><span class="Other">,</span> <span class="StringLit">&quot;kp9&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyKP_DECIMAL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">330</span><span class="Other">,</span> <span class="StringLit">&quot;decial&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_DIVIDE</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">331</span><span class="Other">,</span> <span class="StringLit">&quot;divide&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyKP_MULTIPLY</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">332</span><span class="Other">,</span> <span class="StringLit">&quot;multiply&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_SUBTRACT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">333</span><span class="Other">,</span> <span class="StringLit">&quot;substract&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyKP_ADD</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">334</span><span class="Other">,</span> <span class="StringLit">&quot;add&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_ENTER</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">335</span><span class="Other">,</span> <span class="StringLit">&quot;enter&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_EQUAL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">336</span><span class="Other">,</span> <span class="StringLit">&quot;equal&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyLEFT_SHIFT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">340</span><span class="Other">,</span> <span class="StringLit">&quot;left_shift&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLEFT_CONTROL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">341</span><span class="Other">,</span> <span class="StringLit">&quot;left_control&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyLEFT_ALT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">342</span><span class="Other">,</span> <span class="StringLit">&quot;left_alt&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLEFT_SUPER</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">343</span><span class="Other">,</span> <span class="StringLit">&quot;left_super&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyRIGHT_SHIFT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">344</span><span class="Other">,</span> <span class="StringLit">&quot;right_shift&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRIGHT_CONTROL</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">345</span><span class="Other">,</span> <span class="StringLit">&quot;right_control&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyRIGHT_ALT</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">346</span><span class="Other">,</span> <span class="StringLit">&quot;right_alt&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRIGHT_SUPER</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">347</span><span class="Other">,</span> <span class="StringLit">&quot;right_super&quot;</span><span class="Other">)</span><span class="Other">,</span>
-  <span class="Identifier">keyMENU</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">348</span><span class="Other">,</span> <span class="StringLit">&quot;menu&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLAST</span> <span class="Other">=</span> <span class="StringLit">&quot;last&quot;</span></pre></dt>
+  <span class="Identifier">keyKP_Decimal</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">330</span><span class="Other">,</span> <span class="StringLit">&quot;decial&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_Divide</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">331</span><span class="Other">,</span> <span class="StringLit">&quot;divide&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyKP_Multiply</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">332</span><span class="Other">,</span> <span class="StringLit">&quot;multiply&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_Subtract</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">333</span><span class="Other">,</span> <span class="StringLit">&quot;substract&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyKP_Add</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">334</span><span class="Other">,</span> <span class="StringLit">&quot;add&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_Enter</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">335</span><span class="Other">,</span> <span class="StringLit">&quot;enter&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyKP_Equal</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">336</span><span class="Other">,</span> <span class="StringLit">&quot;equal&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyLeftShift</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">340</span><span class="Other">,</span> <span class="StringLit">&quot;left_shift&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLeftControl</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">341</span><span class="Other">,</span> <span class="StringLit">&quot;left_control&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyLeftAlt</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">342</span><span class="Other">,</span> <span class="StringLit">&quot;left_alt&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLeftSuper</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">343</span><span class="Other">,</span> <span class="StringLit">&quot;left_super&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyRightShift</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">344</span><span class="Other">,</span> <span class="StringLit">&quot;right_shift&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRightControl</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">345</span><span class="Other">,</span> <span class="StringLit">&quot;right_control&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyRightAlt</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">346</span><span class="Other">,</span> <span class="StringLit">&quot;right_alt&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyRightSuper</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">347</span><span class="Other">,</span> <span class="StringLit">&quot;right_super&quot;</span><span class="Other">)</span><span class="Other">,</span>
+  <span class="Identifier">keyMenu</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">348</span><span class="Other">,</span> <span class="StringLit">&quot;menu&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLast</span> <span class="Other">=</span> <span class="StringLit">&quot;last&quot;</span></pre></dt>
 <dd>
 KeyCodes, a lot of them
 
@@ -1664,21 +1730,137 @@ KeyCodes, a lot of them
 </dd>
 
 </dl></div>
+<div class="section" id="10">
+<h1><a class="toc-backref" href="#10">Consts</a></h1>
+<dl class="item">
+<dt id="glfwDontCare"><a name="glfwDontCare"></a><pre><span class="Identifier">glfwDontCare</span> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwFalse"><a name="glfwFalse"></a><pre><span class="Identifier">glfwFalse</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwTrue"><a name="glfwTrue"></a><pre><span class="Identifier">glfwTrue</span> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwNoAPI"><a name="glfwNoAPI"></a><pre><span class="Identifier">glfwNoAPI</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwOpenglAPI"><a name="glfwOpenglAPI"></a><pre><span class="Identifier">glfwOpenglAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00030001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwOPENGL_ES_API"><a name="glfwOPENGL_ES_API"></a><pre><span class="Identifier">glfwOPENGL_ES_API</span> <span class="Other">=</span> <span class="DecNumber">0x00030002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwNoRobustness"><a name="glfwNoRobustness"></a><pre><span class="Identifier">glfwNoRobustness</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwNoResetNotification"><a name="glfwNoResetNotification"></a><pre><span class="Identifier">glfwNoResetNotification</span> <span class="Other">=</span> <span class="DecNumber">0x00031001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwLoseContextOnReset"><a name="glfwLoseContextOnReset"></a><pre><span class="Identifier">glfwLoseContextOnReset</span> <span class="Other">=</span> <span class="DecNumber">0x00031002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwOpenglAnyProfile"><a name="glfwOpenglAnyProfile"></a><pre><span class="Identifier">glfwOpenglAnyProfile</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwOpenglCoreProfile"><a name="glfwOpenglCoreProfile"></a><pre><span class="Identifier">glfwOpenglCoreProfile</span> <span class="Other">=</span> <span class="DecNumber">0x00032001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwOpenglCompatProfile"><a name="glfwOpenglCompatProfile"></a><pre><span class="Identifier">glfwOpenglCompatProfile</span> <span class="Other">=</span> <span class="DecNumber">0x00032002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwCursor"><a name="glfwCursor"></a><pre><span class="Identifier">glfwCursor</span> <span class="Other">=</span> <span class="DecNumber">0x00033001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwStickyKeys"><a name="glfwStickyKeys"></a><pre><span class="Identifier">glfwStickyKeys</span> <span class="Other">=</span> <span class="DecNumber">0x00033002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwStickyMouseButtons"><a name="glfwStickyMouseButtons"></a><pre><span class="Identifier">glfwStickyMouseButtons</span> <span class="Other">=</span> <span class="DecNumber">0x00033003</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwCursorNormal"><a name="glfwCursorNormal"></a><pre><span class="Identifier">glfwCursorNormal</span> <span class="Other">=</span> <span class="DecNumber">0x00034001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwCursorHidden"><a name="glfwCursorHidden"></a><pre><span class="Identifier">glfwCursorHidden</span> <span class="Other">=</span> <span class="DecNumber">0x00034002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwCursorDisabled"><a name="glfwCursorDisabled"></a><pre><span class="Identifier">glfwCursorDisabled</span> <span class="Other">=</span> <span class="DecNumber">0x00034003</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwAnyReleaseBehavior"><a name="glfwAnyReleaseBehavior"></a><pre><span class="Identifier">glfwAnyReleaseBehavior</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwReleaseBehaviorFlush"><a name="glfwReleaseBehaviorFlush"></a><pre><span class="Identifier">glfwReleaseBehaviorFlush</span> <span class="Other">=</span> <span class="DecNumber">0x00035001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwReleaseBehaviorNone"><a name="glfwReleaseBehaviorNone"></a><pre><span class="Identifier">glfwReleaseBehaviorNone</span> <span class="Other">=</span> <span class="DecNumber">0x00035002</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwNativeContextAPI"><a name="glfwNativeContextAPI"></a><pre><span class="Identifier">glfwNativeContextAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00036001</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glfwEGLContextAPI"><a name="glfwEGLContextAPI"></a><pre><span class="Identifier">glfwEGLContextAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00036002</span></pre></dt>
+<dd>
+
+
+</dd>
+
+</dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="defaultWindowConfig"><a name="defaultWindowConfig,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">defaultWindowConfig</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">WindowConfig</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Returns a copy of a valid <tt class="docutils literal"><span class="pre">WindowConfig</span></tt> for you to modify and pass as an argument to <tt class="docutils literal"><span class="pre">createWindow</span></tt>
-
-</dd>
 <dt id="createWindow"><a name="createWindow,cint,cint,cstring,Monitor,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createWindow</span><span class="Other">(</span><span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">monitor</span><span class="Other">:</span> <span class="Identifier">Monitor</span><span class="Other">;</span>
                  <span class="Identifier">share</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwCreateWindow&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Creates a window and its associated OpenGL or OpenGL ES context. Most of the options controlling how the window and its context should be created are specified with <tt class="docutils literal"><span class="pre">window_hints</span></tt>. We recommend you to generate a config and modify it instead but this is the official way to create a window
 
 </dd>
-<dt id="createWindow"><a name="createWindow,WindowConfig"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createWindow</span><span class="Other">(</span><span class="Identifier">config</span><span class="Other">:</span> <span class="Identifier">WindowConfig</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="createWindow"><a name="createWindow,cint,cint,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createWindow</span><span class="Other">(</span><span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Creates a window and its associated OpenGL or OpenGL ES context. Most of the options controlling how the window and its context should be created are specified with <tt class="docutils literal"><span class="pre">window_hints</span></tt>. Overloading
 
@@ -1686,7 +1868,7 @@ Creates a window and its associated OpenGL or OpenGL ES context. Most of the opt
 <dt id="init"><a name="init,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwInit&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>Initializes the GLFW library. Before most GLFW functions can be used, GLFW must be initialized, and before an application terminates GLFW should be terminated in order to free any resources allocated during or after initialization.</p>
-<p>Returns <tt class="docutils literal"><span class="pre">GLFW_TRUE</span></tt> if successful, or <tt class="docutils literal"><span class="pre">GLFW_FALSE</span></tt> if an error ocurred.</p>
+<p>Returns <tt class="docutils literal"><span class="pre">glfwTRUE</span></tt> if successful, or <tt class="docutils literal"><span class="pre">glfwFALSE</span></tt> if an error ocurred.</p>
 
 
 </dd>
@@ -1760,8 +1942,7 @@ This function returns the last state reported for the specified key to the speci
 This function sets the window title, encoded as UTF-8, of the specified window.
 
 </dd>
-<dt id="windowHint"><a name="windowHint,WindowHint,GLFWConstant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">windowHint</span><span class="Other">(</span><span class="Identifier">hint</span><span class="Other">:</span> <span class="Identifier">WindowHint</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">GLFWConstant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
-    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwWindowHint&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="windowHint"><a name="windowHint,WindowHint,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">windowHint</span><span class="Other">(</span><span class="Identifier">hint</span><span class="Other">:</span> <span class="Identifier">WindowHint</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwWindowHint&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This function sets hints for the next call to <tt class="docutils literal"><span class="pre">createWindow</span></tt>  The hints, once set, retain their values until changed by a call to. <tt class="docutils literal"><span class="pre">windowHint</span></tt> or <tt class="docutils literal"><span class="pre">defaultWindowHints</span></tt>, or until the library is terminated.</p>
 <p>To read more visit <a class="reference external" href="http://www.glfw.org/docs/latest/window_guide.html#window_hints_values">here</a>.</p>
@@ -1775,6 +1956,16 @@ Resets all window hints to their default values.
 </dd>
 
 </dl></div>
+<div class="section" id="16">
+<h1><a class="toc-backref" href="#16">Converters</a></h1>
+<dl class="item">
+<dt id="toBool"><a name="toBool.c,cint"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toBool</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+
+</dl></div>
 
   </div>
 </div>
@@ -1783,7 +1974,7 @@ Resets all window hints to their default values.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-11 21:00:26 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-12 12:58:33 UTC</small>
       </div>
     </div>
   </div>
