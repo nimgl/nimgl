@@ -5,6 +5,11 @@
       "label": "test",
       "type": "shell",
       "command": "nimble test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
       "group": {
         "kind": "build",
         "isDefault": true

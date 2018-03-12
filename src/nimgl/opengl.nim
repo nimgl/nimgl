@@ -31,5 +31,5 @@ proc getProcGL*(procgl: cstring): ProcGL =
     result = GetProcAddress(ogl32, procgl)
 
 proc init*() =
-  echo getProcGL("glClearColor") == nil
-  echo getProcGL("glClear") == nil
+  echo repr(getProcGL("glClearColor"))
+  echo repr(getProcGL("glClear"))
