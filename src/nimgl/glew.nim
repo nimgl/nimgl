@@ -5,8 +5,12 @@
 ## ====
 ## `return <../>`_.  
 ##
-## This bindings follow most of the original library
-## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
+## There are too many procedures and constants, please run while you can
+## but if you want to kill the monster you can add the procedures you still need
+## you can use `https://docs.gl/<https://docs.gl/>`_ to get references of how every
+## procedure works.
+##
+## Or if you want `the official docs<https://www.khronos.org/registry/OpenGL-Refpages/gl4/>`_
 
 from os import splitPath
 
@@ -702,6 +706,91 @@ const
   GL_DYNAMIC_COPY*: glEnum = 0x88EA
   GL_SAMPLES_PASSED*: glEnum = 0x8914
   GL_FLOAT*: glEnum = 0x1406
+  GL_BLEND_EQUATION*: glEnum = 0x8009
+  GL_BLEND_EQUATION_RGB*: glEnum = GL_BLEND_EQUATION
+  GL_VERTEX_ATTRIB_ARRAY_ENABLED*: glEnum = 0x8622
+  GL_VERTEX_ATTRIB_ARRAY_SIZE*: glEnum = 0x8623
+  GL_VERTEX_ATTRIB_ARRAY_STRIDE*: glEnum = 0x8624
+  GL_VERTEX_ATTRIB_ARRAY_TYPE*: glEnum = 0x8625
+  GL_CURRENT_VERTEX_ATTRIB*: glEnum = 0x8626
+  GL_VERTEX_PROGRAM_POINT_SIZE*: glEnum = 0x8642
+  GL_VERTEX_PROGRAM_TWO_SIDE*: glEnum = 0x8643
+  GL_VERTEX_ATTRIB_ARRAY_POINTER*: glEnum = 0x8645
+  GL_STENCIL_BACK_FUNC*: glEnum = 0x8800
+  GL_STENCIL_BACK_FAIL*: glEnum = 0x8801
+  GL_STENCIL_BACK_PASS_DEPTH_FAIL*: glEnum = 0x8802
+  GL_STENCIL_BACK_PASS_DEPTH_PASS*: glEnum = 0x8803
+  GL_MAX_DRAW_BUFFERS*: glEnum = 0x8824
+  GL_DRAW_BUFFER0*: glEnum = 0x8825
+  GL_DRAW_BUFFER1*: glEnum = 0x8826
+  GL_DRAW_BUFFER2*: glEnum = 0x8827
+  GL_DRAW_BUFFER3*: glEnum = 0x8828
+  GL_DRAW_BUFFER4*: glEnum = 0x8829
+  GL_DRAW_BUFFER5*: glEnum = 0x882A
+  GL_DRAW_BUFFER6*: glEnum = 0x882B
+  GL_DRAW_BUFFER7*: glEnum = 0x882C
+  GL_DRAW_BUFFER8*: glEnum = 0x882D
+  GL_DRAW_BUFFER9*: glEnum = 0x882E
+  GL_DRAW_BUFFER10*: glEnum = 0x882F
+  GL_DRAW_BUFFER11*: glEnum = 0x8830
+  GL_DRAW_BUFFER12*: glEnum = 0x8831
+  GL_DRAW_BUFFER13*: glEnum = 0x8832
+  GL_DRAW_BUFFER14*: glEnum = 0x8833
+  GL_DRAW_BUFFER15*: glEnum = 0x8834
+  GL_BLEND_EQUATION_ALPHA*: glEnum = 0x883D
+  GL_POINT_SPRITE*: glEnum = 0x8861
+  GL_COORD_REPLACE*: glEnum = 0x8862
+  GL_MAX_VERTEX_ATTRIBS*: glEnum = 0x8869
+  GL_VERTEX_ATTRIB_ARRAY_NORMALIZED*: glEnum = 0x886A
+  GL_MAX_TEXTURE_COORDS*: glEnum = 0x8871
+  GL_MAX_TEXTURE_IMAGE_UNITS*: glEnum = 0x8872
+  GL_FRAGMENT_SHADER*: glEnum = 0x8B30
+  GL_VERTEX_SHADER*: glEnum = 0x8B31
+  GL_MAX_FRAGMENT_UNIFORM_COMPONENTS*: glEnum = 0x8B49
+  GL_MAX_VERTEX_UNIFORM_COMPONENTS*: glEnum = 0x8B4A
+  GL_MAX_VARYING_FLOATS*: glEnum = 0x8B4B
+  GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS*: glEnum = 0x8B4C
+  GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS*: glEnum = 0x8B4D
+  GL_SHADER_TYPE*: glEnum = 0x8B4F
+  GL_FLOAT_VEC2*: glEnum = 0x8B50
+  GL_FLOAT_VEC3*: glEnum = 0x8B51
+  GL_FLOAT_VEC4*: glEnum = 0x8B52
+  GL_INT_VEC2*: glEnum = 0x8B53
+  GL_INT_VEC3*: glEnum = 0x8B54
+  GL_INT_VEC4*: glEnum = 0x8B55
+  GL_BOOL*: glEnum = 0x8B56
+  GL_BOOL_VEC2*: glEnum = 0x8B57
+  GL_BOOL_VEC3*: glEnum = 0x8B58
+  GL_BOOL_VEC4*: glEnum = 0x8B59
+  GL_FLOAT_MAT2*: glEnum = 0x8B5A
+  GL_FLOAT_MAT3*: glEnum = 0x8B5B
+  GL_FLOAT_MAT4*: glEnum = 0x8B5C
+  GL_SAMPLER_1D*: glEnum = 0x8B5D
+  GL_SAMPLER_2D*: glEnum = 0x8B5E
+  GL_SAMPLER_3D*: glEnum = 0x8B5F
+  GL_SAMPLER_CUBE*: glEnum = 0x8B60
+  GL_SAMPLER_1D_SHADOW*: glEnum = 0x8B61
+  GL_SAMPLER_2D_SHADOW*: glEnum = 0x8B62
+  GL_DELETE_STATUS*: glEnum = 0x8B80
+  GL_COMPILE_STATUS*: glEnum = 0x8B81
+  GL_LINK_STATUS*: glEnum = 0x8B82
+  GL_VALIDATE_STATUS*: glEnum = 0x8B83
+  GL_INFO_LOG_LENGTH*: glEnum = 0x8B84
+  GL_ATTACHED_SHADERS*: glEnum = 0x8B85
+  GL_ACTIVE_UNIFORMS*: glEnum = 0x8B86
+  GL_ACTIVE_UNIFORM_MAX_LENGTH*: glEnum = 0x8B87
+  GL_SHADER_SOURCE_LENGTH*: glEnum = 0x8B88
+  GL_ACTIVE_ATTRIBUTES*: glEnum = 0x8B89
+  GL_ACTIVE_ATTRIBUTE_MAX_LENGTH*: glEnum = 0x8B8A
+  GL_FRAGMENT_SHADER_DERIVATIVE_HINT*: glEnum = 0x8B8B
+  GL_SHADING_LANGUAGE_VERSION*: glEnum = 0x8B8C
+  GL_CURRENT_PROGRAM*: glEnum = 0x8B8D
+  GL_POINT_SPRITE_COORD_ORIGIN*: glEnum = 0x8CA0
+  GL_LOWER_LEFT*: glEnum = 0x8CA1
+  GL_UPPER_LEFT*: glEnum = 0x8CA2
+  GL_STENCIL_BACK_REF*: glEnum = 0x8CA3
+  GL_STENCIL_BACK_VALUE_MASK*: glEnum = 0x8CA4
+  GL_STENCIL_BACK_WRITEMASK*: glEnum = 0x8CA5
 
 # OpenGL Procedures
 proc init*(): glEnum {.glew_lib, importc: "glewInit".}
@@ -721,3 +810,15 @@ proc glNamedBufferData*(buffer: glUint, size: glSizei, data: glVoid, usage: glEn
 proc glEnableVertexAttribArray*(indice: glUint): void {.glew_lib.}
 proc glVertexAttribPointer*(index: glUint, size: glInt, tipe: glEnum, normalized: glBoolean, stride: glSizei, poynter: glVoid): void {.glew_lib.}
 proc glDrawElements*(mode: glEnum, count: glSizei, tipe: glEnum, indices: glVoid): void {.glew_lib.}
+proc glGetShaderiv*(shader: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
+proc glGetShaderInfoLog*(shader: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr cstring): void {.glew_lib.}
+proc glCreateShader*(shaderType: glEnum): glUint {.glew_lib.}
+proc glShaderSource*(shader: glUint, count: glSizei, source: ptr cstring, lenght: ptr glInt): void {.glew_lib.}
+proc glCompileShader*(shader: glUint): void {.glew_lib.}
+proc glCreateProgram*(): glUint {.glew_lib.}
+proc glAttachShader*(program: glUint, shader: glUint): void {.glew_lib.}
+proc glLinkProgram*(program: glUint): void {.glew_lib.}
+proc glGetProgramiv*(program: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
+proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr cstring): void {.glew_lib.}
+proc glUseProgram*(program: glUint): void {.glew_lib.}
+proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}

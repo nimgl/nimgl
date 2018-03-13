@@ -7,17 +7,28 @@ import
   nimgl/glew
 
 type
-  KeysArray = array[0 .. ord(Key.keyLast), bool]
+  KeysArray = array[-1 .. ord(Key.keyLast), bool]
 
 var
   keys: KeysArray
 
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
-  keys[key.ord] = action == kaPress
+  keys[key.ord] = action != kaRelease
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
+
+proc statusShader(shader: glUint) =
+  var status: glInt
+  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
+  if status != GL_TRUE.ord:
+    var
+      log_length: glSizei
+      message: cstring
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message.addr);
+    echo message
   
 proc main =
+
   assert glfw.init()
 
   windowHint(whContextVersionMajor, 4);
@@ -73,14 +84,60 @@ proc main =
   glEnableVertexAttribArray(0)
   glVertexAttribPointer(0'u32, 3, GL_FLOAT, false, cfloat.sizeof * 3, nil)
 
+  var
+    vertex: glUint
+    fragment: glUint
+    program: glUint
+    vsrc: cstring
+    fsrc: cstring
+
+  vertex = glCreateShader(GL_VERTEX_SHADER)
+  vsrc = """
+#version 330 core
+layout (location = 0) in vec3 aPos;
+
+void main() {
+  gl_Position = vec4(aPos, 1.0);
+}
+  """
+  glShaderSource(vertex, 1, vsrc.addr, nil)
+  glCompileShader(vertex)
+  statusShader(vertex)
+
+  fragment = glCreateShader(GL_FRAGMENT_SHADER)
+  fsrc = """
+#version 330 core
+out vec4 FragColor;
+
+void main() {
+  FragColor = vec4(0.50f, 0.78f, 0.51f, 1.0f);
+}
+  """
+  glShaderSource(fragment, 1, fsrc.addr, nil)
+  glCompileShader(fragment)
+  statusShader(fragment)
+
+  program = glCreateProgram()
+  glAttachShader(program, vertex)
+  glAttachShader(program, fragment)
+  glLinkProgram(program)
+
+  var programLinked: glInt
+  glGetProgramiv(program, GL_LINK_STATUS, programLinked.addr);
+  if program_linked != GL_TRUE.ord:
+    var
+      log_length: glSizei
+      message: cstring
+    glGetProgramInfoLog(program, 1024, log_length.addr, message.addr);
+    echo message
+
   while not w.windowShouldClose:
-    if keys[keySpace.ord]:
-      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
-    else:
-      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+    glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
 
     glClearColor(0.13, 0.13, 0.13, 1)
     glClear(GL_COLOR_BUFFER_BIT)
+
+    glUseProgram(program)
 
     glBindVertexArray(vao)
     glDrawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)
