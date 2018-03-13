@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![docs](https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square)](https://nimgl.org)
 
-## Nim Game Library (WIP)
+## Nim Game Library (WIP) [![nimble](https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png)](https://github.com/yglukhov/nimble-tag)
 
 NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics.
 
@@ -18,7 +18,7 @@ NimGL is open source and is under the MIT License, we highly encourage every dev
 #### Install
 You will need nimble to install this library.  
 ```
-nimble install https://github.com/cavariux/nimgl
+nimble install nimgl
 ```
 
 After that you can access all the bindings by importing them like.  
@@ -30,6 +30,14 @@ It is currently being developed and tested on
 
 * Windows 10
 * Mac High Sierra
+
+#### Contribute
+
+I'm only one person and I use this library almost daily for school and personal
+projects. If you are missing some extension, procedures or bindings or anything
+related, feel free to pull request any feature or open an issue with the specification and
+if you can some links to the docs so I can have an idea on how to implement it.  
+Thank you so much :D
 
 #### Bindings Currently Supported
 
