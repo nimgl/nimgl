@@ -17,18 +17,23 @@ proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: 
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
 
+converter toString(chars: seq[cchar]): string =
+  result = ""
+  for c in chars:
+    if c == '\0': continue
+    result.add c
+
 proc statusShader(shader: glUint) =
   var status: glInt
   glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
   if status != GL_TRUE.ord:
     var
       log_length: glSizei
-      message: cstring
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message.addr);
-    echo message
+      message = newSeq[glChar](1024)
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
+    echo toString(message)
   
 proc main =
-
   assert glfw.init()
 
   windowHint(whContextVersionMajor, 4);
@@ -95,7 +100,6 @@ proc main =
   vsrc = """
 #version 330 core
 layout (location = 0) in vec3 aPos;
-
 void main() {
   gl_Position = vec4(aPos, 1.0);
 }
@@ -127,9 +131,9 @@ void main() {
   if program_linked != GL_TRUE.ord:
     var
       log_length: glSizei
-      message: cstring
-    glGetProgramInfoLog(program, 1024, log_length.addr, message.addr);
-    echo message
+      message = newSeq[glChar](1024)
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
+    echo toString(message)
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)

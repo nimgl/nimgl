@@ -811,7 +811,7 @@ proc glEnableVertexAttribArray*(indice: glUint): void {.glew_lib.}
 proc glVertexAttribPointer*(index: glUint, size: glInt, tipe: glEnum, normalized: glBoolean, stride: glSizei, poynter: glVoid): void {.glew_lib.}
 proc glDrawElements*(mode: glEnum, count: glSizei, tipe: glEnum, indices: glVoid): void {.glew_lib.}
 proc glGetShaderiv*(shader: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glGetShaderInfoLog*(shader: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr cstring): void {.glew_lib.}
+proc glGetShaderInfoLog*(shader: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
 proc glCreateShader*(shaderType: glEnum): glUint {.glew_lib.}
 proc glShaderSource*(shader: glUint, count: glSizei, source: ptr cstring, lenght: ptr glInt): void {.glew_lib.}
 proc glCompileShader*(shader: glUint): void {.glew_lib.}
@@ -819,6 +819,6 @@ proc glCreateProgram*(): glUint {.glew_lib.}
 proc glAttachShader*(program: glUint, shader: glUint): void {.glew_lib.}
 proc glLinkProgram*(program: glUint): void {.glew_lib.}
 proc glGetProgramiv*(program: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr cstring): void {.glew_lib.}
+proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
 proc glUseProgram*(program: glUint): void {.glew_lib.}
 proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
