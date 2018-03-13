@@ -1234,12 +1234,6 @@ function main() {
   <ul class="simple simple-toc" id="toc-list">
 <li><a class="reference" id="glfw-bindings_toc" href="#glfw-bindings">GLFW Bindings</a></li>
 <li>
-  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
-  <ul class="simple simple-toc-section">
-    
-  </ul>
-</li>
-<li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#Window"
@@ -1498,6 +1492,8 @@ function main() {
     title="windowHint(hint: WindowHint; value: cint): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
   <li><a class="reference" href="#defaultWindowHints,"
     title="defaultWindowHints(): void"><wbr />default<wbr />Window<wbr />Hints<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getProcAddress,cstring"
+    title="getProcAddress(procname: cstring): pointer"><wbr />get<wbr />Proc<wbr />Address<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1519,12 +1515,7 @@ function main() {
 <h1><a class="toc-backref" id="glfw-bindings" href="#glfw-bindings">GLFW Bindings</a></h1><p><a class="reference external" href="../">return</a>.</p>
 <p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="http://www.glfw.org/docs/latest/">here</a>. Or continue reading to get the documentation shown here.</p>
 </p>
-  <div class="section" id="6">
-<h1><a class="toc-backref" href="#6">Imports</a></h1>
-<dl class="item">
-<a class="reference external" href="macros.html">macros</a>
-</dl></div>
-<div class="section" id="7">
+  <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <dt id="Window"><a name="Window"></a><pre><span class="Identifier">Window</span> <span class="Other">=</span> <span class="Keyword">ptr</span> <span class="Keyword">object</span>
@@ -1954,6 +1945,14 @@ This function sets the window title, encoded as UTF-8, of the specified window.
 Resets all window hints to their default values.
 
 </dd>
+<dt id="getProcAddress"><a name="getProcAddress,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getProcAddress</span><span class="Other">(</span><span class="Identifier">procname</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetProcAddress&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This function returns the address of the specified OpenGL or OpenGL ES [core or extension function](@ref context_glext), if it is supported by the current context.</p>
+<p>A context must be current on the calling thread.  Calling this function without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.</p>
+
+
+</dd>
 
 </dl></div>
 <div class="section" id="16">
@@ -1974,7 +1973,7 @@ Resets all window hints to their default values.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-12 12:58:33 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-12 19:04:26 UTC</small>
       </div>
     </div>
   </div>

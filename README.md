@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![docs](https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square)](https://nimgl.org)
 
-## Nim Game Library
+## Nim Game Library (WIP)
 
 NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics. With the power of Nim you can compile to C making it a perfect choice to combine with computer graphics.
 
@@ -36,3 +36,5 @@ It is currently being developed and tested on
 | Library | Description |
 |:-------:|:------------|
 | [GLFW](src/nimgl/glfw.nim) | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
+| [GLEW](src/nimgl/glew.nim) | OpenGL Loading Library. The OpenGL Extension Wrangler Library (GLEW) is a cross-platform open-source C/C++ extension loading library |
+| [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl |

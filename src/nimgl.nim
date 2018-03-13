@@ -13,10 +13,10 @@
 
 import
   nimgl/glfw,
-  nimgl/opengl,
+  nimgl/glew,
   nimgl/math
 
 export
   glfw,
-  opengl,
+  glew,
   math
