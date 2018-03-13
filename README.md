@@ -6,12 +6,12 @@
 
 ## Nim Game Library (WIP)
 
-NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics. With the power of Nim you can compile to C making it a perfect choice to combine with computer graphics.
+NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics.
 
-This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines in case of you not knowing low level graphic development.  
-Even tho this is a low level access, we do have some usefull toolkits or some variations on functions to help with the development.
+This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines if you don't have experience working with low level graphic developments.
+We try to keep this bindings as similar to the originals but we do have some usefull toolkits or some variations on functions to help with the development.
 
-NimGL is open source and under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
+NimGL is open source and is under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
 
 ###### NimGL is under heavy development so expect drastic changes and improvements
 
