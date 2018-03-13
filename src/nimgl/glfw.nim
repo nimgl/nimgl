@@ -299,6 +299,11 @@ type
     kaRelease = (0, "release")
     kaPress   = (1, "press")
     kaRepeat  = (2, "repeat")
+  MouseAction* {.size: cint.sizeof.} = enum
+    ## Actions of the mouse
+    maRelease = (0, "release")
+    maPress   = (1, "press")
+    maRepeat  = (2, "repeat")
   KeyMod* {.size: cint.sizeof.} = enum
     ## Key Modifiers, to modify actions
     kmShift   = 0x0001
@@ -431,7 +436,8 @@ type
     keyLast         = "last"
 
 type
-  keyProc* = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
+  mouseProc* = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
+  keyProc*   = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
     ## ``window`` The ``Window`` that received the event.
@@ -549,3 +555,12 @@ proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetPr
   ##
   ## A context must be current on the calling thread.  Calling this function
   ## without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.
+
+proc getCursorPos*(window: Window, xpos: ptr cdouble, ypos: ptr cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
+  ## This function returns the position of the cursor, in screen coordinates,
+  ## relative to the upper-left corner of the client area of the specified
+  ## window.
+
+proc setMouseButtonCallback*(window: Window, cbfun: mouseProc): void {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
+  ## This function sets the mouse button callback of the specified window, which
+  ## is called when a mouse button is pressed or released.

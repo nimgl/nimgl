@@ -687,7 +687,7 @@ const
   GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING*: glEnum = 0x889A
   GL_EDGE_FLAG_ARRAY_BUFFER_BINDING*: glEnum = 0x889B
   GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING*: glEnum = 0x889C
-  GL_WEIGHT_ARRAY_BUFFER_BINDING*: glEnum = 0x889E
+  GL_WEIGHT_ARRAY_BUFFER_BINGDING*: glEnum = 0x889E
   GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING*: glEnum = 0x889F
   GL_READ_ONLY*: glEnum = 0x88B8
   GL_WRITE_ONLY*: glEnum = 0x88B9
@@ -822,3 +822,15 @@ proc glGetProgramiv*(program: glUint, pname: glEnum, params: ptr glInt): void {.
 proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
 proc glUseProgram*(program: glUint): void {.glew_lib.}
 proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
+proc glUniform4f*(location: glInt, v0, v1, v2, v3: glFloat): void {.glew_lib.}
+proc glUniform3f*(location: glInt, v0, v1, v2: glFloat): void {.glew_lib.}
+proc glUniform2f*(location: glInt, v0, v1: glFloat): void {.glew_lib.}
+proc glUniform1f*(location: glInt, v0: glFloat): void {.glew_lib.}
+proc glUniform4i*(location: glInt, v0, v1, v2, v3: glInt): void {.glew_lib.}
+proc glUniform3i*(location: glInt, v0, v1, v2: glInt): void {.glew_lib.}
+proc glUniform2i*(location: glInt, v0, v1: glInt): void {.glew_lib.}
+proc glUniform1i*(location: glInt, v0: glInt): void {.glew_lib.}
+proc glUniform4ui*(location: glInt, v0, v1, v2, v3: glUint): void {.glew_lib.}
+proc glUniform3ui*(location: glInt, v0, v1, v2: glUint): void {.glew_lib.}
+proc glUniform2ui*(location: glInt, v0, v1: glUint): void {.glew_lib.}
+proc glUniform1ui*(location: glInt, v0: glUint): void {.glew_lib.}
