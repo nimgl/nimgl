@@ -44,5 +44,5 @@ Thank you so much :D
 | Library | Description |
 |:-------:|:------------|
 | [GLFW](src/nimgl/glfw.nim) | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
-| [GLEW](src/nimgl/glew.nim) | OpenGL Loading Library. The OpenGL Extension Wrangler Library (GLEW) is a cross-platform open-source C/C++ extension loading library |
+| [OpenGL](src/nimgl/opengl.nim) | Bindings to GLEW. GLEW is a cross-platform open-source C/C++ extension loading library |
 | [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl |
