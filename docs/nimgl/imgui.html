@@ -16,7 +16,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module nimgl</title>
+<title>Module imgui</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1213,7 +1213,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module nimgl</h1>
+    <h1 class="title">Module imgui</h1>
     <div class="row">
   <div class="three columns">
   <div id="global-links">
@@ -1232,11 +1232,13 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="nim-game-library_toc" href="#nim-game-library">Nim Game Library</a></li>
+<li><a class="reference" id="imgui-bindings_toc" href="#imgui-bindings">ImGUI Bindings</a></li>
 <li>
-  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
+  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-    
+      <li><a class="reference" href="#test,"
+    title="test()"><wbr />test<span class="attachedType" style="visibility:hidden"></span></a></li>
+
   </ul>
 </li>
 
@@ -1246,17 +1248,19 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="nim-game-library" href="#nim-game-library">Nim Game Library</a></h1><p>Supported Libraries</p>
-<ul class="simple"><li><a class="reference external" href="./nimgl/glfw.html">GLFW</a>     Window Library</li>
-<li><a class="reference external" href="./nimgl/opengl.html">OpenGL</a> Glew Loading Library</li>
-<li><a class="reference external" href="./nimgl/math.html">Math</a>     Linear Algebra for graphics programming</li>
-<li><a class="reference external" href="./nimgl/imgui.html">ImGUI</a>   Fast UI Development tool for debug and testing</li>
-</ul>
+<h1><a class="toc-backref" id="imgui-bindings" href="#imgui-bindings">ImGUI Bindings</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
+<p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/imgui.cpp">here</a>.</p>
+<p>Do to this library most of the binding libraries are written in C, we want to continue supporting only C libraries so you can alwyas use the backend of your choice. We are binding <a class="reference external" href="https://github.com/Extrawurst/cimgui.git">cimgui</a> which is a thin c wrapper of the c++ version. It is up to date and has great support.</p>
 </p>
-  <div class="section" id="6">
-<h1><a class="toc-backref" href="#6">Imports</a></h1>
+  <div class="section" id="12">
+<h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a class="reference external" href="nimgl/glfw.html">nimgl/glfw</a>, <a class="reference external" href="nimgl/opengl.html">nimgl/opengl</a>, <a class="reference external" href="nimgl/math.html">nimgl/math</a>, <a class="reference external" href="nimgl/imgui.html">nimgl/imgui</a>
+<dt id="test"><a name="test,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">test</span><span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+
 </dl></div>
 
   </div>

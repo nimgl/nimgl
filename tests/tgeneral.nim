@@ -1,4 +1,4 @@
-# Copyright (C) CleverByte. All Rights Reserved
+# Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
@@ -144,6 +144,8 @@ void main() {
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
     mvp   = ortho(-8f, 8f, -4.5f, 4.5f, -1f, 1f)
+
+  #imgui.test()
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)

@@ -1,4 +1,4 @@
-# Copyright (C) CleverByte. All Rights Reserved
+# Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 #[
@@ -10,14 +10,22 @@
 ## Nim Game Library
 ## ====
 ##
+## Supported Libraries
+##
+## - `GLFW  <./nimgl/glfw.html>`_     Window Library
+## - `OpenGL  <./nimgl/opengl.html>`_ Glew Loading Library
+## - `Math  <./nimgl/math.html>`_     Linear Algebra for graphics programming
+## - `ImGUI  <./nimgl/imgui.html>`_   Fast UI Development tool for debug and testing
 
 import
   nimgl/[
     glfw,
     opengl,
-    math
+    math,
+    imgui
   ]
 export
   glfw,
   opengl,
-  math
+  math,
+  imgui

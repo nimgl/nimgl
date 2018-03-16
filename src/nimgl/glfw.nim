@@ -1,5 +1,13 @@
-# Copyright (C) CleverByte. All Rights Reserved
+# Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
+
+## GLFW Modules
+## ====
+## `return <../nimgl.html>`_.  
+##
+## This bindings follow most of the original library
+## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
+## Or continue reading to get the documentation shown here.
 
 when defined(glfwDLL):
   when defined(windows):
@@ -74,14 +82,6 @@ else:
     compile: "private/glfw/src/window.c".}
 
   {.pragma: glfw_lib, cdecl.}
-
-## GLFW Bindings
-## ====
-## `return <../>`_.  
-##
-## This bindings follow most of the original library
-## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
-## Or continue reading to get the documentation shown here.
 
 type
   Window* = ptr object

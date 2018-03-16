@@ -1,9 +1,9 @@
-# Copyright (C) CleverByte. All Rights Reserved
+# Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 ## Glew Bindings - An OpenGL loading Library
 ## ====
-## `return <../>`_.  
+## `return <../nimgl.html>`_.  
 ##
 ## There are too many procedures and constants, please run while you can
 ## but if you want to kill the monster you can add the procedures you still need

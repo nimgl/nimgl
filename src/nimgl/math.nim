@@ -1,9 +1,9 @@
-# Copyright (C) CleverByte. All Rights Reserved
+# Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 ## Math
 ## ====
-## `return <../>`_.  
+## `return <../nimgl.html>`_.  
 ##
 ## A Math library that helps with linear algebra. It is built on the idea
 ## to directly interact with opengl.
@@ -370,6 +370,12 @@ proc identity2*[T](): Mat2x2[T] =
 
 # Algebra
 
-proc ortho*[T](left, right, bottom, top, near, far: T): Mat4x4[T] =
-  # TODO
-  identity4[T]()
+proc ortho*(left, right, bottom, top, near, far: float32): Mat4x4[float32] =
+  result = mat4(0.0f)
+  result[0][0] =  2.0f / (right  - left)
+  result[1][1] =  2.0f / (top - bottom)
+  result[2][2] = -2.0f / (far - near)
+  result[0][3] = -(right + left) / (right - left)
+  result[1][3] = -(top + bottom) / (top - bottom)
+  result[2][3] = -(far + near) / (far - near)
+  result[3][3] =  1.0f
