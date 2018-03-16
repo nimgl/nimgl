@@ -93,6 +93,15 @@ template vPtr*(vec: Vec): ptr =
   ## Gets the pointer to the first attribute in the tuple
   vec[0].addr
 
+template f32*(num: int): untyped =
+  num.toFloat.toFloat32
+
+template f32*(num: float): untyped =
+  num.toFloat32
+
+template f32*(num: uint32): untyped =
+  float32(num)
+
 proc `$`*(vec: Vec1): string =
   ## Converts a Vec1 into a string
   "vec1(x: "  & $vec.x & ")"
@@ -172,6 +181,11 @@ proc vec4f* (vec: Vec3f, w: float32): Vec4f  = (vec.x, vec.y, vec.z, w)
   ## Vec3f with w to Vec4f
 
 # Operations
+# I couldn't think of another way other than copy pasting this to the different
+# types, please if you know other way, please change it so it's not all of this
+# ugly big code
+
+# float32
 
 proc `+`*(v1, v2: Vec1f): Vec1f =
   ## Adding two vectors
@@ -287,3 +301,238 @@ proc dot*(v1, v2: Vec4f): float32 =
 proc dot*(v1, v2: Vec4f, angle: float32): float32 =
   ## Gives the dot product of this two vectors with the given angle
   dot(v1, v2) * cos(angle)
+
+
+# Int32
+
+proc `+`*(v1, v2: Vec1i): Vec1i =
+  ## Adding two vectors
+  (x: v1.x + v2.x)
+
+proc `-`*(v1, v2: Vec1i): Vec1i =
+  ## Substracting two vectors
+  (x: v1.x - v2.x)
+
+proc `*`*(v1: Vec1i, s: int32): Vec1i =
+  ## Multiplying one vector a scale v * s
+  (x: v1.x * s)
+
+proc `/`*(v: Vec1i, s: int32): Vec1f =
+  ## Dividing one vector with a scale v / s
+  (x:(v.x / s).f32)
+
+proc mag*(v: Vec1i): float32 =
+  ## Magnitude of this vector |v|
+  sqrt(v.x.f32)
+
+proc dot*(v1, v2: Vec1i): int32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x
+
+proc dot*(v1, v2: Vec1i, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec2i): Vec2i =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y)
+
+proc `-`*(v1, v2: Vec2i): Vec2i =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y)
+
+proc `*`*(v1: Vec2i, s: int32): Vec2i =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s)
+
+proc `/`*(v: Vec2i, s: float32): Vec2f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s)
+
+proc mag*(v: Vec2i): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y).f32)
+
+proc dot*(v1, v2: Vec2i): int32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y
+
+proc dot*(v1, v2: Vec2i, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec3i): Vec3i =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
+
+proc `-`*(v1, v2: Vec3i): Vec3i =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z)
+
+proc `*`*(v1: Vec3i, s: int32): Vec3i =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s, v1.z * s)
+
+proc `/`*(v: Vec3i, s: float32): Vec3f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s, v.z.f32 / s)
+
+proc mag*(v: Vec3i): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y + v.z).f32)
+
+proc dot*(v1, v2: Vec3i): int32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+
+proc dot*(v1, v2: Vec3i, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec4i): Vec4i =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w)
+
+proc `-`*(v1, v2: Vec4i): Vec4i =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w)
+
+proc `*`*(v1: Vec4i, s: int32): Vec4i =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s, v1.z * s, v1.w * s)
+
+proc `/`*(v: Vec4i, s: float32): Vec4f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s, v.z.f32 / s, v.w.f32 / s)
+
+proc mag*(v: Vec4i): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y + v.z + v.w).f32)
+
+proc dot*(v1, v2: Vec4i): int32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
+
+proc dot*(v1, v2: Vec4i, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+# Uint32
+
+proc `+`*(v1, v2: Vec1ui): Vec1ui =
+  ## Adding two vectors
+  (x: v1.x + v2.x)
+
+proc `-`*(v1, v2: Vec1ui): Vec1ui =
+  ## Substracting two vectors
+  (x: v1.x - v2.x)
+
+proc `*`*(v1: Vec1ui, s: uint32): Vec1ui =
+  ## Multiplying one vector a scale v * s
+  (x: v1.x * s)
+
+proc `/`*(v: Vec1ui, s: uint32): Vec1f =
+  ## Dividing one vector with a scale v / s
+  (x:(v.x div s).f32)
+
+proc mag*(v: Vec1ui): float32 =
+  ## Magnitude of this vector |v|
+  sqrt(v.x.f32)
+
+proc dot*(v1, v2: Vec1ui): uint32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x
+
+proc dot*(v1, v2: Vec1ui, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec2ui): Vec2ui =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y)
+
+proc `-`*(v1, v2: Vec2ui): Vec2ui =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y)
+
+proc `*`*(v1: Vec2ui, s: uint32): Vec2ui =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s)
+
+proc `/`*(v: Vec2ui, s: float32): Vec2f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s)
+
+proc mag*(v: Vec2ui): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y).f32)
+
+proc dot*(v1, v2: Vec2ui): uint32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y
+
+proc dot*(v1, v2: Vec2ui, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec3ui): Vec3ui =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
+
+proc `-`*(v1, v2: Vec3ui): Vec3ui =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z)
+
+proc `*`*(v1: Vec3ui, s: uint32): Vec3ui =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s, v1.z * s)
+
+proc `/`*(v: Vec3ui, s: float32): Vec3f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s, v.z.f32 / s)
+
+proc mag*(v: Vec3ui): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y + v.z).f32)
+
+proc dot*(v1, v2: Vec3ui): uint32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+
+proc dot*(v1, v2: Vec3ui, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)
+
+
+proc `+`*(v1, v2: Vec4ui): Vec4ui =
+  ## Adding two vectors
+  (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w)
+
+proc `-`*(v1, v2: Vec4ui): Vec4ui =
+  ## Substracting two vectors
+  (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w)
+
+proc `*`*(v1: Vec4ui, s: uint32): Vec4ui =
+  ## Multiplying one vector a scale v * s
+  (v1.x * s, v1.y * s, v1.z * s, v1.w * s)
+
+proc `/`*(v: Vec4ui, s: float32): Vec4f =
+  ## Dividing one vector with a scale v / s
+  (v.x.f32 / s, v.y.f32 / s, v.z.f32 / s, v.w.f32 / s)
+
+proc mag*(v: Vec4ui): float32 =
+  ## Magnitude of this vector |v|
+  sqrt((v.x + v.y + v.z + v.w).f32)
+
+proc dot*(v1, v2: Vec4ui): uint32 =
+  ## Gives the dot product of this two vectors v1 . v2
+  v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
+
+proc dot*(v1, v2: Vec4ui, angle: float32): float32 =
+  ## Gives the dot product of this two vectors with the given angle
+  dot(v1, v2).f32 * cos(angle)

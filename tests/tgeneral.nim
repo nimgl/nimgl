@@ -136,6 +136,14 @@ void main() {
   let uColor = glGetUniformLocation(program, "uColor")
   var color  = (0.0f, 0.0f, 1.0f)
 
+  var
+    vec1: Vec2ui = (8'u32, 4'u32)
+    vec2: Vec2ui = (5'u32, 6'u32)
+    vec3: Vec2f = (5f, 6f)
+    vec4: Vec2f = (2f, 3f)
+
+  echo vec1
+
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
 
