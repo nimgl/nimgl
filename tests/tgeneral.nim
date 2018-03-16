@@ -2,7 +2,8 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/[glfw, math, opengl]
+  nimgl/[glfw, math, opengl],
+  system
 
 type
   KeysArray = array[-1 .. ord(Key.keyLast), bool]
@@ -96,8 +97,11 @@ proc main =
   vsrc = """
 #version 330 core
 layout (location = 0) in vec3 aPos;
+
+uniform mat4 uMVP;
+
 void main() {
-  gl_Position = vec4(aPos, 1.0);
+  gl_Position = vec4(aPos, 1.0) * uMVP;
 }
   """
   glShaderSource(vertex, 1, vsrc.addr, nil)
@@ -133,10 +137,15 @@ void main() {
     glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo toString(message)
 
-  let uColor  = glGetUniformLocation(program, "uColor")
+  let
+    uColor = glGetUniformLocation(program, "uColor")
+    uMVP   = glGetUniformLocation(program, "uMVP")
   var
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
+    mvp   = ortho(-8f, 8f, -4.5f, 4.5f, -1f, 1f)
+  
+  echo mvp.matToStr
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
@@ -146,6 +155,7 @@ void main() {
 
     glUseProgram(program)
     glUniform3fv(uColor, 1, color.vPtr)
+    glUniformMatrix4fv(uMVP, 1, false, mvp[0][0].addr)
 
     glBindVertexArray(vao)
     glDrawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)

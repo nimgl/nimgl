@@ -1244,68 +1244,90 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#VTypes"
     title="VTypes = int32 | uint32 | float32"><wbr />VTypes<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec1i"
-    title="Vec1i = array[1, int32]"><wbr />Vec1i<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec1ui"
-    title="Vec1ui = array[1, uint32]"><wbr />Vec1ui<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec1f"
-    title="Vec1f = array[1, float32]"><wbr />Vec1f<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec1"
-    title="Vec1 = Vec1i | Vec1ui | Vec1f"><wbr />Vec1<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec2i"
-    title="Vec2i = array[2, int32]"><wbr />Vec2i<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec2ui"
-    title="Vec2ui = array[2, uint32]"><wbr />Vec2ui<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec2f"
-    title="Vec2f = array[2, float32]"><wbr />Vec2f<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec2"
-    title="Vec2 = Vec2i | Vec2ui | Vec2f"><wbr />Vec2<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec3i"
-    title="Vec3i = array[3, int32]"><wbr />Vec3i<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec3ui"
-    title="Vec3ui = array[3, uint32]"><wbr />Vec3ui<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec3f"
-    title="Vec3f = array[3, float32]"><wbr />Vec3f<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec3"
-    title="Vec3 = Vec3i | Vec3ui | Vec3f"><wbr />Vec3<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec4i"
-    title="Vec4i = array[4, int32]"><wbr />Vec4i<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec4ui"
-    title="Vec4ui = array[4, uint32]"><wbr />Vec4ui<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec4f"
-    title="Vec4f = array[4, float32]"><wbr />Vec4f<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Vec4"
-    title="Vec4 = Vec4i | Vec4ui | Vec4f"><wbr />Vec4<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec"
-    title="Vec = Vec4 | Vec3 | Vec2 | Vec1"><wbr />Vec<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec[R; T] = array[R, T]"><wbr />Vec<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec1"
+    title="Vec1[T] = Vec[1, T]"><wbr />Vec1<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec1i"
+    title="Vec1i = Vec1[int32]"><wbr />Vec1i<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec1ui"
+    title="Vec1ui = Vec1[uint32]"><wbr />Vec1ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec1f"
+    title="Vec1f = Vec1[float32]"><wbr />Vec1f<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec2"
+    title="Vec2[T] = Vec[2, T]"><wbr />Vec2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec2i"
+    title="Vec2i = Vec2[int32]"><wbr />Vec2i<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec2ui"
+    title="Vec2ui = Vec2[uint32]"><wbr />Vec2ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec2f"
+    title="Vec2f = Vec2[float32]"><wbr />Vec2f<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec3"
+    title="Vec3[T] = Vec[3, T]"><wbr />Vec3<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec3i"
+    title="Vec3i = Vec3[int32]"><wbr />Vec3i<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec3ui"
+    title="Vec3ui = Vec3[uint32]"><wbr />Vec3ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec3f"
+    title="Vec3f = Vec3[float32]"><wbr />Vec3f<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec4"
+    title="Vec4[T] = Vec[4, T]"><wbr />Vec4<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec4i"
+    title="Vec4i = Vec4[int32]"><wbr />Vec4i<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec4ui"
+    title="Vec4ui = Vec4[uint32]"><wbr />Vec4ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec4f"
+    title="Vec4f = Vec4[float32]"><wbr />Vec4f<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vecf"
     title="Vecf = Vec4f | Vec3f | Vec2f | Vec1f"><wbr />Vecf<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Veci"
     title="Veci = Vec4i | Vec3i | Vec2i | Vec1i"><wbr />Veci<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vecui"
     title="Vecui = Vec4ui | Vec3ui | Vec2ui | Vec1ui"><wbr />Vecui<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat"
+    title="Mat[C; R; T] = array[C, Vec[R, T]]"><wbr />Mat<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat4"
+    title="Mat4[R; T] = Mat[4, R, T]"><wbr />Mat4<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat3"
+    title="Mat3[R; T] = Mat[3, R, T]"><wbr />Mat3<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat2"
+    title="Mat2[R; T] = Mat[2, R, T]"><wbr />Mat2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat4x4"
+    title="Mat4x4[T] = Mat4[4, T]"><wbr />Mat4x4<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat4x3"
+    title="Mat4x3[T] = Mat4[3, T]"><wbr />Mat4x3<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat4x2"
+    title="Mat4x2[T] = Mat4[2, T]"><wbr />Mat4x2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat4x1"
+    title="Mat4x1[T] = Mat4[1, T]"><wbr />Mat4x1<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat3x3"
+    title="Mat3x3[T] = Mat3[3, T]"><wbr />Mat3x3<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat3x4"
+    title="Mat3x4[T] = Mat3[4, T]"><wbr />Mat3x4<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat3x2"
+    title="Mat3x2[T] = Mat3[2, T]"><wbr />Mat3x2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat2x2"
+    title="Mat2x2[T] = Mat2[2, T]"><wbr />Mat2x2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat2x3"
+    title="Mat2x3[T] = Mat2[3, T]"><wbr />Mat2x3<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Mat2x4"
+    title="Mat2x4[T] = Mat2[4, T]"><wbr />Mat2x4<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#$,Vec1"
-    title="`$`(vec: Vec1): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
-  <li><a class="reference" href="#$,Vec2"
-    title="`$`(vec: Vec2): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
-  <li><a class="reference" href="#$,Vec3"
-    title="`$`(vec: Vec3): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
-  <li><a class="reference" href="#$,Vec4"
-    title="`$`(vec: Vec4): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
-  <li><a class="reference" href="#vec,VTypes"
-    title="vec(x: VTypes): Vec1"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
-  <li><a class="reference" href="#vec,VTypes,VTypes"
-    title="vec(x, y: VTypes): Vec2"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
-  <li><a class="reference" href="#vec,VTypes,VTypes,VTypes"
-    title="vec(x, y, z: VTypes): Vec3"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
-  <li><a class="reference" href="#vec,VTypes,VTypes,VTypes,VTypes"
-    title="vec(x, y, z, w: VTypes): Vec4"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+      <li><a class="reference" href="#vecToStr,Vec"
+    title="vecToStr(vec: Vec): string"><wbr />vec<wbr />To<wbr />Str<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#vec,T"
+    title="vec[T](x: T): Vec1[T]"><wbr />vec<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
+  <li><a class="reference" href="#vec,T,T"
+    title="vec[T](x, y: T): Vec2[T]"><wbr />vec<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#vec,T,T,T"
+    title="vec[T](x, y, z: T): Vec3[T]"><wbr />vec<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#vec,T,T,T,T"
+    title="vec[T](x, y, z, w: T): Vec4[T]"><wbr />vec<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
   <li><a class="reference" href="#vec1,Vec"
     title="vec1(vec: Vec): Vec1"><wbr />vec1<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
   <li><a class="reference" href="#vec2,"
@@ -1356,6 +1378,48 @@ function main() {
     title="dot(v1, v2: Vec): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
   <li><a class="reference" href="#dot,Vec,Vec,float32"
     title="dot(v1, v2: Vec; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#matToStr,Mat"
+    title="matToStr(mat: Mat): string"><wbr />mat<wbr />To<wbr />Str<span class="attachedType" style="visibility:hidden">Mat</span></a></li>
+  <li><a class="reference" href="#mat4x4,Vec4[T],Vec4[T],Vec4[T],Vec4[T]"
+    title="mat4x4[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T]"><wbr />mat4x4<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
+  <li><a class="reference" href="#mat4,Vec4[T],Vec4[T],Vec4[T],Vec4[T]"
+    title="mat4[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T]"><wbr />mat4<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
+  <li><a class="reference" href="#mat3x3,Vec3[T],Vec3[T],Vec3[T]"
+    title="mat3x3[T](c0, c1, c2: Vec3[T]): Mat3x3[T]"><wbr />mat3x3<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#mat3,Vec3[T],Vec3[T],Vec3[T]"
+    title="mat3[T](c0, c1, c2: Vec3[T]): Mat3x3[T]"><wbr />mat3<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#mat2x2,Vec2[T],Vec2[T]"
+    title="mat2x2[T](c0, c1: Vec2[T]): Mat2x2[T]"><wbr />mat2x2<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#mat2,Vec2[T],Vec2[T]"
+    title="mat2[T](c0, c1: Vec2[T]): Mat2x2[T]"><wbr />mat2<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#mat4x3,Vec3[T],Vec3[T],Vec3[T],Vec3[T]"
+    title="mat4x3[T](c0, c1, c2, c3: Vec3[T]): Mat4x3[T]"><wbr />mat4x3<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#mat4x2,Vec2[T],Vec2[T],Vec2[T],Vec2[T]"
+    title="mat4x2[T](c0, c1, c2, c3: Vec2[T]): Mat4x2[T]"><wbr />mat4x2<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#mat4x1,Vec1[T],Vec1[T],Vec1[T],Vec1[T]"
+    title="mat4x1[T](c0, c1, c2, c3: Vec1[T]): Mat4x1[T]"><wbr />mat4x1<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
+  <li><a class="reference" href="#mat4,T"
+    title="mat4[T](n: T): Mat4x4[T]"><wbr />mat4<span class="attachedType" style="visibility:hidden">Mat4x4</span></a></li>
+  <li><a class="reference" href="#identity4,"
+    title="identity4[T](): Mat4x4[T]"><wbr />identity4<span class="attachedType" style="visibility:hidden">Mat4x4</span></a></li>
+  <li><a class="reference" href="#mat3x4,Vec4[T],Vec4[T],Vec4[T]"
+    title="mat3x4[T](c0, c1, c2: Vec4[T]): Mat3x4[T]"><wbr />mat3x4<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
+  <li><a class="reference" href="#mat3x2,Vec2[T],Vec2[T],Vec2[T]"
+    title="mat3x2[T](c0, c1, c2: Vec2[T]): Mat3x2[T]"><wbr />mat3x2<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#mat3,T"
+    title="mat3[T](n: T): Mat3x3[T]"><wbr />mat3<span class="attachedType" style="visibility:hidden">Mat3x3</span></a></li>
+  <li><a class="reference" href="#identity3,"
+    title="identity3[T](): Mat3x3[T]"><wbr />identity3<span class="attachedType" style="visibility:hidden">Mat3x3</span></a></li>
+  <li><a class="reference" href="#mat2x4,Vec4[T],Vec4[T]"
+    title="mat2x4[T](c0, c1: Vec4[T]): Mat2x4[T]"><wbr />mat2x4<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
+  <li><a class="reference" href="#mat2x3,Vec3[T],Vec3[T]"
+    title="mat2x3[T](c0, c1: Vec3[T]): Mat2x3[T]"><wbr />mat2x3<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#mat2,T"
+    title="mat2[T](n: T): Mat2x2[T]"><wbr />mat2<span class="attachedType" style="visibility:hidden">Mat2x2</span></a></li>
+  <li><a class="reference" href="#identity2,"
+    title="identity2[T](): Mat2x2[T]"><wbr />identity2<span class="attachedType" style="visibility:hidden">Mat2x2</span></a></li>
+  <li><a class="reference" href="#ortho,T,T,T,T,T,T"
+    title="ortho[T](left, right, bottom, top, near, far: T): Mat4x4[T]"><wbr />ortho<span class="attachedType" style="visibility:hidden">Mat4x4</span></a></li>
 
   </ul>
 </li>
@@ -1364,34 +1428,46 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#x.t,Vec"
     title="x(vec: Vec): untyped"><wbr />x<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#y.t,Vec"
-    title="y(vec: Vec): untyped"><wbr />y<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#z.t,Vec"
-    title="z(vec: Vec): untyped"><wbr />z<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#w.t,Vec"
-    title="w(vec: Vec): untyped"><wbr />w<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#y.t,"
+    title="y(vec: Vec2 | Vec3 | Vec4): untyped"><wbr />y<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#z.t,"
+    title="z(vec: Vec3 | Vec4): untyped"><wbr />z<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#w.t,Vec4"
+    title="w(vec: Vec4): untyped"><wbr />w<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
   <li><a class="reference" href="#r.t,Vec"
     title="r(vec: Vec): untyped"><wbr />r<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#g.t,Vec"
-    title="g(vec: Vec): untyped"><wbr />g<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#b.t,Vec"
-    title="b(vec: Vec): untyped"><wbr />b<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#a.t,Vec"
-    title="a(vec: Vec): untyped"><wbr />a<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#g.t,"
+    title="g(vec: Vec2 | Vec3 | Vec4): untyped"><wbr />g<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#b.t,"
+    title="b(vec: Vec3 | Vec4): untyped"><wbr />b<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
   <li><a class="reference" href="#i.t,Vec"
     title="i(vec: Vec): untyped"><wbr />i<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#j.t,Vec"
-    title="j(vec: Vec): untyped"><wbr />j<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#k.t,Vec"
-    title="k(vec: Vec): untyped"><wbr />k<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
-  <li><a class="reference" href="#s.t,Vec"
-    title="s(vec: Vec): untyped"><wbr />s<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#j.t,"
+    title="j(vec: Vec2 | Vec3 | Vec4): untyped"><wbr />j<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#k.t,"
+    title="k(vec: Vec3 | Vec4): untyped"><wbr />k<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
   <li><a class="reference" href="#vPtr.t,Vec"
     title="vPtr(vec: Vec): ptr"><wbr />v<wbr />Ptr<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
   <li><a class="reference" href="#rgba.t,Vec4f"
     title="rgba(vec: Vec4f): Vec4f"><wbr />rgba<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
   <li><a class="reference" href="#rgb.t,Vec3f"
     title="rgb(vec: Vec3f): Vec3f"><wbr />rgb<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
+  <li><a class="reference" href="#c0.t,Mat"
+    title="c0(mat: Mat): untyped"><wbr />c0<span class="attachedType" style="visibility:hidden">Mat</span></a></li>
+  <li><a class="reference" href="#c1.t,Mat"
+    title="c1(mat: Mat): untyped"><wbr />c1<span class="attachedType" style="visibility:hidden">Mat</span></a></li>
+  <li><a class="reference" href="#c2.t,"
+    title="c2(mat: Mat3 | Mat4): untyped"><wbr />c2<span class="attachedType" style="visibility:hidden">Mat3</span></a></li>
+  <li><a class="reference" href="#c3.t,Mat4"
+    title="c3(mat: Mat4): untyped"><wbr />c3<span class="attachedType" style="visibility:hidden">Mat4</span></a></li>
+  <li><a class="reference" href="#a.t,Mat"
+    title="a(mat: Mat): untyped"><wbr />a<span class="attachedType" style="visibility:hidden">Mat</span></a></li>
+  <li><a class="reference" href="#b.t,Mat"
+    title="b(mat: Mat): untyped"><wbr />b<span class="attachedType" style="visibility:hidden">Mat</span></a></li>
+  <li><a class="reference" href="#c.t,"
+    title="c(mat: Mat3 | Mat4): untyped"><wbr />c<span class="attachedType" style="visibility:hidden">Mat3</span></a></li>
+  <li><a class="reference" href="#d.t,Mat4"
+    title="d(mat: Mat4): untyped"><wbr />d<span class="attachedType" style="visibility:hidden">Mat4</span></a></li>
 
   </ul>
 </li>
@@ -1408,7 +1484,7 @@ function main() {
 <p>All of this library is using int32, uint32 and float32 to be able to interact with C. please don't forget to put 'i32, 'ui32 and 'f32 we have some converters but don't rely on them.</p>
 <p>Also everything in here is in Radians so use the radToDeg and degToRad to convert back and forth</p>
 <p>This library is made for graphics engines so if you want to do more advanced linear algebra stuff please use <a class="reference external" href="https://github.com/unicredit/neo">Neo</a>.</p>
-VectorsMatrices</p>
+VectorsTODO: Make Vec and Mat printable with echo instead of printMatrices</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -1422,89 +1498,89 @@ VectorsMatrices</p>
 Valid Types
 
 </dd>
-<dt id="Vec1i"><a name="Vec1i"></a><pre><span class="Identifier">Vec1i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec"><a name="Vec"></a><pre><span class="Identifier">Vec</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec1 of int32
+Primitive type of Vector
 
 </dd>
-<dt id="Vec1ui"><a name="Vec1ui"></a><pre><span class="Identifier">Vec1ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
-<dd>
-Vec1 of unsigned int32
-
-</dd>
-<dt id="Vec1f"><a name="Vec1f"></a><pre><span class="Identifier">Vec1f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
-<dd>
-Vec1 of float32
-
-</dd>
-<dt id="Vec1"><a name="Vec1"></a><pre><span class="Identifier">Vec1</span> <span class="Other">=</span> <span class="Identifier">Vec1i</span> <span class="Operator">|</span> <span class="Identifier">Vec1ui</span> <span class="Operator">|</span> <span class="Identifier">Vec1f</span></pre></dt>
+<dt id="Vec1"><a name="Vec1"></a><pre><span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Vec</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 The combination of the three Vec1
 
 </dd>
-<dt id="Vec2i"><a name="Vec2i"></a><pre><span class="Identifier">Vec2i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec1i"><a name="Vec1i"></a><pre><span class="Identifier">Vec1i</span> <span class="Other">=</span> <span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec2 of int32
+Vec1 of in
 
 </dd>
-<dt id="Vec2ui"><a name="Vec2ui"></a><pre><span class="Identifier">Vec2ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec1ui"><a name="Vec1ui"></a><pre><span class="Identifier">Vec1ui</span> <span class="Other">=</span> <span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec2 of unsigned int32
+Vec1 of unned int32
 
 </dd>
-<dt id="Vec2f"><a name="Vec2f"></a><pre><span class="Identifier">Vec2f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec1f"><a name="Vec1f"></a><pre><span class="Identifier">Vec1f</span> <span class="Other">=</span> <span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec2 of float32
+Vec1 of float32
 
 </dd>
-<dt id="Vec2"><a name="Vec2"></a><pre><span class="Identifier">Vec2</span> <span class="Other">=</span> <span class="Identifier">Vec2i</span> <span class="Operator">|</span> <span class="Identifier">Vec2ui</span> <span class="Operator">|</span> <span class="Identifier">Vec2f</span></pre></dt>
+<dt id="Vec2"><a name="Vec2"></a><pre><span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Vec</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 The combination of the three Vec2
 
 </dd>
-<dt id="Vec3i"><a name="Vec3i"></a><pre><span class="Identifier">Vec3i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2i"><a name="Vec2i"></a><pre><span class="Identifier">Vec2i</span> <span class="Other">=</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec3 of int32
+Vec2 of in
 
 </dd>
-<dt id="Vec3ui"><a name="Vec3ui"></a><pre><span class="Identifier">Vec3ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2ui"><a name="Vec2ui"></a><pre><span class="Identifier">Vec2ui</span> <span class="Other">=</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec3 of unsigned int32
+Vec2 of unned int32
 
 </dd>
-<dt id="Vec3f"><a name="Vec3f"></a><pre><span class="Identifier">Vec3f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2f"><a name="Vec2f"></a><pre><span class="Identifier">Vec2f</span> <span class="Other">=</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec3 of float32
+Vec2 of float32
 
 </dd>
-<dt id="Vec3"><a name="Vec3"></a><pre><span class="Identifier">Vec3</span> <span class="Other">=</span> <span class="Identifier">Vec3i</span> <span class="Operator">|</span> <span class="Identifier">Vec3ui</span> <span class="Operator">|</span> <span class="Identifier">Vec3f</span></pre></dt>
+<dt id="Vec3"><a name="Vec3"></a><pre><span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Vec</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 The combination of the three Vec3
 
 </dd>
-<dt id="Vec4i"><a name="Vec4i"></a><pre><span class="Identifier">Vec4i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3i"><a name="Vec3i"></a><pre><span class="Identifier">Vec3i</span> <span class="Other">=</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec4 of int32
+Vec3 of in
 
 </dd>
-<dt id="Vec4ui"><a name="Vec4ui"></a><pre><span class="Identifier">Vec4ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3ui"><a name="Vec3ui"></a><pre><span class="Identifier">Vec3ui</span> <span class="Other">=</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec4 of unsigned int32
+Vec3 of unned int32
 
 </dd>
-<dt id="Vec4f"><a name="Vec4f"></a><pre><span class="Identifier">Vec4f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3f"><a name="Vec3f"></a><pre><span class="Identifier">Vec3f</span> <span class="Other">=</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
-Vec4 of float32
+Vec3 of float32
 
 </dd>
-<dt id="Vec4"><a name="Vec4"></a><pre><span class="Identifier">Vec4</span> <span class="Other">=</span> <span class="Identifier">Vec4i</span> <span class="Operator">|</span> <span class="Identifier">Vec4ui</span> <span class="Operator">|</span> <span class="Identifier">Vec4f</span></pre></dt>
+<dt id="Vec4"><a name="Vec4"></a><pre><span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Vec</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 The combination of the three Vec4
 
 </dd>
-<dt id="Vec"><a name="Vec"></a><pre><span class="Identifier">Vec</span> <span class="Other">=</span> <span class="Identifier">Vec4</span> <span class="Operator">|</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec2</span> <span class="Operator">|</span> <span class="Identifier">Vec1</span></pre></dt>
+<dt id="Vec4i"><a name="Vec4i"></a><pre><span class="Identifier">Vec4i</span> <span class="Other">=</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
-Packs every vector of every kind
+Vec4 of in
+
+</dd>
+<dt id="Vec4ui"><a name="Vec4ui"></a><pre><span class="Identifier">Vec4ui</span> <span class="Other">=</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dd>
+Vec4 of unned int32
+
+</dd>
+<dt id="Vec4f"><a name="Vec4f"></a><pre><span class="Identifier">Vec4f</span> <span class="Other">=</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dd>
+Vec4 of float32
 
 </dd>
 <dt id="Vecf"><a name="Vecf"></a><pre><span class="Identifier">Vecf</span> <span class="Other">=</span> <span class="Identifier">Vec4f</span> <span class="Operator">|</span> <span class="Identifier">Vec3f</span> <span class="Operator">|</span> <span class="Identifier">Vec2f</span> <span class="Operator">|</span> <span class="Identifier">Vec1f</span></pre></dt>
@@ -1522,47 +1598,102 @@ Packs all the uint32 vectors
 Packs all the int32 vectors
 
 </dd>
+<dt id="Mat"><a name="Mat"></a><pre><span class="Identifier">Mat</span><span class="Other">[</span><span class="Identifier">C</span><span class="Other">;</span> <span class="Identifier">R</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">C</span><span class="Other">,</span> <span class="Identifier">Vec</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">]</span></pre></dt>
+<dd>
+Primitive type of Matrix
+
+</dd>
+<dt id="Mat4"><a name="Mat4"></a><pre><span class="Identifier">Mat4</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">R</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="Mat3"><a name="Mat3"></a><pre><span class="Identifier">Mat3</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">R</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="Mat2"><a name="Mat2"></a><pre><span class="Identifier">Mat2</span><span class="Other">[</span><span class="Identifier">R</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">R</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="Mat4x4"><a name="Mat4x4"></a><pre><span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat4</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 4x4
+
+</dd>
+<dt id="Mat4x3"><a name="Mat4x3"></a><pre><span class="Identifier">Mat4x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat4</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 4x3
+
+</dd>
+<dt id="Mat4x2"><a name="Mat4x2"></a><pre><span class="Identifier">Mat4x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat4</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 4x2
+
+</dd>
+<dt id="Mat4x1"><a name="Mat4x1"></a><pre><span class="Identifier">Mat4x1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat4</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 4x2
+
+</dd>
+<dt id="Mat3x3"><a name="Mat3x3"></a><pre><span class="Identifier">Mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat3</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 3x3
+
+</dd>
+<dt id="Mat3x4"><a name="Mat3x4"></a><pre><span class="Identifier">Mat3x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat3</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 3x4
+
+</dd>
+<dt id="Mat3x2"><a name="Mat3x2"></a><pre><span class="Identifier">Mat3x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat3</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 3x2
+
+</dd>
+<dt id="Mat2x2"><a name="Mat2x2"></a><pre><span class="Identifier">Mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat2</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 2x2
+
+</dd>
+<dt id="Mat2x3"><a name="Mat2x3"></a><pre><span class="Identifier">Mat2x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat2</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 2x3
+
+</dd>
+<dt id="Mat2x4"><a name="Mat2x4"></a><pre><span class="Identifier">Mat2x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">Mat2</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Matrix 2x4
+
+</dd>
 
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="$"><a name="$,Vec1"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="vecToStr"><a name="vecToStr,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vecToStr</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Converts a Vec1 into a string
+Converts a Vec into a string
 
 </dd>
-<dt id="$"><a name="$,Vec2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
-<dd>
-Converts a Vec2 into a string
-
-</dd>
-<dt id="$"><a name="$,Vec3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
-<dd>
-Converts a Vec3 into a string
-
-</dd>
-<dt id="$"><a name="$,Vec4"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
-<dd>
-Converts a Vec4 into a string
-
-</dd>
-<dt id="vec"><a name="vec,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1</span></pre></dt>
+<dt id="vec"><a name="vec,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="vec"><a name="vec,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span></pre></dt>
+<dt id="vec"><a name="vec,T,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="vec"><a name="vec,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
+<dt id="vec"><a name="vec,T,T,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="vec"><a name="vec,VTypes,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
+<dt id="vec"><a name="vec,T,T,T,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
@@ -1692,6 +1823,111 @@ Gives the dot product of this two vectors v1 . v2
 Gives the dot product of this two vectors with the given angle
 
 </dd>
+<dt id="matToStr"><a name="matToStr,Mat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">matToStr</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dd>
+Converts Mat to string
+
+</dd>
+<dt id="mat4x4"><a name="mat4x4,Vec4[T],Vec4[T],Vec4[T],Vec4[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">,</span> <span class="Identifier">c4</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x4 Matrix
+
+</dd>
+<dt id="mat4"><a name="mat4,Vec4[T],Vec4[T],Vec4[T],Vec4[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">,</span> <span class="Identifier">c4</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x4 Matrix
+
+</dd>
+<dt id="mat3x3"><a name="mat3x3,Vec3[T],Vec3[T],Vec3[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 3x3 Matrix
+
+</dd>
+<dt id="mat3"><a name="mat3,Vec3[T],Vec3[T],Vec3[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 3x3 Matrix
+
+</dd>
+<dt id="mat2x2"><a name="mat2x2,Vec2[T],Vec2[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 2x2 Matrix
+
+</dd>
+<dt id="mat2"><a name="mat2,Vec2[T],Vec2[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 2x2 Matrix
+
+</dd>
+<dt id="mat4x3"><a name="mat4x3,Vec3[T],Vec3[T],Vec3[T],Vec3[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">,</span> <span class="Identifier">c3</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x3 Matrix
+
+</dd>
+<dt id="mat4x2"><a name="mat4x2,Vec2[T],Vec2[T],Vec2[T],Vec2[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">,</span> <span class="Identifier">c3</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x2 Matrix
+
+</dd>
+<dt id="mat4x1"><a name="mat4x1,Vec1[T],Vec1[T],Vec1[T],Vec1[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4x1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">,</span> <span class="Identifier">c3</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x1</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x1 Matrix
+
+</dd>
+<dt id="mat4"><a name="mat4,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="identity4"><a name="identity4,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">identity4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="mat3x4"><a name="mat3x4,Vec4[T],Vec4[T],Vec4[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat3x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 3x4 Matrix
+
+</dd>
+<dt id="mat3x2"><a name="mat3x2,Vec2[T],Vec2[T],Vec2[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat3x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">,</span> <span class="Identifier">c2</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x2 Matrix
+
+</dd>
+<dt id="mat3"><a name="mat3,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="identity3"><a name="identity3,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">identity3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat3x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="mat2x4"><a name="mat2x4,Vec4[T],Vec4[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat2x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 3x4 Matrix
+
+</dd>
+<dt id="mat2x3"><a name="mat2x3,Vec3[T],Vec3[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat2x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">c0</span><span class="Other">,</span> <span class="Identifier">c1</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x3</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+Creates a 4x2 Matrix
+
+</dd>
+<dt id="mat2"><a name="mat2,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mat2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="identity2"><a name="identity2,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">identity2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat2x2</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="ortho"><a name="ortho,T,T,T,T,T,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">ortho</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">left</span><span class="Other">,</span> <span class="Identifier">right</span><span class="Other">,</span> <span class="Identifier">bottom</span><span class="Other">,</span> <span class="Identifier">top</span><span class="Other">,</span> <span class="Identifier">near</span><span class="Other">,</span> <span class="Identifier">far</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4x4</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 <div class="section" id="18">
@@ -1702,17 +1938,17 @@ Gives the dot product of this two vectors with the given angle
 
 
 </dd>
-<dt id="y"><a name="y.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">y</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="y"><a name="y.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">y</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span> <span class="Operator">|</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="z"><a name="z.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">z</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="z"><a name="z.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">z</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="w"><a name="w.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">w</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="w"><a name="w.t,Vec4"></a><pre><span class="Keyword">template</span> <span class="Identifier">w</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
@@ -1722,17 +1958,12 @@ Gives the dot product of this two vectors with the given angle
 
 
 </dd>
-<dt id="g"><a name="g.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">g</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="g"><a name="g.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">g</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span> <span class="Operator">|</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="b"><a name="b.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">b</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="a"><a name="a.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">a</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="b"><a name="b.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">b</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
@@ -1742,17 +1973,12 @@ Gives the dot product of this two vectors with the given angle
 
 
 </dd>
-<dt id="j"><a name="j.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">j</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="j"><a name="j.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">j</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span> <span class="Operator">|</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="k"><a name="k.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">k</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="s"><a name="s.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">s</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dt id="k"><a name="k.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">k</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 
@@ -1772,6 +1998,46 @@ Little utility to normalize rgba
 Little utility to normalize rgb
 
 </dd>
+<dt id="c0"><a name="c0.t,Mat"></a><pre><span class="Keyword">template</span> <span class="Identifier">c0</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="c1"><a name="c1.t,Mat"></a><pre><span class="Keyword">template</span> <span class="Identifier">c1</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="c2"><a name="c2.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">c2</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat3</span> <span class="Operator">|</span> <span class="Identifier">Mat4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="c3"><a name="c3.t,Mat4"></a><pre><span class="Keyword">template</span> <span class="Identifier">c3</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="a"><a name="a.t,Mat"></a><pre><span class="Keyword">template</span> <span class="Identifier">a</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="b"><a name="b.t,Mat"></a><pre><span class="Keyword">template</span> <span class="Identifier">b</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="c"><a name="c.t,"></a><pre><span class="Keyword">template</span> <span class="Identifier">c</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat3</span> <span class="Operator">|</span> <span class="Identifier">Mat4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="d"><a name="d.t,Mat4"></a><pre><span class="Keyword">template</span> <span class="Identifier">d</span><span class="Other">(</span><span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -1782,7 +2048,7 @@ Little utility to normalize rgb
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-15 23:23:57 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-16 00:45:37 UTC</small>
       </div>
     </div>
   </div>

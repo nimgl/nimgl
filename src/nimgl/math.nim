@@ -30,52 +30,56 @@ export
 
 ## Vectors
 
+## TODO: Make Vec and Mat printable with echo instead of print
+
 type
   VTypes* = int32 | uint32 | float32
     ## Valid Types
-  Vec1i*  = array[1, int32]
-    ## Vec1 of int32
-  Vec1ui* = array[1, uint32]
-    ## Vec1 of unsigned int32
-  Vec1f*  = array[1, float32]
-    ## Vec1 of float32
-  Vec1*   = Vec1i | Vec1ui | Vec1f
+
+  Vec*[R: static[int32], T] = array[R, T]
+    ## Primitive type of Vector
+
+  Vec1*[T] = Vec[1, T]
     ## The combination of the three Vec1
+  Vec1i*   = Vec1[int32]
+    ## Vec1 of in
+  Vec1ui*  = Vec1[uint32]
+    ## Vec1 of unned int32
+  Vec1f*   = Vec1[float32]
+    ## Vec1 of float32
 
-  Vec2i*  = array[2, int32]
-    ## Vec2 of int32
-  Vec2ui* = array[2, uint32]
-    ## Vec2 of unsigned int32
-  Vec2f*  = array[2, float32]
-    ## Vec2 of float32
-  Vec2*   = Vec2i | Vec2ui | Vec2f
+  Vec2*[T] = Vec[2, T]
     ## The combination of the three Vec2
+  Vec2i*   = Vec2[int32]
+    ## Vec2 of in
+  Vec2ui*  = Vec2[uint32]
+    ## Vec2 of unned int32
+  Vec2f*   = Vec2[float32]
+    ## Vec2 of float32
 
-  Vec3i*  = array[3, int32]
-    ## Vec3 of int32
-  Vec3ui* = array[3, uint32]
-    ## Vec3 of unsigned int32
-  Vec3f*  = array[3, float32]
-    ## Vec3 of float32
-  Vec3*   = Vec3i | Vec3ui | Vec3f
+  Vec3*[T] = Vec[3, T]
     ## The combination of the three Vec3
+  Vec3i*   = Vec3[int32]
+    ## Vec3 of in
+  Vec3ui*  = Vec3[uint32]
+    ## Vec3 of unned int32
+  Vec3f*   = Vec3[float32]
+    ## Vec3 of float32
 
-  Vec4i*  = array[4, int32]
-    ## Vec4 of int32
-  Vec4ui* = array[4, uint32]
-    ## Vec4 of unsigned int32
-  Vec4f*  = array[4, float32]
-    ## Vec4 of float32
-  Vec4*   = Vec4i | Vec4ui | Vec4f
+  Vec4*[T] = Vec[4, T]
     ## The combination of the three Vec4
+  Vec4i*   = Vec4[int32]
+    ## Vec4 of in
+  Vec4ui*  = Vec4[uint32]
+    ## Vec4 of unned int32
+  Vec4f*   = Vec4[float32]
+    ## Vec4 of float32
 
-  Vec*    = Vec4   | Vec3   | Vec2   | Vec1
-    ## Packs every vector of every kind
-  Vecf*   = Vec4f  | Vec3f  | Vec2f  | Vec1f
+  Vecf*    = Vec4f  | Vec3f  | Vec2f  | Vec1f
     ## Packs all the float32 vectors
-  Veci*   = Vec4i  | Vec3i  | Vec2i  | Vec1i
+  Veci*    = Vec4i  | Vec3i  | Vec2i  | Vec1i
     ## Packs all the uint32 vectors
-  Vecui*  = Vec4ui | Vec3ui | Vec2ui | Vec1ui
+  Vecui*   = Vec4ui | Vec3ui | Vec2ui | Vec1ui
     ## Packs all the int32 vectors
 
 template x*(vec: Vec): untyped = vec[0]
@@ -86,12 +90,10 @@ template w*(vec: Vec4): untyped = vec[3]
 template r*(vec: Vec): untyped = vec[0]
 template g*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
 template b*(vec: Vec3 | Vec4): untyped = vec[2]
-template a*(vec: Vec4): untyped = vec[3]
 
 template i*(vec: Vec): untyped = vec[0]
 template j*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
 template k*(vec: Vec3 | Vec4): untyped = vec[2]
-template s*(vec: Vec4): untyped = vec[3]
 
 template vPtr*(vec: Vec): ptr = vec[0].addr
   ## Gets the pointer to the first attribute in the tuple
@@ -102,21 +104,22 @@ template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] /
 
 {.push inline.}
 
-proc `$`*(vec: Vec1): string = "vec1(x: "  & $vec.x & ")"
-  ## Converts a Vec1 into a string
-proc `$`*(vec: Vec2): string = "vec2(x: "  & $vec.x & ", y: " & $vec.y & ")"
-  ## Converts a Vec2 into a string
-proc `$`*(vec: Vec3): string = "vec3(x: "  & $vec.x & ", y: " & $vec.y & ", z: " & $vec.z & ")"
-  ## Converts a Vec3 into a string
-proc `$`*(vec: Vec4): string = "vec3(x: "  & $vec.x & ", y: " & $vec.y & ", z: " & $vec.z & ", w: " & $vec.w & ")"
-  ## Converts a Vec4 into a string
+const
+  vecIndex = ['x', 'y', 'z', 'w']
+
+proc vecToStr*(vec: Vec): string =
+  ## Converts a Vec into a string
+  result = "vec" & $vec.len & "("
+  for n in 0 ..< vec.len:
+    result = result & vecIndex[n] & ": " & $vec[n] & ", "
+  result = result.substr(0, result.len - 3) & ")"
 
 # "Constructors"
 
-proc vec*(x: VTypes): Vec1 = [x]
-proc vec*(x, y: VTypes): Vec2 = [x, y]
-proc vec*(x, y, z: VTypes): Vec3 = [x, y, z]
-proc vec*(x, y, z, w: VTypes): Vec4 = [x, y, z, w]
+proc vec*[T](x: T): Vec1[T] = [x]
+proc vec*[T](x, y: T): Vec2[T] = [x, y]
+proc vec*[T](x, y, z: T): Vec3[T] = [x, y, z]
+proc vec*[T](x, y, z, w: T): Vec4[T] = [x, y, z, w]
 
 proc vec1* (vec: Vec): Vec1 = [vec.x]
   ## Converts any Veci into a Vec1i
@@ -213,3 +216,158 @@ proc dot*(v1, v2: Vec, angle: float32): float32 =
 {.pop.}
 
 ## Matrices
+
+type
+  Mat*[C, R: static[int32], T] = array[C, Vec[R, T]]
+    ## Primitive type of Matrix
+  Mat4*[R: static[int32], T] = Mat[4, R, T]
+  Mat3*[R: static[int32], T] = Mat[3, R, T]
+  Mat2*[R: static[int32], T] = Mat[2, R, T]
+  
+  Mat4x4*[T] = Mat4[4, T]
+    ## Matrix 4x4
+  Mat4x3*[T] = Mat4[3, T]
+    ## Matrix 4x3
+  Mat4x2*[T] = Mat4[2, T]
+    ## Matrix 4x2
+  Mat4x1*[T] = Mat4[1, T]
+    ## Matrix 4x2
+
+  Mat3x3*[T] = Mat3[3, T]
+    ## Matrix 3x3
+  Mat3x4*[T] = Mat3[4, T]
+    ## Matrix 3x4
+  Mat3x2*[T] = Mat3[2, T]
+    ## Matrix 3x2
+
+  Mat2x2*[T] = Mat2[2, T]
+    ## Matrix 2x2
+  Mat2x3*[T] = Mat2[3, T]
+    ## Matrix 2x3
+  Mat2x4*[T] = Mat2[4, T]
+    ## Matrix 2x4
+
+template c0*(mat: Mat): untyped = mat[0]
+template c1*(mat: Mat): untyped = mat[1]
+template c2*(mat: Mat3 | Mat4): untyped = mat[2]
+template c3*(mat: Mat4): untyped = mat[3]
+
+template a*(mat: Mat): untyped = mat[0]
+template b*(mat: Mat): untyped = mat[1]
+template c*(mat: Mat3 | Mat4): untyped = mat[2]
+template d*(mat: Mat4): untyped = mat[3]
+
+proc matToStr*(mat: Mat): string =
+  ## Converts Mat to string
+  result = "mat" & $mat.len & "\n  ["
+  for c in 0 ..< mat.len:
+    for r in 0 ..< mat[c].len:
+      result = result & $mat[c][r] & ", "
+    result = result.substr(0, result.len - 3) & "]"
+    if c != mat.len - 1:
+      result = result & "\n  ["
+
+# "Constructors"
+
+proc mat4x4*[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T] =
+  ## Creates a 4x4 Matrix
+  [c0, c1, c2, c4]
+
+proc mat4*[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T] =
+  ## Creates a 4x4 Matrix
+  [c0, c1, c2, c4]
+
+proc mat3x3*[T](c0, c1, c2: Vec3[T]): Mat3x3[T] =
+  ## Creates a 3x3 Matrix
+  [c0, c1, c2]
+
+proc mat3*[T](c0, c1, c2: Vec3[T]): Mat3x3[T] =
+  ## Creates a 3x3 Matrix
+  [c0, c1, c2]
+
+proc mat2x2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
+  ## Creates a 2x2 Matrix
+  [c0, c1, c2]
+
+proc mat2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
+  ## Creates a 2x2 Matrix
+  [c0, c1, c2]
+
+
+proc mat4x3*[T](c0, c1, c2, c3: Vec3[T]): Mat4x3[T] =
+  ## Creates a 4x3 Matrix
+  [c0, c1, c2, c3]
+
+proc mat4x2*[T](c0, c1, c2, c3: Vec2[T]): Mat4x2[T] =
+  ## Creates a 4x2 Matrix
+  [c0, c1, c2, c3]
+
+proc mat4x1*[T](c0, c1, c2, c3: Vec1[T]): Mat4x1[T] =
+  ## Creates a 4x1 Matrix
+  [c0, c1, c2, c3]
+
+proc mat4*[T](n: T): Mat4x4[T] =
+  [
+    [n, n, n, n],
+    [n, n, n, n],
+    [n, n, n, n],
+    [n, n, n, n]
+  ]
+
+proc identity4*[T](): Mat4x4[T] =
+  [
+    [T(1), T(0), T(0), T(0)],
+    [T(0), T(1), T(0), T(0)],
+    [T(0), T(0), T(1), T(0)],
+    [T(0), T(0), T(0), T(1)]
+  ]
+
+proc mat3x4*[T](c0, c1, c2: Vec4[T]): Mat3x4[T] =
+  ## Creates a 3x4 Matrix
+  [c0, c1, c2]
+
+proc mat3x2*[T](c0, c1, c2: Vec2[T]): Mat3x2[T] =
+  ## Creates a 4x2 Matrix
+  [c0, c1, c2]
+
+proc mat3*[T](n: T): Mat3x3[T] =
+  [
+    [n, n, n],
+    [n, n, n],
+    [n, n, n]
+  ]
+
+proc identity3*[T](): Mat3x3[T] =
+  [
+    [T(1), T(0), T(0)],
+    [T(0), T(1), T(0)],
+    [T(0), T(0), T(1)]
+  ]
+
+
+proc mat2x4*[T](c0, c1: Vec4[T]): Mat2x4[T] =
+  ## Creates a 3x4 Matrix
+  [c0, c1]
+
+proc mat2x3*[T](c0, c1: Vec3[T]): Mat2x3[T] =
+  ## Creates a 4x2 Matrix
+  [c0, c1]
+
+proc mat2*[T](n: T): Mat2x2[T] =
+  [
+    [n, n],
+    [n, n]
+  ]
+
+proc identity2*[T](): Mat2x2[T] =
+  [
+    [T(1), T(0)],
+    [T(0), T(1)]
+  ]
+
+
+# Algebra
+
+proc ortho*[T](left, right, bottom, top, near, far: T): Mat4x4[T] =
+  # TODO
+  identity4[T]()
