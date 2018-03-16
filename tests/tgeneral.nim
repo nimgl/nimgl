@@ -144,8 +144,6 @@ void main() {
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
     mvp   = ortho(-8f, 8f, -4.5f, 4.5f, -1f, 1f)
-  
-  echo mvp.matToStr
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
@@ -155,7 +153,7 @@ void main() {
 
     glUseProgram(program)
     glUniform3fv(uColor, 1, color.vPtr)
-    glUniformMatrix4fv(uMVP, 1, false, mvp[0][0].addr)
+    glUniformMatrix4fv(uMVP, 1, false, mvp.vPtr)
 
     glBindVertexArray(vao)
     glDrawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)

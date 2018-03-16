@@ -33,9 +33,6 @@ export
 ## TODO: Make Vec and Mat printable with echo instead of print
 
 type
-  VTypes* = int32 | uint32 | float32
-    ## Valid Types
-
   Vec*[R: static[int32], T] = array[R, T]
     ## Primitive type of Vector
 
@@ -82,21 +79,23 @@ type
   Vecui*   = Vec4ui | Vec3ui | Vec2ui | Vec1ui
     ## Packs all the int32 vectors
 
-template x*(vec: Vec): untyped = vec[0]
-template y*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
-template z*(vec: Vec3 | Vec4): untyped = vec[2]
-template w*(vec: Vec4): untyped = vec[3]
+template x*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template y*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template z*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template w*[T](vec: Vec4[T]): untyped = vec[3]
 
-template r*(vec: Vec): untyped = vec[0]
-template g*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
-template b*(vec: Vec3 | Vec4): untyped = vec[2]
+template r*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template g*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template b*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template a*[T](vec: Vec4[T]): untyped = vec[3]
 
-template i*(vec: Vec): untyped = vec[0]
-template j*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
-template k*(vec: Vec3 | Vec4): untyped = vec[2]
+template i*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template j*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template k*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template s*[T](vec: Vec4[T]): untyped = vec[3]
 
-template vPtr*(vec: Vec): ptr = vec[0].addr
-  ## Gets the pointer to the first attribute in the tuple
+template vPtr*[R, T](vec: array[R, T]): ptr = vec[0].addr
+  ## Gets the pointer to the first attribute in the array
 template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3]]
   ## Little utility to normalize rgba
 template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
@@ -107,7 +106,7 @@ template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] /
 const
   vecIndex = ['x', 'y', 'z', 'w']
 
-proc vecToStr*(vec: Vec): string =
+proc `$`*[T](vec: Vec[1, T] | Vec[2, T] | Vec[3, T] | Vec[4, T]): string =
   ## Converts a Vec into a string
   result = "vec" & $vec.len & "("
   for n in 0 ..< vec.len:
@@ -121,37 +120,37 @@ proc vec*[T](x, y: T): Vec2[T] = [x, y]
 proc vec*[T](x, y, z: T): Vec3[T] = [x, y, z]
 proc vec*[T](x, y, z, w: T): Vec4[T] = [x, y, z, w]
 
-proc vec1* (vec: Vec): Vec1 = [vec.x]
+proc vec1*[R, T] (vec: Vec[R, T]): Vec1[T] = [vec.x]
   ## Converts any Veci into a Vec1i
-proc vec2* (vec: Vec2 | Vec3 | Vec4): Vec2 = [vec.x, vec.y]
+proc vec2*[T] (vec: Vec2[T] | Vec3[T] | Vec4[T]): Vec2[T] = [vec.x, vec.y]
   ## Converts any Vec2,3,4i into a Vec2i
-proc vec3* (vec: Vec3 | Vec4): Vec3 = [vec.x, vec.y, vec.z]
+proc vec3*[T] (vec: Vec3[T] | Vec4[T]): Vec3[T] = [vec.x, vec.y, vec.z]
   ## Converts any Vec3,4 into a Vec3
 
-proc vec1* (x: VTypes): Vec1 = [x]
+proc vec1*[T] (x: T): Vec1[T] = [x]
   ## x to Vec1
-proc vec2* (x, y: VTypes): Vec2 = [x, y]
+proc vec2*[T] (x, y: T): Vec2[T] = [x, y]
   ## x and y to Vec2
-proc vec3* (x, y, z: VTypes): Vec3 = [x, y, z]
+proc vec3*[T] (x, y, z: T): Vec3[T] = [x, y, z]
   ## x, y and z to Vec3i
-proc vec4* (x, y, z, w: VTypes): Vec4 = [x, y, z, w]
+proc vec4*[T] (x, y, z, w: T): Vec4[T] = [x, y, z, w]
   ## x, y, z and w to Vec4i
 
-proc vec2* (vec: Vec1, y: VTypes): Vec2 = [vec.x, y]
+proc vec2*[T] (vec: Vec1[T], y: T): Vec2[T] = [vec.x, y]
   ## Vec1 with a y to Vec2
 
-proc vec3* (vec: Vec1, y, z: VTypes): Vec3 = [vec.x, y, z]
+proc vec3*[T] (vec: Vec1[T], y, z: T): Vec3[T] = [vec.x, y, z]
   ## Vec1 with y and z to Vec3
-proc vec3* (vec: Vec2, z: VTypes): Vec3 = [vec.x, vec.y, z]
+proc vec3*[T] (vec: Vec2[T], z: T): Vec3[T] = [vec.x, vec.y, z]
   ## Vec2 with y to Vec3
 
-proc vec4* (vec: Vec1, y, z, w: VTypes): Vec4 = [vec.x, y, z, w]
+proc vec4*[T] (vec: Vec1[T], y, z, w: T): Vec4[T] = [vec.x, y, z, w]
   ## Vec1 with y, z and w to Vec4
-proc vec4* (vec: Vec2, z, w: VTypes): Vec4 = [vec.x, vec.y, z, w]
+proc vec4*[T] (vec: Vec2[T], z, w: T): Vec4[T] = [vec.x, vec.y, z, w]
   ## Vec2 with z, w to Vec4
-proc vec4* (vec: Vec3, w: VTypes): Vec4 = [vec.x, vec.y, vec.z, w]
+proc vec4*[T] (vec: Vec3[T], w: T): Vec4[T] = [vec.x, vec.y, vec.z, w]
   ## Vec3 with w to Vec4
-proc vec4* (v1: Vec2, v2: Vec2): Vec4 = [v1.x, v1.y, v2.x, v2.y]
+proc vec4*[T] (v1: Vec2[T], v2: Vec2[T]): Vec4[T] = [v1.x, v1.y, v2.x, v2.y]
   ## 2 vec2 to Vec4
 
 # Operations
@@ -247,17 +246,17 @@ type
   Mat2x4*[T] = Mat2[4, T]
     ## Matrix 2x4
 
-template c0*(mat: Mat): untyped = mat[0]
-template c1*(mat: Mat): untyped = mat[1]
-template c2*(mat: Mat3 | Mat4): untyped = mat[2]
-template c3*(mat: Mat4): untyped = mat[3]
+template c0*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[0]
+template c1*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[1]
+template c2*[R, T](mat: Mat3[R, T] | Mat4[R, T]): untyped = mat[2]
+template c3*[R, T](mat: Mat4[R, T]): untyped = mat[3]
 
-template a*(mat: Mat): untyped = mat[0]
-template b*(mat: Mat): untyped = mat[1]
-template c*(mat: Mat3 | Mat4): untyped = mat[2]
-template d*(mat: Mat4): untyped = mat[3]
+template  a*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[0]
+template  b*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[1]
+template  c*[R, T](mat: Mat3[R, T] | Mat4[R, T]): untyped = mat[2]
+template  d*[R, T](mat: Mat4[R, T]): untyped = mat[3]
 
-proc matToStr*(mat: Mat): string =
+proc `$`*[C, R, T](mat: array[C, array[R, T]]): string =
   ## Converts Mat to string
   result = "mat" & $mat.len & "\n  ["
   for c in 0 ..< mat.len:
@@ -266,6 +265,9 @@ proc matToStr*(mat: Mat): string =
     result = result.substr(0, result.len - 3) & "]"
     if c != mat.len - 1:
       result = result & "\n  ["
+
+template vPtr*[C, R, T](mat: array[C, array[R, T]]): ptr = mat[0][0].addr
+  ## Gets the pointer to the first attribute in the array
 
 # "Constructors"
 
