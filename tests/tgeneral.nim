@@ -133,21 +133,15 @@ void main() {
     glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo toString(message)
 
-  let uColor = glGetUniformLocation(program, "uColor")
-  var color  = (0.0f, 0.0f, 1.0f)
-
+  let uColor  = glGetUniformLocation(program, "uColor")
   var
-    vec1: Vec2ui = (8'u32, 4'u32)
-    vec2: Vec2ui = (5'u32, 6'u32)
-    vec3: Vec2f = (5f, 6f)
-    vec4: Vec2f = (2f, 3f)
-
-  echo vec1
+    bg = vec(33.0f, 33.0f, 33.0f).rgb
+    color = vec(102f, 187f, 106f).rgb
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
 
-    glClearColor(0.13, 0.13, 0.13, 1)
+    glClearColor(bg.r, bg.g, bg.b, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(program)
