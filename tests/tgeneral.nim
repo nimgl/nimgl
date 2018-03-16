@@ -2,9 +2,7 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/glfw,
-  nimgl/math,
-  nimgl/glew
+  nimgl/[glfw, math, opengl]
 
 type
   KeysArray = array[-1 .. ord(Key.keyLast), bool]
@@ -12,16 +10,16 @@ type
 var
   keys: KeysArray
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
-  keys[key.ord] = action != kaRelease
-  if key == keyESCAPE and action == kaPress:
-    window.setWindowShouldClose(true)
-
 converter toString(chars: seq[cchar]): string =
   result = ""
   for c in chars:
     if c == '\0': continue
     result.add c
+
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+  keys[key.ord] = action != kaRelease
+  if key == keyESCAPE and action == kaPress:
+    window.setWindowShouldClose(true)
 
 proc statusShader(shader: glUint) =
   var status: glInt
@@ -44,23 +42,28 @@ proc main =
   windowHint(whDecorated          , glfwTrue);
   windowHint(whRefreshRate        , glfwDontCare);
 
-  var w: Window = createWindow(1280, 720, "NimGL")
+  var w: Window = createWindow(1280, 720, "NimGL", nil, nil)
   assert w != nil
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
-  assert glew.init() == GLEW_OK
+  assert opengl.init() == GLEW_OK
 
   glEnable(GL_BLEND)
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
   var
     vertices: seq[cfloat]
-    indices: seq[cuint]
-    vbo: glUint
-    vao: glUint
-    ebo: glUint
+    indices : seq[cuint]
+    vbo     : glUint
+    vao     : glUint
+    ebo     : glUint
+    vertex  : glUint
+    fragment: glUint
+    program : glUint
+    vsrc    : cstring
+    fsrc    : cstring
 
   vertices = @[
      0.5f,  0.5f, 0.0f,
@@ -89,13 +92,6 @@ proc main =
   glEnableVertexAttribArray(0)
   glVertexAttribPointer(0'u32, 3, GL_FLOAT, false, cfloat.sizeof * 3, nil)
 
-  var
-    vertex: glUint
-    fragment: glUint
-    program: glUint
-    vsrc: cstring
-    fsrc: cstring
-
   vertex = glCreateShader(GL_VERTEX_SHADER)
   vsrc = """
 #version 330 core
@@ -113,8 +109,10 @@ void main() {
 #version 330 core
 out vec4 FragColor;
 
+uniform vec3 uColor;
+
 void main() {
-  FragColor = vec4(0.50f, 0.78f, 0.51f, 1.0f);
+  FragColor = vec4(uColor, 1.0f);
 }
   """
   glShaderSource(fragment, 1, fsrc.addr, nil)
@@ -135,6 +133,9 @@ void main() {
     glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo toString(message)
 
+  let uColor = glGetUniformLocation(program, "uColor")
+  var color  = (0.0f, 0.0f, 1.0f)
+
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
 
@@ -142,6 +143,7 @@ void main() {
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(program)
+    glUniform3fv(uColor, 1, color.vPtr)
 
     glBindVertexArray(vao)
     glDrawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)

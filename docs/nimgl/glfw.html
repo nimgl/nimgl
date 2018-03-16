@@ -1351,6 +1351,9 @@ function main() {
   <li><a class="reference" href="#KeyAction"
     title="KeyAction = enum
   kaRelease = (0, &quot;release&quot;), kaPress = (1, &quot;press&quot;), kaRepeat = (2, &quot;repeat&quot;)"><wbr />Key<wbr />Action<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#MouseAction"
+    title="MouseAction = enum
+  maRelease = (0, &quot;release&quot;), maPress = (1, &quot;press&quot;), maRepeat = (2, &quot;repeat&quot;)"><wbr />Mouse<wbr />Action<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#KeyMod"
     title="KeyMod = enum
   kmShift = 0x00000001, kmControl = 0x00000002, kmAlt = 0x00000004, kmSuper = 0x00000008"><wbr />Key<wbr />Mod<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1396,6 +1399,8 @@ function main() {
   keyRightShift = (344, &quot;right_shift&quot;), keyRightControl = (345, &quot;right_control&quot;),
   keyRightAlt = (346, &quot;right_alt&quot;), keyRightSuper = (347, &quot;right_super&quot;),
   keyMenu = (348, &quot;menu&quot;), keyLast = &quot;last&quot;"><wbr />Key<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#mouseProc"
+    title="mouseProc = proc (window: Window; button: MouseButton; action: MouseAction; mods: KeyMod): void"><wbr />mouse<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#keyProc"
     title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1494,6 +1499,10 @@ function main() {
     title="defaultWindowHints(): void"><wbr />default<wbr />Window<wbr />Hints<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getProcAddress,cstring"
     title="getProcAddress(procname: cstring): pointer"><wbr />get<wbr />Proc<wbr />Address<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getCursorPos,Window,ptr.cdouble,ptr.cdouble"
+    title="getCursorPos(window: Window; xpos: ptr cdouble; ypos: ptr cdouble): void"><wbr />get<wbr />Cursor<wbr />Pos<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setMouseButtonCallback,Window,mouseProc"
+    title="setMouseButtonCallback(window: Window; cbfun: mouseProc): void"><wbr />set<wbr />Mouse<wbr />Button<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
 
   </ul>
 </li>
@@ -1656,6 +1665,12 @@ Joystick references
 Action released on the key event
 
 </dd>
+<dt id="MouseAction"><a name="MouseAction"></a><pre><span class="Identifier">MouseAction</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">maRelease</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">0</span><span class="Other">,</span> <span class="StringLit">&quot;release&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">maPress</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="StringLit">&quot;press&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">maRepeat</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="StringLit">&quot;repeat&quot;</span><span class="Other">)</span></pre></dt>
+<dd>
+Actions of the mouse
+
+</dd>
 <dt id="KeyMod"><a name="KeyMod"></a><pre><span class="Identifier">KeyMod</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">kmShift</span> <span class="Other">=</span> <span class="DecNumber">0x00000001</span><span class="Other">,</span> <span class="Identifier">kmControl</span> <span class="Other">=</span> <span class="DecNumber">0x00000002</span><span class="Other">,</span> <span class="Identifier">kmAlt</span> <span class="Other">=</span> <span class="DecNumber">0x00000004</span><span class="Other">,</span> <span class="Identifier">kmSuper</span> <span class="Other">=</span> <span class="DecNumber">0x00000008</span></pre></dt>
 <dd>
@@ -1705,6 +1720,12 @@ Key Modifiers, to modify actions
   <span class="Identifier">keyMenu</span> <span class="Other">=</span> <span class="Other">(</span><span class="DecNumber">348</span><span class="Other">,</span> <span class="StringLit">&quot;menu&quot;</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">keyLast</span> <span class="Other">=</span> <span class="StringLit">&quot;last&quot;</span></pre></dt>
 <dd>
 KeyCodes, a lot of them
+
+</dd>
+<dt id="mouseProc"><a name="mouseProc"></a><pre><span class="Identifier">mouseProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">button</span><span class="Other">:</span> <span class="Identifier">MouseButton</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">MouseAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
 
 </dd>
 <dt id="keyProc"><a name="keyProc"></a><pre><span class="Identifier">keyProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">;</span> <span class="Identifier">scancode</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">KeyAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1953,6 +1974,18 @@ Resets all window hints to their default values.
 
 
 </dd>
+<dt id="getCursorPos"><a name="getCursorPos,Window,ptr.cdouble,ptr.cdouble"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCursorPos</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">xpos</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">cdouble</span><span class="Other">;</span> <span class="Identifier">ypos</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetCursorPos&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the position of the cursor, in screen coordinates, relative to the upper-left corner of the client area of the specified window.
+
+</dd>
+<dt id="setMouseButtonCallback"><a name="setMouseButtonCallback,Window,mouseProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMouseButtonCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">cbfun</span><span class="Other">:</span> <span class="Identifier">mouseProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetMouseButtonCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function sets the mouse button callback of the specified window, which is called when a mouse button is pressed or released.
+
+</dd>
 
 </dl></div>
 <div class="section" id="16">
@@ -1973,7 +2006,7 @@ Resets all window hints to their default values.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-12 21:05:25 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-15 19:44:16 UTC</small>
       </div>
     </div>
   </div>

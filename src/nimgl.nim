@@ -12,11 +12,12 @@
 ##
 
 import
-  nimgl/glfw,
-  nimgl/glew,
-  nimgl/math
-
+  nimgl/[
+    glfw,
+    opengl,
+    math
+  ]
 export
   glfw,
-  glew,
+  opengl,
   math

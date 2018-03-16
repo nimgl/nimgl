@@ -16,7 +16,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module glew</title>
+<title>Module opengl</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1213,7 +1213,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module glew</h1>
+    <h1 class="title">Module opengl</h1>
     <div class="row">
   <div class="three columns">
   <div id="global-links">
@@ -1232,7 +1232,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="glew-bindings_toc" href="#glew-bindings">Glew Bindings</a></li>
+<li><a class="reference" id="glew-bindings-an-opengl-loading-library_toc" href="#glew-bindings-an-opengl-loading-library">Glew Bindings - An OpenGL loading Library</a></li>
 <li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
@@ -2536,8 +2536,8 @@ function main() {
     title="GL_EDGE_FLAG_ARRAY_BUFFER_BINDING: glEnum = 0x0000889B"><wbr />GL_<wbr />EDGE_<wbr />FLAG_<wbr />ARRAY_<wbr />BUFFER_<wbr />BINDING<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING"
     title="GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING: glEnum = 0x0000889C"><wbr />GL_<wbr />SECONDARY_<wbr />COLOR_<wbr />ARRAY_<wbr />BUFFER_<wbr />BINDING<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GL_WEIGHT_ARRAY_BUFFER_BINDING"
-    title="GL_WEIGHT_ARRAY_BUFFER_BINDING: glEnum = 0x0000889E"><wbr />GL_<wbr />WEIGHT_<wbr />ARRAY_<wbr />BUFFER_<wbr />BINDING<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GL_WEIGHT_ARRAY_BUFFER_BINGDING"
+    title="GL_WEIGHT_ARRAY_BUFFER_BINGDING: glEnum = 0x0000889E"><wbr />GL_<wbr />WEIGHT_<wbr />ARRAY_<wbr />BUFFER_<wbr />BINGDING<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING"
     title="GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING: glEnum = 0x0000889F"><wbr />GL_<wbr />VERTEX_<wbr />ATTRIB_<wbr />ARRAY_<wbr />BUFFER_<wbr />BINDING<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GL_READ_ONLY"
@@ -2787,9 +2787,9 @@ function main() {
     title="glDrawElements(mode: glEnum; count: glSizei; tipe: glEnum; indices: glVoid): void"><wbr />gl<wbr />Draw<wbr />Elements<span class="attachedType" style="visibility:hidden">glEnum</span></a></li>
   <li><a class="reference" href="#glGetShaderiv,glUint,glEnum,ptr.glInt"
     title="glGetShaderiv(shader: glUint; pname: glEnum; params: ptr glInt): void"><wbr />gl<wbr />Get<wbr />Shaderiv<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
-  <li><a class="reference" href="#glGetShaderInfoLog,glUint,glSizei,ptr.glSizei,ptr.cstring"
+  <li><a class="reference" href="#glGetShaderInfoLog,glUint,glSizei,ptr.glSizei,ptr.glChar"
     title="glGetShaderInfoLog(shader: glUint; maxLength: glSizei; length: ptr glSizei;
-                   infoLog: ptr cstring): void"><wbr />gl<wbr />Get<wbr />Shader<wbr />Info<wbr />Log<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
+                   infoLog: ptr glChar): void"><wbr />gl<wbr />Get<wbr />Shader<wbr />Info<wbr />Log<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
   <li><a class="reference" href="#glCreateShader,glEnum"
     title="glCreateShader(shaderType: glEnum): glUint"><wbr />gl<wbr />Create<wbr />Shader<span class="attachedType" style="visibility:hidden">glEnum</span></a></li>
   <li><a class="reference" href="#glShaderSource,glUint,glSizei,ptr.cstring,ptr.glInt"
@@ -2804,13 +2804,61 @@ function main() {
     title="glLinkProgram(program: glUint): void"><wbr />gl<wbr />Link<wbr />Program<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
   <li><a class="reference" href="#glGetProgramiv,glUint,glEnum,ptr.glInt"
     title="glGetProgramiv(program: glUint; pname: glEnum; params: ptr glInt): void"><wbr />gl<wbr />Get<wbr />Programiv<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
-  <li><a class="reference" href="#glGetProgramInfoLog,glUint,glSizei,ptr.glSizei,ptr.cstring"
+  <li><a class="reference" href="#glGetProgramInfoLog,glUint,glSizei,ptr.glSizei,ptr.glChar"
     title="glGetProgramInfoLog(program: glUint; maxLength: glSizei; length: ptr glSizei;
-                    infoLog: ptr cstring): void"><wbr />gl<wbr />Get<wbr />Program<wbr />Info<wbr />Log<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
+                    infoLog: ptr glChar): void"><wbr />gl<wbr />Get<wbr />Program<wbr />Info<wbr />Log<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
   <li><a class="reference" href="#glUseProgram,glUint"
     title="glUseProgram(program: glUint): void"><wbr />gl<wbr />Use<wbr />Program<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
   <li><a class="reference" href="#glGetUniformLocation,glUint,cstring"
     title="glGetUniformLocation(program: glUint; name: cstring): glInt"><wbr />gl<wbr />Get<wbr />Uniform<wbr />Location<span class="attachedType" style="visibility:hidden">glUint</span></a></li>
+  <li><a class="reference" href="#glUniform4f,glInt,glFloat,glFloat,glFloat,glFloat"
+    title="glUniform4f(location: glInt; v0, v1, v2, v3: glFloat): void"><wbr />gl<wbr />Uniform4f<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3f,glInt,glFloat,glFloat,glFloat"
+    title="glUniform3f(location: glInt; v0, v1, v2: glFloat): void"><wbr />gl<wbr />Uniform3f<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2f,glInt,glFloat,glFloat"
+    title="glUniform2f(location: glInt; v0, v1: glFloat): void"><wbr />gl<wbr />Uniform2f<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1f,glInt,glFloat"
+    title="glUniform1f(location: glInt; v0: glFloat): void"><wbr />gl<wbr />Uniform1f<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform4i,glInt,glInt,glInt,glInt,glInt"
+    title="glUniform4i(location: glInt; v0, v1, v2, v3: glInt): void"><wbr />gl<wbr />Uniform4i<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3i,glInt,glInt,glInt,glInt"
+    title="glUniform3i(location: glInt; v0, v1, v2: glInt): void"><wbr />gl<wbr />Uniform3i<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2i,glInt,glInt,glInt"
+    title="glUniform2i(location: glInt; v0, v1: glInt): void"><wbr />gl<wbr />Uniform2i<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1i,glInt,glInt"
+    title="glUniform1i(location: glInt; v0: glInt): void"><wbr />gl<wbr />Uniform1i<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform4ui,glInt,glUint,glUint,glUint,glUint"
+    title="glUniform4ui(location: glInt; v0, v1, v2, v3: glUint): void"><wbr />gl<wbr />Uniform4ui<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3ui,glInt,glUint,glUint,glUint"
+    title="glUniform3ui(location: glInt; v0, v1, v2: glUint): void"><wbr />gl<wbr />Uniform3ui<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2ui,glInt,glUint,glUint"
+    title="glUniform2ui(location: glInt; v0, v1: glUint): void"><wbr />gl<wbr />Uniform2ui<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1ui,glInt,glUint"
+    title="glUniform1ui(location: glInt; v0: glUint): void"><wbr />gl<wbr />Uniform1ui<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform4fv,glInt,glSizei,ptr.glFloat"
+    title="glUniform4fv(location: glInt; count: glSizei; v: ptr glFloat): void"><wbr />gl<wbr />Uniform4fv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3fv,glInt,glSizei,ptr.glFloat"
+    title="glUniform3fv(location: glInt; count: glSizei; v: ptr glFloat): void"><wbr />gl<wbr />Uniform3fv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2fv,glInt,glSizei,ptr.glFloat"
+    title="glUniform2fv(location: glInt; count: glSizei; v: ptr glFloat): void"><wbr />gl<wbr />Uniform2fv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1fv,glInt,glSizei,ptr.glFloat"
+    title="glUniform1fv(location: glInt; count: glSizei; v: ptr glFloat): void"><wbr />gl<wbr />Uniform1fv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform4iv,glInt,glSizei,ptr.glInt"
+    title="glUniform4iv(location: glInt; count: glSizei; v: ptr glInt): void"><wbr />gl<wbr />Uniform4iv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3iv,glInt,glSizei,ptr.glInt"
+    title="glUniform3iv(location: glInt; count: glSizei; v: ptr glInt): void"><wbr />gl<wbr />Uniform3iv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2iv,glInt,glSizei,ptr.glInt"
+    title="glUniform2iv(location: glInt; count: glSizei; v: ptr glInt): void"><wbr />gl<wbr />Uniform2iv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1iv,glInt,glSizei,ptr.glInt"
+    title="glUniform1iv(location: glInt; count: glSizei; v: ptr glInt): void"><wbr />gl<wbr />Uniform1iv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform4uiv,glInt,glSizei,ptr.glUint"
+    title="glUniform4uiv(location: glInt; count: glSizei; v: ptr glUint): void"><wbr />gl<wbr />Uniform4uiv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform3uiv,glInt,glSizei,ptr.glUint"
+    title="glUniform3uiv(location: glInt; count: glSizei; v: ptr glUint): void"><wbr />gl<wbr />Uniform3uiv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform2uiv,glInt,glSizei,ptr.glUint"
+    title="glUniform2uiv(location: glInt; count: glSizei; v: ptr glUint): void"><wbr />gl<wbr />Uniform2uiv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
+  <li><a class="reference" href="#glUniform1uiv,glInt,glSizei,ptr.glUint"
+    title="glUniform1uiv(location: glInt; count: glSizei; v: ptr glUint): void"><wbr />gl<wbr />Uniform1uiv<span class="attachedType" style="visibility:hidden">glInt</span></a></li>
 
   </ul>
 </li>
@@ -2821,7 +2869,7 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="glew-bindings" href="#glew-bindings">Glew Bindings</a></h1><p><a class="reference external" href="../">return</a>.</p>
+<h1><a class="toc-backref" id="glew-bindings-an-opengl-loading-library" href="#glew-bindings-an-opengl-loading-library">Glew Bindings - An OpenGL loading Library</a></h1><p><a class="reference external" href="../">return</a>.</p>
 <p>There are too many procedures and constants, please run while you can but if you want to kill the monster you can add the procedures you still need you can use <a class="reference external" href="https://docs.gl/">https://docs.gl/</a> to get references of how every procedure works.</p>
 <p>Or if you want <a class="reference external" href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/">the official docs</a></p>
 </p>
@@ -6058,7 +6106,7 @@ function main() {
 
 
 </dd>
-<dt id="GL_WEIGHT_ARRAY_BUFFER_BINDING"><a name="GL_WEIGHT_ARRAY_BUFFER_BINDING"></a><pre><span class="Identifier">GL_WEIGHT_ARRAY_BUFFER_BINDING</span><span class="Other">:</span> <span class="Identifier">glEnum</span> <span class="Other">=</span> <span class="DecNumber">0x0000889E</span></pre></dt>
+<dt id="GL_WEIGHT_ARRAY_BUFFER_BINGDING"><a name="GL_WEIGHT_ARRAY_BUFFER_BINGDING"></a><pre><span class="Identifier">GL_WEIGHT_ARRAY_BUFFER_BINGDING</span><span class="Other">:</span> <span class="Identifier">glEnum</span> <span class="Other">=</span> <span class="DecNumber">0x0000889E</span></pre></dt>
 <dd>
 
 
@@ -6684,8 +6732,8 @@ function main() {
 
 
 </dd>
-<dt id="glGetShaderInfoLog"><a name="glGetShaderInfoLog,glUint,glSizei,ptr.glSizei,ptr.cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glGetShaderInfoLog</span><span class="Other">(</span><span class="Identifier">shader</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">;</span> <span class="Identifier">maxLength</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">length</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glSizei</span><span class="Other">;</span>
-                       <span class="Identifier">infoLog</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="glGetShaderInfoLog"><a name="glGetShaderInfoLog,glUint,glSizei,ptr.glSizei,ptr.glChar"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glGetShaderInfoLog</span><span class="Other">(</span><span class="Identifier">shader</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">;</span> <span class="Identifier">maxLength</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">length</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glSizei</span><span class="Other">;</span>
+                       <span class="Identifier">infoLog</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glChar</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -6727,8 +6775,8 @@ function main() {
 
 
 </dd>
-<dt id="glGetProgramInfoLog"><a name="glGetProgramInfoLog,glUint,glSizei,ptr.glSizei,ptr.cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glGetProgramInfoLog</span><span class="Other">(</span><span class="Identifier">program</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">;</span> <span class="Identifier">maxLength</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">length</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glSizei</span><span class="Other">;</span>
-                        <span class="Identifier">infoLog</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="glGetProgramInfoLog"><a name="glGetProgramInfoLog,glUint,glSizei,ptr.glSizei,ptr.glChar"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glGetProgramInfoLog</span><span class="Other">(</span><span class="Identifier">program</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">;</span> <span class="Identifier">maxLength</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">length</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glSizei</span><span class="Other">;</span>
+                        <span class="Identifier">infoLog</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glChar</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -6744,6 +6792,140 @@ function main() {
 
 
 </dd>
+<dt id="glUniform4f"><a name="glUniform4f,glInt,glFloat,glFloat,glFloat,glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4f</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">,</span> <span class="Identifier">v3</span><span class="Other">:</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3f"><a name="glUniform3f,glInt,glFloat,glFloat,glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3f</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2f"><a name="glUniform2f,glInt,glFloat,glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2f</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1f"><a name="glUniform1f,glInt,glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1f</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">:</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform4i"><a name="glUniform4i,glInt,glInt,glInt,glInt,glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4i</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">,</span> <span class="Identifier">v3</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3i"><a name="glUniform3i,glInt,glInt,glInt,glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3i</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2i"><a name="glUniform2i,glInt,glInt,glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2i</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1i"><a name="glUniform1i,glInt,glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1i</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform4ui"><a name="glUniform4ui,glInt,glUint,glUint,glUint,glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4ui</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">,</span> <span class="Identifier">v3</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3ui"><a name="glUniform3ui,glInt,glUint,glUint,glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3ui</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2ui"><a name="glUniform2ui,glInt,glUint,glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2ui</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">,</span> <span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1ui"><a name="glUniform1ui,glInt,glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1ui</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">v0</span><span class="Other">:</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform4fv"><a name="glUniform4fv,glInt,glSizei,ptr.glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4fv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3fv"><a name="glUniform3fv,glInt,glSizei,ptr.glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3fv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2fv"><a name="glUniform2fv,glInt,glSizei,ptr.glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2fv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1fv"><a name="glUniform1fv,glInt,glSizei,ptr.glFloat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1fv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glFloat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform4iv"><a name="glUniform4iv,glInt,glSizei,ptr.glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4iv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3iv"><a name="glUniform3iv,glInt,glSizei,ptr.glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3iv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2iv"><a name="glUniform2iv,glInt,glSizei,ptr.glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2iv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1iv"><a name="glUniform1iv,glInt,glSizei,ptr.glInt"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1iv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform4uiv"><a name="glUniform4uiv,glInt,glSizei,ptr.glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform4uiv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform3uiv"><a name="glUniform3uiv,glInt,glSizei,ptr.glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform3uiv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform2uiv"><a name="glUniform2uiv,glInt,glSizei,ptr.glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform2uiv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="glUniform1uiv"><a name="glUniform1uiv,glInt,glSizei,ptr.glUint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">glUniform1uiv</span><span class="Other">(</span><span class="Identifier">location</span><span class="Other">:</span> <span class="Identifier">glInt</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">glSizei</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">glUint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;&lt;glew.h&gt;&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -6754,7 +6936,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-12 21:05:25 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-15 19:44:17 UTC</small>
       </div>
     </div>
   </div>

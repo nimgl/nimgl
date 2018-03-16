@@ -1,7 +1,7 @@
 # Copyright (C) CleverByte. All Rights Reserved
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## Glew Bindings
+## Glew Bindings - An OpenGL loading Library
 ## ====
 ## `return <../>`_.  
 ##
@@ -822,15 +822,29 @@ proc glGetProgramiv*(program: glUint, pname: glEnum, params: ptr glInt): void {.
 proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
 proc glUseProgram*(program: glUint): void {.glew_lib.}
 proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
-proc glUniform4f*(location: glInt, v0, v1, v2, v3: glFloat): void {.glew_lib.}
-proc glUniform3f*(location: glInt, v0, v1, v2: glFloat): void {.glew_lib.}
-proc glUniform2f*(location: glInt, v0, v1: glFloat): void {.glew_lib.}
-proc glUniform1f*(location: glInt, v0: glFloat): void {.glew_lib.}
-proc glUniform4i*(location: glInt, v0, v1, v2, v3: glInt): void {.glew_lib.}
-proc glUniform3i*(location: glInt, v0, v1, v2: glInt): void {.glew_lib.}
-proc glUniform2i*(location: glInt, v0, v1: glInt): void {.glew_lib.}
-proc glUniform1i*(location: glInt, v0: glInt): void {.glew_lib.}
+
+proc glUniform4f* (location: glInt, v0, v1, v2, v3: glFloat): void {.glew_lib.}
+proc glUniform3f* (location: glInt, v0, v1, v2: glFloat): void {.glew_lib.}
+proc glUniform2f* (location: glInt, v0, v1: glFloat): void {.glew_lib.}
+proc glUniform1f* (location: glInt, v0: glFloat): void {.glew_lib.}
+proc glUniform4i* (location: glInt, v0, v1, v2, v3: glInt): void {.glew_lib.}
+proc glUniform3i* (location: glInt, v0, v1, v2: glInt): void {.glew_lib.}
+proc glUniform2i* (location: glInt, v0, v1: glInt): void {.glew_lib.}
+proc glUniform1i* (location: glInt, v0: glInt): void {.glew_lib.}
 proc glUniform4ui*(location: glInt, v0, v1, v2, v3: glUint): void {.glew_lib.}
 proc glUniform3ui*(location: glInt, v0, v1, v2: glUint): void {.glew_lib.}
 proc glUniform2ui*(location: glInt, v0, v1: glUint): void {.glew_lib.}
 proc glUniform1ui*(location: glInt, v0: glUint): void {.glew_lib.}
+
+proc glUniform4fv* (location: glInt, count: glSizei, v: ptr glFloat): void {.glew_lib.}
+proc glUniform3fv* (location: glInt, count: glSizei, v: ptr glFloat): void {.glew_lib.}
+proc glUniform2fv* (location: glInt, count: glSizei, v: ptr glFloat): void {.glew_lib.}
+proc glUniform1fv* (location: glInt, count: glSizei, v: ptr glFloat): void {.glew_lib.}
+proc glUniform4iv* (location: glInt, count: glSizei, v: ptr glInt): void {.glew_lib.}
+proc glUniform3iv* (location: glInt, count: glSizei, v: ptr glInt): void {.glew_lib.}
+proc glUniform2iv* (location: glInt, count: glSizei, v: ptr glInt): void {.glew_lib.}
+proc glUniform1iv* (location: glInt, count: glSizei, v: ptr glInt): void {.glew_lib.}
+proc glUniform4uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
+proc glUniform3uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
+proc glUniform2uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
+proc glUniform1uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
