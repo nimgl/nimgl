@@ -135,7 +135,7 @@ void main() {
 
   let uColor  = glGetUniformLocation(program, "uColor")
   var
-    bg = vec(33.0f, 33.0f, 33.0f).rgb
+    bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
 
   while not w.windowShouldClose:

@@ -848,3 +848,13 @@ proc glUniform4uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew
 proc glUniform3uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
 proc glUniform2uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
 proc glUniform1uiv*(location: glInt, count: glSizei, v: ptr glUint): void {.glew_lib.}
+
+proc glUniformMatrix2fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix3fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix4fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix2x3fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix3x2fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix2x4fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix4x2fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix3x4fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
+proc glUniformMatrix4x3fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}

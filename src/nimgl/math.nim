@@ -28,9 +28,11 @@ import
 export
   math
 
+## Vectors
+
 type
-  RGB* = tuple[r, g, b: float32]
-    ## RGB Tuple
+  VTypes* = int32 | uint32 | float32
+    ## Valid Types
   Vec1i*  = array[1, int32]
     ## Vec1 of int32
   Vec1ui* = array[1, uint32]
@@ -77,19 +79,19 @@ type
     ## Packs all the int32 vectors
 
 template x*(vec: Vec): untyped = vec[0]
-template y*(vec: Vec): untyped = vec[1]
-template z*(vec: Vec): untyped = vec[2]
-template w*(vec: Vec): untyped = vec[3]
+template y*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
+template z*(vec: Vec3 | Vec4): untyped = vec[2]
+template w*(vec: Vec4): untyped = vec[3]
 
 template r*(vec: Vec): untyped = vec[0]
-template g*(vec: Vec): untyped = vec[1]
-template b*(vec: Vec): untyped = vec[2]
-template a*(vec: Vec): untyped = vec[3]
+template g*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
+template b*(vec: Vec3 | Vec4): untyped = vec[2]
+template a*(vec: Vec4): untyped = vec[3]
 
 template i*(vec: Vec): untyped = vec[0]
-template j*(vec: Vec): untyped = vec[1]
-template k*(vec: Vec): untyped = vec[2]
-template s*(vec: Vec): untyped = vec[3]
+template j*(vec: Vec2 | Vec3 | Vec4): untyped = vec[1]
+template k*(vec: Vec3 | Vec4): untyped = vec[2]
+template s*(vec: Vec4): untyped = vec[3]
 
 template vPtr*(vec: Vec): ptr = vec[0].addr
   ## Gets the pointer to the first attribute in the tuple
@@ -97,6 +99,8 @@ template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] 
   ## Little utility to normalize rgba
 template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
   ## Little utility to normalize rgb
+
+{.push inline.}
 
 proc `$`*(vec: Vec1): string = "vec1(x: "  & $vec.x & ")"
   ## Converts a Vec1 into a string
@@ -109,95 +113,43 @@ proc `$`*(vec: Vec4): string = "vec3(x: "  & $vec.x & ", y: " & $vec.y & ", z: "
 
 # "Constructors"
 
-proc vec1i* (vec: Veci): Vec1i = [vec.x]
+proc vec*(x: VTypes): Vec1 = [x]
+proc vec*(x, y: VTypes): Vec2 = [x, y]
+proc vec*(x, y, z: VTypes): Vec3 = [x, y, z]
+proc vec*(x, y, z, w: VTypes): Vec4 = [x, y, z, w]
+
+proc vec1* (vec: Vec): Vec1 = [vec.x]
   ## Converts any Veci into a Vec1i
-proc vec1ui*(vec: Vecui): Vec1ui = [vec.x]
-  ## Converts any Vecui into a Vec1ui
-proc vec1f* (vec: Vecf): Vec1f  = [vec.x]
-  ## Converts any Vecf into a Vec1f
-
-proc vec2i* (vec: Vec2i  | Vec3i  | Vec4i): Vec2i   = [vec.x, vec.y]
+proc vec2* (vec: Vec2 | Vec3 | Vec4): Vec2 = [vec.x, vec.y]
   ## Converts any Vec2,3,4i into a Vec2i
-proc vec2ui*(vec: Vec2ui | Vec3ui | Vec4ui): Vec2ui = [vec.x, vec.y]
-  ## Converts any Vec2,3,4ui into a Vec2ui
-proc vec2f* (vec: Vec2f  | Vec3f  | Vec4f): Vec2f   = [vec.x, vec.y]
-  ## Converts any Vec2,3,4f into a Vec2f
+proc vec3* (vec: Vec3 | Vec4): Vec3 = [vec.x, vec.y, vec.z]
+  ## Converts any Vec3,4 into a Vec3
 
-proc vec3i* (vec: Vec3i  | Vec4i): Vec3i   = [vec.x, vec.y, vec.z]
-  ## Converts any Vec3,4i into a Vec2i
-proc vec3ui*(vec: Vec3ui | Vec4ui): Vec3ui = [vec.x, vec.y, vec.z]
-  ## Converts any Vec3,4ui into a Vec2ui
-proc vec3f* (vec: Vec3f  | Vec4f): Vec3f   = [vec.x, vec.y, vec.z]
-  ## Converts any Vec3,4f into a Vec2f
-
-proc vec1i* (x: int32): Vec1i   = [x]
-  ## x to Vec1i
-proc vec1ui*(x: uint32): Vec1ui = [x]
-  ## x to Vec1ui
-proc vec1f* (x: float32): Vec1f = [x]
-  ## x to Vec1f
-
-proc vec2i* (x: int32, y: int32): Vec2i     = [x, y]
-  ## x and y to Vec2i
-proc vec2ui*(x: uint32, y: uint32): Vec2ui  = [x, y]
-  ## x and y to Vec2ui
-proc vec2f* (x: float32, y: float32): Vec2f = [x, y]
-  ## x and y to Vec2f
-proc vec2i* (vec: Vec1i, y: int32): Vec2i    = [vec.x, y]
-  ## Vec1i with a y to Vec2i
-proc vec2ui*(vec: Vec1ui, y: uint32): Vec2ui = [vec.x, y]
-  ## Vec1ui with a y to Vec2ui
-proc vec2f* (vec: Vec1f, y: float32): Vec2f  = [vec.x, y]
-  ## Veclf with a y to Vec2f
-
-proc vec3i* (x: int32, y: int32, z: int32): Vec3i       = [x, y, z]
+proc vec1* (x: VTypes): Vec1 = [x]
+  ## x to Vec1
+proc vec2* (x, y: VTypes): Vec2 = [x, y]
+  ## x and y to Vec2
+proc vec3* (x, y, z: VTypes): Vec3 = [x, y, z]
   ## x, y and z to Vec3i
-proc vec3ui*(x: uint32, y: uint32, z: uint32): Vec3ui   = [x, y, z]
-  ## x, y and z to Vec3ui
-proc vec3f* (x: float32, y: float32, z: float32): Vec3f = [x, y, z]
-  ## x, y and z to Vec3f
-proc vec3i* (vec: Vec1i, y: int32, z: int32): Vec3i      = [vec.x, y, z]
-  ## Vec1i with y and z to Vec3i
-proc vec3ui*(vec: Vec1ui, y: uint32, z: uint32): Vec3ui  = [vec.x, y, z]
-  ## Vec1ui with y and z to Vec3ui
-proc vec3f* (vec: Vec1f, y: float32, z: float32): Vec3f  = [vec.x, y, z]
-  ## Vec1f with y and z to Vec3f
-proc vec3i* (vec: Vec2i, z: int32): Vec3i    = [vec.x, vec.y, z]
-  ## Vec2i with y to Vec3i
-proc vec3ui*(vec: Vec2ui, z: uint32): Vec3ui = [vec.x, vec.y, z]
-  ## Vec2ui with y to Vec3ui
-proc vec3f* (vec: Vec2f, z: float32): Vec3f  = [vec.x, vec.y, z]
-  ## Vec2f with y to Vec3f
-
-proc vec4i* (x: int32, y: int32, z: int32, w: int32): Vec4i          = [x, y, z, w]
+proc vec4* (x, y, z, w: VTypes): Vec4 = [x, y, z, w]
   ## x, y, z and w to Vec4i
-proc vec4ui*(x: uint32, y: uint32, z: uint32, w: uint32): Vec4ui     = [x, y, z, w]
-  ## x, y, z and w to Vec4ui
-proc vec4f* (x: float32, y: float32, z: float32, w: float32): Vec4f  = [x, y, z, w]
-  ## x, y, z and w to Vec4f
-proc vec4i* (vec: Vec1i, y: int32, z: int32, w: int32): Vec4i        = [vec.x, y, z, w]
-  ## Vec1i with y, z and w to Vec4i
-proc vec4ui*(vec: Vec1ui, y: uint32, z: uint32, w: uint32): Vec4ui   = [vec.x, y, z, w]
-  ## Vec1ui with y, z and w to Vec4ui
-proc vec4f* (vec: Vec1f, y: float32, z: float32, w: float32): Vec4f  = [vec.x, y, z, w]
-  ## Vec1f with y, z and w to Vec4f
-proc vec4i* (vec: Vec2i, z: int32, w: int32): Vec4i      = [vec.x, vec.y, z, w]
-  ## Vec2i with z, w to Vec4i
-proc vec4ui*(vec: Vec2ui, z: uint32, w: uint32): Vec4ui  = [vec.x, vec.y, z, w]
-  ## Vec2ui with z, w to Vec4ui
-proc vec4f* (vec: Vec2f, z: float32, w: float32): Vec4f  = [vec.x, vec.y, z, w]
-  ## Vec2f with z, w to Vec4f
-proc vec4i* (vec: Vec3i, w: int32): Vec4i    = [vec.x, vec.y, vec.z, w]
-  ## Vec3i with w to Vec4i
-proc vec4ui*(vec: Vec3ui, w: uint32): Vec4ui = [vec.x, vec.y, vec.z, w]
-  ## Vec3ui with w to Vec4ui
-proc vec4f* (vec: Vec3f, w: float32): Vec4f  = [vec.x, vec.y, vec.z, w]
-  ## Vec3f with w to Vec4f
 
-proc vec*[T](x: T): Vec1 = [x]
-proc vec*[T](x, y: T): Vec2 = [x, y]
-proc vec*[T](x, y, z: T): Vec3 = [x, y, z]
-proc vec*[T](x, y, z, w: T): Vec4 = [x, y, z, w]
+proc vec2* (vec: Vec1, y: VTypes): Vec2 = [vec.x, y]
+  ## Vec1 with a y to Vec2
+
+proc vec3* (vec: Vec1, y, z: VTypes): Vec3 = [vec.x, y, z]
+  ## Vec1 with y and z to Vec3
+proc vec3* (vec: Vec2, z: VTypes): Vec3 = [vec.x, vec.y, z]
+  ## Vec2 with y to Vec3
+
+proc vec4* (vec: Vec1, y, z, w: VTypes): Vec4 = [vec.x, y, z, w]
+  ## Vec1 with y, z and w to Vec4
+proc vec4* (vec: Vec2, z, w: VTypes): Vec4 = [vec.x, vec.y, z, w]
+  ## Vec2 with z, w to Vec4
+proc vec4* (vec: Vec3, w: VTypes): Vec4 = [vec.x, vec.y, vec.z, w]
+  ## Vec3 with w to Vec4
+proc vec4* (v1: Vec2, v2: Vec2): Vec4 = [v1.x, v1.y, v2.x, v2.y]
+  ## 2 vec2 to Vec4
 
 # Operations
 
@@ -257,3 +209,7 @@ proc dot*(v1, v2: Vec): float32 =
 proc dot*(v1, v2: Vec, angle: float32): float32 =
   ## Gives the dot product of this two vectors with the given angle
   dot(v1, v2) * cos(angle)
+
+{.pop.}
+
+## Matrices

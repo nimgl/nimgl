@@ -1242,36 +1242,38 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#Vec1i"
-    title="Vec1i = tuple[x: int32]"><wbr />Vec1i<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#VTypes"
+    title="VTypes = int32 | uint32 | float32"><wbr />VTypes<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Vec1i"
+    title="Vec1i = array[1, int32]"><wbr />Vec1i<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec1ui"
-    title="Vec1ui = tuple[x: uint32]"><wbr />Vec1ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec1ui = array[1, uint32]"><wbr />Vec1ui<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec1f"
-    title="Vec1f = tuple[x: float32]"><wbr />Vec1f<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec1f = array[1, float32]"><wbr />Vec1f<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec1"
     title="Vec1 = Vec1i | Vec1ui | Vec1f"><wbr />Vec1<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec2i"
-    title="Vec2i = tuple[x: int32, y: int32]"><wbr />Vec2i<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec2i = array[2, int32]"><wbr />Vec2i<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec2ui"
-    title="Vec2ui = tuple[x: uint32, y: uint32]"><wbr />Vec2ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec2ui = array[2, uint32]"><wbr />Vec2ui<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec2f"
-    title="Vec2f = tuple[x: float32, y: float32]"><wbr />Vec2f<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec2f = array[2, float32]"><wbr />Vec2f<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec2"
     title="Vec2 = Vec2i | Vec2ui | Vec2f"><wbr />Vec2<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec3i"
-    title="Vec3i = tuple[x: int32, y: int32, z: int32]"><wbr />Vec3i<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec3i = array[3, int32]"><wbr />Vec3i<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec3ui"
-    title="Vec3ui = tuple[x: uint32, y: uint32, z: uint32]"><wbr />Vec3ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec3ui = array[3, uint32]"><wbr />Vec3ui<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec3f"
-    title="Vec3f = tuple[x: float32, y: float32, z: float32]"><wbr />Vec3f<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec3f = array[3, float32]"><wbr />Vec3f<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec3"
     title="Vec3 = Vec3i | Vec3ui | Vec3f"><wbr />Vec3<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec4i"
-    title="Vec4i = tuple[x: int32, y: int32, z: int32, w: int32]"><wbr />Vec4i<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec4i = array[4, int32]"><wbr />Vec4i<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec4ui"
-    title="Vec4ui = tuple[x: uint32, y: uint32, z: uint32, w: uint32]"><wbr />Vec4ui<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec4ui = array[4, uint32]"><wbr />Vec4ui<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec4f"
-    title="Vec4f = tuple[x: float32, y: float32, z: float32, w: float32]"><wbr />Vec4f<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="Vec4f = array[4, float32]"><wbr />Vec4f<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec4"
     title="Vec4 = Vec4i | Vec4ui | Vec4f"><wbr />Vec4<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Vec"
@@ -1296,136 +1298,100 @@ function main() {
     title="`$`(vec: Vec3): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
   <li><a class="reference" href="#$,Vec4"
     title="`$`(vec: Vec4): string"><wbr />`$`<span class="attachedType" style="visibility:hidden">Vec4</span></a></li>
-  <li><a class="reference" href="#vec1i,Veci"
-    title="vec1i(vec: Veci): Vec1i"><wbr />vec1i<span class="attachedType" style="visibility:hidden">Veci</span></a></li>
-  <li><a class="reference" href="#vec1ui,Vecui"
-    title="vec1ui(vec: Vecui): Vec1ui"><wbr />vec1ui<span class="attachedType" style="visibility:hidden">Vecui</span></a></li>
-  <li><a class="reference" href="#vec1f,Vecf"
-    title="vec1f(vec: Vecf): Vec1f"><wbr />vec1f<span class="attachedType" style="visibility:hidden">Vecf</span></a></li>
-  <li><a class="reference" href="#vec2i,"
-    title="vec2i(vec: Vec2i | Vec3i | Vec4i): Vec2i"><wbr />vec2i<span class="attachedType" style="visibility:hidden">Vec2i</span></a></li>
-  <li><a class="reference" href="#vec2ui,"
-    title="vec2ui(vec: Vec2ui | Vec3ui | Vec4ui): Vec2ui"><wbr />vec2ui<span class="attachedType" style="visibility:hidden">Vec2ui</span></a></li>
-  <li><a class="reference" href="#vec2f,"
-    title="vec2f(vec: Vec2f | Vec3f | Vec4f): Vec2f"><wbr />vec2f<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#vec3i,"
-    title="vec3i(vec: Vec3i | Vec4i): Vec3i"><wbr />vec3i<span class="attachedType" style="visibility:hidden">Vec3i</span></a></li>
-  <li><a class="reference" href="#vec3ui,"
-    title="vec3ui(vec: Vec3ui | Vec4ui): Vec3ui"><wbr />vec3ui<span class="attachedType" style="visibility:hidden">Vec3ui</span></a></li>
-  <li><a class="reference" href="#vec3f,"
-    title="vec3f(vec: Vec3f | Vec4f): Vec3f"><wbr />vec3f<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#vec2i,Vec1i,int32"
-    title="vec2i(vec: Vec1i; y: int32): Vec2i"><wbr />vec2i<span class="attachedType" style="visibility:hidden">Vec1i</span></a></li>
-  <li><a class="reference" href="#vec2ui,Vec1ui,uint32"
-    title="vec2ui(vec: Vec1ui; y: uint32): Vec2ui"><wbr />vec2ui<span class="attachedType" style="visibility:hidden">Vec1ui</span></a></li>
-  <li><a class="reference" href="#vec2f,Vec1f,float32"
-    title="vec2f(vec: Vec1f; y: float32): Vec2f"><wbr />vec2f<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#vec3i,Vec1i,int32,int32"
-    title="vec3i(vec: Vec1i; y: int32; z: int32): Vec3i"><wbr />vec3i<span class="attachedType" style="visibility:hidden">Vec1i</span></a></li>
-  <li><a class="reference" href="#vec3ui,Vec1ui,uint32,uint32"
-    title="vec3ui(vec: Vec1ui; y: uint32; z: uint32): Vec3ui"><wbr />vec3ui<span class="attachedType" style="visibility:hidden">Vec1ui</span></a></li>
-  <li><a class="reference" href="#vec3f,Vec1f,float32,float32"
-    title="vec3f(vec: Vec1f; y: float32; z: float32): Vec3f"><wbr />vec3f<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#vec3i,Vec2i,int32"
-    title="vec3i(vec: Vec2i; z: int32): Vec3i"><wbr />vec3i<span class="attachedType" style="visibility:hidden">Vec2i</span></a></li>
-  <li><a class="reference" href="#vec3ui,Vec2ui,uint32"
-    title="vec3ui(vec: Vec2ui; z: uint32): Vec3ui"><wbr />vec3ui<span class="attachedType" style="visibility:hidden">Vec2ui</span></a></li>
-  <li><a class="reference" href="#vec3f,Vec2f,float32"
-    title="vec3f(vec: Vec2f; z: float32): Vec3f"><wbr />vec3f<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#vec4i,Vec1i,int32,int32,int32"
-    title="vec4i(vec: Vec1i; y: int32; z: int32; w: int32): Vec4i"><wbr />vec4i<span class="attachedType" style="visibility:hidden">Vec1i</span></a></li>
-  <li><a class="reference" href="#vec4ui,Vec1ui,uint32,uint32,uint32"
-    title="vec4ui(vec: Vec1ui; y: uint32; z: uint32; w: uint32): Vec4ui"><wbr />vec4ui<span class="attachedType" style="visibility:hidden">Vec1ui</span></a></li>
-  <li><a class="reference" href="#vec4f,Vec1f,float32,float32,float32"
-    title="vec4f(vec: Vec1f; y: float32; z: float32; w: float32): Vec4f"><wbr />vec4f<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#vec4i,Vec2i,int32,int32"
-    title="vec4i(vec: Vec2i; z: int32; w: int32): Vec4i"><wbr />vec4i<span class="attachedType" style="visibility:hidden">Vec2i</span></a></li>
-  <li><a class="reference" href="#vec4ui,Vec2ui,uint32,uint32"
-    title="vec4ui(vec: Vec2ui; z: uint32; w: uint32): Vec4ui"><wbr />vec4ui<span class="attachedType" style="visibility:hidden">Vec2ui</span></a></li>
-  <li><a class="reference" href="#vec4f,Vec2f,float32,float32"
-    title="vec4f(vec: Vec2f; z: float32; w: float32): Vec4f"><wbr />vec4f<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#vec4i,Vec3i,int32"
-    title="vec4i(vec: Vec3i; w: int32): Vec4i"><wbr />vec4i<span class="attachedType" style="visibility:hidden">Vec3i</span></a></li>
-  <li><a class="reference" href="#vec4ui,Vec3ui,uint32"
-    title="vec4ui(vec: Vec3ui; w: uint32): Vec4ui"><wbr />vec4ui<span class="attachedType" style="visibility:hidden">Vec3ui</span></a></li>
-  <li><a class="reference" href="#vec4f,Vec3f,float32"
-    title="vec4f(vec: Vec3f; w: float32): Vec4f"><wbr />vec4f<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#+,Vec1f,Vec1f"
-    title="`+`(v1, v2: Vec1f): Vec1f"><wbr />`+`<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#-,Vec1f,Vec1f"
-    title="`-`(v1, v2: Vec1f): Vec1f"><wbr />`-`<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#*,Vec1f,float32"
-    title="`*`(v1: Vec1f; s: float32): Vec1f"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#/,Vec1f,float32"
-    title="`&#x2F;`(v: Vec1f; s: float32): Vec1f"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#mag,Vec1f"
-    title="mag(v: Vec1f): float32"><wbr />mag<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#dot,Vec1f,Vec1f"
-    title="dot(v1, v2: Vec1f): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#dot,Vec1f,Vec1f,float32"
-    title="dot(v1, v2: Vec1f; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec1f</span></a></li>
-  <li><a class="reference" href="#+,Vec2f,Vec2f"
-    title="`+`(v1, v2: Vec2f): Vec2f"><wbr />`+`<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#-,Vec2f,Vec2f"
-    title="`-`(v1, v2: Vec2f): Vec2f"><wbr />`-`<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#*,Vec2f,float32"
-    title="`*`(v1: Vec2f; s: float32): Vec2f"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#/,Vec2f,float32"
-    title="`&#x2F;`(v: Vec2f; s: float32): Vec2f"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#mag,Vec2f"
-    title="mag(v: Vec2f): float32"><wbr />mag<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#dot,Vec2f,Vec2f"
-    title="dot(v1, v2: Vec2f): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#dot,Vec2f,Vec2f,float32"
-    title="dot(v1, v2: Vec2f; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec2f</span></a></li>
-  <li><a class="reference" href="#+,Vec3f,Vec3f"
-    title="`+`(v1, v2: Vec3f): Vec3f"><wbr />`+`<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#-,Vec3f,Vec3f"
-    title="`-`(v1, v2: Vec3f): Vec3f"><wbr />`-`<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#*,Vec3f,float32"
-    title="`*`(v1: Vec3f; s: float32): Vec3f"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#/,Vec3f,float32"
-    title="`&#x2F;`(v: Vec3f; s: float32): Vec3f"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#mag,Vec3f"
-    title="mag(v: Vec3f): float32"><wbr />mag<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#dot,Vec3f,Vec3f"
-    title="dot(v1, v2: Vec3f): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#dot,Vec3f,Vec3f,float32"
-    title="dot(v1, v2: Vec3f; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
-  <li><a class="reference" href="#+,Vec4f,Vec4f"
-    title="`+`(v1, v2: Vec4f): Vec4f"><wbr />`+`<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#-,Vec4f,Vec4f"
-    title="`-`(v1, v2: Vec4f): Vec4f"><wbr />`-`<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#*,Vec4f,float32"
-    title="`*`(v1: Vec4f; s: float32): Vec4f"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#/,Vec4f,float32"
-    title="`&#x2F;`(v: Vec4f; s: float32): Vec4f"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#mag,Vec4f"
-    title="mag(v: Vec4f): float32"><wbr />mag<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#dot,Vec4f,Vec4f"
-    title="dot(v1, v2: Vec4f): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-  <li><a class="reference" href="#dot,Vec4f,Vec4f,float32"
-    title="dot(v1, v2: Vec4f; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
-
-  </ul>
-</li>
-<li>
-  <a class="reference reference-toplevel" href="#16" id="66">Converters</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#toInt32.c,int"
-    title="toInt32(n: int): int32"><wbr />to<wbr />Int32<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#toUint32.c,uint"
-    title="toUint32(n: uint): uint32"><wbr />to<wbr />Uint32<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#toFloat32.c,float"
-    title="toFloat32(n: float): float32"><wbr />to<wbr />Float32<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#vec,VTypes"
+    title="vec(x: VTypes): Vec1"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec,VTypes,VTypes"
+    title="vec(x, y: VTypes): Vec2"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec,VTypes,VTypes,VTypes"
+    title="vec(x, y, z: VTypes): Vec3"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec,VTypes,VTypes,VTypes,VTypes"
+    title="vec(x, y, z, w: VTypes): Vec4"><wbr />vec<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec1,Vec"
+    title="vec1(vec: Vec): Vec1"><wbr />vec1<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#vec2,"
+    title="vec2(vec: Vec2 | Vec3 | Vec4): Vec2"><wbr />vec2<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#vec3,"
+    title="vec3(vec: Vec3 | Vec4): Vec3"><wbr />vec3<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#vec1,VTypes"
+    title="vec1(x: VTypes): Vec1"><wbr />vec1<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec2,VTypes,VTypes"
+    title="vec2(x, y: VTypes): Vec2"><wbr />vec2<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec3,VTypes,VTypes,VTypes"
+    title="vec3(x, y, z: VTypes): Vec3"><wbr />vec3<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec4,VTypes,VTypes,VTypes,VTypes"
+    title="vec4(x, y, z, w: VTypes): Vec4"><wbr />vec4<span class="attachedType" style="visibility:hidden">VTypes</span></a></li>
+  <li><a class="reference" href="#vec2,Vec1,VTypes"
+    title="vec2(vec: Vec1; y: VTypes): Vec2"><wbr />vec2<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
+  <li><a class="reference" href="#vec3,Vec1,VTypes,VTypes"
+    title="vec3(vec: Vec1; y, z: VTypes): Vec3"><wbr />vec3<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
+  <li><a class="reference" href="#vec3,Vec2,VTypes"
+    title="vec3(vec: Vec2; z: VTypes): Vec3"><wbr />vec3<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#vec4,Vec1,VTypes,VTypes,VTypes"
+    title="vec4(vec: Vec1; y, z, w: VTypes): Vec4"><wbr />vec4<span class="attachedType" style="visibility:hidden">Vec1</span></a></li>
+  <li><a class="reference" href="#vec4,Vec2,VTypes,VTypes"
+    title="vec4(vec: Vec2; z, w: VTypes): Vec4"><wbr />vec4<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#vec4,Vec3,VTypes"
+    title="vec4(vec: Vec3; w: VTypes): Vec4"><wbr />vec4<span class="attachedType" style="visibility:hidden">Vec3</span></a></li>
+  <li><a class="reference" href="#vec4,Vec2,Vec2"
+    title="vec4(v1: Vec2; v2: Vec2): Vec4"><wbr />vec4<span class="attachedType" style="visibility:hidden">Vec2</span></a></li>
+  <li><a class="reference" href="#+,Vec,Vec"
+    title="`+`(v1, v2: Vec): Vec"><wbr />`+`<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#-,Vec,Vec"
+    title="`-`(v1, v2: Vec): Vec"><wbr />`-`<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#*,Vecf,float32"
+    title="`*`(v1: Vecf; s: float32): Vecf"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vecf</span></a></li>
+  <li><a class="reference" href="#*,Veci,int32"
+    title="`*`(v1: Veci; s: int32): Veci"><wbr />`*`<span class="attachedType" style="visibility:hidden">Veci</span></a></li>
+  <li><a class="reference" href="#*,Vecui,int32"
+    title="`*`(v1: Vecui; s: int32): Vecui"><wbr />`*`<span class="attachedType" style="visibility:hidden">Vecui</span></a></li>
+  <li><a class="reference" href="#/,Vecf,float32"
+    title="`&#x2F;`(v: Vecf; s: float32): Vecf"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vecf</span></a></li>
+  <li><a class="reference" href="#/,Veci,float32"
+    title="`&#x2F;`(v: Veci; s: float32): Veci"><wbr />`/`<span class="attachedType" style="visibility:hidden">Veci</span></a></li>
+  <li><a class="reference" href="#/,Vecui,float32"
+    title="`&#x2F;`(v: Vecui; s: float32): Vecui"><wbr />`/`<span class="attachedType" style="visibility:hidden">Vecui</span></a></li>
+  <li><a class="reference" href="#mag,Vec"
+    title="mag(v: Vec): float32"><wbr />mag<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#dot,Vec,Vec"
+    title="dot(v1, v2: Vec): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#dot,Vec,Vec,float32"
+    title="dot(v1, v2: Vec; angle: float32): float32"><wbr />dot<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#vPtr.t,Vec"
+      <li><a class="reference" href="#x.t,Vec"
+    title="x(vec: Vec): untyped"><wbr />x<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#y.t,Vec"
+    title="y(vec: Vec): untyped"><wbr />y<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#z.t,Vec"
+    title="z(vec: Vec): untyped"><wbr />z<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#w.t,Vec"
+    title="w(vec: Vec): untyped"><wbr />w<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#r.t,Vec"
+    title="r(vec: Vec): untyped"><wbr />r<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#g.t,Vec"
+    title="g(vec: Vec): untyped"><wbr />g<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#b.t,Vec"
+    title="b(vec: Vec): untyped"><wbr />b<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#a.t,Vec"
+    title="a(vec: Vec): untyped"><wbr />a<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#i.t,Vec"
+    title="i(vec: Vec): untyped"><wbr />i<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#j.t,Vec"
+    title="j(vec: Vec): untyped"><wbr />j<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#k.t,Vec"
+    title="k(vec: Vec): untyped"><wbr />k<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#s.t,Vec"
+    title="s(vec: Vec): untyped"><wbr />s<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#vPtr.t,Vec"
     title="vPtr(vec: Vec): ptr"><wbr />v<wbr />Ptr<span class="attachedType" style="visibility:hidden">Vec</span></a></li>
+  <li><a class="reference" href="#rgba.t,Vec4f"
+    title="rgba(vec: Vec4f): Vec4f"><wbr />rgba<span class="attachedType" style="visibility:hidden">Vec4f</span></a></li>
+  <li><a class="reference" href="#rgb.t,Vec3f"
+    title="rgb(vec: Vec3f): Vec3f"><wbr />rgb<span class="attachedType" style="visibility:hidden">Vec3f</span></a></li>
 
   </ul>
 </li>
@@ -1442,7 +1408,7 @@ function main() {
 <p>All of this library is using int32, uint32 and float32 to be able to interact with C. please don't forget to put 'i32, 'ui32 and 'f32 we have some converters but don't rely on them.</p>
 <p>Also everything in here is in Radians so use the radToDeg and degToRad to convert back and forth</p>
 <p>This library is made for graphics engines so if you want to do more advanced linear algebra stuff please use <a class="reference external" href="https://github.com/unicredit/neo">Neo</a>.</p>
-</p>
+VectorsMatrices</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -1451,17 +1417,22 @@ function main() {
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="Vec1i"><a name="Vec1i"></a><pre><span class="Identifier">Vec1i</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="VTypes"><a name="VTypes"></a><pre><span class="Identifier">VTypes</span> <span class="Other">=</span> <span class="Identifier">int32</span> <span class="Operator">|</span> <span class="Identifier">uint32</span> <span class="Operator">|</span> <span class="Identifier">float32</span></pre></dt>
+<dd>
+Valid Types
+
+</dd>
+<dt id="Vec1i"><a name="Vec1i"></a><pre><span class="Identifier">Vec1i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec1 of int32
 
 </dd>
-<dt id="Vec1ui"><a name="Vec1ui"></a><pre><span class="Identifier">Vec1ui</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec1ui"><a name="Vec1ui"></a><pre><span class="Identifier">Vec1ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec1 of unsigned int32
 
 </dd>
-<dt id="Vec1f"><a name="Vec1f"></a><pre><span class="Identifier">Vec1f</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec1f"><a name="Vec1f"></a><pre><span class="Identifier">Vec1f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec1 of float32
 
@@ -1471,17 +1442,17 @@ Vec1 of float32
 The combination of the three Vec1
 
 </dd>
-<dt id="Vec2i"><a name="Vec2i"></a><pre><span class="Identifier">Vec2i</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2i"><a name="Vec2i"></a><pre><span class="Identifier">Vec2i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec2 of int32
 
 </dd>
-<dt id="Vec2ui"><a name="Vec2ui"></a><pre><span class="Identifier">Vec2ui</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2ui"><a name="Vec2ui"></a><pre><span class="Identifier">Vec2ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec2 of unsigned int32
 
 </dd>
-<dt id="Vec2f"><a name="Vec2f"></a><pre><span class="Identifier">Vec2f</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec2f"><a name="Vec2f"></a><pre><span class="Identifier">Vec2f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec2 of float32
 
@@ -1491,17 +1462,17 @@ Vec2 of float32
 The combination of the three Vec2
 
 </dd>
-<dt id="Vec3i"><a name="Vec3i"></a><pre><span class="Identifier">Vec3i</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3i"><a name="Vec3i"></a><pre><span class="Identifier">Vec3i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec3 of int32
 
 </dd>
-<dt id="Vec3ui"><a name="Vec3ui"></a><pre><span class="Identifier">Vec3ui</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3ui"><a name="Vec3ui"></a><pre><span class="Identifier">Vec3ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec3 of unsigned int32
 
 </dd>
-<dt id="Vec3f"><a name="Vec3f"></a><pre><span class="Identifier">Vec3f</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec3f"><a name="Vec3f"></a><pre><span class="Identifier">Vec3f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec3 of float32
 
@@ -1511,17 +1482,17 @@ Vec3 of float32
 The combination of the three Vec3
 
 </dd>
-<dt id="Vec4i"><a name="Vec4i"></a><pre><span class="Identifier">Vec4i</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec4i"><a name="Vec4i"></a><pre><span class="Identifier">Vec4i</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">int32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec4 of int32
 
 </dd>
-<dt id="Vec4ui"><a name="Vec4ui"></a><pre><span class="Identifier">Vec4ui</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec4ui"><a name="Vec4ui"></a><pre><span class="Identifier">Vec4ui</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">uint32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec4 of unsigned int32
 
 </dd>
-<dt id="Vec4f"><a name="Vec4f"></a><pre><span class="Identifier">Vec4f</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
+<dt id="Vec4f"><a name="Vec4f"></a><pre><span class="Identifier">Vec4f</span> <span class="Other">=</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">float32</span><span class="Other">]</span></pre></dt>
 <dd>
 Vec4 of float32
 
@@ -1576,299 +1547,149 @@ Converts a Vec3 into a string
 Converts a Vec4 into a string
 
 </dd>
-<dt id="vec1i"><a name="vec1i,Veci"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec1i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Veci</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1i</span></pre></dt>
+<dt id="vec"><a name="vec,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="vec"><a name="vec,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="vec"><a name="vec,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="vec"><a name="vec,VTypes,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="vec1"><a name="vec1,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec1</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1</span></pre></dt>
 <dd>
 Converts any Veci into a Vec1i
 
 </dd>
-<dt id="vec1ui"><a name="vec1ui,Vecui"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec1ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vecui</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1ui</span></pre></dt>
-<dd>
-Converts any Vecui into a Vec1ui
-
-</dd>
-<dt id="vec1f"><a name="vec1f,Vecf"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec1f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vecf</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1f</span></pre></dt>
-<dd>
-Converts any Vecf into a Vec1f
-
-</dd>
-<dt id="vec2i"><a name="vec2i,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2i</span> <span class="Operator">|</span> <span class="Identifier">Vec3i</span> <span class="Operator">|</span> <span class="Identifier">Vec4i</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2i</span></pre></dt>
+<dt id="vec2"><a name="vec2,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span> <span class="Operator">|</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span></pre></dt>
 <dd>
 Converts any Vec2,3,4i into a Vec2i
 
 </dd>
-<dt id="vec2ui"><a name="vec2ui,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2ui</span> <span class="Operator">|</span> <span class="Identifier">Vec3ui</span> <span class="Operator">|</span> <span class="Identifier">Vec4ui</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2ui</span></pre></dt>
+<dt id="vec3"><a name="vec3,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span> <span class="Operator">|</span> <span class="Identifier">Vec4</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
 <dd>
-Converts any Vec2,3,4ui into a Vec2ui
+Converts any Vec3,4 into a Vec3
 
 </dd>
-<dt id="vec2f"><a name="vec2f,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Operator">|</span> <span class="Identifier">Vec3f</span> <span class="Operator">|</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span></pre></dt>
+<dt id="vec1"><a name="vec1,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec1</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1</span></pre></dt>
 <dd>
-Converts any Vec2,3,4f into a Vec2f
+x to Vec1
 
 </dd>
-<dt id="vec3i"><a name="vec3i,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3i</span> <span class="Operator">|</span> <span class="Identifier">Vec4i</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3i</span></pre></dt>
+<dt id="vec2"><a name="vec2,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span></pre></dt>
 <dd>
-Converts any Vec3,4i into a Vec2i
+x and y to Vec2
 
 </dd>
-<dt id="vec3ui"><a name="vec3ui,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3ui</span> <span class="Operator">|</span> <span class="Identifier">Vec4ui</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3ui</span></pre></dt>
+<dt id="vec3"><a name="vec3,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
 <dd>
-Converts any Vec3,4ui into a Vec2ui
+x, y and z to Vec3i
 
 </dd>
-<dt id="vec3f"><a name="vec3f,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Operator">|</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span></pre></dt>
+<dt id="vec4"><a name="vec4,VTypes,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
 <dd>
-Converts any Vec3,4f into a Vec2f
+x, y, z and w to Vec4i
 
 </dd>
-<dt id="vec2i"><a name="vec2i,Vec1i,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1i</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec2"><a name="vec2,Vec1,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2</span></pre></dt>
 <dd>
-Vec1i with a y to Vec2i
+Vec1 with a y to Vec2
 
 </dd>
-<dt id="vec2ui"><a name="vec2ui,Vec1ui,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1ui</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec3"><a name="vec3,Vec1,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
 <dd>
-Vec1ui with a y to Vec2ui
+Vec1 with y and z to Vec3
 
 </dd>
-<dt id="vec2f"><a name="vec2f,Vec1f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec2f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec3"><a name="vec3,Vec2,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span></pre></dt>
 <dd>
-Veclf with a y to Vec2f
+Vec2 with y to Vec3
 
 </dd>
-<dt id="vec3i"><a name="vec3i,Vec1i,int32,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1i</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec4"><a name="vec4,Vec1,VTypes,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
 <dd>
-Vec1i with y and z to Vec3i
+Vec1 with y, z and w to Vec4
 
 </dd>
-<dt id="vec3ui"><a name="vec3ui,Vec1ui,uint32,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1ui</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec4"><a name="vec4,Vec2,VTypes,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">,</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
 <dd>
-Vec1ui with y and z to Vec3ui
+Vec2 with z, w to Vec4
 
 </dd>
-<dt id="vec3f"><a name="vec3f,Vec1f,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec4"><a name="vec4,Vec3,VTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">VTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
 <dd>
-Vec1f with y and z to Vec3f
+Vec3 with w to Vec4
 
 </dd>
-<dt id="vec3i"><a name="vec3i,Vec2i,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2i</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="vec4"><a name="vec4,Vec2,Vec2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">;</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4</span></pre></dt>
 <dd>
-Vec2i with y to Vec3i
+2 vec2 to Vec4
 
 </dd>
-<dt id="vec3ui"><a name="vec3ui,Vec2ui,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2ui</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec2ui with y to Vec3ui
-
-</dd>
-<dt id="vec3f"><a name="vec3f,Vec2f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec3f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec2f with y to Vec3f
-
-</dd>
-<dt id="vec4i"><a name="vec4i,Vec1i,int32,int32,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1i</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec1i with y, z and w to Vec4i
-
-</dd>
-<dt id="vec4ui"><a name="vec4ui,Vec1ui,uint32,uint32,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1ui</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec1ui with y, z and w to Vec4ui
-
-</dd>
-<dt id="vec4f"><a name="vec4f,Vec1f,float32,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec1f with y, z and w to Vec4f
-
-</dd>
-<dt id="vec4i"><a name="vec4i,Vec2i,int32,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2i</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec2i with z, w to Vec4i
-
-</dd>
-<dt id="vec4ui"><a name="vec4ui,Vec2ui,uint32,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2ui</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec2ui with z, w to Vec4ui
-
-</dd>
-<dt id="vec4f"><a name="vec4f,Vec2f,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">;</span> <span class="Identifier">z</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec2f with z, w to Vec4f
-
-</dd>
-<dt id="vec4i"><a name="vec4i,Vec3i,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3i</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4i</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec3i with w to Vec4i
-
-</dd>
-<dt id="vec4ui"><a name="vec4ui,Vec3ui,uint32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4ui</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3ui</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4ui</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec3ui with w to Vec4ui
-
-</dd>
-<dt id="vec4f"><a name="vec4f,Vec3f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vec4f</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">;</span> <span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Vec3f with w to Vec4f
-
-</dd>
-<dt id="+"><a name="+,Vec1f,Vec1f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`+`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="+"><a name="+,Vec,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`+`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec</span></pre></dt>
 <dd>
 Adding two vectors
 
 </dd>
-<dt id="-"><a name="-,Vec1f,Vec1f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`-`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="-"><a name="-,Vec,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`-`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec</span></pre></dt>
 <dd>
 Substracting two vectors
 
 </dd>
-<dt id="*"><a name="*,Vec1f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="*"><a name="*,Vecf,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vecf</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vecf</span></pre></dt>
 <dd>
 Multiplying one vector a scale v * s
 
 </dd>
-<dt id="/"><a name="/,Vec1f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec1f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Dividing one vector with a scale v / s
-
-</dd>
-<dt id="mag"><a name="mag,Vec1f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mag</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Magnitude of this vector |v|
-
-</dd>
-<dt id="dot"><a name="dot,Vec1f,Vec1f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors v1 . v2
-
-</dd>
-<dt id="dot"><a name="dot,Vec1f,Vec1f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec1f</span><span class="Other">;</span> <span class="Identifier">angle</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors with the given angle
-
-</dd>
-<dt id="+"><a name="+,Vec2f,Vec2f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`+`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Adding two vectors
-
-</dd>
-<dt id="-"><a name="-,Vec2f,Vec2f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`-`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Substracting two vectors
-
-</dd>
-<dt id="*"><a name="*,Vec2f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="*"><a name="*,Veci,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Veci</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Veci</span></pre></dt>
 <dd>
 Multiplying one vector a scale v * s
 
 </dd>
-<dt id="/"><a name="/,Vec2f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec2f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Dividing one vector with a scale v / s
-
-</dd>
-<dt id="mag"><a name="mag,Vec2f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mag</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Magnitude of this vector |v|
-
-</dd>
-<dt id="dot"><a name="dot,Vec2f,Vec2f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors v1 . v2
-
-</dd>
-<dt id="dot"><a name="dot,Vec2f,Vec2f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec2f</span><span class="Other">;</span> <span class="Identifier">angle</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors with the given angle
-
-</dd>
-<dt id="+"><a name="+,Vec3f,Vec3f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`+`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Adding two vectors
-
-</dd>
-<dt id="-"><a name="-,Vec3f,Vec3f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`-`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Substracting two vectors
-
-</dd>
-<dt id="*"><a name="*,Vec3f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="*"><a name="*,Vecui,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vecui</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vecui</span></pre></dt>
 <dd>
 Multiplying one vector a scale v * s
 
 </dd>
-<dt id="/"><a name="/,Vec3f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="/"><a name="/,Vecf,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vecf</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vecf</span></pre></dt>
 <dd>
 Dividing one vector with a scale v / s
 
 </dd>
-<dt id="mag"><a name="mag,Vec3f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mag</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Magnitude of this vector |v|
-
-</dd>
-<dt id="dot"><a name="dot,Vec3f,Vec3f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors v1 . v2
-
-</dd>
-<dt id="dot"><a name="dot,Vec3f,Vec3f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">;</span> <span class="Identifier">angle</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Gives the dot product of this two vectors with the given angle
-
-</dd>
-<dt id="+"><a name="+,Vec4f,Vec4f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`+`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Adding two vectors
-
-</dd>
-<dt id="-"><a name="-,Vec4f,Vec4f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`-`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Substracting two vectors
-
-</dd>
-<dt id="*"><a name="*,Vec4f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`*`</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Multiplying one vector a scale v * s
-
-</dd>
-<dt id="/"><a name="/,Vec4f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="/"><a name="/,Veci,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Veci</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Veci</span></pre></dt>
 <dd>
 Dividing one vector with a scale v / s
 
 </dd>
-<dt id="mag"><a name="mag,Vec4f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mag</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="/"><a name="/,Vecui,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`/`</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vecui</span><span class="Other">;</span> <span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vecui</span></pre></dt>
+<dd>
+Dividing one vector with a scale v / s
+
+</dd>
+<dt id="mag"><a name="mag,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">mag</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span></pre></dt>
 <dd>
 Magnitude of this vector |v|
 
 </dd>
-<dt id="dot"><a name="dot,Vec4f,Vec4f"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="dot"><a name="dot,Vec,Vec"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span></pre></dt>
 <dd>
 Gives the dot product of this two vectors v1 . v2
 
 </dd>
-<dt id="dot"><a name="dot,Vec4f,Vec4f,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">;</span> <span class="Identifier">angle</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="dot"><a name="dot,Vec,Vec,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">dot</span><span class="Other">(</span><span class="Identifier">v1</span><span class="Other">,</span> <span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">;</span> <span class="Identifier">angle</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span></pre></dt>
 <dd>
 Gives the dot product of this two vectors with the given angle
-
-</dd>
-
-</dl></div>
-<div class="section" id="16">
-<h1><a class="toc-backref" href="#16">Converters</a></h1>
-<dl class="item">
-<dt id="toInt32"><a name="toInt32.c,int"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toInt32</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-This might be unsafe with bigger numbers, so please try to always use 'i32 instead of depending on this converter
-
-</dd>
-<dt id="toUint32"><a name="toUint32.c,uint"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toUint32</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">uint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-This might be unsafe with bigger numbers, so please try to always use 'ui32 instead of depending on this converter
-
-</dd>
-<dt id="toFloat32"><a name="toFloat32.c,float"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toFloat32</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-This might be unsafe with bigger numbers, so please try to always use 'f32 instead of depending on this converter
 
 </dd>
 
@@ -1876,9 +1697,79 @@ This might be unsafe with bigger numbers, so please try to always use 'f32 inste
 <div class="section" id="18">
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
+<dt id="x"><a name="x.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">x</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="y"><a name="y.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">y</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="z"><a name="z.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">z</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="w"><a name="w.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">w</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="r"><a name="r.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">r</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="g"><a name="g.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">g</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="b"><a name="b.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">b</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="a"><a name="a.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">a</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="i"><a name="i.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">i</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="j"><a name="j.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">j</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="k"><a name="k.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">k</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="s"><a name="s.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">s</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="vPtr"><a name="vPtr.t,Vec"></a><pre><span class="Keyword">template</span> <span class="Identifier">vPtr</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span></pre></dt>
 <dd>
 Gets the pointer to the first attribute in the tuple
+
+</dd>
+<dt id="rgba"><a name="rgba.t,Vec4f"></a><pre><span class="Keyword">template</span> <span class="Identifier">rgba</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec4f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec4f</span></pre></dt>
+<dd>
+Little utility to normalize rgba
+
+</dd>
+<dt id="rgb"><a name="rgb.t,Vec3f"></a><pre><span class="Keyword">template</span> <span class="Identifier">rgb</span><span class="Other">(</span><span class="Identifier">vec</span><span class="Other">:</span> <span class="Identifier">Vec3f</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3f</span></pre></dt>
+<dd>
+Little utility to normalize rgb
 
 </dd>
 
@@ -1891,7 +1782,7 @@ Gets the pointer to the first attribute in the tuple
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-15 19:44:16 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-15 23:23:57 UTC</small>
       </div>
     </div>
   </div>
