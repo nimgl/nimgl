@@ -23,14 +23,11 @@ proc getHeaderPath(): string {.compileTime.} =
 
 when defined(glewDLL):
   when defined(windows):
-    const
-      glew_dll* = "glew32.dll"
+    const glew_dll* = "glew32.dll"
   elif defined(macosx):
-    const
-      glew_dll* = "libglew.dylib"
+    const glew_dll* = "libglew.dylib"
   else:
-    const
-      glew_dll* = "libglew.so"
+    const glew_dll* = "libglew.so"
   {.pragma: glew_lib, dynlib: glew_dll, cdecl, header: "<glew.h>".}
 else:
   {.compile: "private/glew/src/glew.c"}

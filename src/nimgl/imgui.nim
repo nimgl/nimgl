@@ -13,28 +13,26 @@
 ## your choice. We are binding `cimgui <https://github.com/Extrawurst/cimgui.git>`_
 ## which is a thin c wrapper of the c++ version. It is up to date and has great
 ## support.
-
-# WIP
+##
+## Unless you want to compile witch cpp please provide a dll of the library,
+## made with cimgui.
 
 when defined(imguiDLL):
   when defined(windows):
-    const
-      imgui_dll* = "imgui.dll"
+    const imgui_dll* = "cimgui.dll"
   elif defined(macosx):
-    const
-      imgui_dll* = "libimgui.dylib"
+    const imgui_dll* = "cimgui.dylib"
   else:
-    const
-      imgui_dll* = "libimgui.so"
+    const imgui_dll* = "cimgui.so"
   {.pragma: imgui_lib, dynlib: imgui_dll, cdecl.}
 else:
   {.compile: "private/imgui/imgui/imgui.cpp",
     compile: "private/imgui/imgui/imgui_draw.cpp",
     compile: "private/imgui/imgui/imgui_demo.cpp",
-    compile: "private/imgui/src/cimgui.cpp",
-    compile: "private/imgui/src/drawList.cpp",
-    compile: "private/imgui/src/fontAtlas.cpp",
-    compile: "private/imgui/src/listClipper.cpp".}
+    compile: "private/imgui/cimgui/cimgui.cpp",
+    compile: "private/imgui/cimgui/drawList.cpp",
+    compile: "private/imgui/cimgui/fontAtlas.cpp",
+    compile: "private/imgui/cimgui/listClipper.cpp" .}
   {.pragma: imgui_lib, cdecl.}
 
 proc test* =

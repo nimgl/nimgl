@@ -11,14 +11,11 @@
 
 when defined(glfwDLL):
   when defined(windows):
-    const
-      glfw_dll* = "glfw3.dll"
+    const glfw_dll* = "glfw3.dll"
   elif defined(macosx):
-    const
-      glfw_dll* = "libglfw3.dylib"
+    const glfw_dll* = "libglfw3.dylib"
   else:
-    const
-      glfw_dll* = "libglfw.so.3"
+    const glfw_dll* = "libglfw.so.3"
   {.pragma: glfw_lib, dynlib: glfw_dll, cdecl.}
 else:
   {.compile: "private/glfw/src/vulkan.c".}

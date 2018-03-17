@@ -2,7 +2,7 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/[glfw, math, opengl],
+  nimgl/[glfw, math, opengl, imgui],
   system
 
 type
