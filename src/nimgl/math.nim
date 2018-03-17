@@ -30,8 +30,6 @@ export
 
 ## Vectors
 
-## TODO: Make Vec and Mat printable with echo instead of print
-
 type
   Vec*[R: static[int32], T] = array[R, T]
     ## Primitive type of Vector

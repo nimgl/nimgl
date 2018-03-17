@@ -1232,7 +1232,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="glfw-bindings_toc" href="#glfw-bindings">GLFW Bindings</a></li>
+<li><a class="reference" id="glfw-modules_toc" href="#glfw-modules">GLFW Modules</a></li>
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
@@ -1240,6 +1240,12 @@ function main() {
     title="Window = ptr object"><wbr />Window<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#Monitor"
     title="Monitor = ptr object"><wbr />Monitor<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Cursor"
+    title="Cursor = ptr object"><wbr />Cursor<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#CursorShape"
+    title="CursorShape = enum
+  csArrow = 0x00036001, csIbeam = 0x00036002, csCrosshair = 0x00036003,
+  csHand = 0x00036004, csHresize = 0x00036005, csVresize = 0x00036006"><wbr />Cursor<wbr />Shape<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#WindowHint"
     title="WindowHint = enum
   whFocused = 0x00020001, ## specifies whether the windowed mode window will be given input focus
@@ -1399,10 +1405,14 @@ function main() {
   keyRightShift = (344, &quot;right_shift&quot;), keyRightControl = (345, &quot;right_control&quot;),
   keyRightAlt = (346, &quot;right_alt&quot;), keyRightSuper = (347, &quot;right_super&quot;),
   keyMenu = (348, &quot;menu&quot;), keyLast = &quot;last&quot;"><wbr />Key<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#charProc"
+    title="charProc = proc (window: Window; code: cuint): void"><wbr />char<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#mouseProc"
     title="mouseProc = proc (window: Window; button: MouseButton; action: MouseAction; mods: KeyMod): void"><wbr />mouse<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#keyProc"
     title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#scrollProc"
+    title="scrollProc = proc (window: Window; xoff, yoff: cdouble): void"><wbr />scroll<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1481,8 +1491,6 @@ function main() {
     title="swapBuffers(window: Window): void"><wbr />swap<wbr />Buffers<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#pollEvents,"
     title="pollEvents(): void"><wbr />poll<wbr />Events<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setKeyCallback,Window,keyProc"
-    title="setKeyCallback(window: Window; callback: keyProc): void"><wbr />set<wbr />Key<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#getTime,"
     title="getTime(): cdouble"><wbr />get<wbr />Time<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setTime,cdouble"
@@ -1501,8 +1509,22 @@ function main() {
     title="getProcAddress(procname: cstring): pointer"><wbr />get<wbr />Proc<wbr />Address<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCursorPos,Window,ptr.cdouble,ptr.cdouble"
     title="getCursorPos(window: Window; xpos: ptr cdouble; ypos: ptr cdouble): void"><wbr />get<wbr />Cursor<wbr />Pos<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#getClipboardString,Window"
+    title="getClipboardString(window: Window): cstring"><wbr />get<wbr />Clipboard<wbr />String<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setClipboardString,Window,cstring"
+    title="setClipboardString(window: Window; clip: cstring): void"><wbr />set<wbr />Clipboard<wbr />String<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setKeyCallback,Window,keyProc"
+    title="setKeyCallback(window: Window; callback: keyProc): void"><wbr />set<wbr />Key<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#setMouseButtonCallback,Window,mouseProc"
     title="setMouseButtonCallback(window: Window; cbfun: mouseProc): void"><wbr />set<wbr />Mouse<wbr />Button<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setCharCallback,Window,charProc"
+    title="setCharCallback(window: Window; callback: charProc): void"><wbr />set<wbr />Char<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#setScrollCallback,Window,scrollProc"
+    title="setScrollCallback(window: Window; callback: scrollProc): void"><wbr />set<wbr />Scroll<wbr />Callback<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#createStandardCursor,CursorShape"
+    title="createStandardCursor(shape: CursorShape): Cursor"><wbr />create<wbr />Standard<wbr />Cursor<span class="attachedType" style="visibility:hidden">CursorShape</span></a></li>
+  <li><a class="reference" href="#destroyCursor,Cursor"
+    title="destroyCursor(cursor: Cursor): void"><wbr />destroy<wbr />Cursor<span class="attachedType" style="visibility:hidden">Cursor</span></a></li>
 
   </ul>
 </li>
@@ -1521,7 +1543,7 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="glfw-bindings" href="#glfw-bindings">GLFW Bindings</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
+<h1><a class="toc-backref" id="glfw-modules" href="#glfw-modules">GLFW Modules</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
 <p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="http://www.glfw.org/docs/latest/">here</a>. Or continue reading to get the documentation shown here.</p>
 </p>
   <div class="section" id="7">
@@ -1537,6 +1559,19 @@ Pointer reference for a GLFW Window
   </pre></dt>
 <dd>
 Pointer reference for a GLFW Monitor
+
+</dd>
+<dt id="Cursor"><a name="Cursor"></a><pre><span class="Identifier">Cursor</span> <span class="Other">=</span> <span class="Keyword">ptr</span> <span class="Keyword">object</span>
+  </pre></dt>
+<dd>
+Opaque cursor object.
+
+</dd>
+<dt id="CursorShape"><a name="CursorShape"></a><pre><span class="Identifier">CursorShape</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">csArrow</span> <span class="Other">=</span> <span class="DecNumber">0x00036001</span><span class="Other">,</span> <span class="Identifier">csIbeam</span> <span class="Other">=</span> <span class="DecNumber">0x00036002</span><span class="Other">,</span> <span class="Identifier">csCrosshair</span> <span class="Other">=</span> <span class="DecNumber">0x00036003</span><span class="Other">,</span>
+  <span class="Identifier">csHand</span> <span class="Other">=</span> <span class="DecNumber">0x00036004</span><span class="Other">,</span> <span class="Identifier">csHresize</span> <span class="Other">=</span> <span class="DecNumber">0x00036005</span><span class="Other">,</span> <span class="Identifier">csVresize</span> <span class="Other">=</span> <span class="DecNumber">0x00036006</span></pre></dt>
+<dd>
+
 
 </dd>
 <dt id="WindowHint"><a name="WindowHint"></a><pre><span class="Identifier">WindowHint</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1722,9 +1757,22 @@ Key Modifiers, to modify actions
 KeyCodes, a lot of them
 
 </dd>
+<dt id="charProc"><a name="charProc"></a><pre><span class="Identifier">charProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">code</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This is the function signature for Unicode character callback functions.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> The window that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">codepoint</span></tt> The Unicode code point of the character.</p>
+
+
+</dd>
 <dt id="mouseProc"><a name="mouseProc"></a><pre><span class="Identifier">mouseProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">button</span><span class="Other">:</span> <span class="Identifier">MouseButton</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">MouseAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
+<p>This is the function signature for mouse button callback functions.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> The window that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">button</span></tt> The [mouse button](@ref buttons) that was pressed or released.</p>
+<p><tt class="docutils literal"><span class="pre">action</span></tt> One of <cite>GLFW_PRESS</cite> or <cite>GLFW_RELEASE</cite>.</p>
+<p><tt class="docutils literal"><span class="pre">mods</span></tt> Bit field describing which [modifier keys](@ref mods) were held down.</p>
 
 
 </dd>
@@ -1737,6 +1785,15 @@ KeyCodes, a lot of them
 <p><tt class="docutils literal"><span class="pre">scancode</span></tt> The system-specific scancode of the key.</p>
 <p><tt class="docutils literal"><span class="pre">action</span></tt> <tt class="docutils literal"><span class="pre">kaPress</span></tt>, <tt class="docutils literal"><span class="pre">kaRelease</span></tt> or <tt class="docutils literal"><span class="pre">kaRepeat</span></tt>.</p>
 <p><tt class="docutils literal"><span class="pre">mods</span></tt> Bit field describing which <tt class="docutils literal"><span class="pre">KeyMods</span></tt> were held down.</p>
+
+
+</dd>
+<dt id="scrollProc"><a name="scrollProc"></a><pre><span class="Identifier">scrollProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">xoff</span><span class="Other">,</span> <span class="Identifier">yoff</span><span class="Other">:</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This is the functions signature for scroll callback functions.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> The window that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">xoff</span></tt> The scroll offset along the x-axis.</p>
+<p><tt class="docutils literal"><span class="pre">yoff</span></tt> The scroll offset along the y-axis.</p>
 
 
 </dd>
@@ -1922,12 +1979,6 @@ Swaps the front and back buffers of the specified window when rendering with Ope
 Processes only those events that are already in the event queue and then returns immediately.  Processing events will cause the window and input callbacks associated with those events to be called.
 
 </dd>
-<dt id="setKeyCallback"><a name="setKeyCallback,Window,keyProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setKeyCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">callback</span><span class="Other">:</span> <span class="Identifier">keyProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
-    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetKeyCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-This function sets the key callback of the specified window, which is called when a key is pressed, repeated or released.
-
-</dd>
 <dt id="getTime"><a name="getTime,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTime</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cdouble</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetTime&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 This function returns the value of the GLFW timer. Unless the timer has been set using <tt class="docutils literal"><span class="pre">setTime</span></tt>, the timer measures time elapsed since GLFW was initialized.
@@ -1980,10 +2031,55 @@ Resets all window hints to their default values.
 This function returns the position of the cursor, in screen coordinates, relative to the upper-left corner of the client area of the specified window.
 
 </dd>
+<dt id="getClipboardString"><a name="getClipboardString,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClipboardString</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cstring</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetClipboardString&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the contents of the system clipboard, if it contains or is convertible to a UTF-8 encoded string.  If the clipboard is empty or if its contents cannot be converted, <cite>NULL</cite> is returned and a @ref GLFW_FORMAT_UNAVAILABLE error is generated.
+
+</dd>
+<dt id="setClipboardString"><a name="setClipboardString,Window,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setClipboardString</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">clip</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetClipboardString&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function sets the system clipboard to the specified, UTF-8 encoded string.
+
+</dd>
+<dt id="setKeyCallback"><a name="setKeyCallback,Window,keyProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setKeyCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">callback</span><span class="Other">:</span> <span class="Identifier">keyProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetKeyCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function sets the key callback of the specified window, which is called when a key is pressed, repeated or released.
+
+</dd>
 <dt id="setMouseButtonCallback"><a name="setMouseButtonCallback,Window,mouseProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMouseButtonCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">cbfun</span><span class="Other">:</span> <span class="Identifier">mouseProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetMouseButtonCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 This function sets the mouse button callback of the specified window, which is called when a mouse button is pressed or released.
+
+</dd>
+<dt id="setCharCallback"><a name="setCharCallback,Window,charProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setCharCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">callback</span><span class="Other">:</span> <span class="Identifier">charProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetCharCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This function sets the character callback of the specified window, which is called when a Unicode character is input.</p>
+<p>The character callback is intended for Unicode text input.  As it deals with characters, it is keyboard layout dependent, whereas the [key callback](@ref glfwSetKeyCallback) is not.  Characters do not map 1:1 to physical keys, as a key may produce zero, one or more characters.  If you want to know whether a specific physical key was pressed or released, see the key callback instead.</p>
+
+
+</dd>
+<dt id="setScrollCallback"><a name="setScrollCallback,Window,scrollProc"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setScrollCallback</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">callback</span><span class="Other">:</span> <span class="Identifier">scrollProc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetScrollCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+<p>This function sets the scroll callback of the specified window, which is called when a scrolling device is used, such as a mouse wheel or scrolling area of a touchpad.</p>
+<p>The scroll callback receives all scrolling input, like that from a mouse wheel or a touchpad scrolling area.</p>
+
+
+</dd>
+<dt id="createStandardCursor"><a name="createStandardCursor,CursorShape"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createStandardCursor</span><span class="Other">(</span><span class="Identifier">shape</span><span class="Other">:</span> <span class="Identifier">CursorShape</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Cursor</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwCreateStandardCursor&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Returns a cursor with a [standard shape](@ref shapes), that can be set for a window with @ref glfwSetCursor.
+
+</dd>
+<dt id="destroyCursor"><a name="destroyCursor,Cursor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">destroyCursor</span><span class="Other">(</span><span class="Identifier">cursor</span><span class="Other">:</span> <span class="Identifier">Cursor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwDestroyCursor&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function destroys a cursor previously created with @ref glfwCreateCursor. Any remaining cursors will be destroyed by @ref glfwTerminate.
 
 </dd>
 
@@ -2006,7 +2102,7 @@ This function sets the mouse button callback of the specified window, which is c
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-16 18:37:20 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-16 23:23:51 UTC</small>
       </div>
     </div>
   </div>

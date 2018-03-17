@@ -2,7 +2,7 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import 
-  nimgl/[glfw, math, opengl, imgui],
+  nimgl/[imgui, glfw, math, opengl],
   system
 
 type
@@ -33,6 +33,9 @@ proc statusShader(shader: glUint) =
     echo toString(message)
   
 proc main =
+
+  # GLFW
+
   assert glfw.init()
 
   windowHint(whContextVersionMajor, 4);
@@ -48,6 +51,8 @@ proc main =
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
+
+  # Glew / Opengl
 
   assert opengl.init() == GLEW_OK
 
@@ -145,7 +150,14 @@ void main() {
     color = vec(102f, 187f, 106f).rgb
     mvp   = ortho(-8f, 8f, -4.5f, 4.5f, -1f, 1f)
 
-  #imgui.test()
+  # Imgui
+
+  var
+    ctx = createContext()
+    io  = getIO()
+  imgui.init(w, true, 330)
+
+  styleColorsDark(nil)
 
   while not w.windowShouldClose:
     glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
@@ -164,6 +176,12 @@ void main() {
     glfw.pollEvents()
 
   w.destroyWindow
+
+  # +Imgui
+  imgui.shutdown()
+  ctx.destroyContext
+  # -Imgui
+
   glfw.terminate()
 
   glDeleteVertexArrays(1, vao.addr)

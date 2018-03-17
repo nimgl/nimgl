@@ -85,6 +85,8 @@ type
     ## Pointer reference for a GLFW Window
   Monitor* = ptr object
     ## Pointer reference for a GLFW Monitor
+  Cursor*  = ptr object
+    ## Opaque cursor object.
 
 # Constants
 const 
@@ -120,6 +122,14 @@ const
   glfwEGLContextAPI*        = 0x00036002
 
 type
+  CursorShape* {.size: cint.sizeof.} = enum
+    csArrow = 0x00036001
+    csIbeam = 0x00036002
+    csCrosshair = 0x00036003
+    csHand = 0x00036004
+    csHresize = 0x00036005
+    csVresize = 0x00036006
+
   WindowHint* {.size: cint.sizeof.} = enum
     whFocused                = 0x00020001
       ## specifies whether the windowed mode window will be given input focus
@@ -433,8 +443,25 @@ type
     keyLast         = "last"
 
 type
-  mouseProc* = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
-  keyProc*   = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
+  charProc*   = proc(window: Window, code: cuint): void {.cdecl.}
+    ## This is the function signature for Unicode character callback functions.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``codepoint`` The Unicode code point of the character.
+  mouseProc*  = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
+    ## This is the function signature for mouse button callback functions.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``button`` The [mouse button](@ref buttons) that was pressed or
+    ## released.
+    ##
+    ## ``action`` One of `GLFW_PRESS` or `GLFW_RELEASE`.
+    ##
+    ## ``mods`` Bit field describing which [modifier keys](@ref mods) were
+    ## held down.
+  keyProc*    = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
     ## ``window`` The ``Window`` that received the event.
@@ -447,6 +474,14 @@ type
     ##
     ## ``mods`` Bit field describing which ``KeyMods`` were
     ## held down.
+  scrollProc* = proc(window: Window, xoff, yoff: cdouble): void {.cdecl.}
+    ## This is the functions signature for scroll callback functions.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``xoff`` The scroll offset along the x-axis.
+    ##
+    ## ``yoff`` The scroll offset along the y-axis.
 
 converter toBool*(x: cint): bool = x != 0
 
@@ -506,10 +541,6 @@ proc pollEvents*(): void {.glfw_lib, importc: "glfwPollEvents".}
   ## queue and then returns immediately.  Processing events will cause the window
   ## and input callbacks associated with those events to be called.
 
-proc setKeyCallback*(window: Window, callback: keyProc): void {.glfw_lib, importc: "glfwSetKeyCallback".}
-  ## This function sets the key callback of the specified window, which is called
-  ## when a key is pressed, repeated or released.
-
 proc getTime*(): cdouble {.glfw_lib, importc: "glfwGetTime".}
   ## This function returns the value of the GLFW timer. Unless the timer has
   ## been set using ``setTime``, the timer measures time elapsed since GLFW
@@ -558,6 +589,48 @@ proc getCursorPos*(window: Window, xpos: ptr cdouble, ypos: ptr cdouble): void {
   ## relative to the upper-left corner of the client area of the specified
   ## window.
 
+proc getClipboardString*(window: Window): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
+  ## This function returns the contents of the system clipboard, if it contains
+  ## or is convertible to a UTF-8 encoded string.  If the clipboard is empty or
+  ## if its contents cannot be converted, `NULL` is returned and a @ref
+  ## GLFW_FORMAT_UNAVAILABLE error is generated.
+
+proc setClipboardString*(window: Window, clip: cstring): void {.glfw_lib, importc: "glfwSetClipboardString".}
+  ## This function sets the system clipboard to the specified, UTF-8 encoded
+  ## string.
+
+proc setKeyCallback*(window: Window, callback: keyProc): void {.glfw_lib, importc: "glfwSetKeyCallback".}
+  ## This function sets the key callback of the specified window, which is called
+  ## when a key is pressed, repeated or released.
+
 proc setMouseButtonCallback*(window: Window, cbfun: mouseProc): void {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
   ## This function sets the mouse button callback of the specified window, which
   ## is called when a mouse button is pressed or released.
+
+proc setCharCallback*(window: Window, callback: charProc): void {.glfw_lib, importc: "glfwSetCharCallback".}
+  ## This function sets the character callback of the specified window, which is
+  ## called when a Unicode character is input.
+  ##
+  ## The character callback is intended for Unicode text input.  As it deals with
+  ## characters, it is keyboard layout dependent, whereas the
+  ## [key callback](@ref glfwSetKeyCallback) is not.  Characters do not map 1:1
+  ## to physical keys, as a key may produce zero, one or more characters.  If you
+  ## want to know whether a specific physical key was pressed or released, see
+  ## the key callback instead.
+
+proc setScrollCallback*(window: Window, callback: scrollProc): void {.glfw_lib, importc: "glfwSetScrollCallback".}
+  ## This function sets the scroll callback of the specified window, which is
+  ## called when a scrolling device is used, such as a mouse wheel or scrolling
+  ## area of a touchpad.
+  ##
+  ## The scroll callback receives all scrolling input, like that from a mouse
+  ## wheel or a touchpad scrolling area.
+
+proc createStandardCursor*(shape: CursorShape): Cursor {.glfw_lib, importc: "glfwCreateStandardCursor".}
+  ## Returns a cursor with a [standard shape](@ref shapes), that can be set for
+  ## a window with @ref glfwSetCursor.
+
+proc destroyCursor*(cursor: Cursor): void {.glfw_lib, importc: "glfwDestroyCursor".}
+  ## This function destroys a cursor previously created with @ref
+  ## glfwCreateCursor. Any remaining cursors will be destroyed by @ref
+  ## glfwTerminate.
