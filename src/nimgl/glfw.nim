@@ -24,7 +24,7 @@ else:
   # The rest of the implementention is mine.
 
   when defined(windows):
-    {.passC: "-D_GLFW_WIN32",
+    {.passC: "-D_GLFW_WIN32 -DGLFW_EXPOSE_NATIVE_WIN32",
       passL: "-lopengl32 -lgdi32",
       compile: "private/glfw/src/win32_init.c",
       compile: "private/glfw/src/win32_monitor.c",
@@ -634,3 +634,8 @@ proc destroyCursor*(cursor: Cursor): void {.glfw_lib, importc: "glfwDestroyCurso
   ## This function destroys a cursor previously created with @ref
   ## glfwCreateCursor. Any remaining cursors will be destroyed by @ref
   ## glfwTerminate.
+
+when defined(windows):
+  proc getWin32Window*(window: Window): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
+    ## @return The `HWND` of the specified window, or `NULL` if an
+    ## [error](@ref error_handling) occurred.

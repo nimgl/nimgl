@@ -111,9 +111,14 @@ var
     ## Version of glsl to use
   
 proc getIO*(): IO {.imgui_lib, importc: "igGetIO".}
-proc createContext*(): Context {.imgui_lib, importc: "igCreateContext".}
+
+proc createContext*(malloc: pointer, free: pointer): Context {.imgui_lib, importc: "igCreateContext".}
+proc createContext*(): Context =
+  createContext(nil, nil)
+
 proc destroyContext*(ctx: Context): void {.imgui_lib, importc: "igDestroyContext".}
 proc addInputCharacter*(c: cushort): void {.imgui_lib, importc: "ImGuiIO_AddInputCharacter".}
+
 proc styleColorsClassic*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsClassic".}
 proc styleColorsDark*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsDark".}
 proc styleColorsLight*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsLight".}
@@ -193,6 +198,9 @@ proc init*(window: Window, installCallbacks: bool, glslVersion: int): void =
   io.GetClipboardTextFn = getClipboardText
   io.SetClipboardTextFn = setClipboardText
   io.ClipboardUserData  = window
+
+  when defined(windows):
+    io.ImeWindowHandle = window.getWin32Window
 
   gCursors[cArrow.ord]      = createStandardCursor(csArrow)
   gCursors[cTextInput.ord]  = createStandardCursor(csIbeam);
