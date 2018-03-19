@@ -77,20 +77,32 @@ type
   Vecui*   = Vec4ui | Vec3ui | Vec2ui | Vec1ui
     ## Packs all the int32 vectors
 
-template x*[R, T](vec: Vec[R, T]): untyped = vec[0]
-template y*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
-template z*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
-template w*[T](vec: Vec4[T]): untyped = vec[3]
+template  x*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template  y*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template  z*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template  w*[T](vec: Vec4[T]): untyped = vec[3]
+template `x=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
+template `y=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
+template `z=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
+template `w=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
 
-template r*[R, T](vec: Vec[R, T]): untyped = vec[0]
-template g*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
-template b*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
-template a*[T](vec: Vec4[T]): untyped = vec[3]
+template  r*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template  g*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template  b*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template  a*[T](vec: Vec4[T]): untyped = vec[3]
+template `r=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
+template `g=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
+template `b=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
+template `a=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
 
-template i*[R, T](vec: Vec[R, T]): untyped = vec[0]
-template j*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
-template k*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
-template s*[T](vec: Vec4[T]): untyped = vec[3]
+template  i*[R, T](vec: Vec[R, T]): untyped = vec[0]
+template  j*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
+template  k*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
+template  s*[T](vec: Vec4[T]): untyped = vec[3]
+template `i=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
+template `j=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
+template `k=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
+template `s=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
 
 template vPtr*[R, T](vec: array[R, T]): ptr = vec[0].addr
   ## Gets the pointer to the first attribute in the array
@@ -104,7 +116,7 @@ template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] /
 const
   vecIndex = ['x', 'y', 'z', 'w']
 
-proc `$`*[T](vec: Vec[1, T] | Vec[2, T] | Vec[3, T] | Vec[4, T]): string =
+proc `$`*[R, T](vec: Vec[R, T]): string =
   ## Converts a Vec into a string
   result = "vec" & $vec.len & "("
   for n in 0 ..< vec.len:
@@ -244,15 +256,14 @@ type
   Mat2x4*[T] = Mat2[4, T]
     ## Matrix 2x4
 
-template c0*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[0]
-template c1*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[1]
-template c2*[R, T](mat: Mat3[R, T] | Mat4[R, T]): untyped = mat[2]
-template c3*[R, T](mat: Mat4[R, T]): untyped = mat[3]
-
-template  a*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[0]
-template  b*[C, R, T](mat: array[C, array[R, T]]): untyped = mat[1]
-template  c*[R, T](mat: Mat3[R, T] | Mat4[R, T]): untyped = mat[2]
-template  d*[R, T](mat: Mat4[R, T]): untyped = mat[3]
+template  a*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[0]
+template  b*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[1]
+template  c*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[2]
+template  d*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[3]
+template `a=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[0] = e
+template `b=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[1] = e
+template `c=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[2] = e
+template `d=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[3] = e
 
 proc `$`*[C, R, T](mat: array[C, array[R, T]]): string =
   ## Converts Mat to string
@@ -287,11 +298,11 @@ proc mat3*[T](c0, c1, c2: Vec3[T]): Mat3x3[T] =
 
 proc mat2x2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
   ## Creates a 2x2 Matrix
-  [c0, c1, c2]
+  [c0, c1]
 
 proc mat2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
   ## Creates a 2x2 Matrix
-  [c0, c1, c2]
+  [c0, c1]
 
 
 proc mat4x3*[T](c0, c1, c2, c3: Vec3[T]): Mat4x3[T] =

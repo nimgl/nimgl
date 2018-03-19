@@ -137,7 +137,7 @@ proc setClipboardText*(window: Window, text: cstring) {.cdecl.} =
   ## Set the clipboard Text data
   window.setClipboardString(text)
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
+proc keyProc(window: Window, key: glfw.Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
   var io = getIO()
   io.KeysDown[key.ord] = action != kaRelease
 
@@ -161,7 +161,7 @@ proc charProc(window: Window, c: cuint): void {.cdecl.} =
     addInputCharacter(cushort(c))
 
 proc installCallbacks(window: Window): void =
-  #window.setKeyCallback(keyProc)
+  window.setKeyCallback(keyProc)
   window.setMouseButtonCallback(mouseProc)
   window.setScrollCallback(scrollProc)
   window.setCharCallback(charProc)

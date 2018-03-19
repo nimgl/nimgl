@@ -31,7 +31,7 @@ proc statusShader(shader: glUint) =
       message = newSeq[glChar](1024)
     glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
     echo toString(message)
-  
+
 proc main =
 
   # GLFW
@@ -155,7 +155,7 @@ void main() {
   var
     ctx = createContext()
     io  = getIO()
-  imgui.init(w, true, 330)
+  imgui.init(w, false, 330)
 
   styleColorsDark(nil)
 
