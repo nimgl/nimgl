@@ -113,8 +113,7 @@ var
 proc getIO*(): IO {.imgui_lib, importc: "igGetIO".}
 
 proc createContext*(malloc: pointer, free: pointer): Context {.imgui_lib, importc: "igCreateContext".}
-proc createContext*(): Context =
-  createContext(nil, nil)
+proc createContext*(): Context = createContext(nil, nil)
 
 proc destroyContext*(ctx: Context): void {.imgui_lib, importc: "igDestroyContext".}
 proc addInputCharacter*(c: cushort): void {.imgui_lib, importc: "ImGuiIO_AddInputCharacter".}
@@ -122,6 +121,9 @@ proc addInputCharacter*(c: cushort): void {.imgui_lib, importc: "ImGuiIO_AddInpu
 proc styleColorsClassic*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsClassic".}
 proc styleColorsDark*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsDark".}
 proc styleColorsLight*(dst: pointer): void {.imgui_lib, importc: "igStyleColorsLight".}
+proc styleColorsClassic*(): void = styleColorsClassic(nil)
+proc styleColorsDark*()   : void = styleColorsDark(nil)
+proc styleColorsLight*()  : void = styleColorsClassic(nil)
 
 # GLFW Integration | Example
 # Please redo this integration if you plan on having more control over imgui.
