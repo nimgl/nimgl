@@ -635,6 +635,10 @@ proc destroyCursor*(cursor: Cursor): void {.glfw_lib, importc: "glfwDestroyCurso
   ## glfwCreateCursor. Any remaining cursors will be destroyed by @ref
   ## glfwTerminate.
 
+proc getPrimaryMonitor*(): Monitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".}
+  ## This function returns the primary monitor.  This is usually the monitor
+  ## where elements like the task bar or global menu bar are located.
+
 when defined(windows):
   proc getWin32Window*(window: Window): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
     ## @return The `HWND` of the specified window, or `NULL` if an
