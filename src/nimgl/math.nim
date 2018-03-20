@@ -77,6 +77,8 @@ type
   Vecui*   = Vec4ui | Vec3ui | Vec2ui | Vec1ui
     ## Packs all the int32 vectors
 
+{.push inline.}
+
 template  x*[R, T](vec: Vec[R, T]): untyped = vec[0]
 template  y*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
 template  z*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
@@ -111,12 +113,10 @@ template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] 
 template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
   ## Little utility to normalize rgb
 
-{.push inline.}
-
 const
   vecIndex = ['x', 'y', 'z', 'w']
 
-proc `$`*[R, T](vec: Vec[R, T]): string =
+proc `$`*[R, T](vec: Vec[R,T] | Vec1[T] | Vec2[T] | Vec3[T] | Vec4[T]): string =
   ## Converts a Vec into a string
   result = "vec" & $vec.len & "("
   for n in 0 ..< vec.len:
@@ -175,35 +175,15 @@ proc `-`*(v1, v2: Vec): Vec =
   for n in 0 ..< v1.len:
     result[n] = v1[n] - v2[n]
 
-proc `*`*(v1: Vecf, s: float32): Vecf =
+proc `*`*[R: static[int32], T](v: array[R, T], s: T): Vec[R, T] =
   ## Multiplying one vector a scale v * s
-  for n in 0 ..< v1.len:
-    result[n] = v1[n] * s
+  for n in 0 ..< v.len:
+    result[n] = T(v[n] * s)
 
-proc `*`*(v1: Veci, s: int32): Veci =
-  ## Multiplying one vector a scale v * s
-  for n in 0 ..< v1.len:
-    result[n] = v1[n] * s
-
-proc `*`*(v1: Vecui, s: int32): Vecui =
-  ## Multiplying one vector a scale v * s
-  for n in 0 ..< v1.len:
-    result[n] = v1[n] * s
-
-proc `/`*(v: Vecf, s: float32): Vecf =
+proc `/`*[R: static[int32], T](v: array[R, T], s: T): Vec[R, T] =
   ## Dividing one vector with a scale v / s
   for n in 0 ..< v.len:
-    result[n] = v[n] / s
-
-proc `/`*(v: Veci, s: float32): Veci =
-  ## Dividing one vector with a scale v / s
-  for n in 0 ..< v.len:
-    result[n] = int32(float32(v[n]) / s)
-
-proc `/`*(v: Vecui, s: float32): Vecui =
-  ## Dividing one vector with a scale v / s
-  for n in 0 ..< v.len:
-    result[n] = uint32(float32(v[n]) / s)
+    result[n] = T(v[n].float / s.float)
 
 proc mag*(v: Vec): float32 =
   ## Magnitude of this vector |v|
@@ -255,6 +235,8 @@ type
     ## Matrix 2x3
   Mat2x4*[T] = Mat2[4, T]
     ## Matrix 2x4
+
+{.push inline.}
 
 template  a*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[0]
 template  b*[c, r, t](mat: array[c, array[r, t]]): untyped = mat[1]
@@ -388,3 +370,5 @@ proc ortho*(left, right, bottom, top, near, far: float32): Mat4x4[float32] =
   result[1][3] = -(top + bottom) / (top - bottom)
   result[2][3] = -(far + near) / (far - near)
   result[3][3] =  1.0f
+
+{.pop.}

@@ -21,6 +21,8 @@ proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: 
   keys[key.ord] = action != kaRelease
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
+  if key == keySpace:
+    glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
 
 proc statusShader(shader: glUint) =
   var status: glInt
@@ -33,9 +35,7 @@ proc statusShader(shader: glUint) =
     echo toString(message)
 
 proc main =
-
   # GLFW
-
   assert glfw.init()
 
   windowHint(whContextVersionMajor, 4);
@@ -53,7 +53,6 @@ proc main =
   w.makeContextCurrent
 
   # Glew / Opengl
-
   assert opengl.init() == GLEW_OK
 
   glEnable(GL_BLEND)
@@ -133,9 +132,9 @@ void main() {
   glAttachShader(program, fragment)
   glLinkProgram(program)
 
-  var programLinked: glInt
-  glGetProgramiv(program, GL_LINK_STATUS, programLinked.addr);
-  if program_linked != GL_TRUE.ord:
+  var pLinked: glInt
+  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
+  if pLinked != GL_TRUE.ord:
     var
       log_length: glSizei
       message = newSeq[glChar](1024)
@@ -159,9 +158,8 @@ void main() {
 
   styleColorsDark(nil)
 
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
   while not w.windowShouldClose:
-    glPolygonMode(GL_FRONT_AND_BACK, if keys[keySpace.ord]: GL_LINE else: GL_FILL)
-
     glClearColor(bg.r, bg.g, bg.b, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
 

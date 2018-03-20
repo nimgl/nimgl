@@ -17,7 +17,6 @@ from os import splitPath
 proc getHeaderPath(): string {.compileTime.} =
   result = currentSourcePath()
   result = result.splitPath.head & "/private/glew/include/GL"
-  echo result
 
 {.passC: "-DGLEW_NO_GLU -DGLEW_BUILD -DGLEW_STATIC -I" & getHeaderPath().}
 
