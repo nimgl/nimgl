@@ -840,6 +840,7 @@ proc glGetProgramiv*(program: glUint, pname: glEnum, params: ptr glInt): void {.
 proc glGetProgramInfoLog*(program: glUint, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
 proc glUseProgram*(program: glUint): void {.glew_lib.}
 proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
+proc glDrawArrays*(mode: glEnum, first: glInt, count: glSizei): void {.glew_lib.}
 
 proc glUniform4f* (location: glInt, v0, v1, v2, v3: glFloat): void {.glew_lib.}
 proc glUniform3f* (location: glInt, v0, v1, v2: glFloat): void {.glew_lib.}
