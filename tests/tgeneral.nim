@@ -1,6 +1,11 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
+#[
+  This is just a testing file, as stated in the README on this folder still
+  need to make some useful tests to prevent bugs and catch breaking changes.
+]#
+
 import 
   nimgl/[imgui, glfw, math, opengl],
   system
@@ -17,12 +22,14 @@ converter toString(chars: seq[cchar]): string =
     if c == '\0': continue
     result.add c
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+proc keyProc(window: Window, key: Key, scancode: cint,
+            action: KeyAction, mods: KeyMod): void {.cdecl.} =
   keys[key.ord] = action != kaRelease
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
   if key == keySpace:
-    glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
+    glPolygonMode(GL_FRONT_AND_BACK,
+                  if action != kaRelease: GL_LINE else: GL_FILL)
 
 proc statusShader(shader: glUint) =
   var status: glInt
@@ -91,8 +98,10 @@ proc main =
   glBindBuffer(GL_ARRAY_BUFFER, vbo)
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
 
-  glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vertices.len), vertices[0].addr, GL_STATIC_DRAW)
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * indices.len), indices[0].addr, GL_STATIC_DRAW)
+  glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vertices.len),
+              vertices[0].addr, GL_STATIC_DRAW)
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * indices.len),
+              indices[0].addr, GL_STATIC_DRAW)
 
   glEnableVertexAttribArray(0)
   glVertexAttribPointer(0'u32, 3, GL_FLOAT, false, cfloat.sizeof * 3, nil)

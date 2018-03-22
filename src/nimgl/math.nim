@@ -108,9 +108,13 @@ template `s=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
 
 template vPtr*[R, T](vec: array[R, T]): ptr = vec[0].addr
   ## Gets the pointer to the first attribute in the array
-template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3]]
+template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32,
+                                    vec[1] / 255'f32,
+                                    vec[2] / 255'f32, vec[3]]
   ## Little utility to normalize rgba
-template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
+template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32,
+                                    vec[1] / 255'f32,
+                                    vec[2] / 255'f32]
   ## Little utility to normalize rgb
 
 const
