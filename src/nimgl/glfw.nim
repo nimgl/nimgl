@@ -485,19 +485,12 @@ type
 
 converter toBool*(x: cint): bool = x != 0
 
-proc createWindow*(width: cint, height: cint, title: cstring, monitor: Monitor, share: Window): Window {.glfw_lib, importc: "glfwCreateWindow".}
+proc createWindow*(width: cint, height: cint, title: cstring, monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
   ## We recommend you to generate a config and modify it instead but this is
   ## the official way to create a window
-
-proc createWindow*(width: cint, height: cint, title: cstring): Window =
-  ## Creates a window and its associated OpenGL or OpenGL ES
-  ## context. Most of the options controlling how the window and its context
-  ## should be created are specified with ``window_hints``.
-  ## Overloading
-  createWindow(width, height, title, nil, nil)
 
 proc init*(): bool {.glfw_lib, importc: "glfwInit".}
   ## Initializes the GLFW library. Before most GLFW functions can
