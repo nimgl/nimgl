@@ -45,7 +45,7 @@ else:
   {.pragma: imgui_lib, cdecl.}
 
 type
-  Key {.size: cint.sizeof.} = enum
+  IGKey* {.size: cint.sizeof.} = enum
     ## This are bounded to the GLFW Keybinds after the init so please keep using
     ## the glfw keys.
     ikTab = "tab"
@@ -69,7 +69,7 @@ type
     ikZ = "z"
     ikCOUNT = "count"
 
-  Cursors {.size: cint.sizeof.} = enum
+  IGCursors* {.size: cint.sizeof.} = enum
     cNone = (-1, "none")
     cArrow = (0, "arrow")
     cTextInput = "text_input"
@@ -133,7 +133,7 @@ proc setClipboardText*(window: Window, text: cstring) {.cdecl.} =
   ## Set the clipboard Text data
   window.setClipboardString(text)
 
-proc keyProc(window: Window, key: glfw.Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
   var io = getIO()
   io.KeysDown[key.ord] = action != kaRelease
 
@@ -152,7 +152,6 @@ proc scrollProc(window: Window, xoff, yoff: cdouble): void {.cdecl.} =
   io.MouseWheel  += float32(yoff)
 
 proc charProc(window: Window, c: cuint): void {.cdecl.} =
-  var io = getIO()
   if c > cuint(0) and c < cuint(0x10000):
     addInputCharacter(cushort(c))
 
