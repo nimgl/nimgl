@@ -37,7 +37,7 @@ proc statusShader(shader: glUint) =
   if status != GL_TRUE.ord:
     var
       log_length: glSizei
-      message = newSeq[glChar](1024)
+      message = newSeq[char](1024)
     glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
     echo toString(message)
 
@@ -117,7 +117,7 @@ void main() {
   gl_Position = vec4(aPos, 1.0) * uMVP;
 }
   """
-  glShaderSource(vertex, 1, vsrc.addr, nil)
+  glShaderSource(vertex, 1'i32, vsrc.addr, nil)
   glCompileShader(vertex)
   statusShader(vertex)
 
@@ -146,13 +146,13 @@ void main() {
   if pLinked != GL_TRUE.ord:
     var
       log_length: glSizei
-      message = newSeq[glChar](1024)
+      message = newSeq[char](1024)
     glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo toString(message)
 
   let
-    uColor = glGetUniformLocation(program, "uColor")
-    uMVP   = glGetUniformLocation(program, "uMVP")
+    uColor = glGetUniformLocation(program, "uColor".cstring)
+    uMVP   = glGetUniformLocation(program, "uMVP".cstring)
   var
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
