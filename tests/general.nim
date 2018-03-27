@@ -45,13 +45,13 @@ proc main =
   # GLFW
   assert glfw.init()
 
-  windowHint(whContextVersionMajor, 4);
-  windowHint(whContextVersionMinor, 1);
-  windowHint(whOpenglForwardCompat, glfwTRUE);
-  windowHint(whOpenglProfile      , glfwOpenglCoreProfile);
-  windowHint(whResizable          , glfwFalse);
-  windowHint(whDecorated          , glfwTrue);
-  windowHint(whRefreshRate        , glfwDontCare);
+  windowHint whContextVersionMajor, 4
+  windowHint whContextVersionMinor, 1
+  windowHint whOpenglForwardCompat, glfwTRUE
+  windowHint whOpenglProfile      , glfwOpenglCoreProfile
+  windowHint whResizable          , glfwFalse
+  windowHint whDecorated          , glfwTrue
+  windowHint whRefreshRate        , glfwDontCare
 
   var w: Window = createWindow(1280, 720, "NimGL", nil, nil)
   assert w != nil

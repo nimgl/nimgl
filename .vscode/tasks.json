@@ -9,6 +9,16 @@
         "reveal": "always",
         "panel": "dedicated",
         "focus": true
+      }
+    },
+    {
+      "label": "tgeneral",
+      "type": "shell",
+      "command": "nimble general",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
       },
       "group": {
         "kind": "build",
