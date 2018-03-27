@@ -11,7 +11,6 @@
 ## ====
 ##
 ## Supported Libraries
-##
 ## - `GLFW  <./nimgl/glfw.html>`_     Window Library
 ## - `OpenGL  <./nimgl/opengl.html>`_ Glew Loading Library
 ## - `Math  <./nimgl/math.html>`_     Linear Algebra for graphics programming

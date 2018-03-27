@@ -5,6 +5,7 @@ author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
 srcDir      = "src"
+skipDirs    = @["tools", ".vscode"]
 
 # Dependencies
 

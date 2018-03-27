@@ -1,0 +1,3 @@
+[submodule "tools/gl2nim"]
+	path = tools/gl2nim
+	url = git@github.com:cavariux/gl2nim.git
