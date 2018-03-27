@@ -43,7 +43,7 @@ type
   glBitfield* = uint32
   glBoolean* = bool
   glByte* = int8
-  glChar* = char | cstring
+  glChar* = char
   glCharARB* = byte
   glClampd* = float64
   glClampf* = float32
@@ -6519,7 +6519,7 @@ proc glIsQuery*(id: glUint): glBoolean {.glew_lib.}
 proc glMapBuffer*(target: glEnum, access: glEnum): ptr void {.glew_lib.}
 proc glUnmapBuffer*(target: glEnum): glBoolean {.glew_lib.}
 proc glAttachShader*(program: glUint, shader: glUint): void {.glew_lib.}
-proc glBindAttribLocation*(program: glUint, index: glUint, name: ptr glChar): void {.glew_lib.}
+proc glBindAttribLocation*(program: glUint, index: glUint, name: cstring): void {.glew_lib.}
 proc glBlendEquationSeparate*(modeRGB: glEnum, modeAlpha: glEnum): void {.glew_lib.}
 proc glCompileShader*(shader: glUint): void {.glew_lib.}
 proc glCreateProgram*(): glUint {.glew_lib.}
@@ -6530,16 +6530,16 @@ proc glDetachShader*(program: glUint, shader: glUint): void {.glew_lib.}
 proc glDisableVertexAttribArray*(index: glUint): void {.glew_lib.}
 proc glDrawBuffers*(n: glSizei, bufs: ptr glEnum): void {.glew_lib.}
 proc glEnableVertexAttribArray*(index: glUint): void {.glew_lib.}
-proc glGetActiveAttrib*(program: glUint, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: ptr glChar): void {.glew_lib.}
-proc glGetActiveUniform*(program: glUint, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: ptr glChar): void {.glew_lib.}
+proc glGetActiveAttrib*(program: glUint, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
+proc glGetActiveUniform*(program: glUint, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
 proc glGetAttachedShaders*(program: glUint, maxCount: glSizei, count: ptr glSizei, shaders: ptr glUint): void {.glew_lib.}
-proc glGetAttribLocation*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
-proc glGetProgramInfoLog*(program: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
+proc glGetAttribLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
+proc glGetProgramInfoLog*(program: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: cstring): void {.glew_lib.}
 proc glGetProgramiv*(program: glUint, pname: glEnum, param: ptr glInt): void {.glew_lib.}
-proc glGetShaderInfoLog*(shader: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
-proc glGetShaderSource*(obj: glUint, maxLength: glSizei, length: ptr glSizei, source: ptr glChar): void {.glew_lib.}
+proc glGetShaderInfoLog*(shader: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: cstring): void {.glew_lib.}
+proc glGetShaderSource*(obj: glUint, maxLength: glSizei, length: ptr glSizei, source: cstring): void {.glew_lib.}
 proc glGetShaderiv*(shader: glUint, pname: glEnum, param: ptr glInt): void {.glew_lib.}
-proc glGetUniformLocation*(program: glUint, name: glChar): glInt {.glew_lib.}
+proc glGetUniformLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
 proc glGetUniformfv*(program: glUint, location: glInt, params: ptr glFloat): void {.glew_lib.}
 proc glGetUniformiv*(program: glUint, location: glInt, params: ptr glInt): void {.glew_lib.}
 proc glGetVertexAttribPointerv*(index: glUint, pname: glEnum, poynter: ptr void): void {.glew_lib.}
@@ -6549,7 +6549,7 @@ proc glGetVertexAttribiv*(index: glUint, pname: glEnum, params: ptr glInt): void
 proc glIsProgram*(program: glUint): glBoolean {.glew_lib.}
 proc glIsShader*(shader: glUint): glBoolean {.glew_lib.}
 proc glLinkProgram*(program: glUint): void {.glew_lib.}
-proc glShaderSource*(shader: glUint, count: glSizei, stryng: ptr glChar, length: ptr glInt): void {.glew_lib.}
+proc glShaderSource*(shader: glUint, count: glSizei, stryng: ptr cstring, length: ptr glInt): void {.glew_lib.}
 proc glStencilFuncSeparate*(frontfunc: glEnum, backfunc: glEnum, reff: glInt, mask: glUint): void {.glew_lib.}
 proc glStencilMaskSeparate*(face: glEnum, mask: glUint): void {.glew_lib.}
 proc glStencilOpSeparate*(face: glEnum, sfail: glEnum, dpfail: glEnum, dppass: glEnum): void {.glew_lib.}
@@ -6619,7 +6619,7 @@ proc glUniformMatrix4x2fv*(location: glInt, count: glSizei, transpose: glBoolean
 proc glUniformMatrix4x3fv*(location: glInt, count: glSizei, transpose: glBoolean, value: ptr glFloat): void {.glew_lib.}
 proc glBeginConditionalRender*(id: glUint, mode: glEnum): void {.glew_lib.}
 proc glBeginTransformFeedback*(primitiveMode: glEnum): void {.glew_lib.}
-proc glBindFragDataLocation*(program: glUint, colorNumber: glUint, name: ptr glChar): void {.glew_lib.}
+proc glBindFragDataLocation*(program: glUint, colorNumber: glUint, name: cstring): void {.glew_lib.}
 proc glClampColor*(target: glEnum, clamp: glEnum): void {.glew_lib.}
 proc glClearBufferfi*(buffer: glEnum, drawBuffer: glInt, depth: glFloat, stencil: glInt): void {.glew_lib.}
 proc glClearBufferfv*(buffer: glEnum, drawBuffer: glInt, value: ptr glFloat): void {.glew_lib.}
@@ -6631,18 +6631,18 @@ proc glEnablei*(cap: glEnum, index: glUint): void {.glew_lib.}
 proc glEndConditionalRender*(): void {.glew_lib.}
 proc glEndTransformFeedback*(): void {.glew_lib.}
 proc glGetBooleani_v*(pname: glEnum, index: glUint, data: ptr glBoolean): void {.glew_lib.}
-proc glGetFragDataLocation*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
+proc glGetFragDataLocation*(program: glUint, name: cstring): glInt {.glew_lib.}
 proc glGetStringi*(name: glEnum, index: glUint): ptr glUbyte {.glew_lib.}
 proc glGetTexParameterIiv*(target: glEnum, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glGetTexParameterIuiv*(target: glEnum, pname: glEnum, params: ptr glUint): void {.glew_lib.}
-proc glGetTransformFeedbackVarying*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: ptr glChar): void {.glew_lib.}
+proc glGetTransformFeedbackVarying*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
 proc glGetUniformuiv*(program: glUint, location: glInt, params: ptr glUint): void {.glew_lib.}
 proc glGetVertexAttribIiv*(index: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glGetVertexAttribIuiv*(index: glUint, pname: glEnum, params: ptr glUint): void {.glew_lib.}
 proc glIsEnabledi*(cap: glEnum, index: glUint): glBoolean {.glew_lib.}
 proc glTexParameterIiv*(target: glEnum, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glTexParameterIuiv*(target: glEnum, pname: glEnum, params: ptr glUint): void {.glew_lib.}
-proc glTransformFeedbackVaryings*(program: glUint, count: glSizei, varyings: ptr glChar, bufferMode: glEnum): void {.glew_lib.}
+proc glTransformFeedbackVaryings*(program: glUint, count: glSizei, varyings: ptr cstring, bufferMode: glEnum): void {.glew_lib.}
 proc glUniform1ui*(location: glInt, v0: glUint): void {.glew_lib.}
 proc glUniform1uiv*(location: glInt, count: glSizei, value: ptr glUint): void {.glew_lib.}
 proc glUniform2ui*(location: glInt, v0: glUint, v1: glUint): void {.glew_lib.}
@@ -6691,11 +6691,11 @@ proc glGetnTexImage*(tex: glEnum, level: glInt, format: glEnum, tipe: glEnum, bu
 proc glGetnUniformdv*(program: glUint, location: glInt, bufSize: glSizei, params: ptr glDouble): void {.glew_lib.}
 proc glMultiDrawArraysIndirectCount*(mode: glEnum, indirect: ptr glVoid, drawcount: glIntptr, maxdrawcount: glSizei, stride: glSizei): void {.glew_lib.}
 proc glMultiDrawElementsIndirectCount*(mode: glEnum, tipe: glEnum, indirect: ptr glVoid, drawcount: glIntptr, maxdrawcount: glSizei, stride: glSizei): void {.glew_lib.}
-proc glSpecializeShader*(shader: glUint, pEntryPoint: ptr glChar, numSpecializationConstants: glUint, pConstantIndex: ptr glUint, pConstantValue: ptr glUint): void {.glew_lib.}
+proc glSpecializeShader*(shader: glUint, pEntryPoint: cstring, numSpecializationConstants: glUint, pConstantIndex: ptr glUint, pConstantValue: ptr glUint): void {.glew_lib.}
 proc glTbufferMask3DFX*(mask: glUint): void {.glew_lib.}
 proc glDebugMessageEnableAMD*(category: glEnum, severity: glEnum, count: glSizei, ids: ptr glUint, enabled: glBoolean): void {.glew_lib.}
-proc glDebugMessageInsertAMD*(category: glEnum, severity: glEnum, id: glUint, length: glSizei, buf: ptr glChar): void {.glew_lib.}
-proc glGetDebugMessageLogAMD*(count: glUint, bufsize: glSizei, categories: ptr glEnum, severities: ptr glUint, ids: ptr glUint, lengths: ptr glSizei, message: ptr glChar): glUint {.glew_lib.}
+proc glDebugMessageInsertAMD*(category: glEnum, severity: glEnum, id: glUint, length: glSizei, buf: cstring): void {.glew_lib.}
+proc glGetDebugMessageLogAMD*(count: glUint, bufsize: glSizei, categories: ptr glEnum, severities: ptr glUint, ids: ptr glUint, lengths: ptr glSizei, message: cstring): glUint {.glew_lib.}
 proc glBlendEquationIndexedAMD*(buf: glUint, mode: glEnum): void {.glew_lib.}
 proc glBlendEquationSeparateIndexedAMD*(buf: glUint, modeRGB: glEnum, modeAlpha: glEnum): void {.glew_lib.}
 proc glBlendFuncIndexedAMD*(buf: glUint, src: glEnum, dst: glEnum): void {.glew_lib.}
@@ -6717,9 +6717,9 @@ proc glEndPerfMonitorAMD*(monitor: glUint): void {.glew_lib.}
 proc glGenPerfMonitorsAMD*(n: glSizei, monitors: ptr glUint): void {.glew_lib.}
 proc glGetPerfMonitorCounterDataAMD*(monitor: glUint, pname: glEnum, dataSize: glSizei, data: ptr glUint, bytesWritten: ptr glInt): void {.glew_lib.}
 proc glGetPerfMonitorCounterInfoAMD*(group: glUint, counter: glUint, pname: glEnum, data: glVoid): void {.glew_lib.}
-proc glGetPerfMonitorCounterStringAMD*(group: glUint, counter: glUint, bufSize: glSizei, length: ptr glSizei, counterString: ptr glChar): void {.glew_lib.}
+proc glGetPerfMonitorCounterStringAMD*(group: glUint, counter: glUint, bufSize: glSizei, length: ptr glSizei, counterString: cstring): void {.glew_lib.}
 proc glGetPerfMonitorCountersAMD*(group: glUint, numCounters: ptr glInt, maxActiveCounters: ptr glInt, countersSize: glSizei, counters: ptr glUint): void {.glew_lib.}
-proc glGetPerfMonitorGroupStringAMD*(group: glUint, bufSize: glSizei, length: ptr glSizei, groupString: ptr glChar): void {.glew_lib.}
+proc glGetPerfMonitorGroupStringAMD*(group: glUint, bufSize: glSizei, length: ptr glSizei, groupString: cstring): void {.glew_lib.}
 proc glGetPerfMonitorGroupsAMD*(numGroups: ptr glInt, groupsSize: glSizei, groups: ptr glUint): void {.glew_lib.}
 proc glSelectPerfMonitorCountersAMD*(monitor: glUint, enable: glBoolean, group: glUint, numCounters: glInt, counterList: ptr glUint): void {.glew_lib.}
 proc glSetMultisamplefvAMD*(pname: glEnum, index: glUint, val: ptr glFloat): void {.glew_lib.}
@@ -6744,7 +6744,7 @@ proc glGetQueryObjectuivANGLE*(id: glUint, pname: glEnum, params: ptr glUint): v
 proc glGetQueryivANGLE*(target: glEnum, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glIsQueryANGLE*(id: glUint): glBoolean {.glew_lib.}
 proc glQueryCounterANGLE*(id: glUint, target: glEnum): void {.glew_lib.}
-proc glGetTranslatedShaderSourceANGLE*(shader: glUint, bufsize: glSizei, length: ptr glSizei, source: ptr glChar): void {.glew_lib.}
+proc glGetTranslatedShaderSourceANGLE*(shader: glUint, bufsize: glSizei, length: ptr glSizei, source: cstring): void {.glew_lib.}
 proc glCopyTextureLevelsAPPLE*(destinationTexture: glUint, sourceTexture: glUint, sourceBaseLevel: glInt, sourceLevelCount: glSizei): void {.glew_lib.}
 proc glDrawElementArrayAPPLE*(mode: glEnum, first: glInt, count: glSizei): void {.glew_lib.}
 proc glDrawRangeElementArrayAPPLE*(mode: glEnum, start: glUint, endd: glUint, first: glInt, count: glSizei): void {.glew_lib.}
@@ -6815,8 +6815,8 @@ proc glUniformHandleui64ARB*(location: glInt, value: glUint64): void {.glew_lib.
 proc glUniformHandleui64vARB*(location: glInt, count: glSizei, value: ptr glUint64): void {.glew_lib.}
 proc glVertexAttribL1ui64ARB*(index: glUint, x: glUint64EXT): void {.glew_lib.}
 proc glVertexAttribL1ui64vARB*(index: glUint, v: ptr glUint64EXT): void {.glew_lib.}
-proc glBindFragDataLocationIndexed*(program: glUint, colorNumber: glUint, index: glUint, name: ptr glChar): void {.glew_lib.}
-proc glGetFragDataIndex*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
+proc glBindFragDataLocationIndexed*(program: glUint, colorNumber: glUint, index: glUint, name: cstring): void {.glew_lib.}
+proc glGetFragDataIndex*(program: glUint, name: cstring): glInt {.glew_lib.}
 proc glBufferStorage*(target: glEnum, size: glSizeiptr, data: glVoid, flags: glBitfield): void {.glew_lib.}
 proc glCreateSyncFromCLeventARB*(context: cl_context, event: cl_event, flags: glBitfield): glSync {.glew_lib.}
 proc glClearBufferData*(target: glEnum, internalformat: glEnum, format: glEnum, tipe: glEnum, data: glVoid): void {.glew_lib.}
@@ -6833,8 +6833,8 @@ proc glDispatchComputeGroupSizeARB*(num_groups_x: glUint, num_groups_y: glUint, 
 proc glCopyBufferSubData*(readtarget: glEnum, writetarget: glEnum, readoffset: glIntptr, writeoffset: glIntptr, size: glSizeiptr): void {.glew_lib.}
 proc glCopyImageSubData*(srcName: glUint, srcTarget: glEnum, srcLevel: glInt, srcX: glInt, srcY: glInt, srcZ: glInt, dstName: glUint, dstTarget: glEnum, dstLevel: glInt, dstX: glInt, dstY: glInt, dstZ: glInt, srcWidth: glSizei, srcHeight: glSizei, srcDepth: glSizei): void {.glew_lib.}
 proc glDebugMessageControlARB*(source: glEnum, tipe: glEnum, severity: glEnum, count: glSizei, ids: ptr glUint, enabled: glBoolean): void {.glew_lib.}
-proc glDebugMessageInsertARB*(source: glEnum, tipe: glEnum, id: glUint, severity: glEnum, length: glSizei, buf: ptr glChar): void {.glew_lib.}
-proc glGetDebugMessageLogARB*(count: glUint, bufSize: glSizei, sources: ptr glEnum, types: ptr glEnum, ids: ptr glUint, severities: ptr glEnum, lengths: ptr glSizei, messageLog: ptr glChar): glUint {.glew_lib.}
+proc glDebugMessageInsertARB*(source: glEnum, tipe: glEnum, id: glUint, severity: glEnum, length: glSizei, buf: cstring): void {.glew_lib.}
+proc glGetDebugMessageLogARB*(count: glUint, bufSize: glSizei, sources: ptr glEnum, types: ptr glEnum, ids: ptr glUint, severities: ptr glEnum, lengths: ptr glSizei, messageLog: cstring): glUint {.glew_lib.}
 proc glBindTextureUnit*(unit: glUint, texture: glUint): void {.glew_lib.}
 proc glBlitNamedFramebuffer*(readFramebuffer: glUint, drawFramebuffer: glUint, srcX0: glInt, srcY0: glInt, srcX1: glInt, srcY1: glInt, dstX0: glInt, dstY0: glInt, dstX1: glInt, dstY1: glInt, mask: glBitfield, filter: glEnum): void {.glew_lib.}
 proc glCheckNamedFramebufferStatus*(framebuffer: glUint, target: glEnum): glEnum {.glew_lib.}
@@ -6976,7 +6976,7 @@ proc glProgramBinary*(program: glUint, binaryFormat: glEnum, binary: glVoid, len
 proc glProgramParameteri*(program: glUint, pname: glEnum, value: glInt): void {.glew_lib.}
 proc glGetCompressedTextureSubImage*(texture: glUint, level: glInt, xoffset: glInt, yoffset: glInt, zoffset: glInt, width: glSizei, height: glSizei, depth: glSizei, bufSize: glSizei, pixels: glVoid): void {.glew_lib.}
 proc glGetTextureSubImage*(texture: glUint, level: glInt, xoffset: glInt, yoffset: glInt, zoffset: glInt, width: glSizei, height: glSizei, depth: glSizei, format: glEnum, tipe: glEnum, bufSize: glSizei, pixels: glVoid): void {.glew_lib.}
-proc glSpecializeShaderARB*(shader: glUint, pEntryPoint: ptr glChar, numSpecializationConstants: glUint, pConstantIndex: ptr glUint, pConstantValue: ptr glUint): void {.glew_lib.}
+proc glSpecializeShaderARB*(shader: glUint, pEntryPoint: cstring, numSpecializationConstants: glUint, pConstantIndex: ptr glUint, pConstantValue: ptr glUint): void {.glew_lib.}
 proc glGetUniformdv*(program: glUint, location: glInt, params: ptr glDouble): void {.glew_lib.}
 proc glUniform1d*(location: glInt, x: glDouble): void {.glew_lib.}
 proc glUniform1dv*(location: glInt, count: glSizei, value: ptr glDouble): void {.glew_lib.}
@@ -7139,10 +7139,10 @@ proc glPointParameterfARB*(pname: glEnum, param: glFloat): void {.glew_lib.}
 proc glPointParameterfvARB*(pname: glEnum, params: ptr glFloat): void {.glew_lib.}
 proc glPolygonOffsetClamp*(factor: glFloat, units: glFloat, clamp: glFloat): void {.glew_lib.}
 proc glGetProgramInterfaceiv*(program: glUint, programInterface: glEnum, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glGetProgramResourceIndex*(program: glUint, programInterface: glEnum, name: ptr glChar): glUint {.glew_lib.}
-proc glGetProgramResourceLocation*(program: glUint, programInterface: glEnum, name: ptr glChar): glInt {.glew_lib.}
-proc glGetProgramResourceLocationIndex*(program: glUint, programInterface: glEnum, name: ptr glChar): glInt {.glew_lib.}
-proc glGetProgramResourceName*(program: glUint, programInterface: glEnum, index: glUint, bufSize: glSizei, length: ptr glSizei, name: ptr glChar): void {.glew_lib.}
+proc glGetProgramResourceIndex*(program: glUint, programInterface: glEnum, name: cstring): glUint {.glew_lib.}
+proc glGetProgramResourceLocation*(program: glUint, programInterface: glEnum, name: cstring): glInt {.glew_lib.}
+proc glGetProgramResourceLocationIndex*(program: glUint, programInterface: glEnum, name: cstring): glInt {.glew_lib.}
+proc glGetProgramResourceName*(program: glUint, programInterface: glEnum, index: glUint, bufSize: glSizei, length: ptr glSizei, name: cstring): void {.glew_lib.}
 proc glGetProgramResourceiv*(program: glUint, programInterface: glEnum, index: glUint, propCount: glSizei, props: ptr glEnum, bufSize: glSizei, length: ptr glSizei, params: ptr glInt): void {.glew_lib.}
 proc glProvokingVertex*(mode: glEnum): void {.glew_lib.}
 proc glGetGraphicsResetStatusARB*(): glEnum {.glew_lib.}
@@ -7184,10 +7184,10 @@ proc glSamplerParameteri*(sampler: glUint, pname: glEnum, param: glInt): void {.
 proc glSamplerParameteriv*(sampler: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glActiveShaderProgram*(pipeline: glUint, program: glUint): void {.glew_lib.}
 proc glBindProgramPipeline*(pipeline: glUint): void {.glew_lib.}
-proc glCreateShaderProgramv*(tipe: glEnum, count: glSizei, strings: ptr glChar ): glUint {.glew_lib.}
+proc glCreateShaderProgramv*(tipe: glEnum, count: glSizei, strings: ptr cstring): glUint {.glew_lib.}
 proc glDeleteProgramPipelines*(n: glSizei, pipelines: ptr glUint): void {.glew_lib.}
 proc glGenProgramPipelines*(n: glSizei, pipelines: ptr glUint): void {.glew_lib.}
-proc glGetProgramPipelineInfoLog*(pipeline: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: ptr glChar): void {.glew_lib.}
+proc glGetProgramPipelineInfoLog*(pipeline: glUint, bufSize: glSizei, length: ptr glSizei, infoLog: cstring): void {.glew_lib.}
 proc glGetProgramPipelineiv*(pipeline: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glIsProgramPipeline*(pipeline: glUint): glBoolean {.glew_lib.}
 proc glProgramUniform1d*(program: glUint, location: glInt, x: glDouble): void {.glew_lib.}
@@ -7251,18 +7251,18 @@ proc glCreateProgramObjectARB*(): glHandleARB {.glew_lib.}
 proc glCreateShaderObjectARB*(shaderType: glEnum): glHandleARB {.glew_lib.}
 proc glDeleteObjectARB*(obj: glHandleARB): void {.glew_lib.}
 proc glDetachObjectARB*(containerObj: glHandleARB, attachedObj: glHandleARB): void {.glew_lib.}
-proc glGetActiveUniformARB*(programObj: glHandleARB, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: ptr glCharARB): void {.glew_lib.}
+proc glGetActiveUniformARB*(programObj: glHandleARB, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
 proc glGetAttachedObjectsARB*(containerObj: glHandleARB, maxCount: glSizei, count: ptr glSizei, obj: ptr glHandleARB): void {.glew_lib.}
 proc glGetHandleARB*(pname: glEnum): glHandleARB {.glew_lib.}
-proc glGetInfoLogARB*(obj: glHandleARB, maxLength: glSizei, length: ptr glSizei, infoLog: ptr glCharARB): void {.glew_lib.}
+proc glGetInfoLogARB*(obj: glHandleARB, maxLength: glSizei, length: ptr glSizei, infoLog: cstring): void {.glew_lib.}
 proc glGetObjectParameterfvARB*(obj: glHandleARB, pname: glEnum, params: ptr glFloat): void {.glew_lib.}
 proc glGetObjectParameterivARB*(obj: glHandleARB, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glGetShaderSourceARB*(obj: glHandleARB, maxLength: glSizei, length: ptr glSizei, source: ptr glCharARB): void {.glew_lib.}
-proc glGetUniformLocationARB*(programObj: glHandleARB, name: ptr glCharARB): glInt {.glew_lib.}
+proc glGetShaderSourceARB*(obj: glHandleARB, maxLength: glSizei, length: ptr glSizei, source: cstring): void {.glew_lib.}
+proc glGetUniformLocationARB*(programObj: glHandleARB, name: cstring): glInt {.glew_lib.}
 proc glGetUniformfvARB*(programObj: glHandleARB, location: glInt, params: ptr glFloat): void {.glew_lib.}
 proc glGetUniformivARB*(programObj: glHandleARB, location: glInt, params: ptr glInt): void {.glew_lib.}
 proc glLinkProgramARB*(programObj: glHandleARB): void {.glew_lib.}
-proc glShaderSourceARB*(shaderObj: glHandleARB, count: glSizei, stryng: ptr glCharARB, length: ptr glInt): void {.glew_lib.}
+proc glShaderSourceARB*(shaderObj: glHandleARB, count: glSizei, stryng: ptr cstring, length: ptr glInt): void {.glew_lib.}
 proc glUniform1fARB*(location: glInt, v0: glFloat): void {.glew_lib.}
 proc glUniform1fvARB*(location: glInt, count: glSizei, value: ptr glFloat): void {.glew_lib.}
 proc glUniform1iARB*(location: glInt, v0: glInt): void {.glew_lib.}
@@ -7285,20 +7285,20 @@ proc glUniformMatrix4fvARB*(location: glInt, count: glSizei, transpose: glBoolea
 proc glUseProgramObjectARB*(programObj: glHandleARB): void {.glew_lib.}
 proc glValidateProgramARB*(programObj: glHandleARB): void {.glew_lib.}
 proc glShaderStorageBlockBinding*(program: glUint, storageBlockIndex: glUint, storageBlockBinding: glUint): void {.glew_lib.}
-proc glGetActiveSubroutineName*(program: glUint, shadertype: glEnum, index: glUint, bufsize: glSizei, length: ptr glSizei, name: ptr glChar): void {.glew_lib.}
-proc glGetActiveSubroutineUniformName*(program: glUint, shadertype: glEnum, index: glUint, bufsize: glSizei, length: ptr glSizei, name: ptr glChar): void {.glew_lib.}
+proc glGetActiveSubroutineName*(program: glUint, shadertype: glEnum, index: glUint, bufsize: glSizei, length: ptr glSizei, name: cstring): void {.glew_lib.}
+proc glGetActiveSubroutineUniformName*(program: glUint, shadertype: glEnum, index: glUint, bufsize: glSizei, length: ptr glSizei, name: cstring): void {.glew_lib.}
 proc glGetActiveSubroutineUniformiv*(program: glUint, shadertype: glEnum, index: glUint, pname: glEnum, values: ptr glInt): void {.glew_lib.}
 proc glGetProgramStageiv*(program: glUint, shadertype: glEnum, pname: glEnum, values: ptr glInt): void {.glew_lib.}
-proc glGetSubroutineIndex*(program: glUint, shadertype: glEnum, name: ptr glChar): glUint {.glew_lib.}
-proc glGetSubroutineUniformLocation*(program: glUint, shadertype: glEnum, name: ptr glChar): glInt {.glew_lib.}
+proc glGetSubroutineIndex*(program: glUint, shadertype: glEnum, name: cstring): glUint {.glew_lib.}
+proc glGetSubroutineUniformLocation*(program: glUint, shadertype: glEnum, name: cstring): glInt {.glew_lib.}
 proc glGetUniformSubroutineuiv*(shadertype: glEnum, location: glInt, params: ptr glUint): void {.glew_lib.}
 proc glUniformSubroutinesuiv*(shadertype: glEnum, count: glSizei, indices: ptr glUint): void {.glew_lib.}
-proc glCompileShaderIncludeARB*(shader: glUint, count: glSizei, path: ptr glChar, length: ptr glInt): void {.glew_lib.}
-proc glDeleteNamedStringARB*(namelen: glInt, name: ptr glChar): void {.glew_lib.}
-proc glGetNamedStringARB*(namelen: glInt, name: ptr glChar, bufSize: glSizei, stringlen: ptr glInt, stryng: ptr glChar): void {.glew_lib.}
-proc glGetNamedStringivARB*(namelen: glInt, name: ptr glChar, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glIsNamedStringARB*(namelen: glInt, name: ptr glChar): glBoolean {.glew_lib.}
-proc glNamedStringARB*(tipe: glEnum, namelen: glInt, name: ptr glChar, stringlen: glInt, stryng: ptr glChar): void {.glew_lib.}
+proc glCompileShaderIncludeARB*(shader: glUint, count: glSizei, path: ptr cstring, length: ptr glInt): void {.glew_lib.}
+proc glDeleteNamedStringARB*(namelen: glInt, name: cstring): void {.glew_lib.}
+proc glGetNamedStringARB*(namelen: glInt, name: cstring, bufSize: glSizei, stringlen: ptr glInt, stryng: cstring): void {.glew_lib.}
+proc glGetNamedStringivARB*(namelen: glInt, name: cstring, pname: glEnum, params: ptr glInt): void {.glew_lib.}
+proc glIsNamedStringARB*(namelen: glInt, name: cstring): glBoolean {.glew_lib.}
+proc glNamedStringARB*(tipe: glEnum, namelen: glInt, name: cstring, stringlen: glInt, stryng: cstring): void {.glew_lib.}
 proc glBufferPageCommitmentARB*(target: glEnum, offset: glIntptr, size: glSizeiptr, commit: glBoolean): void {.glew_lib.}
 proc glTexPageCommitmentARB*(target: glEnum, level: glInt, xoffset: glInt, yoffset: glInt, zoffset: glInt, width: glSizei, height: glSizei, depth: glSizei, commit: glBoolean): void {.glew_lib.}
 proc glClientWaitSync*(GLsync: glSync, flags: glBitfield, timeout: glUint64): glEnum {.glew_lib.}
@@ -7355,13 +7355,13 @@ proc glMultTransposeMatrixdARB*(m: ptr glDouble): void {.glew_lib.}
 proc glMultTransposeMatrixfARB*(m: ptr glFloat): void {.glew_lib.}
 proc glBindBufferBase*(target: glEnum, index: glUint, buffer: glUint): void {.glew_lib.}
 proc glBindBufferRange*(target: glEnum, index: glUint, buffer: glUint, offset: glIntptr, size: glSizeiptr): void {.glew_lib.}
-proc glGetActiveUniformBlockName*(program: glUint, uniformBlockIndex: glUint, bufSize: glSizei, length: ptr glSizei, uniformBlockName: ptr glChar): void {.glew_lib.}
+proc glGetActiveUniformBlockName*(program: glUint, uniformBlockIndex: glUint, bufSize: glSizei, length: ptr glSizei, uniformBlockName: cstring): void {.glew_lib.}
 proc glGetActiveUniformBlockiv*(program: glUint, uniformBlockIndex: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
-proc glGetActiveUniformName*(program: glUint, uniformIndex: glUint, bufSize: glSizei, length: ptr glSizei, uniformName: ptr glChar): void {.glew_lib.}
+proc glGetActiveUniformName*(program: glUint, uniformIndex: glUint, bufSize: glSizei, length: ptr glSizei, uniformName: cstring): void {.glew_lib.}
 proc glGetActiveUniformsiv*(program: glUint, uniformCount: glSizei, uniformIndices: ptr glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glGetIntegeri_v*(target: glEnum, index: glUint, data: ptr glInt): void {.glew_lib.}
-proc glGetUniformBlockIndex*(program: glUint, uniformBlockName: ptr glChar): glUint {.glew_lib.}
-proc glGetUniformIndices*(program: glUint, uniformCount: glSizei, uniformNames: ptr glChar, uniformIndices: ptr glUint): void {.glew_lib.}
+proc glGetUniformBlockIndex*(program: glUint, uniformBlockName: cstring): glUint {.glew_lib.}
+proc glGetUniformIndices*(program: glUint, uniformCount: glSizei, uniformNames: ptr cstring, uniformIndices: ptr glUint): void {.glew_lib.}
 proc glUniformBlockBinding*(program: glUint, uniformBlockIndex: glUint, uniformBlockBinding: glUint): void {.glew_lib.}
 proc glBindVertexArray*(arrai: glUint): void {.glew_lib.}
 proc glDeleteVertexArrays*(n: glSizei, arrays: ptr glUint): void {.glew_lib.}
@@ -7472,9 +7472,9 @@ proc glVertexAttrib4ubvARB*(index: glUint, v: ptr glUbyte): void {.glew_lib.}
 proc glVertexAttrib4uivARB*(index: glUint, v: ptr glUint): void {.glew_lib.}
 proc glVertexAttrib4usvARB*(index: glUint, v: ptr glUshort): void {.glew_lib.}
 proc glVertexAttribPointerARB*(index: glUint, size: glInt, tipe: glEnum, normalized: glBoolean, stride: glSizei, poynter: glVoid): void {.glew_lib.}
-proc glBindAttribLocationARB*(programObj: glHandleARB, index: glUint, name: ptr glCharARB): void {.glew_lib.}
-proc glGetActiveAttribARB*(programObj: glHandleARB, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: ptr glCharARB): void {.glew_lib.}
-proc glGetAttribLocationARB*(programObj: glHandleARB, name: ptr glCharARB): glInt {.glew_lib.}
+proc glBindAttribLocationARB*(programObj: glHandleARB, index: glUint, name: cstring): void {.glew_lib.}
+proc glGetActiveAttribARB*(programObj: glHandleARB, index: glUint, maxLength: glSizei, length: ptr glSizei, size: ptr glInt, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
+proc glGetAttribLocationARB*(programObj: glHandleARB, name: cstring): glInt {.glew_lib.}
 proc glColorP3ui*(tipe: glEnum, color: glUint): void {.glew_lib.}
 proc glColorP3uiv*(tipe: glEnum, color: ptr glUint): void {.glew_lib.}
 proc glColorP4ui*(tipe: glEnum, color: glUint): void {.glew_lib.}
@@ -7635,9 +7635,9 @@ proc glGetUniformOffsetEXT*(program: glUint, location: glInt): glIntptr {.glew_l
 proc glUniformBufferEXT*(program: glUint, location: glInt, buffer: glUint): void {.glew_lib.}
 proc glBlendColorEXT*(red: glClampf, green: glClampf, blue: glClampf, alpha: glClampf): void {.glew_lib.}
 proc glBlendEquationSeparateEXT*(modeRGB: glEnum, modeAlpha: glEnum): void {.glew_lib.}
-proc glBindFragDataLocationIndexedEXT*(program: glUint, colorNumber: glUint, index: glUint, name: ptr glChar): void {.glew_lib.}
-proc glGetFragDataIndexEXT*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
-proc glGetProgramResourceLocationIndexEXT*(program: glUint, programInterface: glEnum, name: ptr glChar): glInt {.glew_lib.}
+proc glBindFragDataLocationIndexedEXT*(program: glUint, colorNumber: glUint, index: glUint, name: cstring): void {.glew_lib.}
+proc glGetFragDataIndexEXT*(program: glUint, name: cstring): glInt {.glew_lib.}
+proc glGetProgramResourceLocationIndexEXT*(program: glUint, programInterface: glEnum, name: cstring): glInt {.glew_lib.}
 proc glBlendFuncSeparateEXT*(sfactorRGB: glEnum, dfactorRGB: glEnum, sfactorAlpha: glEnum, dfactorAlpha: glEnum): void {.glew_lib.}
 proc glBlendEquationEXT*(mode: glEnum): void {.glew_lib.}
 proc glBufferStorageEXT*(target: glEnum, size: glSizeiptr, data: glVoid, flags: glBitfield): void {.glew_lib.}
@@ -7671,11 +7671,11 @@ proc glCopyTexSubImage2DEXT*(target: glEnum, level: glInt, xoffset: glInt, yoffs
 proc glCopyTexSubImage3DEXT*(target: glEnum, level: glInt, xoffset: glInt, yoffset: glInt, zoffset: glInt, x: glInt, y: glInt, width: glSizei, height: glSizei): void {.glew_lib.}
 proc glCullParameterdvEXT*(pname: glEnum, params: ptr glDouble): void {.glew_lib.}
 proc glCullParameterfvEXT*(pname: glEnum, params: ptr glFloat): void {.glew_lib.}
-proc glGetObjectLabelEXT*(tipe: glEnum, obj: glUint, bufSize: glSizei, length: ptr glSizei, label: ptr glChar): void {.glew_lib.}
-proc glLabelObjectEXT*(tipe: glEnum, obj: glUint, length: glSizei, label: ptr glChar): void {.glew_lib.}
-proc glInsertEventMarkerEXT*(length: glSizei, marker: ptr glChar): void {.glew_lib.}
+proc glGetObjectLabelEXT*(tipe: glEnum, obj: glUint, bufSize: glSizei, length: ptr glSizei, label: cstring): void {.glew_lib.}
+proc glLabelObjectEXT*(tipe: glEnum, obj: glUint, length: glSizei, label: cstring): void {.glew_lib.}
+proc glInsertEventMarkerEXT*(length: glSizei, marker: cstring): void {.glew_lib.}
 proc glPopGroupMarkerEXT*(): void {.glew_lib.}
-proc glPushGroupMarkerEXT*(length: glSizei, marker: ptr glChar): void {.glew_lib.}
+proc glPushGroupMarkerEXT*(length: glSizei, marker: cstring): void {.glew_lib.}
 proc glDepthBoundsEXT*(zmin: glClampd, zmax: glClampd): void {.glew_lib.}
 proc glBindMultiTextureEXT*(texunit: glEnum, target: glEnum, texture: glUint): void {.glew_lib.}
 proc glCheckNamedFramebufferStatusEXT*(framebuffer: glUint, target: glEnum): glEnum {.glew_lib.}
@@ -7961,8 +7961,8 @@ proc glFramebufferTextureFaceEXT*(target: glEnum, attachment: glEnum, texture: g
 proc glProgramParameteriEXT*(program: glUint, pname: glEnum, value: glInt): void {.glew_lib.}
 proc glProgramEnvParameters4fvEXT*(target: glEnum, index: glUint, count: glSizei, params: ptr glFloat): void {.glew_lib.}
 proc glProgramLocalParameters4fvEXT*(target: glEnum, index: glUint, count: glSizei, params: ptr glFloat): void {.glew_lib.}
-proc glBindFragDataLocationEXT*(program: glUint, color: glUint, name: ptr glChar): void {.glew_lib.}
-proc glGetFragDataLocationEXT*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
+proc glBindFragDataLocationEXT*(program: glUint, color: glUint, name: cstring): void {.glew_lib.}
+proc glGetFragDataLocationEXT*(program: glUint, name: cstring): glInt {.glew_lib.}
 proc glGetUniformuivEXT*(program: glUint, location: glInt, params: ptr glUint): void {.glew_lib.}
 proc glGetVertexAttribIivEXT*(index: glUint, pname: glEnum, params: ptr glInt): void {.glew_lib.}
 proc glGetVertexAttribIuivEXT*(index: glUint, pname: glEnum, params: ptr glUint): void {.glew_lib.}
@@ -8094,7 +8094,7 @@ proc glImportSemaphoreFdEXT*(semaphore: glUint, handleType: glEnum, fd: glInt): 
 proc glImportSemaphoreWin32HandleEXT*(semaphore: glUint, handleType: glEnum, handle: glVoid): void {.glew_lib.}
 proc glImportSemaphoreWin32NameEXT*(semaphore: glUint, handleType: glEnum, name: glVoid): void {.glew_lib.}
 proc glActiveProgramEXT*(program: glUint): void {.glew_lib.}
-proc glCreateShaderProgramEXT*(tipe: glEnum, stryng: ptr glChar): glUint {.glew_lib.}
+proc glCreateShaderProgramEXT*(tipe: glEnum, stryng: cstring): glUint {.glew_lib.}
 proc glUseShaderProgramEXT*(tipe: glEnum, program: glUint): void {.glew_lib.}
 proc glBindImageTextureEXT*(index: glUint, texture: glUint, level: glInt, layered: glBoolean, layer: glInt, access: glEnum, format: glInt): void {.glew_lib.}
 proc glMemoryBarrierEXT*(barriers: glBitfield): void {.glew_lib.}
@@ -8137,8 +8137,8 @@ proc glBindBufferBaseEXT*(target: glEnum, index: glUint, buffer: glUint): void {
 proc glBindBufferOffsetEXT*(target: glEnum, index: glUint, buffer: glUint, offset: glIntptr): void {.glew_lib.}
 proc glBindBufferRangeEXT*(target: glEnum, index: glUint, buffer: glUint, offset: glIntptr, size: glSizeiptr): void {.glew_lib.}
 proc glEndTransformFeedbackEXT*(): void {.glew_lib.}
-proc glGetTransformFeedbackVaryingEXT*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: ptr glChar): void {.glew_lib.}
-proc glTransformFeedbackVaryingsEXT*(program: glUint, count: glSizei, varyings: ptr glChar , bufferMode: glEnum): void {.glew_lib.}
+proc glGetTransformFeedbackVaryingEXT*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
+proc glTransformFeedbackVaryingsEXT*(program: glUint, count: glSizei, varyings: ptr cstring, bufferMode: glEnum): void {.glew_lib.}
 proc glArrayElementEXT*(i: glInt): void {.glew_lib.}
 proc glColorPointerEXT*(size: glInt, tipe: glEnum, stride: glSizei, count: glSizei, poynter: glVoid): void {.glew_lib.}
 proc glDrawArraysEXT*(mode: glEnum, first: glInt, count: glSizei): void {.glew_lib.}
@@ -8241,22 +8241,22 @@ proc glDeletePerfQueryINTEL*(queryHandle: glUint): void {.glew_lib.}
 proc glEndPerfQueryINTEL*(queryHandle: glUint): void {.glew_lib.}
 proc glGetFirstPerfQueryIdINTEL*(queryId: ptr glUint): void {.glew_lib.}
 proc glGetNextPerfQueryIdINTEL*(queryId: glUint, nextQueryId: ptr glUint): void {.glew_lib.}
-proc glGetPerfCounterInfoINTEL*(queryId: glUint, counterId: glUint, counterNameLength: glUint, counterName: ptr glChar, counterDescLength: glUint, counterDesc: ptr glChar, counterOffset: ptr glUint, counterDataSize: ptr glUint, counterTypeEnum: ptr glUint, counterDataTypeEnum: ptr glUint, rawCounterMaxValue: ptr glUint64): void {.glew_lib.}
+proc glGetPerfCounterInfoINTEL*(queryId: glUint, counterId: glUint, counterNameLength: glUint, counterName: cstring, counterDescLength: glUint, counterDesc: cstring, counterOffset: ptr glUint, counterDataSize: ptr glUint, counterTypeEnum: ptr glUint, counterDataTypeEnum: ptr glUint, rawCounterMaxValue: ptr glUint64): void {.glew_lib.}
 proc glGetPerfQueryDataINTEL*(queryHandle: glUint, flags: glUint, dataSize: glSizei, data: glVoid, bytesWritten: ptr glUint): void {.glew_lib.}
-proc glGetPerfQueryIdByNameINTEL*(queryName: ptr glChar, queryId: ptr glUint): void {.glew_lib.}
-proc glGetPerfQueryInfoINTEL*(queryId: glUint, queryNameLength: glUint, queryName: ptr glChar, dataSize: ptr glUint, noCounters: ptr glUint, noInstances: ptr glUint, capsMask: ptr glUint): void {.glew_lib.}
+proc glGetPerfQueryIdByNameINTEL*(queryName: cstring, queryId: ptr glUint): void {.glew_lib.}
+proc glGetPerfQueryInfoINTEL*(queryId: glUint, queryNameLength: glUint, queryName: cstring, dataSize: ptr glUint, noCounters: ptr glUint, noInstances: ptr glUint, capsMask: ptr glUint): void {.glew_lib.}
 proc glTexScissorFuncINTEL*(target: glEnum, lfunc: glEnum, hfunc: glEnum): void {.glew_lib.}
 proc glTexScissorINTEL*(target: glEnum, tlow: glClampf, thigh: glClampf): void {.glew_lib.}
 proc glBlendBarrierKHR*(): void {.glew_lib.}
 proc glDebugMessageControl*(source: glEnum, tipe: glEnum, severity: glEnum, count: glSizei, ids: ptr glUint, enabled: glBoolean): void {.glew_lib.}
-proc glDebugMessageInsert*(source: glEnum, tipe: glEnum, id: glUint, severity: glEnum, length: glSizei, buf: ptr glChar): void {.glew_lib.}
-proc glGetDebugMessageLog*(count: glUint, bufSize: glSizei, sources: ptr glEnum, types: ptr glEnum, ids: ptr glUint, severities: ptr glEnum, lengths: ptr glSizei, messageLog: ptr glChar): glUint {.glew_lib.}
-proc glGetObjectLabel*(identifier: glEnum, name: glUint, bufSize: glSizei, length: ptr glSizei, label: ptr glChar): void {.glew_lib.}
-proc glGetObjectPtrLabel*(poiinter: glVoid, bufSize: glSizei, length: ptr glSizei, label: ptr glChar): void {.glew_lib.}
-proc glObjectLabel*(identifier: glEnum, name: glUint, length: glSizei, label: ptr glChar): void {.glew_lib.}
-proc glObjectPtrLabel*(poiinter: glVoid, length: glSizei, label: ptr glChar): void {.glew_lib.}
+proc glDebugMessageInsert*(source: glEnum, tipe: glEnum, id: glUint, severity: glEnum, length: glSizei, buf: cstring): void {.glew_lib.}
+proc glGetDebugMessageLog*(count: glUint, bufSize: glSizei, sources: ptr glEnum, types: ptr glEnum, ids: ptr glUint, severities: ptr glEnum, lengths: ptr glSizei, messageLog: cstring): glUint {.glew_lib.}
+proc glGetObjectLabel*(identifier: glEnum, name: glUint, bufSize: glSizei, length: ptr glSizei, label: cstring): void {.glew_lib.}
+proc glGetObjectPtrLabel*(poiinter: glVoid, bufSize: glSizei, length: ptr glSizei, label: cstring): void {.glew_lib.}
+proc glObjectLabel*(identifier: glEnum, name: glUint, length: glSizei, label: cstring): void {.glew_lib.}
+proc glObjectPtrLabel*(poiinter: glVoid, length: glSizei, label: cstring): void {.glew_lib.}
 proc glPopDebugGroup*(): void {.glew_lib.}
-proc glPushDebugGroup*(source: glEnum, id: glUint, length: glSizei, message: ptr glChar): void {.glew_lib.}
+proc glPushDebugGroup*(source: glEnum, id: glUint, length: glSizei, message: cstring): void {.glew_lib.}
 proc glMaxShaderCompilerThreadsKHR*(count: glUint): void {.glew_lib.}
 proc glGetnUniformfv*(program: glUint, location: glInt, bufSize: glSizei, params: ptr glFloat): void {.glew_lib.}
 proc glGetnUniformiv*(program: glUint, location: glInt, bufSize: glSizei, params: ptr glInt): void {.glew_lib.}
@@ -8623,15 +8623,15 @@ proc glTextureImage2DMultisampleCoverageNV*(texture: glUint, target: glEnum, cov
 proc glTextureImage2DMultisampleNV*(texture: glUint, target: glEnum, samples: glSizei, internalFormat: glInt, width: glSizei, height: glSizei, fixedSampleLocations: glBoolean): void {.glew_lib.}
 proc glTextureImage3DMultisampleCoverageNV*(texture: glUint, target: glEnum, coverageSamples: glSizei, colorSamples: glSizei, internalFormat: glInt, width: glSizei, height: glSizei, depth: glSizei, fixedSampleLocations: glBoolean): void {.glew_lib.}
 proc glTextureImage3DMultisampleNV*(texture: glUint, target: glEnum, samples: glSizei, internalFormat: glInt, width: glSizei, height: glSizei, depth: glSizei, fixedSampleLocations: glBoolean): void {.glew_lib.}
-proc glActiveVaryingNV*(program: glUint, name: ptr glChar): void {.glew_lib.}
+proc glActiveVaryingNV*(program: glUint, name: cstring): void {.glew_lib.}
 proc glBeginTransformFeedbackNV*(primitiveMode: glEnum): void {.glew_lib.}
 proc glBindBufferBaseNV*(target: glEnum, index: glUint, buffer: glUint): void {.glew_lib.}
 proc glBindBufferOffsetNV*(target: glEnum, index: glUint, buffer: glUint, offset: glIntptr): void {.glew_lib.}
 proc glBindBufferRangeNV*(target: glEnum, index: glUint, buffer: glUint, offset: glIntptr, size: glSizeiptr): void {.glew_lib.}
 proc glEndTransformFeedbackNV*(): void {.glew_lib.}
-proc glGetActiveVaryingNV*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: ptr glChar): void {.glew_lib.}
+proc glGetActiveVaryingNV*(program: glUint, index: glUint, bufSize: glSizei, length: ptr glSizei, size: ptr glSizei, tipe: ptr glEnum, name: cstring): void {.glew_lib.}
 proc glGetTransformFeedbackVaryingNV*(program: glUint, index: glUint, location: ptr glInt): void {.glew_lib.}
-proc glGetVaryingLocationNV*(program: glUint, name: ptr glChar): glInt {.glew_lib.}
+proc glGetVaryingLocationNV*(program: glUint, name: cstring): glInt {.glew_lib.}
 proc glTransformFeedbackAttribsNV*(count: glUint, attribs: ptr glInt, bufferMode: glEnum): void {.glew_lib.}
 proc glTransformFeedbackVaryingsNV*(program: glUint, count: glSizei, locations: ptr glInt, bufferMode: glEnum): void {.glew_lib.}
 proc glBindTransformFeedbackNV*(target: glEnum, id: glUint): void {.glew_lib.}
@@ -8778,7 +8778,7 @@ proc glFramebufferTextureMultisampleMultiviewOVR*(target: glEnum, attachment: gl
 proc glAlphaFuncQCOM*(fun: glEnum, reff: glClampf): void {.glew_lib.}
 proc glDisableDriverControlQCOM*(driverControl: glUint): void {.glew_lib.}
 proc glEnableDriverControlQCOM*(driverControl: glUint): void {.glew_lib.}
-proc glGetDriverControlStringQCOM*(driverControl: glUint, bufSize: glSizei, length: ptr glSizei, driverControlString: ptr glChar): void {.glew_lib.}
+proc glGetDriverControlStringQCOM*(driverControl: glUint, bufSize: glSizei, length: ptr glSizei, driverControlString: cstring): void {.glew_lib.}
 proc glGetDriverControlsQCOM*(num: ptr glInt, size: glSizei, driverControls: ptr glUint): void {.glew_lib.}
 proc glExtGetBufferPointervQCOM*(target: glEnum, params: ptr void): void {.glew_lib.}
 proc glExtGetBuffersQCOM*(buffers: ptr glUint, maxBuffers: glInt, numBuffers: ptr glInt): void {.glew_lib.}
@@ -8788,7 +8788,7 @@ proc glExtGetTexLevelParameterivQCOM*(texture: glUint, face: glEnum, level: glIn
 proc glExtGetTexSubImageQCOM*(target: glEnum, level: glInt, xoffset: glInt, yoffset: glInt, zoffset: glInt, width: glSizei, height: glSizei, depth: glSizei, format: glEnum, tipe: glEnum, texels: glVoid): void {.glew_lib.}
 proc glExtGetTexturesQCOM*(textures: ptr glUint, maxTextures: glInt, numTextures: ptr glInt): void {.glew_lib.}
 proc glExtTexObjectStateOverrideiQCOM*(target: glEnum, pname: glEnum, param: glInt): void {.glew_lib.}
-proc glExtGetProgramBinarySourceQCOM*(program: glUint, shadertype: glEnum, source: ptr glChar, length: ptr glInt): void {.glew_lib.}
+proc glExtGetProgramBinarySourceQCOM*(program: glUint, shadertype: glEnum, source: cstring, length: ptr glInt): void {.glew_lib.}
 proc glExtGetProgramsQCOM*(programs: ptr glUint, maxPrograms: glInt, numPrograms: ptr glInt): void {.glew_lib.}
 proc glExtGetShadersQCOM*(shaders: ptr glUint, maxShaders: glInt, numShaders: ptr glInt): void {.glew_lib.}
 proc glExtIsProgramBinaryQCOM*(program: glUint): glBoolean {.glew_lib.}
@@ -8841,10 +8841,10 @@ proc glPointParameterx*(pname: glEnum, param: glFixed): void {.glew_lib.}
 proc glPointParameterxv*(pname: glEnum, params: ptr glFixed): void {.glew_lib.}
 proc glPointSizePointerOES*(tipe: glEnum, stride: glSizei, poynter: glVoid): void {.glew_lib.}
 proc glTexParameterxv*(target: glEnum, pname: glEnum, params: ptr glFixed): void {.glew_lib.}
-proc glErrorStringREGAL*(error: glEnum): ptr glChar {.glew_lib.}
-proc glGetExtensionREGAL*(ext: ptr glChar): glBoolean {.glew_lib.}
-proc glIsSupportedREGAL*(ext: ptr glChar): glBoolean {.glew_lib.}
-proc glGetProcAddressREGAL*(name: ptr glChar): void {.glew_lib.}
+proc glErrorStringREGAL*(error: glEnum): cstring {.glew_lib.}
+proc glGetExtensionREGAL*(ext: cstring): glBoolean {.glew_lib.}
+proc glIsSupportedREGAL*(ext: cstring): glBoolean {.glew_lib.}
+proc glGetProcAddressREGAL*(name: cstring): void {.glew_lib.}
 proc glDetailTexFuncSGIS*(target: glEnum, n: glSizei, points: ptr glFloat): void {.glew_lib.}
 proc glGetDetailTexFuncSGIS*(target: glEnum, points: ptr glFloat): void {.glew_lib.}
 proc glFogFuncSGIS*(n: glSizei, points: ptr glFloat): void {.glew_lib.}

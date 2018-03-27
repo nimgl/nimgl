@@ -117,7 +117,7 @@ void main() {
   gl_Position = vec4(aPos, 1.0) * uMVP;
 }
   """
-  glShaderSource(vertex, 1'i32, vsrc.addr, nil)
+  glShaderSource(vertex, 1, vsrc.addr, nil)
   glCompileShader(vertex)
   statusShader(vertex)
 
@@ -151,8 +151,8 @@ void main() {
     echo toString(message)
 
   let
-    uColor = glGetUniformLocation(program, "uColor".cstring)
-    uMVP   = glGetUniformLocation(program, "uMVP".cstring)
+    uColor = glGetUniformLocation(program, "uColor")
+    uMVP   = glGetUniformLocation(program, "uMVP")
   var
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
