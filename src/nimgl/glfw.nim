@@ -485,7 +485,7 @@ type
 
 converter toBool*(x: cint): bool = x != 0
 
-proc createWindow*(width: cint, height: cint, title: cstring, monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
+proc createWindow*(width: cint, height: cint, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.

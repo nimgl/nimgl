@@ -15,7 +15,7 @@ proc main =
   windowHint whDecorated          , glfwTrue
   windowHint whRefreshRate        , glfwDontCare
 
-  var w = createWindow(800, 600, "tglfw")
+  var w = createWindow(800, 600)
   assert w != nil
   
   w.makeContextCurrent

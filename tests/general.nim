@@ -7,14 +7,7 @@
 ]#
 
 import 
-  nimgl/[imgui, glfw, math, opengl],
-  system
-
-type
-  KeysArray = array[-1 .. ord(Key.keyLast), bool]
-
-var
-  keys: KeysArray
+  nimgl/[imgui, glfw, math, opengl]
 
 converter toString(chars: seq[cchar]): string =
   result = ""
@@ -24,7 +17,6 @@ converter toString(chars: seq[cchar]): string =
 
 proc keyProc(window: Window, key: Key, scancode: cint,
             action: KeyAction, mods: KeyMod): void {.cdecl.} =
-  keys[key.ord] = action != kaRelease
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
   if key == keySpace:
@@ -53,7 +45,7 @@ proc main =
   windowHint whDecorated          , glfwTrue
   windowHint whRefreshRate        , glfwDontCare
 
-  var w: Window = createWindow(1280, 720, "NimGL", nil, nil)
+  var w: Window = createWindow(1280, 720)
   assert w != nil
 
   w.setKeyCallback(keyProc)

@@ -16,9 +16,10 @@ folder to automaticly check the stability.
 As this is a graphics library it needs some specific hardware that most of the
 computers have but cannot test on some CI servers.
 
-| file | purpose | CI |
-|:----:|---------|:--:|
-|tglfw | Check that glfw is initialized correctly and that a window opens | No |
-|tmath | Check that the math library gives correct values and works properly | Yes |
+| file  | purpose | CI |
+|:-----:|---------|:--:|
+|tglfw  | glfw is initialized correctly and that a window opens | No |
+|tmath  | math library gives correct values and works properly | Yes |
+|topengl| opengl bindings work and give correct data | No |
 
 More to come...

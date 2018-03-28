@@ -47,3 +47,51 @@ Thank you so much :D
 | [OpenGL](src/nimgl/opengl.nim) | Bindings to GLEW. GLEW is a cross-platform open-source extension loading library |
 | [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl |
 | [ImGUI](src/nimgl/imgui.nim) | Bloat-free graphical user interface library |
+
+#### How it Looks?
+
+An example that spawns a green window
+
+```nim
+import 
+  nimgl/[glfw, math, opengl]
+
+proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+  if key == keyESCAPE and action == kaPress:
+    window.setWindowShouldClose(true)
+
+proc main =
+  # GLFW
+  assert glfw.init()
+
+  windowHint whContextVersionMajor, 4
+  windowHint whContextVersionMinor, 1
+  windowHint whOpenglForwardCompat, glfwTRUE
+  windowHint whOpenglProfile      , glfwOpenglCoreProfile
+  windowHint whResizable          , glfwFalse
+
+  var w: Window = createWindow(800, 600, "NimGL")
+  assert w != nil
+
+  w.setKeyCallback(keyProc)
+  w.makeContextCurrent
+
+  # Glew / Opengl
+  assert opengl.init() == GLEW_OK
+
+  var
+    bg = vec(50f, 205f, 50f).rgb
+
+  while not w.windowShouldClose:
+    glClearColor(bg.r, bg.g, bg.b, 1f)
+    glClear(GL_COLOR_BUFFER_BIT)
+
+    w.swapBuffers
+    glfw.pollEvents()
+
+  w.destroyWindow
+
+  glfw.terminate()
+
+main()
+```
