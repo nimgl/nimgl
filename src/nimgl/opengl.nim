@@ -36,8 +36,8 @@ else:
   {.pragma: glew_lib, cdecl, header: "<glew.h>".}
 
 type
-  GLenum   = uint32
-  GLenum64 = uint64
+  GLenum*   = uint32
+  GLenum64* = uint64
 
 # Constants
 const
@@ -6029,2935 +6029,2935 @@ const
 
 # Procedures
 proc init*(): uint32 {.glew_lib, importc: "glewInit".}
-proc glAccum*(op: GLenum, value: float32): void {.glew_lib.}
-proc glAlphaFunc*(fun: GLenum, reff: float32): void {.glew_lib.}
-proc glAreTexturesResident*(n: int32, textures: ptr uint32, residences: ptr bool): bool {.glew_lib.}
-proc glArrayElement*(i: int32): void {.glew_lib.}
-proc glBegin*(mode: GLenum): void {.glew_lib.}
-proc glBindTexture*(target: GLenum, texture: uint32): void {.glew_lib.}
-proc glBitmap*(width: int32, height: int32, xorig: float32, yorig: float32, xmove: float32, ymove: float32, bitmap: ptr uint8): void {.glew_lib.}
-proc glBlendFunc*(sfactor: GLenum, dfactor: GLenum): void {.glew_lib.}
-proc glCallList*(list: uint32): void {.glew_lib.}
-proc glCallLists*(n: int32, tipe: GLenum, lists: pointer): void {.glew_lib.}
-proc glClear*(mask: uint32): void {.glew_lib.}
-proc glClearAccum*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib.}
-proc glClearColor*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib.}
-proc glClearDepth*(depth: float64): void {.glew_lib.}
-proc glClearIndex*(c: float32): void {.glew_lib.}
-proc glClearStencil*(s: int32): void {.glew_lib.}
-proc glClipPlane*(plane: GLenum, equation: ptr float64): void {.glew_lib.}
-proc glColor3b*(red: int8, green: int8, blue: int8): void {.glew_lib.}
-proc glColor3bv*(v: ptr int8): void {.glew_lib.}
-proc glColor3d*(red: float64, green: float64, blue: float64): void {.glew_lib.}
-proc glColor3dv*(v: ptr float64): void {.glew_lib.}
-proc glColor3f*(red: float32, green: float32, blue: float32): void {.glew_lib.}
-proc glColor3fv*(v: ptr float32): void {.glew_lib.}
-proc glColor3i*(red: int32, green: int32, blue: int32): void {.glew_lib.}
-proc glColor3iv*(v: ptr int32): void {.glew_lib.}
-proc glColor3s*(red: int16, green: int16, blue: int16): void {.glew_lib.}
-proc glColor3sv*(v: ptr int16): void {.glew_lib.}
-proc glColor3ub*(red: uint8, green: uint8, blue: uint8): void {.glew_lib.}
-proc glColor3ubv*(v: ptr uint8): void {.glew_lib.}
-proc glColor3ui*(red: uint32, green: uint32, blue: uint32): void {.glew_lib.}
-proc glColor3uiv*(v: ptr uint32): void {.glew_lib.}
-proc glColor3us*(red: uint16, green: uint16, blue: uint16): void {.glew_lib.}
-proc glColor3usv*(v: ptr uint16): void {.glew_lib.}
-proc glColor4b*(red: int8, green: int8, blue: int8, alpha: int8): void {.glew_lib.}
-proc glColor4bv*(v: ptr int8): void {.glew_lib.}
-proc glColor4d*(red: float64, green: float64, blue: float64, alpha: float64): void {.glew_lib.}
-proc glColor4dv*(v: ptr float64): void {.glew_lib.}
-proc glColor4f*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib.}
-proc glColor4fv*(v: ptr float32): void {.glew_lib.}
-proc glColor4i*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib.}
-proc glColor4iv*(v: ptr int32): void {.glew_lib.}
-proc glColor4s*(red: int16, green: int16, blue: int16, alpha: int16): void {.glew_lib.}
-proc glColor4sv*(v: ptr int16): void {.glew_lib.}
-proc glColor4ub*(red: uint8, green: uint8, blue: uint8, alpha: uint8): void {.glew_lib.}
-proc glColor4ubv*(v: ptr uint8): void {.glew_lib.}
-proc glColor4ui*(red: uint32, green: uint32, blue: uint32, alpha: uint32): void {.glew_lib.}
-proc glColor4uiv*(v: ptr uint32): void {.glew_lib.}
-proc glColor4us*(red: uint16, green: uint16, blue: uint16, alpha: uint16): void {.glew_lib.}
-proc glColor4usv*(v: ptr uint16): void {.glew_lib.}
-proc glColorMask*(red: bool, green: bool, blue: bool, alpha: bool): void {.glew_lib.}
-proc glColorMaterial*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glColorPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glCopyPixels*(x: int32, y: int32, width: int32, height: int32, tipe: GLenum): void {.glew_lib.}
-proc glCopyTexImage1D*(target: GLenum, level: int32, internalFormat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib.}
-proc glCopyTexImage2D*(target: GLenum, level: int32, internalFormat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib.}
-proc glCopyTexSubImage1D*(target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyTexSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCullFace*(mode: GLenum): void {.glew_lib.}
-proc glDeleteLists*(list: uint32, rangee: int32): void {.glew_lib.}
-proc glDeleteTextures*(n: int32, textures: ptr uint32): void {.glew_lib.}
-proc glDepthFunc*(fun: GLenum): void {.glew_lib.}
-proc glDepthMask*(flag: bool): void {.glew_lib.}
-proc glDepthRange*(zNear: float64, zFar: float64): void {.glew_lib.}
-proc glDisable*(cap: GLenum): void {.glew_lib.}
-proc glDisableClientState*(arrai: GLenum): void {.glew_lib.}
-proc glDrawArrays*(mode: GLenum, first: int32, count: int32): void {.glew_lib.}
-proc glDrawBuffer*(mode: GLenum): void {.glew_lib.}
-proc glDrawElements*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib.}
-proc glDrawPixels*(width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glEdgeFlag*(flag: bool): void {.glew_lib.}
-proc glEdgeFlagPointer*(stride: int32, poynter: pointer): void {.glew_lib.}
-proc glEdgeFlagv*(flag: ptr bool): void {.glew_lib.}
-proc glEnable*(cap: GLenum): void {.glew_lib.}
-proc glEnableClientState*(arrai: GLenum): void {.glew_lib.}
+proc accum*(op: GLenum, value: float32): void {.glew_lib, importc: "glAccum".}
+proc alphaFunc*(fun: GLenum, reff: float32): void {.glew_lib, importc: "glAlphaFunc".}
+proc areTexturesResident*(n: int32, textures: ptr uint32, residences: ptr bool): bool {.glew_lib, importc: "glAreTexturesResident".}
+proc arrayElement*(i: int32): void {.glew_lib, importc: "glArrayElement".}
+proc begin*(mode: GLenum): void {.glew_lib, importc: "glBegin".}
+proc bindTexture*(target: GLenum, texture: uint32): void {.glew_lib, importc: "glBindTexture".}
+proc bitmap*(width: int32, height: int32, xorig: float32, yorig: float32, xmove: float32, ymove: float32, bitmap: ptr uint8): void {.glew_lib, importc: "glBitmap".}
+proc blendFunc*(sfactor: GLenum, dfactor: GLenum): void {.glew_lib, importc: "glBlendFunc".}
+proc callList*(list: uint32): void {.glew_lib, importc: "glCallList".}
+proc callLists*(n: int32, tipe: GLenum, lists: pointer): void {.glew_lib, importc: "glCallLists".}
+proc clear*(mask: uint32): void {.glew_lib, importc: "glClear".}
+proc clearAccum*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib, importc: "glClearAccum".}
+proc clearColor*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib, importc: "glClearColor".}
+proc clearDepth*(depth: float64): void {.glew_lib, importc: "glClearDepth".}
+proc clearIndex*(c: float32): void {.glew_lib, importc: "glClearIndex".}
+proc clearStencil*(s: int32): void {.glew_lib, importc: "glClearStencil".}
+proc clipPlane*(plane: GLenum, equation: ptr float64): void {.glew_lib, importc: "glClipPlane".}
+proc color3b*(red: int8, green: int8, blue: int8): void {.glew_lib, importc: "glColor3b".}
+proc color3bv*(v: ptr int8): void {.glew_lib, importc: "glColor3bv".}
+proc color3d*(red: float64, green: float64, blue: float64): void {.glew_lib, importc: "glColor3d".}
+proc color3dv*(v: ptr float64): void {.glew_lib, importc: "glColor3dv".}
+proc color3f*(red: float32, green: float32, blue: float32): void {.glew_lib, importc: "glColor3f".}
+proc color3fv*(v: ptr float32): void {.glew_lib, importc: "glColor3fv".}
+proc color3i*(red: int32, green: int32, blue: int32): void {.glew_lib, importc: "glColor3i".}
+proc color3iv*(v: ptr int32): void {.glew_lib, importc: "glColor3iv".}
+proc color3s*(red: int16, green: int16, blue: int16): void {.glew_lib, importc: "glColor3s".}
+proc color3sv*(v: ptr int16): void {.glew_lib, importc: "glColor3sv".}
+proc color3ub*(red: uint8, green: uint8, blue: uint8): void {.glew_lib, importc: "glColor3ub".}
+proc color3ubv*(v: ptr uint8): void {.glew_lib, importc: "glColor3ubv".}
+proc color3ui*(red: uint32, green: uint32, blue: uint32): void {.glew_lib, importc: "glColor3ui".}
+proc color3uiv*(v: ptr uint32): void {.glew_lib, importc: "glColor3uiv".}
+proc color3us*(red: uint16, green: uint16, blue: uint16): void {.glew_lib, importc: "glColor3us".}
+proc color3usv*(v: ptr uint16): void {.glew_lib, importc: "glColor3usv".}
+proc color4b*(red: int8, green: int8, blue: int8, alpha: int8): void {.glew_lib, importc: "glColor4b".}
+proc color4bv*(v: ptr int8): void {.glew_lib, importc: "glColor4bv".}
+proc color4d*(red: float64, green: float64, blue: float64, alpha: float64): void {.glew_lib, importc: "glColor4d".}
+proc color4dv*(v: ptr float64): void {.glew_lib, importc: "glColor4dv".}
+proc color4f*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib, importc: "glColor4f".}
+proc color4fv*(v: ptr float32): void {.glew_lib, importc: "glColor4fv".}
+proc color4i*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib, importc: "glColor4i".}
+proc color4iv*(v: ptr int32): void {.glew_lib, importc: "glColor4iv".}
+proc color4s*(red: int16, green: int16, blue: int16, alpha: int16): void {.glew_lib, importc: "glColor4s".}
+proc color4sv*(v: ptr int16): void {.glew_lib, importc: "glColor4sv".}
+proc color4ub*(red: uint8, green: uint8, blue: uint8, alpha: uint8): void {.glew_lib, importc: "glColor4ub".}
+proc color4ubv*(v: ptr uint8): void {.glew_lib, importc: "glColor4ubv".}
+proc color4ui*(red: uint32, green: uint32, blue: uint32, alpha: uint32): void {.glew_lib, importc: "glColor4ui".}
+proc color4uiv*(v: ptr uint32): void {.glew_lib, importc: "glColor4uiv".}
+proc color4us*(red: uint16, green: uint16, blue: uint16, alpha: uint16): void {.glew_lib, importc: "glColor4us".}
+proc color4usv*(v: ptr uint16): void {.glew_lib, importc: "glColor4usv".}
+proc colorMask*(red: bool, green: bool, blue: bool, alpha: bool): void {.glew_lib, importc: "glColorMask".}
+proc colorMaterial*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glColorMaterial".}
+proc colorPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glColorPointer".}
+proc copyPixels*(x: int32, y: int32, width: int32, height: int32, tipe: GLenum): void {.glew_lib, importc: "glCopyPixels".}
+proc copyTexImage1D*(target: GLenum, level: int32, internalFormat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib, importc: "glCopyTexImage1D".}
+proc copyTexImage2D*(target: GLenum, level: int32, internalFormat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib, importc: "glCopyTexImage2D".}
+proc copyTexSubImage1D*(target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyTexSubImage1D".}
+proc copyTexSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTexSubImage2D".}
+proc cullFace*(mode: GLenum): void {.glew_lib, importc: "glCullFace".}
+proc deleteLists*(list: uint32, rangee: int32): void {.glew_lib, importc: "glDeleteLists".}
+proc deleteTextures*(n: int32, textures: ptr uint32): void {.glew_lib, importc: "glDeleteTextures".}
+proc depthFunc*(fun: GLenum): void {.glew_lib, importc: "glDepthFunc".}
+proc depthMask*(flag: bool): void {.glew_lib, importc: "glDepthMask".}
+proc depthRange*(zNear: float64, zFar: float64): void {.glew_lib, importc: "glDepthRange".}
+proc disable*(cap: GLenum): void {.glew_lib, importc: "glDisable".}
+proc disableClientState*(arrai: GLenum): void {.glew_lib, importc: "glDisableClientState".}
+proc drawArrays*(mode: GLenum, first: int32, count: int32): void {.glew_lib, importc: "glDrawArrays".}
+proc drawBuffer*(mode: GLenum): void {.glew_lib, importc: "glDrawBuffer".}
+proc drawElements*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib, importc: "glDrawElements".}
+proc drawPixels*(width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glDrawPixels".}
+proc edgeFlag*(flag: bool): void {.glew_lib, importc: "glEdgeFlag".}
+proc edgeFlagPointer*(stride: int32, poynter: pointer): void {.glew_lib, importc: "glEdgeFlagPointer".}
+proc edgeFlagv*(flag: ptr bool): void {.glew_lib, importc: "glEdgeFlagv".}
+proc enable*(cap: GLenum): void {.glew_lib, importc: "glEnable".}
+proc enableClientState*(arrai: GLenum): void {.glew_lib, importc: "glEnableClientState".}
 proc glEnd*(): void {.glew_lib.}
-proc glEndList*(): void {.glew_lib.}
-proc glEvalCoord1d*(u: float64): void {.glew_lib.}
-proc glEvalCoord1dv*(u: ptr float64): void {.glew_lib.}
-proc glEvalCoord1f*(u: float32): void {.glew_lib.}
-proc glEvalCoord1fv*(u: ptr float32): void {.glew_lib.}
-proc glEvalCoord2d*(u: float64, v: float64): void {.glew_lib.}
-proc glEvalCoord2dv*(u: ptr float64): void {.glew_lib.}
-proc glEvalCoord2f*(u: float32, v: float32): void {.glew_lib.}
-proc glEvalCoord2fv*(u: ptr float32): void {.glew_lib.}
-proc glEvalMesh1*(mode: GLenum, i1: int32, i2: int32): void {.glew_lib.}
-proc glEvalMesh2*(mode: GLenum, i1: int32, i2: int32, j1: int32, j2: int32): void {.glew_lib.}
-proc glEvalPoint1*(i: int32): void {.glew_lib.}
-proc glEvalPoint2*(i: int32, j: int32): void {.glew_lib.}
-proc glFeedbackBuffer*(size: int32, tipe: GLenum, buffer: ptr float32): void {.glew_lib.}
-proc glFinish*(): void {.glew_lib.}
-proc glFlush*(): void {.glew_lib.}
-proc glFogf*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glFogfv*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFogi*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glFogiv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFrontFace*(mode: GLenum): void {.glew_lib.}
-proc glFrustum*(left: float64, right: float64, bottom: float64, top: float64, zNear: float64, zFar: float64): void {.glew_lib.}
-proc glGenLists*(rangee: int32): uint32 {.glew_lib.}
-proc glGenTextures*(n: int32, textures: ptr uint32): void {.glew_lib.}
-proc glGetBooleanv*(pname: GLenum, params: ptr bool): void {.glew_lib.}
-proc glGetClipPlane*(plane: GLenum, equation: ptr float64): void {.glew_lib.}
-proc glGetDoublev*(pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetError*(): GLenum {.glew_lib.}
-proc glGetFloatv*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetIntegerv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetLightfv*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetLightiv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMapdv*(target: GLenum, query: GLenum, v: ptr float64): void {.glew_lib.}
-proc glGetMapfv*(target: GLenum, query: GLenum, v: ptr float32): void {.glew_lib.}
-proc glGetMapiv*(target: GLenum, query: GLenum, v: ptr int32): void {.glew_lib.}
-proc glGetMaterialfv*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMaterialiv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetPixelMapfv*(map: GLenum, values: ptr float32): void {.glew_lib.}
-proc glGetPixelMapuiv*(map: GLenum, values: ptr uint32): void {.glew_lib.}
-proc glGetPixelMapusv*(map: GLenum, values: ptr uint16): void {.glew_lib.}
-proc glGetPointerv*(pname: GLenum, params: ptr void): void {.glew_lib.}
-proc glGetPolygonStipple*(mask: ptr uint8): void {.glew_lib.}
-proc glGetString*(name: GLenum): ptr uint8 {.glew_lib.}
-proc glGetTexEnvfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTexEnviv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexGendv*(coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetTexGenfv*(coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTexGeniv*(coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexImage*(target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glGetTexLevelParameterfv*(target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTexLevelParameteriv*(target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTexParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glHint*(target: GLenum, mode: GLenum): void {.glew_lib.}
-proc glIndexMask*(mask: uint32): void {.glew_lib.}
-proc glIndexPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glIndexd*(c: float64): void {.glew_lib.}
-proc glIndexdv*(c: ptr float64): void {.glew_lib.}
-proc glIndexf*(c: float32): void {.glew_lib.}
-proc glIndexfv*(c: ptr float32): void {.glew_lib.}
-proc glIndexi*(c: int32): void {.glew_lib.}
-proc glIndexiv*(c: ptr int32): void {.glew_lib.}
-proc glIndexs*(c: int16): void {.glew_lib.}
-proc glIndexsv*(c: ptr int16): void {.glew_lib.}
-proc glIndexub*(c: uint8): void {.glew_lib.}
-proc glIndexubv*(c: ptr uint8): void {.glew_lib.}
-proc glInitNames*(): void {.glew_lib.}
-proc glInterleavedArrays*(format: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glIsEnabled*(cap: GLenum): bool {.glew_lib.}
-proc glIsList*(list: uint32): bool {.glew_lib.}
-proc glIsTexture*(texture: uint32): bool {.glew_lib.}
-proc glLightModelf*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glLightModelfv*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glLightModeli*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glLightModeliv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glLightf*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glLightfv*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glLighti*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glLightiv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glLineStipple*(factor: int32, pattern: uint16): void {.glew_lib.}
-proc glLineWidth*(width: float32): void {.glew_lib.}
-proc glListBase*(base: uint32): void {.glew_lib.}
-proc glLoadIdentity*(): void {.glew_lib.}
-proc glLoadMatrixd*(m: ptr float64): void {.glew_lib.}
-proc glLoadMatrixf*(m: ptr float32): void {.glew_lib.}
-proc glLoadName*(name: uint32): void {.glew_lib.}
-proc glLogicOp*(opcode: GLenum): void {.glew_lib.}
-proc glMap1d*(target: GLenum, u1: float64, u2: float64, stride: int32, order: int32, points: ptr float64): void {.glew_lib.}
-proc glMap1f*(target: GLenum, u1: float32, u2: float32, stride: int32, order: int32, points: ptr float32): void {.glew_lib.}
-proc glMap2d*(target: GLenum, u1: float64, u2: float64, ustride: int32, uorder: int32, v1: float64, v2: float64, vstride: int32, vorder: int32, points: ptr float64): void {.glew_lib.}
-proc glMap2f*(target: GLenum, u1: float32, u2: float32, ustride: int32, uorder: int32, v1: float32, v2: float32, vstride: int32, vorder: int32, points: ptr float32): void {.glew_lib.}
-proc glMapGrid1d*(un: int32, u1: float64, u2: float64): void {.glew_lib.}
-proc glMapGrid1f*(un: int32, u1: float32, u2: float32): void {.glew_lib.}
-proc glMapGrid2d*(un: int32, u1: float64, u2: float64, vn: int32, v1: float64, v2: float64): void {.glew_lib.}
-proc glMapGrid2f*(un: int32, u1: float32, u2: float32, vn: int32, v1: float32, v2: float32): void {.glew_lib.}
-proc glMaterialf*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glMaterialfv*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glMateriali*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMaterialiv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMatrixMode*(mode: GLenum): void {.glew_lib.}
-proc glMultMatrixd*(m: ptr float64): void {.glew_lib.}
-proc glMultMatrixf*(m: ptr float32): void {.glew_lib.}
-proc glNewList*(list: uint32, mode: GLenum): void {.glew_lib.}
-proc glNormal3b*(nx: int8, ny: int8, nz: int8): void {.glew_lib.}
-proc glNormal3bv*(v: ptr int8): void {.glew_lib.}
-proc glNormal3d*(nx: float64, ny: float64, nz: float64): void {.glew_lib.}
-proc glNormal3dv*(v: ptr float64): void {.glew_lib.}
-proc glNormal3f*(nx: float32, ny: float32, nz: float32): void {.glew_lib.}
-proc glNormal3fv*(v: ptr float32): void {.glew_lib.}
-proc glNormal3i*(nx: int32, ny: int32, nz: int32): void {.glew_lib.}
-proc glNormal3iv*(v: ptr int32): void {.glew_lib.}
-proc glNormal3s*(nx: int16, ny: int16, nz: int16): void {.glew_lib.}
-proc glNormal3sv*(v: ptr int16): void {.glew_lib.}
-proc glNormalPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glOrtho*(left: float64, right: float64, bottom: float64, top: float64, zNear: float64, zFar: float64): void {.glew_lib.}
-proc glPassThrough*(token: float32): void {.glew_lib.}
-proc glPixelMapfv*(map: GLenum, mapsize: int32, values: ptr float32): void {.glew_lib.}
-proc glPixelMapuiv*(map: GLenum, mapsize: int32, values: ptr uint32): void {.glew_lib.}
-proc glPixelMapusv*(map: GLenum, mapsize: int32, values: ptr uint16): void {.glew_lib.}
-proc glPixelStoref*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPixelStorei*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glPixelTransferf*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPixelTransferi*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glPixelZoom*(xfactor: float32, yfactor: float32): void {.glew_lib.}
-proc glPointSize*(size: float32): void {.glew_lib.}
-proc glPolygonMode*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glPolygonOffset*(factor: float32, units: float32): void {.glew_lib.}
-proc glPolygonStipple*(mask: ptr uint8): void {.glew_lib.}
-proc glPopAttrib*(): void {.glew_lib.}
-proc glPopClientAttrib*(): void {.glew_lib.}
-proc glPopMatrix*(): void {.glew_lib.}
-proc glPopName*(): void {.glew_lib.}
-proc glPrioritizeTextures*(n: int32, textures: ptr uint32, priorities: ptr float32): void {.glew_lib.}
-proc glPushAttrib*(mask: uint32): void {.glew_lib.}
-proc glPushClientAttrib*(mask: uint32): void {.glew_lib.}
-proc glPushMatrix*(): void {.glew_lib.}
-proc glPushName*(name: uint32): void {.glew_lib.}
-proc glRasterPos2d*(x: float64, y: float64): void {.glew_lib.}
-proc glRasterPos2dv*(v: ptr float64): void {.glew_lib.}
-proc glRasterPos2f*(x: float32, y: float32): void {.glew_lib.}
-proc glRasterPos2fv*(v: ptr float32): void {.glew_lib.}
-proc glRasterPos2i*(x: int32, y: int32): void {.glew_lib.}
-proc glRasterPos2iv*(v: ptr int32): void {.glew_lib.}
-proc glRasterPos2s*(x: int16, y: int16): void {.glew_lib.}
-proc glRasterPos2sv*(v: ptr int16): void {.glew_lib.}
-proc glRasterPos3d*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glRasterPos3dv*(v: ptr float64): void {.glew_lib.}
-proc glRasterPos3f*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glRasterPos3fv*(v: ptr float32): void {.glew_lib.}
-proc glRasterPos3i*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glRasterPos3iv*(v: ptr int32): void {.glew_lib.}
-proc glRasterPos3s*(x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glRasterPos3sv*(v: ptr int16): void {.glew_lib.}
-proc glRasterPos4d*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glRasterPos4dv*(v: ptr float64): void {.glew_lib.}
-proc glRasterPos4f*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glRasterPos4fv*(v: ptr float32): void {.glew_lib.}
-proc glRasterPos4i*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glRasterPos4iv*(v: ptr int32): void {.glew_lib.}
-proc glRasterPos4s*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glRasterPos4sv*(v: ptr int16): void {.glew_lib.}
-proc glReadBuffer*(mode: GLenum): void {.glew_lib.}
-proc glReadPixels*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glRectd*(x1: float64, y1: float64, x2: float64, y2: float64): void {.glew_lib.}
-proc glRectdv*(v1: ptr float64, v2: ptr float64): void {.glew_lib.}
-proc glRectf*(x1: float32, y1: float32, x2: float32, y2: float32): void {.glew_lib.}
-proc glRectfv*(v1: ptr float32, v2: ptr float32): void {.glew_lib.}
-proc glRecti*(x1: int32, y1: int32, x2: int32, y2: int32): void {.glew_lib.}
-proc glRectiv*(v1: ptr int32, v2: ptr int32): void {.glew_lib.}
-proc glRects*(x1: int16, y1: int16, x2: int16, y2: int16): void {.glew_lib.}
-proc glRectsv*(v1: ptr int16, v2: ptr int16): void {.glew_lib.}
-proc glRenderMode*(mode: GLenum): int32 {.glew_lib.}
-proc glRotated*(angle: float64, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glRotatef*(angle: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glScaled*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glScalef*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glScissor*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glSelectBuffer*(size: int32, buffer: ptr uint32): void {.glew_lib.}
-proc glShadeModel*(mode: GLenum): void {.glew_lib.}
-proc glStencilFunc*(fun: GLenum, reff: int32, mask: uint32): void {.glew_lib.}
-proc glStencilMask*(mask: uint32): void {.glew_lib.}
-proc glStencilOp*(fail: GLenum, zfail: GLenum, zpass: GLenum): void {.glew_lib.}
-proc glTexCoord1d*(s: float64): void {.glew_lib.}
-proc glTexCoord1dv*(v: ptr float64): void {.glew_lib.}
-proc glTexCoord1f*(s: float32): void {.glew_lib.}
-proc glTexCoord1fv*(v: ptr float32): void {.glew_lib.}
-proc glTexCoord1i*(s: int32): void {.glew_lib.}
-proc glTexCoord1iv*(v: ptr int32): void {.glew_lib.}
-proc glTexCoord1s*(s: int16): void {.glew_lib.}
-proc glTexCoord1sv*(v: ptr int16): void {.glew_lib.}
-proc glTexCoord2d*(s: float64, t: float64): void {.glew_lib.}
-proc glTexCoord2dv*(v: ptr float64): void {.glew_lib.}
-proc glTexCoord2f*(s: float32, t: float32): void {.glew_lib.}
-proc glTexCoord2fv*(v: ptr float32): void {.glew_lib.}
-proc glTexCoord2i*(s: int32, t: int32): void {.glew_lib.}
-proc glTexCoord2iv*(v: ptr int32): void {.glew_lib.}
-proc glTexCoord2s*(s: int16, t: int16): void {.glew_lib.}
-proc glTexCoord2sv*(v: ptr int16): void {.glew_lib.}
-proc glTexCoord3d*(s: float64, t: float64, r: float64): void {.glew_lib.}
-proc glTexCoord3dv*(v: ptr float64): void {.glew_lib.}
-proc glTexCoord3f*(s: float32, t: float32, r: float32): void {.glew_lib.}
-proc glTexCoord3fv*(v: ptr float32): void {.glew_lib.}
-proc glTexCoord3i*(s: int32, t: int32, r: int32): void {.glew_lib.}
-proc glTexCoord3iv*(v: ptr int32): void {.glew_lib.}
-proc glTexCoord3s*(s: int16, t: int16, r: int16): void {.glew_lib.}
-proc glTexCoord3sv*(v: ptr int16): void {.glew_lib.}
-proc glTexCoord4d*(s: float64, t: float64, r: float64, q: float64): void {.glew_lib.}
-proc glTexCoord4dv*(v: ptr float64): void {.glew_lib.}
-proc glTexCoord4f*(s: float32, t: float32, r: float32, q: float32): void {.glew_lib.}
-proc glTexCoord4fv*(v: ptr float32): void {.glew_lib.}
-proc glTexCoord4i*(s: int32, t: int32, r: int32, q: int32): void {.glew_lib.}
-proc glTexCoord4iv*(v: ptr int32): void {.glew_lib.}
-proc glTexCoord4s*(s: int16, t: int16, r: int16, q: int16): void {.glew_lib.}
-proc glTexCoord4sv*(v: ptr int16): void {.glew_lib.}
-proc glTexCoordPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glTexEnvf*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glTexEnvfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glTexEnvi*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTexEnviv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexGend*(coord: GLenum, pname: GLenum, param: float64): void {.glew_lib.}
-proc glTexGendv*(coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glTexGenf*(coord: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glTexGenfv*(coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glTexGeni*(coord: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTexGeniv*(coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexImage1D*(target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexImage2D*(target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexParameterf*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glTexParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glTexParameteri*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTexParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexSubImage1D*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTranslated*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glTranslatef*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertex2d*(x: float64, y: float64): void {.glew_lib.}
-proc glVertex2dv*(v: ptr float64): void {.glew_lib.}
-proc glVertex2f*(x: float32, y: float32): void {.glew_lib.}
-proc glVertex2fv*(v: ptr float32): void {.glew_lib.}
-proc glVertex2i*(x: int32, y: int32): void {.glew_lib.}
-proc glVertex2iv*(v: ptr int32): void {.glew_lib.}
-proc glVertex2s*(x: int16, y: int16): void {.glew_lib.}
-proc glVertex2sv*(v: ptr int16): void {.glew_lib.}
-proc glVertex3d*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertex3dv*(v: ptr float64): void {.glew_lib.}
-proc glVertex3f*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertex3fv*(v: ptr float32): void {.glew_lib.}
-proc glVertex3i*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glVertex3iv*(v: ptr int32): void {.glew_lib.}
-proc glVertex3s*(x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glVertex3sv*(v: ptr int16): void {.glew_lib.}
-proc glVertex4d*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertex4dv*(v: ptr float64): void {.glew_lib.}
-proc glVertex4f*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glVertex4fv*(v: ptr float32): void {.glew_lib.}
-proc glVertex4i*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glVertex4iv*(v: ptr int32): void {.glew_lib.}
-proc glVertex4s*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glVertex4sv*(v: ptr int16): void {.glew_lib.}
-proc glVertexPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glViewport*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyTexSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glDrawRangeElements*(mode: GLenum, start: uint32, endd: uint32, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib.}
-proc glTexImage3D*(target: GLenum, level: int32, internalFormat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glActiveTexture*(texture: GLenum): void {.glew_lib.}
-proc glClientActiveTexture*(texture: GLenum): void {.glew_lib.}
-proc glCompressedTexImage1D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexImage2D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexImage3D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage1D*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glGetCompressedTexImage*(target: GLenum, lod: int32, img: pointer): void {.glew_lib.}
-proc glLoadTransposeMatrixd*(m: ptr float64): void {.glew_lib.}
-proc glLoadTransposeMatrixf*(m: ptr float32): void {.glew_lib.}
-proc glMultTransposeMatrixd*(m: ptr float64): void {.glew_lib.}
-proc glMultTransposeMatrixf*(m: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord1d*(target: GLenum, s: float64): void {.glew_lib.}
-proc glMultiTexCoord1dv*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord1f*(target: GLenum, s: float32): void {.glew_lib.}
-proc glMultiTexCoord1fv*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord1i*(target: GLenum, s: int32): void {.glew_lib.}
-proc glMultiTexCoord1iv*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord1s*(target: GLenum, s: int16): void {.glew_lib.}
-proc glMultiTexCoord1sv*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord2d*(target: GLenum, s: float64, t: float64): void {.glew_lib.}
-proc glMultiTexCoord2dv*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord2f*(target: GLenum, s: float32, t: float32): void {.glew_lib.}
-proc glMultiTexCoord2fv*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord2i*(target: GLenum, s: int32, t: int32): void {.glew_lib.}
-proc glMultiTexCoord2iv*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord2s*(target: GLenum, s: int16, t: int16): void {.glew_lib.}
-proc glMultiTexCoord2sv*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord3d*(target: GLenum, s: float64, t: float64, r: float64): void {.glew_lib.}
-proc glMultiTexCoord3dv*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord3f*(target: GLenum, s: float32, t: float32, r: float32): void {.glew_lib.}
-proc glMultiTexCoord3fv*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord3i*(target: GLenum, s: int32, t: int32, r: int32): void {.glew_lib.}
-proc glMultiTexCoord3iv*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord3s*(target: GLenum, s: int16, t: int16, r: int16): void {.glew_lib.}
-proc glMultiTexCoord3sv*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord4d*(target: GLenum, s: float64, t: float64, r: float64, q: float64): void {.glew_lib.}
-proc glMultiTexCoord4dv*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord4f*(target: GLenum, s: float32, t: float32, r: float32, q: float32): void {.glew_lib.}
-proc glMultiTexCoord4fv*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord4i*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib.}
-proc glMultiTexCoord4iv*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord4s*(target: GLenum, s: int16, t: int16, r: int16, q: int16): void {.glew_lib.}
-proc glMultiTexCoord4sv*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glSampleCoverage*(value: float32, invert: bool): void {.glew_lib.}
-proc glBlendColor*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib.}
-proc glBlendEquation*(mode: GLenum): void {.glew_lib.}
-proc glBlendFuncSeparate*(sfactorRGB: GLenum, dfactorRGB: GLenum, sfactorAlpha: GLenum, dfactorAlpha: GLenum): void {.glew_lib.}
-proc glFogCoordPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glFogCoordd*(coord: float64): void {.glew_lib.}
-proc glFogCoorddv*(coord: ptr float64): void {.glew_lib.}
-proc glFogCoordf*(coord: float32): void {.glew_lib.}
-proc glFogCoordfv*(coord: ptr float32): void {.glew_lib.}
-proc glMultiDrawArrays*(mode: GLenum, first: ptr int32, count: ptr int32, drawcount: int32): void {.glew_lib.}
-proc glMultiDrawElements*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void, drawcount: int32): void {.glew_lib.}
-proc glPointParameterf*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPointParameterfv*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glPointParameteri*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glPointParameteriv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glSecondaryColor3b*(red: int8, green: int8, blue: int8): void {.glew_lib.}
-proc glSecondaryColor3bv*(v: ptr int8): void {.glew_lib.}
-proc glSecondaryColor3d*(red: float64, green: float64, blue: float64): void {.glew_lib.}
-proc glSecondaryColor3dv*(v: ptr float64): void {.glew_lib.}
-proc glSecondaryColor3f*(red: float32, green: float32, blue: float32): void {.glew_lib.}
-proc glSecondaryColor3fv*(v: ptr float32): void {.glew_lib.}
-proc glSecondaryColor3i*(red: int32, green: int32, blue: int32): void {.glew_lib.}
-proc glSecondaryColor3iv*(v: ptr int32): void {.glew_lib.}
-proc glSecondaryColor3s*(red: int16, green: int16, blue: int16): void {.glew_lib.}
-proc glSecondaryColor3sv*(v: ptr int16): void {.glew_lib.}
-proc glSecondaryColor3ub*(red: uint8, green: uint8, blue: uint8): void {.glew_lib.}
-proc glSecondaryColor3ubv*(v: ptr uint8): void {.glew_lib.}
-proc glSecondaryColor3ui*(red: uint32, green: uint32, blue: uint32): void {.glew_lib.}
-proc glSecondaryColor3uiv*(v: ptr uint32): void {.glew_lib.}
-proc glSecondaryColor3us*(red: uint16, green: uint16, blue: uint16): void {.glew_lib.}
-proc glSecondaryColor3usv*(v: ptr uint16): void {.glew_lib.}
-proc glSecondaryColorPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glWindowPos2d*(x: float64, y: float64): void {.glew_lib.}
-proc glWindowPos2dv*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos2f*(x: float32, y: float32): void {.glew_lib.}
-proc glWindowPos2fv*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos2i*(x: int32, y: int32): void {.glew_lib.}
-proc glWindowPos2iv*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos2s*(x: int16, y: int16): void {.glew_lib.}
-proc glWindowPos2sv*(p: ptr int16): void {.glew_lib.}
-proc glWindowPos3d*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glWindowPos3dv*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos3f*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glWindowPos3fv*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos3i*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glWindowPos3iv*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos3s*(x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glWindowPos3sv*(p: ptr int16): void {.glew_lib.}
-proc glBeginQuery*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glBindBuffer*(target: GLenum, buffer: uint32): void {.glew_lib.}
-proc glBufferData*(target: GLenum, size: int32, data: pointer, usage: GLenum): void {.glew_lib.}
-proc glBufferSubData*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glDeleteBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glDeleteQueries*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glEndQuery*(target: GLenum): void {.glew_lib.}
-proc glGenBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glGenQueries*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glGetBufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetBufferPointerv*(target: GLenum, pname: GLenum, params: ptr void): void {.glew_lib.}
-proc glGetBufferSubData*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glGetQueryObjectiv*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetQueryObjectuiv*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetQueryiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsBuffer*(buffer: uint32): bool {.glew_lib.}
-proc glIsQuery*(id: uint32): bool {.glew_lib.}
-proc glMapBuffer*(target: GLenum, access: GLenum): ptr void {.glew_lib.}
-proc glUnmapBuffer*(target: GLenum): bool {.glew_lib.}
-proc glAttachShader*(program: uint32, shader: uint32): void {.glew_lib.}
-proc glBindAttribLocation*(program: uint32, index: uint32, name: cstring): void {.glew_lib.}
-proc glBlendEquationSeparate*(modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glCompileShader*(shader: uint32): void {.glew_lib.}
-proc glCreateProgram*(): uint32 {.glew_lib.}
-proc glCreateShader*(tipe: GLenum): uint32 {.glew_lib.}
-proc glDeleteProgram*(program: uint32): void {.glew_lib.}
-proc glDeleteShader*(shader: uint32): void {.glew_lib.}
-proc glDetachShader*(program: uint32, shader: uint32): void {.glew_lib.}
-proc glDisableVertexAttribArray*(index: uint32): void {.glew_lib.}
-proc glDrawBuffers*(n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glEnableVertexAttribArray*(index: uint32): void {.glew_lib.}
-proc glGetActiveAttrib*(program: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib.}
-proc glGetActiveUniform*(program: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib.}
-proc glGetAttachedShaders*(program: uint32, maxCount: int32, count: ptr int32, shaders: ptr uint32): void {.glew_lib.}
-proc glGetAttribLocation*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glGetProgramInfoLog*(program: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib.}
-proc glGetProgramiv*(program: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetShaderInfoLog*(shader: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib.}
-proc glGetShaderSource*(obj: uint32, maxLength: int32, length: ptr int32, source: ptr char): void {.glew_lib.}
-proc glGetShaderiv*(shader: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetUniformLocation*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glGetUniformfv*(program: uint32, location: int32, params: ptr float32): void {.glew_lib.}
-proc glGetUniformiv*(program: uint32, location: int32, params: ptr int32): void {.glew_lib.}
-proc glGetVertexAttribPointerv*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glGetVertexAttribdv*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetVertexAttribfv*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVertexAttribiv*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsProgram*(program: uint32): bool {.glew_lib.}
-proc glIsShader*(shader: uint32): bool {.glew_lib.}
-proc glLinkProgram*(program: uint32): void {.glew_lib.}
-proc glShaderSource*(shader: uint32, count: int32, stryng: ptr cstring, length: ptr int32): void {.glew_lib.}
-proc glStencilFuncSeparate*(frontfunc: GLenum, backfunc: GLenum, reff: int32, mask: uint32): void {.glew_lib.}
-proc glStencilMaskSeparate*(face: GLenum, mask: uint32): void {.glew_lib.}
-proc glStencilOpSeparate*(face: GLenum, sfail: GLenum, dpfail: GLenum, dppass: GLenum): void {.glew_lib.}
-proc glUniform1f*(location: int32, v0: float32): void {.glew_lib.}
-proc glUniform1fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform1i*(location: int32, v0: int32): void {.glew_lib.}
-proc glUniform1iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform2f*(location: int32, v0: float32, v1: float32): void {.glew_lib.}
-proc glUniform2fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform2i*(location: int32, v0: int32, v1: int32): void {.glew_lib.}
-proc glUniform2iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform3f*(location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib.}
-proc glUniform3fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform3i*(location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib.}
-proc glUniform3iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform4f*(location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib.}
-proc glUniform4fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform4i*(location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib.}
-proc glUniform4iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniformMatrix2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUseProgram*(program: uint32): void {.glew_lib.}
-proc glValidateProgram*(program: uint32): void {.glew_lib.}
-proc glVertexAttrib1d*(index: uint32, x: float64): void {.glew_lib.}
-proc glVertexAttrib1dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib1f*(index: uint32, x: float32): void {.glew_lib.}
-proc glVertexAttrib1fv*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib1s*(index: uint32, x: int16): void {.glew_lib.}
-proc glVertexAttrib1sv*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib2d*(index: uint32, x: float64, y: float64): void {.glew_lib.}
-proc glVertexAttrib2dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib2f*(index: uint32, x: float32, y: float32): void {.glew_lib.}
-proc glVertexAttrib2fv*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib2s*(index: uint32, x: int16, y: int16): void {.glew_lib.}
-proc glVertexAttrib2sv*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib3d*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexAttrib3dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib3f*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertexAttrib3fv*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib3s*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glVertexAttrib3sv*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4Nbv*(index: uint32, v: ptr int8): void {.glew_lib.}
-proc glVertexAttrib4Niv*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttrib4Nsv*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4Nub*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib.}
-proc glVertexAttrib4Nubv*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttrib4Nuiv*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttrib4Nusv*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib4bv*(index: uint32, v: ptr int8): void {.glew_lib.}
-proc glVertexAttrib4d*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexAttrib4dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib4f*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glVertexAttrib4fv*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib4iv*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttrib4s*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glVertexAttrib4sv*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4ubv*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttrib4uiv*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttrib4usv*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribPointer*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glUniformMatrix2x3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix2x4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3x2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3x4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4x2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4x3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glBeginConditionalRender*(id: uint32, mode: GLenum): void {.glew_lib.}
-proc glBeginTransformFeedback*(primitiveMode: GLenum): void {.glew_lib.}
-proc glBindFragDataLocation*(program: uint32, colorNumber: uint32, name: cstring): void {.glew_lib.}
-proc glClampColor*(target: GLenum, clamp: GLenum): void {.glew_lib.}
-proc glClearBufferfi*(buffer: GLenum, drawBuffer: int32, depth: float32, stencil: int32): void {.glew_lib.}
-proc glClearBufferfv*(buffer: GLenum, drawBuffer: int32, value: ptr float32): void {.glew_lib.}
-proc glClearBufferiv*(buffer: GLenum, drawBuffer: int32, value: ptr int32): void {.glew_lib.}
-proc glClearBufferuiv*(buffer: GLenum, drawBuffer: int32, value: ptr uint32): void {.glew_lib.}
-proc glColorMaski*(buf: uint32, red: bool, green: bool, blue: bool, alpha: bool): void {.glew_lib.}
-proc glDisablei*(cap: GLenum, index: uint32): void {.glew_lib.}
-proc glEnablei*(cap: GLenum, index: uint32): void {.glew_lib.}
-proc glEndConditionalRender*(): void {.glew_lib.}
-proc glEndTransformFeedback*(): void {.glew_lib.}
-proc glGetBooleani_v*(pname: GLenum, index: uint32, data: ptr bool): void {.glew_lib.}
-proc glGetFragDataLocation*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glGetStringi*(name: GLenum, index: uint32): ptr uint8 {.glew_lib.}
-proc glGetTexParameterIiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexParameterIuiv*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetTransformFeedbackVarying*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib.}
-proc glGetUniformuiv*(program: uint32, location: int32, params: ptr uint32): void {.glew_lib.}
-proc glGetVertexAttribIiv*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVertexAttribIuiv*(index: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glIsEnabledi*(cap: GLenum, index: uint32): bool {.glew_lib.}
-proc glTexParameterIiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexParameterIuiv*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glTransformFeedbackVaryings*(program: uint32, count: int32, varyings: ptr cstring, bufferMode: GLenum): void {.glew_lib.}
-proc glUniform1ui*(location: int32, v0: uint32): void {.glew_lib.}
-proc glUniform1uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform2ui*(location: int32, v0: uint32, v1: uint32): void {.glew_lib.}
-proc glUniform2uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform3ui*(location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib.}
-proc glUniform3uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform4ui*(location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib.}
-proc glUniform4uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI1i*(index: uint32, v0: int32): void {.glew_lib.}
-proc glVertexAttribI1iv*(index: uint32, v0: ptr int32): void {.glew_lib.}
-proc glVertexAttribI1ui*(index: uint32, v0: uint32): void {.glew_lib.}
-proc glVertexAttribI1uiv*(index: uint32, v0: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI2i*(index: uint32, v0: int32, v1: int32): void {.glew_lib.}
-proc glVertexAttribI2iv*(index: uint32, v0: ptr int32): void {.glew_lib.}
-proc glVertexAttribI2ui*(index: uint32, v0: uint32, v1: uint32): void {.glew_lib.}
-proc glVertexAttribI2uiv*(index: uint32, v0: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI3i*(index: uint32, v0: int32, v1: int32, v2: int32): void {.glew_lib.}
-proc glVertexAttribI3iv*(index: uint32, v0: ptr int32): void {.glew_lib.}
-proc glVertexAttribI3ui*(index: uint32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib.}
-proc glVertexAttribI3uiv*(index: uint32, v0: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI4bv*(index: uint32, v0: ptr int8): void {.glew_lib.}
-proc glVertexAttribI4i*(index: uint32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib.}
-proc glVertexAttribI4iv*(index: uint32, v0: ptr int32): void {.glew_lib.}
-proc glVertexAttribI4sv*(index: uint32, v0: ptr int16): void {.glew_lib.}
-proc glVertexAttribI4ubv*(index: uint32, v0: ptr uint8): void {.glew_lib.}
-proc glVertexAttribI4ui*(index: uint32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib.}
-proc glVertexAttribI4uiv*(index: uint32, v0: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI4usv*(index: uint32, v0: ptr uint16): void {.glew_lib.}
-proc glVertexAttribIPointer*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glDrawArraysInstanced*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib.}
-proc glDrawElementsInstanced*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib.}
-proc glPrimitiveRestartIndex*(buffer: uint32): void {.glew_lib.}
-proc glTexBuffer*(target: GLenum, internalFormat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glFramebufferTexture*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glGetBufferParameteri64v*(target: GLenum, value: GLenum, data: ptr int64): void {.glew_lib.}
-proc glGetInteger64i_v*(pname: GLenum, index: uint32, data: ptr int64): void {.glew_lib.}
-proc glVertexAttribDivisor*(index: uint32, divisor: uint32): void {.glew_lib.}
-proc glBlendEquationSeparatei*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glBlendEquationi*(buf: uint32, mode: GLenum): void {.glew_lib.}
-proc glBlendFuncSeparatei*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib.}
-proc glBlendFunci*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib.}
-proc glMinSampleShading*(value: float32): void {.glew_lib.}
-proc glGetGraphicsResetStatus*(): GLenum {.glew_lib.}
-proc glGetnCompressedTexImage*(target: GLenum, lod: int32, bufSize: int32, pixels: ptr pointer): void {.glew_lib.}
-proc glGetnTexImage*(tex: GLenum, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: ptr pointer): void {.glew_lib.}
-proc glGetnUniformdv*(program: uint32, location: int32, bufSize: int32, params: ptr float64): void {.glew_lib.}
-proc glMultiDrawArraysIndirectCount*(mode: GLenum, indirect: ptr pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectCount*(mode: GLenum, tipe: GLenum, indirect: ptr pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib.}
-proc glSpecializeShader*(shader: uint32, pEntryPoint: cstring, numSpecializationConstants: uint32, pConstantIndex: ptr uint32, pConstantValue: ptr uint32): void {.glew_lib.}
-proc glTbufferMask3DFX*(mask: uint32): void {.glew_lib.}
-proc glDebugMessageEnableAMD*(category: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib.}
-proc glDebugMessageInsertAMD*(category: GLenum, severity: GLenum, id: uint32, length: int32, buf: cstring): void {.glew_lib.}
-proc glGetDebugMessageLogAMD*(count: uint32, bufsize: int32, categories: ptr GLenum, severities: ptr uint32, ids: ptr uint32, lengths: ptr int32, message: ptr char): uint32 {.glew_lib.}
-proc glBlendEquationIndexedAMD*(buf: uint32, mode: GLenum): void {.glew_lib.}
-proc glBlendEquationSeparateIndexedAMD*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glBlendFuncIndexedAMD*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib.}
-proc glBlendFuncSeparateIndexedAMD*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib.}
-proc glFramebufferSamplePositionsfvAMD*(target: GLenum, numsamples: uint32, pixelindex: uint32, values: ptr float32): void {.glew_lib.}
-proc glGetFramebufferParameterfvAMD*(target: GLenum, pname: GLenum, numsamples: uint32, pixelindex: uint32, size: int32, values: ptr float32): void {.glew_lib.}
-proc glGetNamedFramebufferParameterfvAMD*(framebuffer: uint32, pname: GLenum, numsamples: uint32, pixelindex: uint32, size: int32, values: ptr float32): void {.glew_lib.}
-proc glNamedFramebufferSamplePositionsfvAMD*(framebuffer: uint32, numsamples: uint32, pixelindex: uint32, values: ptr float32): void {.glew_lib.}
-proc glVertexAttribParameteriAMD*(index: uint32, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMultiDrawArraysIndirectAMD*(mode: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectAMD*(mode: GLenum, tipe: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib.}
-proc glDeleteNamesAMD*(identifier: GLenum, num: uint32, names: ptr uint32): void {.glew_lib.}
-proc glGenNamesAMD*(identifier: GLenum, num: uint32, names: ptr uint32): void {.glew_lib.}
-proc glIsNameAMD*(identifier: GLenum, name: uint32): bool {.glew_lib.}
-proc glQueryObjectParameteruiAMD*(target: GLenum, id: uint32, pname: GLenum, param: uint32): void {.glew_lib.}
-proc glBeginPerfMonitorAMD*(monitor: uint32): void {.glew_lib.}
-proc glDeletePerfMonitorsAMD*(n: int32, monitors: ptr uint32): void {.glew_lib.}
-proc glEndPerfMonitorAMD*(monitor: uint32): void {.glew_lib.}
-proc glGenPerfMonitorsAMD*(n: int32, monitors: ptr uint32): void {.glew_lib.}
-proc glGetPerfMonitorCounterDataAMD*(monitor: uint32, pname: GLenum, dataSize: int32, data: ptr uint32, bytesWritten: ptr int32): void {.glew_lib.}
-proc glGetPerfMonitorCounterInfoAMD*(group: uint32, counter: uint32, pname: GLenum, data: pointer): void {.glew_lib.}
-proc glGetPerfMonitorCounterStringAMD*(group: uint32, counter: uint32, bufSize: int32, length: ptr int32, counterString: ptr char): void {.glew_lib.}
-proc glGetPerfMonitorCountersAMD*(group: uint32, numCounters: ptr int32, maxActiveCounters: ptr int32, countersSize: int32, counters: ptr uint32): void {.glew_lib.}
-proc glGetPerfMonitorGroupStringAMD*(group: uint32, bufSize: int32, length: ptr int32, groupString: ptr char): void {.glew_lib.}
-proc glGetPerfMonitorGroupsAMD*(numGroups: ptr int32, groupsSize: int32, groups: ptr uint32): void {.glew_lib.}
-proc glSelectPerfMonitorCountersAMD*(monitor: uint32, enable: bool, group: uint32, numCounters: int32, counterList: ptr uint32): void {.glew_lib.}
-proc glSetMultisamplefvAMD*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib.}
-proc glTexStorageSparseAMD*(target: GLenum, internalFormat: GLenum, width: int32, height: int32, depth: int32, layers: int32, flags: uint32): void {.glew_lib.}
-proc glTextureStorageSparseAMD*(texture: uint32, target: GLenum, internalFormat: GLenum, width: int32, height: int32, depth: int32, layers: int32, flags: uint32): void {.glew_lib.}
-proc glStencilOpValueAMD*(face: GLenum, value: uint32): void {.glew_lib.}
-proc glTessellationFactorAMD*(factor: float32): void {.glew_lib.}
-proc glTessellationModeAMD*(mode: GLenum): void {.glew_lib.}
-proc glBlitFramebufferANGLE*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glRenderbufferStorageMultisampleANGLE*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glDrawArraysInstancedANGLE*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib.}
-proc glDrawElementsInstancedANGLE*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib.}
-proc glVertexAttribDivisorANGLE*(index: uint32, divisor: uint32): void {.glew_lib.}
-proc glBeginQueryANGLE*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glDeleteQueriesANGLE*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glEndQueryANGLE*(target: GLenum): void {.glew_lib.}
-proc glGenQueriesANGLE*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glGetQueryObjecti64vANGLE*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetQueryObjectivANGLE*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetQueryObjectui64vANGLE*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glGetQueryObjectuivANGLE*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetQueryivANGLE*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsQueryANGLE*(id: uint32): bool {.glew_lib.}
-proc glQueryCounterANGLE*(id: uint32, target: GLenum): void {.glew_lib.}
-proc glGetTranslatedShaderSourceANGLE*(shader: uint32, bufsize: int32, length: ptr int32, source: ptr char): void {.glew_lib.}
-proc glCopyTextureLevelsAPPLE*(destinationTexture: uint32, sourceTexture: uint32, sourceBaseLevel: int32, sourceLevelCount: int32): void {.glew_lib.}
-proc glDrawElementArrayAPPLE*(mode: GLenum, first: int32, count: int32): void {.glew_lib.}
-proc glDrawRangeElementArrayAPPLE*(mode: GLenum, start: uint32, endd: uint32, first: int32, count: int32): void {.glew_lib.}
-proc glElementPointerAPPLE*(tipe: GLenum, poynter: pointer): void {.glew_lib.}
-proc glMultiDrawElementArrayAPPLE*(mode: GLenum, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib.}
-proc glMultiDrawRangeElementArrayAPPLE*(mode: GLenum, start: uint32, endd: uint32, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib.}
-proc glDeleteFencesAPPLE*(n: int32, fences: ptr uint32): void {.glew_lib.}
-proc glFinishFenceAPPLE*(fence: uint32): void {.glew_lib.}
-proc glFinishObjectAPPLE*(obj: GLenum, name: int32): void {.glew_lib.}
-proc glGenFencesAPPLE*(n: int32, fences: ptr uint32): void {.glew_lib.}
-proc glIsFenceAPPLE*(fence: uint32): bool {.glew_lib.}
-proc glSetFenceAPPLE*(fence: uint32): void {.glew_lib.}
-proc glTestFenceAPPLE*(fence: uint32): bool {.glew_lib.}
-proc glTestObjectAPPLE*(obj: GLenum, name: uint32): bool {.glew_lib.}
-proc glBufferParameteriAPPLE*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glFlushMappedBufferRangeAPPLE*(target: GLenum, offset: int32, size: int32): void {.glew_lib.}
-proc glRenderbufferStorageMultisampleAPPLE*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glResolveMultisampleFramebufferAPPLE*(): void {.glew_lib.}
-proc glGetObjectParameterivAPPLE*(objectType: GLenum, name: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glObjectPurgeableAPPLE*(objectType: GLenum, name: uint32, option: GLenum): GLenum {.glew_lib.}
-proc glObjectUnpurgeableAPPLE*(objectType: GLenum, name: uint32, option: GLenum): GLenum {.glew_lib.}
-proc glClientWaitSyncAPPLE*(GLsync: distinct pointer, flags: uint32, timeout: uint64): GLenum {.glew_lib.}
-proc glDeleteSyncAPPLE*(GLsync: distinct pointer): void {.glew_lib.}
-proc glFenceSyncAPPLE*(condition: GLenum, flags: uint32): distinct pointer {.glew_lib.}
-proc glGetInteger64vAPPLE*(pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetSyncivAPPLE*(GLsync: distinct pointer, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib.}
-proc glIsSyncAPPLE*(GLsync: distinct pointer): bool {.glew_lib.}
-proc glWaitSyncAPPLE*(GLsync: distinct pointer, flags: uint32, timeout: uint64): void {.glew_lib.}
-proc glGetTexParameterPointervAPPLE*(target: GLenum, pname: GLenum, params: ptr void ): void {.glew_lib.}
-proc glTextureRangeAPPLE*(target: GLenum, length: int32, poynter: pointer): void {.glew_lib.}
-proc glBindVertexArrayAPPLE*(arrai: uint32): void {.glew_lib.}
-proc glDeleteVertexArraysAPPLE*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glGenVertexArraysAPPLE*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glIsVertexArrayAPPLE*(arrai: uint32): bool {.glew_lib.}
-proc glFlushVertexArrayRangeAPPLE*(length: int32, poynter: pointer): void {.glew_lib.}
-proc glVertexArrayParameteriAPPLE*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glVertexArrayRangeAPPLE*(length: int32, poynter: pointer): void {.glew_lib.}
-proc glDisableVertexAttribAPPLE*(index: uint32, pname: GLenum): void {.glew_lib.}
-proc glEnableVertexAttribAPPLE*(index: uint32, pname: GLenum): void {.glew_lib.}
-proc glIsVertexAttribEnabledAPPLE*(index: uint32, pname: GLenum): bool {.glew_lib.}
-proc glMapVertexAttrib1dAPPLE*(index: uint32, size: uint32, u1: float64, u2: float64, stride: int32, order: int32, points: ptr float64): void {.glew_lib.}
-proc glMapVertexAttrib1fAPPLE*(index: uint32, size: uint32, u1: float32, u2: float32, stride: int32, order: int32, points: ptr float32): void {.glew_lib.}
-proc glMapVertexAttrib2dAPPLE*(index: uint32, size: uint32, u1: float64, u2: float64, ustride: int32, uorder: int32, v1: float64, v2: float64, vstride: int32, vorder: int32, points: ptr float64): void {.glew_lib.}
-proc glMapVertexAttrib2fAPPLE*(index: uint32, size: uint32, u1: float32, u2: float32, ustride: int32, uorder: int32, v1: float32, v2: float32, vstride: int32, vorder: int32, points: ptr float32): void {.glew_lib.}
-proc glClearDepthf*(d: float32): void {.glew_lib.}
-proc glDepthRangef*(n: float32, f: float32): void {.glew_lib.}
-proc glGetShaderPrecisionFormat*(shadertype: GLenum, precisiontype: GLenum, rangee: ptr int32, precision: ptr int32): void {.glew_lib.}
-proc glReleaseShaderCompiler*(): void {.glew_lib.}
-proc glShaderBinary*(count: int32, shaders: ptr uint32, binaryformat: GLenum, binary: pointer, length: int32): void {.glew_lib.}
-proc glMemoryBarrierByRegion*(barriers: uint32): void {.glew_lib.}
-proc glPrimitiveBoundingBoxARB*(minX: float32, minY: float32, minZ: float32, minW: float32, maxX: float32, maxY: float32, maxZ: float32, maxW: float32): void {.glew_lib.}
-proc glDrawArraysInstancedBaseInstance*(mode: GLenum, first: int32, count: int32, primcount: int32, baseinstance: uint32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseInstance*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, baseinstance: uint32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseVertexBaseInstance*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, basevertex: int32, baseinstance: uint32): void {.glew_lib.}
-proc glGetImageHandleARB*(texture: uint32, level: int32, layered: bool, layer: int32, format: GLenum): uint64 {.glew_lib.}
-proc glGetTextureHandleARB*(texture: uint32): uint64 {.glew_lib.}
-proc glGetTextureSamplerHandleARB*(texture: uint32, sampler: uint32): uint64 {.glew_lib.}
-proc glGetVertexAttribLui64vARB*(index: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glIsImageHandleResidentARB*(handle: uint64): bool {.glew_lib.}
-proc glIsTextureHandleResidentARB*(handle: uint64): bool {.glew_lib.}
-proc glMakeImageHandleNonResidentARB*(handle: uint64): void {.glew_lib.}
-proc glMakeImageHandleResidentARB*(handle: uint64, access: GLenum): void {.glew_lib.}
-proc glMakeTextureHandleNonResidentARB*(handle: uint64): void {.glew_lib.}
-proc glMakeTextureHandleResidentARB*(handle: uint64): void {.glew_lib.}
-proc glProgramUniformHandleui64ARB*(program: uint32, location: int32, value: uint64): void {.glew_lib.}
-proc glProgramUniformHandleui64vARB*(program: uint32, location: int32, count: int32, values: ptr uint64): void {.glew_lib.}
-proc glUniformHandleui64ARB*(location: int32, value: uint64): void {.glew_lib.}
-proc glUniformHandleui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glVertexAttribL1ui64ARB*(index: uint32, x: uint64): void {.glew_lib.}
-proc glVertexAttribL1ui64vARB*(index: uint32, v: ptr uint64): void {.glew_lib.}
-proc glBindFragDataLocationIndexed*(program: uint32, colorNumber: uint32, index: uint32, name: cstring): void {.glew_lib.}
-proc glGetFragDataIndex*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glBufferStorage*(target: GLenum, size: int32, data: pointer, flags: uint32): void {.glew_lib.}
-proc glClearBufferData*(target: GLenum, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearBufferSubData*(target: GLenum, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearNamedBufferDataEXT*(buffer: uint32, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearNamedBufferSubDataEXT*(buffer: uint32, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearTexImage*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearTexSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClipControl*(origin: GLenum, depth: GLenum): void {.glew_lib.}
-proc glClampColorARB*(target: GLenum, clamp: GLenum): void {.glew_lib.}
-proc glDispatchCompute*(num_groups_x: uint32, num_groups_y: uint32, num_groups_z: uint32): void {.glew_lib.}
-proc glDispatchComputeIndirect*(indirect: int32): void {.glew_lib.}
-proc glDispatchComputeGroupSizeARB*(num_groups_x: uint32, num_groups_y: uint32, num_groups_z: uint32, group_size_x: uint32, group_size_y: uint32, group_size_z: uint32): void {.glew_lib.}
-proc glCopyBufferSubData*(readtarget: GLenum, writetarget: GLenum, readoffset: int32, writeoffset: int32, size: int32): void {.glew_lib.}
-proc glCopyImageSubData*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib.}
-proc glDebugMessageControlARB*(source: GLenum, tipe: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib.}
-proc glDebugMessageInsertARB*(source: GLenum, tipe: GLenum, id: uint32, severity: GLenum, length: int32, buf: cstring): void {.glew_lib.}
-proc glGetDebugMessageLogARB*(count: uint32, bufSize: int32, sources: ptr GLenum, types: ptr GLenum, ids: ptr uint32, severities: ptr GLenum, lengths: ptr int32, messageLog: ptr char): uint32 {.glew_lib.}
-proc glBindTextureUnit*(unit: uint32, texture: uint32): void {.glew_lib.}
-proc glBlitNamedFramebuffer*(readFramebuffer: uint32, drawFramebuffer: uint32, srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glCheckNamedFramebufferStatus*(framebuffer: uint32, target: GLenum): GLenum {.glew_lib.}
-proc glClearNamedBufferData*(buffer: uint32, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearNamedBufferSubData*(buffer: uint32, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearNamedFramebufferfi*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, depth: float32, stencil: int32): void {.glew_lib.}
-proc glClearNamedFramebufferfv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr float32): void {.glew_lib.}
-proc glClearNamedFramebufferiv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr int32): void {.glew_lib.}
-proc glClearNamedFramebufferuiv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr uint32): void {.glew_lib.}
-proc glCompressedTextureSubImage1D*(texture: uint32, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCopyNamedBufferSubData*(readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib.}
-proc glCopyTextureSubImage1D*(texture: uint32, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyTextureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyTextureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCreateBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glCreateFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib.}
-proc glCreateProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib.}
-proc glCreateQueries*(target: GLenum, n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glCreateRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib.}
-proc glCreateSamplers*(n: int32, samplers: ptr uint32): void {.glew_lib.}
-proc glCreateTextures*(target: GLenum, n: int32, textures: ptr uint32): void {.glew_lib.}
-proc glCreateTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glCreateVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glDisableVertexArrayAttrib*(vaobj: uint32, index: uint32): void {.glew_lib.}
-proc glEnableVertexArrayAttrib*(vaobj: uint32, index: uint32): void {.glew_lib.}
-proc glFlushMappedNamedBufferRange*(buffer: uint32, offset: int32, length: int32): void {.glew_lib.}
-proc glGenerateTextureMipmap*(texture: uint32): void {.glew_lib.}
-proc glGetCompressedTextureImage*(texture: uint32, level: int32, bufSize: int32, pixels: pointer): void {.glew_lib.}
-proc glGetNamedBufferParameteri64v*(buffer: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetNamedBufferParameteriv*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedBufferPointerv*(buffer: uint32, pname: GLenum, params: ptr void): void {.glew_lib.}
-proc glGetNamedBufferSubData*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glGetNamedFramebufferAttachmentParameteriv*(framebuffer: uint32, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedFramebufferParameteriv*(framebuffer: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetNamedRenderbufferParameteriv*(renderbuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetQueryBufferObjecti64v*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib.}
-proc glGetQueryBufferObjectiv*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib.}
-proc glGetQueryBufferObjectui64v*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib.}
-proc glGetQueryBufferObjectuiv*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib.}
-proc glGetTextureImage*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: pointer): void {.glew_lib.}
-proc glGetTextureLevelParameterfv*(texture: uint32, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTextureLevelParameteriv*(texture: uint32, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTextureParameterIiv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTextureParameterIuiv*(texture: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetTextureParameterfv*(texture: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTextureParameteriv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTransformFeedbacki64_v*(xfb: uint32, pname: GLenum, index: uint32, param: ptr int64): void {.glew_lib.}
-proc glGetTransformFeedbacki_v*(xfb: uint32, pname: GLenum, index: uint32, param: ptr int32): void {.glew_lib.}
-proc glGetTransformFeedbackiv*(xfb: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetVertexArrayIndexed64iv*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int64): void {.glew_lib.}
-proc glGetVertexArrayIndexediv*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetVertexArrayiv*(vaobj: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glInvalidateNamedFramebufferData*(framebuffer: uint32, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib.}
-proc glInvalidateNamedFramebufferSubData*(framebuffer: uint32, numAttachments: int32, attachments: ptr GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glMapNamedBuffer*(buffer: uint32, access: GLenum): void {.glew_lib.}
-proc glMapNamedBufferRange*(buffer: uint32, offset: int32, length: int32, access: uint32): void {.glew_lib.}
-proc glNamedBufferData*(buffer: uint32, size: int32, data: pointer, usage: GLenum): void {.glew_lib.}
-proc glNamedBufferStorage*(buffer: uint32, size: int32, data: pointer, flags: uint32): void {.glew_lib.}
-proc glNamedBufferSubData*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glNamedFramebufferDrawBuffer*(framebuffer: uint32, mode: GLenum): void {.glew_lib.}
-proc glNamedFramebufferDrawBuffers*(framebuffer: uint32, n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glNamedFramebufferParameteri*(framebuffer: uint32, pname: GLenum, param: int32): void {.glew_lib.}
-proc glNamedFramebufferReadBuffer*(framebuffer: uint32, mode: GLenum): void {.glew_lib.}
-proc glNamedFramebufferRenderbuffer*(framebuffer: uint32, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glNamedFramebufferTexture*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glNamedFramebufferTextureLayer*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glNamedRenderbufferStorage*(renderbuffer: uint32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glNamedRenderbufferStorageMultisample*(renderbuffer: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glTextureBuffer*(texture: uint32, internalformat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glTextureBufferRange*(texture: uint32, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glTextureParameterIiv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTextureParameterIuiv*(texture: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glTextureParameterf*(texture: uint32, pname: GLenum, param: float32): void {.glew_lib.}
-proc glTextureParameterfv*(texture: uint32, pname: GLenum, param: ptr float32): void {.glew_lib.}
-proc glTextureParameteri*(texture: uint32, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTextureParameteriv*(texture: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glTextureStorage1D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib.}
-proc glTextureStorage2D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glTextureStorage2DMultisample*(texture: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTextureStorage3D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glTextureStorage3DMultisample*(texture: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTextureSubImage1D*(texture: uint32, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTransformFeedbackBufferBase*(xfb: uint32, index: uint32, buffer: uint32): void {.glew_lib.}
-proc glTransformFeedbackBufferRange*(xfb: uint32, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glUnmapNamedBuffer*(buffer: uint32): bool {.glew_lib.}
-proc glVertexArrayAttribBinding*(vaobj: uint32, attribindex: uint32, bindingindex: uint32): void {.glew_lib.}
-proc glVertexArrayAttribFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayAttribIFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayAttribLFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayBindingDivisor*(vaobj: uint32, bindingindex: uint32, divisor: uint32): void {.glew_lib.}
-proc glVertexArrayElementBuffer*(vaobj: uint32, buffer: uint32): void {.glew_lib.}
-proc glVertexArrayVertexBuffer*(vaobj: uint32, bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib.}
-proc glVertexArrayVertexBuffers*(vaobj: uint32, first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, strides: ptr int32): void {.glew_lib.}
-proc glDrawBuffersARB*(n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glBlendEquationSeparateiARB*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glBlendEquationiARB*(buf: uint32, mode: GLenum): void {.glew_lib.}
-proc glBlendFuncSeparateiARB*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib.}
-proc glBlendFunciARB*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib.}
-proc glDrawElementsBaseVertex*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseVertex*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, basevertex: int32): void {.glew_lib.}
-proc glDrawRangeElementsBaseVertex*(mode: GLenum, start: uint32, endd: uint32, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib.}
-proc glMultiDrawElementsBaseVertex*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void, primcount: int32, basevertex: ptr int32): void {.glew_lib.}
-proc glDrawArraysIndirect*(mode: GLenum, indirect: pointer): void {.glew_lib.}
-proc glDrawElementsIndirect*(mode: GLenum, tipe: GLenum, indirect: pointer): void {.glew_lib.}
-proc glFramebufferParameteri*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glGetFramebufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedFramebufferParameterivEXT*(framebuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glNamedFramebufferParameteriEXT*(framebuffer: uint32, pname: GLenum, param: int32): void {.glew_lib.}
-proc glBindFramebuffer*(target: GLenum, framebuffer: uint32): void {.glew_lib.}
-proc glBindRenderbuffer*(target: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glBlitFramebuffer*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glCheckFramebufferStatus*(target: GLenum): GLenum {.glew_lib.}
-proc glDeleteFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib.}
-proc glDeleteRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib.}
-proc glFramebufferRenderbuffer*(target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glFramebufferTexture1D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTexture2D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTexture3D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glFramebufferTextureLayer*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glGenFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib.}
-proc glGenRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib.}
-proc glGenerateMipmap*(target: GLenum): void {.glew_lib.}
-proc glGetFramebufferAttachmentParameteriv*(target: GLenum, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetRenderbufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsFramebuffer*(framebuffer: uint32): bool {.glew_lib.}
-proc glIsRenderbuffer*(renderbuffer: uint32): bool {.glew_lib.}
-proc glRenderbufferStorage*(target: GLenum, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glRenderbufferStorageMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glFramebufferTextureARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTextureFaceARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib.}
-proc glFramebufferTextureLayerARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glProgramParameteriARB*(program: uint32, pname: GLenum, value: int32): void {.glew_lib.}
-proc glGetProgramBinary*(program: uint32, bufSize: int32, length: ptr int32, binaryFormat: ptr GLenum, binary: pointer): void {.glew_lib.}
-proc glProgramBinary*(program: uint32, binaryFormat: GLenum, binary: pointer, length: int32): void {.glew_lib.}
-proc glProgramParameteri*(program: uint32, pname: GLenum, value: int32): void {.glew_lib.}
-proc glGetCompressedTextureSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, bufSize: int32, pixels: pointer): void {.glew_lib.}
-proc glGetTextureSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: pointer): void {.glew_lib.}
-proc glSpecializeShaderARB*(shader: uint32, pEntryPoint: cstring, numSpecializationConstants: uint32, pConstantIndex: ptr uint32, pConstantValue: ptr uint32): void {.glew_lib.}
-proc glGetUniformdv*(program: uint32, location: int32, params: ptr float64): void {.glew_lib.}
-proc glUniform1d*(location: int32, x: float64): void {.glew_lib.}
-proc glUniform1dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glUniform2d*(location: int32, x: float64, y: float64): void {.glew_lib.}
-proc glUniform2dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glUniform3d*(location: int32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glUniform3dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glUniform4d*(location: int32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glUniform4dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix2x3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix2x4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix3x2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix3x4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix4x2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glUniformMatrix4x3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glGetUniformi64vARB*(program: uint32, location: int32, params: ptr int64): void {.glew_lib.}
-proc glGetUniformui64vARB*(program: uint32, location: int32, params: ptr uint64): void {.glew_lib.}
-proc glGetnUniformi64vARB*(program: uint32, location: int32, bufSize: int32, params: ptr int64): void {.glew_lib.}
-proc glGetnUniformui64vARB*(program: uint32, location: int32, bufSize: int32, params: ptr uint64): void {.glew_lib.}
-proc glProgramUniform1i64ARB*(program: uint32, location: int32, x: int64): void {.glew_lib.}
-proc glProgramUniform1i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform1ui64ARB*(program: uint32, location: int32, x: uint64): void {.glew_lib.}
-proc glProgramUniform1ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform2i64ARB*(program: uint32, location: int32, x: int64, y: int64): void {.glew_lib.}
-proc glProgramUniform2i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform2ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64): void {.glew_lib.}
-proc glProgramUniform2ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform3i64ARB*(program: uint32, location: int32, x: int64, y: int64, z: int64): void {.glew_lib.}
-proc glProgramUniform3i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform3ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib.}
-proc glProgramUniform3ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform4i64ARB*(program: uint32, location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib.}
-proc glProgramUniform4i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform4ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib.}
-proc glProgramUniform4ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform1i64ARB*(location: int32, x: int64): void {.glew_lib.}
-proc glUniform1i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform1ui64ARB*(location: int32, x: uint64): void {.glew_lib.}
-proc glUniform1ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform2i64ARB*(location: int32, x: int64, y: int64): void {.glew_lib.}
-proc glUniform2i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform2ui64ARB*(location: int32, x: uint64, y: uint64): void {.glew_lib.}
-proc glUniform2ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform3i64ARB*(location: int32, x: int64, y: int64, z: int64): void {.glew_lib.}
-proc glUniform3i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform3ui64ARB*(location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib.}
-proc glUniform3ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform4i64ARB*(location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib.}
-proc glUniform4i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform4ui64ARB*(location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib.}
-proc glUniform4ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glColorSubTable*(target: GLenum, start: int32, count: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glColorTable*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib.}
-proc glColorTableParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glColorTableParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glConvolutionFilter1D*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glConvolutionFilter2D*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glConvolutionParameterf*(target: GLenum, pname: GLenum, params: float32): void {.glew_lib.}
-proc glConvolutionParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glConvolutionParameteri*(target: GLenum, pname: GLenum, params: int32): void {.glew_lib.}
-proc glConvolutionParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glCopyColorSubTable*(target: GLenum, start: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyColorTable*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyConvolutionFilter1D*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyConvolutionFilter2D*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glGetColorTable*(target: GLenum, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib.}
-proc glGetColorTableParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetColorTableParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetConvolutionFilter*(target: GLenum, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glGetConvolutionParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetConvolutionParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetHistogram*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib.}
-proc glGetHistogramParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetHistogramParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMinmax*(target: GLenum, reset: bool, format: GLenum, types: GLenum, values: pointer): void {.glew_lib.}
-proc glGetMinmaxParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMinmaxParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetSeparableFilter*(target: GLenum, format: GLenum, tipe: GLenum, row: pointer, column: pointer, span: pointer): void {.glew_lib.}
-proc glHistogram*(target: GLenum, width: int32, internalformat: GLenum, sink: bool): void {.glew_lib.}
-proc glMinmax*(target: GLenum, internalformat: GLenum, sink: bool): void {.glew_lib.}
-proc glResetHistogram*(target: GLenum): void {.glew_lib.}
-proc glResetMinmax*(target: GLenum): void {.glew_lib.}
-proc glSeparableFilter2D*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, row: pointer, column: pointer): void {.glew_lib.}
-proc glMultiDrawArraysIndirectCountARB*(mode: GLenum, indirect: pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectCountARB*(mode: GLenum, tipe: GLenum, indirect: pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib.}
-proc glDrawArraysInstancedARB*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib.}
-proc glDrawElementsInstancedARB*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib.}
-proc glVertexAttribDivisorARB*(index: uint32, divisor: uint32): void {.glew_lib.}
-proc glGetInternalformativ*(target: GLenum, internalformat: GLenum, pname: GLenum, bufSize: int32, params: ptr int32): void {.glew_lib.}
-proc glGetInternalformati64v*(target: GLenum, internalformat: GLenum, pname: GLenum, bufSize: int32, params: ptr int64): void {.glew_lib.}
-proc glInvalidateBufferData*(buffer: uint32): void {.glew_lib.}
-proc glInvalidateBufferSubData*(buffer: uint32, offset: int32, length: int32): void {.glew_lib.}
-proc glInvalidateFramebuffer*(target: GLenum, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib.}
-proc glInvalidateSubFramebuffer*(target: GLenum, numAttachments: int32, attachments: ptr GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glInvalidateTexImage*(texture: uint32, level: int32): void {.glew_lib.}
-proc glInvalidateTexSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glFlushMappedBufferRange*(target: GLenum, offset: int32, length: int32): void {.glew_lib.}
-proc glMapBufferRange*(target: GLenum, offset: int32, length: int32, access: uint32): void {.glew_lib.}
-proc glCurrentPaletteMatrixARB*(index: int32): void {.glew_lib.}
-proc glMatrixIndexPointerARB*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glMatrixIndexubvARB*(size: int32, indices: ptr uint8): void {.glew_lib.}
-proc glMatrixIndexuivARB*(size: int32, indices: ptr uint32): void {.glew_lib.}
-proc glMatrixIndexusvARB*(size: int32, indices: ptr uint16): void {.glew_lib.}
-proc glBindBuffersBase*(target: GLenum, first: uint32, count: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glBindBuffersRange*(target: GLenum, first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, sizes: ptr int32): void {.glew_lib.}
-proc glBindImageTextures*(first: uint32, count: int32, textures: ptr uint32): void {.glew_lib.}
-proc glBindSamplers*(first: uint32, count: int32, samplers: ptr uint32): void {.glew_lib.}
-proc glBindTextures*(first: uint32, count: int32, textures: ptr uint32): void {.glew_lib.}
-proc glBindVertexBuffers*(first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, strides: ptr int32): void {.glew_lib.}
-proc glMultiDrawArraysIndirect*(mode: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirect*(mode: GLenum, tipe: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib.}
-proc glSampleCoverageARB*(value: float32, invert: bool): void {.glew_lib.}
-proc glActiveTextureARB*(texture: GLenum): void {.glew_lib.}
-proc glClientActiveTextureARB*(texture: GLenum): void {.glew_lib.}
-proc glMultiTexCoord1dARB*(target: GLenum, s: float64): void {.glew_lib.}
-proc glMultiTexCoord1dvARB*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord1fARB*(target: GLenum, s: float32): void {.glew_lib.}
-proc glMultiTexCoord1fvARB*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord1iARB*(target: GLenum, s: int32): void {.glew_lib.}
-proc glMultiTexCoord1ivARB*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord1sARB*(target: GLenum, s: int16): void {.glew_lib.}
-proc glMultiTexCoord1svARB*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord2dARB*(target: GLenum, s: float64, t: float64): void {.glew_lib.}
-proc glMultiTexCoord2dvARB*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord2fARB*(target: GLenum, s: float32, t: float32): void {.glew_lib.}
-proc glMultiTexCoord2fvARB*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord2iARB*(target: GLenum, s: int32, t: int32): void {.glew_lib.}
-proc glMultiTexCoord2ivARB*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord2sARB*(target: GLenum, s: int16, t: int16): void {.glew_lib.}
-proc glMultiTexCoord2svARB*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord3dARB*(target: GLenum, s: float64, t: float64, r: float64): void {.glew_lib.}
-proc glMultiTexCoord3dvARB*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord3fARB*(target: GLenum, s: float32, t: float32, r: float32): void {.glew_lib.}
-proc glMultiTexCoord3fvARB*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord3iARB*(target: GLenum, s: int32, t: int32, r: int32): void {.glew_lib.}
-proc glMultiTexCoord3ivARB*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord3sARB*(target: GLenum, s: int16, t: int16, r: int16): void {.glew_lib.}
-proc glMultiTexCoord3svARB*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glMultiTexCoord4dARB*(target: GLenum, s: float64, t: float64, r: float64, q: float64): void {.glew_lib.}
-proc glMultiTexCoord4dvARB*(target: GLenum, v: ptr float64): void {.glew_lib.}
-proc glMultiTexCoord4fARB*(target: GLenum, s: float32, t: float32, r: float32, q: float32): void {.glew_lib.}
-proc glMultiTexCoord4fvARB*(target: GLenum, v: ptr float32): void {.glew_lib.}
-proc glMultiTexCoord4iARB*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib.}
-proc glMultiTexCoord4ivARB*(target: GLenum, v: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord4sARB*(target: GLenum, s: int16, t: int16, r: int16, q: int16): void {.glew_lib.}
-proc glMultiTexCoord4svARB*(target: GLenum, v: ptr int16): void {.glew_lib.}
-proc glBeginQueryARB*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glDeleteQueriesARB*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glEndQueryARB*(target: GLenum): void {.glew_lib.}
-proc glGenQueriesARB*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glGetQueryObjectivARB*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetQueryObjectuivARB*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetQueryivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsQueryARB*(id: uint32): bool {.glew_lib.}
-proc glMaxShaderCompilerThreadsARB*(count: uint32): void {.glew_lib.}
-proc glPointParameterfARB*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPointParameterfvARB*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glPolygonOffsetClamp*(factor: float32, units: float32, clamp: float32): void {.glew_lib.}
-proc glGetProgramInterfaceiv*(program: uint32, programInterface: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetProgramResourceIndex*(program: uint32, programInterface: GLenum, name: cstring): uint32 {.glew_lib.}
-proc glGetProgramResourceLocation*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib.}
-proc glGetProgramResourceLocationIndex*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib.}
-proc glGetProgramResourceName*(program: uint32, programInterface: GLenum, index: uint32, bufSize: int32, length: ptr int32, name: ptr char): void {.glew_lib.}
-proc glGetProgramResourceiv*(program: uint32, programInterface: GLenum, index: uint32, propCount: int32, props: ptr GLenum, bufSize: int32, length: ptr int32, params: ptr int32): void {.glew_lib.}
-proc glProvokingVertex*(mode: GLenum): void {.glew_lib.}
-proc glGetGraphicsResetStatusARB*(): GLenum {.glew_lib.}
-proc glGetnColorTableARB*(target: GLenum, format: GLenum, tipe: GLenum, bufSize: int32, table: pointer): void {.glew_lib.}
-proc glGetnCompressedTexImageARB*(target: GLenum, lod: int32, bufSize: int32, img: pointer): void {.glew_lib.}
-proc glGetnConvolutionFilterARB*(target: GLenum, format: GLenum, tipe: GLenum, bufSize: int32, image: pointer): void {.glew_lib.}
-proc glGetnHistogramARB*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, bufSize: int32, values: pointer): void {.glew_lib.}
-proc glGetnMapdvARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr float64): void {.glew_lib.}
-proc glGetnMapfvARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr float32): void {.glew_lib.}
-proc glGetnMapivARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr int32): void {.glew_lib.}
-proc glGetnMinmaxARB*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, bufSize: int32, values: pointer): void {.glew_lib.}
-proc glGetnPixelMapfvARB*(map: GLenum, bufSize: int32, values: ptr float32): void {.glew_lib.}
-proc glGetnPixelMapuivARB*(map: GLenum, bufSize: int32, values: ptr uint32): void {.glew_lib.}
-proc glGetnPixelMapusvARB*(map: GLenum, bufSize: int32, values: ptr uint16): void {.glew_lib.}
-proc glGetnPolygonStippleARB*(bufSize: int32, pattern: ptr uint8): void {.glew_lib.}
-proc glGetnSeparableFilterARB*(target: GLenum, format: GLenum, tipe: GLenum, rowBufSize: int32, row: pointer, columnBufSize: int32, column: pointer, span: pointer): void {.glew_lib.}
-proc glGetnTexImageARB*(target: GLenum, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, img: pointer): void {.glew_lib.}
-proc glGetnUniformdvARB*(program: uint32, location: int32, bufSize: int32, params: ptr float64): void {.glew_lib.}
-proc glGetnUniformfvARB*(program: uint32, location: int32, bufSize: int32, params: ptr float32): void {.glew_lib.}
-proc glGetnUniformivARB*(program: uint32, location: int32, bufSize: int32, params: ptr int32): void {.glew_lib.}
-proc glGetnUniformuivARB*(program: uint32, location: int32, bufSize: int32, params: ptr uint32): void {.glew_lib.}
-proc glReadnPixelsARB*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, bufSize: int32, data: pointer): void {.glew_lib.}
-proc glFramebufferSampleLocationsfvARB*(target: GLenum, start: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glNamedFramebufferSampleLocationsfvARB*(framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glMinSampleShadingARB*(value: float32): void {.glew_lib.}
-proc glBindSampler*(unit: uint32, sampler: uint32): void {.glew_lib.}
-proc glDeleteSamplers*(count: int32, samplers: ptr uint32): void {.glew_lib.}
-proc glGenSamplers*(count: int32, samplers: ptr uint32): void {.glew_lib.}
-proc glGetSamplerParameterIiv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetSamplerParameterIuiv*(sampler: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetSamplerParameterfv*(sampler: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetSamplerParameteriv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsSampler*(sampler: uint32): bool {.glew_lib.}
-proc glSamplerParameterIiv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glSamplerParameterIuiv*(sampler: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glSamplerParameterf*(sampler: uint32, pname: GLenum, param: float32): void {.glew_lib.}
-proc glSamplerParameterfv*(sampler: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glSamplerParameteri*(sampler: uint32, pname: GLenum, param: int32): void {.glew_lib.}
-proc glSamplerParameteriv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glActiveShaderProgram*(pipeline: uint32, program: uint32): void {.glew_lib.}
-proc glBindProgramPipeline*(pipeline: uint32): void {.glew_lib.}
-proc glCreateShaderProgramv*(tipe: GLenum, count: int32, strings: ptr cstring): uint32 {.glew_lib.}
-proc glDeleteProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib.}
-proc glGenProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib.}
-proc glGetProgramPipelineInfoLog*(pipeline: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib.}
-proc glGetProgramPipelineiv*(pipeline: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsProgramPipeline*(pipeline: uint32): bool {.glew_lib.}
-proc glProgramUniform1d*(program: uint32, location: int32, x: float64): void {.glew_lib.}
-proc glProgramUniform1dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glProgramUniform1f*(program: uint32, location: int32, x: float32): void {.glew_lib.}
-proc glProgramUniform1fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform1i*(program: uint32, location: int32, x: int32): void {.glew_lib.}
-proc glProgramUniform1iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform1ui*(program: uint32, location: int32, x: uint32): void {.glew_lib.}
-proc glProgramUniform1uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform2d*(program: uint32, location: int32, x: float64, y: float64): void {.glew_lib.}
-proc glProgramUniform2dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glProgramUniform2f*(program: uint32, location: int32, x: float32, y: float32): void {.glew_lib.}
-proc glProgramUniform2fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform2i*(program: uint32, location: int32, x: int32, y: int32): void {.glew_lib.}
-proc glProgramUniform2iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform2ui*(program: uint32, location: int32, x: uint32, y: uint32): void {.glew_lib.}
-proc glProgramUniform2uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform3d*(program: uint32, location: int32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glProgramUniform3dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glProgramUniform3f*(program: uint32, location: int32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glProgramUniform3fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform3i*(program: uint32, location: int32, x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glProgramUniform3iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform3ui*(program: uint32, location: int32, x: uint32, y: uint32, z: uint32): void {.glew_lib.}
-proc glProgramUniform3uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform4d*(program: uint32, location: int32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glProgramUniform4dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib.}
-proc glProgramUniform4f*(program: uint32, location: int32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glProgramUniform4fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform4i*(program: uint32, location: int32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glProgramUniform4iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform4ui*(program: uint32, location: int32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib.}
-proc glProgramUniform4uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniformMatrix2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix2x3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix2x3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix2x4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix2x4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3x2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix3x2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3x4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix3x4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4x2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix4x2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4x3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib.}
-proc glProgramUniformMatrix4x3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUseProgramStages*(pipeline: uint32, stages: uint32, program: uint32): void {.glew_lib.}
-proc glValidateProgramPipeline*(pipeline: uint32): void {.glew_lib.}
-proc glGetActiveAtomicCounterBufferiv*(program: uint32, bufferIndex: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glBindImageTexture*(unit: uint32, texture: uint32, level: int32, layered: bool, layer: int32, access: GLenum, format: GLenum): void {.glew_lib.}
-proc glMemoryBarrier*(barriers: uint32): void {.glew_lib.}
-proc glAttachObjectARB*(containerObj: uint32, obj: uint32): void {.glew_lib.}
-proc glCompileShaderARB*(shaderObj: uint32): void {.glew_lib.}
-proc glCreateProgramObjectARB*(): uint32 {.glew_lib.}
-proc glCreateShaderObjectARB*(shaderType: GLenum): uint32 {.glew_lib.}
-proc glDeleteObjectARB*(obj: uint32): void {.glew_lib.}
-proc glDetachObjectARB*(containerObj: uint32, attachedObj: uint32): void {.glew_lib.}
-proc glGetActiveUniformARB*(programObj: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr byte): void {.glew_lib.}
-proc glGetAttachedObjectsARB*(containerObj: uint32, maxCount: int32, count: ptr int32, obj: ptr uint32): void {.glew_lib.}
-proc glGetHandleARB*(pname: GLenum): uint32 {.glew_lib.}
-proc glGetInfoLogARB*(obj: uint32, maxLength: int32, length: ptr int32, infoLog: ptr byte): void {.glew_lib.}
-proc glGetObjectParameterfvARB*(obj: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetObjectParameterivARB*(obj: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetShaderSourceARB*(obj: uint32, maxLength: int32, length: ptr int32, source: ptr byte): void {.glew_lib.}
-proc glGetUniformLocationARB*(programObj: uint32, name: ptr byte): int32 {.glew_lib.}
-proc glGetUniformfvARB*(programObj: uint32, location: int32, params: ptr float32): void {.glew_lib.}
-proc glGetUniformivARB*(programObj: uint32, location: int32, params: ptr int32): void {.glew_lib.}
-proc glLinkProgramARB*(programObj: uint32): void {.glew_lib.}
-proc glShaderSourceARB*(shaderObj: uint32, count: int32, stryng: ptr byte, length: ptr int32): void {.glew_lib.}
-proc glUniform1fARB*(location: int32, v0: float32): void {.glew_lib.}
-proc glUniform1fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform1iARB*(location: int32, v0: int32): void {.glew_lib.}
-proc glUniform1ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform2fARB*(location: int32, v0: float32, v1: float32): void {.glew_lib.}
-proc glUniform2fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform2iARB*(location: int32, v0: int32, v1: int32): void {.glew_lib.}
-proc glUniform2ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform3fARB*(location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib.}
-proc glUniform3fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform3iARB*(location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib.}
-proc glUniform3ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniform4fARB*(location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib.}
-proc glUniform4fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glUniform4iARB*(location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib.}
-proc glUniform4ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glUniformMatrix2fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUseProgramObjectARB*(programObj: uint32): void {.glew_lib.}
-proc glValidateProgramARB*(programObj: uint32): void {.glew_lib.}
-proc glShaderStorageBlockBinding*(program: uint32, storageBlockIndex: uint32, storageBlockBinding: uint32): void {.glew_lib.}
-proc glGetActiveSubroutineName*(program: uint32, shadertype: GLenum, index: uint32, bufsize: int32, length: ptr int32, name: ptr char): void {.glew_lib.}
-proc glGetActiveSubroutineUniformName*(program: uint32, shadertype: GLenum, index: uint32, bufsize: int32, length: ptr int32, name: ptr char): void {.glew_lib.}
-proc glGetActiveSubroutineUniformiv*(program: uint32, shadertype: GLenum, index: uint32, pname: GLenum, values: ptr int32): void {.glew_lib.}
-proc glGetProgramStageiv*(program: uint32, shadertype: GLenum, pname: GLenum, values: ptr int32): void {.glew_lib.}
-proc glGetSubroutineIndex*(program: uint32, shadertype: GLenum, name: cstring): uint32 {.glew_lib.}
-proc glGetSubroutineUniformLocation*(program: uint32, shadertype: GLenum, name: cstring): int32 {.glew_lib.}
-proc glGetUniformSubroutineuiv*(shadertype: GLenum, location: int32, params: ptr uint32): void {.glew_lib.}
-proc glUniformSubroutinesuiv*(shadertype: GLenum, count: int32, indices: ptr uint32): void {.glew_lib.}
-proc glCompileShaderIncludeARB*(shader: uint32, count: int32, path: ptr cstring, length: ptr int32): void {.glew_lib.}
-proc glDeleteNamedStringARB*(namelen: int32, name: cstring): void {.glew_lib.}
-proc glGetNamedStringARB*(namelen: int32, name: cstring, bufSize: int32, stringlen: ptr int32, stryng: cstring): void {.glew_lib.}
-proc glGetNamedStringivARB*(namelen: int32, name: cstring, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsNamedStringARB*(namelen: int32, name: cstring): bool {.glew_lib.}
-proc glNamedStringARB*(tipe: GLenum, namelen: int32, name: cstring, stringlen: int32, stryng: cstring): void {.glew_lib.}
-proc glBufferPageCommitmentARB*(target: GLenum, offset: int32, size: int32, commit: bool): void {.glew_lib.}
-proc glTexPageCommitmentARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib.}
-proc glClientWaitSync*(GLsync: distinct pointer, flags: uint32, timeout: uint64): GLenum {.glew_lib.}
-proc glDeleteSync*(GLsync: distinct pointer): void {.glew_lib.}
-proc glFenceSync*(condition: GLenum, flags: uint32): distinct pointer {.glew_lib.}
-proc glGetInteger64v*(pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetSynciv*(GLsync: distinct pointer, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib.}
-proc glIsSync*(GLsync: distinct pointer): bool {.glew_lib.}
-proc glWaitSync*(GLsync: distinct pointer, flags: uint32, timeout: uint64): void {.glew_lib.}
-proc glPatchParameterfv*(pname: GLenum, values: ptr float32): void {.glew_lib.}
-proc glPatchParameteri*(pname: GLenum, value: int32): void {.glew_lib.}
-proc glTextureBarrier*(): void {.glew_lib.}
-proc glTexBufferARB*(target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glTexBufferRange*(target: GLenum, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glTextureBufferRangeEXT*(texture: uint32, target: GLenum, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glCompressedTexImage1DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexImage2DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexImage3DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage1DARB*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage2DARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage3DARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glGetCompressedTexImageARB*(target: GLenum, lod: int32, img: pointer): void {.glew_lib.}
-proc glGetMultisamplefv*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib.}
-proc glSampleMaski*(index: uint32, mask: uint32): void {.glew_lib.}
-proc glTexImage2DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTexImage3DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTexStorage1D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib.}
-proc glTexStorage2D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glTexStorage3D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glTexStorage2DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTexStorage3DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTextureStorage2DMultisampleEXT*(texture: uint32, target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTextureStorage3DMultisampleEXT*(texture: uint32, target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glTextureView*(texture: uint32, target: GLenum, origtexture: uint32, internalformat: GLenum, minlevel: uint32, numlevels: uint32, minlayer: uint32, numlayers: uint32): void {.glew_lib.}
-proc glGetQueryObjecti64v*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetQueryObjectui64v*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glQueryCounter*(id: uint32, target: GLenum): void {.glew_lib.}
-proc glBindTransformFeedback*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glDeleteTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glDrawTransformFeedback*(mode: GLenum, id: uint32): void {.glew_lib.}
-proc glGenTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glIsTransformFeedback*(id: uint32): bool {.glew_lib.}
-proc glPauseTransformFeedback*(): void {.glew_lib.}
-proc glResumeTransformFeedback*(): void {.glew_lib.}
-proc glBeginQueryIndexed*(target: GLenum, index: uint32, id: uint32): void {.glew_lib.}
-proc glDrawTransformFeedbackStream*(mode: GLenum, id: uint32, stream: uint32): void {.glew_lib.}
-proc glEndQueryIndexed*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glGetQueryIndexediv*(target: GLenum, index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glDrawTransformFeedbackInstanced*(mode: GLenum, id: uint32, primcount: int32): void {.glew_lib.}
-proc glDrawTransformFeedbackStreamInstanced*(mode: GLenum, id: uint32, stream: uint32, primcount: int32): void {.glew_lib.}
-proc glLoadTransposeMatrixdARB*(m: ptr float64): void {.glew_lib.}
-proc glLoadTransposeMatrixfARB*(m: ptr float32): void {.glew_lib.}
-proc glMultTransposeMatrixdARB*(m: ptr float64): void {.glew_lib.}
-proc glMultTransposeMatrixfARB*(m: ptr float32): void {.glew_lib.}
-proc glBindBufferBase*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib.}
-proc glBindBufferRange*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glGetActiveUniformBlockName*(program: uint32, uniformBlockIndex: uint32, bufSize: int32, length: ptr int32, uniformBlockName: ptr char): void {.glew_lib.}
-proc glGetActiveUniformBlockiv*(program: uint32, uniformBlockIndex: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetActiveUniformName*(program: uint32, uniformIndex: uint32, bufSize: int32, length: ptr int32, uniformName: ptr char): void {.glew_lib.}
-proc glGetActiveUniformsiv*(program: uint32, uniformCount: int32, uniformIndices: ptr uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetIntegeri_v*(target: GLenum, index: uint32, data: ptr int32): void {.glew_lib.}
-proc glGetUniformBlockIndex*(program: uint32, uniformBlockName: cstring): uint32 {.glew_lib.}
-proc glGetUniformIndices*(program: uint32, uniformCount: int32, uniformNames: ptr cstring, uniformIndices: ptr uint32): void {.glew_lib.}
-proc glUniformBlockBinding*(program: uint32, uniformBlockIndex: uint32, uniformBlockBinding: uint32): void {.glew_lib.}
-proc glBindVertexArray*(arrai: uint32): void {.glew_lib.}
-proc glDeleteVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glGenVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glIsVertexArray*(arrai: uint32): bool {.glew_lib.}
-proc glGetVertexAttribLdv*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glVertexAttribL1d*(index: uint32, x: float64): void {.glew_lib.}
-proc glVertexAttribL1dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL2d*(index: uint32, x: float64, y: float64): void {.glew_lib.}
-proc glVertexAttribL2dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL3d*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexAttribL3dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL4d*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexAttribL4dv*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribLPointer*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glBindVertexBuffer*(bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib.}
-proc glVertexArrayBindVertexBufferEXT*(vaobj: uint32, bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib.}
-proc glVertexArrayVertexAttribBindingEXT*(vaobj: uint32, attribindex: uint32, bindingindex: uint32): void {.glew_lib.}
-proc glVertexArrayVertexAttribFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayVertexAttribIFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayVertexAttribLFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexArrayVertexBindingDivisorEXT*(vaobj: uint32, bindingindex: uint32, divisor: uint32): void {.glew_lib.}
-proc glVertexAttribBinding*(attribindex: uint32, bindingindex: uint32): void {.glew_lib.}
-proc glVertexAttribFormat*(attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexAttribIFormat*(attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexAttribLFormat*(attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib.}
-proc glVertexBindingDivisor*(bindingindex: uint32, divisor: uint32): void {.glew_lib.}
-proc glVertexBlendARB*(count: int32): void {.glew_lib.}
-proc glWeightPointerARB*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glWeightbvARB*(size: int32, weights: ptr int8): void {.glew_lib.}
-proc glWeightdvARB*(size: int32, weights: ptr float64): void {.glew_lib.}
-proc glWeightfvARB*(size: int32, weights: ptr float32): void {.glew_lib.}
-proc glWeightivARB*(size: int32, weights: ptr int32): void {.glew_lib.}
-proc glWeightsvARB*(size: int32, weights: ptr int16): void {.glew_lib.}
-proc glWeightubvARB*(size: int32, weights: ptr uint8): void {.glew_lib.}
-proc glWeightuivARB*(size: int32, weights: ptr uint32): void {.glew_lib.}
-proc glWeightusvARB*(size: int32, weights: ptr uint16): void {.glew_lib.}
-proc glBindBufferARB*(target: GLenum, buffer: uint32): void {.glew_lib.}
-proc glBufferDataARB*(target: GLenum, size: int32, data: pointer, usage: GLenum): void {.glew_lib.}
-proc glBufferSubDataARB*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glDeleteBuffersARB*(n: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glGenBuffersARB*(n: int32, buffers: ptr uint32): void {.glew_lib.}
-proc glGetBufferParameterivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetBufferPointervARB*(target: GLenum, pname: GLenum, params: ptr void): void {.glew_lib.}
-proc glGetBufferSubDataARB*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glIsBufferARB*(buffer: uint32): bool {.glew_lib.}
-proc glMapBufferARB*(target: GLenum, access: GLenum): void {.glew_lib.}
-proc glUnmapBufferARB*(target: GLenum): bool {.glew_lib.}
-proc glBindProgramARB*(target: GLenum, program: uint32): void {.glew_lib.}
-proc glDeleteProgramsARB*(n: int32, programs: ptr uint32): void {.glew_lib.}
-proc glDisableVertexAttribArrayARB*(index: uint32): void {.glew_lib.}
-proc glEnableVertexAttribArrayARB*(index: uint32): void {.glew_lib.}
-proc glGenProgramsARB*(n: int32, programs: ptr uint32): void {.glew_lib.}
-proc glGetProgramEnvParameterdvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glGetProgramEnvParameterfvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glGetProgramLocalParameterdvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glGetProgramLocalParameterfvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glGetProgramStringARB*(target: GLenum, pname: GLenum, stryng: pointer): void {.glew_lib.}
-proc glGetProgramivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVertexAttribPointervARB*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glGetVertexAttribdvARB*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetVertexAttribfvARB*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVertexAttribivARB*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsProgramARB*(program: uint32): bool {.glew_lib.}
-proc glProgramEnvParameter4dARB*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glProgramEnvParameter4dvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glProgramEnvParameter4fARB*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glProgramEnvParameter4fvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glProgramLocalParameter4dARB*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glProgramLocalParameter4dvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glProgramLocalParameter4fARB*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glProgramLocalParameter4fvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glProgramStringARB*(target: GLenum, format: GLenum, len: int32, stryng: pointer): void {.glew_lib.}
-proc glVertexAttrib1dARB*(index: uint32, x: float64): void {.glew_lib.}
-proc glVertexAttrib1dvARB*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib1fARB*(index: uint32, x: float32): void {.glew_lib.}
-proc glVertexAttrib1fvARB*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib1sARB*(index: uint32, x: int16): void {.glew_lib.}
-proc glVertexAttrib1svARB*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib2dARB*(index: uint32, x: float64, y: float64): void {.glew_lib.}
-proc glVertexAttrib2dvARB*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib2fARB*(index: uint32, x: float32, y: float32): void {.glew_lib.}
-proc glVertexAttrib2fvARB*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib2sARB*(index: uint32, x: int16, y: int16): void {.glew_lib.}
-proc glVertexAttrib2svARB*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib3dARB*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexAttrib3dvARB*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib3fARB*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertexAttrib3fvARB*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib3sARB*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glVertexAttrib3svARB*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4NbvARB*(index: uint32, v: ptr int8): void {.glew_lib.}
-proc glVertexAttrib4NivARB*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttrib4NsvARB*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4NubARB*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib.}
-proc glVertexAttrib4NubvARB*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttrib4NuivARB*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttrib4NusvARB*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib4bvARB*(index: uint32, v: ptr int8): void {.glew_lib.}
-proc glVertexAttrib4dARB*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexAttrib4dvARB*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib4fARB*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glVertexAttrib4fvARB*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib4ivARB*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttrib4sARB*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glVertexAttrib4svARB*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4ubvARB*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttrib4uivARB*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttrib4usvARB*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribPointerARB*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glBindAttribLocationARB*(programObj: uint32, index: uint32, name: ptr byte): void {.glew_lib.}
-proc glGetActiveAttribARB*(programObj: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr byte): void {.glew_lib.}
-proc glGetAttribLocationARB*(programObj: uint32, name: ptr byte): int32 {.glew_lib.}
-proc glColorP3ui*(tipe: GLenum, color: uint32): void {.glew_lib.}
-proc glColorP3uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib.}
-proc glColorP4ui*(tipe: GLenum, color: uint32): void {.glew_lib.}
-proc glColorP4uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib.}
-proc glMultiTexCoordP1ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glMultiTexCoordP1uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glMultiTexCoordP2ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glMultiTexCoordP2uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glMultiTexCoordP3ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glMultiTexCoordP3uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glMultiTexCoordP4ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glMultiTexCoordP4uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glNormalP3ui*(tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glNormalP3uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glSecondaryColorP3ui*(tipe: GLenum, color: uint32): void {.glew_lib.}
-proc glSecondaryColorP3uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib.}
-proc glTexCoordP1ui*(tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glTexCoordP1uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glTexCoordP2ui*(tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glTexCoordP2uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glTexCoordP3ui*(tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glTexCoordP3uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glTexCoordP4ui*(tipe: GLenum, coords: uint32): void {.glew_lib.}
-proc glTexCoordP4uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib.}
-proc glVertexAttribP1ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib.}
-proc glVertexAttribP1uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib.}
-proc glVertexAttribP2ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib.}
-proc glVertexAttribP2uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib.}
-proc glVertexAttribP3ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib.}
-proc glVertexAttribP3uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib.}
-proc glVertexAttribP4ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib.}
-proc glVertexAttribP4uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib.}
-proc glVertexP2ui*(tipe: GLenum, value: uint32): void {.glew_lib.}
-proc glVertexP2uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib.}
-proc glVertexP3ui*(tipe: GLenum, value: uint32): void {.glew_lib.}
-proc glVertexP3uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib.}
-proc glVertexP4ui*(tipe: GLenum, value: uint32): void {.glew_lib.}
-proc glVertexP4uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib.}
-proc glDepthRangeArrayv*(first: uint32, count: int32, v: ptr float64): void {.glew_lib.}
-proc glDepthRangeIndexed*(index: uint32, n: float64, f: float64): void {.glew_lib.}
-proc glGetDoublei_v*(target: GLenum, index: uint32, data: ptr float64): void {.glew_lib.}
-proc glGetFloati_v*(target: GLenum, index: uint32, data: ptr float32): void {.glew_lib.}
-proc glScissorArrayv*(first: uint32, count: int32, v: ptr int32): void {.glew_lib.}
-proc glScissorIndexed*(index: uint32, left: int32, bottom: int32, width: int32, height: int32): void {.glew_lib.}
-proc glScissorIndexedv*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glViewportArrayv*(first: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glViewportIndexedf*(index: uint32, x: float32, y: float32, w: float32, h: float32): void {.glew_lib.}
-proc glViewportIndexedfv*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glWindowPos2dARB*(x: float64, y: float64): void {.glew_lib.}
-proc glWindowPos2dvARB*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos2fARB*(x: float32, y: float32): void {.glew_lib.}
-proc glWindowPos2fvARB*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos2iARB*(x: int32, y: int32): void {.glew_lib.}
-proc glWindowPos2ivARB*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos2sARB*(x: int16, y: int16): void {.glew_lib.}
-proc glWindowPos2svARB*(p: ptr int16): void {.glew_lib.}
-proc glWindowPos3dARB*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glWindowPos3dvARB*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos3fARB*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glWindowPos3fvARB*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos3iARB*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glWindowPos3ivARB*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos3sARB*(x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glWindowPos3svARB*(p: ptr int16): void {.glew_lib.}
-proc glDrawBuffersATI*(n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glDrawElementArrayATI*(mode: GLenum, count: int32): void {.glew_lib.}
-proc glDrawRangeElementArrayATI*(mode: GLenum, start: uint32, endd: uint32, count: int32): void {.glew_lib.}
-proc glElementPointerATI*(tipe: GLenum, poynter: pointer): void {.glew_lib.}
-proc glGetTexBumpParameterfvATI*(pname: GLenum, param: ptr float32): void {.glew_lib.}
-proc glGetTexBumpParameterivATI*(pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glTexBumpParameterfvATI*(pname: GLenum, param: ptr float32): void {.glew_lib.}
-proc glTexBumpParameterivATI*(pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glAlphaFragmentOp1ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32): void {.glew_lib.}
-proc glAlphaFragmentOp2ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32): void {.glew_lib.}
-proc glAlphaFragmentOp3ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32, arg3: uint32, arg3Rep: uint32, arg3Mod: uint32): void {.glew_lib.}
-proc glBeginFragmentShaderATI*(): void {.glew_lib.}
-proc glBindFragmentShaderATI*(id: uint32): void {.glew_lib.}
-proc glColorFragmentOp1ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32): void {.glew_lib.}
-proc glColorFragmentOp2ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32): void {.glew_lib.}
-proc glColorFragmentOp3ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32, arg3: uint32, arg3Rep: uint32, arg3Mod: uint32): void {.glew_lib.}
-proc glDeleteFragmentShaderATI*(id: uint32): void {.glew_lib.}
-proc glEndFragmentShaderATI*(): void {.glew_lib.}
-proc glGenFragmentShadersATI*(rangee: uint32): uint32 {.glew_lib.}
-proc glPassTexCoordATI*(dst: uint32, coord: uint32, swizzle: GLenum): void {.glew_lib.}
-proc glSampleMapATI*(dst: uint32, interp: uint32, swizzle: GLenum): void {.glew_lib.}
-proc glSetFragmentShaderConstantATI*(dst: uint32, value: ptr float32): void {.glew_lib.}
-proc glMapObjectBufferATI*(buffer: uint32): void {.glew_lib.}
-proc glUnmapObjectBufferATI*(buffer: uint32): void {.glew_lib.}
-proc glPNTrianglesfATI*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPNTrianglesiATI*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glStencilFuncSeparateATI*(frontfunc: GLenum, backfunc: GLenum, reff: int32, mask: uint32): void {.glew_lib.}
-proc glStencilOpSeparateATI*(face: GLenum, sfail: GLenum, dpfail: GLenum, dppass: GLenum): void {.glew_lib.}
-proc glArrayObjectATI*(arrai: GLenum, size: int32, tipe: GLenum, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib.}
-proc glFreeObjectBufferATI*(buffer: uint32): void {.glew_lib.}
-proc glGetArrayObjectfvATI*(arrai: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetArrayObjectivATI*(arrai: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetObjectBufferfvATI*(buffer: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetObjectBufferivATI*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVariantArrayObjectfvATI*(id: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVariantArrayObjectivATI*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsObjectBufferATI*(buffer: uint32): bool {.glew_lib.}
-proc glNewObjectBufferATI*(size: int32, poynter: pointer, usage: GLenum): uint32 {.glew_lib.}
-proc glUpdateObjectBufferATI*(buffer: uint32, offset: uint32, size: int32, poynter: pointer, preserve: GLenum): void {.glew_lib.}
-proc glVariantArrayObjectATI*(id: uint32, tipe: GLenum, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib.}
-proc glGetVertexAttribArrayObjectfvATI*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVertexAttribArrayObjectivATI*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glVertexAttribArrayObjectATI*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib.}
-proc glClientActiveVertexStreamATI*(stream: GLenum): void {.glew_lib.}
-proc glNormalStream3bATI*(stream: GLenum, x: int8, y: int8, z: int8): void {.glew_lib.}
-proc glNormalStream3bvATI*(stream: GLenum, coords: ptr int8): void {.glew_lib.}
-proc glNormalStream3dATI*(stream: GLenum, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glNormalStream3dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib.}
-proc glNormalStream3fATI*(stream: GLenum, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glNormalStream3fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib.}
-proc glNormalStream3iATI*(stream: GLenum, x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glNormalStream3ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib.}
-proc glNormalStream3sATI*(stream: GLenum, x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glNormalStream3svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib.}
-proc glVertexBlendEnvfATI*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glVertexBlendEnviATI*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glVertexStream1dATI*(stream: GLenum, x: float64): void {.glew_lib.}
-proc glVertexStream1dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib.}
-proc glVertexStream1fATI*(stream: GLenum, x: float32): void {.glew_lib.}
-proc glVertexStream1fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib.}
-proc glVertexStream1iATI*(stream: GLenum, x: int32): void {.glew_lib.}
-proc glVertexStream1ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib.}
-proc glVertexStream1sATI*(stream: GLenum, x: int16): void {.glew_lib.}
-proc glVertexStream1svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib.}
-proc glVertexStream2dATI*(stream: GLenum, x: float64, y: float64): void {.glew_lib.}
-proc glVertexStream2dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib.}
-proc glVertexStream2fATI*(stream: GLenum, x: float32, y: float32): void {.glew_lib.}
-proc glVertexStream2fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib.}
-proc glVertexStream2iATI*(stream: GLenum, x: int32, y: int32): void {.glew_lib.}
-proc glVertexStream2ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib.}
-proc glVertexStream2sATI*(stream: GLenum, x: int16, y: int16): void {.glew_lib.}
-proc glVertexStream2svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib.}
-proc glVertexStream3dATI*(stream: GLenum, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexStream3dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib.}
-proc glVertexStream3fATI*(stream: GLenum, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertexStream3fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib.}
-proc glVertexStream3iATI*(stream: GLenum, x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glVertexStream3ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib.}
-proc glVertexStream3sATI*(stream: GLenum, x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glVertexStream3svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib.}
-proc glVertexStream4dATI*(stream: GLenum, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexStream4dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib.}
-proc glVertexStream4fATI*(stream: GLenum, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glVertexStream4fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib.}
-proc glVertexStream4iATI*(stream: GLenum, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glVertexStream4ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib.}
-proc glVertexStream4sATI*(stream: GLenum, x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glVertexStream4svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib.}
-proc glDrawArraysInstancedBaseInstanceEXT*(mode: GLenum, first: int32, count: int32, instancecount: int32, baseinstance: uint32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseInstanceEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, baseinstance: uint32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseVertexBaseInstanceEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, basevertex: int32, baseinstance: uint32): void {.glew_lib.}
-proc glGetUniformBufferSizeEXT*(program: uint32, location: int32): int32 {.glew_lib.}
-proc glGetUniformOffsetEXT*(program: uint32, location: int32): int32 {.glew_lib.}
-proc glUniformBufferEXT*(program: uint32, location: int32, buffer: uint32): void {.glew_lib.}
-proc glBlendColorEXT*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib.}
-proc glBlendEquationSeparateEXT*(modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glBindFragDataLocationIndexedEXT*(program: uint32, colorNumber: uint32, index: uint32, name: cstring): void {.glew_lib.}
-proc glGetFragDataIndexEXT*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glGetProgramResourceLocationIndexEXT*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib.}
-proc glBlendFuncSeparateEXT*(sfactorRGB: GLenum, dfactorRGB: GLenum, sfactorAlpha: GLenum, dfactorAlpha: GLenum): void {.glew_lib.}
-proc glBlendEquationEXT*(mode: GLenum): void {.glew_lib.}
-proc glBufferStorageEXT*(target: GLenum, size: int32, data: pointer, flags: uint32): void {.glew_lib.}
-proc glNamedBufferStorageEXT*(buffer: uint32, size: int32, data: pointer, flags: uint32): void {.glew_lib.}
-proc glClearTexImageEXT*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glClearTexSubImageEXT*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glColorSubTableEXT*(target: GLenum, start: int32, count: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glCopyColorSubTableEXT*(target: GLenum, start: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glLockArraysEXT*(first: int32, count: int32): void {.glew_lib.}
-proc glUnlockArraysEXT*(): void {.glew_lib.}
-proc glConvolutionFilter1DEXT*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glConvolutionFilter2DEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glConvolutionParameterfEXT*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glConvolutionParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glConvolutionParameteriEXT*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glConvolutionParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glCopyConvolutionFilter1DEXT*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyConvolutionFilter2DEXT*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glGetConvolutionFilterEXT*(target: GLenum, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib.}
-proc glGetConvolutionParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetConvolutionParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetSeparableFilterEXT*(target: GLenum, format: GLenum, tipe: GLenum, row: pointer, column: pointer, span: pointer): void {.glew_lib.}
-proc glSeparableFilter2DEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, row: pointer, column: pointer): void {.glew_lib.}
-proc glBinormalPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glTangentPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glCopyImageSubDataEXT*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib.}
-proc glCopyTexImage1DEXT*(target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib.}
-proc glCopyTexImage2DEXT*(target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib.}
-proc glCopyTexSubImage1DEXT*(target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyTexSubImage2DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyTexSubImage3DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCullParameterdvEXT*(pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glCullParameterfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetObjectLabelEXT*(tipe: GLenum, obj: uint32, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib.}
-proc glLabelObjectEXT*(tipe: GLenum, obj: uint32, length: int32, label: cstring): void {.glew_lib.}
-proc glInsertEventMarkerEXT*(length: int32, marker: cstring): void {.glew_lib.}
-proc glPopGroupMarkerEXT*(): void {.glew_lib.}
-proc glPushGroupMarkerEXT*(length: int32, marker: cstring): void {.glew_lib.}
-proc glDepthBoundsEXT*(zmin: float64, zmax: float64): void {.glew_lib.}
-proc glBindMultiTextureEXT*(texunit: GLenum, target: GLenum, texture: uint32): void {.glew_lib.}
-proc glCheckNamedFramebufferStatusEXT*(framebuffer: uint32, target: GLenum): GLenum {.glew_lib.}
-proc glClientAttribDefaultEXT*(mask: uint32): void {.glew_lib.}
-proc glCompressedMultiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedMultiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedMultiTexImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedMultiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedMultiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedMultiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureImage3DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTextureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCopyMultiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib.}
-proc glCopyMultiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib.}
-proc glCopyMultiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyMultiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyMultiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyTextureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib.}
-proc glCopyTextureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib.}
-proc glCopyTextureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glCopyTextureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glCopyTextureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glDisableClientStateIndexedEXT*(arrai: GLenum, index: uint32): void {.glew_lib.}
-proc glDisableClientStateiEXT*(arrai: GLenum, index: uint32): void {.glew_lib.}
-proc glDisableVertexArrayAttribEXT*(vaobj: uint32, index: uint32): void {.glew_lib.}
-proc glDisableVertexArrayEXT*(vaobj: uint32, arrai: GLenum): void {.glew_lib.}
-proc glEnableClientStateIndexedEXT*(arrai: GLenum, index: uint32): void {.glew_lib.}
-proc glEnableClientStateiEXT*(arrai: GLenum, index: uint32): void {.glew_lib.}
-proc glEnableVertexArrayAttribEXT*(vaobj: uint32, index: uint32): void {.glew_lib.}
-proc glEnableVertexArrayEXT*(vaobj: uint32, arrai: GLenum): void {.glew_lib.}
-proc glFlushMappedNamedBufferRangeEXT*(buffer: uint32, offset: int32, length: int32): void {.glew_lib.}
-proc glFramebufferDrawBufferEXT*(framebuffer: uint32, mode: GLenum): void {.glew_lib.}
-proc glFramebufferDrawBuffersEXT*(framebuffer: uint32, n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glFramebufferReadBufferEXT*(framebuffer: uint32, mode: GLenum): void {.glew_lib.}
-proc glGenerateMultiTexMipmapEXT*(texunit: GLenum, target: GLenum): void {.glew_lib.}
-proc glGenerateTextureMipmapEXT*(texture: uint32, target: GLenum): void {.glew_lib.}
-proc glGetCompressedMultiTexImageEXT*(texunit: GLenum, target: GLenum, level: int32, img: pointer): void {.glew_lib.}
-proc glGetCompressedTextureImageEXT*(texture: uint32, target: GLenum, level: int32, img: pointer): void {.glew_lib.}
-proc glGetDoubleIndexedvEXT*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glGetDoublei_vEXT*(pname: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glGetFloatIndexedvEXT*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glGetFloati_vEXT*(pname: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glGetFramebufferParameterivEXT*(framebuffer: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetMultiTexEnvfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMultiTexEnvivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMultiTexGendvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetMultiTexGenfvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMultiTexGenivEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMultiTexImageEXT*(texunit: GLenum, target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glGetMultiTexLevelParameterfvEXT*(texunit: GLenum, target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMultiTexLevelParameterivEXT*(texunit: GLenum, target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMultiTexParameterIivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMultiTexParameterIuivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetMultiTexParameterfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMultiTexParameterivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedBufferParameterivEXT*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedBufferPointervEXT*(buffer: uint32, pname: GLenum, params: ptr void): void {.glew_lib.}
-proc glGetNamedBufferSubDataEXT*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glGetNamedFramebufferAttachmentParameterivEXT*(framebuffer: uint32, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedProgramLocalParameterIivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr int32): void {.glew_lib.}
-proc glGetNamedProgramLocalParameterIuivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib.}
-proc glGetNamedProgramLocalParameterdvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glGetNamedProgramLocalParameterfvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glGetNamedProgramStringEXT*(program: uint32, target: GLenum, pname: GLenum, stryng: pointer): void {.glew_lib.}
-proc glGetNamedProgramivEXT*(program: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetNamedRenderbufferParameterivEXT*(renderbuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetPointerIndexedvEXT*(target: GLenum, index: uint32, params: ptr void): void {.glew_lib.}
-proc glGetPointeri_vEXT*(pname: GLenum, index: uint32, params: ptr void): void {.glew_lib.}
-proc glGetTextureImageEXT*(texture: uint32, target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glGetTextureLevelParameterfvEXT*(texture: uint32, target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTextureLevelParameterivEXT*(texture: uint32, target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTextureParameterIivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTextureParameterIuivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glGetTextureParameterfvEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetTextureParameterivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVertexArrayIntegeri_vEXT*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetVertexArrayIntegervEXT*(vaobj: uint32, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glGetVertexArrayPointeri_vEXT*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr void): void {.glew_lib.}
-proc glGetVertexArrayPointervEXT*(vaobj: uint32, pname: GLenum, param: ptr void): void {.glew_lib.}
-proc glMapNamedBufferEXT*(buffer: uint32, access: GLenum): void {.glew_lib.}
-proc glMapNamedBufferRangeEXT*(buffer: uint32, offset: int32, length: int32, access: uint32): void {.glew_lib.}
-proc glMatrixFrustumEXT*(matrixMode: GLenum, l: float64, r: float64, b: float64, t: float64, n: float64, f: float64): void {.glew_lib.}
-proc glMatrixLoadIdentityEXT*(matrixMode: GLenum): void {.glew_lib.}
-proc glMatrixLoadTransposedEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib.}
-proc glMatrixLoadTransposefEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixLoaddEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib.}
-proc glMatrixLoadfEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixMultTransposedEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib.}
-proc glMatrixMultTransposefEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixMultdEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib.}
-proc glMatrixMultfEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixOrthoEXT*(matrixMode: GLenum, l: float64, r: float64, b: float64, t: float64, n: float64, f: float64): void {.glew_lib.}
-proc glMatrixPopEXT*(matrixMode: GLenum): void {.glew_lib.}
-proc glMatrixPushEXT*(matrixMode: GLenum): void {.glew_lib.}
-proc glMatrixRotatedEXT*(matrixMode: GLenum, angle: float64, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glMatrixRotatefEXT*(matrixMode: GLenum, angle: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glMatrixScaledEXT*(matrixMode: GLenum, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glMatrixScalefEXT*(matrixMode: GLenum, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glMatrixTranslatedEXT*(matrixMode: GLenum, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glMatrixTranslatefEXT*(matrixMode: GLenum, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glMultiTexBufferEXT*(texunit: GLenum, target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glMultiTexCoordPointerEXT*(texunit: GLenum, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glMultiTexEnvfEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glMultiTexEnvfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glMultiTexEnviEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMultiTexEnvivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMultiTexGendEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: float64): void {.glew_lib.}
-proc glMultiTexGendvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glMultiTexGenfEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glMultiTexGenfvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glMultiTexGeniEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMultiTexGenivEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMultiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMultiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMultiTexImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMultiTexParameterIivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMultiTexParameterIuivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glMultiTexParameterfEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glMultiTexParameterfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: ptr float32): void {.glew_lib.}
-proc glMultiTexParameteriEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMultiTexParameterivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glMultiTexRenderbufferEXT*(texunit: GLenum, target: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glMultiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMultiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMultiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glNamedBufferDataEXT*(buffer: uint32, size: int32, data: pointer, usage: GLenum): void {.glew_lib.}
-proc glNamedBufferSubDataEXT*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glNamedCopyBufferSubDataEXT*(readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib.}
-proc glNamedFramebufferRenderbufferEXT*(framebuffer: uint32, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glNamedFramebufferTexture1DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glNamedFramebufferTexture2DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glNamedFramebufferTexture3DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, zoffset: int32): void {.glew_lib.}
-proc glNamedFramebufferTextureEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glNamedFramebufferTextureFaceEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib.}
-proc glNamedFramebufferTextureLayerEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glNamedProgramLocalParameter4dEXT*(program: uint32, target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glNamedProgramLocalParameter4dvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glNamedProgramLocalParameter4fEXT*(program: uint32, target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glNamedProgramLocalParameter4fvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glNamedProgramLocalParameterI4iEXT*(program: uint32, target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glNamedProgramLocalParameterI4ivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr int32): void {.glew_lib.}
-proc glNamedProgramLocalParameterI4uiEXT*(program: uint32, target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib.}
-proc glNamedProgramLocalParameterI4uivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib.}
-proc glNamedProgramLocalParameters4fvEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib.}
-proc glNamedProgramLocalParametersI4ivEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib.}
-proc glNamedProgramLocalParametersI4uivEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib.}
-proc glNamedProgramStringEXT*(program: uint32, target: GLenum, format: GLenum, len: int32, stryng: pointer): void {.glew_lib.}
-proc glNamedRenderbufferStorageEXT*(renderbuffer: uint32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glNamedRenderbufferStorageMultisampleCoverageEXT*(renderbuffer: uint32, coverageSamples: int32, colorSamples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glNamedRenderbufferStorageMultisampleEXT*(renderbuffer: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glProgramUniform1fEXT*(program: uint32, location: int32, v0: float32): void {.glew_lib.}
-proc glProgramUniform1fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform1iEXT*(program: uint32, location: int32, v0: int32): void {.glew_lib.}
-proc glProgramUniform1ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform1uiEXT*(program: uint32, location: int32, v0: uint32): void {.glew_lib.}
-proc glProgramUniform1uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform2fEXT*(program: uint32, location: int32, v0: float32, v1: float32): void {.glew_lib.}
-proc glProgramUniform2fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform2iEXT*(program: uint32, location: int32, v0: int32, v1: int32): void {.glew_lib.}
-proc glProgramUniform2ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform2uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32): void {.glew_lib.}
-proc glProgramUniform2uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform3fEXT*(program: uint32, location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib.}
-proc glProgramUniform3fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform3iEXT*(program: uint32, location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib.}
-proc glProgramUniform3ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform3uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib.}
-proc glProgramUniform3uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniform4fEXT*(program: uint32, location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib.}
-proc glProgramUniform4fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib.}
-proc glProgramUniform4iEXT*(program: uint32, location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib.}
-proc glProgramUniform4ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib.}
-proc glProgramUniform4uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib.}
-proc glProgramUniform4uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glProgramUniformMatrix2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix2x3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix2x4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3x2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix3x4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4x2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glProgramUniformMatrix4x3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glPushClientAttribDefaultEXT*(mask: uint32): void {.glew_lib.}
-proc glTextureBufferEXT*(texture: uint32, target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glTextureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureImage3DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureParameterIivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTextureParameterIuivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glTextureParameterfEXT*(texture: uint32, target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glTextureParameterfvEXT*(texture: uint32, target: GLenum, pname: GLenum, param: ptr float32): void {.glew_lib.}
-proc glTextureParameteriEXT*(texture: uint32, target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTextureParameterivEXT*(texture: uint32, target: GLenum, pname: GLenum, param: ptr int32): void {.glew_lib.}
-proc glTextureRenderbufferEXT*(texture: uint32, target: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glTextureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glUnmapNamedBufferEXT*(buffer: uint32): bool {.glew_lib.}
-proc glVertexArrayColorOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayEdgeFlagOffsetEXT*(vaobj: uint32, buffer: uint32, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayFogCoordOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayIndexOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayMultiTexCoordOffsetEXT*(vaobj: uint32, buffer: uint32, texunit: GLenum, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayNormalOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArraySecondaryColorOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayTexCoordOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayVertexAttribDivisorEXT*(vaobj: uint32, index: uint32, divisor: uint32): void {.glew_lib.}
-proc glVertexArrayVertexAttribIOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayVertexAttribOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexArrayVertexOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glDiscardFramebufferEXT*(target: GLenum, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib.}
-proc glDrawBuffersEXT*(n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glColorMaskIndexedEXT*(buf: uint32, r: bool, g: bool, b: bool, a: bool): void {.glew_lib.}
-proc glDisableIndexedEXT*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glEnableIndexedEXT*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glGetBooleanIndexedvEXT*(value: GLenum, index: uint32, data: ptr bool): void {.glew_lib.}
-proc glGetIntegerIndexedvEXT*(value: GLenum, index: uint32, data: ptr int32): void {.glew_lib.}
-proc glIsEnabledIndexedEXT*(target: GLenum, index: uint32): bool {.glew_lib.}
-proc glBlendEquationSeparateiEXT*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib.}
-proc glBlendEquationiEXT*(buf: uint32, mode: GLenum): void {.glew_lib.}
-proc glBlendFuncSeparateiEXT*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib.}
-proc glBlendFunciEXT*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib.}
-proc glColorMaskiEXT*(buf: uint32, r: bool, g: bool, b: bool, a: bool): void {.glew_lib.}
-proc glDisableiEXT*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glEnableiEXT*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glIsEnablediEXT*(target: GLenum, index: uint32): bool {.glew_lib.}
-proc glDrawElementsBaseVertexEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib.}
-proc glDrawElementsInstancedBaseVertexEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, basevertex: int32): void {.glew_lib.}
-proc glDrawRangeElementsBaseVertexEXT*(mode: GLenum, start: uint32, endd: uint32, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib.}
-proc glMultiDrawElementsBaseVertexEXT*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32, basevertex: ptr int32): void {.glew_lib.}
-proc glDrawArraysInstancedEXT*(mode: GLenum, start: int32, count: int32, primcount: int32): void {.glew_lib.}
-proc glDrawElementsInstancedEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib.}
-proc glDrawRangeElementsEXT*(mode: GLenum, start: uint32, endd: uint32, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib.}
-proc glFogCoordPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glFogCoorddEXT*(coord: float64): void {.glew_lib.}
-proc glFogCoorddvEXT*(coord: ptr float64): void {.glew_lib.}
-proc glFogCoordfEXT*(coord: float32): void {.glew_lib.}
-proc glFogCoordfvEXT*(coord: ptr float32): void {.glew_lib.}
-proc glFragmentColorMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glFragmentLightModelfEXT*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentLightModelfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentLightModeliEXT*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentLightModelivEXT*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFragmentLightfEXT*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentLightfvEXT*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentLightiEXT*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentLightivEXT*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFragmentMaterialfEXT*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentMaterialfvEXT*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentMaterialiEXT*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentMaterialivEXT*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetFragmentLightfvEXT*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetFragmentLightivEXT*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetFragmentMaterialfvEXT*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetFragmentMaterialivEXT*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glLightEnviEXT*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glBlitFramebufferEXT*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glRenderbufferStorageMultisampleEXT*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glBindFramebufferEXT*(target: GLenum, framebuffer: uint32): void {.glew_lib.}
-proc glBindRenderbufferEXT*(target: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glCheckFramebufferStatusEXT*(target: GLenum): GLenum {.glew_lib.}
-proc glDeleteFramebuffersEXT*(n: int32, framebuffers: ptr uint32): void {.glew_lib.}
-proc glDeleteRenderbuffersEXT*(n: int32, renderbuffers: ptr uint32): void {.glew_lib.}
-proc glFramebufferRenderbufferEXT*(target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glFramebufferTexture1DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTexture2DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTexture3DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, zoffset: int32): void {.glew_lib.}
-proc glGenFramebuffersEXT*(n: int32, framebuffers: ptr uint32): void {.glew_lib.}
-proc glGenRenderbuffersEXT*(n: int32, renderbuffers: ptr uint32): void {.glew_lib.}
-proc glGenerateMipmapEXT*(target: GLenum): void {.glew_lib.}
-proc glGetFramebufferAttachmentParameterivEXT*(target: GLenum, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetRenderbufferParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsFramebufferEXT*(framebuffer: uint32): bool {.glew_lib.}
-proc glIsRenderbufferEXT*(renderbuffer: uint32): bool {.glew_lib.}
-proc glRenderbufferStorageEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glFramebufferTextureEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib.}
-proc glFramebufferTextureFaceEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib.}
-proc glProgramParameteriEXT*(program: uint32, pname: GLenum, value: int32): void {.glew_lib.}
-proc glProgramEnvParameters4fvEXT*(target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib.}
-proc glProgramLocalParameters4fvEXT*(target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib.}
-proc glBindFragDataLocationEXT*(program: uint32, color: uint32, name: cstring): void {.glew_lib.}
-proc glGetFragDataLocationEXT*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glGetUniformuivEXT*(program: uint32, location: int32, params: ptr uint32): void {.glew_lib.}
-proc glGetVertexAttribIivEXT*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVertexAttribIuivEXT*(index: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glUniform1uiEXT*(location: int32, v0: uint32): void {.glew_lib.}
-proc glUniform1uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform2uiEXT*(location: int32, v0: uint32, v1: uint32): void {.glew_lib.}
-proc glUniform2uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform3uiEXT*(location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib.}
-proc glUniform3uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glUniform4uiEXT*(location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib.}
-proc glUniform4uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI1iEXT*(index: uint32, x: int32): void {.glew_lib.}
-proc glVertexAttribI1ivEXT*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttribI1uiEXT*(index: uint32, x: uint32): void {.glew_lib.}
-proc glVertexAttribI1uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI2iEXT*(index: uint32, x: int32, y: int32): void {.glew_lib.}
-proc glVertexAttribI2ivEXT*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttribI2uiEXT*(index: uint32, x: uint32, y: uint32): void {.glew_lib.}
-proc glVertexAttribI2uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI3iEXT*(index: uint32, x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glVertexAttribI3ivEXT*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttribI3uiEXT*(index: uint32, x: uint32, y: uint32, z: uint32): void {.glew_lib.}
-proc glVertexAttribI3uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI4bvEXT*(index: uint32, v: ptr int8): void {.glew_lib.}
-proc glVertexAttribI4iEXT*(index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glVertexAttribI4ivEXT*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glVertexAttribI4svEXT*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttribI4ubvEXT*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttribI4uiEXT*(index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib.}
-proc glVertexAttribI4uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib.}
-proc glVertexAttribI4usvEXT*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribIPointerEXT*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glGetHistogramEXT*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib.}
-proc glGetHistogramParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetHistogramParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMinmaxEXT*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib.}
-proc glGetMinmaxParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMinmaxParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glHistogramEXT*(target: GLenum, width: int32, internalformat: GLenum, sink: bool): void {.glew_lib.}
-proc glMinmaxEXT*(target: GLenum, internalformat: GLenum, sink: bool): void {.glew_lib.}
-proc glResetHistogramEXT*(target: GLenum): void {.glew_lib.}
-proc glResetMinmaxEXT*(target: GLenum): void {.glew_lib.}
-proc glIndexFuncEXT*(fun: GLenum, reff: float32): void {.glew_lib.}
-proc glIndexMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glVertexAttribDivisorEXT*(index: uint32, divisor: uint32): void {.glew_lib.}
-proc glApplyTextureEXT*(mode: GLenum): void {.glew_lib.}
-proc glTextureLightEXT*(pname: GLenum): void {.glew_lib.}
-proc glTextureMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glFlushMappedBufferRangeEXT*(target: GLenum, offset: int32, length: int32): void {.glew_lib.}
-proc glMapBufferRangeEXT*(target: GLenum, offset: int32, length: int32, access: uint32): void {.glew_lib.}
-proc glBufferStorageMemEXT*(target: GLenum, size: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glCreateMemoryObjectsEXT*(n: int32, memoryObjects: ptr uint32): void {.glew_lib.}
-proc glDeleteMemoryObjectsEXT*(n: int32, memoryObjects: ptr uint32): void {.glew_lib.}
-proc glGetMemoryObjectParameterivEXT*(memoryObject: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetUnsignedBytei_vEXT*(target: GLenum, index: uint32, data: ptr uint8): void {.glew_lib.}
-proc glGetUnsignedBytevEXT*(pname: GLenum, data: ptr uint8): void {.glew_lib.}
-proc glIsMemoryObjectEXT*(memoryObject: uint32): bool {.glew_lib.}
-proc glMemoryObjectParameterivEXT*(memoryObject: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glNamedBufferStorageMemEXT*(buffer: uint32, size: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTexStorageMem1DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTexStorageMem2DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, height: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTexStorageMem2DMultisampleEXT*(target: GLenum, samples: int32, internalFormat: GLenum, width: int32, height: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTexStorageMem3DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTexStorageMem3DMultisampleEXT*(target: GLenum, samples: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTextureStorageMem1DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTextureStorageMem2DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, height: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTextureStorageMem2DMultisampleEXT*(texture: uint32, samples: int32, internalFormat: GLenum, width: int32, height: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTextureStorageMem3DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glTextureStorageMem3DMultisampleEXT*(texture: uint32, samples: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib.}
-proc glImportMemoryFdEXT*(memory: uint32, size: uint64, handleType: GLenum, fd: int32): void {.glew_lib.}
-proc glImportMemoryWin32HandleEXT*(memory: uint32, size: uint64, handleType: GLenum, handle: pointer): void {.glew_lib.}
-proc glImportMemoryWin32NameEXT*(memory: uint32, size: uint64, handleType: GLenum, name: pointer): void {.glew_lib.}
-proc glMultiDrawArraysEXT*(mode: GLenum, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib.}
-proc glMultiDrawElementsEXT*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32): void {.glew_lib.}
-proc glMultiDrawArraysIndirectEXT*(mode: GLenum, indirect: pointer, drawcount: int32, stride: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectEXT*(mode: GLenum, tipe: GLenum, indirect: pointer, drawcount: int32, stride: int32): void {.glew_lib.}
-proc glSampleMaskEXT*(value: float32, invert: bool): void {.glew_lib.}
-proc glSamplePatternEXT*(pattern: GLenum): void {.glew_lib.}
-proc glFramebufferTexture2DMultisampleEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, samples: int32): void {.glew_lib.}
-proc glDrawBuffersIndexedEXT*(n: int32, location: ptr GLenum, indices: ptr int32): void {.glew_lib.}
-proc glGetIntegeri_vEXT*(target: GLenum, index: uint32, data: ptr int32): void {.glew_lib.}
-proc glReadBufferIndexedEXT*(src: GLenum, index: int32): void {.glew_lib.}
-proc glColorTableEXT*(target: GLenum, internalFormat: GLenum, width: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glGetColorTableEXT*(target: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib.}
-proc glGetColorTableParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetColorTableParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetPixelTransformParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetPixelTransformParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPixelTransformParameterfEXT*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glPixelTransformParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glPixelTransformParameteriEXT*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glPixelTransformParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPointParameterfEXT*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glPointParameterfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glPolygonOffsetEXT*(factor: float32, bias: float32): void {.glew_lib.}
-proc glPolygonOffsetClampEXT*(factor: float32, units: float32, clamp: float32): void {.glew_lib.}
-proc glProvokingVertexEXT*(mode: GLenum): void {.glew_lib.}
-proc glCoverageModulationNV*(components: GLenum): void {.glew_lib.}
-proc glCoverageModulationTableNV*(n: int32, v: ptr float32): void {.glew_lib.}
-proc glGetCoverageModulationTableNV*(bufsize: int32, v: ptr float32): void {.glew_lib.}
-proc glRasterSamplesEXT*(samples: uint32, fixedsamplelocations: bool): void {.glew_lib.}
-proc glBeginSceneEXT*(): void {.glew_lib.}
-proc glEndSceneEXT*(): void {.glew_lib.}
-proc glSecondaryColor3bEXT*(red: int8, green: int8, blue: int8): void {.glew_lib.}
-proc glSecondaryColor3bvEXT*(v: ptr int8): void {.glew_lib.}
-proc glSecondaryColor3dEXT*(red: float64, green: float64, blue: float64): void {.glew_lib.}
-proc glSecondaryColor3dvEXT*(v: ptr float64): void {.glew_lib.}
-proc glSecondaryColor3fEXT*(red: float32, green: float32, blue: float32): void {.glew_lib.}
-proc glSecondaryColor3fvEXT*(v: ptr float32): void {.glew_lib.}
-proc glSecondaryColor3iEXT*(red: int32, green: int32, blue: int32): void {.glew_lib.}
-proc glSecondaryColor3ivEXT*(v: ptr int32): void {.glew_lib.}
-proc glSecondaryColor3sEXT*(red: int16, green: int16, blue: int16): void {.glew_lib.}
-proc glSecondaryColor3svEXT*(v: ptr int16): void {.glew_lib.}
-proc glSecondaryColor3ubEXT*(red: uint8, green: uint8, blue: uint8): void {.glew_lib.}
-proc glSecondaryColor3ubvEXT*(v: ptr uint8): void {.glew_lib.}
-proc glSecondaryColor3uiEXT*(red: uint32, green: uint32, blue: uint32): void {.glew_lib.}
-proc glSecondaryColor3uivEXT*(v: ptr uint32): void {.glew_lib.}
-proc glSecondaryColor3usEXT*(red: uint16, green: uint16, blue: uint16): void {.glew_lib.}
-proc glSecondaryColor3usvEXT*(v: ptr uint16): void {.glew_lib.}
-proc glSecondaryColorPointerEXT*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glDeleteSemaphoresEXT*(n: int32, semaphores: ptr uint32): void {.glew_lib.}
-proc glGenSemaphoresEXT*(n: int32, semaphores: ptr uint32): void {.glew_lib.}
-proc glGetSemaphoreParameterui64vEXT*(semaphore: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glIsSemaphoreEXT*(semaphore: uint32): bool {.glew_lib.}
-proc glSemaphoreParameterui64vEXT*(semaphore: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glSignalSemaphoreEXT*(semaphore: uint32, numBufferBarriers: uint32, buffers: ptr uint32, numTextureBarriers: uint32, textures: ptr uint32, dstLayouts: ptr GLenum): void {.glew_lib.}
-proc glWaitSemaphoreEXT*(semaphore: uint32, numBufferBarriers: uint32, buffers: ptr uint32, numTextureBarriers: uint32, textures: ptr uint32, srcLayouts: ptr GLenum): void {.glew_lib.}
-proc glImportSemaphoreFdEXT*(semaphore: uint32, handleType: GLenum, fd: int32): void {.glew_lib.}
-proc glImportSemaphoreWin32HandleEXT*(semaphore: uint32, handleType: GLenum, handle: pointer): void {.glew_lib.}
-proc glImportSemaphoreWin32NameEXT*(semaphore: uint32, handleType: GLenum, name: pointer): void {.glew_lib.}
-proc glActiveProgramEXT*(program: uint32): void {.glew_lib.}
-proc glCreateShaderProgramEXT*(tipe: GLenum, stryng: cstring): uint32 {.glew_lib.}
-proc glUseShaderProgramEXT*(tipe: GLenum, program: uint32): void {.glew_lib.}
-proc glBindImageTextureEXT*(index: uint32, texture: uint32, level: int32, layered: bool, layer: int32, access: GLenum, format: int32): void {.glew_lib.}
-proc glMemoryBarrierEXT*(barriers: uint32): void {.glew_lib.}
-proc glClearPixelLocalStorageuiEXT*(offset: int32, n: int32, values: ptr uint32): void {.glew_lib.}
-proc glFramebufferPixelLocalStorageSizeEXT*(target: uint32, size: int32): void {.glew_lib.}
-proc glGetFramebufferPixelLocalStorageSizeEXT*(target: uint32): int32 {.glew_lib.}
-proc glTexPageCommitmentEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib.}
-proc glTexturePageCommitmentEXT*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib.}
-proc glActiveStencilFaceEXT*(face: GLenum): void {.glew_lib.}
-proc glTexSubImage1DEXT*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage2DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage3DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexImage3DEXT*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glFramebufferTextureLayerEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glTexBufferEXT*(target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib.}
-proc glClearColorIiEXT*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib.}
-proc glClearColorIuiEXT*(red: uint32, green: uint32, blue: uint32, alpha: uint32): void {.glew_lib.}
-proc glGetTexParameterIivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexParameterIuivEXT*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glTexParameterIivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexParameterIuivEXT*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glAreTexturesResidentEXT*(n: int32, textures: ptr uint32, residences: ptr bool): bool {.glew_lib.}
-proc glBindTextureEXT*(target: GLenum, texture: uint32): void {.glew_lib.}
-proc glDeleteTexturesEXT*(n: int32, textures: ptr uint32): void {.glew_lib.}
-proc glGenTexturesEXT*(n: int32, textures: ptr uint32): void {.glew_lib.}
-proc glIsTextureEXT*(texture: uint32): bool {.glew_lib.}
-proc glPrioritizeTexturesEXT*(n: int32, textures: ptr uint32, priorities: ptr float32): void {.glew_lib.}
-proc glTextureNormalEXT*(mode: GLenum): void {.glew_lib.}
-proc glTexStorage1DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib.}
-proc glTexStorage2DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glTexStorage3DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glTextureStorage1DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib.}
-proc glTextureStorage2DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glTextureStorage3DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glTextureViewEXT*(texture: uint32, target: GLenum, origtexture: uint32, internalformat: GLenum, minlevel: uint32, numlevels: uint32, minlayer: uint32, numlayers: uint32): void {.glew_lib.}
-proc glGetQueryObjecti64vEXT*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetQueryObjectui64vEXT*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glBeginTransformFeedbackEXT*(primitiveMode: GLenum): void {.glew_lib.}
-proc glBindBufferBaseEXT*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib.}
-proc glBindBufferOffsetEXT*(target: GLenum, index: uint32, buffer: uint32, offset: int32): void {.glew_lib.}
-proc glBindBufferRangeEXT*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glEndTransformFeedbackEXT*(): void {.glew_lib.}
-proc glGetTransformFeedbackVaryingEXT*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib.}
-proc glTransformFeedbackVaryingsEXT*(program: uint32, count: int32, varyings: ptr cstring, bufferMode: GLenum): void {.glew_lib.}
-proc glArrayElementEXT*(i: int32): void {.glew_lib.}
-proc glColorPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib.}
-proc glDrawArraysEXT*(mode: GLenum, first: int32, count: int32): void {.glew_lib.}
-proc glEdgeFlagPointerEXT*(stride: int32, count: int32, poynter: ptr bool): void {.glew_lib.}
-proc glIndexPointerEXT*(tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib.}
-proc glNormalPointerEXT*(tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib.}
-proc glTexCoordPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib.}
-proc glVertexPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib.}
-proc glBindArraySetEXT*(arrayset: pointer): void {.glew_lib.}
-proc glCreateArraySetExt*(): void {.glew_lib.}
-proc glDeleteArraySetsEXT*(n: int32, arrayset: ptr pointer): void {.glew_lib.}
-proc glGetVertexAttribLdvEXT*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glVertexArrayVertexAttribLOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib.}
-proc glVertexAttribL1dEXT*(index: uint32, x: float64): void {.glew_lib.}
-proc glVertexAttribL1dvEXT*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL2dEXT*(index: uint32, x: float64, y: float64): void {.glew_lib.}
-proc glVertexAttribL2dvEXT*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL3dEXT*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexAttribL3dvEXT*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribL4dEXT*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexAttribL4dvEXT*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribLPointerEXT*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glBeginVertexShaderEXT*(): void {.glew_lib.}
-proc glBindLightParameterEXT*(light: GLenum, value: GLenum): uint32 {.glew_lib.}
-proc glBindMaterialParameterEXT*(face: GLenum, value: GLenum): uint32 {.glew_lib.}
-proc glBindParameterEXT*(value: GLenum): uint32 {.glew_lib.}
-proc glBindTexGenParameterEXT*(unit: GLenum, coord: GLenum, value: GLenum): uint32 {.glew_lib.}
-proc glBindTextureUnitParameterEXT*(unit: GLenum, value: GLenum): uint32 {.glew_lib.}
-proc glBindVertexShaderEXT*(id: uint32): void {.glew_lib.}
-proc glDeleteVertexShaderEXT*(id: uint32): void {.glew_lib.}
-proc glDisableVariantClientStateEXT*(id: uint32): void {.glew_lib.}
-proc glEnableVariantClientStateEXT*(id: uint32): void {.glew_lib.}
-proc glEndVertexShaderEXT*(): void {.glew_lib.}
-proc glExtractComponentEXT*(res: uint32, src: uint32, num: uint32): void {.glew_lib.}
-proc glGenSymbolsEXT*(dataType: GLenum, storageType: GLenum, rangee: GLenum, components: uint32): uint32 {.glew_lib.}
-proc glGenVertexShadersEXT*(rangee: uint32): uint32 {.glew_lib.}
-proc glGetInvariantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib.}
-proc glGetInvariantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib.}
-proc glGetInvariantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib.}
-proc glGetLocalConstantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib.}
-proc glGetLocalConstantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib.}
-proc glGetLocalConstantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib.}
-proc glGetVariantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib.}
-proc glGetVariantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib.}
-proc glGetVariantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib.}
-proc glGetVariantPointervEXT*(id: uint32, value: GLenum, data: ptr void ): void {.glew_lib.}
-proc glInsertComponentEXT*(res: uint32, src: uint32, num: uint32): void {.glew_lib.}
-proc glIsVariantEnabledEXT*(id: uint32, cap: GLenum): bool {.glew_lib.}
-proc glSetInvariantEXT*(id: uint32, tipe: GLenum, adr: pointer): void {.glew_lib.}
-proc glSetLocalConstantEXT*(id: uint32, tipe: GLenum, adr: pointer): void {.glew_lib.}
-proc glShaderOp1EXT*(op: GLenum, res: uint32, arg1: uint32): void {.glew_lib.}
-proc glShaderOp2EXT*(op: GLenum, res: uint32, arg1: uint32, arg2: uint32): void {.glew_lib.}
-proc glShaderOp3EXT*(op: GLenum, res: uint32, arg1: uint32, arg2: uint32, arg3: uint32): void {.glew_lib.}
-proc glSwizzleEXT*(res: uint32, inn: uint32, outX: GLenum, outY: GLenum, outZ: GLenum, outW: GLenum): void {.glew_lib.}
-proc glVariantPointerEXT*(id: uint32, tipe: GLenum, stride: uint32, adr: pointer): void {.glew_lib.}
-proc glVariantbvEXT*(id: uint32, adr: ptr int8): void {.glew_lib.}
-proc glVariantdvEXT*(id: uint32, adr: ptr float64): void {.glew_lib.}
-proc glVariantfvEXT*(id: uint32, adr: ptr float32): void {.glew_lib.}
-proc glVariantivEXT*(id: uint32, adr: ptr int32): void {.glew_lib.}
-proc glVariantsvEXT*(id: uint32, adr: ptr int16): void {.glew_lib.}
-proc glVariantubvEXT*(id: uint32, adr: ptr uint8): void {.glew_lib.}
-proc glVariantuivEXT*(id: uint32, adr: ptr uint32): void {.glew_lib.}
-proc glVariantusvEXT*(id: uint32, adr: ptr uint16): void {.glew_lib.}
-proc glWriteMaskEXT*(res: uint32, inn: uint32, outX: GLenum, outY: GLenum, outZ: GLenum, outW: GLenum): void {.glew_lib.}
-proc glVertexWeightPointerEXT*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glVertexWeightfEXT*(weight: float32): void {.glew_lib.}
-proc glVertexWeightfvEXT*(weight: ptr float32): void {.glew_lib.}
-proc glAcquireKeyedMutexWin32EXT*(memory: uint32, key: uint64, timeout: uint32): bool {.glew_lib.}
-proc glReleaseKeyedMutexWin32EXT*(memory: uint32, key: uint64): bool {.glew_lib.}
-proc glWindowRectanglesEXT*(mode: GLenum, count: int32, box: ptr int32): void {.glew_lib.}
-proc glImportSyncEXT*(external_sync_type: GLenum, external_sync: int32, flags: uint32): distinct pointer {.glew_lib.}
-proc glFrameTerminatorGREMEDY*(): void {.glew_lib.}
-proc glStringMarkerGREMEDY*(len: int32, stryng: pointer): void {.glew_lib.}
-proc glGetImageTransformParameterfvHP*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetImageTransformParameterivHP*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glImageTransformParameterfHP*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glImageTransformParameterfvHP*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glImageTransformParameteriHP*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glImageTransformParameterivHP*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMultiModeDrawArraysIBM*(mode: ptr GLenum, first: ptr int32, count: ptr int32, primcount: int32, modestride: int32): void {.glew_lib.}
-proc glMultiModeDrawElementsIBM*(mode: ptr GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32, modestride: int32): void {.glew_lib.}
-proc glColorPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glEdgeFlagPointerListIBM*(stride: int32, poynter: ptr bool, ptrstride: int32): void {.glew_lib.}
-proc glFogCoordPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glIndexPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glNormalPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glSecondaryColorPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glTexCoordPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glVertexPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib.}
-proc glMapTexture2DINTEL*(texture: uint32, level: int32, access: uint32, stride: ptr int32, layout: ptr GLenum): void {.glew_lib.}
-proc glSyncTextureINTEL*(texture: uint32): void {.glew_lib.}
-proc glUnmapTexture2DINTEL*(texture: uint32, level: int32): void {.glew_lib.}
-proc glColorPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glNormalPointervINTEL*(tipe: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glTexCoordPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glVertexPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glBeginPerfQueryINTEL*(queryHandle: uint32): void {.glew_lib.}
-proc glCreatePerfQueryINTEL*(queryId: uint32, queryHandle: ptr uint32): void {.glew_lib.}
-proc glDeletePerfQueryINTEL*(queryHandle: uint32): void {.glew_lib.}
-proc glEndPerfQueryINTEL*(queryHandle: uint32): void {.glew_lib.}
-proc glGetFirstPerfQueryIdINTEL*(queryId: ptr uint32): void {.glew_lib.}
-proc glGetNextPerfQueryIdINTEL*(queryId: uint32, nextQueryId: ptr uint32): void {.glew_lib.}
-proc glGetPerfCounterInfoINTEL*(queryId: uint32, counterId: uint32, counterNameLength: uint32, counterName: ptr char, counterDescLength: uint32, counterDesc: ptr char, counterOffset: ptr uint32, counterDataSize: ptr uint32, counterTypeEnum: ptr uint32, counterDataTypeEnum: ptr uint32, rawCounterMaxValue: ptr uint64): void {.glew_lib.}
-proc glGetPerfQueryDataINTEL*(queryHandle: uint32, flags: uint32, dataSize: int32, data: pointer, bytesWritten: ptr uint32): void {.glew_lib.}
-proc glGetPerfQueryIdByNameINTEL*(queryName: ptr char, queryId: ptr uint32): void {.glew_lib.}
-proc glGetPerfQueryInfoINTEL*(queryId: uint32, queryNameLength: uint32, queryName: ptr char, dataSize: ptr uint32, noCounters: ptr uint32, noInstances: ptr uint32, capsMask: ptr uint32): void {.glew_lib.}
-proc glTexScissorFuncINTEL*(target: GLenum, lfunc: GLenum, hfunc: GLenum): void {.glew_lib.}
-proc glTexScissorINTEL*(target: GLenum, tlow: float32, thigh: float32): void {.glew_lib.}
-proc glBlendBarrierKHR*(): void {.glew_lib.}
-proc glDebugMessageControl*(source: GLenum, tipe: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib.}
-proc glDebugMessageInsert*(source: GLenum, tipe: GLenum, id: uint32, severity: GLenum, length: int32, buf: cstring): void {.glew_lib.}
-proc glGetDebugMessageLog*(count: uint32, bufSize: int32, sources: ptr GLenum, types: ptr GLenum, ids: ptr uint32, severities: ptr GLenum, lengths: ptr int32, messageLog: ptr char): uint32 {.glew_lib.}
-proc glGetObjectLabel*(identifier: GLenum, name: uint32, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib.}
-proc glGetObjectPtrLabel*(poiinter: pointer, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib.}
-proc glObjectLabel*(identifier: GLenum, name: uint32, length: int32, label: cstring): void {.glew_lib.}
-proc glObjectPtrLabel*(poiinter: pointer, length: int32, label: cstring): void {.glew_lib.}
-proc glPopDebugGroup*(): void {.glew_lib.}
-proc glPushDebugGroup*(source: GLenum, id: uint32, length: int32, message: cstring): void {.glew_lib.}
-proc glMaxShaderCompilerThreadsKHR*(count: uint32): void {.glew_lib.}
-proc glGetnUniformfv*(program: uint32, location: int32, bufSize: int32, params: ptr float32): void {.glew_lib.}
-proc glGetnUniformiv*(program: uint32, location: int32, bufSize: int32, params: ptr int32): void {.glew_lib.}
-proc glGetnUniformuiv*(program: uint32, location: int32, bufSize: int32, params: ptr uint32): void {.glew_lib.}
-proc glReadnPixels*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, bufSize: int32, data: pointer): void {.glew_lib.}
-proc glBufferRegionEnabled*(): uint32 {.glew_lib.}
-proc glDeleteBufferRegion*(region: GLenum): void {.glew_lib.}
-proc glDrawBufferRegion*(region: uint32, x: int32, y: int32, width: int32, height: int32, xDest: int32, yDest: int32): void {.glew_lib.}
-proc glNewBufferRegion*(region: GLenum): uint32 {.glew_lib.}
-proc glReadBufferRegion*(region: uint32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glResizeBuffersMESA*(): void {.glew_lib.}
-proc glWindowPos2dMESA*(x: float64, y: float64): void {.glew_lib.}
-proc glWindowPos2dvMESA*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos2fMESA*(x: float32, y: float32): void {.glew_lib.}
-proc glWindowPos2fvMESA*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos2iMESA*(x: int32, y: int32): void {.glew_lib.}
-proc glWindowPos2ivMESA*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos2sMESA*(x: int16, y: int16): void {.glew_lib.}
-proc glWindowPos2svMESA*(p: ptr int16): void {.glew_lib.}
-proc glWindowPos3dMESA*(x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glWindowPos3dvMESA*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos3fMESA*(x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glWindowPos3fvMESA*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos3iMESA*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glWindowPos3ivMESA*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos3sMESA*(x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glWindowPos3svMESA*(p: ptr int16): void {.glew_lib.}
-proc glWindowPos4dMESA*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glWindowPos4dvMESA*(p: ptr float64): void {.glew_lib.}
-proc glWindowPos4fMESA*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glWindowPos4fvMESA*(p: ptr float32): void {.glew_lib.}
-proc glWindowPos4iMESA*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glWindowPos4ivMESA*(p: ptr int32): void {.glew_lib.}
-proc glWindowPos4sMESA*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glWindowPos4svMESA*(p: ptr int16): void {.glew_lib.}
-proc glBeginConditionalRenderNVX*(id: uint32): void {.glew_lib.}
-proc glEndConditionalRenderNVX*(): void {.glew_lib.}
-proc glLGPUCopyImageSubDataNVX*(sourceGpu: uint32, destinationGpuMask: uint32, srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srxY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glLGPUInterlockNVX*(): void {.glew_lib.}
-proc glLGPUNamedBufferSubDataNVX*(gpuMask: uint32, buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glStereoParameterfNV*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glStereoParameteriNV*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glMultiDrawArraysIndirectBindlessNV*(mode: GLenum, indirect: pointer, drawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectBindlessNV*(mode: GLenum, tipe: GLenum, indirect: pointer, drawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib.}
-proc glMultiDrawArraysIndirectBindlessCountNV*(mode: GLenum, indirect: pointer, drawCount: int32, maxDrawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib.}
-proc glMultiDrawElementsIndirectBindlessCountNV*(mode: GLenum, tipe: GLenum, indirect: pointer, drawCount: int32, maxDrawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib.}
-proc glGetImageHandleNV*(texture: uint32, level: int32, layered: bool, layer: int32, format: GLenum): uint64 {.glew_lib.}
-proc glGetTextureHandleNV*(texture: uint32): uint64 {.glew_lib.}
-proc glGetTextureSamplerHandleNV*(texture: uint32, sampler: uint32): uint64 {.glew_lib.}
-proc glIsImageHandleResidentNV*(handle: uint64): bool {.glew_lib.}
-proc glIsTextureHandleResidentNV*(handle: uint64): bool {.glew_lib.}
-proc glMakeImageHandleNonResidentNV*(handle: uint64): void {.glew_lib.}
-proc glMakeImageHandleResidentNV*(handle: uint64, access: GLenum): void {.glew_lib.}
-proc glMakeTextureHandleNonResidentNV*(handle: uint64): void {.glew_lib.}
-proc glMakeTextureHandleResidentNV*(handle: uint64): void {.glew_lib.}
-proc glProgramUniformHandleui64NV*(program: uint32, location: int32, value: uint64): void {.glew_lib.}
-proc glProgramUniformHandleui64vNV*(program: uint32, location: int32, count: int32, values: ptr uint64): void {.glew_lib.}
-proc glUniformHandleui64NV*(location: int32, value: uint64): void {.glew_lib.}
-proc glUniformHandleui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glBlendBarrierNV*(): void {.glew_lib.}
-proc glBlendParameteriNV*(pname: GLenum, value: int32): void {.glew_lib.}
-proc glViewportPositionWScaleNV*(index: uint32, xcoeff: float32, ycoeff: float32): void {.glew_lib.}
-proc glCallCommandListNV*(list: uint32): void {.glew_lib.}
-proc glCommandListSegmentsNV*(list: uint32, segments: uint32): void {.glew_lib.}
-proc glCompileCommandListNV*(list: uint32): void {.glew_lib.}
-proc glCreateCommandListsNV*(n: int32, lists: ptr uint32): void {.glew_lib.}
-proc glCreateStatesNV*(n: int32, states: ptr uint32): void {.glew_lib.}
-proc glDeleteCommandListsNV*(n: int32, lists: ptr uint32): void {.glew_lib.}
-proc glDeleteStatesNV*(n: int32, states: ptr uint32): void {.glew_lib.}
-proc glDrawCommandsAddressNV*(primitiveMode: GLenum, indirects: ptr uint64, sizes: ptr int32, count: uint32): void {.glew_lib.}
-proc glDrawCommandsNV*(primitiveMode: GLenum, buffer: uint32, indirects: ptr int32, sizes: ptr int32, count: uint32): void {.glew_lib.}
-proc glDrawCommandsStatesAddressNV*(indirects: ptr uint64, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib.}
-proc glDrawCommandsStatesNV*(buffer: uint32, indirects: ptr int32, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib.}
-proc glGetCommandHeaderNV*(tokenID: GLenum, size: uint32): uint32 {.glew_lib.}
-proc glGetStageIndexNV*(shadertype: GLenum): uint16 {.glew_lib.}
-proc glIsCommandListNV*(list: uint32): bool {.glew_lib.}
-proc glIsStateNV*(state: uint32): bool {.glew_lib.}
-proc glListDrawCommandsStatesClientNV*(list: uint32, segment: uint32, indirects: ptr void, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib.}
-proc glStateCaptureNV*(state: uint32, mode: GLenum): void {.glew_lib.}
-proc glBeginConditionalRenderNV*(id: uint32, mode: GLenum): void {.glew_lib.}
-proc glEndConditionalRenderNV*(): void {.glew_lib.}
-proc glSubpixelPrecisionBiasNV*(xbits: uint32, ybits: uint32): void {.glew_lib.}
-proc glConservativeRasterParameterfNV*(pname: GLenum, value: float32): void {.glew_lib.}
-proc glConservativeRasterParameteriNV*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glCopyBufferSubDataNV*(readtarget: GLenum, writetarget: GLenum, readoffset: int32, writeoffset: int32, size: int32): void {.glew_lib.}
-proc glCopyImageSubDataNV*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, width: int32, height: int32, depth: int32): void {.glew_lib.}
-proc glClearDepthdNV*(depth: float64): void {.glew_lib.}
-proc glDepthBoundsdNV*(zmin: float64, zmax: float64): void {.glew_lib.}
-proc glDepthRangedNV*(zNear: float64, zFar: float64): void {.glew_lib.}
-proc glDrawBuffersNV*(n: int32, bufs: ptr GLenum): void {.glew_lib.}
-proc glDrawArraysInstancedNV*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib.}
-proc glDrawElementsInstancedNV*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib.}
-proc glDrawTextureNV*(texture: uint32, sampler: uint32, x0: float32, y0: float32, x1: float32, y1: float32, z: float32, s0: float32, t0: float32, s1: float32, t1: float32): void {.glew_lib.}
-proc glDrawVkImageNV*(vkImage: uint64, sampler: uint32, x0: float32, y0: float32, x1: float32, y1: float32, z: float32, s0: float32, t0: float32, s1: float32, t1: float32): void {.glew_lib.}
-proc glEvalMapsNV*(target: GLenum, mode: GLenum): void {.glew_lib.}
-proc glGetMapAttribParameterfvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMapAttribParameterivNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMapControlPointsNV*(target: GLenum, index: uint32, tipe: GLenum, ustride: int32, vstride: int32, packed: bool, points: pointer): void {.glew_lib.}
-proc glGetMapParameterfvNV*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMapParameterivNV*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMapControlPointsNV*(target: GLenum, index: uint32, tipe: GLenum, ustride: int32, vstride: int32, uorder: int32, vorder: int32, packed: bool, points: pointer): void {.glew_lib.}
-proc glMapParameterfvNV*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glMapParameterivNV*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMultisamplefvNV*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib.}
-proc glSampleMaskIndexedNV*(index: uint32, mask: uint32): void {.glew_lib.}
-proc glTexRenderbufferNV*(target: GLenum, renderbuffer: uint32): void {.glew_lib.}
-proc glDeleteFencesNV*(n: int32, fences: ptr uint32): void {.glew_lib.}
-proc glFinishFenceNV*(fence: uint32): void {.glew_lib.}
-proc glGenFencesNV*(n: int32, fences: ptr uint32): void {.glew_lib.}
-proc glGetFenceivNV*(fence: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsFenceNV*(fence: uint32): bool {.glew_lib.}
-proc glSetFenceNV*(fence: uint32, condition: GLenum): void {.glew_lib.}
-proc glTestFenceNV*(fence: uint32): bool {.glew_lib.}
-proc glFragmentCoverageColorNV*(color: uint32): void {.glew_lib.}
-proc glGetProgramNamedParameterdvNV*(id: uint32, len: int32, name: ptr uint8, params: ptr float64): void {.glew_lib.}
-proc glGetProgramNamedParameterfvNV*(id: uint32, len: int32, name: ptr uint8, params: ptr float32): void {.glew_lib.}
-proc glProgramNamedParameter4dNV*(id: uint32, len: int32, name: ptr uint8, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glProgramNamedParameter4dvNV*(id: uint32, len: int32, name: ptr uint8, v: ptr float64): void {.glew_lib.}
-proc glProgramNamedParameter4fNV*(id: uint32, len: int32, name: ptr uint8, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glProgramNamedParameter4fvNV*(id: uint32, len: int32, name: ptr uint8, v: ptr float32): void {.glew_lib.}
-proc glBlitFramebufferNV*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glRenderbufferStorageMultisampleNV*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glRenderbufferStorageMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib.}
-proc glProgramVertexLimitNV*(target: GLenum, limit: int32): void {.glew_lib.}
-proc glMulticastBarrierNV*(): void {.glew_lib.}
-proc glMulticastBlitFramebufferNV*(srcGpu: uint32, dstGpu: uint32, srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib.}
-proc glMulticastBufferSubDataNV*(gpuMask: uint32, buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib.}
-proc glMulticastCopyBufferSubDataNV*(readGpu: uint32, writeGpuMask: uint32, readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib.}
-proc glMulticastCopyImageSubDataNV*(srcGpu: uint32, dstGpuMask: uint32, srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib.}
-proc glMulticastFramebufferSampleLocationsfvNV*(gpu: uint32, framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glMulticastGetQueryObjecti64vNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glMulticastGetQueryObjectivNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMulticastGetQueryObjectui64vNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glMulticastGetQueryObjectuivNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glMulticastWaitSyncNV*(signalGpu: uint32, waitGpuMask: uint32): void {.glew_lib.}
-proc glRenderGpuMaskNV*(mask: uint32): void {.glew_lib.}
-proc glProgramEnvParameterI4iNV*(target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glProgramEnvParameterI4ivNV*(target: GLenum, index: uint32, params: ptr int32): void {.glew_lib.}
-proc glProgramEnvParameterI4uiNV*(target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib.}
-proc glProgramEnvParameterI4uivNV*(target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib.}
-proc glProgramEnvParametersI4ivNV*(target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib.}
-proc glProgramEnvParametersI4uivNV*(target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib.}
-proc glProgramLocalParameterI4iNV*(target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib.}
-proc glProgramLocalParameterI4ivNV*(target: GLenum, index: uint32, params: ptr int32): void {.glew_lib.}
-proc glProgramLocalParameterI4uiNV*(target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib.}
-proc glProgramLocalParameterI4uivNV*(target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib.}
-proc glProgramLocalParametersI4ivNV*(target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib.}
-proc glProgramLocalParametersI4uivNV*(target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib.}
-proc glGetUniformi64vNV*(program: uint32, location: int32, params: ptr int64): void {.glew_lib.}
-proc glGetUniformui64vNV*(program: uint32, location: int32, params: ptr uint64): void {.glew_lib.}
-proc glProgramUniform1i64NV*(program: uint32, location: int32, x: int64): void {.glew_lib.}
-proc glProgramUniform1i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform1ui64NV*(program: uint32, location: int32, x: uint64): void {.glew_lib.}
-proc glProgramUniform1ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform2i64NV*(program: uint32, location: int32, x: int64, y: int64): void {.glew_lib.}
-proc glProgramUniform2i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform2ui64NV*(program: uint32, location: int32, x: uint64, y: uint64): void {.glew_lib.}
-proc glProgramUniform2ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform3i64NV*(program: uint32, location: int32, x: int64, y: int64, z: int64): void {.glew_lib.}
-proc glProgramUniform3i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform3ui64NV*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib.}
-proc glProgramUniform3ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glProgramUniform4i64NV*(program: uint32, location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib.}
-proc glProgramUniform4i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glProgramUniform4ui64NV*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib.}
-proc glProgramUniform4ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform1i64NV*(location: int32, x: int64): void {.glew_lib.}
-proc glUniform1i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform1ui64NV*(location: int32, x: uint64): void {.glew_lib.}
-proc glUniform1ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform2i64NV*(location: int32, x: int64, y: int64): void {.glew_lib.}
-proc glUniform2i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform2ui64NV*(location: int32, x: uint64, y: uint64): void {.glew_lib.}
-proc glUniform2ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform3i64NV*(location: int32, x: int64, y: int64, z: int64): void {.glew_lib.}
-proc glUniform3i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform3ui64NV*(location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib.}
-proc glUniform3ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniform4i64NV*(location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib.}
-proc glUniform4i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib.}
-proc glUniform4ui64NV*(location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib.}
-proc glUniform4ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glColor3hNV*(red: uint16, green: uint16, blue: uint16): void {.glew_lib.}
-proc glColor3hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glColor4hNV*(red: uint16, green: uint16, blue: uint16, alpha: uint16): void {.glew_lib.}
-proc glColor4hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glFogCoordhNV*(fog: uint16): void {.glew_lib.}
-proc glFogCoordhvNV*(fog: ptr uint16): void {.glew_lib.}
-proc glMultiTexCoord1hNV*(target: GLenum, s: uint16): void {.glew_lib.}
-proc glMultiTexCoord1hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib.}
-proc glMultiTexCoord2hNV*(target: GLenum, s: uint16, t: uint16): void {.glew_lib.}
-proc glMultiTexCoord2hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib.}
-proc glMultiTexCoord3hNV*(target: GLenum, s: uint16, t: uint16, r: uint16): void {.glew_lib.}
-proc glMultiTexCoord3hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib.}
-proc glMultiTexCoord4hNV*(target: GLenum, s: uint16, t: uint16, r: uint16, q: uint16): void {.glew_lib.}
-proc glMultiTexCoord4hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib.}
-proc glNormal3hNV*(nx: uint16, ny: uint16, nz: uint16): void {.glew_lib.}
-proc glNormal3hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glSecondaryColor3hNV*(red: uint16, green: uint16, blue: uint16): void {.glew_lib.}
-proc glSecondaryColor3hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glTexCoord1hNV*(s: uint16): void {.glew_lib.}
-proc glTexCoord1hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glTexCoord2hNV*(s: uint16, t: uint16): void {.glew_lib.}
-proc glTexCoord2hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glTexCoord3hNV*(s: uint16, t: uint16, r: uint16): void {.glew_lib.}
-proc glTexCoord3hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glTexCoord4hNV*(s: uint16, t: uint16, r: uint16, q: uint16): void {.glew_lib.}
-proc glTexCoord4hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glVertex2hNV*(x: uint16, y: uint16): void {.glew_lib.}
-proc glVertex2hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glVertex3hNV*(x: uint16, y: uint16, z: uint16): void {.glew_lib.}
-proc glVertex3hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glVertex4hNV*(x: uint16, y: uint16, z: uint16, w: uint16): void {.glew_lib.}
-proc glVertex4hvNV*(v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib1hNV*(index: uint32, x: uint16): void {.glew_lib.}
-proc glVertexAttrib1hvNV*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib2hNV*(index: uint32, x: uint16, y: uint16): void {.glew_lib.}
-proc glVertexAttrib2hvNV*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib3hNV*(index: uint32, x: uint16, y: uint16, z: uint16): void {.glew_lib.}
-proc glVertexAttrib3hvNV*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttrib4hNV*(index: uint32, x: uint16, y: uint16, z: uint16, w: uint16): void {.glew_lib.}
-proc glVertexAttrib4hvNV*(index: uint32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribs1hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribs2hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribs3hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib.}
-proc glVertexAttribs4hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib.}
-proc glVertexWeighthNV*(weight: uint16): void {.glew_lib.}
-proc glVertexWeighthvNV*(weight: ptr uint16): void {.glew_lib.}
-proc glVertexAttribDivisorNV*(index: uint32, divisor: uint32): void {.glew_lib.}
-proc glGetInternalformatSampleivNV*(target: GLenum, internalformat: GLenum, samples: int32, pname: GLenum, bufSize: int32, params: ptr int32): void {.glew_lib.}
-proc glUniformMatrix2x3fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix2x4fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3x2fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix3x4fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4x2fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glUniformMatrix4x3fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib.}
-proc glBeginOcclusionQueryNV*(id: uint32): void {.glew_lib.}
-proc glDeleteOcclusionQueriesNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glEndOcclusionQueryNV*(): void {.glew_lib.}
-proc glGenOcclusionQueriesNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glGetOcclusionQueryivNV*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetOcclusionQueryuivNV*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glIsOcclusionQueryNV*(id: uint32): bool {.glew_lib.}
-proc glProgramBufferParametersIivNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr int32): void {.glew_lib.}
-proc glProgramBufferParametersIuivNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr uint32): void {.glew_lib.}
-proc glProgramBufferParametersfvNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr float32): void {.glew_lib.}
-proc glCopyPathNV*(resultPath: uint32, srcPath: uint32): void {.glew_lib.}
-proc glCoverFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glCoverFillPathNV*(path: uint32, coverMode: GLenum): void {.glew_lib.}
-proc glCoverStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glCoverStrokePathNV*(path: uint32, coverMode: GLenum): void {.glew_lib.}
-proc glDeletePathsNV*(path: uint32, rangee: int32): void {.glew_lib.}
-proc glGenPathsNV*(rangee: int32): uint32 {.glew_lib.}
-proc glGetPathColorGenfvNV*(color: GLenum, pname: GLenum, value: ptr float32): void {.glew_lib.}
-proc glGetPathColorGenivNV*(color: GLenum, pname: GLenum, value: ptr int32): void {.glew_lib.}
-proc glGetPathCommandsNV*(path: uint32, commands: ptr uint8): void {.glew_lib.}
-proc glGetPathCoordsNV*(path: uint32, coords: ptr float32): void {.glew_lib.}
-proc glGetPathDashArrayNV*(path: uint32, dashArray: ptr float32): void {.glew_lib.}
-proc glGetPathLengthNV*(path: uint32, startSegment: int32, numSegments: int32): float32 {.glew_lib.}
-proc glGetPathMetricRangeNV*(metricQueryMask: uint32, firstPathName: uint32, numPaths: int32, stride: int32, metrics: ptr float32): void {.glew_lib.}
-proc glGetPathMetricsNV*(metricQueryMask: uint32, numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, stride: int32, metrics: ptr float32): void {.glew_lib.}
-proc glGetPathParameterfvNV*(path: uint32, pname: GLenum, value: ptr float32): void {.glew_lib.}
-proc glGetPathParameterivNV*(path: uint32, pname: GLenum, value: ptr int32): void {.glew_lib.}
-proc glGetPathSpacingNV*(pathListMode: GLenum, numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, advanceScale: float32, kerningScale: float32, transformType: GLenum, returnedSpacing: ptr float32): void {.glew_lib.}
-proc glGetPathTexGenfvNV*(texCoordSet: GLenum, pname: GLenum, value: ptr float32): void {.glew_lib.}
-proc glGetPathTexGenivNV*(texCoordSet: GLenum, pname: GLenum, value: ptr int32): void {.glew_lib.}
-proc glGetProgramResourcefvNV*(program: uint32, programInterface: GLenum, index: uint32, propCount: int32, props: ptr GLenum, bufSize: int32, length: ptr int32, params: ptr float32): void {.glew_lib.}
-proc glInterpolatePathsNV*(resultPath: uint32, pathA: uint32, pathB: uint32, weight: float32): void {.glew_lib.}
-proc glIsPathNV*(path: uint32): bool {.glew_lib.}
-proc glIsPointInFillPathNV*(path: uint32, mask: uint32, x: float32, y: float32): bool {.glew_lib.}
-proc glIsPointInStrokePathNV*(path: uint32, x: float32, y: float32): bool {.glew_lib.}
-proc glMatrixLoad3x2fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixLoad3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixLoadTranspose3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixMult3x2fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixMult3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glMatrixMultTranspose3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib.}
-proc glPathColorGenNV*(color: GLenum, genMode: GLenum, colorFormat: GLenum, coeffs: ptr float32): void {.glew_lib.}
-proc glPathCommandsNV*(path: uint32, numCommands: int32, commands: ptr uint8, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib.}
-proc glPathCoordsNV*(path: uint32, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib.}
-proc glPathCoverDepthFuncNV*(zfunc: GLenum): void {.glew_lib.}
-proc glPathDashArrayNV*(path: uint32, dashCount: int32, dashArray: ptr float32): void {.glew_lib.}
-proc glPathFogGenNV*(genMode: GLenum): void {.glew_lib.}
-proc glPathGlyphIndexArrayNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, firstGlyphIndex: uint32, numGlyphs: int32, pathParameterTemplate: uint32, emScale: float32): GLenum {.glew_lib.}
-proc glPathGlyphIndexRangeNV*(fontTarget: GLenum, fontName: pointer, fontStyle: uint32, pathParameterTemplate: uint32, emScale: float32, baseAndCount: ptr uint32): GLenum {.glew_lib.}
-proc glPathGlyphRangeNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, firstGlyph: uint32, numGlyphs: int32, handleMissingGlyphs: GLenum, pathParameterTemplate: uint32, emScale: float32): void {.glew_lib.}
-proc glPathGlyphsNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, numGlyphs: int32, tipe: GLenum, charcodes: pointer, handleMissingGlyphs: GLenum, pathParameterTemplate: uint32, emScale: float32): void {.glew_lib.}
-proc glPathMemoryGlyphIndexArrayNV*(firstPathName: uint32, fontTarget: GLenum, fontSize: int32, fontData: pointer, faceIndex: int32, firstGlyphIndex: uint32, numGlyphs: int32, pathParameterTemplate: uint32, emScale: float32): GLenum {.glew_lib.}
-proc glPathParameterfNV*(path: uint32, pname: GLenum, value: float32): void {.glew_lib.}
-proc glPathParameterfvNV*(path: uint32, pname: GLenum, value: ptr float32): void {.glew_lib.}
-proc glPathParameteriNV*(path: uint32, pname: GLenum, value: int32): void {.glew_lib.}
-proc glPathParameterivNV*(path: uint32, pname: GLenum, value: ptr int32): void {.glew_lib.}
-proc glPathStencilDepthOffsetNV*(factor: float32, units: float32): void {.glew_lib.}
-proc glPathStencilFuncNV*(fun: GLenum, reff: int32, mask: uint32): void {.glew_lib.}
-proc glPathStringNV*(path: uint32, format: GLenum, length: int32, pathString: pointer): void {.glew_lib.}
-proc glPathSubCommandsNV*(path: uint32, commandStart: int32, commandsToDelete: int32, numCommands: int32, commands: ptr uint8, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib.}
-proc glPathSubCoordsNV*(path: uint32, coordStart: int32, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib.}
-proc glPathTexGenNV*(texCoordSet: GLenum, genMode: GLenum, components: int32, coeffs: ptr float32): void {.glew_lib.}
-proc glPointAlongPathNV*(path: uint32, startSegment: int32, numSegments: int32, distance: float32, x: ptr float32, y: ptr float32, tangentX: ptr float32, tangentY: ptr float32): bool {.glew_lib.}
-proc glProgramPathFragmentInputGenNV*(program: uint32, location: int32, genMode: GLenum, components: int32, coeffs: ptr float32): void {.glew_lib.}
-proc glStencilFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, fillMode: GLenum, mask: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glStencilFillPathNV*(path: uint32, fillMode: GLenum, mask: uint32): void {.glew_lib.}
-proc glStencilStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, reference: int32, mask: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glStencilStrokePathNV*(path: uint32, reference: int32, mask: uint32): void {.glew_lib.}
-proc glStencilThenCoverFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, fillMode: GLenum, mask: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glStencilThenCoverFillPathNV*(path: uint32, fillMode: GLenum, mask: uint32, coverMode: GLenum): void {.glew_lib.}
-proc glStencilThenCoverStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, reference: int32, mask: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glStencilThenCoverStrokePathNV*(path: uint32, reference: int32, mask: uint32, coverMode: GLenum): void {.glew_lib.}
-proc glTransformPathNV*(resultPath: uint32, srcPath: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib.}
-proc glWeightPathsNV*(resultPath: uint32, numPaths: int32, paths: ptr uint32, weights: ptr float32): void {.glew_lib.}
-proc glFlushPixelDataRangeNV*(target: GLenum): void {.glew_lib.}
-proc glPixelDataRangeNV*(target: GLenum, length: int32, poynter: pointer): void {.glew_lib.}
-proc glPointParameteriNV*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glPointParameterivNV*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPolygonModeNV*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glGetVideoi64vNV*(video_slot: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetVideoivNV*(video_slot: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVideoui64vNV*(video_slot: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glGetVideouivNV*(video_slot: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib.}
-proc glPresentFrameDualFillNV*(video_slot: uint32, minPresentTime: uint64, beginPresentTimeId: uint32, presentDurationId: uint32, tipe: GLenum, target0: GLenum, fill0: uint32, target1: GLenum, fill1: uint32, target2: GLenum, fill2: uint32, target3: GLenum, fill3: uint32): void {.glew_lib.}
-proc glPresentFrameKeyedNV*(video_slot: uint32, minPresentTime: uint64, beginPresentTimeId: uint32, presentDurationId: uint32, tipe: GLenum, target0: GLenum, fill0: uint32, key0: uint32, target1: GLenum, fill1: uint32, key1: uint32): void {.glew_lib.}
-proc glPrimitiveRestartIndexNV*(index: uint32): void {.glew_lib.}
-proc glPrimitiveRestartNV*(): void {.glew_lib.}
-proc glCombinerInputNV*(stage: GLenum, portion: GLenum, variable: GLenum, input: GLenum, mapping: GLenum, componentUsage: GLenum): void {.glew_lib.}
-proc glCombinerOutputNV*(stage: GLenum, portion: GLenum, abOutput: GLenum, cdOutput: GLenum, sumOutput: GLenum, scale: GLenum, bias: GLenum, abDotProduct: bool, cdDotProduct: bool, muxSum: bool): void {.glew_lib.}
-proc glCombinerParameterfNV*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glCombinerParameterfvNV*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glCombinerParameteriNV*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glCombinerParameterivNV*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFinalCombinerInputNV*(variable: GLenum, input: GLenum, mapping: GLenum, componentUsage: GLenum): void {.glew_lib.}
-proc glGetCombinerInputParameterfvNV*(stage: GLenum, portion: GLenum, variable: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetCombinerInputParameterivNV*(stage: GLenum, portion: GLenum, variable: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetCombinerOutputParameterfvNV*(stage: GLenum, portion: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetCombinerOutputParameterivNV*(stage: GLenum, portion: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetFinalCombinerInputParameterfvNV*(variable: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetFinalCombinerInputParameterivNV*(variable: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glCombinerStageParameterfvNV*(stage: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetCombinerStageParameterfvNV*(stage: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFramebufferSampleLocationsfvNV*(target: GLenum, start: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glNamedFramebufferSampleLocationsfvNV*(framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glGetBufferParameterui64vNV*(target: GLenum, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glGetIntegerui64vNV*(value: GLenum, result: ptr uint64): void {.glew_lib.}
-proc glGetNamedBufferParameterui64vNV*(buffer: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glIsBufferResidentNV*(target: GLenum): bool {.glew_lib.}
-proc glIsNamedBufferResidentNV*(buffer: uint32): bool {.glew_lib.}
-proc glMakeBufferNonResidentNV*(target: GLenum): void {.glew_lib.}
-proc glMakeBufferResidentNV*(target: GLenum, access: GLenum): void {.glew_lib.}
-proc glMakeNamedBufferNonResidentNV*(buffer: uint32): void {.glew_lib.}
-proc glMakeNamedBufferResidentNV*(buffer: uint32, access: GLenum): void {.glew_lib.}
-proc glProgramUniformui64NV*(program: uint32, location: int32, value: uint64): void {.glew_lib.}
-proc glProgramUniformui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glUniformui64NV*(location: int32, value: uint64): void {.glew_lib.}
-proc glUniformui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib.}
-proc glCompressedTexImage3DNV*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCompressedTexSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib.}
-proc glCopyTexSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
-proc glFramebufferTextureLayerNV*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib.}
-proc glTexImage3DNV*(target: GLenum, level: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTextureBarrierNV*(): void {.glew_lib.}
-proc glTexImage2DMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glTexImage3DMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glTextureImage2DMultisampleCoverageNV*(texture: uint32, target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glTextureImage2DMultisampleNV*(texture: uint32, target: GLenum, samples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glTextureImage3DMultisampleCoverageNV*(texture: uint32, target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glTextureImage3DMultisampleNV*(texture: uint32, target: GLenum, samples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib.}
-proc glActiveVaryingNV*(program: uint32, name: cstring): void {.glew_lib.}
-proc glBeginTransformFeedbackNV*(primitiveMode: GLenum): void {.glew_lib.}
-proc glBindBufferBaseNV*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib.}
-proc glBindBufferOffsetNV*(target: GLenum, index: uint32, buffer: uint32, offset: int32): void {.glew_lib.}
-proc glBindBufferRangeNV*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib.}
-proc glEndTransformFeedbackNV*(): void {.glew_lib.}
-proc glGetActiveVaryingNV*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib.}
-proc glGetTransformFeedbackVaryingNV*(program: uint32, index: uint32, location: ptr int32): void {.glew_lib.}
-proc glGetVaryingLocationNV*(program: uint32, name: cstring): int32 {.glew_lib.}
-proc glTransformFeedbackAttribsNV*(count: uint32, attribs: ptr int32, bufferMode: GLenum): void {.glew_lib.}
-proc glTransformFeedbackVaryingsNV*(program: uint32, count: int32, locations: ptr int32, bufferMode: GLenum): void {.glew_lib.}
-proc glBindTransformFeedbackNV*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glDeleteTransformFeedbacksNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glDrawTransformFeedbackNV*(mode: GLenum, id: uint32): void {.glew_lib.}
-proc glGenTransformFeedbacksNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glIsTransformFeedbackNV*(id: uint32): bool {.glew_lib.}
-proc glPauseTransformFeedbackNV*(): void {.glew_lib.}
-proc glResumeTransformFeedbackNV*(): void {.glew_lib.}
-proc glVDPAUFiniNV*(): void {.glew_lib.}
-proc glVDPAUGetSurfaceivNV*(surface: int32, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib.}
-proc glVDPAUInitNV*(vdpDevice: pointer, getProcAddress: pointer): void {.glew_lib.}
-proc glVDPAUIsSurfaceNV*(surface: int32): void {.glew_lib.}
-proc glVDPAUMapSurfacesNV*(numSurfaces: int32, surfaces: ptr int32): void {.glew_lib.}
-proc glVDPAURegisterOutputSurfaceNV*(vdpSurface: pointer, target: GLenum, numTextureNames: int32, textureNames: ptr uint32): int32 {.glew_lib.}
-proc glVDPAURegisterVideoSurfaceNV*(vdpSurface: pointer, target: GLenum, numTextureNames: int32, textureNames: ptr uint32): int32 {.glew_lib.}
-proc glVDPAUSurfaceAccessNV*(surface: int32, access: GLenum): void {.glew_lib.}
-proc glVDPAUUnmapSurfacesNV*(numSurface: int32, surfaces: ptr int32): void {.glew_lib.}
-proc glVDPAUUnregisterSurfaceNV*(surface: int32): void {.glew_lib.}
-proc glFlushVertexArrayRangeNV*(): void {.glew_lib.}
-proc glVertexArrayRangeNV*(length: int32, poynter: pointer): void {.glew_lib.}
-proc glGetVertexAttribLi64vNV*(index: uint32, pname: GLenum, params: ptr int64): void {.glew_lib.}
-proc glGetVertexAttribLui64vNV*(index: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib.}
-proc glVertexAttribL1i64NV*(index: uint32, x: int64): void {.glew_lib.}
-proc glVertexAttribL1i64vNV*(index: uint32, v: ptr int64): void {.glew_lib.}
-proc glVertexAttribL1ui64NV*(index: uint32, x: uint64): void {.glew_lib.}
-proc glVertexAttribL1ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib.}
-proc glVertexAttribL2i64NV*(index: uint32, x: int64, y: int64): void {.glew_lib.}
-proc glVertexAttribL2i64vNV*(index: uint32, v: ptr int64): void {.glew_lib.}
-proc glVertexAttribL2ui64NV*(index: uint32, x: uint64, y: uint64): void {.glew_lib.}
-proc glVertexAttribL2ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib.}
-proc glVertexAttribL3i64NV*(index: uint32, x: int64, y: int64, z: int64): void {.glew_lib.}
-proc glVertexAttribL3i64vNV*(index: uint32, v: ptr int64): void {.glew_lib.}
-proc glVertexAttribL3ui64NV*(index: uint32, x: uint64, y: uint64, z: uint64): void {.glew_lib.}
-proc glVertexAttribL3ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib.}
-proc glVertexAttribL4i64NV*(index: uint32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib.}
-proc glVertexAttribL4i64vNV*(index: uint32, v: ptr int64): void {.glew_lib.}
-proc glVertexAttribL4ui64NV*(index: uint32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib.}
-proc glVertexAttribL4ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib.}
-proc glVertexAttribLFormatNV*(index: uint32, size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glBufferAddressRangeNV*(pname: GLenum, index: uint32, address: uint64, length: int32): void {.glew_lib.}
-proc glColorFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glEdgeFlagFormatNV*(stride: int32): void {.glew_lib.}
-proc glFogCoordFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glGetIntegerui64i_vNV*(value: GLenum, index: uint32, result: ptr uint64): void {.glew_lib.}
-proc glIndexFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glNormalFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glSecondaryColorFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glTexCoordFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glVertexAttribFormatNV*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32): void {.glew_lib.}
-proc glVertexAttribIFormatNV*(index: uint32, size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glVertexFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib.}
-proc glAreProgramsResidentNV*(n: int32, ids: ptr uint32, residences: ptr bool): bool {.glew_lib.}
-proc glBindProgramNV*(target: GLenum, id: uint32): void {.glew_lib.}
-proc glDeleteProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glExecuteProgramNV*(target: GLenum, id: uint32, params: ptr float32): void {.glew_lib.}
-proc glGenProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glGetProgramParameterdvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetProgramParameterfvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetProgramStringNV*(id: uint32, pname: GLenum, program: ptr uint8): void {.glew_lib.}
-proc glGetProgramivNV*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTrackMatrixivNV*(target: GLenum, address: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVertexAttribPointervNV*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib.}
-proc glGetVertexAttribdvNV*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetVertexAttribfvNV*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVertexAttribivNV*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glIsProgramNV*(id: uint32): bool {.glew_lib.}
-proc glLoadProgramNV*(target: GLenum, id: uint32, len: int32, program: ptr uint8): void {.glew_lib.}
-proc glProgramParameter4dNV*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glProgramParameter4dvNV*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib.}
-proc glProgramParameter4fNV*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glProgramParameter4fvNV*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib.}
-proc glProgramParameters4dvNV*(target: GLenum, index: uint32, num: int32, params: ptr float64): void {.glew_lib.}
-proc glProgramParameters4fvNV*(target: GLenum, index: uint32, num: int32, params: ptr float32): void {.glew_lib.}
-proc glRequestResidentProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib.}
-proc glTrackMatrixNV*(target: GLenum, address: uint32, matrix: GLenum, transform: GLenum): void {.glew_lib.}
-proc glVertexAttrib1dNV*(index: uint32, x: float64): void {.glew_lib.}
-proc glVertexAttrib1dvNV*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib1fNV*(index: uint32, x: float32): void {.glew_lib.}
-proc glVertexAttrib1fvNV*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib1sNV*(index: uint32, x: int16): void {.glew_lib.}
-proc glVertexAttrib1svNV*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib2dNV*(index: uint32, x: float64, y: float64): void {.glew_lib.}
-proc glVertexAttrib2dvNV*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib2fNV*(index: uint32, x: float32, y: float32): void {.glew_lib.}
-proc glVertexAttrib2fvNV*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib2sNV*(index: uint32, x: int16, y: int16): void {.glew_lib.}
-proc glVertexAttrib2svNV*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib3dNV*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib.}
-proc glVertexAttrib3dvNV*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib3fNV*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glVertexAttrib3fvNV*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib3sNV*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib.}
-proc glVertexAttrib3svNV*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4dNV*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib.}
-proc glVertexAttrib4dvNV*(index: uint32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttrib4fNV*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glVertexAttrib4fvNV*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttrib4sNV*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib.}
-proc glVertexAttrib4svNV*(index: uint32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttrib4ubNV*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib.}
-proc glVertexAttrib4ubvNV*(index: uint32, v: ptr uint8): void {.glew_lib.}
-proc glVertexAttribPointerNV*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glVertexAttribs1dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribs1fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttribs1svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttribs2dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribs2fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttribs2svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttribs3dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribs3fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttribs3svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttribs4dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib.}
-proc glVertexAttribs4fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib.}
-proc glVertexAttribs4svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib.}
-proc glVertexAttribs4ubvNV*(index: uint32, n: int32, v: ptr uint8): void {.glew_lib.}
-proc glBeginVideoCaptureNV*(video_capture_slot: uint32): void {.glew_lib.}
-proc glBindVideoCaptureStreamBufferNV*(video_capture_slot: uint32, stream: uint32, frame_region: GLenum, offset: int32): void {.glew_lib.}
-proc glBindVideoCaptureStreamTextureNV*(video_capture_slot: uint32, stream: uint32, frame_region: GLenum, target: GLenum, texture: uint32): void {.glew_lib.}
-proc glEndVideoCaptureNV*(video_capture_slot: uint32): void {.glew_lib.}
-proc glGetVideoCaptureStreamdvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glGetVideoCaptureStreamfvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetVideoCaptureStreamivNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetVideoCaptureivNV*(video_capture_slot: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glVideoCaptureNV*(video_capture_slot: uint32, sequence_num: ptr uint32, capture_time: ptr uint64): GLenum {.glew_lib.}
-proc glVideoCaptureStreamParameterdvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float64): void {.glew_lib.}
-proc glVideoCaptureStreamParameterfvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glVideoCaptureStreamParameterivNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glDepthRangeArrayfvNV*(first: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glDepthRangeIndexedfNV*(index: uint32, n: float32, f: float32): void {.glew_lib.}
-proc glDisableiNV*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glEnableiNV*(target: GLenum, index: uint32): void {.glew_lib.}
-proc glGetFloati_vNV*(target: GLenum, index: uint32, data: ptr float32): void {.glew_lib.}
-proc glIsEnablediNV*(target: GLenum, index: uint32): bool {.glew_lib.}
-proc glScissorArrayvNV*(first: uint32, count: int32, v: ptr int32): void {.glew_lib.}
-proc glScissorIndexedNV*(index: uint32, left: int32, bottom: int32, width: int32, height: int32): void {.glew_lib.}
-proc glScissorIndexedvNV*(index: uint32, v: ptr int32): void {.glew_lib.}
-proc glViewportArrayvNV*(first: uint32, count: int32, v: ptr float32): void {.glew_lib.}
-proc glViewportIndexedfNV*(index: uint32, x: float32, y: float32, w: float32, h: float32): void {.glew_lib.}
-proc glViewportIndexedfvNV*(index: uint32, v: ptr float32): void {.glew_lib.}
-proc glViewportSwizzleNV*(index: uint32, swizzlex: GLenum, swizzley: GLenum, swizzlez: GLenum, swizzlew: GLenum): void {.glew_lib.}
-proc glFramebufferTextureMultiviewOVR*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, baseViewIndex: int32, numViews: int32): void {.glew_lib.}
-proc glFramebufferTextureMultisampleMultiviewOVR*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, samples: int32, baseViewIndex: int32, numViews: int32): void {.glew_lib.}
-proc glAlphaFuncQCOM*(fun: GLenum, reff: float32): void {.glew_lib.}
-proc glDisableDriverControlQCOM*(driverControl: uint32): void {.glew_lib.}
-proc glEnableDriverControlQCOM*(driverControl: uint32): void {.glew_lib.}
-proc glGetDriverControlStringQCOM*(driverControl: uint32, bufSize: int32, length: ptr int32, driverControlString: ptr char): void {.glew_lib.}
-proc glGetDriverControlsQCOM*(num: ptr int32, size: int32, driverControls: ptr uint32): void {.glew_lib.}
-proc glExtGetBufferPointervQCOM*(target: GLenum, params: ptr void): void {.glew_lib.}
-proc glExtGetBuffersQCOM*(buffers: ptr uint32, maxBuffers: int32, numBuffers: ptr int32): void {.glew_lib.}
-proc glExtGetFramebuffersQCOM*(framebuffers: ptr uint32, maxFramebuffers: int32, numFramebuffers: ptr int32): void {.glew_lib.}
-proc glExtGetRenderbuffersQCOM*(renderbuffers: ptr uint32, maxRenderbuffers: int32, numRenderbuffers: ptr int32): void {.glew_lib.}
-proc glExtGetTexLevelParameterivQCOM*(texture: uint32, face: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glExtGetTexSubImageQCOM*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, texels: pointer): void {.glew_lib.}
-proc glExtGetTexturesQCOM*(textures: ptr uint32, maxTextures: int32, numTextures: ptr int32): void {.glew_lib.}
-proc glExtTexObjectStateOverrideiQCOM*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glExtGetProgramBinarySourceQCOM*(program: uint32, shadertype: GLenum, source: ptr char, length: ptr int32): void {.glew_lib.}
-proc glExtGetProgramsQCOM*(programs: ptr uint32, maxPrograms: int32, numPrograms: ptr int32): void {.glew_lib.}
-proc glExtGetShadersQCOM*(shaders: ptr uint32, maxShaders: int32, numShaders: ptr int32): void {.glew_lib.}
-proc glExtIsProgramBinaryQCOM*(program: uint32): bool {.glew_lib.}
-proc glFramebufferFoveationConfigQCOM*(fbo: uint32, numLayers: uint32, focalPointsPerLayer: uint32, requestedFeatures: uint32, providedFeatures: ptr uint32): void {.glew_lib.}
-proc glFramebufferFoveationParametersQCOM*(fbo: uint32, layer: uint32, focalPoint: uint32, focalX: float32, focalY: float32, gainX: float32, gainY: float32, foveaArea: float32): void {.glew_lib.}
-proc glFramebufferFetchBarrierQCOM*(): void {.glew_lib.}
-proc glEndTilingQCOM*(preserveMask: uint32): void {.glew_lib.}
-proc glStartTilingQCOM*(x: uint32, y: uint32, width: uint32, height: uint32, preserveMask: uint32): void {.glew_lib.}
-proc glAlphaFuncx*(fun: GLenum, reff: int32): void {.glew_lib.}
-proc glClearColorx*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib.}
-proc glClearDepthx*(depth: int32): void {.glew_lib.}
-proc glColor4x*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib.}
-proc glDepthRangex*(zNear: int32, zFar: int32): void {.glew_lib.}
-proc glFogx*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glFogxv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFrustumf*(left: float32, right: float32, bottom: float32, top: float32, zNear: float32, zFar: float32): void {.glew_lib.}
-proc glFrustumx*(left: int32, right: int32, bottom: int32, top: int32, zNear: int32, zFar: int32): void {.glew_lib.}
-proc glLightModelx*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glLightModelxv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glLightx*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glLightxv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glLineWidthx*(width: int32): void {.glew_lib.}
-proc glLoadMatrixx*(m: ptr int32): void {.glew_lib.}
-proc glMaterialx*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glMaterialxv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glMultMatrixx*(m: ptr int32): void {.glew_lib.}
-proc glMultiTexCoord4x*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib.}
-proc glNormal3x*(nx: int32, ny: int32, nz: int32): void {.glew_lib.}
-proc glOrthof*(left: float32, right: float32, bottom: float32, top: float32, zNear: float32, zFar: float32): void {.glew_lib.}
-proc glOrthox*(left: int32, right: int32, bottom: int32, top: int32, zNear: int32, zFar: int32): void {.glew_lib.}
-proc glPointSizex*(size: int32): void {.glew_lib.}
-proc glPolygonOffsetx*(factor: int32, units: int32): void {.glew_lib.}
-proc glRotatex*(angle: int32, x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glSampleCoveragex*(value: int32, invert: bool): void {.glew_lib.}
-proc glScalex*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glTexEnvx*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTexEnvxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTexParameterx*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glTranslatex*(x: int32, y: int32, z: int32): void {.glew_lib.}
-proc glClipPlanef*(plane: GLenum, equation: ptr float32): void {.glew_lib.}
-proc glClipPlanex*(plane: GLenum, equation: ptr int32): void {.glew_lib.}
-proc glGetClipPlanef*(pname: GLenum, eqn: ptr float32): void {.glew_lib.}
-proc glGetClipPlanex*(pname: GLenum, eqn: ptr int32): void {.glew_lib.}
-proc glGetFixedv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetLightxv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMaterialxv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexEnvxv*(env: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetTexParameterxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPointParameterx*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glPointParameterxv*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPointSizePointerOES*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glTexParameterxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glErrorStringREGAL*(error: GLenum): ptr char {.glew_lib.}
-proc glGetExtensionREGAL*(ext: cstring): bool {.glew_lib.}
-proc glIsSupportedREGAL*(ext: cstring): bool {.glew_lib.}
-proc glGetProcAddressREGAL*(name: cstring): void {.glew_lib.}
-proc glDetailTexFuncSGIS*(target: GLenum, n: int32, points: ptr float32): void {.glew_lib.}
-proc glGetDetailTexFuncSGIS*(target: GLenum, points: ptr float32): void {.glew_lib.}
-proc glFogFuncSGIS*(n: int32, points: ptr float32): void {.glew_lib.}
-proc glGetFogFuncSGIS*(points: ptr float32): void {.glew_lib.}
-proc glSampleMaskSGIS*(value: float32, invert: bool): void {.glew_lib.}
-proc glSamplePatternSGIS*(pattern: GLenum): void {.glew_lib.}
-proc glInterleavedTextureCoordSetsSGIS*(factor: int32): void {.glew_lib.}
-proc glSelectTextureCoordSetSGIS*(target: GLenum): void {.glew_lib.}
-proc glSelectTextureSGIS*(target: GLenum): void {.glew_lib.}
-proc glSelectTextureTransformSGIS*(target: GLenum): void {.glew_lib.}
-proc glMultisampleSubRectPosSGIS*(x: int32, y: int32): void {.glew_lib.}
-proc glGetSharpenTexFuncSGIS*(target: GLenum, points: ptr float32): void {.glew_lib.}
-proc glSharpenTexFuncSGIS*(target: GLenum, n: int32, points: ptr float32): void {.glew_lib.}
-proc glTexImage4DSGIS*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, extent: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glTexSubImage4DSGIS*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, woffset: int32, width: int32, height: int32, depth: int32, extent: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glGetTexFilterFuncSGIS*(target: GLenum, filter: GLenum, weights: ptr float32): void {.glew_lib.}
-proc glTexFilterFuncSGIS*(target: GLenum, filter: GLenum, n: int32, weights: ptr float32): void {.glew_lib.}
-proc glAsyncMarkerSGIX*(marker: uint32): void {.glew_lib.}
-proc glDeleteAsyncMarkersSGIX*(marker: uint32, rangee: int32): void {.glew_lib.}
-proc glFinishAsyncSGIX*(markerp: ptr uint32): int32 {.glew_lib.}
-proc glGenAsyncMarkersSGIX*(rangee: int32): uint32 {.glew_lib.}
-proc glIsAsyncMarkerSGIX*(marker: uint32): bool {.glew_lib.}
-proc glPollAsyncSGIX*(markerp: ptr uint32): int32 {.glew_lib.}
-proc glAddressSpace*(space: GLenum, mask: uint32): void {.glew_lib.}
-proc glDataPipe*(space: GLenum): int32 {.glew_lib.}
-proc glFlushRasterSGIX*(): void {.glew_lib.}
-proc glFogLayersSGIX*(n: int32, points: ptr float32): void {.glew_lib.}
-proc glGetFogLayersSGIX*(points: ptr float32): void {.glew_lib.}
-proc glTextureFogSGIX*(pname: GLenum): void {.glew_lib.}
-proc glFragmentColorMaterialSGIX*(face: GLenum, mode: GLenum): void {.glew_lib.}
-proc glFragmentLightModelfSGIX*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentLightModelfvSGIX*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentLightModeliSGIX*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentLightModelivSGIX*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFragmentLightfSGIX*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentLightfvSGIX*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentLightiSGIX*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentLightivSGIX*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glFragmentMaterialfSGIX*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glFragmentMaterialfvSGIX*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glFragmentMaterialiSGIX*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glFragmentMaterialivSGIX*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetFragmentLightfvSGIX*(light: GLenum, value: GLenum, data: ptr float32): void {.glew_lib.}
-proc glGetFragmentLightivSGIX*(light: GLenum, value: GLenum, data: ptr int32): void {.glew_lib.}
-proc glGetFragmentMaterialfvSGIX*(face: GLenum, pname: GLenum, data: ptr float32): void {.glew_lib.}
-proc glGetFragmentMaterialivSGIX*(face: GLenum, pname: GLenum, data: ptr int32): void {.glew_lib.}
-proc glFrameZoomSGIX*(factor: int32): void {.glew_lib.}
-proc glIglooInterfaceSGIX*(pname: GLenum, param: pointer): void {.glew_lib.}
-proc glAllocMPEGPredictorsSGIX*(width: int32, height: int32, n: int32, predictors: ptr uint32): void {.glew_lib.}
-proc glDeleteMPEGPredictorsSGIX*(n: int32, predictors: ptr uint32): void {.glew_lib.}
-proc glGenMPEGPredictorsSGIX*(n: int32, predictors: ptr uint32): void {.glew_lib.}
-proc glGetMPEGParameterfvSGIX*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetMPEGParameterivSGIX*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetMPEGPredictorSGIX*(target: GLenum, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glGetMPEGQuantTableubv*(target: GLenum, values: ptr uint8): void {.glew_lib.}
-proc glIsMPEGPredictorSGIX*(predictor: uint32): bool {.glew_lib.}
-proc glMPEGPredictorSGIX*(target: GLenum, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glMPEGQuantTableubv*(target: GLenum, values: ptr uint8): void {.glew_lib.}
-proc glSwapMPEGPredictorsSGIX*(target0: GLenum, target1: GLenum): void {.glew_lib.}
-proc glGetNonlinLightfvSGIX*(light: GLenum, pname: GLenum, terms: ptr int32, data: ptr float32): void {.glew_lib.}
-proc glGetNonlinMaterialfvSGIX*(face: GLenum, pname: GLenum, terms: ptr int32, data: ptr float32): void {.glew_lib.}
-proc glNonlinLightfvSGIX*(light: GLenum, pname: GLenum, terms: int32, params: ptr float32): void {.glew_lib.}
-proc glNonlinMaterialfvSGIX*(face: GLenum, pname: GLenum, terms: int32, params: ptr float32): void {.glew_lib.}
-proc glPixelTexGenSGIX*(mode: GLenum): void {.glew_lib.}
-proc glDeformSGIX*(mask: uint32): void {.glew_lib.}
-proc glLoadIdentityDeformationMapSGIX*(mask: uint32): void {.glew_lib.}
-proc glMeshBreadthSGIX*(breadth: int32): void {.glew_lib.}
-proc glMeshStrideSGIX*(stride: int32): void {.glew_lib.}
-proc glReferencePlaneSGIX*(equation: ptr float64): void {.glew_lib.}
-proc glSpriteParameterfSGIX*(pname: GLenum, param: float32): void {.glew_lib.}
-proc glSpriteParameterfvSGIX*(pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glSpriteParameteriSGIX*(pname: GLenum, param: int32): void {.glew_lib.}
-proc glSpriteParameterivSGIX*(pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glTagSampleBufferSGIX*(): void {.glew_lib.}
-proc glGetVectorOperationSGIX*(operation: GLenum): void {.glew_lib.}
-proc glVectorOperationSGIX*(operation: GLenum): void {.glew_lib.}
-proc glAreVertexArraysResidentSGIX*(n: int32, arrays: ptr uint32, residences: ptr bool): bool {.glew_lib.}
-proc glBindVertexArraySGIX*(arrai: uint32): void {.glew_lib.}
-proc glDeleteVertexArraysSGIX*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glGenVertexArraysSGIX*(n: int32, arrays: ptr uint32): void {.glew_lib.}
-proc glIsVertexArraySGIX*(arrai: uint32): bool {.glew_lib.}
-proc glPrioritizeVertexArraysSGIX*(n: int32, arrays: ptr uint32, priorities: ptr float32): void {.glew_lib.}
-proc glColorTableParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glColorTableParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glColorTableSGI*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib.}
-proc glCopyColorTableSGI*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib.}
-proc glGetColorTableParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetColorTableParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glGetColorTableSGI*(target: GLenum, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib.}
-proc glGetPixelTransformParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glGetPixelTransformParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPixelTransformParameterfSGI*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib.}
-proc glPixelTransformParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib.}
-proc glPixelTransformParameteriSGI*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib.}
-proc glPixelTransformParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib.}
-proc glPixelTransformSGI*(target: GLenum): void {.glew_lib.}
-proc glFinishTextureSUNX*(): void {.glew_lib.}
-proc glGlobalAlphaFactorbSUN*(factor: int8): void {.glew_lib.}
-proc glGlobalAlphaFactordSUN*(factor: float64): void {.glew_lib.}
-proc glGlobalAlphaFactorfSUN*(factor: float32): void {.glew_lib.}
-proc glGlobalAlphaFactoriSUN*(factor: int32): void {.glew_lib.}
-proc glGlobalAlphaFactorsSUN*(factor: int16): void {.glew_lib.}
-proc glGlobalAlphaFactorubSUN*(factor: uint8): void {.glew_lib.}
-proc glGlobalAlphaFactoruiSUN*(factor: uint32): void {.glew_lib.}
-proc glGlobalAlphaFactorusSUN*(factor: uint16): void {.glew_lib.}
-proc glReadVideoPixelsSUN*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib.}
-proc glReplacementCodePointerSUN*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib.}
-proc glReplacementCodeubSUN*(code: uint8): void {.glew_lib.}
-proc glReplacementCodeubvSUN*(code: ptr uint8): void {.glew_lib.}
-proc glReplacementCodeuiSUN*(code: uint32): void {.glew_lib.}
-proc glReplacementCodeuivSUN*(code: ptr uint32): void {.glew_lib.}
-proc glReplacementCodeusSUN*(code: uint16): void {.glew_lib.}
-proc glReplacementCodeusvSUN*(code: ptr uint16): void {.glew_lib.}
-proc glColor3fVertex3fSUN*(r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glColor3fVertex3fvSUN*(c: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glColor4fNormal3fVertex3fSUN*(r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glColor4fNormal3fVertex3fvSUN*(c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glColor4ubVertex2fSUN*(r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32): void {.glew_lib.}
-proc glColor4ubVertex2fvSUN*(c: ptr uint8, v: ptr float32): void {.glew_lib.}
-proc glColor4ubVertex3fSUN*(r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glColor4ubVertex3fvSUN*(c: ptr uint8, v: ptr float32): void {.glew_lib.}
-proc glNormal3fVertex3fSUN*(nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glNormal3fVertex3fvSUN*(n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiColor3fVertex3fSUN*(rc: uint32, r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiColor3fVertex3fvSUN*(rc: ptr uint32, c: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiColor4fNormal3fVertex3fSUN*(rc: uint32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiColor4fNormal3fVertex3fvSUN*(rc: ptr uint32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiColor4ubVertex3fSUN*(rc: uint32, r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiColor4ubVertex3fvSUN*(rc: ptr uint32, c: ptr uint8, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiNormal3fVertex3fSUN*(rc: uint32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiNormal3fVertex3fvSUN*(rc: ptr uint32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN*(rc: uint32, s: float32, t: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN*(rc: uint32, s: float32, t: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fVertex3fSUN*(rc: uint32, s: float32, t: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiTexCoord2fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glReplacementCodeuiVertex3fSUN*(rc: uint32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glReplacementCodeuiVertex3fvSUN*(rc: ptr uint32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord2fColor3fVertex3fSUN*(s: float32, t: float32, r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glTexCoord2fColor3fVertex3fvSUN*(tc: ptr float32, c: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord2fColor4fNormal3fVertex3fSUN*(s: float32, t: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glTexCoord2fColor4fNormal3fVertex3fvSUN*(tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord2fColor4ubVertex3fSUN*(s: float32, t: float32, r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glTexCoord2fColor4ubVertex3fvSUN*(tc: ptr float32, c: ptr uint8, v: ptr float32): void {.glew_lib.}
-proc glTexCoord2fNormal3fVertex3fSUN*(s: float32, t: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glTexCoord2fNormal3fVertex3fvSUN*(tc: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord2fVertex3fSUN*(s: float32, t: float32, x: float32, y: float32, z: float32): void {.glew_lib.}
-proc glTexCoord2fVertex3fvSUN*(tc: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord4fColor4fNormal3fVertex4fSUN*(s: float32, t: float32, p: float32, q: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glTexCoord4fColor4fNormal3fVertex4fvSUN*(tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glTexCoord4fVertex4fSUN*(s: float32, t: float32, p: float32, q: float32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib.}
-proc glTexCoord4fVertex4fvSUN*(tc: ptr float32, v: ptr float32): void {.glew_lib.}
-proc glAddSwapHintRectWIN*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib.}
+proc endList*(): void {.glew_lib, importc: "glEndList".}
+proc evalCoord1d*(u: float64): void {.glew_lib, importc: "glEvalCoord1d".}
+proc evalCoord1dv*(u: ptr float64): void {.glew_lib, importc: "glEvalCoord1dv".}
+proc evalCoord1f*(u: float32): void {.glew_lib, importc: "glEvalCoord1f".}
+proc evalCoord1fv*(u: ptr float32): void {.glew_lib, importc: "glEvalCoord1fv".}
+proc evalCoord2d*(u: float64, v: float64): void {.glew_lib, importc: "glEvalCoord2d".}
+proc evalCoord2dv*(u: ptr float64): void {.glew_lib, importc: "glEvalCoord2dv".}
+proc evalCoord2f*(u: float32, v: float32): void {.glew_lib, importc: "glEvalCoord2f".}
+proc evalCoord2fv*(u: ptr float32): void {.glew_lib, importc: "glEvalCoord2fv".}
+proc evalMesh1*(mode: GLenum, i1: int32, i2: int32): void {.glew_lib, importc: "glEvalMesh1".}
+proc evalMesh2*(mode: GLenum, i1: int32, i2: int32, j1: int32, j2: int32): void {.glew_lib, importc: "glEvalMesh2".}
+proc evalPoint1*(i: int32): void {.glew_lib, importc: "glEvalPoint1".}
+proc evalPoint2*(i: int32, j: int32): void {.glew_lib, importc: "glEvalPoint2".}
+proc feedbackBuffer*(size: int32, tipe: GLenum, buffer: ptr float32): void {.glew_lib, importc: "glFeedbackBuffer".}
+proc finish*(): void {.glew_lib, importc: "glFinish".}
+proc flush*(): void {.glew_lib, importc: "glFlush".}
+proc fogf*(pname: GLenum, param: float32): void {.glew_lib, importc: "glFogf".}
+proc fogfv*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFogfv".}
+proc fogi*(pname: GLenum, param: int32): void {.glew_lib, importc: "glFogi".}
+proc fogiv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFogiv".}
+proc frontFace*(mode: GLenum): void {.glew_lib, importc: "glFrontFace".}
+proc frustum*(left: float64, right: float64, bottom: float64, top: float64, zNear: float64, zFar: float64): void {.glew_lib, importc: "glFrustum".}
+proc genLists*(rangee: int32): uint32 {.glew_lib, importc: "glGenLists".}
+proc genTextures*(n: int32, textures: ptr uint32): void {.glew_lib, importc: "glGenTextures".}
+proc getBooleanv*(pname: GLenum, params: ptr bool): void {.glew_lib, importc: "glGetBooleanv".}
+proc getClipPlane*(plane: GLenum, equation: ptr float64): void {.glew_lib, importc: "glGetClipPlane".}
+proc getDoublev*(pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetDoublev".}
+proc getError*(): GLenum {.glew_lib, importc: "glGetError".}
+proc getFloatv*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetFloatv".}
+proc getIntegerv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetIntegerv".}
+proc getLightfv*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetLightfv".}
+proc getLightiv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetLightiv".}
+proc getMapdv*(target: GLenum, query: GLenum, v: ptr float64): void {.glew_lib, importc: "glGetMapdv".}
+proc getMapfv*(target: GLenum, query: GLenum, v: ptr float32): void {.glew_lib, importc: "glGetMapfv".}
+proc getMapiv*(target: GLenum, query: GLenum, v: ptr int32): void {.glew_lib, importc: "glGetMapiv".}
+proc getMaterialfv*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMaterialfv".}
+proc getMaterialiv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMaterialiv".}
+proc getPixelMapfv*(map: GLenum, values: ptr float32): void {.glew_lib, importc: "glGetPixelMapfv".}
+proc getPixelMapuiv*(map: GLenum, values: ptr uint32): void {.glew_lib, importc: "glGetPixelMapuiv".}
+proc getPixelMapusv*(map: GLenum, values: ptr uint16): void {.glew_lib, importc: "glGetPixelMapusv".}
+proc getPointerv*(pname: GLenum, params: ptr void): void {.glew_lib, importc: "glGetPointerv".}
+proc getPolygonStipple*(mask: ptr uint8): void {.glew_lib, importc: "glGetPolygonStipple".}
+proc getString*(name: GLenum): ptr uint8 {.glew_lib, importc: "glGetString".}
+proc getTexEnvfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTexEnvfv".}
+proc getTexEnviv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexEnviv".}
+proc getTexGendv*(coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetTexGendv".}
+proc getTexGenfv*(coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTexGenfv".}
+proc getTexGeniv*(coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexGeniv".}
+proc getTexImage*(target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glGetTexImage".}
+proc getTexLevelParameterfv*(target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTexLevelParameterfv".}
+proc getTexLevelParameteriv*(target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexLevelParameteriv".}
+proc getTexParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTexParameterfv".}
+proc getTexParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexParameteriv".}
+proc hint*(target: GLenum, mode: GLenum): void {.glew_lib, importc: "glHint".}
+proc indexMask*(mask: uint32): void {.glew_lib, importc: "glIndexMask".}
+proc indexPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glIndexPointer".}
+proc indexd*(c: float64): void {.glew_lib, importc: "glIndexd".}
+proc indexdv*(c: ptr float64): void {.glew_lib, importc: "glIndexdv".}
+proc indexf*(c: float32): void {.glew_lib, importc: "glIndexf".}
+proc indexfv*(c: ptr float32): void {.glew_lib, importc: "glIndexfv".}
+proc indexi*(c: int32): void {.glew_lib, importc: "glIndexi".}
+proc indexiv*(c: ptr int32): void {.glew_lib, importc: "glIndexiv".}
+proc indexs*(c: int16): void {.glew_lib, importc: "glIndexs".}
+proc indexsv*(c: ptr int16): void {.glew_lib, importc: "glIndexsv".}
+proc indexub*(c: uint8): void {.glew_lib, importc: "glIndexub".}
+proc indexubv*(c: ptr uint8): void {.glew_lib, importc: "glIndexubv".}
+proc initNames*(): void {.glew_lib, importc: "glInitNames".}
+proc interleavedArrays*(format: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glInterleavedArrays".}
+proc isEnabled*(cap: GLenum): bool {.glew_lib, importc: "glIsEnabled".}
+proc isList*(list: uint32): bool {.glew_lib, importc: "glIsList".}
+proc isTexture*(texture: uint32): bool {.glew_lib, importc: "glIsTexture".}
+proc lightModelf*(pname: GLenum, param: float32): void {.glew_lib, importc: "glLightModelf".}
+proc lightModelfv*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glLightModelfv".}
+proc lightModeli*(pname: GLenum, param: int32): void {.glew_lib, importc: "glLightModeli".}
+proc lightModeliv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glLightModeliv".}
+proc lightf*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glLightf".}
+proc lightfv*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glLightfv".}
+proc lighti*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glLighti".}
+proc lightiv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glLightiv".}
+proc lineStipple*(factor: int32, pattern: uint16): void {.glew_lib, importc: "glLineStipple".}
+proc lineWidth*(width: float32): void {.glew_lib, importc: "glLineWidth".}
+proc listBase*(base: uint32): void {.glew_lib, importc: "glListBase".}
+proc loadIdentity*(): void {.glew_lib, importc: "glLoadIdentity".}
+proc loadMatrixd*(m: ptr float64): void {.glew_lib, importc: "glLoadMatrixd".}
+proc loadMatrixf*(m: ptr float32): void {.glew_lib, importc: "glLoadMatrixf".}
+proc loadName*(name: uint32): void {.glew_lib, importc: "glLoadName".}
+proc logicOp*(opcode: GLenum): void {.glew_lib, importc: "glLogicOp".}
+proc map1d*(target: GLenum, u1: float64, u2: float64, stride: int32, order: int32, points: ptr float64): void {.glew_lib, importc: "glMap1d".}
+proc map1f*(target: GLenum, u1: float32, u2: float32, stride: int32, order: int32, points: ptr float32): void {.glew_lib, importc: "glMap1f".}
+proc map2d*(target: GLenum, u1: float64, u2: float64, ustride: int32, uorder: int32, v1: float64, v2: float64, vstride: int32, vorder: int32, points: ptr float64): void {.glew_lib, importc: "glMap2d".}
+proc map2f*(target: GLenum, u1: float32, u2: float32, ustride: int32, uorder: int32, v1: float32, v2: float32, vstride: int32, vorder: int32, points: ptr float32): void {.glew_lib, importc: "glMap2f".}
+proc mapGrid1d*(un: int32, u1: float64, u2: float64): void {.glew_lib, importc: "glMapGrid1d".}
+proc mapGrid1f*(un: int32, u1: float32, u2: float32): void {.glew_lib, importc: "glMapGrid1f".}
+proc mapGrid2d*(un: int32, u1: float64, u2: float64, vn: int32, v1: float64, v2: float64): void {.glew_lib, importc: "glMapGrid2d".}
+proc mapGrid2f*(un: int32, u1: float32, u2: float32, vn: int32, v1: float32, v2: float32): void {.glew_lib, importc: "glMapGrid2f".}
+proc materialf*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glMaterialf".}
+proc materialfv*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glMaterialfv".}
+proc materiali*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glMateriali".}
+proc materialiv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMaterialiv".}
+proc matrixMode*(mode: GLenum): void {.glew_lib, importc: "glMatrixMode".}
+proc multMatrixd*(m: ptr float64): void {.glew_lib, importc: "glMultMatrixd".}
+proc multMatrixf*(m: ptr float32): void {.glew_lib, importc: "glMultMatrixf".}
+proc newList*(list: uint32, mode: GLenum): void {.glew_lib, importc: "glNewList".}
+proc normal3b*(nx: int8, ny: int8, nz: int8): void {.glew_lib, importc: "glNormal3b".}
+proc normal3bv*(v: ptr int8): void {.glew_lib, importc: "glNormal3bv".}
+proc normal3d*(nx: float64, ny: float64, nz: float64): void {.glew_lib, importc: "glNormal3d".}
+proc normal3dv*(v: ptr float64): void {.glew_lib, importc: "glNormal3dv".}
+proc normal3f*(nx: float32, ny: float32, nz: float32): void {.glew_lib, importc: "glNormal3f".}
+proc normal3fv*(v: ptr float32): void {.glew_lib, importc: "glNormal3fv".}
+proc normal3i*(nx: int32, ny: int32, nz: int32): void {.glew_lib, importc: "glNormal3i".}
+proc normal3iv*(v: ptr int32): void {.glew_lib, importc: "glNormal3iv".}
+proc normal3s*(nx: int16, ny: int16, nz: int16): void {.glew_lib, importc: "glNormal3s".}
+proc normal3sv*(v: ptr int16): void {.glew_lib, importc: "glNormal3sv".}
+proc normalPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glNormalPointer".}
+proc ortho*(left: float64, right: float64, bottom: float64, top: float64, zNear: float64, zFar: float64): void {.glew_lib, importc: "glOrtho".}
+proc passThrough*(token: float32): void {.glew_lib, importc: "glPassThrough".}
+proc pixelMapfv*(map: GLenum, mapsize: int32, values: ptr float32): void {.glew_lib, importc: "glPixelMapfv".}
+proc pixelMapuiv*(map: GLenum, mapsize: int32, values: ptr uint32): void {.glew_lib, importc: "glPixelMapuiv".}
+proc pixelMapusv*(map: GLenum, mapsize: int32, values: ptr uint16): void {.glew_lib, importc: "glPixelMapusv".}
+proc pixelStoref*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPixelStoref".}
+proc pixelStorei*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPixelStorei".}
+proc pixelTransferf*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPixelTransferf".}
+proc pixelTransferi*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPixelTransferi".}
+proc pixelZoom*(xfactor: float32, yfactor: float32): void {.glew_lib, importc: "glPixelZoom".}
+proc pointSize*(size: float32): void {.glew_lib, importc: "glPointSize".}
+proc polygonMode*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glPolygonMode".}
+proc polygonOffset*(factor: float32, units: float32): void {.glew_lib, importc: "glPolygonOffset".}
+proc polygonStipple*(mask: ptr uint8): void {.glew_lib, importc: "glPolygonStipple".}
+proc popAttrib*(): void {.glew_lib, importc: "glPopAttrib".}
+proc popClientAttrib*(): void {.glew_lib, importc: "glPopClientAttrib".}
+proc popMatrix*(): void {.glew_lib, importc: "glPopMatrix".}
+proc popName*(): void {.glew_lib, importc: "glPopName".}
+proc prioritizeTextures*(n: int32, textures: ptr uint32, priorities: ptr float32): void {.glew_lib, importc: "glPrioritizeTextures".}
+proc pushAttrib*(mask: uint32): void {.glew_lib, importc: "glPushAttrib".}
+proc pushClientAttrib*(mask: uint32): void {.glew_lib, importc: "glPushClientAttrib".}
+proc pushMatrix*(): void {.glew_lib, importc: "glPushMatrix".}
+proc pushName*(name: uint32): void {.glew_lib, importc: "glPushName".}
+proc rasterPos2d*(x: float64, y: float64): void {.glew_lib, importc: "glRasterPos2d".}
+proc rasterPos2dv*(v: ptr float64): void {.glew_lib, importc: "glRasterPos2dv".}
+proc rasterPos2f*(x: float32, y: float32): void {.glew_lib, importc: "glRasterPos2f".}
+proc rasterPos2fv*(v: ptr float32): void {.glew_lib, importc: "glRasterPos2fv".}
+proc rasterPos2i*(x: int32, y: int32): void {.glew_lib, importc: "glRasterPos2i".}
+proc rasterPos2iv*(v: ptr int32): void {.glew_lib, importc: "glRasterPos2iv".}
+proc rasterPos2s*(x: int16, y: int16): void {.glew_lib, importc: "glRasterPos2s".}
+proc rasterPos2sv*(v: ptr int16): void {.glew_lib, importc: "glRasterPos2sv".}
+proc rasterPos3d*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glRasterPos3d".}
+proc rasterPos3dv*(v: ptr float64): void {.glew_lib, importc: "glRasterPos3dv".}
+proc rasterPos3f*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glRasterPos3f".}
+proc rasterPos3fv*(v: ptr float32): void {.glew_lib, importc: "glRasterPos3fv".}
+proc rasterPos3i*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glRasterPos3i".}
+proc rasterPos3iv*(v: ptr int32): void {.glew_lib, importc: "glRasterPos3iv".}
+proc rasterPos3s*(x: int16, y: int16, z: int16): void {.glew_lib, importc: "glRasterPos3s".}
+proc rasterPos3sv*(v: ptr int16): void {.glew_lib, importc: "glRasterPos3sv".}
+proc rasterPos4d*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glRasterPos4d".}
+proc rasterPos4dv*(v: ptr float64): void {.glew_lib, importc: "glRasterPos4dv".}
+proc rasterPos4f*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glRasterPos4f".}
+proc rasterPos4fv*(v: ptr float32): void {.glew_lib, importc: "glRasterPos4fv".}
+proc rasterPos4i*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glRasterPos4i".}
+proc rasterPos4iv*(v: ptr int32): void {.glew_lib, importc: "glRasterPos4iv".}
+proc rasterPos4s*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glRasterPos4s".}
+proc rasterPos4sv*(v: ptr int16): void {.glew_lib, importc: "glRasterPos4sv".}
+proc readBuffer*(mode: GLenum): void {.glew_lib, importc: "glReadBuffer".}
+proc readPixels*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glReadPixels".}
+proc rectd*(x1: float64, y1: float64, x2: float64, y2: float64): void {.glew_lib, importc: "glRectd".}
+proc rectdv*(v1: ptr float64, v2: ptr float64): void {.glew_lib, importc: "glRectdv".}
+proc rectf*(x1: float32, y1: float32, x2: float32, y2: float32): void {.glew_lib, importc: "glRectf".}
+proc rectfv*(v1: ptr float32, v2: ptr float32): void {.glew_lib, importc: "glRectfv".}
+proc recti*(x1: int32, y1: int32, x2: int32, y2: int32): void {.glew_lib, importc: "glRecti".}
+proc rectiv*(v1: ptr int32, v2: ptr int32): void {.glew_lib, importc: "glRectiv".}
+proc rects*(x1: int16, y1: int16, x2: int16, y2: int16): void {.glew_lib, importc: "glRects".}
+proc rectsv*(v1: ptr int16, v2: ptr int16): void {.glew_lib, importc: "glRectsv".}
+proc renderMode*(mode: GLenum): int32 {.glew_lib, importc: "glRenderMode".}
+proc rotated*(angle: float64, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glRotated".}
+proc rotatef*(angle: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glRotatef".}
+proc scaled*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glScaled".}
+proc scalef*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glScalef".}
+proc scissor*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glScissor".}
+proc selectBuffer*(size: int32, buffer: ptr uint32): void {.glew_lib, importc: "glSelectBuffer".}
+proc shadeModel*(mode: GLenum): void {.glew_lib, importc: "glShadeModel".}
+proc stencilFunc*(fun: GLenum, reff: int32, mask: uint32): void {.glew_lib, importc: "glStencilFunc".}
+proc stencilMask*(mask: uint32): void {.glew_lib, importc: "glStencilMask".}
+proc stencilOp*(fail: GLenum, zfail: GLenum, zpass: GLenum): void {.glew_lib, importc: "glStencilOp".}
+proc texCoord1d*(s: float64): void {.glew_lib, importc: "glTexCoord1d".}
+proc texCoord1dv*(v: ptr float64): void {.glew_lib, importc: "glTexCoord1dv".}
+proc texCoord1f*(s: float32): void {.glew_lib, importc: "glTexCoord1f".}
+proc texCoord1fv*(v: ptr float32): void {.glew_lib, importc: "glTexCoord1fv".}
+proc texCoord1i*(s: int32): void {.glew_lib, importc: "glTexCoord1i".}
+proc texCoord1iv*(v: ptr int32): void {.glew_lib, importc: "glTexCoord1iv".}
+proc texCoord1s*(s: int16): void {.glew_lib, importc: "glTexCoord1s".}
+proc texCoord1sv*(v: ptr int16): void {.glew_lib, importc: "glTexCoord1sv".}
+proc texCoord2d*(s: float64, t: float64): void {.glew_lib, importc: "glTexCoord2d".}
+proc texCoord2dv*(v: ptr float64): void {.glew_lib, importc: "glTexCoord2dv".}
+proc texCoord2f*(s: float32, t: float32): void {.glew_lib, importc: "glTexCoord2f".}
+proc texCoord2fv*(v: ptr float32): void {.glew_lib, importc: "glTexCoord2fv".}
+proc texCoord2i*(s: int32, t: int32): void {.glew_lib, importc: "glTexCoord2i".}
+proc texCoord2iv*(v: ptr int32): void {.glew_lib, importc: "glTexCoord2iv".}
+proc texCoord2s*(s: int16, t: int16): void {.glew_lib, importc: "glTexCoord2s".}
+proc texCoord2sv*(v: ptr int16): void {.glew_lib, importc: "glTexCoord2sv".}
+proc texCoord3d*(s: float64, t: float64, r: float64): void {.glew_lib, importc: "glTexCoord3d".}
+proc texCoord3dv*(v: ptr float64): void {.glew_lib, importc: "glTexCoord3dv".}
+proc texCoord3f*(s: float32, t: float32, r: float32): void {.glew_lib, importc: "glTexCoord3f".}
+proc texCoord3fv*(v: ptr float32): void {.glew_lib, importc: "glTexCoord3fv".}
+proc texCoord3i*(s: int32, t: int32, r: int32): void {.glew_lib, importc: "glTexCoord3i".}
+proc texCoord3iv*(v: ptr int32): void {.glew_lib, importc: "glTexCoord3iv".}
+proc texCoord3s*(s: int16, t: int16, r: int16): void {.glew_lib, importc: "glTexCoord3s".}
+proc texCoord3sv*(v: ptr int16): void {.glew_lib, importc: "glTexCoord3sv".}
+proc texCoord4d*(s: float64, t: float64, r: float64, q: float64): void {.glew_lib, importc: "glTexCoord4d".}
+proc texCoord4dv*(v: ptr float64): void {.glew_lib, importc: "glTexCoord4dv".}
+proc texCoord4f*(s: float32, t: float32, r: float32, q: float32): void {.glew_lib, importc: "glTexCoord4f".}
+proc texCoord4fv*(v: ptr float32): void {.glew_lib, importc: "glTexCoord4fv".}
+proc texCoord4i*(s: int32, t: int32, r: int32, q: int32): void {.glew_lib, importc: "glTexCoord4i".}
+proc texCoord4iv*(v: ptr int32): void {.glew_lib, importc: "glTexCoord4iv".}
+proc texCoord4s*(s: int16, t: int16, r: int16, q: int16): void {.glew_lib, importc: "glTexCoord4s".}
+proc texCoord4sv*(v: ptr int16): void {.glew_lib, importc: "glTexCoord4sv".}
+proc texCoordPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glTexCoordPointer".}
+proc texEnvf*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glTexEnvf".}
+proc texEnvfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glTexEnvfv".}
+proc texEnvi*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTexEnvi".}
+proc texEnviv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexEnviv".}
+proc texGend*(coord: GLenum, pname: GLenum, param: float64): void {.glew_lib, importc: "glTexGend".}
+proc texGendv*(coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glTexGendv".}
+proc texGenf*(coord: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glTexGenf".}
+proc texGenfv*(coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glTexGenfv".}
+proc texGeni*(coord: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTexGeni".}
+proc texGeniv*(coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexGeniv".}
+proc texImage1D*(target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage1D".}
+proc texImage2D*(target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage2D".}
+proc texParameterf*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glTexParameterf".}
+proc texParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glTexParameterfv".}
+proc texParameteri*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTexParameteri".}
+proc texParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexParameteriv".}
+proc texSubImage1D*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage1D".}
+proc texSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage2D".}
+proc translated*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glTranslated".}
+proc translatef*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTranslatef".}
+proc vertex2d*(x: float64, y: float64): void {.glew_lib, importc: "glVertex2d".}
+proc vertex2dv*(v: ptr float64): void {.glew_lib, importc: "glVertex2dv".}
+proc vertex2f*(x: float32, y: float32): void {.glew_lib, importc: "glVertex2f".}
+proc vertex2fv*(v: ptr float32): void {.glew_lib, importc: "glVertex2fv".}
+proc vertex2i*(x: int32, y: int32): void {.glew_lib, importc: "glVertex2i".}
+proc vertex2iv*(v: ptr int32): void {.glew_lib, importc: "glVertex2iv".}
+proc vertex2s*(x: int16, y: int16): void {.glew_lib, importc: "glVertex2s".}
+proc vertex2sv*(v: ptr int16): void {.glew_lib, importc: "glVertex2sv".}
+proc vertex3d*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertex3d".}
+proc vertex3dv*(v: ptr float64): void {.glew_lib, importc: "glVertex3dv".}
+proc vertex3f*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glVertex3f".}
+proc vertex3fv*(v: ptr float32): void {.glew_lib, importc: "glVertex3fv".}
+proc vertex3i*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glVertex3i".}
+proc vertex3iv*(v: ptr int32): void {.glew_lib, importc: "glVertex3iv".}
+proc vertex3s*(x: int16, y: int16, z: int16): void {.glew_lib, importc: "glVertex3s".}
+proc vertex3sv*(v: ptr int16): void {.glew_lib, importc: "glVertex3sv".}
+proc vertex4d*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertex4d".}
+proc vertex4dv*(v: ptr float64): void {.glew_lib, importc: "glVertex4dv".}
+proc vertex4f*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glVertex4f".}
+proc vertex4fv*(v: ptr float32): void {.glew_lib, importc: "glVertex4fv".}
+proc vertex4i*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glVertex4i".}
+proc vertex4iv*(v: ptr int32): void {.glew_lib, importc: "glVertex4iv".}
+proc vertex4s*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glVertex4s".}
+proc vertex4sv*(v: ptr int16): void {.glew_lib, importc: "glVertex4sv".}
+proc vertexPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexPointer".}
+proc viewport*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glViewport".}
+proc copyTexSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTexSubImage3D".}
+proc drawRangeElements*(mode: GLenum, start: uint32, glEnd: uint32, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib, importc: "glDrawRangeElements".}
+proc texImage3D*(target: GLenum, level: int32, internalFormat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage3D".}
+proc texSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage3D".}
+proc activeTexture*(texture: GLenum): void {.glew_lib, importc: "glActiveTexture".}
+proc clientActiveTexture*(texture: GLenum): void {.glew_lib, importc: "glClientActiveTexture".}
+proc compressedTexImage1D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage1D".}
+proc compressedTexImage2D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage2D".}
+proc compressedTexImage3D*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage3D".}
+proc compressedTexSubImage1D*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage1D".}
+proc compressedTexSubImage2D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage2D".}
+proc compressedTexSubImage3D*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage3D".}
+proc getCompressedTexImage*(target: GLenum, lod: int32, img: pointer): void {.glew_lib, importc: "glGetCompressedTexImage".}
+proc loadTransposeMatrixd*(m: ptr float64): void {.glew_lib, importc: "glLoadTransposeMatrixd".}
+proc loadTransposeMatrixf*(m: ptr float32): void {.glew_lib, importc: "glLoadTransposeMatrixf".}
+proc multTransposeMatrixd*(m: ptr float64): void {.glew_lib, importc: "glMultTransposeMatrixd".}
+proc multTransposeMatrixf*(m: ptr float32): void {.glew_lib, importc: "glMultTransposeMatrixf".}
+proc multiTexCoord1d*(target: GLenum, s: float64): void {.glew_lib, importc: "glMultiTexCoord1d".}
+proc multiTexCoord1dv*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord1dv".}
+proc multiTexCoord1f*(target: GLenum, s: float32): void {.glew_lib, importc: "glMultiTexCoord1f".}
+proc multiTexCoord1fv*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord1fv".}
+proc multiTexCoord1i*(target: GLenum, s: int32): void {.glew_lib, importc: "glMultiTexCoord1i".}
+proc multiTexCoord1iv*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord1iv".}
+proc multiTexCoord1s*(target: GLenum, s: int16): void {.glew_lib, importc: "glMultiTexCoord1s".}
+proc multiTexCoord1sv*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord1sv".}
+proc multiTexCoord2d*(target: GLenum, s: float64, t: float64): void {.glew_lib, importc: "glMultiTexCoord2d".}
+proc multiTexCoord2dv*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord2dv".}
+proc multiTexCoord2f*(target: GLenum, s: float32, t: float32): void {.glew_lib, importc: "glMultiTexCoord2f".}
+proc multiTexCoord2fv*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord2fv".}
+proc multiTexCoord2i*(target: GLenum, s: int32, t: int32): void {.glew_lib, importc: "glMultiTexCoord2i".}
+proc multiTexCoord2iv*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord2iv".}
+proc multiTexCoord2s*(target: GLenum, s: int16, t: int16): void {.glew_lib, importc: "glMultiTexCoord2s".}
+proc multiTexCoord2sv*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord2sv".}
+proc multiTexCoord3d*(target: GLenum, s: float64, t: float64, r: float64): void {.glew_lib, importc: "glMultiTexCoord3d".}
+proc multiTexCoord3dv*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord3dv".}
+proc multiTexCoord3f*(target: GLenum, s: float32, t: float32, r: float32): void {.glew_lib, importc: "glMultiTexCoord3f".}
+proc multiTexCoord3fv*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord3fv".}
+proc multiTexCoord3i*(target: GLenum, s: int32, t: int32, r: int32): void {.glew_lib, importc: "glMultiTexCoord3i".}
+proc multiTexCoord3iv*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord3iv".}
+proc multiTexCoord3s*(target: GLenum, s: int16, t: int16, r: int16): void {.glew_lib, importc: "glMultiTexCoord3s".}
+proc multiTexCoord3sv*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord3sv".}
+proc multiTexCoord4d*(target: GLenum, s: float64, t: float64, r: float64, q: float64): void {.glew_lib, importc: "glMultiTexCoord4d".}
+proc multiTexCoord4dv*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord4dv".}
+proc multiTexCoord4f*(target: GLenum, s: float32, t: float32, r: float32, q: float32): void {.glew_lib, importc: "glMultiTexCoord4f".}
+proc multiTexCoord4fv*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord4fv".}
+proc multiTexCoord4i*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib, importc: "glMultiTexCoord4i".}
+proc multiTexCoord4iv*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord4iv".}
+proc multiTexCoord4s*(target: GLenum, s: int16, t: int16, r: int16, q: int16): void {.glew_lib, importc: "glMultiTexCoord4s".}
+proc multiTexCoord4sv*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord4sv".}
+proc sampleCoverage*(value: float32, invert: bool): void {.glew_lib, importc: "glSampleCoverage".}
+proc blendColor*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib, importc: "glBlendColor".}
+proc blendEquation*(mode: GLenum): void {.glew_lib, importc: "glBlendEquation".}
+proc blendFuncSeparate*(sfactorRGB: GLenum, dfactorRGB: GLenum, sfactorAlpha: GLenum, dfactorAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparate".}
+proc fogCoordPointer*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glFogCoordPointer".}
+proc fogCoordd*(coord: float64): void {.glew_lib, importc: "glFogCoordd".}
+proc fogCoorddv*(coord: ptr float64): void {.glew_lib, importc: "glFogCoorddv".}
+proc fogCoordf*(coord: float32): void {.glew_lib, importc: "glFogCoordf".}
+proc fogCoordfv*(coord: ptr float32): void {.glew_lib, importc: "glFogCoordfv".}
+proc multiDrawArrays*(mode: GLenum, first: ptr int32, count: ptr int32, drawcount: int32): void {.glew_lib, importc: "glMultiDrawArrays".}
+proc multiDrawElements*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void, drawcount: int32): void {.glew_lib, importc: "glMultiDrawElements".}
+proc pointParameterf*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPointParameterf".}
+proc pointParameterfv*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glPointParameterfv".}
+proc pointParameteri*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPointParameteri".}
+proc pointParameteriv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glPointParameteriv".}
+proc secondaryColor3b*(red: int8, green: int8, blue: int8): void {.glew_lib, importc: "glSecondaryColor3b".}
+proc secondaryColor3bv*(v: ptr int8): void {.glew_lib, importc: "glSecondaryColor3bv".}
+proc secondaryColor3d*(red: float64, green: float64, blue: float64): void {.glew_lib, importc: "glSecondaryColor3d".}
+proc secondaryColor3dv*(v: ptr float64): void {.glew_lib, importc: "glSecondaryColor3dv".}
+proc secondaryColor3f*(red: float32, green: float32, blue: float32): void {.glew_lib, importc: "glSecondaryColor3f".}
+proc secondaryColor3fv*(v: ptr float32): void {.glew_lib, importc: "glSecondaryColor3fv".}
+proc secondaryColor3i*(red: int32, green: int32, blue: int32): void {.glew_lib, importc: "glSecondaryColor3i".}
+proc secondaryColor3iv*(v: ptr int32): void {.glew_lib, importc: "glSecondaryColor3iv".}
+proc secondaryColor3s*(red: int16, green: int16, blue: int16): void {.glew_lib, importc: "glSecondaryColor3s".}
+proc secondaryColor3sv*(v: ptr int16): void {.glew_lib, importc: "glSecondaryColor3sv".}
+proc secondaryColor3ub*(red: uint8, green: uint8, blue: uint8): void {.glew_lib, importc: "glSecondaryColor3ub".}
+proc secondaryColor3ubv*(v: ptr uint8): void {.glew_lib, importc: "glSecondaryColor3ubv".}
+proc secondaryColor3ui*(red: uint32, green: uint32, blue: uint32): void {.glew_lib, importc: "glSecondaryColor3ui".}
+proc secondaryColor3uiv*(v: ptr uint32): void {.glew_lib, importc: "glSecondaryColor3uiv".}
+proc secondaryColor3us*(red: uint16, green: uint16, blue: uint16): void {.glew_lib, importc: "glSecondaryColor3us".}
+proc secondaryColor3usv*(v: ptr uint16): void {.glew_lib, importc: "glSecondaryColor3usv".}
+proc secondaryColorPointer*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glSecondaryColorPointer".}
+proc windowPos2d*(x: float64, y: float64): void {.glew_lib, importc: "glWindowPos2d".}
+proc windowPos2dv*(p: ptr float64): void {.glew_lib, importc: "glWindowPos2dv".}
+proc windowPos2f*(x: float32, y: float32): void {.glew_lib, importc: "glWindowPos2f".}
+proc windowPos2fv*(p: ptr float32): void {.glew_lib, importc: "glWindowPos2fv".}
+proc windowPos2i*(x: int32, y: int32): void {.glew_lib, importc: "glWindowPos2i".}
+proc windowPos2iv*(p: ptr int32): void {.glew_lib, importc: "glWindowPos2iv".}
+proc windowPos2s*(x: int16, y: int16): void {.glew_lib, importc: "glWindowPos2s".}
+proc windowPos2sv*(p: ptr int16): void {.glew_lib, importc: "glWindowPos2sv".}
+proc windowPos3d*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glWindowPos3d".}
+proc windowPos3dv*(p: ptr float64): void {.glew_lib, importc: "glWindowPos3dv".}
+proc windowPos3f*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glWindowPos3f".}
+proc windowPos3fv*(p: ptr float32): void {.glew_lib, importc: "glWindowPos3fv".}
+proc windowPos3i*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glWindowPos3i".}
+proc windowPos3iv*(p: ptr int32): void {.glew_lib, importc: "glWindowPos3iv".}
+proc windowPos3s*(x: int16, y: int16, z: int16): void {.glew_lib, importc: "glWindowPos3s".}
+proc windowPos3sv*(p: ptr int16): void {.glew_lib, importc: "glWindowPos3sv".}
+proc beginQuery*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBeginQuery".}
+proc bindBuffer*(target: GLenum, buffer: uint32): void {.glew_lib, importc: "glBindBuffer".}
+proc bufferData*(target: GLenum, size: int32, data: pointer, usage: GLenum): void {.glew_lib, importc: "glBufferData".}
+proc bufferSubData*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glBufferSubData".}
+proc deleteBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib, importc: "glDeleteBuffers".}
+proc deleteQueries*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteQueries".}
+proc endQuery*(target: GLenum): void {.glew_lib, importc: "glEndQuery".}
+proc genBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib, importc: "glGenBuffers".}
+proc genQueries*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenQueries".}
+proc getBufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetBufferParameteriv".}
+proc getBufferPointerv*(target: GLenum, pname: GLenum, params: ptr void): void {.glew_lib, importc: "glGetBufferPointerv".}
+proc getBufferSubData*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glGetBufferSubData".}
+proc getQueryObjectiv*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryObjectiv".}
+proc getQueryObjectuiv*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetQueryObjectuiv".}
+proc getQueryiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryiv".}
+proc isBuffer*(buffer: uint32): bool {.glew_lib, importc: "glIsBuffer".}
+proc isQuery*(id: uint32): bool {.glew_lib, importc: "glIsQuery".}
+proc mapBuffer*(target: GLenum, access: GLenum): ptr void {.glew_lib, importc: "glMapBuffer".}
+proc unmapBuffer*(target: GLenum): bool {.glew_lib, importc: "glUnmapBuffer".}
+proc attachShader*(program: uint32, shader: uint32): void {.glew_lib, importc: "glAttachShader".}
+proc bindAttribLocation*(program: uint32, index: uint32, name: cstring): void {.glew_lib, importc: "glBindAttribLocation".}
+proc blendEquationSeparate*(modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparate".}
+proc compileShader*(shader: uint32): void {.glew_lib, importc: "glCompileShader".}
+proc createProgram*(): uint32 {.glew_lib, importc: "glCreateProgram".}
+proc createShader*(tipe: GLenum): uint32 {.glew_lib, importc: "glCreateShader".}
+proc deleteProgram*(program: uint32): void {.glew_lib, importc: "glDeleteProgram".}
+proc deleteShader*(shader: uint32): void {.glew_lib, importc: "glDeleteShader".}
+proc detachShader*(program: uint32, shader: uint32): void {.glew_lib, importc: "glDetachShader".}
+proc disableVertexAttribArray*(index: uint32): void {.glew_lib, importc: "glDisableVertexAttribArray".}
+proc drawBuffers*(n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glDrawBuffers".}
+proc enableVertexAttribArray*(index: uint32): void {.glew_lib, importc: "glEnableVertexAttribArray".}
+proc getActiveAttrib*(program: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib, importc: "glGetActiveAttrib".}
+proc getActiveUniform*(program: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib, importc: "glGetActiveUniform".}
+proc getAttachedShaders*(program: uint32, maxCount: int32, count: ptr int32, shaders: ptr uint32): void {.glew_lib, importc: "glGetAttachedShaders".}
+proc getAttribLocation*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetAttribLocation".}
+proc getProgramInfoLog*(program: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib, importc: "glGetProgramInfoLog".}
+proc getProgramiv*(program: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetProgramiv".}
+proc getShaderInfoLog*(shader: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib, importc: "glGetShaderInfoLog".}
+proc getShaderSource*(obj: uint32, maxLength: int32, length: ptr int32, source: ptr char): void {.glew_lib, importc: "glGetShaderSource".}
+proc getShaderiv*(shader: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetShaderiv".}
+proc getUniformLocation*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetUniformLocation".}
+proc getUniformfv*(program: uint32, location: int32, params: ptr float32): void {.glew_lib, importc: "glGetUniformfv".}
+proc getUniformiv*(program: uint32, location: int32, params: ptr int32): void {.glew_lib, importc: "glGetUniformiv".}
+proc getVertexAttribPointerv*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib, importc: "glGetVertexAttribPointerv".}
+proc getVertexAttribdv*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVertexAttribdv".}
+proc getVertexAttribfv*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVertexAttribfv".}
+proc getVertexAttribiv*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribiv".}
+proc isProgram*(program: uint32): bool {.glew_lib, importc: "glIsProgram".}
+proc isShader*(shader: uint32): bool {.glew_lib, importc: "glIsShader".}
+proc linkProgram*(program: uint32): void {.glew_lib, importc: "glLinkProgram".}
+proc shaderSource*(shader: uint32, count: int32, stryng: ptr cstring, length: ptr int32): void {.glew_lib, importc: "glShaderSource".}
+proc stencilFuncSeparate*(frontfunc: GLenum, backfunc: GLenum, reff: int32, mask: uint32): void {.glew_lib, importc: "glStencilFuncSeparate".}
+proc stencilMaskSeparate*(face: GLenum, mask: uint32): void {.glew_lib, importc: "glStencilMaskSeparate".}
+proc stencilOpSeparate*(face: GLenum, sfail: GLenum, dpfail: GLenum, dppass: GLenum): void {.glew_lib, importc: "glStencilOpSeparate".}
+proc uniform1f*(location: int32, v0: float32): void {.glew_lib, importc: "glUniform1f".}
+proc uniform1fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform1fv".}
+proc uniform1i*(location: int32, v0: int32): void {.glew_lib, importc: "glUniform1i".}
+proc uniform1iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform1iv".}
+proc uniform2f*(location: int32, v0: float32, v1: float32): void {.glew_lib, importc: "glUniform2f".}
+proc uniform2fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform2fv".}
+proc uniform2i*(location: int32, v0: int32, v1: int32): void {.glew_lib, importc: "glUniform2i".}
+proc uniform2iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform2iv".}
+proc uniform3f*(location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib, importc: "glUniform3f".}
+proc uniform3fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform3fv".}
+proc uniform3i*(location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib, importc: "glUniform3i".}
+proc uniform3iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform3iv".}
+proc uniform4f*(location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib, importc: "glUniform4f".}
+proc uniform4fv*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform4fv".}
+proc uniform4i*(location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib, importc: "glUniform4i".}
+proc uniform4iv*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform4iv".}
+proc uniformMatrix2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2fv".}
+proc uniformMatrix3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3fv".}
+proc uniformMatrix4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4fv".}
+proc useProgram*(program: uint32): void {.glew_lib, importc: "glUseProgram".}
+proc validateProgram*(program: uint32): void {.glew_lib, importc: "glValidateProgram".}
+proc vertexAttrib1d*(index: uint32, x: float64): void {.glew_lib, importc: "glVertexAttrib1d".}
+proc vertexAttrib1dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib1dv".}
+proc vertexAttrib1f*(index: uint32, x: float32): void {.glew_lib, importc: "glVertexAttrib1f".}
+proc vertexAttrib1fv*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib1fv".}
+proc vertexAttrib1s*(index: uint32, x: int16): void {.glew_lib, importc: "glVertexAttrib1s".}
+proc vertexAttrib1sv*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib1sv".}
+proc vertexAttrib2d*(index: uint32, x: float64, y: float64): void {.glew_lib, importc: "glVertexAttrib2d".}
+proc vertexAttrib2dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib2dv".}
+proc vertexAttrib2f*(index: uint32, x: float32, y: float32): void {.glew_lib, importc: "glVertexAttrib2f".}
+proc vertexAttrib2fv*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib2fv".}
+proc vertexAttrib2s*(index: uint32, x: int16, y: int16): void {.glew_lib, importc: "glVertexAttrib2s".}
+proc vertexAttrib2sv*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib2sv".}
+proc vertexAttrib3d*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexAttrib3d".}
+proc vertexAttrib3dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib3dv".}
+proc vertexAttrib3f*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glVertexAttrib3f".}
+proc vertexAttrib3fv*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib3fv".}
+proc vertexAttrib3s*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib, importc: "glVertexAttrib3s".}
+proc vertexAttrib3sv*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib3sv".}
+proc vertexAttrib4Nbv*(index: uint32, v: ptr int8): void {.glew_lib, importc: "glVertexAttrib4Nbv".}
+proc vertexAttrib4Niv*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttrib4Niv".}
+proc vertexAttrib4Nsv*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib4Nsv".}
+proc vertexAttrib4Nub*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib, importc: "glVertexAttrib4Nub".}
+proc vertexAttrib4Nubv*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttrib4Nubv".}
+proc vertexAttrib4Nuiv*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttrib4Nuiv".}
+proc vertexAttrib4Nusv*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib4Nusv".}
+proc vertexAttrib4bv*(index: uint32, v: ptr int8): void {.glew_lib, importc: "glVertexAttrib4bv".}
+proc vertexAttrib4d*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexAttrib4d".}
+proc vertexAttrib4dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib4dv".}
+proc vertexAttrib4f*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glVertexAttrib4f".}
+proc vertexAttrib4fv*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib4fv".}
+proc vertexAttrib4iv*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttrib4iv".}
+proc vertexAttrib4s*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glVertexAttrib4s".}
+proc vertexAttrib4sv*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib4sv".}
+proc vertexAttrib4ubv*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttrib4ubv".}
+proc vertexAttrib4uiv*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttrib4uiv".}
+proc vertexAttrib4usv*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib4usv".}
+proc vertexAttribPointer*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribPointer".}
+proc uniformMatrix2x3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2x3fv".}
+proc uniformMatrix2x4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2x4fv".}
+proc uniformMatrix3x2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3x2fv".}
+proc uniformMatrix3x4fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3x4fv".}
+proc uniformMatrix4x2fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4x2fv".}
+proc uniformMatrix4x3fv*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4x3fv".}
+proc beginConditionalRender*(id: uint32, mode: GLenum): void {.glew_lib, importc: "glBeginConditionalRender".}
+proc beginTransformFeedback*(primitiveMode: GLenum): void {.glew_lib, importc: "glBeginTransformFeedback".}
+proc bindFragDataLocation*(program: uint32, colorNumber: uint32, name: cstring): void {.glew_lib, importc: "glBindFragDataLocation".}
+proc clampColor*(target: GLenum, clamp: GLenum): void {.glew_lib, importc: "glClampColor".}
+proc clearBufferfi*(buffer: GLenum, drawBuffer: int32, depth: float32, stencil: int32): void {.glew_lib, importc: "glClearBufferfi".}
+proc clearBufferfv*(buffer: GLenum, drawBuffer: int32, value: ptr float32): void {.glew_lib, importc: "glClearBufferfv".}
+proc clearBufferiv*(buffer: GLenum, drawBuffer: int32, value: ptr int32): void {.glew_lib, importc: "glClearBufferiv".}
+proc clearBufferuiv*(buffer: GLenum, drawBuffer: int32, value: ptr uint32): void {.glew_lib, importc: "glClearBufferuiv".}
+proc colorMaski*(buf: uint32, red: bool, green: bool, blue: bool, alpha: bool): void {.glew_lib, importc: "glColorMaski".}
+proc disablei*(cap: GLenum, index: uint32): void {.glew_lib, importc: "glDisablei".}
+proc enablei*(cap: GLenum, index: uint32): void {.glew_lib, importc: "glEnablei".}
+proc endConditionalRender*(): void {.glew_lib, importc: "glEndConditionalRender".}
+proc endTransformFeedback*(): void {.glew_lib, importc: "glEndTransformFeedback".}
+proc getBooleani_v*(pname: GLenum, index: uint32, data: ptr bool): void {.glew_lib, importc: "glGetBooleani_v".}
+proc getFragDataLocation*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetFragDataLocation".}
+proc getStringi*(name: GLenum, index: uint32): ptr uint8 {.glew_lib, importc: "glGetStringi".}
+proc getTexParameterIiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexParameterIiv".}
+proc getTexParameterIuiv*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetTexParameterIuiv".}
+proc getTransformFeedbackVarying*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib, importc: "glGetTransformFeedbackVarying".}
+proc getUniformuiv*(program: uint32, location: int32, params: ptr uint32): void {.glew_lib, importc: "glGetUniformuiv".}
+proc getVertexAttribIiv*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribIiv".}
+proc getVertexAttribIuiv*(index: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetVertexAttribIuiv".}
+proc isEnabledi*(cap: GLenum, index: uint32): bool {.glew_lib, importc: "glIsEnabledi".}
+proc texParameterIiv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexParameterIiv".}
+proc texParameterIuiv*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glTexParameterIuiv".}
+proc transformFeedbackVaryings*(program: uint32, count: int32, varyings: ptr cstring, bufferMode: GLenum): void {.glew_lib, importc: "glTransformFeedbackVaryings".}
+proc uniform1ui*(location: int32, v0: uint32): void {.glew_lib, importc: "glUniform1ui".}
+proc uniform1uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform1uiv".}
+proc uniform2ui*(location: int32, v0: uint32, v1: uint32): void {.glew_lib, importc: "glUniform2ui".}
+proc uniform2uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform2uiv".}
+proc uniform3ui*(location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib, importc: "glUniform3ui".}
+proc uniform3uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform3uiv".}
+proc uniform4ui*(location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib, importc: "glUniform4ui".}
+proc uniform4uiv*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform4uiv".}
+proc vertexAttribI1i*(index: uint32, v0: int32): void {.glew_lib, importc: "glVertexAttribI1i".}
+proc vertexAttribI1iv*(index: uint32, v0: ptr int32): void {.glew_lib, importc: "glVertexAttribI1iv".}
+proc vertexAttribI1ui*(index: uint32, v0: uint32): void {.glew_lib, importc: "glVertexAttribI1ui".}
+proc vertexAttribI1uiv*(index: uint32, v0: ptr uint32): void {.glew_lib, importc: "glVertexAttribI1uiv".}
+proc vertexAttribI2i*(index: uint32, v0: int32, v1: int32): void {.glew_lib, importc: "glVertexAttribI2i".}
+proc vertexAttribI2iv*(index: uint32, v0: ptr int32): void {.glew_lib, importc: "glVertexAttribI2iv".}
+proc vertexAttribI2ui*(index: uint32, v0: uint32, v1: uint32): void {.glew_lib, importc: "glVertexAttribI2ui".}
+proc vertexAttribI2uiv*(index: uint32, v0: ptr uint32): void {.glew_lib, importc: "glVertexAttribI2uiv".}
+proc vertexAttribI3i*(index: uint32, v0: int32, v1: int32, v2: int32): void {.glew_lib, importc: "glVertexAttribI3i".}
+proc vertexAttribI3iv*(index: uint32, v0: ptr int32): void {.glew_lib, importc: "glVertexAttribI3iv".}
+proc vertexAttribI3ui*(index: uint32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib, importc: "glVertexAttribI3ui".}
+proc vertexAttribI3uiv*(index: uint32, v0: ptr uint32): void {.glew_lib, importc: "glVertexAttribI3uiv".}
+proc vertexAttribI4bv*(index: uint32, v0: ptr int8): void {.glew_lib, importc: "glVertexAttribI4bv".}
+proc vertexAttribI4i*(index: uint32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib, importc: "glVertexAttribI4i".}
+proc vertexAttribI4iv*(index: uint32, v0: ptr int32): void {.glew_lib, importc: "glVertexAttribI4iv".}
+proc vertexAttribI4sv*(index: uint32, v0: ptr int16): void {.glew_lib, importc: "glVertexAttribI4sv".}
+proc vertexAttribI4ubv*(index: uint32, v0: ptr uint8): void {.glew_lib, importc: "glVertexAttribI4ubv".}
+proc vertexAttribI4ui*(index: uint32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib, importc: "glVertexAttribI4ui".}
+proc vertexAttribI4uiv*(index: uint32, v0: ptr uint32): void {.glew_lib, importc: "glVertexAttribI4uiv".}
+proc vertexAttribI4usv*(index: uint32, v0: ptr uint16): void {.glew_lib, importc: "glVertexAttribI4usv".}
+proc vertexAttribIPointer*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribIPointer".}
+proc drawArraysInstanced*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib, importc: "glDrawArraysInstanced".}
+proc drawElementsInstanced*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib, importc: "glDrawElementsInstanced".}
+proc primitiveRestartIndex*(buffer: uint32): void {.glew_lib, importc: "glPrimitiveRestartIndex".}
+proc texBuffer*(target: GLenum, internalFormat: GLenum, buffer: uint32): void {.glew_lib, importc: "glTexBuffer".}
+proc framebufferTexture*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTexture".}
+proc getBufferParameteri64v*(target: GLenum, value: GLenum, data: ptr int64): void {.glew_lib, importc: "glGetBufferParameteri64v".}
+proc getInteger64i_v*(pname: GLenum, index: uint32, data: ptr int64): void {.glew_lib, importc: "glGetInteger64i_v".}
+proc vertexAttribDivisor*(index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexAttribDivisor".}
+proc blendEquationSeparatei*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparatei".}
+proc blendEquationi*(buf: uint32, mode: GLenum): void {.glew_lib, importc: "glBlendEquationi".}
+proc blendFuncSeparatei*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparatei".}
+proc blendFunci*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib, importc: "glBlendFunci".}
+proc minSampleShading*(value: float32): void {.glew_lib, importc: "glMinSampleShading".}
+proc getGraphicsResetStatus*(): GLenum {.glew_lib, importc: "glGetGraphicsResetStatus".}
+proc getnCompressedTexImage*(target: GLenum, lod: int32, bufSize: int32, pixels: ptr pointer): void {.glew_lib, importc: "glGetnCompressedTexImage".}
+proc getnTexImage*(tex: GLenum, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: ptr pointer): void {.glew_lib, importc: "glGetnTexImage".}
+proc getnUniformdv*(program: uint32, location: int32, bufSize: int32, params: ptr float64): void {.glew_lib, importc: "glGetnUniformdv".}
+proc multiDrawArraysIndirectCount*(mode: GLenum, indirect: ptr pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectCount".}
+proc multiDrawElementsIndirectCount*(mode: GLenum, tipe: GLenum, indirect: ptr pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectCount".}
+proc specializeShader*(shader: uint32, pEntryPoint: cstring, numSpecializationConstants: uint32, pConstantIndex: ptr uint32, pConstantValue: ptr uint32): void {.glew_lib, importc: "glSpecializeShader".}
+proc tbufferMask3DFX*(mask: uint32): void {.glew_lib, importc: "glTbufferMask3DFX".}
+proc debugMessageEnableAMD*(category: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib, importc: "glDebugMessageEnableAMD".}
+proc debugMessageInsertAMD*(category: GLenum, severity: GLenum, id: uint32, length: int32, buf: cstring): void {.glew_lib, importc: "glDebugMessageInsertAMD".}
+proc getDebugMessageLogAMD*(count: uint32, bufsize: int32, categories: ptr GLenum, severities: ptr uint32, ids: ptr uint32, lengths: ptr int32, message: ptr char): uint32 {.glew_lib, importc: "glGetDebugMessageLogAMD".}
+proc blendEquationIndexedAMD*(buf: uint32, mode: GLenum): void {.glew_lib, importc: "glBlendEquationIndexedAMD".}
+proc blendEquationSeparateIndexedAMD*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparateIndexedAMD".}
+proc blendFuncIndexedAMD*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib, importc: "glBlendFuncIndexedAMD".}
+proc blendFuncSeparateIndexedAMD*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparateIndexedAMD".}
+proc framebufferSamplePositionsfvAMD*(target: GLenum, numsamples: uint32, pixelindex: uint32, values: ptr float32): void {.glew_lib, importc: "glFramebufferSamplePositionsfvAMD".}
+proc getFramebufferParameterfvAMD*(target: GLenum, pname: GLenum, numsamples: uint32, pixelindex: uint32, size: int32, values: ptr float32): void {.glew_lib, importc: "glGetFramebufferParameterfvAMD".}
+proc getNamedFramebufferParameterfvAMD*(framebuffer: uint32, pname: GLenum, numsamples: uint32, pixelindex: uint32, size: int32, values: ptr float32): void {.glew_lib, importc: "glGetNamedFramebufferParameterfvAMD".}
+proc namedFramebufferSamplePositionsfvAMD*(framebuffer: uint32, numsamples: uint32, pixelindex: uint32, values: ptr float32): void {.glew_lib, importc: "glNamedFramebufferSamplePositionsfvAMD".}
+proc vertexAttribParameteriAMD*(index: uint32, pname: GLenum, param: int32): void {.glew_lib, importc: "glVertexAttribParameteriAMD".}
+proc multiDrawArraysIndirectAMD*(mode: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectAMD".}
+proc multiDrawElementsIndirectAMD*(mode: GLenum, tipe: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectAMD".}
+proc deleteNamesAMD*(identifier: GLenum, num: uint32, names: ptr uint32): void {.glew_lib, importc: "glDeleteNamesAMD".}
+proc genNamesAMD*(identifier: GLenum, num: uint32, names: ptr uint32): void {.glew_lib, importc: "glGenNamesAMD".}
+proc isNameAMD*(identifier: GLenum, name: uint32): bool {.glew_lib, importc: "glIsNameAMD".}
+proc queryObjectParameteruiAMD*(target: GLenum, id: uint32, pname: GLenum, param: uint32): void {.glew_lib, importc: "glQueryObjectParameteruiAMD".}
+proc beginPerfMonitorAMD*(monitor: uint32): void {.glew_lib, importc: "glBeginPerfMonitorAMD".}
+proc deletePerfMonitorsAMD*(n: int32, monitors: ptr uint32): void {.glew_lib, importc: "glDeletePerfMonitorsAMD".}
+proc endPerfMonitorAMD*(monitor: uint32): void {.glew_lib, importc: "glEndPerfMonitorAMD".}
+proc genPerfMonitorsAMD*(n: int32, monitors: ptr uint32): void {.glew_lib, importc: "glGenPerfMonitorsAMD".}
+proc getPerfMonitorCounterDataAMD*(monitor: uint32, pname: GLenum, dataSize: int32, data: ptr uint32, bytesWritten: ptr int32): void {.glew_lib, importc: "glGetPerfMonitorCounterDataAMD".}
+proc getPerfMonitorCounterInfoAMD*(group: uint32, counter: uint32, pname: GLenum, data: pointer): void {.glew_lib, importc: "glGetPerfMonitorCounterInfoAMD".}
+proc getPerfMonitorCounterStringAMD*(group: uint32, counter: uint32, bufSize: int32, length: ptr int32, counterString: ptr char): void {.glew_lib, importc: "glGetPerfMonitorCounterStringAMD".}
+proc getPerfMonitorCountersAMD*(group: uint32, numCounters: ptr int32, maxActiveCounters: ptr int32, countersSize: int32, counters: ptr uint32): void {.glew_lib, importc: "glGetPerfMonitorCountersAMD".}
+proc getPerfMonitorGroupStringAMD*(group: uint32, bufSize: int32, length: ptr int32, groupString: ptr char): void {.glew_lib, importc: "glGetPerfMonitorGroupStringAMD".}
+proc getPerfMonitorGroupsAMD*(numGroups: ptr int32, groupsSize: int32, groups: ptr uint32): void {.glew_lib, importc: "glGetPerfMonitorGroupsAMD".}
+proc selectPerfMonitorCountersAMD*(monitor: uint32, enable: bool, group: uint32, numCounters: int32, counterList: ptr uint32): void {.glew_lib, importc: "glSelectPerfMonitorCountersAMD".}
+proc setMultisamplefvAMD*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib, importc: "glSetMultisamplefvAMD".}
+proc texStorageSparseAMD*(target: GLenum, internalFormat: GLenum, width: int32, height: int32, depth: int32, layers: int32, flags: uint32): void {.glew_lib, importc: "glTexStorageSparseAMD".}
+proc textureStorageSparseAMD*(texture: uint32, target: GLenum, internalFormat: GLenum, width: int32, height: int32, depth: int32, layers: int32, flags: uint32): void {.glew_lib, importc: "glTextureStorageSparseAMD".}
+proc stencilOpValueAMD*(face: GLenum, value: uint32): void {.glew_lib, importc: "glStencilOpValueAMD".}
+proc tessellationFactorAMD*(factor: float32): void {.glew_lib, importc: "glTessellationFactorAMD".}
+proc tessellationModeAMD*(mode: GLenum): void {.glew_lib, importc: "glTessellationModeAMD".}
+proc blitFramebufferANGLE*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glBlitFramebufferANGLE".}
+proc renderbufferStorageMultisampleANGLE*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisampleANGLE".}
+proc drawArraysInstancedANGLE*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib, importc: "glDrawArraysInstancedANGLE".}
+proc drawElementsInstancedANGLE*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib, importc: "glDrawElementsInstancedANGLE".}
+proc vertexAttribDivisorANGLE*(index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexAttribDivisorANGLE".}
+proc beginQueryANGLE*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBeginQueryANGLE".}
+proc deleteQueriesANGLE*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteQueriesANGLE".}
+proc endQueryANGLE*(target: GLenum): void {.glew_lib, importc: "glEndQueryANGLE".}
+proc genQueriesANGLE*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenQueriesANGLE".}
+proc getQueryObjecti64vANGLE*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetQueryObjecti64vANGLE".}
+proc getQueryObjectivANGLE*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryObjectivANGLE".}
+proc getQueryObjectui64vANGLE*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetQueryObjectui64vANGLE".}
+proc getQueryObjectuivANGLE*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetQueryObjectuivANGLE".}
+proc getQueryivANGLE*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryivANGLE".}
+proc isQueryANGLE*(id: uint32): bool {.glew_lib, importc: "glIsQueryANGLE".}
+proc queryCounterANGLE*(id: uint32, target: GLenum): void {.glew_lib, importc: "glQueryCounterANGLE".}
+proc getTranslatedShaderSourceANGLE*(shader: uint32, bufsize: int32, length: ptr int32, source: ptr char): void {.glew_lib, importc: "glGetTranslatedShaderSourceANGLE".}
+proc copyTextureLevelsAPPLE*(destinationTexture: uint32, sourceTexture: uint32, sourceBaseLevel: int32, sourceLevelCount: int32): void {.glew_lib, importc: "glCopyTextureLevelsAPPLE".}
+proc drawElementArrayAPPLE*(mode: GLenum, first: int32, count: int32): void {.glew_lib, importc: "glDrawElementArrayAPPLE".}
+proc drawRangeElementArrayAPPLE*(mode: GLenum, start: uint32, glEnd: uint32, first: int32, count: int32): void {.glew_lib, importc: "glDrawRangeElementArrayAPPLE".}
+proc elementPointerAPPLE*(tipe: GLenum, poynter: pointer): void {.glew_lib, importc: "glElementPointerAPPLE".}
+proc multiDrawElementArrayAPPLE*(mode: GLenum, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib, importc: "glMultiDrawElementArrayAPPLE".}
+proc multiDrawRangeElementArrayAPPLE*(mode: GLenum, start: uint32, glEnd: uint32, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib, importc: "glMultiDrawRangeElementArrayAPPLE".}
+proc deleteFencesAPPLE*(n: int32, fences: ptr uint32): void {.glew_lib, importc: "glDeleteFencesAPPLE".}
+proc finishFenceAPPLE*(fence: uint32): void {.glew_lib, importc: "glFinishFenceAPPLE".}
+proc finishObjectAPPLE*(obj: GLenum, name: int32): void {.glew_lib, importc: "glFinishObjectAPPLE".}
+proc genFencesAPPLE*(n: int32, fences: ptr uint32): void {.glew_lib, importc: "glGenFencesAPPLE".}
+proc isFenceAPPLE*(fence: uint32): bool {.glew_lib, importc: "glIsFenceAPPLE".}
+proc setFenceAPPLE*(fence: uint32): void {.glew_lib, importc: "glSetFenceAPPLE".}
+proc testFenceAPPLE*(fence: uint32): bool {.glew_lib, importc: "glTestFenceAPPLE".}
+proc testObjectAPPLE*(obj: GLenum, name: uint32): bool {.glew_lib, importc: "glTestObjectAPPLE".}
+proc bufferParameteriAPPLE*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glBufferParameteriAPPLE".}
+proc flushMappedBufferRangeAPPLE*(target: GLenum, offset: int32, size: int32): void {.glew_lib, importc: "glFlushMappedBufferRangeAPPLE".}
+proc renderbufferStorageMultisampleAPPLE*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisampleAPPLE".}
+proc resolveMultisampleFramebufferAPPLE*(): void {.glew_lib, importc: "glResolveMultisampleFramebufferAPPLE".}
+proc getObjectParameterivAPPLE*(objectType: GLenum, name: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetObjectParameterivAPPLE".}
+proc objectPurgeableAPPLE*(objectType: GLenum, name: uint32, option: GLenum): GLenum {.glew_lib, importc: "glObjectPurgeableAPPLE".}
+proc objectUnpurgeableAPPLE*(objectType: GLenum, name: uint32, option: GLenum): GLenum {.glew_lib, importc: "glObjectUnpurgeableAPPLE".}
+proc clientWaitSyncAPPLE*(GLsync: distinct pointer, flags: uint32, timeout: uint64): GLenum {.glew_lib, importc: "glClientWaitSyncAPPLE".}
+proc deleteSyncAPPLE*(GLsync: distinct pointer): void {.glew_lib, importc: "glDeleteSyncAPPLE".}
+proc fenceSyncAPPLE*(condition: GLenum, flags: uint32): distinct pointer {.glew_lib, importc: "glFenceSyncAPPLE".}
+proc getInteger64vAPPLE*(pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetInteger64vAPPLE".}
+proc getSyncivAPPLE*(GLsync: distinct pointer, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib, importc: "glGetSyncivAPPLE".}
+proc isSyncAPPLE*(GLsync: distinct pointer): bool {.glew_lib, importc: "glIsSyncAPPLE".}
+proc waitSyncAPPLE*(GLsync: distinct pointer, flags: uint32, timeout: uint64): void {.glew_lib, importc: "glWaitSyncAPPLE".}
+proc getTexParameterPointervAPPLE*(target: GLenum, pname: GLenum, params: ptr void ): void {.glew_lib, importc: "glGetTexParameterPointervAPPLE".}
+proc textureRangeAPPLE*(target: GLenum, length: int32, poynter: pointer): void {.glew_lib, importc: "glTextureRangeAPPLE".}
+proc bindVertexArrayAPPLE*(arrai: uint32): void {.glew_lib, importc: "glBindVertexArrayAPPLE".}
+proc deleteVertexArraysAPPLE*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glDeleteVertexArraysAPPLE".}
+proc genVertexArraysAPPLE*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glGenVertexArraysAPPLE".}
+proc isVertexArrayAPPLE*(arrai: uint32): bool {.glew_lib, importc: "glIsVertexArrayAPPLE".}
+proc flushVertexArrayRangeAPPLE*(length: int32, poynter: pointer): void {.glew_lib, importc: "glFlushVertexArrayRangeAPPLE".}
+proc vertexArrayParameteriAPPLE*(pname: GLenum, param: int32): void {.glew_lib, importc: "glVertexArrayParameteriAPPLE".}
+proc vertexArrayRangeAPPLE*(length: int32, poynter: pointer): void {.glew_lib, importc: "glVertexArrayRangeAPPLE".}
+proc disableVertexAttribAPPLE*(index: uint32, pname: GLenum): void {.glew_lib, importc: "glDisableVertexAttribAPPLE".}
+proc enableVertexAttribAPPLE*(index: uint32, pname: GLenum): void {.glew_lib, importc: "glEnableVertexAttribAPPLE".}
+proc isVertexAttribEnabledAPPLE*(index: uint32, pname: GLenum): bool {.glew_lib, importc: "glIsVertexAttribEnabledAPPLE".}
+proc mapVertexAttrib1dAPPLE*(index: uint32, size: uint32, u1: float64, u2: float64, stride: int32, order: int32, points: ptr float64): void {.glew_lib, importc: "glMapVertexAttrib1dAPPLE".}
+proc mapVertexAttrib1fAPPLE*(index: uint32, size: uint32, u1: float32, u2: float32, stride: int32, order: int32, points: ptr float32): void {.glew_lib, importc: "glMapVertexAttrib1fAPPLE".}
+proc mapVertexAttrib2dAPPLE*(index: uint32, size: uint32, u1: float64, u2: float64, ustride: int32, uorder: int32, v1: float64, v2: float64, vstride: int32, vorder: int32, points: ptr float64): void {.glew_lib, importc: "glMapVertexAttrib2dAPPLE".}
+proc mapVertexAttrib2fAPPLE*(index: uint32, size: uint32, u1: float32, u2: float32, ustride: int32, uorder: int32, v1: float32, v2: float32, vstride: int32, vorder: int32, points: ptr float32): void {.glew_lib, importc: "glMapVertexAttrib2fAPPLE".}
+proc clearDepthf*(d: float32): void {.glew_lib, importc: "glClearDepthf".}
+proc depthRangef*(n: float32, f: float32): void {.glew_lib, importc: "glDepthRangef".}
+proc getShaderPrecisionFormat*(shadertype: GLenum, precisiontype: GLenum, rangee: ptr int32, precision: ptr int32): void {.glew_lib, importc: "glGetShaderPrecisionFormat".}
+proc releaseShaderCompiler*(): void {.glew_lib, importc: "glReleaseShaderCompiler".}
+proc shaderBinary*(count: int32, shaders: ptr uint32, binaryformat: GLenum, binary: pointer, length: int32): void {.glew_lib, importc: "glShaderBinary".}
+proc memoryBarrierByRegion*(barriers: uint32): void {.glew_lib, importc: "glMemoryBarrierByRegion".}
+proc primitiveBoundingBoxARB*(minX: float32, minY: float32, minZ: float32, minW: float32, maxX: float32, maxY: float32, maxZ: float32, maxW: float32): void {.glew_lib, importc: "glPrimitiveBoundingBoxARB".}
+proc drawArraysInstancedBaseInstance*(mode: GLenum, first: int32, count: int32, primcount: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawArraysInstancedBaseInstance".}
+proc drawElementsInstancedBaseInstance*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawElementsInstancedBaseInstance".}
+proc drawElementsInstancedBaseVertexBaseInstance*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, basevertex: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawElementsInstancedBaseVertexBaseInstance".}
+proc getImageHandleARB*(texture: uint32, level: int32, layered: bool, layer: int32, format: GLenum): uint64 {.glew_lib, importc: "glGetImageHandleARB".}
+proc getTextureHandleARB*(texture: uint32): uint64 {.glew_lib, importc: "glGetTextureHandleARB".}
+proc getTextureSamplerHandleARB*(texture: uint32, sampler: uint32): uint64 {.glew_lib, importc: "glGetTextureSamplerHandleARB".}
+proc getVertexAttribLui64vARB*(index: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetVertexAttribLui64vARB".}
+proc isImageHandleResidentARB*(handle: uint64): bool {.glew_lib, importc: "glIsImageHandleResidentARB".}
+proc isTextureHandleResidentARB*(handle: uint64): bool {.glew_lib, importc: "glIsTextureHandleResidentARB".}
+proc makeImageHandleNonResidentARB*(handle: uint64): void {.glew_lib, importc: "glMakeImageHandleNonResidentARB".}
+proc makeImageHandleResidentARB*(handle: uint64, access: GLenum): void {.glew_lib, importc: "glMakeImageHandleResidentARB".}
+proc makeTextureHandleNonResidentARB*(handle: uint64): void {.glew_lib, importc: "glMakeTextureHandleNonResidentARB".}
+proc makeTextureHandleResidentARB*(handle: uint64): void {.glew_lib, importc: "glMakeTextureHandleResidentARB".}
+proc programUniformHandleui64ARB*(program: uint32, location: int32, value: uint64): void {.glew_lib, importc: "glProgramUniformHandleui64ARB".}
+proc programUniformHandleui64vARB*(program: uint32, location: int32, count: int32, values: ptr uint64): void {.glew_lib, importc: "glProgramUniformHandleui64vARB".}
+proc uniformHandleui64ARB*(location: int32, value: uint64): void {.glew_lib, importc: "glUniformHandleui64ARB".}
+proc uniformHandleui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniformHandleui64vARB".}
+proc vertexAttribL1ui64ARB*(index: uint32, x: uint64): void {.glew_lib, importc: "glVertexAttribL1ui64ARB".}
+proc vertexAttribL1ui64vARB*(index: uint32, v: ptr uint64): void {.glew_lib, importc: "glVertexAttribL1ui64vARB".}
+proc bindFragDataLocationIndexed*(program: uint32, colorNumber: uint32, index: uint32, name: cstring): void {.glew_lib, importc: "glBindFragDataLocationIndexed".}
+proc getFragDataIndex*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetFragDataIndex".}
+proc bufferStorage*(target: GLenum, size: int32, data: pointer, flags: uint32): void {.glew_lib, importc: "glBufferStorage".}
+proc clearBufferData*(target: GLenum, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearBufferData".}
+proc clearBufferSubData*(target: GLenum, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearBufferSubData".}
+proc clearNamedBufferDataEXT*(buffer: uint32, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearNamedBufferDataEXT".}
+proc clearNamedBufferSubDataEXT*(buffer: uint32, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearNamedBufferSubDataEXT".}
+proc clearTexImage*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearTexImage".}
+proc clearTexSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearTexSubImage".}
+proc clipControl*(origin: GLenum, depth: GLenum): void {.glew_lib, importc: "glClipControl".}
+proc clampColorARB*(target: GLenum, clamp: GLenum): void {.glew_lib, importc: "glClampColorARB".}
+proc dispatchCompute*(num_groups_x: uint32, num_groups_y: uint32, num_groups_z: uint32): void {.glew_lib, importc: "glDispatchCompute".}
+proc dispatchComputeIndirect*(indirect: int32): void {.glew_lib, importc: "glDispatchComputeIndirect".}
+proc dispatchComputeGroupSizeARB*(num_groups_x: uint32, num_groups_y: uint32, num_groups_z: uint32, group_size_x: uint32, group_size_y: uint32, group_size_z: uint32): void {.glew_lib, importc: "glDispatchComputeGroupSizeARB".}
+proc copyBufferSubData*(readtarget: GLenum, writetarget: GLenum, readoffset: int32, writeoffset: int32, size: int32): void {.glew_lib, importc: "glCopyBufferSubData".}
+proc copyImageSubData*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib, importc: "glCopyImageSubData".}
+proc debugMessageControlARB*(source: GLenum, tipe: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib, importc: "glDebugMessageControlARB".}
+proc debugMessageInsertARB*(source: GLenum, tipe: GLenum, id: uint32, severity: GLenum, length: int32, buf: cstring): void {.glew_lib, importc: "glDebugMessageInsertARB".}
+proc getDebugMessageLogARB*(count: uint32, bufSize: int32, sources: ptr GLenum, types: ptr GLenum, ids: ptr uint32, severities: ptr GLenum, lengths: ptr int32, messageLog: ptr char): uint32 {.glew_lib, importc: "glGetDebugMessageLogARB".}
+proc bindTextureUnit*(unit: uint32, texture: uint32): void {.glew_lib, importc: "glBindTextureUnit".}
+proc blitNamedFramebuffer*(readFramebuffer: uint32, drawFramebuffer: uint32, srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glBlitNamedFramebuffer".}
+proc checkNamedFramebufferStatus*(framebuffer: uint32, target: GLenum): GLenum {.glew_lib, importc: "glCheckNamedFramebufferStatus".}
+proc clearNamedBufferData*(buffer: uint32, internalformat: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearNamedBufferData".}
+proc clearNamedBufferSubData*(buffer: uint32, internalformat: GLenum, offset: int32, size: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearNamedBufferSubData".}
+proc clearNamedFramebufferfi*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, depth: float32, stencil: int32): void {.glew_lib, importc: "glClearNamedFramebufferfi".}
+proc clearNamedFramebufferfv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr float32): void {.glew_lib, importc: "glClearNamedFramebufferfv".}
+proc clearNamedFramebufferiv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr int32): void {.glew_lib, importc: "glClearNamedFramebufferiv".}
+proc clearNamedFramebufferuiv*(framebuffer: uint32, buffer: GLenum, drawbuffer: int32, value: ptr uint32): void {.glew_lib, importc: "glClearNamedFramebufferuiv".}
+proc compressedTextureSubImage1D*(texture: uint32, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage1D".}
+proc compressedTextureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage2D".}
+proc compressedTextureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage3D".}
+proc copyNamedBufferSubData*(readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib, importc: "glCopyNamedBufferSubData".}
+proc copyTextureSubImage1D*(texture: uint32, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyTextureSubImage1D".}
+proc copyTextureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTextureSubImage2D".}
+proc copyTextureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTextureSubImage3D".}
+proc createBuffers*(n: int32, buffers: ptr uint32): void {.glew_lib, importc: "glCreateBuffers".}
+proc createFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib, importc: "glCreateFramebuffers".}
+proc createProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib, importc: "glCreateProgramPipelines".}
+proc createQueries*(target: GLenum, n: int32, ids: ptr uint32): void {.glew_lib, importc: "glCreateQueries".}
+proc createRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib, importc: "glCreateRenderbuffers".}
+proc createSamplers*(n: int32, samplers: ptr uint32): void {.glew_lib, importc: "glCreateSamplers".}
+proc createTextures*(target: GLenum, n: int32, textures: ptr uint32): void {.glew_lib, importc: "glCreateTextures".}
+proc createTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glCreateTransformFeedbacks".}
+proc createVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glCreateVertexArrays".}
+proc disableVertexArrayAttrib*(vaobj: uint32, index: uint32): void {.glew_lib, importc: "glDisableVertexArrayAttrib".}
+proc enableVertexArrayAttrib*(vaobj: uint32, index: uint32): void {.glew_lib, importc: "glEnableVertexArrayAttrib".}
+proc flushMappedNamedBufferRange*(buffer: uint32, offset: int32, length: int32): void {.glew_lib, importc: "glFlushMappedNamedBufferRange".}
+proc generateTextureMipmap*(texture: uint32): void {.glew_lib, importc: "glGenerateTextureMipmap".}
+proc getCompressedTextureImage*(texture: uint32, level: int32, bufSize: int32, pixels: pointer): void {.glew_lib, importc: "glGetCompressedTextureImage".}
+proc getNamedBufferParameteri64v*(buffer: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetNamedBufferParameteri64v".}
+proc getNamedBufferParameteriv*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedBufferParameteriv".}
+proc getNamedBufferPointerv*(buffer: uint32, pname: GLenum, params: ptr void): void {.glew_lib, importc: "glGetNamedBufferPointerv".}
+proc getNamedBufferSubData*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glGetNamedBufferSubData".}
+proc getNamedFramebufferAttachmentParameteriv*(framebuffer: uint32, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedFramebufferAttachmentParameteriv".}
+proc getNamedFramebufferParameteriv*(framebuffer: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetNamedFramebufferParameteriv".}
+proc getNamedRenderbufferParameteriv*(renderbuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedRenderbufferParameteriv".}
+proc getQueryBufferObjecti64v*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib, importc: "glGetQueryBufferObjecti64v".}
+proc getQueryBufferObjectiv*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib, importc: "glGetQueryBufferObjectiv".}
+proc getQueryBufferObjectui64v*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib, importc: "glGetQueryBufferObjectui64v".}
+proc getQueryBufferObjectuiv*(id: uint32, buffer: uint32, pname: GLenum, offset: int32): void {.glew_lib, importc: "glGetQueryBufferObjectuiv".}
+proc getTextureImage*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: pointer): void {.glew_lib, importc: "glGetTextureImage".}
+proc getTextureLevelParameterfv*(texture: uint32, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTextureLevelParameterfv".}
+proc getTextureLevelParameteriv*(texture: uint32, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureLevelParameteriv".}
+proc getTextureParameterIiv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureParameterIiv".}
+proc getTextureParameterIuiv*(texture: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetTextureParameterIuiv".}
+proc getTextureParameterfv*(texture: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTextureParameterfv".}
+proc getTextureParameteriv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureParameteriv".}
+proc getTransformFeedbacki64_v*(xfb: uint32, pname: GLenum, index: uint32, param: ptr int64): void {.glew_lib, importc: "glGetTransformFeedbacki64_v".}
+proc getTransformFeedbacki_v*(xfb: uint32, pname: GLenum, index: uint32, param: ptr int32): void {.glew_lib, importc: "glGetTransformFeedbacki_v".}
+proc getTransformFeedbackiv*(xfb: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetTransformFeedbackiv".}
+proc getVertexArrayIndexed64iv*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int64): void {.glew_lib, importc: "glGetVertexArrayIndexed64iv".}
+proc getVertexArrayIndexediv*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetVertexArrayIndexediv".}
+proc getVertexArrayiv*(vaobj: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetVertexArrayiv".}
+proc invalidateNamedFramebufferData*(framebuffer: uint32, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib, importc: "glInvalidateNamedFramebufferData".}
+proc invalidateNamedFramebufferSubData*(framebuffer: uint32, numAttachments: int32, attachments: ptr GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glInvalidateNamedFramebufferSubData".}
+proc mapNamedBuffer*(buffer: uint32, access: GLenum): void {.glew_lib, importc: "glMapNamedBuffer".}
+proc mapNamedBufferRange*(buffer: uint32, offset: int32, length: int32, access: uint32): void {.glew_lib, importc: "glMapNamedBufferRange".}
+proc namedBufferData*(buffer: uint32, size: int32, data: pointer, usage: GLenum): void {.glew_lib, importc: "glNamedBufferData".}
+proc namedBufferStorage*(buffer: uint32, size: int32, data: pointer, flags: uint32): void {.glew_lib, importc: "glNamedBufferStorage".}
+proc namedBufferSubData*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glNamedBufferSubData".}
+proc namedFramebufferDrawBuffer*(framebuffer: uint32, mode: GLenum): void {.glew_lib, importc: "glNamedFramebufferDrawBuffer".}
+proc namedFramebufferDrawBuffers*(framebuffer: uint32, n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glNamedFramebufferDrawBuffers".}
+proc namedFramebufferParameteri*(framebuffer: uint32, pname: GLenum, param: int32): void {.glew_lib, importc: "glNamedFramebufferParameteri".}
+proc namedFramebufferReadBuffer*(framebuffer: uint32, mode: GLenum): void {.glew_lib, importc: "glNamedFramebufferReadBuffer".}
+proc namedFramebufferRenderbuffer*(framebuffer: uint32, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glNamedFramebufferRenderbuffer".}
+proc namedFramebufferTexture*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glNamedFramebufferTexture".}
+proc namedFramebufferTextureLayer*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glNamedFramebufferTextureLayer".}
+proc namedRenderbufferStorage*(renderbuffer: uint32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glNamedRenderbufferStorage".}
+proc namedRenderbufferStorageMultisample*(renderbuffer: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glNamedRenderbufferStorageMultisample".}
+proc textureBuffer*(texture: uint32, internalformat: GLenum, buffer: uint32): void {.glew_lib, importc: "glTextureBuffer".}
+proc textureBufferRange*(texture: uint32, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glTextureBufferRange".}
+proc textureParameterIiv*(texture: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTextureParameterIiv".}
+proc textureParameterIuiv*(texture: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glTextureParameterIuiv".}
+proc textureParameterf*(texture: uint32, pname: GLenum, param: float32): void {.glew_lib, importc: "glTextureParameterf".}
+proc textureParameterfv*(texture: uint32, pname: GLenum, param: ptr float32): void {.glew_lib, importc: "glTextureParameterfv".}
+proc textureParameteri*(texture: uint32, pname: GLenum, param: int32): void {.glew_lib, importc: "glTextureParameteri".}
+proc textureParameteriv*(texture: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glTextureParameteriv".}
+proc textureStorage1D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib, importc: "glTextureStorage1D".}
+proc textureStorage2D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glTextureStorage2D".}
+proc textureStorage2DMultisample*(texture: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTextureStorage2DMultisample".}
+proc textureStorage3D*(texture: uint32, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glTextureStorage3D".}
+proc textureStorage3DMultisample*(texture: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTextureStorage3DMultisample".}
+proc textureSubImage1D*(texture: uint32, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage1D".}
+proc textureSubImage2D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage2D".}
+proc textureSubImage3D*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage3D".}
+proc transformFeedbackBufferBase*(xfb: uint32, index: uint32, buffer: uint32): void {.glew_lib, importc: "glTransformFeedbackBufferBase".}
+proc transformFeedbackBufferRange*(xfb: uint32, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glTransformFeedbackBufferRange".}
+proc unmapNamedBuffer*(buffer: uint32): bool {.glew_lib, importc: "glUnmapNamedBuffer".}
+proc vertexArrayAttribBinding*(vaobj: uint32, attribindex: uint32, bindingindex: uint32): void {.glew_lib, importc: "glVertexArrayAttribBinding".}
+proc vertexArrayAttribFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayAttribFormat".}
+proc vertexArrayAttribIFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayAttribIFormat".}
+proc vertexArrayAttribLFormat*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayAttribLFormat".}
+proc vertexArrayBindingDivisor*(vaobj: uint32, bindingindex: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexArrayBindingDivisor".}
+proc vertexArrayElementBuffer*(vaobj: uint32, buffer: uint32): void {.glew_lib, importc: "glVertexArrayElementBuffer".}
+proc vertexArrayVertexBuffer*(vaobj: uint32, bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib, importc: "glVertexArrayVertexBuffer".}
+proc vertexArrayVertexBuffers*(vaobj: uint32, first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, strides: ptr int32): void {.glew_lib, importc: "glVertexArrayVertexBuffers".}
+proc drawBuffersARB*(n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glDrawBuffersARB".}
+proc blendEquationSeparateiARB*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparateiARB".}
+proc blendEquationiARB*(buf: uint32, mode: GLenum): void {.glew_lib, importc: "glBlendEquationiARB".}
+proc blendFuncSeparateiARB*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparateiARB".}
+proc blendFunciARB*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib, importc: "glBlendFunciARB".}
+proc drawElementsBaseVertex*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib, importc: "glDrawElementsBaseVertex".}
+proc drawElementsInstancedBaseVertex*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32, basevertex: int32): void {.glew_lib, importc: "glDrawElementsInstancedBaseVertex".}
+proc drawRangeElementsBaseVertex*(mode: GLenum, start: uint32, glEnd: uint32, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib, importc: "glDrawRangeElementsBaseVertex".}
+proc multiDrawElementsBaseVertex*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void, primcount: int32, basevertex: ptr int32): void {.glew_lib, importc: "glMultiDrawElementsBaseVertex".}
+proc drawArraysIndirect*(mode: GLenum, indirect: pointer): void {.glew_lib, importc: "glDrawArraysIndirect".}
+proc drawElementsIndirect*(mode: GLenum, tipe: GLenum, indirect: pointer): void {.glew_lib, importc: "glDrawElementsIndirect".}
+proc framebufferParameteri*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glFramebufferParameteri".}
+proc getFramebufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFramebufferParameteriv".}
+proc getNamedFramebufferParameterivEXT*(framebuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedFramebufferParameterivEXT".}
+proc namedFramebufferParameteriEXT*(framebuffer: uint32, pname: GLenum, param: int32): void {.glew_lib, importc: "glNamedFramebufferParameteriEXT".}
+proc bindFramebuffer*(target: GLenum, framebuffer: uint32): void {.glew_lib, importc: "glBindFramebuffer".}
+proc bindRenderbuffer*(target: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glBindRenderbuffer".}
+proc blitFramebuffer*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glBlitFramebuffer".}
+proc checkFramebufferStatus*(target: GLenum): GLenum {.glew_lib, importc: "glCheckFramebufferStatus".}
+proc deleteFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib, importc: "glDeleteFramebuffers".}
+proc deleteRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib, importc: "glDeleteRenderbuffers".}
+proc framebufferRenderbuffer*(target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glFramebufferRenderbuffer".}
+proc framebufferTexture1D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTexture1D".}
+proc framebufferTexture2D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTexture2D".}
+proc framebufferTexture3D*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glFramebufferTexture3D".}
+proc framebufferTextureLayer*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glFramebufferTextureLayer".}
+proc genFramebuffers*(n: int32, framebuffers: ptr uint32): void {.glew_lib, importc: "glGenFramebuffers".}
+proc genRenderbuffers*(n: int32, renderbuffers: ptr uint32): void {.glew_lib, importc: "glGenRenderbuffers".}
+proc generateMipmap*(target: GLenum): void {.glew_lib, importc: "glGenerateMipmap".}
+proc getFramebufferAttachmentParameteriv*(target: GLenum, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFramebufferAttachmentParameteriv".}
+proc getRenderbufferParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetRenderbufferParameteriv".}
+proc isFramebuffer*(framebuffer: uint32): bool {.glew_lib, importc: "glIsFramebuffer".}
+proc isRenderbuffer*(renderbuffer: uint32): bool {.glew_lib, importc: "glIsRenderbuffer".}
+proc renderbufferStorage*(target: GLenum, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorage".}
+proc renderbufferStorageMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisample".}
+proc framebufferTextureARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTextureARB".}
+proc framebufferTextureFaceARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib, importc: "glFramebufferTextureFaceARB".}
+proc framebufferTextureLayerARB*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glFramebufferTextureLayerARB".}
+proc programParameteriARB*(program: uint32, pname: GLenum, value: int32): void {.glew_lib, importc: "glProgramParameteriARB".}
+proc getProgramBinary*(program: uint32, bufSize: int32, length: ptr int32, binaryFormat: ptr GLenum, binary: pointer): void {.glew_lib, importc: "glGetProgramBinary".}
+proc programBinary*(program: uint32, binaryFormat: GLenum, binary: pointer, length: int32): void {.glew_lib, importc: "glProgramBinary".}
+proc programParameteri*(program: uint32, pname: GLenum, value: int32): void {.glew_lib, importc: "glProgramParameteri".}
+proc getCompressedTextureSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, bufSize: int32, pixels: pointer): void {.glew_lib, importc: "glGetCompressedTextureSubImage".}
+proc getTextureSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, bufSize: int32, pixels: pointer): void {.glew_lib, importc: "glGetTextureSubImage".}
+proc specializeShaderARB*(shader: uint32, pEntryPoint: cstring, numSpecializationConstants: uint32, pConstantIndex: ptr uint32, pConstantValue: ptr uint32): void {.glew_lib, importc: "glSpecializeShaderARB".}
+proc getUniformdv*(program: uint32, location: int32, params: ptr float64): void {.glew_lib, importc: "glGetUniformdv".}
+proc uniform1d*(location: int32, x: float64): void {.glew_lib, importc: "glUniform1d".}
+proc uniform1dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glUniform1dv".}
+proc uniform2d*(location: int32, x: float64, y: float64): void {.glew_lib, importc: "glUniform2d".}
+proc uniform2dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glUniform2dv".}
+proc uniform3d*(location: int32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glUniform3d".}
+proc uniform3dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glUniform3dv".}
+proc uniform4d*(location: int32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glUniform4d".}
+proc uniform4dv*(location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glUniform4dv".}
+proc uniformMatrix2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix2dv".}
+proc uniformMatrix2x3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix2x3dv".}
+proc uniformMatrix2x4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix2x4dv".}
+proc uniformMatrix3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix3dv".}
+proc uniformMatrix3x2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix3x2dv".}
+proc uniformMatrix3x4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix3x4dv".}
+proc uniformMatrix4dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix4dv".}
+proc uniformMatrix4x2dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix4x2dv".}
+proc uniformMatrix4x3dv*(location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glUniformMatrix4x3dv".}
+proc getUniformi64vARB*(program: uint32, location: int32, params: ptr int64): void {.glew_lib, importc: "glGetUniformi64vARB".}
+proc getUniformui64vARB*(program: uint32, location: int32, params: ptr uint64): void {.glew_lib, importc: "glGetUniformui64vARB".}
+proc getnUniformi64vARB*(program: uint32, location: int32, bufSize: int32, params: ptr int64): void {.glew_lib, importc: "glGetnUniformi64vARB".}
+proc getnUniformui64vARB*(program: uint32, location: int32, bufSize: int32, params: ptr uint64): void {.glew_lib, importc: "glGetnUniformui64vARB".}
+proc programUniform1i64ARB*(program: uint32, location: int32, x: int64): void {.glew_lib, importc: "glProgramUniform1i64ARB".}
+proc programUniform1i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform1i64vARB".}
+proc programUniform1ui64ARB*(program: uint32, location: int32, x: uint64): void {.glew_lib, importc: "glProgramUniform1ui64ARB".}
+proc programUniform1ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform1ui64vARB".}
+proc programUniform2i64ARB*(program: uint32, location: int32, x: int64, y: int64): void {.glew_lib, importc: "glProgramUniform2i64ARB".}
+proc programUniform2i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform2i64vARB".}
+proc programUniform2ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64): void {.glew_lib, importc: "glProgramUniform2ui64ARB".}
+proc programUniform2ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform2ui64vARB".}
+proc programUniform3i64ARB*(program: uint32, location: int32, x: int64, y: int64, z: int64): void {.glew_lib, importc: "glProgramUniform3i64ARB".}
+proc programUniform3i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform3i64vARB".}
+proc programUniform3ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib, importc: "glProgramUniform3ui64ARB".}
+proc programUniform3ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform3ui64vARB".}
+proc programUniform4i64ARB*(program: uint32, location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib, importc: "glProgramUniform4i64ARB".}
+proc programUniform4i64vARB*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform4i64vARB".}
+proc programUniform4ui64ARB*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib, importc: "glProgramUniform4ui64ARB".}
+proc programUniform4ui64vARB*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform4ui64vARB".}
+proc uniform1i64ARB*(location: int32, x: int64): void {.glew_lib, importc: "glUniform1i64ARB".}
+proc uniform1i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform1i64vARB".}
+proc uniform1ui64ARB*(location: int32, x: uint64): void {.glew_lib, importc: "glUniform1ui64ARB".}
+proc uniform1ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform1ui64vARB".}
+proc uniform2i64ARB*(location: int32, x: int64, y: int64): void {.glew_lib, importc: "glUniform2i64ARB".}
+proc uniform2i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform2i64vARB".}
+proc uniform2ui64ARB*(location: int32, x: uint64, y: uint64): void {.glew_lib, importc: "glUniform2ui64ARB".}
+proc uniform2ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform2ui64vARB".}
+proc uniform3i64ARB*(location: int32, x: int64, y: int64, z: int64): void {.glew_lib, importc: "glUniform3i64ARB".}
+proc uniform3i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform3i64vARB".}
+proc uniform3ui64ARB*(location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib, importc: "glUniform3ui64ARB".}
+proc uniform3ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform3ui64vARB".}
+proc uniform4i64ARB*(location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib, importc: "glUniform4i64ARB".}
+proc uniform4i64vARB*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform4i64vARB".}
+proc uniform4ui64ARB*(location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib, importc: "glUniform4ui64ARB".}
+proc uniform4ui64vARB*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform4ui64vARB".}
+proc colorSubTable*(target: GLenum, start: int32, count: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glColorSubTable".}
+proc colorTable*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib, importc: "glColorTable".}
+proc colorTableParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glColorTableParameterfv".}
+proc colorTableParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glColorTableParameteriv".}
+proc convolutionFilter1D*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glConvolutionFilter1D".}
+proc convolutionFilter2D*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glConvolutionFilter2D".}
+proc convolutionParameterf*(target: GLenum, pname: GLenum, params: float32): void {.glew_lib, importc: "glConvolutionParameterf".}
+proc convolutionParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glConvolutionParameterfv".}
+proc convolutionParameteri*(target: GLenum, pname: GLenum, params: int32): void {.glew_lib, importc: "glConvolutionParameteri".}
+proc convolutionParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glConvolutionParameteriv".}
+proc copyColorSubTable*(target: GLenum, start: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyColorSubTable".}
+proc copyColorTable*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyColorTable".}
+proc copyConvolutionFilter1D*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyConvolutionFilter1D".}
+proc copyConvolutionFilter2D*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyConvolutionFilter2D".}
+proc getColorTable*(target: GLenum, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib, importc: "glGetColorTable".}
+proc getColorTableParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetColorTableParameterfv".}
+proc getColorTableParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetColorTableParameteriv".}
+proc getConvolutionFilter*(target: GLenum, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glGetConvolutionFilter".}
+proc getConvolutionParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetConvolutionParameterfv".}
+proc getConvolutionParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetConvolutionParameteriv".}
+proc getHistogram*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib, importc: "glGetHistogram".}
+proc getHistogramParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetHistogramParameterfv".}
+proc getHistogramParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetHistogramParameteriv".}
+proc getMinmax*(target: GLenum, reset: bool, format: GLenum, types: GLenum, values: pointer): void {.glew_lib, importc: "glGetMinmax".}
+proc getMinmaxParameterfv*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMinmaxParameterfv".}
+proc getMinmaxParameteriv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMinmaxParameteriv".}
+proc getSeparableFilter*(target: GLenum, format: GLenum, tipe: GLenum, row: pointer, column: pointer, span: pointer): void {.glew_lib, importc: "glGetSeparableFilter".}
+proc histogram*(target: GLenum, width: int32, internalformat: GLenum, sink: bool): void {.glew_lib, importc: "glHistogram".}
+proc minmax*(target: GLenum, internalformat: GLenum, sink: bool): void {.glew_lib, importc: "glMinmax".}
+proc resetHistogram*(target: GLenum): void {.glew_lib, importc: "glResetHistogram".}
+proc resetMinmax*(target: GLenum): void {.glew_lib, importc: "glResetMinmax".}
+proc separableFilter2D*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, row: pointer, column: pointer): void {.glew_lib, importc: "glSeparableFilter2D".}
+proc multiDrawArraysIndirectCountARB*(mode: GLenum, indirect: pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectCountARB".}
+proc multiDrawElementsIndirectCountARB*(mode: GLenum, tipe: GLenum, indirect: pointer, drawcount: int32, maxdrawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectCountARB".}
+proc drawArraysInstancedARB*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib, importc: "glDrawArraysInstancedARB".}
+proc drawElementsInstancedARB*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib, importc: "glDrawElementsInstancedARB".}
+proc vertexAttribDivisorARB*(index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexAttribDivisorARB".}
+proc getInternalformativ*(target: GLenum, internalformat: GLenum, pname: GLenum, bufSize: int32, params: ptr int32): void {.glew_lib, importc: "glGetInternalformativ".}
+proc getInternalformati64v*(target: GLenum, internalformat: GLenum, pname: GLenum, bufSize: int32, params: ptr int64): void {.glew_lib, importc: "glGetInternalformati64v".}
+proc invalidateBufferData*(buffer: uint32): void {.glew_lib, importc: "glInvalidateBufferData".}
+proc invalidateBufferSubData*(buffer: uint32, offset: int32, length: int32): void {.glew_lib, importc: "glInvalidateBufferSubData".}
+proc invalidateFramebuffer*(target: GLenum, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib, importc: "glInvalidateFramebuffer".}
+proc invalidateSubFramebuffer*(target: GLenum, numAttachments: int32, attachments: ptr GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glInvalidateSubFramebuffer".}
+proc invalidateTexImage*(texture: uint32, level: int32): void {.glew_lib, importc: "glInvalidateTexImage".}
+proc invalidateTexSubImage*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glInvalidateTexSubImage".}
+proc flushMappedBufferRange*(target: GLenum, offset: int32, length: int32): void {.glew_lib, importc: "glFlushMappedBufferRange".}
+proc mapBufferRange*(target: GLenum, offset: int32, length: int32, access: uint32): void {.glew_lib, importc: "glMapBufferRange".}
+proc currentPaletteMatrixARB*(index: int32): void {.glew_lib, importc: "glCurrentPaletteMatrixARB".}
+proc matrixIndexPointerARB*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glMatrixIndexPointerARB".}
+proc matrixIndexubvARB*(size: int32, indices: ptr uint8): void {.glew_lib, importc: "glMatrixIndexubvARB".}
+proc matrixIndexuivARB*(size: int32, indices: ptr uint32): void {.glew_lib, importc: "glMatrixIndexuivARB".}
+proc matrixIndexusvARB*(size: int32, indices: ptr uint16): void {.glew_lib, importc: "glMatrixIndexusvARB".}
+proc bindBuffersBase*(target: GLenum, first: uint32, count: int32, buffers: ptr uint32): void {.glew_lib, importc: "glBindBuffersBase".}
+proc bindBuffersRange*(target: GLenum, first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, sizes: ptr int32): void {.glew_lib, importc: "glBindBuffersRange".}
+proc bindImageTextures*(first: uint32, count: int32, textures: ptr uint32): void {.glew_lib, importc: "glBindImageTextures".}
+proc bindSamplers*(first: uint32, count: int32, samplers: ptr uint32): void {.glew_lib, importc: "glBindSamplers".}
+proc bindTextures*(first: uint32, count: int32, textures: ptr uint32): void {.glew_lib, importc: "glBindTextures".}
+proc bindVertexBuffers*(first: uint32, count: int32, buffers: ptr uint32, offsets: ptr int32, strides: ptr int32): void {.glew_lib, importc: "glBindVertexBuffers".}
+proc multiDrawArraysIndirect*(mode: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirect".}
+proc multiDrawElementsIndirect*(mode: GLenum, tipe: GLenum, indirect: pointer, primcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirect".}
+proc sampleCoverageARB*(value: float32, invert: bool): void {.glew_lib, importc: "glSampleCoverageARB".}
+proc activeTextureARB*(texture: GLenum): void {.glew_lib, importc: "glActiveTextureARB".}
+proc clientActiveTextureARB*(texture: GLenum): void {.glew_lib, importc: "glClientActiveTextureARB".}
+proc multiTexCoord1dARB*(target: GLenum, s: float64): void {.glew_lib, importc: "glMultiTexCoord1dARB".}
+proc multiTexCoord1dvARB*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord1dvARB".}
+proc multiTexCoord1fARB*(target: GLenum, s: float32): void {.glew_lib, importc: "glMultiTexCoord1fARB".}
+proc multiTexCoord1fvARB*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord1fvARB".}
+proc multiTexCoord1iARB*(target: GLenum, s: int32): void {.glew_lib, importc: "glMultiTexCoord1iARB".}
+proc multiTexCoord1ivARB*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord1ivARB".}
+proc multiTexCoord1sARB*(target: GLenum, s: int16): void {.glew_lib, importc: "glMultiTexCoord1sARB".}
+proc multiTexCoord1svARB*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord1svARB".}
+proc multiTexCoord2dARB*(target: GLenum, s: float64, t: float64): void {.glew_lib, importc: "glMultiTexCoord2dARB".}
+proc multiTexCoord2dvARB*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord2dvARB".}
+proc multiTexCoord2fARB*(target: GLenum, s: float32, t: float32): void {.glew_lib, importc: "glMultiTexCoord2fARB".}
+proc multiTexCoord2fvARB*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord2fvARB".}
+proc multiTexCoord2iARB*(target: GLenum, s: int32, t: int32): void {.glew_lib, importc: "glMultiTexCoord2iARB".}
+proc multiTexCoord2ivARB*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord2ivARB".}
+proc multiTexCoord2sARB*(target: GLenum, s: int16, t: int16): void {.glew_lib, importc: "glMultiTexCoord2sARB".}
+proc multiTexCoord2svARB*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord2svARB".}
+proc multiTexCoord3dARB*(target: GLenum, s: float64, t: float64, r: float64): void {.glew_lib, importc: "glMultiTexCoord3dARB".}
+proc multiTexCoord3dvARB*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord3dvARB".}
+proc multiTexCoord3fARB*(target: GLenum, s: float32, t: float32, r: float32): void {.glew_lib, importc: "glMultiTexCoord3fARB".}
+proc multiTexCoord3fvARB*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord3fvARB".}
+proc multiTexCoord3iARB*(target: GLenum, s: int32, t: int32, r: int32): void {.glew_lib, importc: "glMultiTexCoord3iARB".}
+proc multiTexCoord3ivARB*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord3ivARB".}
+proc multiTexCoord3sARB*(target: GLenum, s: int16, t: int16, r: int16): void {.glew_lib, importc: "glMultiTexCoord3sARB".}
+proc multiTexCoord3svARB*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord3svARB".}
+proc multiTexCoord4dARB*(target: GLenum, s: float64, t: float64, r: float64, q: float64): void {.glew_lib, importc: "glMultiTexCoord4dARB".}
+proc multiTexCoord4dvARB*(target: GLenum, v: ptr float64): void {.glew_lib, importc: "glMultiTexCoord4dvARB".}
+proc multiTexCoord4fARB*(target: GLenum, s: float32, t: float32, r: float32, q: float32): void {.glew_lib, importc: "glMultiTexCoord4fARB".}
+proc multiTexCoord4fvARB*(target: GLenum, v: ptr float32): void {.glew_lib, importc: "glMultiTexCoord4fvARB".}
+proc multiTexCoord4iARB*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib, importc: "glMultiTexCoord4iARB".}
+proc multiTexCoord4ivARB*(target: GLenum, v: ptr int32): void {.glew_lib, importc: "glMultiTexCoord4ivARB".}
+proc multiTexCoord4sARB*(target: GLenum, s: int16, t: int16, r: int16, q: int16): void {.glew_lib, importc: "glMultiTexCoord4sARB".}
+proc multiTexCoord4svARB*(target: GLenum, v: ptr int16): void {.glew_lib, importc: "glMultiTexCoord4svARB".}
+proc beginQueryARB*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBeginQueryARB".}
+proc deleteQueriesARB*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteQueriesARB".}
+proc endQueryARB*(target: GLenum): void {.glew_lib, importc: "glEndQueryARB".}
+proc genQueriesARB*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenQueriesARB".}
+proc getQueryObjectivARB*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryObjectivARB".}
+proc getQueryObjectuivARB*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetQueryObjectuivARB".}
+proc getQueryivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryivARB".}
+proc isQueryARB*(id: uint32): bool {.glew_lib, importc: "glIsQueryARB".}
+proc maxShaderCompilerThreadsARB*(count: uint32): void {.glew_lib, importc: "glMaxShaderCompilerThreadsARB".}
+proc pointParameterfARB*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPointParameterfARB".}
+proc pointParameterfvARB*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glPointParameterfvARB".}
+proc polygonOffsetClamp*(factor: float32, units: float32, clamp: float32): void {.glew_lib, importc: "glPolygonOffsetClamp".}
+proc getProgramInterfaceiv*(program: uint32, programInterface: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetProgramInterfaceiv".}
+proc getProgramResourceIndex*(program: uint32, programInterface: GLenum, name: cstring): uint32 {.glew_lib, importc: "glGetProgramResourceIndex".}
+proc getProgramResourceLocation*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib, importc: "glGetProgramResourceLocation".}
+proc getProgramResourceLocationIndex*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib, importc: "glGetProgramResourceLocationIndex".}
+proc getProgramResourceName*(program: uint32, programInterface: GLenum, index: uint32, bufSize: int32, length: ptr int32, name: ptr char): void {.glew_lib, importc: "glGetProgramResourceName".}
+proc getProgramResourceiv*(program: uint32, programInterface: GLenum, index: uint32, propCount: int32, props: ptr GLenum, bufSize: int32, length: ptr int32, params: ptr int32): void {.glew_lib, importc: "glGetProgramResourceiv".}
+proc provokingVertex*(mode: GLenum): void {.glew_lib, importc: "glProvokingVertex".}
+proc getGraphicsResetStatusARB*(): GLenum {.glew_lib, importc: "glGetGraphicsResetStatusARB".}
+proc getnColorTableARB*(target: GLenum, format: GLenum, tipe: GLenum, bufSize: int32, table: pointer): void {.glew_lib, importc: "glGetnColorTableARB".}
+proc getnCompressedTexImageARB*(target: GLenum, lod: int32, bufSize: int32, img: pointer): void {.glew_lib, importc: "glGetnCompressedTexImageARB".}
+proc getnConvolutionFilterARB*(target: GLenum, format: GLenum, tipe: GLenum, bufSize: int32, image: pointer): void {.glew_lib, importc: "glGetnConvolutionFilterARB".}
+proc getnHistogramARB*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, bufSize: int32, values: pointer): void {.glew_lib, importc: "glGetnHistogramARB".}
+proc getnMapdvARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr float64): void {.glew_lib, importc: "glGetnMapdvARB".}
+proc getnMapfvARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr float32): void {.glew_lib, importc: "glGetnMapfvARB".}
+proc getnMapivARB*(target: GLenum, query: GLenum, bufSize: int32, v: ptr int32): void {.glew_lib, importc: "glGetnMapivARB".}
+proc getnMinmaxARB*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, bufSize: int32, values: pointer): void {.glew_lib, importc: "glGetnMinmaxARB".}
+proc getnPixelMapfvARB*(map: GLenum, bufSize: int32, values: ptr float32): void {.glew_lib, importc: "glGetnPixelMapfvARB".}
+proc getnPixelMapuivARB*(map: GLenum, bufSize: int32, values: ptr uint32): void {.glew_lib, importc: "glGetnPixelMapuivARB".}
+proc getnPixelMapusvARB*(map: GLenum, bufSize: int32, values: ptr uint16): void {.glew_lib, importc: "glGetnPixelMapusvARB".}
+proc getnPolygonStippleARB*(bufSize: int32, pattern: ptr uint8): void {.glew_lib, importc: "glGetnPolygonStippleARB".}
+proc getnSeparableFilterARB*(target: GLenum, format: GLenum, tipe: GLenum, rowBufSize: int32, row: pointer, columnBufSize: int32, column: pointer, span: pointer): void {.glew_lib, importc: "glGetnSeparableFilterARB".}
+proc getnTexImageARB*(target: GLenum, level: int32, format: GLenum, tipe: GLenum, bufSize: int32, img: pointer): void {.glew_lib, importc: "glGetnTexImageARB".}
+proc getnUniformdvARB*(program: uint32, location: int32, bufSize: int32, params: ptr float64): void {.glew_lib, importc: "glGetnUniformdvARB".}
+proc getnUniformfvARB*(program: uint32, location: int32, bufSize: int32, params: ptr float32): void {.glew_lib, importc: "glGetnUniformfvARB".}
+proc getnUniformivARB*(program: uint32, location: int32, bufSize: int32, params: ptr int32): void {.glew_lib, importc: "glGetnUniformivARB".}
+proc getnUniformuivARB*(program: uint32, location: int32, bufSize: int32, params: ptr uint32): void {.glew_lib, importc: "glGetnUniformuivARB".}
+proc readnPixelsARB*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, bufSize: int32, data: pointer): void {.glew_lib, importc: "glReadnPixelsARB".}
+proc framebufferSampleLocationsfvARB*(target: GLenum, start: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glFramebufferSampleLocationsfvARB".}
+proc namedFramebufferSampleLocationsfvARB*(framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glNamedFramebufferSampleLocationsfvARB".}
+proc minSampleShadingARB*(value: float32): void {.glew_lib, importc: "glMinSampleShadingARB".}
+proc bindSampler*(unit: uint32, sampler: uint32): void {.glew_lib, importc: "glBindSampler".}
+proc deleteSamplers*(count: int32, samplers: ptr uint32): void {.glew_lib, importc: "glDeleteSamplers".}
+proc genSamplers*(count: int32, samplers: ptr uint32): void {.glew_lib, importc: "glGenSamplers".}
+proc getSamplerParameterIiv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetSamplerParameterIiv".}
+proc getSamplerParameterIuiv*(sampler: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetSamplerParameterIuiv".}
+proc getSamplerParameterfv*(sampler: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetSamplerParameterfv".}
+proc getSamplerParameteriv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetSamplerParameteriv".}
+proc isSampler*(sampler: uint32): bool {.glew_lib, importc: "glIsSampler".}
+proc samplerParameterIiv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glSamplerParameterIiv".}
+proc samplerParameterIuiv*(sampler: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glSamplerParameterIuiv".}
+proc samplerParameterf*(sampler: uint32, pname: GLenum, param: float32): void {.glew_lib, importc: "glSamplerParameterf".}
+proc samplerParameterfv*(sampler: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glSamplerParameterfv".}
+proc samplerParameteri*(sampler: uint32, pname: GLenum, param: int32): void {.glew_lib, importc: "glSamplerParameteri".}
+proc samplerParameteriv*(sampler: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glSamplerParameteriv".}
+proc activeShaderProgram*(pipeline: uint32, program: uint32): void {.glew_lib, importc: "glActiveShaderProgram".}
+proc bindProgramPipeline*(pipeline: uint32): void {.glew_lib, importc: "glBindProgramPipeline".}
+proc createShaderProgramv*(tipe: GLenum, count: int32, strings: ptr cstring): uint32 {.glew_lib, importc: "glCreateShaderProgramv".}
+proc deleteProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib, importc: "glDeleteProgramPipelines".}
+proc genProgramPipelines*(n: int32, pipelines: ptr uint32): void {.glew_lib, importc: "glGenProgramPipelines".}
+proc getProgramPipelineInfoLog*(pipeline: uint32, bufSize: int32, length: ptr int32, infoLog: ptr char): void {.glew_lib, importc: "glGetProgramPipelineInfoLog".}
+proc getProgramPipelineiv*(pipeline: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetProgramPipelineiv".}
+proc isProgramPipeline*(pipeline: uint32): bool {.glew_lib, importc: "glIsProgramPipeline".}
+proc programUniform1d*(program: uint32, location: int32, x: float64): void {.glew_lib, importc: "glProgramUniform1d".}
+proc programUniform1dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glProgramUniform1dv".}
+proc programUniform1f*(program: uint32, location: int32, x: float32): void {.glew_lib, importc: "glProgramUniform1f".}
+proc programUniform1fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform1fv".}
+proc programUniform1i*(program: uint32, location: int32, x: int32): void {.glew_lib, importc: "glProgramUniform1i".}
+proc programUniform1iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform1iv".}
+proc programUniform1ui*(program: uint32, location: int32, x: uint32): void {.glew_lib, importc: "glProgramUniform1ui".}
+proc programUniform1uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform1uiv".}
+proc programUniform2d*(program: uint32, location: int32, x: float64, y: float64): void {.glew_lib, importc: "glProgramUniform2d".}
+proc programUniform2dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glProgramUniform2dv".}
+proc programUniform2f*(program: uint32, location: int32, x: float32, y: float32): void {.glew_lib, importc: "glProgramUniform2f".}
+proc programUniform2fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform2fv".}
+proc programUniform2i*(program: uint32, location: int32, x: int32, y: int32): void {.glew_lib, importc: "glProgramUniform2i".}
+proc programUniform2iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform2iv".}
+proc programUniform2ui*(program: uint32, location: int32, x: uint32, y: uint32): void {.glew_lib, importc: "glProgramUniform2ui".}
+proc programUniform2uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform2uiv".}
+proc programUniform3d*(program: uint32, location: int32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glProgramUniform3d".}
+proc programUniform3dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glProgramUniform3dv".}
+proc programUniform3f*(program: uint32, location: int32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glProgramUniform3f".}
+proc programUniform3fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform3fv".}
+proc programUniform3i*(program: uint32, location: int32, x: int32, y: int32, z: int32): void {.glew_lib, importc: "glProgramUniform3i".}
+proc programUniform3iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform3iv".}
+proc programUniform3ui*(program: uint32, location: int32, x: uint32, y: uint32, z: uint32): void {.glew_lib, importc: "glProgramUniform3ui".}
+proc programUniform3uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform3uiv".}
+proc programUniform4d*(program: uint32, location: int32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glProgramUniform4d".}
+proc programUniform4dv*(program: uint32, location: int32, count: int32, value: ptr float64): void {.glew_lib, importc: "glProgramUniform4dv".}
+proc programUniform4f*(program: uint32, location: int32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glProgramUniform4f".}
+proc programUniform4fv*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform4fv".}
+proc programUniform4i*(program: uint32, location: int32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glProgramUniform4i".}
+proc programUniform4iv*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform4iv".}
+proc programUniform4ui*(program: uint32, location: int32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib, importc: "glProgramUniform4ui".}
+proc programUniform4uiv*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform4uiv".}
+proc programUniformMatrix2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix2dv".}
+proc programUniformMatrix2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2fv".}
+proc programUniformMatrix2x3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix2x3dv".}
+proc programUniformMatrix2x3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2x3fv".}
+proc programUniformMatrix2x4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix2x4dv".}
+proc programUniformMatrix2x4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2x4fv".}
+proc programUniformMatrix3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix3dv".}
+proc programUniformMatrix3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3fv".}
+proc programUniformMatrix3x2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix3x2dv".}
+proc programUniformMatrix3x2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3x2fv".}
+proc programUniformMatrix3x4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix3x4dv".}
+proc programUniformMatrix3x4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3x4fv".}
+proc programUniformMatrix4dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix4dv".}
+proc programUniformMatrix4fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4fv".}
+proc programUniformMatrix4x2dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix4x2dv".}
+proc programUniformMatrix4x2fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4x2fv".}
+proc programUniformMatrix4x3dv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float64): void {.glew_lib, importc: "glProgramUniformMatrix4x3dv".}
+proc programUniformMatrix4x3fv*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4x3fv".}
+proc useProgramStages*(pipeline: uint32, stages: uint32, program: uint32): void {.glew_lib, importc: "glUseProgramStages".}
+proc validateProgramPipeline*(pipeline: uint32): void {.glew_lib, importc: "glValidateProgramPipeline".}
+proc getActiveAtomicCounterBufferiv*(program: uint32, bufferIndex: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetActiveAtomicCounterBufferiv".}
+proc bindImageTexture*(unit: uint32, texture: uint32, level: int32, layered: bool, layer: int32, access: GLenum, format: GLenum): void {.glew_lib, importc: "glBindImageTexture".}
+proc memoryBarrier*(barriers: uint32): void {.glew_lib, importc: "glMemoryBarrier".}
+proc attachObjectARB*(containerObj: uint32, obj: uint32): void {.glew_lib, importc: "glAttachObjectARB".}
+proc compileShaderARB*(shaderObj: uint32): void {.glew_lib, importc: "glCompileShaderARB".}
+proc createProgramObjectARB*(): uint32 {.glew_lib, importc: "glCreateProgramObjectARB".}
+proc createShaderObjectARB*(shaderType: GLenum): uint32 {.glew_lib, importc: "glCreateShaderObjectARB".}
+proc deleteObjectARB*(obj: uint32): void {.glew_lib, importc: "glDeleteObjectARB".}
+proc detachObjectARB*(containerObj: uint32, attachedObj: uint32): void {.glew_lib, importc: "glDetachObjectARB".}
+proc getActiveUniformARB*(programObj: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr byte): void {.glew_lib, importc: "glGetActiveUniformARB".}
+proc getAttachedObjectsARB*(containerObj: uint32, maxCount: int32, count: ptr int32, obj: ptr uint32): void {.glew_lib, importc: "glGetAttachedObjectsARB".}
+proc getHandleARB*(pname: GLenum): uint32 {.glew_lib, importc: "glGetHandleARB".}
+proc getInfoLogARB*(obj: uint32, maxLength: int32, length: ptr int32, infoLog: ptr byte): void {.glew_lib, importc: "glGetInfoLogARB".}
+proc getObjectParameterfvARB*(obj: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetObjectParameterfvARB".}
+proc getObjectParameterivARB*(obj: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetObjectParameterivARB".}
+proc getShaderSourceARB*(obj: uint32, maxLength: int32, length: ptr int32, source: ptr byte): void {.glew_lib, importc: "glGetShaderSourceARB".}
+proc getUniformLocationARB*(programObj: uint32, name: ptr byte): int32 {.glew_lib, importc: "glGetUniformLocationARB".}
+proc getUniformfvARB*(programObj: uint32, location: int32, params: ptr float32): void {.glew_lib, importc: "glGetUniformfvARB".}
+proc getUniformivARB*(programObj: uint32, location: int32, params: ptr int32): void {.glew_lib, importc: "glGetUniformivARB".}
+proc linkProgramARB*(programObj: uint32): void {.glew_lib, importc: "glLinkProgramARB".}
+proc shaderSourceARB*(shaderObj: uint32, count: int32, stryng: ptr byte, length: ptr int32): void {.glew_lib, importc: "glShaderSourceARB".}
+proc uniform1fARB*(location: int32, v0: float32): void {.glew_lib, importc: "glUniform1fARB".}
+proc uniform1fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform1fvARB".}
+proc uniform1iARB*(location: int32, v0: int32): void {.glew_lib, importc: "glUniform1iARB".}
+proc uniform1ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform1ivARB".}
+proc uniform2fARB*(location: int32, v0: float32, v1: float32): void {.glew_lib, importc: "glUniform2fARB".}
+proc uniform2fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform2fvARB".}
+proc uniform2iARB*(location: int32, v0: int32, v1: int32): void {.glew_lib, importc: "glUniform2iARB".}
+proc uniform2ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform2ivARB".}
+proc uniform3fARB*(location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib, importc: "glUniform3fARB".}
+proc uniform3fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform3fvARB".}
+proc uniform3iARB*(location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib, importc: "glUniform3iARB".}
+proc uniform3ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform3ivARB".}
+proc uniform4fARB*(location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib, importc: "glUniform4fARB".}
+proc uniform4fvARB*(location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glUniform4fvARB".}
+proc uniform4iARB*(location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib, importc: "glUniform4iARB".}
+proc uniform4ivARB*(location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glUniform4ivARB".}
+proc uniformMatrix2fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2fvARB".}
+proc uniformMatrix3fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3fvARB".}
+proc uniformMatrix4fvARB*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4fvARB".}
+proc useProgramObjectARB*(programObj: uint32): void {.glew_lib, importc: "glUseProgramObjectARB".}
+proc validateProgramARB*(programObj: uint32): void {.glew_lib, importc: "glValidateProgramARB".}
+proc shaderStorageBlockBinding*(program: uint32, storageBlockIndex: uint32, storageBlockBinding: uint32): void {.glew_lib, importc: "glShaderStorageBlockBinding".}
+proc getActiveSubroutineName*(program: uint32, shadertype: GLenum, index: uint32, bufsize: int32, length: ptr int32, name: ptr char): void {.glew_lib, importc: "glGetActiveSubroutineName".}
+proc getActiveSubroutineUniformName*(program: uint32, shadertype: GLenum, index: uint32, bufsize: int32, length: ptr int32, name: ptr char): void {.glew_lib, importc: "glGetActiveSubroutineUniformName".}
+proc getActiveSubroutineUniformiv*(program: uint32, shadertype: GLenum, index: uint32, pname: GLenum, values: ptr int32): void {.glew_lib, importc: "glGetActiveSubroutineUniformiv".}
+proc getProgramStageiv*(program: uint32, shadertype: GLenum, pname: GLenum, values: ptr int32): void {.glew_lib, importc: "glGetProgramStageiv".}
+proc getSubroutineIndex*(program: uint32, shadertype: GLenum, name: cstring): uint32 {.glew_lib, importc: "glGetSubroutineIndex".}
+proc getSubroutineUniformLocation*(program: uint32, shadertype: GLenum, name: cstring): int32 {.glew_lib, importc: "glGetSubroutineUniformLocation".}
+proc getUniformSubroutineuiv*(shadertype: GLenum, location: int32, params: ptr uint32): void {.glew_lib, importc: "glGetUniformSubroutineuiv".}
+proc uniformSubroutinesuiv*(shadertype: GLenum, count: int32, indices: ptr uint32): void {.glew_lib, importc: "glUniformSubroutinesuiv".}
+proc compileShaderIncludeARB*(shader: uint32, count: int32, path: ptr cstring, length: ptr int32): void {.glew_lib, importc: "glCompileShaderIncludeARB".}
+proc deleteNamedStringARB*(namelen: int32, name: cstring): void {.glew_lib, importc: "glDeleteNamedStringARB".}
+proc getNamedStringARB*(namelen: int32, name: cstring, bufSize: int32, stringlen: ptr int32, stryng: cstring): void {.glew_lib, importc: "glGetNamedStringARB".}
+proc getNamedStringivARB*(namelen: int32, name: cstring, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedStringivARB".}
+proc isNamedStringARB*(namelen: int32, name: cstring): bool {.glew_lib, importc: "glIsNamedStringARB".}
+proc namedStringARB*(tipe: GLenum, namelen: int32, name: cstring, stringlen: int32, stryng: cstring): void {.glew_lib, importc: "glNamedStringARB".}
+proc bufferPageCommitmentARB*(target: GLenum, offset: int32, size: int32, commit: bool): void {.glew_lib, importc: "glBufferPageCommitmentARB".}
+proc texPageCommitmentARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib, importc: "glTexPageCommitmentARB".}
+proc clientWaitSync*(GLsync: distinct pointer, flags: uint32, timeout: uint64): GLenum {.glew_lib, importc: "glClientWaitSync".}
+proc deleteSync*(GLsync: distinct pointer): void {.glew_lib, importc: "glDeleteSync".}
+proc fenceSync*(condition: GLenum, flags: uint32): distinct pointer {.glew_lib, importc: "glFenceSync".}
+proc getInteger64v*(pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetInteger64v".}
+proc getSynciv*(GLsync: distinct pointer, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib, importc: "glGetSynciv".}
+proc isSync*(GLsync: distinct pointer): bool {.glew_lib, importc: "glIsSync".}
+proc waitSync*(GLsync: distinct pointer, flags: uint32, timeout: uint64): void {.glew_lib, importc: "glWaitSync".}
+proc patchParameterfv*(pname: GLenum, values: ptr float32): void {.glew_lib, importc: "glPatchParameterfv".}
+proc patchParameteri*(pname: GLenum, value: int32): void {.glew_lib, importc: "glPatchParameteri".}
+proc textureBarrier*(): void {.glew_lib, importc: "glTextureBarrier".}
+proc texBufferARB*(target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib, importc: "glTexBufferARB".}
+proc texBufferRange*(target: GLenum, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glTexBufferRange".}
+proc textureBufferRangeEXT*(texture: uint32, target: GLenum, internalformat: GLenum, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glTextureBufferRangeEXT".}
+proc compressedTexImage1DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage1DARB".}
+proc compressedTexImage2DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage2DARB".}
+proc compressedTexImage3DARB*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage3DARB".}
+proc compressedTexSubImage1DARB*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage1DARB".}
+proc compressedTexSubImage2DARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage2DARB".}
+proc compressedTexSubImage3DARB*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage3DARB".}
+proc getCompressedTexImageARB*(target: GLenum, lod: int32, img: pointer): void {.glew_lib, importc: "glGetCompressedTexImageARB".}
+proc getMultisamplefv*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib, importc: "glGetMultisamplefv".}
+proc sampleMaski*(index: uint32, mask: uint32): void {.glew_lib, importc: "glSampleMaski".}
+proc texImage2DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTexImage2DMultisample".}
+proc texImage3DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTexImage3DMultisample".}
+proc texStorage1D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib, importc: "glTexStorage1D".}
+proc texStorage2D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glTexStorage2D".}
+proc texStorage3D*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glTexStorage3D".}
+proc texStorage2DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTexStorage2DMultisample".}
+proc texStorage3DMultisample*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTexStorage3DMultisample".}
+proc textureStorage2DMultisampleEXT*(texture: uint32, target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTextureStorage2DMultisampleEXT".}
+proc textureStorage3DMultisampleEXT*(texture: uint32, target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, fixedsamplelocations: bool): void {.glew_lib, importc: "glTextureStorage3DMultisampleEXT".}
+proc textureView*(texture: uint32, target: GLenum, origtexture: uint32, internalformat: GLenum, minlevel: uint32, numlevels: uint32, minlayer: uint32, numlayers: uint32): void {.glew_lib, importc: "glTextureView".}
+proc getQueryObjecti64v*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetQueryObjecti64v".}
+proc getQueryObjectui64v*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetQueryObjectui64v".}
+proc queryCounter*(id: uint32, target: GLenum): void {.glew_lib, importc: "glQueryCounter".}
+proc bindTransformFeedback*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBindTransformFeedback".}
+proc deleteTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteTransformFeedbacks".}
+proc drawTransformFeedback*(mode: GLenum, id: uint32): void {.glew_lib, importc: "glDrawTransformFeedback".}
+proc genTransformFeedbacks*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenTransformFeedbacks".}
+proc isTransformFeedback*(id: uint32): bool {.glew_lib, importc: "glIsTransformFeedback".}
+proc pauseTransformFeedback*(): void {.glew_lib, importc: "glPauseTransformFeedback".}
+proc resumeTransformFeedback*(): void {.glew_lib, importc: "glResumeTransformFeedback".}
+proc beginQueryIndexed*(target: GLenum, index: uint32, id: uint32): void {.glew_lib, importc: "glBeginQueryIndexed".}
+proc drawTransformFeedbackStream*(mode: GLenum, id: uint32, stream: uint32): void {.glew_lib, importc: "glDrawTransformFeedbackStream".}
+proc endQueryIndexed*(target: GLenum, index: uint32): void {.glew_lib, importc: "glEndQueryIndexed".}
+proc getQueryIndexediv*(target: GLenum, index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetQueryIndexediv".}
+proc drawTransformFeedbackInstanced*(mode: GLenum, id: uint32, primcount: int32): void {.glew_lib, importc: "glDrawTransformFeedbackInstanced".}
+proc drawTransformFeedbackStreamInstanced*(mode: GLenum, id: uint32, stream: uint32, primcount: int32): void {.glew_lib, importc: "glDrawTransformFeedbackStreamInstanced".}
+proc loadTransposeMatrixdARB*(m: ptr float64): void {.glew_lib, importc: "glLoadTransposeMatrixdARB".}
+proc loadTransposeMatrixfARB*(m: ptr float32): void {.glew_lib, importc: "glLoadTransposeMatrixfARB".}
+proc multTransposeMatrixdARB*(m: ptr float64): void {.glew_lib, importc: "glMultTransposeMatrixdARB".}
+proc multTransposeMatrixfARB*(m: ptr float32): void {.glew_lib, importc: "glMultTransposeMatrixfARB".}
+proc bindBufferBase*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib, importc: "glBindBufferBase".}
+proc bindBufferRange*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glBindBufferRange".}
+proc getActiveUniformBlockName*(program: uint32, uniformBlockIndex: uint32, bufSize: int32, length: ptr int32, uniformBlockName: ptr char): void {.glew_lib, importc: "glGetActiveUniformBlockName".}
+proc getActiveUniformBlockiv*(program: uint32, uniformBlockIndex: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetActiveUniformBlockiv".}
+proc getActiveUniformName*(program: uint32, uniformIndex: uint32, bufSize: int32, length: ptr int32, uniformName: ptr char): void {.glew_lib, importc: "glGetActiveUniformName".}
+proc getActiveUniformsiv*(program: uint32, uniformCount: int32, uniformIndices: ptr uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetActiveUniformsiv".}
+proc getIntegeri_v*(target: GLenum, index: uint32, data: ptr int32): void {.glew_lib, importc: "glGetIntegeri_v".}
+proc getUniformBlockIndex*(program: uint32, uniformBlockName: cstring): uint32 {.glew_lib, importc: "glGetUniformBlockIndex".}
+proc getUniformIndices*(program: uint32, uniformCount: int32, uniformNames: ptr cstring, uniformIndices: ptr uint32): void {.glew_lib, importc: "glGetUniformIndices".}
+proc uniformBlockBinding*(program: uint32, uniformBlockIndex: uint32, uniformBlockBinding: uint32): void {.glew_lib, importc: "glUniformBlockBinding".}
+proc bindVertexArray*(arrai: uint32): void {.glew_lib, importc: "glBindVertexArray".}
+proc deleteVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glDeleteVertexArrays".}
+proc genVertexArrays*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glGenVertexArrays".}
+proc isVertexArray*(arrai: uint32): bool {.glew_lib, importc: "glIsVertexArray".}
+proc getVertexAttribLdv*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVertexAttribLdv".}
+proc vertexAttribL1d*(index: uint32, x: float64): void {.glew_lib, importc: "glVertexAttribL1d".}
+proc vertexAttribL1dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL1dv".}
+proc vertexAttribL2d*(index: uint32, x: float64, y: float64): void {.glew_lib, importc: "glVertexAttribL2d".}
+proc vertexAttribL2dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL2dv".}
+proc vertexAttribL3d*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexAttribL3d".}
+proc vertexAttribL3dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL3dv".}
+proc vertexAttribL4d*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexAttribL4d".}
+proc vertexAttribL4dv*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL4dv".}
+proc vertexAttribLPointer*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribLPointer".}
+proc bindVertexBuffer*(bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib, importc: "glBindVertexBuffer".}
+proc vertexArrayBindVertexBufferEXT*(vaobj: uint32, bindingindex: uint32, buffer: uint32, offset: int32, stride: int32): void {.glew_lib, importc: "glVertexArrayBindVertexBufferEXT".}
+proc vertexArrayVertexAttribBindingEXT*(vaobj: uint32, attribindex: uint32, bindingindex: uint32): void {.glew_lib, importc: "glVertexArrayVertexAttribBindingEXT".}
+proc vertexArrayVertexAttribFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayVertexAttribFormatEXT".}
+proc vertexArrayVertexAttribIFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayVertexAttribIFormatEXT".}
+proc vertexArrayVertexAttribLFormatEXT*(vaobj: uint32, attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexArrayVertexAttribLFormatEXT".}
+proc vertexArrayVertexBindingDivisorEXT*(vaobj: uint32, bindingindex: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexArrayVertexBindingDivisorEXT".}
+proc vertexAttribBinding*(attribindex: uint32, bindingindex: uint32): void {.glew_lib, importc: "glVertexAttribBinding".}
+proc vertexAttribFormat*(attribindex: uint32, size: int32, tipe: GLenum, normalized: bool, relativeoffset: uint32): void {.glew_lib, importc: "glVertexAttribFormat".}
+proc vertexAttribIFormat*(attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexAttribIFormat".}
+proc vertexAttribLFormat*(attribindex: uint32, size: int32, tipe: GLenum, relativeoffset: uint32): void {.glew_lib, importc: "glVertexAttribLFormat".}
+proc vertexBindingDivisor*(bindingindex: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexBindingDivisor".}
+proc vertexBlendARB*(count: int32): void {.glew_lib, importc: "glVertexBlendARB".}
+proc weightPointerARB*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glWeightPointerARB".}
+proc weightbvARB*(size: int32, weights: ptr int8): void {.glew_lib, importc: "glWeightbvARB".}
+proc weightdvARB*(size: int32, weights: ptr float64): void {.glew_lib, importc: "glWeightdvARB".}
+proc weightfvARB*(size: int32, weights: ptr float32): void {.glew_lib, importc: "glWeightfvARB".}
+proc weightivARB*(size: int32, weights: ptr int32): void {.glew_lib, importc: "glWeightivARB".}
+proc weightsvARB*(size: int32, weights: ptr int16): void {.glew_lib, importc: "glWeightsvARB".}
+proc weightubvARB*(size: int32, weights: ptr uint8): void {.glew_lib, importc: "glWeightubvARB".}
+proc weightuivARB*(size: int32, weights: ptr uint32): void {.glew_lib, importc: "glWeightuivARB".}
+proc weightusvARB*(size: int32, weights: ptr uint16): void {.glew_lib, importc: "glWeightusvARB".}
+proc bindBufferARB*(target: GLenum, buffer: uint32): void {.glew_lib, importc: "glBindBufferARB".}
+proc bufferDataARB*(target: GLenum, size: int32, data: pointer, usage: GLenum): void {.glew_lib, importc: "glBufferDataARB".}
+proc bufferSubDataARB*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glBufferSubDataARB".}
+proc deleteBuffersARB*(n: int32, buffers: ptr uint32): void {.glew_lib, importc: "glDeleteBuffersARB".}
+proc genBuffersARB*(n: int32, buffers: ptr uint32): void {.glew_lib, importc: "glGenBuffersARB".}
+proc getBufferParameterivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetBufferParameterivARB".}
+proc getBufferPointervARB*(target: GLenum, pname: GLenum, params: ptr void): void {.glew_lib, importc: "glGetBufferPointervARB".}
+proc getBufferSubDataARB*(target: GLenum, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glGetBufferSubDataARB".}
+proc isBufferARB*(buffer: uint32): bool {.glew_lib, importc: "glIsBufferARB".}
+proc mapBufferARB*(target: GLenum, access: GLenum): void {.glew_lib, importc: "glMapBufferARB".}
+proc unmapBufferARB*(target: GLenum): bool {.glew_lib, importc: "glUnmapBufferARB".}
+proc bindProgramARB*(target: GLenum, program: uint32): void {.glew_lib, importc: "glBindProgramARB".}
+proc deleteProgramsARB*(n: int32, programs: ptr uint32): void {.glew_lib, importc: "glDeleteProgramsARB".}
+proc disableVertexAttribArrayARB*(index: uint32): void {.glew_lib, importc: "glDisableVertexAttribArrayARB".}
+proc enableVertexAttribArrayARB*(index: uint32): void {.glew_lib, importc: "glEnableVertexAttribArrayARB".}
+proc genProgramsARB*(n: int32, programs: ptr uint32): void {.glew_lib, importc: "glGenProgramsARB".}
+proc getProgramEnvParameterdvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glGetProgramEnvParameterdvARB".}
+proc getProgramEnvParameterfvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glGetProgramEnvParameterfvARB".}
+proc getProgramLocalParameterdvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glGetProgramLocalParameterdvARB".}
+proc getProgramLocalParameterfvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glGetProgramLocalParameterfvARB".}
+proc getProgramStringARB*(target: GLenum, pname: GLenum, stryng: pointer): void {.glew_lib, importc: "glGetProgramStringARB".}
+proc getProgramivARB*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetProgramivARB".}
+proc getVertexAttribPointervARB*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib, importc: "glGetVertexAttribPointervARB".}
+proc getVertexAttribdvARB*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVertexAttribdvARB".}
+proc getVertexAttribfvARB*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVertexAttribfvARB".}
+proc getVertexAttribivARB*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribivARB".}
+proc isProgramARB*(program: uint32): bool {.glew_lib, importc: "glIsProgramARB".}
+proc programEnvParameter4dARB*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glProgramEnvParameter4dARB".}
+proc programEnvParameter4dvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glProgramEnvParameter4dvARB".}
+proc programEnvParameter4fARB*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glProgramEnvParameter4fARB".}
+proc programEnvParameter4fvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glProgramEnvParameter4fvARB".}
+proc programLocalParameter4dARB*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glProgramLocalParameter4dARB".}
+proc programLocalParameter4dvARB*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glProgramLocalParameter4dvARB".}
+proc programLocalParameter4fARB*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glProgramLocalParameter4fARB".}
+proc programLocalParameter4fvARB*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glProgramLocalParameter4fvARB".}
+proc programStringARB*(target: GLenum, format: GLenum, len: int32, stryng: pointer): void {.glew_lib, importc: "glProgramStringARB".}
+proc vertexAttrib1dARB*(index: uint32, x: float64): void {.glew_lib, importc: "glVertexAttrib1dARB".}
+proc vertexAttrib1dvARB*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib1dvARB".}
+proc vertexAttrib1fARB*(index: uint32, x: float32): void {.glew_lib, importc: "glVertexAttrib1fARB".}
+proc vertexAttrib1fvARB*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib1fvARB".}
+proc vertexAttrib1sARB*(index: uint32, x: int16): void {.glew_lib, importc: "glVertexAttrib1sARB".}
+proc vertexAttrib1svARB*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib1svARB".}
+proc vertexAttrib2dARB*(index: uint32, x: float64, y: float64): void {.glew_lib, importc: "glVertexAttrib2dARB".}
+proc vertexAttrib2dvARB*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib2dvARB".}
+proc vertexAttrib2fARB*(index: uint32, x: float32, y: float32): void {.glew_lib, importc: "glVertexAttrib2fARB".}
+proc vertexAttrib2fvARB*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib2fvARB".}
+proc vertexAttrib2sARB*(index: uint32, x: int16, y: int16): void {.glew_lib, importc: "glVertexAttrib2sARB".}
+proc vertexAttrib2svARB*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib2svARB".}
+proc vertexAttrib3dARB*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexAttrib3dARB".}
+proc vertexAttrib3dvARB*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib3dvARB".}
+proc vertexAttrib3fARB*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glVertexAttrib3fARB".}
+proc vertexAttrib3fvARB*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib3fvARB".}
+proc vertexAttrib3sARB*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib, importc: "glVertexAttrib3sARB".}
+proc vertexAttrib3svARB*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib3svARB".}
+proc vertexAttrib4NbvARB*(index: uint32, v: ptr int8): void {.glew_lib, importc: "glVertexAttrib4NbvARB".}
+proc vertexAttrib4NivARB*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttrib4NivARB".}
+proc vertexAttrib4NsvARB*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib4NsvARB".}
+proc vertexAttrib4NubARB*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib, importc: "glVertexAttrib4NubARB".}
+proc vertexAttrib4NubvARB*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttrib4NubvARB".}
+proc vertexAttrib4NuivARB*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttrib4NuivARB".}
+proc vertexAttrib4NusvARB*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib4NusvARB".}
+proc vertexAttrib4bvARB*(index: uint32, v: ptr int8): void {.glew_lib, importc: "glVertexAttrib4bvARB".}
+proc vertexAttrib4dARB*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexAttrib4dARB".}
+proc vertexAttrib4dvARB*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib4dvARB".}
+proc vertexAttrib4fARB*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glVertexAttrib4fARB".}
+proc vertexAttrib4fvARB*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib4fvARB".}
+proc vertexAttrib4ivARB*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttrib4ivARB".}
+proc vertexAttrib4sARB*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glVertexAttrib4sARB".}
+proc vertexAttrib4svARB*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib4svARB".}
+proc vertexAttrib4ubvARB*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttrib4ubvARB".}
+proc vertexAttrib4uivARB*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttrib4uivARB".}
+proc vertexAttrib4usvARB*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib4usvARB".}
+proc vertexAttribPointerARB*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribPointerARB".}
+proc bindAttribLocationARB*(programObj: uint32, index: uint32, name: ptr byte): void {.glew_lib, importc: "glBindAttribLocationARB".}
+proc getActiveAttribARB*(programObj: uint32, index: uint32, maxLength: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr byte): void {.glew_lib, importc: "glGetActiveAttribARB".}
+proc getAttribLocationARB*(programObj: uint32, name: ptr byte): int32 {.glew_lib, importc: "glGetAttribLocationARB".}
+proc colorP3ui*(tipe: GLenum, color: uint32): void {.glew_lib, importc: "glColorP3ui".}
+proc colorP3uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib, importc: "glColorP3uiv".}
+proc colorP4ui*(tipe: GLenum, color: uint32): void {.glew_lib, importc: "glColorP4ui".}
+proc colorP4uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib, importc: "glColorP4uiv".}
+proc multiTexCoordP1ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glMultiTexCoordP1ui".}
+proc multiTexCoordP1uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glMultiTexCoordP1uiv".}
+proc multiTexCoordP2ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glMultiTexCoordP2ui".}
+proc multiTexCoordP2uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glMultiTexCoordP2uiv".}
+proc multiTexCoordP3ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glMultiTexCoordP3ui".}
+proc multiTexCoordP3uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glMultiTexCoordP3uiv".}
+proc multiTexCoordP4ui*(texture: GLenum, tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glMultiTexCoordP4ui".}
+proc multiTexCoordP4uiv*(texture: GLenum, tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glMultiTexCoordP4uiv".}
+proc normalP3ui*(tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glNormalP3ui".}
+proc normalP3uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glNormalP3uiv".}
+proc secondaryColorP3ui*(tipe: GLenum, color: uint32): void {.glew_lib, importc: "glSecondaryColorP3ui".}
+proc secondaryColorP3uiv*(tipe: GLenum, color: ptr uint32): void {.glew_lib, importc: "glSecondaryColorP3uiv".}
+proc texCoordP1ui*(tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glTexCoordP1ui".}
+proc texCoordP1uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glTexCoordP1uiv".}
+proc texCoordP2ui*(tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glTexCoordP2ui".}
+proc texCoordP2uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glTexCoordP2uiv".}
+proc texCoordP3ui*(tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glTexCoordP3ui".}
+proc texCoordP3uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glTexCoordP3uiv".}
+proc texCoordP4ui*(tipe: GLenum, coords: uint32): void {.glew_lib, importc: "glTexCoordP4ui".}
+proc texCoordP4uiv*(tipe: GLenum, coords: ptr uint32): void {.glew_lib, importc: "glTexCoordP4uiv".}
+proc vertexAttribP1ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib, importc: "glVertexAttribP1ui".}
+proc vertexAttribP1uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib, importc: "glVertexAttribP1uiv".}
+proc vertexAttribP2ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib, importc: "glVertexAttribP2ui".}
+proc vertexAttribP2uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib, importc: "glVertexAttribP2uiv".}
+proc vertexAttribP3ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib, importc: "glVertexAttribP3ui".}
+proc vertexAttribP3uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib, importc: "glVertexAttribP3uiv".}
+proc vertexAttribP4ui*(index: uint32, tipe: GLenum, normalized: bool, value: uint32): void {.glew_lib, importc: "glVertexAttribP4ui".}
+proc vertexAttribP4uiv*(index: uint32, tipe: GLenum, normalized: bool, value: ptr uint32): void {.glew_lib, importc: "glVertexAttribP4uiv".}
+proc vertexP2ui*(tipe: GLenum, value: uint32): void {.glew_lib, importc: "glVertexP2ui".}
+proc vertexP2uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib, importc: "glVertexP2uiv".}
+proc vertexP3ui*(tipe: GLenum, value: uint32): void {.glew_lib, importc: "glVertexP3ui".}
+proc vertexP3uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib, importc: "glVertexP3uiv".}
+proc vertexP4ui*(tipe: GLenum, value: uint32): void {.glew_lib, importc: "glVertexP4ui".}
+proc vertexP4uiv*(tipe: GLenum, value: ptr uint32): void {.glew_lib, importc: "glVertexP4uiv".}
+proc depthRangeArrayv*(first: uint32, count: int32, v: ptr float64): void {.glew_lib, importc: "glDepthRangeArrayv".}
+proc depthRangeIndexed*(index: uint32, n: float64, f: float64): void {.glew_lib, importc: "glDepthRangeIndexed".}
+proc getDoublei_v*(target: GLenum, index: uint32, data: ptr float64): void {.glew_lib, importc: "glGetDoublei_v".}
+proc getFloati_v*(target: GLenum, index: uint32, data: ptr float32): void {.glew_lib, importc: "glGetFloati_v".}
+proc scissorArrayv*(first: uint32, count: int32, v: ptr int32): void {.glew_lib, importc: "glScissorArrayv".}
+proc scissorIndexed*(index: uint32, left: int32, bottom: int32, width: int32, height: int32): void {.glew_lib, importc: "glScissorIndexed".}
+proc scissorIndexedv*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glScissorIndexedv".}
+proc viewportArrayv*(first: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glViewportArrayv".}
+proc viewportIndexedf*(index: uint32, x: float32, y: float32, w: float32, h: float32): void {.glew_lib, importc: "glViewportIndexedf".}
+proc viewportIndexedfv*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glViewportIndexedfv".}
+proc windowPos2dARB*(x: float64, y: float64): void {.glew_lib, importc: "glWindowPos2dARB".}
+proc windowPos2dvARB*(p: ptr float64): void {.glew_lib, importc: "glWindowPos2dvARB".}
+proc windowPos2fARB*(x: float32, y: float32): void {.glew_lib, importc: "glWindowPos2fARB".}
+proc windowPos2fvARB*(p: ptr float32): void {.glew_lib, importc: "glWindowPos2fvARB".}
+proc windowPos2iARB*(x: int32, y: int32): void {.glew_lib, importc: "glWindowPos2iARB".}
+proc windowPos2ivARB*(p: ptr int32): void {.glew_lib, importc: "glWindowPos2ivARB".}
+proc windowPos2sARB*(x: int16, y: int16): void {.glew_lib, importc: "glWindowPos2sARB".}
+proc windowPos2svARB*(p: ptr int16): void {.glew_lib, importc: "glWindowPos2svARB".}
+proc windowPos3dARB*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glWindowPos3dARB".}
+proc windowPos3dvARB*(p: ptr float64): void {.glew_lib, importc: "glWindowPos3dvARB".}
+proc windowPos3fARB*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glWindowPos3fARB".}
+proc windowPos3fvARB*(p: ptr float32): void {.glew_lib, importc: "glWindowPos3fvARB".}
+proc windowPos3iARB*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glWindowPos3iARB".}
+proc windowPos3ivARB*(p: ptr int32): void {.glew_lib, importc: "glWindowPos3ivARB".}
+proc windowPos3sARB*(x: int16, y: int16, z: int16): void {.glew_lib, importc: "glWindowPos3sARB".}
+proc windowPos3svARB*(p: ptr int16): void {.glew_lib, importc: "glWindowPos3svARB".}
+proc drawBuffersATI*(n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glDrawBuffersATI".}
+proc drawElementArrayATI*(mode: GLenum, count: int32): void {.glew_lib, importc: "glDrawElementArrayATI".}
+proc drawRangeElementArrayATI*(mode: GLenum, start: uint32, glEnd: uint32, count: int32): void {.glew_lib, importc: "glDrawRangeElementArrayATI".}
+proc elementPointerATI*(tipe: GLenum, poynter: pointer): void {.glew_lib, importc: "glElementPointerATI".}
+proc getTexBumpParameterfvATI*(pname: GLenum, param: ptr float32): void {.glew_lib, importc: "glGetTexBumpParameterfvATI".}
+proc getTexBumpParameterivATI*(pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetTexBumpParameterivATI".}
+proc texBumpParameterfvATI*(pname: GLenum, param: ptr float32): void {.glew_lib, importc: "glTexBumpParameterfvATI".}
+proc texBumpParameterivATI*(pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glTexBumpParameterivATI".}
+proc alphaFragmentOp1ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32): void {.glew_lib, importc: "glAlphaFragmentOp1ATI".}
+proc alphaFragmentOp2ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32): void {.glew_lib, importc: "glAlphaFragmentOp2ATI".}
+proc alphaFragmentOp3ATI*(op: GLenum, dst: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32, arg3: uint32, arg3Rep: uint32, arg3Mod: uint32): void {.glew_lib, importc: "glAlphaFragmentOp3ATI".}
+proc beginFragmentShaderATI*(): void {.glew_lib, importc: "glBeginFragmentShaderATI".}
+proc bindFragmentShaderATI*(id: uint32): void {.glew_lib, importc: "glBindFragmentShaderATI".}
+proc colorFragmentOp1ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32): void {.glew_lib, importc: "glColorFragmentOp1ATI".}
+proc colorFragmentOp2ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32): void {.glew_lib, importc: "glColorFragmentOp2ATI".}
+proc colorFragmentOp3ATI*(op: GLenum, dst: uint32, dstMask: uint32, dstMod: uint32, arg1: uint32, arg1Rep: uint32, arg1Mod: uint32, arg2: uint32, arg2Rep: uint32, arg2Mod: uint32, arg3: uint32, arg3Rep: uint32, arg3Mod: uint32): void {.glew_lib, importc: "glColorFragmentOp3ATI".}
+proc deleteFragmentShaderATI*(id: uint32): void {.glew_lib, importc: "glDeleteFragmentShaderATI".}
+proc endFragmentShaderATI*(): void {.glew_lib, importc: "glEndFragmentShaderATI".}
+proc genFragmentShadersATI*(rangee: uint32): uint32 {.glew_lib, importc: "glGenFragmentShadersATI".}
+proc passTexCoordATI*(dst: uint32, coord: uint32, swizzle: GLenum): void {.glew_lib, importc: "glPassTexCoordATI".}
+proc sampleMapATI*(dst: uint32, interp: uint32, swizzle: GLenum): void {.glew_lib, importc: "glSampleMapATI".}
+proc setFragmentShaderConstantATI*(dst: uint32, value: ptr float32): void {.glew_lib, importc: "glSetFragmentShaderConstantATI".}
+proc mapObjectBufferATI*(buffer: uint32): void {.glew_lib, importc: "glMapObjectBufferATI".}
+proc unmapObjectBufferATI*(buffer: uint32): void {.glew_lib, importc: "glUnmapObjectBufferATI".}
+proc pNTrianglesfATI*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPNTrianglesfATI".}
+proc pNTrianglesiATI*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPNTrianglesiATI".}
+proc stencilFuncSeparateATI*(frontfunc: GLenum, backfunc: GLenum, reff: int32, mask: uint32): void {.glew_lib, importc: "glStencilFuncSeparateATI".}
+proc stencilOpSeparateATI*(face: GLenum, sfail: GLenum, dpfail: GLenum, dppass: GLenum): void {.glew_lib, importc: "glStencilOpSeparateATI".}
+proc arrayObjectATI*(arrai: GLenum, size: int32, tipe: GLenum, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib, importc: "glArrayObjectATI".}
+proc freeObjectBufferATI*(buffer: uint32): void {.glew_lib, importc: "glFreeObjectBufferATI".}
+proc getArrayObjectfvATI*(arrai: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetArrayObjectfvATI".}
+proc getArrayObjectivATI*(arrai: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetArrayObjectivATI".}
+proc getObjectBufferfvATI*(buffer: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetObjectBufferfvATI".}
+proc getObjectBufferivATI*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetObjectBufferivATI".}
+proc getVariantArrayObjectfvATI*(id: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVariantArrayObjectfvATI".}
+proc getVariantArrayObjectivATI*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVariantArrayObjectivATI".}
+proc isObjectBufferATI*(buffer: uint32): bool {.glew_lib, importc: "glIsObjectBufferATI".}
+proc newObjectBufferATI*(size: int32, poynter: pointer, usage: GLenum): uint32 {.glew_lib, importc: "glNewObjectBufferATI".}
+proc updateObjectBufferATI*(buffer: uint32, offset: uint32, size: int32, poynter: pointer, preserve: GLenum): void {.glew_lib, importc: "glUpdateObjectBufferATI".}
+proc variantArrayObjectATI*(id: uint32, tipe: GLenum, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib, importc: "glVariantArrayObjectATI".}
+proc getVertexAttribArrayObjectfvATI*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVertexAttribArrayObjectfvATI".}
+proc getVertexAttribArrayObjectivATI*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribArrayObjectivATI".}
+proc vertexAttribArrayObjectATI*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, buffer: uint32, offset: uint32): void {.glew_lib, importc: "glVertexAttribArrayObjectATI".}
+proc clientActiveVertexStreamATI*(stream: GLenum): void {.glew_lib, importc: "glClientActiveVertexStreamATI".}
+proc normalStream3bATI*(stream: GLenum, x: int8, y: int8, z: int8): void {.glew_lib, importc: "glNormalStream3bATI".}
+proc normalStream3bvATI*(stream: GLenum, coords: ptr int8): void {.glew_lib, importc: "glNormalStream3bvATI".}
+proc normalStream3dATI*(stream: GLenum, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glNormalStream3dATI".}
+proc normalStream3dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib, importc: "glNormalStream3dvATI".}
+proc normalStream3fATI*(stream: GLenum, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glNormalStream3fATI".}
+proc normalStream3fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib, importc: "glNormalStream3fvATI".}
+proc normalStream3iATI*(stream: GLenum, x: int32, y: int32, z: int32): void {.glew_lib, importc: "glNormalStream3iATI".}
+proc normalStream3ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib, importc: "glNormalStream3ivATI".}
+proc normalStream3sATI*(stream: GLenum, x: int16, y: int16, z: int16): void {.glew_lib, importc: "glNormalStream3sATI".}
+proc normalStream3svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib, importc: "glNormalStream3svATI".}
+proc vertexBlendEnvfATI*(pname: GLenum, param: float32): void {.glew_lib, importc: "glVertexBlendEnvfATI".}
+proc vertexBlendEnviATI*(pname: GLenum, param: int32): void {.glew_lib, importc: "glVertexBlendEnviATI".}
+proc vertexStream1dATI*(stream: GLenum, x: float64): void {.glew_lib, importc: "glVertexStream1dATI".}
+proc vertexStream1dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib, importc: "glVertexStream1dvATI".}
+proc vertexStream1fATI*(stream: GLenum, x: float32): void {.glew_lib, importc: "glVertexStream1fATI".}
+proc vertexStream1fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib, importc: "glVertexStream1fvATI".}
+proc vertexStream1iATI*(stream: GLenum, x: int32): void {.glew_lib, importc: "glVertexStream1iATI".}
+proc vertexStream1ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib, importc: "glVertexStream1ivATI".}
+proc vertexStream1sATI*(stream: GLenum, x: int16): void {.glew_lib, importc: "glVertexStream1sATI".}
+proc vertexStream1svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib, importc: "glVertexStream1svATI".}
+proc vertexStream2dATI*(stream: GLenum, x: float64, y: float64): void {.glew_lib, importc: "glVertexStream2dATI".}
+proc vertexStream2dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib, importc: "glVertexStream2dvATI".}
+proc vertexStream2fATI*(stream: GLenum, x: float32, y: float32): void {.glew_lib, importc: "glVertexStream2fATI".}
+proc vertexStream2fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib, importc: "glVertexStream2fvATI".}
+proc vertexStream2iATI*(stream: GLenum, x: int32, y: int32): void {.glew_lib, importc: "glVertexStream2iATI".}
+proc vertexStream2ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib, importc: "glVertexStream2ivATI".}
+proc vertexStream2sATI*(stream: GLenum, x: int16, y: int16): void {.glew_lib, importc: "glVertexStream2sATI".}
+proc vertexStream2svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib, importc: "glVertexStream2svATI".}
+proc vertexStream3dATI*(stream: GLenum, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexStream3dATI".}
+proc vertexStream3dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib, importc: "glVertexStream3dvATI".}
+proc vertexStream3fATI*(stream: GLenum, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glVertexStream3fATI".}
+proc vertexStream3fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib, importc: "glVertexStream3fvATI".}
+proc vertexStream3iATI*(stream: GLenum, x: int32, y: int32, z: int32): void {.glew_lib, importc: "glVertexStream3iATI".}
+proc vertexStream3ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib, importc: "glVertexStream3ivATI".}
+proc vertexStream3sATI*(stream: GLenum, x: int16, y: int16, z: int16): void {.glew_lib, importc: "glVertexStream3sATI".}
+proc vertexStream3svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib, importc: "glVertexStream3svATI".}
+proc vertexStream4dATI*(stream: GLenum, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexStream4dATI".}
+proc vertexStream4dvATI*(stream: GLenum, coords: ptr float64): void {.glew_lib, importc: "glVertexStream4dvATI".}
+proc vertexStream4fATI*(stream: GLenum, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glVertexStream4fATI".}
+proc vertexStream4fvATI*(stream: GLenum, coords: ptr float32): void {.glew_lib, importc: "glVertexStream4fvATI".}
+proc vertexStream4iATI*(stream: GLenum, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glVertexStream4iATI".}
+proc vertexStream4ivATI*(stream: GLenum, coords: ptr int32): void {.glew_lib, importc: "glVertexStream4ivATI".}
+proc vertexStream4sATI*(stream: GLenum, x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glVertexStream4sATI".}
+proc vertexStream4svATI*(stream: GLenum, coords: ptr int16): void {.glew_lib, importc: "glVertexStream4svATI".}
+proc drawArraysInstancedBaseInstanceEXT*(mode: GLenum, first: int32, count: int32, instancecount: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawArraysInstancedBaseInstanceEXT".}
+proc drawElementsInstancedBaseInstanceEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawElementsInstancedBaseInstanceEXT".}
+proc drawElementsInstancedBaseVertexBaseInstanceEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, basevertex: int32, baseinstance: uint32): void {.glew_lib, importc: "glDrawElementsInstancedBaseVertexBaseInstanceEXT".}
+proc getUniformBufferSizeEXT*(program: uint32, location: int32): int32 {.glew_lib, importc: "glGetUniformBufferSizeEXT".}
+proc getUniformOffsetEXT*(program: uint32, location: int32): int32 {.glew_lib, importc: "glGetUniformOffsetEXT".}
+proc uniformBufferEXT*(program: uint32, location: int32, buffer: uint32): void {.glew_lib, importc: "glUniformBufferEXT".}
+proc blendColorEXT*(red: float32, green: float32, blue: float32, alpha: float32): void {.glew_lib, importc: "glBlendColorEXT".}
+proc blendEquationSeparateEXT*(modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparateEXT".}
+proc bindFragDataLocationIndexedEXT*(program: uint32, colorNumber: uint32, index: uint32, name: cstring): void {.glew_lib, importc: "glBindFragDataLocationIndexedEXT".}
+proc getFragDataIndexEXT*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetFragDataIndexEXT".}
+proc getProgramResourceLocationIndexEXT*(program: uint32, programInterface: GLenum, name: cstring): int32 {.glew_lib, importc: "glGetProgramResourceLocationIndexEXT".}
+proc blendFuncSeparateEXT*(sfactorRGB: GLenum, dfactorRGB: GLenum, sfactorAlpha: GLenum, dfactorAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparateEXT".}
+proc blendEquationEXT*(mode: GLenum): void {.glew_lib, importc: "glBlendEquationEXT".}
+proc bufferStorageEXT*(target: GLenum, size: int32, data: pointer, flags: uint32): void {.glew_lib, importc: "glBufferStorageEXT".}
+proc namedBufferStorageEXT*(buffer: uint32, size: int32, data: pointer, flags: uint32): void {.glew_lib, importc: "glNamedBufferStorageEXT".}
+proc clearTexImageEXT*(texture: uint32, level: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearTexImageEXT".}
+proc clearTexSubImageEXT*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glClearTexSubImageEXT".}
+proc colorSubTableEXT*(target: GLenum, start: int32, count: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glColorSubTableEXT".}
+proc copyColorSubTableEXT*(target: GLenum, start: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyColorSubTableEXT".}
+proc lockArraysEXT*(first: int32, count: int32): void {.glew_lib, importc: "glLockArraysEXT".}
+proc unlockArraysEXT*(): void {.glew_lib, importc: "glUnlockArraysEXT".}
+proc convolutionFilter1DEXT*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glConvolutionFilter1DEXT".}
+proc convolutionFilter2DEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glConvolutionFilter2DEXT".}
+proc convolutionParameterfEXT*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glConvolutionParameterfEXT".}
+proc convolutionParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glConvolutionParameterfvEXT".}
+proc convolutionParameteriEXT*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glConvolutionParameteriEXT".}
+proc convolutionParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glConvolutionParameterivEXT".}
+proc copyConvolutionFilter1DEXT*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyConvolutionFilter1DEXT".}
+proc copyConvolutionFilter2DEXT*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyConvolutionFilter2DEXT".}
+proc getConvolutionFilterEXT*(target: GLenum, format: GLenum, tipe: GLenum, image: pointer): void {.glew_lib, importc: "glGetConvolutionFilterEXT".}
+proc getConvolutionParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetConvolutionParameterfvEXT".}
+proc getConvolutionParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetConvolutionParameterivEXT".}
+proc getSeparableFilterEXT*(target: GLenum, format: GLenum, tipe: GLenum, row: pointer, column: pointer, span: pointer): void {.glew_lib, importc: "glGetSeparableFilterEXT".}
+proc separableFilter2DEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32, format: GLenum, tipe: GLenum, row: pointer, column: pointer): void {.glew_lib, importc: "glSeparableFilter2DEXT".}
+proc binormalPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glBinormalPointerEXT".}
+proc tangentPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glTangentPointerEXT".}
+proc copyImageSubDataEXT*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib, importc: "glCopyImageSubDataEXT".}
+proc copyTexImage1DEXT*(target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib, importc: "glCopyTexImage1DEXT".}
+proc copyTexImage2DEXT*(target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib, importc: "glCopyTexImage2DEXT".}
+proc copyTexSubImage1DEXT*(target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyTexSubImage1DEXT".}
+proc copyTexSubImage2DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTexSubImage2DEXT".}
+proc copyTexSubImage3DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTexSubImage3DEXT".}
+proc cullParameterdvEXT*(pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glCullParameterdvEXT".}
+proc cullParameterfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glCullParameterfvEXT".}
+proc getObjectLabelEXT*(tipe: GLenum, obj: uint32, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib, importc: "glGetObjectLabelEXT".}
+proc labelObjectEXT*(tipe: GLenum, obj: uint32, length: int32, label: cstring): void {.glew_lib, importc: "glLabelObjectEXT".}
+proc insertEventMarkerEXT*(length: int32, marker: cstring): void {.glew_lib, importc: "glInsertEventMarkerEXT".}
+proc popGroupMarkerEXT*(): void {.glew_lib, importc: "glPopGroupMarkerEXT".}
+proc pushGroupMarkerEXT*(length: int32, marker: cstring): void {.glew_lib, importc: "glPushGroupMarkerEXT".}
+proc depthBoundsEXT*(zmin: float64, zmax: float64): void {.glew_lib, importc: "glDepthBoundsEXT".}
+proc bindMultiTextureEXT*(texunit: GLenum, target: GLenum, texture: uint32): void {.glew_lib, importc: "glBindMultiTextureEXT".}
+proc checkNamedFramebufferStatusEXT*(framebuffer: uint32, target: GLenum): GLenum {.glew_lib, importc: "glCheckNamedFramebufferStatusEXT".}
+proc clientAttribDefaultEXT*(mask: uint32): void {.glew_lib, importc: "glClientAttribDefaultEXT".}
+proc compressedMultiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexImage1DEXT".}
+proc compressedMultiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexImage2DEXT".}
+proc compressedMultiTexImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexImage3DEXT".}
+proc compressedMultiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexSubImage1DEXT".}
+proc compressedMultiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexSubImage2DEXT".}
+proc compressedMultiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedMultiTexSubImage3DEXT".}
+proc compressedTextureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureImage1DEXT".}
+proc compressedTextureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureImage2DEXT".}
+proc compressedTextureImage3DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureImage3DEXT".}
+proc compressedTextureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage1DEXT".}
+proc compressedTextureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage2DEXT".}
+proc compressedTextureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTextureSubImage3DEXT".}
+proc copyMultiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib, importc: "glCopyMultiTexImage1DEXT".}
+proc copyMultiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib, importc: "glCopyMultiTexImage2DEXT".}
+proc copyMultiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyMultiTexSubImage1DEXT".}
+proc copyMultiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyMultiTexSubImage2DEXT".}
+proc copyMultiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyMultiTexSubImage3DEXT".}
+proc copyTextureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, border: int32): void {.glew_lib, importc: "glCopyTextureImage1DEXT".}
+proc copyTextureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: GLenum, x: int32, y: int32, width: int32, height: int32, border: int32): void {.glew_lib, importc: "glCopyTextureImage2DEXT".}
+proc copyTextureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyTextureSubImage1DEXT".}
+proc copyTextureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTextureSubImage2DEXT".}
+proc copyTextureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTextureSubImage3DEXT".}
+proc disableClientStateIndexedEXT*(arrai: GLenum, index: uint32): void {.glew_lib, importc: "glDisableClientStateIndexedEXT".}
+proc disableClientStateiEXT*(arrai: GLenum, index: uint32): void {.glew_lib, importc: "glDisableClientStateiEXT".}
+proc disableVertexArrayAttribEXT*(vaobj: uint32, index: uint32): void {.glew_lib, importc: "glDisableVertexArrayAttribEXT".}
+proc disableVertexArrayEXT*(vaobj: uint32, arrai: GLenum): void {.glew_lib, importc: "glDisableVertexArrayEXT".}
+proc enableClientStateIndexedEXT*(arrai: GLenum, index: uint32): void {.glew_lib, importc: "glEnableClientStateIndexedEXT".}
+proc enableClientStateiEXT*(arrai: GLenum, index: uint32): void {.glew_lib, importc: "glEnableClientStateiEXT".}
+proc enableVertexArrayAttribEXT*(vaobj: uint32, index: uint32): void {.glew_lib, importc: "glEnableVertexArrayAttribEXT".}
+proc enableVertexArrayEXT*(vaobj: uint32, arrai: GLenum): void {.glew_lib, importc: "glEnableVertexArrayEXT".}
+proc flushMappedNamedBufferRangeEXT*(buffer: uint32, offset: int32, length: int32): void {.glew_lib, importc: "glFlushMappedNamedBufferRangeEXT".}
+proc framebufferDrawBufferEXT*(framebuffer: uint32, mode: GLenum): void {.glew_lib, importc: "glFramebufferDrawBufferEXT".}
+proc framebufferDrawBuffersEXT*(framebuffer: uint32, n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glFramebufferDrawBuffersEXT".}
+proc framebufferReadBufferEXT*(framebuffer: uint32, mode: GLenum): void {.glew_lib, importc: "glFramebufferReadBufferEXT".}
+proc generateMultiTexMipmapEXT*(texunit: GLenum, target: GLenum): void {.glew_lib, importc: "glGenerateMultiTexMipmapEXT".}
+proc generateTextureMipmapEXT*(texture: uint32, target: GLenum): void {.glew_lib, importc: "glGenerateTextureMipmapEXT".}
+proc getCompressedMultiTexImageEXT*(texunit: GLenum, target: GLenum, level: int32, img: pointer): void {.glew_lib, importc: "glGetCompressedMultiTexImageEXT".}
+proc getCompressedTextureImageEXT*(texture: uint32, target: GLenum, level: int32, img: pointer): void {.glew_lib, importc: "glGetCompressedTextureImageEXT".}
+proc getDoubleIndexedvEXT*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glGetDoubleIndexedvEXT".}
+proc getDoublei_vEXT*(pname: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glGetDoublei_vEXT".}
+proc getFloatIndexedvEXT*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glGetFloatIndexedvEXT".}
+proc getFloati_vEXT*(pname: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glGetFloati_vEXT".}
+proc getFramebufferParameterivEXT*(framebuffer: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetFramebufferParameterivEXT".}
+proc getMultiTexEnvfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMultiTexEnvfvEXT".}
+proc getMultiTexEnvivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMultiTexEnvivEXT".}
+proc getMultiTexGendvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetMultiTexGendvEXT".}
+proc getMultiTexGenfvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMultiTexGenfvEXT".}
+proc getMultiTexGenivEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMultiTexGenivEXT".}
+proc getMultiTexImageEXT*(texunit: GLenum, target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glGetMultiTexImageEXT".}
+proc getMultiTexLevelParameterfvEXT*(texunit: GLenum, target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMultiTexLevelParameterfvEXT".}
+proc getMultiTexLevelParameterivEXT*(texunit: GLenum, target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMultiTexLevelParameterivEXT".}
+proc getMultiTexParameterIivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMultiTexParameterIivEXT".}
+proc getMultiTexParameterIuivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetMultiTexParameterIuivEXT".}
+proc getMultiTexParameterfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMultiTexParameterfvEXT".}
+proc getMultiTexParameterivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMultiTexParameterivEXT".}
+proc getNamedBufferParameterivEXT*(buffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedBufferParameterivEXT".}
+proc getNamedBufferPointervEXT*(buffer: uint32, pname: GLenum, params: ptr void): void {.glew_lib, importc: "glGetNamedBufferPointervEXT".}
+proc getNamedBufferSubDataEXT*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glGetNamedBufferSubDataEXT".}
+proc getNamedFramebufferAttachmentParameterivEXT*(framebuffer: uint32, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedFramebufferAttachmentParameterivEXT".}
+proc getNamedProgramLocalParameterIivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr int32): void {.glew_lib, importc: "glGetNamedProgramLocalParameterIivEXT".}
+proc getNamedProgramLocalParameterIuivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib, importc: "glGetNamedProgramLocalParameterIuivEXT".}
+proc getNamedProgramLocalParameterdvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glGetNamedProgramLocalParameterdvEXT".}
+proc getNamedProgramLocalParameterfvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glGetNamedProgramLocalParameterfvEXT".}
+proc getNamedProgramStringEXT*(program: uint32, target: GLenum, pname: GLenum, stryng: pointer): void {.glew_lib, importc: "glGetNamedProgramStringEXT".}
+proc getNamedProgramivEXT*(program: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedProgramivEXT".}
+proc getNamedRenderbufferParameterivEXT*(renderbuffer: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetNamedRenderbufferParameterivEXT".}
+proc getPointerIndexedvEXT*(target: GLenum, index: uint32, params: ptr void): void {.glew_lib, importc: "glGetPointerIndexedvEXT".}
+proc getPointeri_vEXT*(pname: GLenum, index: uint32, params: ptr void): void {.glew_lib, importc: "glGetPointeri_vEXT".}
+proc getTextureImageEXT*(texture: uint32, target: GLenum, level: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glGetTextureImageEXT".}
+proc getTextureLevelParameterfvEXT*(texture: uint32, target: GLenum, level: int32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTextureLevelParameterfvEXT".}
+proc getTextureLevelParameterivEXT*(texture: uint32, target: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureLevelParameterivEXT".}
+proc getTextureParameterIivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureParameterIivEXT".}
+proc getTextureParameterIuivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetTextureParameterIuivEXT".}
+proc getTextureParameterfvEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetTextureParameterfvEXT".}
+proc getTextureParameterivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTextureParameterivEXT".}
+proc getVertexArrayIntegeri_vEXT*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetVertexArrayIntegeri_vEXT".}
+proc getVertexArrayIntegervEXT*(vaobj: uint32, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glGetVertexArrayIntegervEXT".}
+proc getVertexArrayPointeri_vEXT*(vaobj: uint32, index: uint32, pname: GLenum, param: ptr void): void {.glew_lib, importc: "glGetVertexArrayPointeri_vEXT".}
+proc getVertexArrayPointervEXT*(vaobj: uint32, pname: GLenum, param: ptr void): void {.glew_lib, importc: "glGetVertexArrayPointervEXT".}
+proc mapNamedBufferEXT*(buffer: uint32, access: GLenum): void {.glew_lib, importc: "glMapNamedBufferEXT".}
+proc mapNamedBufferRangeEXT*(buffer: uint32, offset: int32, length: int32, access: uint32): void {.glew_lib, importc: "glMapNamedBufferRangeEXT".}
+proc matrixFrustumEXT*(matrixMode: GLenum, l: float64, r: float64, b: float64, t: float64, n: float64, f: float64): void {.glew_lib, importc: "glMatrixFrustumEXT".}
+proc matrixLoadIdentityEXT*(matrixMode: GLenum): void {.glew_lib, importc: "glMatrixLoadIdentityEXT".}
+proc matrixLoadTransposedEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib, importc: "glMatrixLoadTransposedEXT".}
+proc matrixLoadTransposefEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixLoadTransposefEXT".}
+proc matrixLoaddEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib, importc: "glMatrixLoaddEXT".}
+proc matrixLoadfEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixLoadfEXT".}
+proc matrixMultTransposedEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib, importc: "glMatrixMultTransposedEXT".}
+proc matrixMultTransposefEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixMultTransposefEXT".}
+proc matrixMultdEXT*(matrixMode: GLenum, m: ptr float64): void {.glew_lib, importc: "glMatrixMultdEXT".}
+proc matrixMultfEXT*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixMultfEXT".}
+proc matrixOrthoEXT*(matrixMode: GLenum, l: float64, r: float64, b: float64, t: float64, n: float64, f: float64): void {.glew_lib, importc: "glMatrixOrthoEXT".}
+proc matrixPopEXT*(matrixMode: GLenum): void {.glew_lib, importc: "glMatrixPopEXT".}
+proc matrixPushEXT*(matrixMode: GLenum): void {.glew_lib, importc: "glMatrixPushEXT".}
+proc matrixRotatedEXT*(matrixMode: GLenum, angle: float64, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glMatrixRotatedEXT".}
+proc matrixRotatefEXT*(matrixMode: GLenum, angle: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glMatrixRotatefEXT".}
+proc matrixScaledEXT*(matrixMode: GLenum, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glMatrixScaledEXT".}
+proc matrixScalefEXT*(matrixMode: GLenum, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glMatrixScalefEXT".}
+proc matrixTranslatedEXT*(matrixMode: GLenum, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glMatrixTranslatedEXT".}
+proc matrixTranslatefEXT*(matrixMode: GLenum, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glMatrixTranslatefEXT".}
+proc multiTexBufferEXT*(texunit: GLenum, target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib, importc: "glMultiTexBufferEXT".}
+proc multiTexCoordPointerEXT*(texunit: GLenum, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glMultiTexCoordPointerEXT".}
+proc multiTexEnvfEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glMultiTexEnvfEXT".}
+proc multiTexEnvfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glMultiTexEnvfvEXT".}
+proc multiTexEnviEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glMultiTexEnviEXT".}
+proc multiTexEnvivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMultiTexEnvivEXT".}
+proc multiTexGendEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: float64): void {.glew_lib, importc: "glMultiTexGendEXT".}
+proc multiTexGendvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glMultiTexGendvEXT".}
+proc multiTexGenfEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glMultiTexGenfEXT".}
+proc multiTexGenfvEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glMultiTexGenfvEXT".}
+proc multiTexGeniEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glMultiTexGeniEXT".}
+proc multiTexGenivEXT*(texunit: GLenum, coord: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMultiTexGenivEXT".}
+proc multiTexImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexImage1DEXT".}
+proc multiTexImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexImage2DEXT".}
+proc multiTexImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexImage3DEXT".}
+proc multiTexParameterIivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMultiTexParameterIivEXT".}
+proc multiTexParameterIuivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glMultiTexParameterIuivEXT".}
+proc multiTexParameterfEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glMultiTexParameterfEXT".}
+proc multiTexParameterfvEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: ptr float32): void {.glew_lib, importc: "glMultiTexParameterfvEXT".}
+proc multiTexParameteriEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glMultiTexParameteriEXT".}
+proc multiTexParameterivEXT*(texunit: GLenum, target: GLenum, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glMultiTexParameterivEXT".}
+proc multiTexRenderbufferEXT*(texunit: GLenum, target: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glMultiTexRenderbufferEXT".}
+proc multiTexSubImage1DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexSubImage1DEXT".}
+proc multiTexSubImage2DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexSubImage2DEXT".}
+proc multiTexSubImage3DEXT*(texunit: GLenum, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMultiTexSubImage3DEXT".}
+proc namedBufferDataEXT*(buffer: uint32, size: int32, data: pointer, usage: GLenum): void {.glew_lib, importc: "glNamedBufferDataEXT".}
+proc namedBufferSubDataEXT*(buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glNamedBufferSubDataEXT".}
+proc namedCopyBufferSubDataEXT*(readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib, importc: "glNamedCopyBufferSubDataEXT".}
+proc namedFramebufferRenderbufferEXT*(framebuffer: uint32, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glNamedFramebufferRenderbufferEXT".}
+proc namedFramebufferTexture1DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glNamedFramebufferTexture1DEXT".}
+proc namedFramebufferTexture2DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glNamedFramebufferTexture2DEXT".}
+proc namedFramebufferTexture3DEXT*(framebuffer: uint32, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, zoffset: int32): void {.glew_lib, importc: "glNamedFramebufferTexture3DEXT".}
+proc namedFramebufferTextureEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glNamedFramebufferTextureEXT".}
+proc namedFramebufferTextureFaceEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib, importc: "glNamedFramebufferTextureFaceEXT".}
+proc namedFramebufferTextureLayerEXT*(framebuffer: uint32, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glNamedFramebufferTextureLayerEXT".}
+proc namedProgramLocalParameter4dEXT*(program: uint32, target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glNamedProgramLocalParameter4dEXT".}
+proc namedProgramLocalParameter4dvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glNamedProgramLocalParameter4dvEXT".}
+proc namedProgramLocalParameter4fEXT*(program: uint32, target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glNamedProgramLocalParameter4fEXT".}
+proc namedProgramLocalParameter4fvEXT*(program: uint32, target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glNamedProgramLocalParameter4fvEXT".}
+proc namedProgramLocalParameterI4iEXT*(program: uint32, target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glNamedProgramLocalParameterI4iEXT".}
+proc namedProgramLocalParameterI4ivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr int32): void {.glew_lib, importc: "glNamedProgramLocalParameterI4ivEXT".}
+proc namedProgramLocalParameterI4uiEXT*(program: uint32, target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib, importc: "glNamedProgramLocalParameterI4uiEXT".}
+proc namedProgramLocalParameterI4uivEXT*(program: uint32, target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib, importc: "glNamedProgramLocalParameterI4uivEXT".}
+proc namedProgramLocalParameters4fvEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib, importc: "glNamedProgramLocalParameters4fvEXT".}
+proc namedProgramLocalParametersI4ivEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib, importc: "glNamedProgramLocalParametersI4ivEXT".}
+proc namedProgramLocalParametersI4uivEXT*(program: uint32, target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib, importc: "glNamedProgramLocalParametersI4uivEXT".}
+proc namedProgramStringEXT*(program: uint32, target: GLenum, format: GLenum, len: int32, stryng: pointer): void {.glew_lib, importc: "glNamedProgramStringEXT".}
+proc namedRenderbufferStorageEXT*(renderbuffer: uint32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glNamedRenderbufferStorageEXT".}
+proc namedRenderbufferStorageMultisampleCoverageEXT*(renderbuffer: uint32, coverageSamples: int32, colorSamples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glNamedRenderbufferStorageMultisampleCoverageEXT".}
+proc namedRenderbufferStorageMultisampleEXT*(renderbuffer: uint32, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glNamedRenderbufferStorageMultisampleEXT".}
+proc programUniform1fEXT*(program: uint32, location: int32, v0: float32): void {.glew_lib, importc: "glProgramUniform1fEXT".}
+proc programUniform1fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform1fvEXT".}
+proc programUniform1iEXT*(program: uint32, location: int32, v0: int32): void {.glew_lib, importc: "glProgramUniform1iEXT".}
+proc programUniform1ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform1ivEXT".}
+proc programUniform1uiEXT*(program: uint32, location: int32, v0: uint32): void {.glew_lib, importc: "glProgramUniform1uiEXT".}
+proc programUniform1uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform1uivEXT".}
+proc programUniform2fEXT*(program: uint32, location: int32, v0: float32, v1: float32): void {.glew_lib, importc: "glProgramUniform2fEXT".}
+proc programUniform2fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform2fvEXT".}
+proc programUniform2iEXT*(program: uint32, location: int32, v0: int32, v1: int32): void {.glew_lib, importc: "glProgramUniform2iEXT".}
+proc programUniform2ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform2ivEXT".}
+proc programUniform2uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32): void {.glew_lib, importc: "glProgramUniform2uiEXT".}
+proc programUniform2uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform2uivEXT".}
+proc programUniform3fEXT*(program: uint32, location: int32, v0: float32, v1: float32, v2: float32): void {.glew_lib, importc: "glProgramUniform3fEXT".}
+proc programUniform3fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform3fvEXT".}
+proc programUniform3iEXT*(program: uint32, location: int32, v0: int32, v1: int32, v2: int32): void {.glew_lib, importc: "glProgramUniform3iEXT".}
+proc programUniform3ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform3ivEXT".}
+proc programUniform3uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib, importc: "glProgramUniform3uiEXT".}
+proc programUniform3uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform3uivEXT".}
+proc programUniform4fEXT*(program: uint32, location: int32, v0: float32, v1: float32, v2: float32, v3: float32): void {.glew_lib, importc: "glProgramUniform4fEXT".}
+proc programUniform4fvEXT*(program: uint32, location: int32, count: int32, value: ptr float32): void {.glew_lib, importc: "glProgramUniform4fvEXT".}
+proc programUniform4iEXT*(program: uint32, location: int32, v0: int32, v1: int32, v2: int32, v3: int32): void {.glew_lib, importc: "glProgramUniform4iEXT".}
+proc programUniform4ivEXT*(program: uint32, location: int32, count: int32, value: ptr int32): void {.glew_lib, importc: "glProgramUniform4ivEXT".}
+proc programUniform4uiEXT*(program: uint32, location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib, importc: "glProgramUniform4uiEXT".}
+proc programUniform4uivEXT*(program: uint32, location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glProgramUniform4uivEXT".}
+proc programUniformMatrix2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2fvEXT".}
+proc programUniformMatrix2x3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2x3fvEXT".}
+proc programUniformMatrix2x4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix2x4fvEXT".}
+proc programUniformMatrix3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3fvEXT".}
+proc programUniformMatrix3x2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3x2fvEXT".}
+proc programUniformMatrix3x4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix3x4fvEXT".}
+proc programUniformMatrix4fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4fvEXT".}
+proc programUniformMatrix4x2fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4x2fvEXT".}
+proc programUniformMatrix4x3fvEXT*(program: uint32, location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glProgramUniformMatrix4x3fvEXT".}
+proc pushClientAttribDefaultEXT*(mask: uint32): void {.glew_lib, importc: "glPushClientAttribDefaultEXT".}
+proc textureBufferEXT*(texture: uint32, target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib, importc: "glTextureBufferEXT".}
+proc textureImage1DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureImage1DEXT".}
+proc textureImage2DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureImage2DEXT".}
+proc textureImage3DEXT*(texture: uint32, target: GLenum, level: int32, internalformat: int32, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureImage3DEXT".}
+proc textureParameterIivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTextureParameterIivEXT".}
+proc textureParameterIuivEXT*(texture: uint32, target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glTextureParameterIuivEXT".}
+proc textureParameterfEXT*(texture: uint32, target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glTextureParameterfEXT".}
+proc textureParameterfvEXT*(texture: uint32, target: GLenum, pname: GLenum, param: ptr float32): void {.glew_lib, importc: "glTextureParameterfvEXT".}
+proc textureParameteriEXT*(texture: uint32, target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTextureParameteriEXT".}
+proc textureParameterivEXT*(texture: uint32, target: GLenum, pname: GLenum, param: ptr int32): void {.glew_lib, importc: "glTextureParameterivEXT".}
+proc textureRenderbufferEXT*(texture: uint32, target: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glTextureRenderbufferEXT".}
+proc textureSubImage1DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage1DEXT".}
+proc textureSubImage2DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage2DEXT".}
+proc textureSubImage3DEXT*(texture: uint32, target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTextureSubImage3DEXT".}
+proc unmapNamedBufferEXT*(buffer: uint32): bool {.glew_lib, importc: "glUnmapNamedBufferEXT".}
+proc vertexArrayColorOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayColorOffsetEXT".}
+proc vertexArrayEdgeFlagOffsetEXT*(vaobj: uint32, buffer: uint32, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayEdgeFlagOffsetEXT".}
+proc vertexArrayFogCoordOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayFogCoordOffsetEXT".}
+proc vertexArrayIndexOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayIndexOffsetEXT".}
+proc vertexArrayMultiTexCoordOffsetEXT*(vaobj: uint32, buffer: uint32, texunit: GLenum, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayMultiTexCoordOffsetEXT".}
+proc vertexArrayNormalOffsetEXT*(vaobj: uint32, buffer: uint32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayNormalOffsetEXT".}
+proc vertexArraySecondaryColorOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArraySecondaryColorOffsetEXT".}
+proc vertexArrayTexCoordOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayTexCoordOffsetEXT".}
+proc vertexArrayVertexAttribDivisorEXT*(vaobj: uint32, index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexArrayVertexAttribDivisorEXT".}
+proc vertexArrayVertexAttribIOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayVertexAttribIOffsetEXT".}
+proc vertexArrayVertexAttribOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayVertexAttribOffsetEXT".}
+proc vertexArrayVertexOffsetEXT*(vaobj: uint32, buffer: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayVertexOffsetEXT".}
+proc discardFramebufferEXT*(target: GLenum, numAttachments: int32, attachments: ptr GLenum): void {.glew_lib, importc: "glDiscardFramebufferEXT".}
+proc drawBuffersEXT*(n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glDrawBuffersEXT".}
+proc colorMaskIndexedEXT*(buf: uint32, r: bool, g: bool, b: bool, a: bool): void {.glew_lib, importc: "glColorMaskIndexedEXT".}
+proc disableIndexedEXT*(target: GLenum, index: uint32): void {.glew_lib, importc: "glDisableIndexedEXT".}
+proc enableIndexedEXT*(target: GLenum, index: uint32): void {.glew_lib, importc: "glEnableIndexedEXT".}
+proc getBooleanIndexedvEXT*(value: GLenum, index: uint32, data: ptr bool): void {.glew_lib, importc: "glGetBooleanIndexedvEXT".}
+proc getIntegerIndexedvEXT*(value: GLenum, index: uint32, data: ptr int32): void {.glew_lib, importc: "glGetIntegerIndexedvEXT".}
+proc isEnabledIndexedEXT*(target: GLenum, index: uint32): bool {.glew_lib, importc: "glIsEnabledIndexedEXT".}
+proc blendEquationSeparateiEXT*(buf: uint32, modeRGB: GLenum, modeAlpha: GLenum): void {.glew_lib, importc: "glBlendEquationSeparateiEXT".}
+proc blendEquationiEXT*(buf: uint32, mode: GLenum): void {.glew_lib, importc: "glBlendEquationiEXT".}
+proc blendFuncSeparateiEXT*(buf: uint32, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum): void {.glew_lib, importc: "glBlendFuncSeparateiEXT".}
+proc blendFunciEXT*(buf: uint32, src: GLenum, dst: GLenum): void {.glew_lib, importc: "glBlendFunciEXT".}
+proc colorMaskiEXT*(buf: uint32, r: bool, g: bool, b: bool, a: bool): void {.glew_lib, importc: "glColorMaskiEXT".}
+proc disableiEXT*(target: GLenum, index: uint32): void {.glew_lib, importc: "glDisableiEXT".}
+proc enableiEXT*(target: GLenum, index: uint32): void {.glew_lib, importc: "glEnableiEXT".}
+proc isEnablediEXT*(target: GLenum, index: uint32): bool {.glew_lib, importc: "glIsEnablediEXT".}
+proc drawElementsBaseVertexEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib, importc: "glDrawElementsBaseVertexEXT".}
+proc drawElementsInstancedBaseVertexEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, instancecount: int32, basevertex: int32): void {.glew_lib, importc: "glDrawElementsInstancedBaseVertexEXT".}
+proc drawRangeElementsBaseVertexEXT*(mode: GLenum, start: uint32, glEnd: uint32, count: int32, tipe: GLenum, indices: pointer, basevertex: int32): void {.glew_lib, importc: "glDrawRangeElementsBaseVertexEXT".}
+proc multiDrawElementsBaseVertexEXT*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32, basevertex: ptr int32): void {.glew_lib, importc: "glMultiDrawElementsBaseVertexEXT".}
+proc drawArraysInstancedEXT*(mode: GLenum, start: int32, count: int32, primcount: int32): void {.glew_lib, importc: "glDrawArraysInstancedEXT".}
+proc drawElementsInstancedEXT*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib, importc: "glDrawElementsInstancedEXT".}
+proc drawRangeElementsEXT*(mode: GLenum, start: uint32, glEnd: uint32, count: int32, tipe: GLenum, indices: pointer): void {.glew_lib, importc: "glDrawRangeElementsEXT".}
+proc fogCoordPointerEXT*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glFogCoordPointerEXT".}
+proc fogCoorddEXT*(coord: float64): void {.glew_lib, importc: "glFogCoorddEXT".}
+proc fogCoorddvEXT*(coord: ptr float64): void {.glew_lib, importc: "glFogCoorddvEXT".}
+proc fogCoordfEXT*(coord: float32): void {.glew_lib, importc: "glFogCoordfEXT".}
+proc fogCoordfvEXT*(coord: ptr float32): void {.glew_lib, importc: "glFogCoordfvEXT".}
+proc fragmentColorMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glFragmentColorMaterialEXT".}
+proc fragmentLightModelfEXT*(pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentLightModelfEXT".}
+proc fragmentLightModelfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentLightModelfvEXT".}
+proc fragmentLightModeliEXT*(pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentLightModeliEXT".}
+proc fragmentLightModelivEXT*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentLightModelivEXT".}
+proc fragmentLightfEXT*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentLightfEXT".}
+proc fragmentLightfvEXT*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentLightfvEXT".}
+proc fragmentLightiEXT*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentLightiEXT".}
+proc fragmentLightivEXT*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentLightivEXT".}
+proc fragmentMaterialfEXT*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentMaterialfEXT".}
+proc fragmentMaterialfvEXT*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentMaterialfvEXT".}
+proc fragmentMaterialiEXT*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentMaterialiEXT".}
+proc fragmentMaterialivEXT*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentMaterialivEXT".}
+proc getFragmentLightfvEXT*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetFragmentLightfvEXT".}
+proc getFragmentLightivEXT*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFragmentLightivEXT".}
+proc getFragmentMaterialfvEXT*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetFragmentMaterialfvEXT".}
+proc getFragmentMaterialivEXT*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFragmentMaterialivEXT".}
+proc lightEnviEXT*(pname: GLenum, param: int32): void {.glew_lib, importc: "glLightEnviEXT".}
+proc blitFramebufferEXT*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glBlitFramebufferEXT".}
+proc renderbufferStorageMultisampleEXT*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisampleEXT".}
+proc bindFramebufferEXT*(target: GLenum, framebuffer: uint32): void {.glew_lib, importc: "glBindFramebufferEXT".}
+proc bindRenderbufferEXT*(target: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glBindRenderbufferEXT".}
+proc checkFramebufferStatusEXT*(target: GLenum): GLenum {.glew_lib, importc: "glCheckFramebufferStatusEXT".}
+proc deleteFramebuffersEXT*(n: int32, framebuffers: ptr uint32): void {.glew_lib, importc: "glDeleteFramebuffersEXT".}
+proc deleteRenderbuffersEXT*(n: int32, renderbuffers: ptr uint32): void {.glew_lib, importc: "glDeleteRenderbuffersEXT".}
+proc framebufferRenderbufferEXT*(target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glFramebufferRenderbufferEXT".}
+proc framebufferTexture1DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTexture1DEXT".}
+proc framebufferTexture2DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTexture2DEXT".}
+proc framebufferTexture3DEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, zoffset: int32): void {.glew_lib, importc: "glFramebufferTexture3DEXT".}
+proc genFramebuffersEXT*(n: int32, framebuffers: ptr uint32): void {.glew_lib, importc: "glGenFramebuffersEXT".}
+proc genRenderbuffersEXT*(n: int32, renderbuffers: ptr uint32): void {.glew_lib, importc: "glGenRenderbuffersEXT".}
+proc generateMipmapEXT*(target: GLenum): void {.glew_lib, importc: "glGenerateMipmapEXT".}
+proc getFramebufferAttachmentParameterivEXT*(target: GLenum, attachment: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFramebufferAttachmentParameterivEXT".}
+proc getRenderbufferParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetRenderbufferParameterivEXT".}
+proc isFramebufferEXT*(framebuffer: uint32): bool {.glew_lib, importc: "glIsFramebufferEXT".}
+proc isRenderbufferEXT*(renderbuffer: uint32): bool {.glew_lib, importc: "glIsRenderbufferEXT".}
+proc renderbufferStorageEXT*(target: GLenum, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageEXT".}
+proc framebufferTextureEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32): void {.glew_lib, importc: "glFramebufferTextureEXT".}
+proc framebufferTextureFaceEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, face: GLenum): void {.glew_lib, importc: "glFramebufferTextureFaceEXT".}
+proc programParameteriEXT*(program: uint32, pname: GLenum, value: int32): void {.glew_lib, importc: "glProgramParameteriEXT".}
+proc programEnvParameters4fvEXT*(target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib, importc: "glProgramEnvParameters4fvEXT".}
+proc programLocalParameters4fvEXT*(target: GLenum, index: uint32, count: int32, params: ptr float32): void {.glew_lib, importc: "glProgramLocalParameters4fvEXT".}
+proc bindFragDataLocationEXT*(program: uint32, color: uint32, name: cstring): void {.glew_lib, importc: "glBindFragDataLocationEXT".}
+proc getFragDataLocationEXT*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetFragDataLocationEXT".}
+proc getUniformuivEXT*(program: uint32, location: int32, params: ptr uint32): void {.glew_lib, importc: "glGetUniformuivEXT".}
+proc getVertexAttribIivEXT*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribIivEXT".}
+proc getVertexAttribIuivEXT*(index: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetVertexAttribIuivEXT".}
+proc uniform1uiEXT*(location: int32, v0: uint32): void {.glew_lib, importc: "glUniform1uiEXT".}
+proc uniform1uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform1uivEXT".}
+proc uniform2uiEXT*(location: int32, v0: uint32, v1: uint32): void {.glew_lib, importc: "glUniform2uiEXT".}
+proc uniform2uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform2uivEXT".}
+proc uniform3uiEXT*(location: int32, v0: uint32, v1: uint32, v2: uint32): void {.glew_lib, importc: "glUniform3uiEXT".}
+proc uniform3uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform3uivEXT".}
+proc uniform4uiEXT*(location: int32, v0: uint32, v1: uint32, v2: uint32, v3: uint32): void {.glew_lib, importc: "glUniform4uiEXT".}
+proc uniform4uivEXT*(location: int32, count: int32, value: ptr uint32): void {.glew_lib, importc: "glUniform4uivEXT".}
+proc vertexAttribI1iEXT*(index: uint32, x: int32): void {.glew_lib, importc: "glVertexAttribI1iEXT".}
+proc vertexAttribI1ivEXT*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttribI1ivEXT".}
+proc vertexAttribI1uiEXT*(index: uint32, x: uint32): void {.glew_lib, importc: "glVertexAttribI1uiEXT".}
+proc vertexAttribI1uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttribI1uivEXT".}
+proc vertexAttribI2iEXT*(index: uint32, x: int32, y: int32): void {.glew_lib, importc: "glVertexAttribI2iEXT".}
+proc vertexAttribI2ivEXT*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttribI2ivEXT".}
+proc vertexAttribI2uiEXT*(index: uint32, x: uint32, y: uint32): void {.glew_lib, importc: "glVertexAttribI2uiEXT".}
+proc vertexAttribI2uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttribI2uivEXT".}
+proc vertexAttribI3iEXT*(index: uint32, x: int32, y: int32, z: int32): void {.glew_lib, importc: "glVertexAttribI3iEXT".}
+proc vertexAttribI3ivEXT*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttribI3ivEXT".}
+proc vertexAttribI3uiEXT*(index: uint32, x: uint32, y: uint32, z: uint32): void {.glew_lib, importc: "glVertexAttribI3uiEXT".}
+proc vertexAttribI3uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttribI3uivEXT".}
+proc vertexAttribI4bvEXT*(index: uint32, v: ptr int8): void {.glew_lib, importc: "glVertexAttribI4bvEXT".}
+proc vertexAttribI4iEXT*(index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glVertexAttribI4iEXT".}
+proc vertexAttribI4ivEXT*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glVertexAttribI4ivEXT".}
+proc vertexAttribI4svEXT*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttribI4svEXT".}
+proc vertexAttribI4ubvEXT*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttribI4ubvEXT".}
+proc vertexAttribI4uiEXT*(index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib, importc: "glVertexAttribI4uiEXT".}
+proc vertexAttribI4uivEXT*(index: uint32, v: ptr uint32): void {.glew_lib, importc: "glVertexAttribI4uivEXT".}
+proc vertexAttribI4usvEXT*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttribI4usvEXT".}
+proc vertexAttribIPointerEXT*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribIPointerEXT".}
+proc getHistogramEXT*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib, importc: "glGetHistogramEXT".}
+proc getHistogramParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetHistogramParameterfvEXT".}
+proc getHistogramParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetHistogramParameterivEXT".}
+proc getMinmaxEXT*(target: GLenum, reset: bool, format: GLenum, tipe: GLenum, values: pointer): void {.glew_lib, importc: "glGetMinmaxEXT".}
+proc getMinmaxParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMinmaxParameterfvEXT".}
+proc getMinmaxParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMinmaxParameterivEXT".}
+proc histogramEXT*(target: GLenum, width: int32, internalformat: GLenum, sink: bool): void {.glew_lib, importc: "glHistogramEXT".}
+proc minmaxEXT*(target: GLenum, internalformat: GLenum, sink: bool): void {.glew_lib, importc: "glMinmaxEXT".}
+proc resetHistogramEXT*(target: GLenum): void {.glew_lib, importc: "glResetHistogramEXT".}
+proc resetMinmaxEXT*(target: GLenum): void {.glew_lib, importc: "glResetMinmaxEXT".}
+proc indexFuncEXT*(fun: GLenum, reff: float32): void {.glew_lib, importc: "glIndexFuncEXT".}
+proc indexMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glIndexMaterialEXT".}
+proc vertexAttribDivisorEXT*(index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexAttribDivisorEXT".}
+proc applyTextureEXT*(mode: GLenum): void {.glew_lib, importc: "glApplyTextureEXT".}
+proc textureLightEXT*(pname: GLenum): void {.glew_lib, importc: "glTextureLightEXT".}
+proc textureMaterialEXT*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glTextureMaterialEXT".}
+proc flushMappedBufferRangeEXT*(target: GLenum, offset: int32, length: int32): void {.glew_lib, importc: "glFlushMappedBufferRangeEXT".}
+proc mapBufferRangeEXT*(target: GLenum, offset: int32, length: int32, access: uint32): void {.glew_lib, importc: "glMapBufferRangeEXT".}
+proc bufferStorageMemEXT*(target: GLenum, size: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glBufferStorageMemEXT".}
+proc createMemoryObjectsEXT*(n: int32, memoryObjects: ptr uint32): void {.glew_lib, importc: "glCreateMemoryObjectsEXT".}
+proc deleteMemoryObjectsEXT*(n: int32, memoryObjects: ptr uint32): void {.glew_lib, importc: "glDeleteMemoryObjectsEXT".}
+proc getMemoryObjectParameterivEXT*(memoryObject: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMemoryObjectParameterivEXT".}
+proc getUnsignedBytei_vEXT*(target: GLenum, index: uint32, data: ptr uint8): void {.glew_lib, importc: "glGetUnsignedBytei_vEXT".}
+proc getUnsignedBytevEXT*(pname: GLenum, data: ptr uint8): void {.glew_lib, importc: "glGetUnsignedBytevEXT".}
+proc isMemoryObjectEXT*(memoryObject: uint32): bool {.glew_lib, importc: "glIsMemoryObjectEXT".}
+proc memoryObjectParameterivEXT*(memoryObject: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMemoryObjectParameterivEXT".}
+proc namedBufferStorageMemEXT*(buffer: uint32, size: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glNamedBufferStorageMemEXT".}
+proc texStorageMem1DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTexStorageMem1DEXT".}
+proc texStorageMem2DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, height: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTexStorageMem2DEXT".}
+proc texStorageMem2DMultisampleEXT*(target: GLenum, samples: int32, internalFormat: GLenum, width: int32, height: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTexStorageMem2DMultisampleEXT".}
+proc texStorageMem3DEXT*(target: GLenum, levels: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTexStorageMem3DEXT".}
+proc texStorageMem3DMultisampleEXT*(target: GLenum, samples: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTexStorageMem3DMultisampleEXT".}
+proc textureStorageMem1DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTextureStorageMem1DEXT".}
+proc textureStorageMem2DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, height: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTextureStorageMem2DEXT".}
+proc textureStorageMem2DMultisampleEXT*(texture: uint32, samples: int32, internalFormat: GLenum, width: int32, height: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTextureStorageMem2DMultisampleEXT".}
+proc textureStorageMem3DEXT*(texture: uint32, levels: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTextureStorageMem3DEXT".}
+proc textureStorageMem3DMultisampleEXT*(texture: uint32, samples: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, fixedSampleLocations: bool, memory: uint32, offset: uint64): void {.glew_lib, importc: "glTextureStorageMem3DMultisampleEXT".}
+proc importMemoryFdEXT*(memory: uint32, size: uint64, handleType: GLenum, fd: int32): void {.glew_lib, importc: "glImportMemoryFdEXT".}
+proc importMemoryWin32HandleEXT*(memory: uint32, size: uint64, handleType: GLenum, handle: pointer): void {.glew_lib, importc: "glImportMemoryWin32HandleEXT".}
+proc importMemoryWin32NameEXT*(memory: uint32, size: uint64, handleType: GLenum, name: pointer): void {.glew_lib, importc: "glImportMemoryWin32NameEXT".}
+proc multiDrawArraysEXT*(mode: GLenum, first: ptr int32, count: ptr int32, primcount: int32): void {.glew_lib, importc: "glMultiDrawArraysEXT".}
+proc multiDrawElementsEXT*(mode: GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32): void {.glew_lib, importc: "glMultiDrawElementsEXT".}
+proc multiDrawArraysIndirectEXT*(mode: GLenum, indirect: pointer, drawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectEXT".}
+proc multiDrawElementsIndirectEXT*(mode: GLenum, tipe: GLenum, indirect: pointer, drawcount: int32, stride: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectEXT".}
+proc sampleMaskEXT*(value: float32, invert: bool): void {.glew_lib, importc: "glSampleMaskEXT".}
+proc samplePatternEXT*(pattern: GLenum): void {.glew_lib, importc: "glSamplePatternEXT".}
+proc framebufferTexture2DMultisampleEXT*(target: GLenum, attachment: GLenum, textarget: GLenum, texture: uint32, level: int32, samples: int32): void {.glew_lib, importc: "glFramebufferTexture2DMultisampleEXT".}
+proc drawBuffersIndexedEXT*(n: int32, location: ptr GLenum, indices: ptr int32): void {.glew_lib, importc: "glDrawBuffersIndexedEXT".}
+proc getIntegeri_vEXT*(target: GLenum, index: uint32, data: ptr int32): void {.glew_lib, importc: "glGetIntegeri_vEXT".}
+proc readBufferIndexedEXT*(src: GLenum, index: int32): void {.glew_lib, importc: "glReadBufferIndexedEXT".}
+proc colorTableEXT*(target: GLenum, internalFormat: GLenum, width: int32, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glColorTableEXT".}
+proc getColorTableEXT*(target: GLenum, format: GLenum, tipe: GLenum, data: pointer): void {.glew_lib, importc: "glGetColorTableEXT".}
+proc getColorTableParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetColorTableParameterfvEXT".}
+proc getColorTableParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetColorTableParameterivEXT".}
+proc getPixelTransformParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetPixelTransformParameterfvEXT".}
+proc getPixelTransformParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetPixelTransformParameterivEXT".}
+proc pixelTransformParameterfEXT*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glPixelTransformParameterfEXT".}
+proc pixelTransformParameterfvEXT*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glPixelTransformParameterfvEXT".}
+proc pixelTransformParameteriEXT*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glPixelTransformParameteriEXT".}
+proc pixelTransformParameterivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glPixelTransformParameterivEXT".}
+proc pointParameterfEXT*(pname: GLenum, param: float32): void {.glew_lib, importc: "glPointParameterfEXT".}
+proc pointParameterfvEXT*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glPointParameterfvEXT".}
+proc polygonOffsetEXT*(factor: float32, bias: float32): void {.glew_lib, importc: "glPolygonOffsetEXT".}
+proc polygonOffsetClampEXT*(factor: float32, units: float32, clamp: float32): void {.glew_lib, importc: "glPolygonOffsetClampEXT".}
+proc provokingVertexEXT*(mode: GLenum): void {.glew_lib, importc: "glProvokingVertexEXT".}
+proc coverageModulationNV*(components: GLenum): void {.glew_lib, importc: "glCoverageModulationNV".}
+proc coverageModulationTableNV*(n: int32, v: ptr float32): void {.glew_lib, importc: "glCoverageModulationTableNV".}
+proc getCoverageModulationTableNV*(bufsize: int32, v: ptr float32): void {.glew_lib, importc: "glGetCoverageModulationTableNV".}
+proc rasterSamplesEXT*(samples: uint32, fixedsamplelocations: bool): void {.glew_lib, importc: "glRasterSamplesEXT".}
+proc beginSceneEXT*(): void {.glew_lib, importc: "glBeginSceneEXT".}
+proc endSceneEXT*(): void {.glew_lib, importc: "glEndSceneEXT".}
+proc secondaryColor3bEXT*(red: int8, green: int8, blue: int8): void {.glew_lib, importc: "glSecondaryColor3bEXT".}
+proc secondaryColor3bvEXT*(v: ptr int8): void {.glew_lib, importc: "glSecondaryColor3bvEXT".}
+proc secondaryColor3dEXT*(red: float64, green: float64, blue: float64): void {.glew_lib, importc: "glSecondaryColor3dEXT".}
+proc secondaryColor3dvEXT*(v: ptr float64): void {.glew_lib, importc: "glSecondaryColor3dvEXT".}
+proc secondaryColor3fEXT*(red: float32, green: float32, blue: float32): void {.glew_lib, importc: "glSecondaryColor3fEXT".}
+proc secondaryColor3fvEXT*(v: ptr float32): void {.glew_lib, importc: "glSecondaryColor3fvEXT".}
+proc secondaryColor3iEXT*(red: int32, green: int32, blue: int32): void {.glew_lib, importc: "glSecondaryColor3iEXT".}
+proc secondaryColor3ivEXT*(v: ptr int32): void {.glew_lib, importc: "glSecondaryColor3ivEXT".}
+proc secondaryColor3sEXT*(red: int16, green: int16, blue: int16): void {.glew_lib, importc: "glSecondaryColor3sEXT".}
+proc secondaryColor3svEXT*(v: ptr int16): void {.glew_lib, importc: "glSecondaryColor3svEXT".}
+proc secondaryColor3ubEXT*(red: uint8, green: uint8, blue: uint8): void {.glew_lib, importc: "glSecondaryColor3ubEXT".}
+proc secondaryColor3ubvEXT*(v: ptr uint8): void {.glew_lib, importc: "glSecondaryColor3ubvEXT".}
+proc secondaryColor3uiEXT*(red: uint32, green: uint32, blue: uint32): void {.glew_lib, importc: "glSecondaryColor3uiEXT".}
+proc secondaryColor3uivEXT*(v: ptr uint32): void {.glew_lib, importc: "glSecondaryColor3uivEXT".}
+proc secondaryColor3usEXT*(red: uint16, green: uint16, blue: uint16): void {.glew_lib, importc: "glSecondaryColor3usEXT".}
+proc secondaryColor3usvEXT*(v: ptr uint16): void {.glew_lib, importc: "glSecondaryColor3usvEXT".}
+proc secondaryColorPointerEXT*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glSecondaryColorPointerEXT".}
+proc deleteSemaphoresEXT*(n: int32, semaphores: ptr uint32): void {.glew_lib, importc: "glDeleteSemaphoresEXT".}
+proc genSemaphoresEXT*(n: int32, semaphores: ptr uint32): void {.glew_lib, importc: "glGenSemaphoresEXT".}
+proc getSemaphoreParameterui64vEXT*(semaphore: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetSemaphoreParameterui64vEXT".}
+proc isSemaphoreEXT*(semaphore: uint32): bool {.glew_lib, importc: "glIsSemaphoreEXT".}
+proc semaphoreParameterui64vEXT*(semaphore: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glSemaphoreParameterui64vEXT".}
+proc signalSemaphoreEXT*(semaphore: uint32, numBufferBarriers: uint32, buffers: ptr uint32, numTextureBarriers: uint32, textures: ptr uint32, dstLayouts: ptr GLenum): void {.glew_lib, importc: "glSignalSemaphoreEXT".}
+proc waitSemaphoreEXT*(semaphore: uint32, numBufferBarriers: uint32, buffers: ptr uint32, numTextureBarriers: uint32, textures: ptr uint32, srcLayouts: ptr GLenum): void {.glew_lib, importc: "glWaitSemaphoreEXT".}
+proc importSemaphoreFdEXT*(semaphore: uint32, handleType: GLenum, fd: int32): void {.glew_lib, importc: "glImportSemaphoreFdEXT".}
+proc importSemaphoreWin32HandleEXT*(semaphore: uint32, handleType: GLenum, handle: pointer): void {.glew_lib, importc: "glImportSemaphoreWin32HandleEXT".}
+proc importSemaphoreWin32NameEXT*(semaphore: uint32, handleType: GLenum, name: pointer): void {.glew_lib, importc: "glImportSemaphoreWin32NameEXT".}
+proc activeProgramEXT*(program: uint32): void {.glew_lib, importc: "glActiveProgramEXT".}
+proc createShaderProgramEXT*(tipe: GLenum, stryng: cstring): uint32 {.glew_lib, importc: "glCreateShaderProgramEXT".}
+proc useShaderProgramEXT*(tipe: GLenum, program: uint32): void {.glew_lib, importc: "glUseShaderProgramEXT".}
+proc bindImageTextureEXT*(index: uint32, texture: uint32, level: int32, layered: bool, layer: int32, access: GLenum, format: int32): void {.glew_lib, importc: "glBindImageTextureEXT".}
+proc memoryBarrierEXT*(barriers: uint32): void {.glew_lib, importc: "glMemoryBarrierEXT".}
+proc clearPixelLocalStorageuiEXT*(offset: int32, n: int32, values: ptr uint32): void {.glew_lib, importc: "glClearPixelLocalStorageuiEXT".}
+proc framebufferPixelLocalStorageSizeEXT*(target: uint32, size: int32): void {.glew_lib, importc: "glFramebufferPixelLocalStorageSizeEXT".}
+proc getFramebufferPixelLocalStorageSizeEXT*(target: uint32): int32 {.glew_lib, importc: "glGetFramebufferPixelLocalStorageSizeEXT".}
+proc texPageCommitmentEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib, importc: "glTexPageCommitmentEXT".}
+proc texturePageCommitmentEXT*(texture: uint32, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, commit: bool): void {.glew_lib, importc: "glTexturePageCommitmentEXT".}
+proc activeStencilFaceEXT*(face: GLenum): void {.glew_lib, importc: "glActiveStencilFaceEXT".}
+proc texSubImage1DEXT*(target: GLenum, level: int32, xoffset: int32, width: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage1DEXT".}
+proc texSubImage2DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage2DEXT".}
+proc texSubImage3DEXT*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage3DEXT".}
+proc texImage3DEXT*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage3DEXT".}
+proc framebufferTextureLayerEXT*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glFramebufferTextureLayerEXT".}
+proc texBufferEXT*(target: GLenum, internalformat: GLenum, buffer: uint32): void {.glew_lib, importc: "glTexBufferEXT".}
+proc clearColorIiEXT*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib, importc: "glClearColorIiEXT".}
+proc clearColorIuiEXT*(red: uint32, green: uint32, blue: uint32, alpha: uint32): void {.glew_lib, importc: "glClearColorIuiEXT".}
+proc getTexParameterIivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexParameterIivEXT".}
+proc getTexParameterIuivEXT*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetTexParameterIuivEXT".}
+proc texParameterIivEXT*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexParameterIivEXT".}
+proc texParameterIuivEXT*(target: GLenum, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glTexParameterIuivEXT".}
+proc areTexturesResidentEXT*(n: int32, textures: ptr uint32, residences: ptr bool): bool {.glew_lib, importc: "glAreTexturesResidentEXT".}
+proc bindTextureEXT*(target: GLenum, texture: uint32): void {.glew_lib, importc: "glBindTextureEXT".}
+proc deleteTexturesEXT*(n: int32, textures: ptr uint32): void {.glew_lib, importc: "glDeleteTexturesEXT".}
+proc genTexturesEXT*(n: int32, textures: ptr uint32): void {.glew_lib, importc: "glGenTexturesEXT".}
+proc isTextureEXT*(texture: uint32): bool {.glew_lib, importc: "glIsTextureEXT".}
+proc prioritizeTexturesEXT*(n: int32, textures: ptr uint32, priorities: ptr float32): void {.glew_lib, importc: "glPrioritizeTexturesEXT".}
+proc textureNormalEXT*(mode: GLenum): void {.glew_lib, importc: "glTextureNormalEXT".}
+proc texStorage1DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib, importc: "glTexStorage1DEXT".}
+proc texStorage2DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glTexStorage2DEXT".}
+proc texStorage3DEXT*(target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glTexStorage3DEXT".}
+proc textureStorage1DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32): void {.glew_lib, importc: "glTextureStorage1DEXT".}
+proc textureStorage2DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glTextureStorage2DEXT".}
+proc textureStorage3DEXT*(texture: uint32, target: GLenum, levels: int32, internalformat: GLenum, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glTextureStorage3DEXT".}
+proc textureViewEXT*(texture: uint32, target: GLenum, origtexture: uint32, internalformat: GLenum, minlevel: uint32, numlevels: uint32, minlayer: uint32, numlayers: uint32): void {.glew_lib, importc: "glTextureViewEXT".}
+proc getQueryObjecti64vEXT*(id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetQueryObjecti64vEXT".}
+proc getQueryObjectui64vEXT*(id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetQueryObjectui64vEXT".}
+proc beginTransformFeedbackEXT*(primitiveMode: GLenum): void {.glew_lib, importc: "glBeginTransformFeedbackEXT".}
+proc bindBufferBaseEXT*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib, importc: "glBindBufferBaseEXT".}
+proc bindBufferOffsetEXT*(target: GLenum, index: uint32, buffer: uint32, offset: int32): void {.glew_lib, importc: "glBindBufferOffsetEXT".}
+proc bindBufferRangeEXT*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glBindBufferRangeEXT".}
+proc endTransformFeedbackEXT*(): void {.glew_lib, importc: "glEndTransformFeedbackEXT".}
+proc getTransformFeedbackVaryingEXT*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib, importc: "glGetTransformFeedbackVaryingEXT".}
+proc transformFeedbackVaryingsEXT*(program: uint32, count: int32, varyings: ptr cstring, bufferMode: GLenum): void {.glew_lib, importc: "glTransformFeedbackVaryingsEXT".}
+proc arrayElementEXT*(i: int32): void {.glew_lib, importc: "glArrayElementEXT".}
+proc colorPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib, importc: "glColorPointerEXT".}
+proc drawArraysEXT*(mode: GLenum, first: int32, count: int32): void {.glew_lib, importc: "glDrawArraysEXT".}
+proc edgeFlagPointerEXT*(stride: int32, count: int32, poynter: ptr bool): void {.glew_lib, importc: "glEdgeFlagPointerEXT".}
+proc indexPointerEXT*(tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib, importc: "glIndexPointerEXT".}
+proc normalPointerEXT*(tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib, importc: "glNormalPointerEXT".}
+proc texCoordPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib, importc: "glTexCoordPointerEXT".}
+proc vertexPointerEXT*(size: int32, tipe: GLenum, stride: int32, count: int32, poynter: pointer): void {.glew_lib, importc: "glVertexPointerEXT".}
+proc bindArraySetEXT*(arrayset: pointer): void {.glew_lib, importc: "glBindArraySetEXT".}
+proc createArraySetExt*(): void {.glew_lib, importc: "glCreateArraySetExt".}
+proc deleteArraySetsEXT*(n: int32, arrayset: ptr pointer): void {.glew_lib, importc: "glDeleteArraySetsEXT".}
+proc getVertexAttribLdvEXT*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVertexAttribLdvEXT".}
+proc vertexArrayVertexAttribLOffsetEXT*(vaobj: uint32, buffer: uint32, index: uint32, size: int32, tipe: GLenum, stride: int32, offset: int32): void {.glew_lib, importc: "glVertexArrayVertexAttribLOffsetEXT".}
+proc vertexAttribL1dEXT*(index: uint32, x: float64): void {.glew_lib, importc: "glVertexAttribL1dEXT".}
+proc vertexAttribL1dvEXT*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL1dvEXT".}
+proc vertexAttribL2dEXT*(index: uint32, x: float64, y: float64): void {.glew_lib, importc: "glVertexAttribL2dEXT".}
+proc vertexAttribL2dvEXT*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL2dvEXT".}
+proc vertexAttribL3dEXT*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexAttribL3dEXT".}
+proc vertexAttribL3dvEXT*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL3dvEXT".}
+proc vertexAttribL4dEXT*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexAttribL4dEXT".}
+proc vertexAttribL4dvEXT*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribL4dvEXT".}
+proc vertexAttribLPointerEXT*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribLPointerEXT".}
+proc beginVertexShaderEXT*(): void {.glew_lib, importc: "glBeginVertexShaderEXT".}
+proc bindLightParameterEXT*(light: GLenum, value: GLenum): uint32 {.glew_lib, importc: "glBindLightParameterEXT".}
+proc bindMaterialParameterEXT*(face: GLenum, value: GLenum): uint32 {.glew_lib, importc: "glBindMaterialParameterEXT".}
+proc bindParameterEXT*(value: GLenum): uint32 {.glew_lib, importc: "glBindParameterEXT".}
+proc bindTexGenParameterEXT*(unit: GLenum, coord: GLenum, value: GLenum): uint32 {.glew_lib, importc: "glBindTexGenParameterEXT".}
+proc bindTextureUnitParameterEXT*(unit: GLenum, value: GLenum): uint32 {.glew_lib, importc: "glBindTextureUnitParameterEXT".}
+proc bindVertexShaderEXT*(id: uint32): void {.glew_lib, importc: "glBindVertexShaderEXT".}
+proc deleteVertexShaderEXT*(id: uint32): void {.glew_lib, importc: "glDeleteVertexShaderEXT".}
+proc disableVariantClientStateEXT*(id: uint32): void {.glew_lib, importc: "glDisableVariantClientStateEXT".}
+proc enableVariantClientStateEXT*(id: uint32): void {.glew_lib, importc: "glEnableVariantClientStateEXT".}
+proc endVertexShaderEXT*(): void {.glew_lib, importc: "glEndVertexShaderEXT".}
+proc extractComponentEXT*(res: uint32, src: uint32, num: uint32): void {.glew_lib, importc: "glExtractComponentEXT".}
+proc genSymbolsEXT*(dataType: GLenum, storageType: GLenum, rangee: GLenum, components: uint32): uint32 {.glew_lib, importc: "glGenSymbolsEXT".}
+proc genVertexShadersEXT*(rangee: uint32): uint32 {.glew_lib, importc: "glGenVertexShadersEXT".}
+proc getInvariantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib, importc: "glGetInvariantBooleanvEXT".}
+proc getInvariantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib, importc: "glGetInvariantFloatvEXT".}
+proc getInvariantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib, importc: "glGetInvariantIntegervEXT".}
+proc getLocalConstantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib, importc: "glGetLocalConstantBooleanvEXT".}
+proc getLocalConstantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib, importc: "glGetLocalConstantFloatvEXT".}
+proc getLocalConstantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib, importc: "glGetLocalConstantIntegervEXT".}
+proc getVariantBooleanvEXT*(id: uint32, value: GLenum, data: ptr bool): void {.glew_lib, importc: "glGetVariantBooleanvEXT".}
+proc getVariantFloatvEXT*(id: uint32, value: GLenum, data: ptr float32): void {.glew_lib, importc: "glGetVariantFloatvEXT".}
+proc getVariantIntegervEXT*(id: uint32, value: GLenum, data: ptr int32): void {.glew_lib, importc: "glGetVariantIntegervEXT".}
+proc getVariantPointervEXT*(id: uint32, value: GLenum, data: ptr void ): void {.glew_lib, importc: "glGetVariantPointervEXT".}
+proc insertComponentEXT*(res: uint32, src: uint32, num: uint32): void {.glew_lib, importc: "glInsertComponentEXT".}
+proc isVariantEnabledEXT*(id: uint32, cap: GLenum): bool {.glew_lib, importc: "glIsVariantEnabledEXT".}
+proc setInvariantEXT*(id: uint32, tipe: GLenum, adr: pointer): void {.glew_lib, importc: "glSetInvariantEXT".}
+proc setLocalConstantEXT*(id: uint32, tipe: GLenum, adr: pointer): void {.glew_lib, importc: "glSetLocalConstantEXT".}
+proc shaderOp1EXT*(op: GLenum, res: uint32, arg1: uint32): void {.glew_lib, importc: "glShaderOp1EXT".}
+proc shaderOp2EXT*(op: GLenum, res: uint32, arg1: uint32, arg2: uint32): void {.glew_lib, importc: "glShaderOp2EXT".}
+proc shaderOp3EXT*(op: GLenum, res: uint32, arg1: uint32, arg2: uint32, arg3: uint32): void {.glew_lib, importc: "glShaderOp3EXT".}
+proc swizzleEXT*(res: uint32, inn: uint32, outX: GLenum, outY: GLenum, outZ: GLenum, outW: GLenum): void {.glew_lib, importc: "glSwizzleEXT".}
+proc variantPointerEXT*(id: uint32, tipe: GLenum, stride: uint32, adr: pointer): void {.glew_lib, importc: "glVariantPointerEXT".}
+proc variantbvEXT*(id: uint32, adr: ptr int8): void {.glew_lib, importc: "glVariantbvEXT".}
+proc variantdvEXT*(id: uint32, adr: ptr float64): void {.glew_lib, importc: "glVariantdvEXT".}
+proc variantfvEXT*(id: uint32, adr: ptr float32): void {.glew_lib, importc: "glVariantfvEXT".}
+proc variantivEXT*(id: uint32, adr: ptr int32): void {.glew_lib, importc: "glVariantivEXT".}
+proc variantsvEXT*(id: uint32, adr: ptr int16): void {.glew_lib, importc: "glVariantsvEXT".}
+proc variantubvEXT*(id: uint32, adr: ptr uint8): void {.glew_lib, importc: "glVariantubvEXT".}
+proc variantuivEXT*(id: uint32, adr: ptr uint32): void {.glew_lib, importc: "glVariantuivEXT".}
+proc variantusvEXT*(id: uint32, adr: ptr uint16): void {.glew_lib, importc: "glVariantusvEXT".}
+proc writeMaskEXT*(res: uint32, inn: uint32, outX: GLenum, outY: GLenum, outZ: GLenum, outW: GLenum): void {.glew_lib, importc: "glWriteMaskEXT".}
+proc vertexWeightPointerEXT*(size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexWeightPointerEXT".}
+proc vertexWeightfEXT*(weight: float32): void {.glew_lib, importc: "glVertexWeightfEXT".}
+proc vertexWeightfvEXT*(weight: ptr float32): void {.glew_lib, importc: "glVertexWeightfvEXT".}
+proc acquireKeyedMutexWin32EXT*(memory: uint32, key: uint64, timeout: uint32): bool {.glew_lib, importc: "glAcquireKeyedMutexWin32EXT".}
+proc releaseKeyedMutexWin32EXT*(memory: uint32, key: uint64): bool {.glew_lib, importc: "glReleaseKeyedMutexWin32EXT".}
+proc windowRectanglesEXT*(mode: GLenum, count: int32, box: ptr int32): void {.glew_lib, importc: "glWindowRectanglesEXT".}
+proc importSyncEXT*(external_sync_type: GLenum, external_sync: int32, flags: uint32): distinct pointer {.glew_lib, importc: "glImportSyncEXT".}
+proc frameTerminatorGREMEDY*(): void {.glew_lib, importc: "glFrameTerminatorGREMEDY".}
+proc stringMarkerGREMEDY*(len: int32, stryng: pointer): void {.glew_lib, importc: "glStringMarkerGREMEDY".}
+proc getImageTransformParameterfvHP*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetImageTransformParameterfvHP".}
+proc getImageTransformParameterivHP*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetImageTransformParameterivHP".}
+proc imageTransformParameterfHP*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glImageTransformParameterfHP".}
+proc imageTransformParameterfvHP*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glImageTransformParameterfvHP".}
+proc imageTransformParameteriHP*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glImageTransformParameteriHP".}
+proc imageTransformParameterivHP*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glImageTransformParameterivHP".}
+proc multiModeDrawArraysIBM*(mode: ptr GLenum, first: ptr int32, count: ptr int32, primcount: int32, modestride: int32): void {.glew_lib, importc: "glMultiModeDrawArraysIBM".}
+proc multiModeDrawElementsIBM*(mode: ptr GLenum, count: ptr int32, tipe: GLenum, indices: ptr void , primcount: int32, modestride: int32): void {.glew_lib, importc: "glMultiModeDrawElementsIBM".}
+proc colorPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glColorPointerListIBM".}
+proc edgeFlagPointerListIBM*(stride: int32, poynter: ptr bool, ptrstride: int32): void {.glew_lib, importc: "glEdgeFlagPointerListIBM".}
+proc fogCoordPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glFogCoordPointerListIBM".}
+proc indexPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glIndexPointerListIBM".}
+proc normalPointerListIBM*(tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glNormalPointerListIBM".}
+proc secondaryColorPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glSecondaryColorPointerListIBM".}
+proc texCoordPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glTexCoordPointerListIBM".}
+proc vertexPointerListIBM*(size: int32, tipe: GLenum, stride: int32, poynter: ptr void, ptrstride: int32): void {.glew_lib, importc: "glVertexPointerListIBM".}
+proc mapTexture2DINTEL*(texture: uint32, level: int32, access: uint32, stride: ptr int32, layout: ptr GLenum): void {.glew_lib, importc: "glMapTexture2DINTEL".}
+proc syncTextureINTEL*(texture: uint32): void {.glew_lib, importc: "glSyncTextureINTEL".}
+proc unmapTexture2DINTEL*(texture: uint32, level: int32): void {.glew_lib, importc: "glUnmapTexture2DINTEL".}
+proc colorPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib, importc: "glColorPointervINTEL".}
+proc normalPointervINTEL*(tipe: GLenum, poynter: ptr void): void {.glew_lib, importc: "glNormalPointervINTEL".}
+proc texCoordPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib, importc: "glTexCoordPointervINTEL".}
+proc vertexPointervINTEL*(size: int32, tipe: GLenum, poynter: ptr void): void {.glew_lib, importc: "glVertexPointervINTEL".}
+proc beginPerfQueryINTEL*(queryHandle: uint32): void {.glew_lib, importc: "glBeginPerfQueryINTEL".}
+proc createPerfQueryINTEL*(queryId: uint32, queryHandle: ptr uint32): void {.glew_lib, importc: "glCreatePerfQueryINTEL".}
+proc deletePerfQueryINTEL*(queryHandle: uint32): void {.glew_lib, importc: "glDeletePerfQueryINTEL".}
+proc endPerfQueryINTEL*(queryHandle: uint32): void {.glew_lib, importc: "glEndPerfQueryINTEL".}
+proc getFirstPerfQueryIdINTEL*(queryId: ptr uint32): void {.glew_lib, importc: "glGetFirstPerfQueryIdINTEL".}
+proc getNextPerfQueryIdINTEL*(queryId: uint32, nextQueryId: ptr uint32): void {.glew_lib, importc: "glGetNextPerfQueryIdINTEL".}
+proc getPerfCounterInfoINTEL*(queryId: uint32, counterId: uint32, counterNameLength: uint32, counterName: ptr char, counterDescLength: uint32, counterDesc: ptr char, counterOffset: ptr uint32, counterDataSize: ptr uint32, counterTypeEnum: ptr uint32, counterDataTypeEnum: ptr uint32, rawCounterMaxValue: ptr uint64): void {.glew_lib, importc: "glGetPerfCounterInfoINTEL".}
+proc getPerfQueryDataINTEL*(queryHandle: uint32, flags: uint32, dataSize: int32, data: pointer, bytesWritten: ptr uint32): void {.glew_lib, importc: "glGetPerfQueryDataINTEL".}
+proc getPerfQueryIdByNameINTEL*(queryName: ptr char, queryId: ptr uint32): void {.glew_lib, importc: "glGetPerfQueryIdByNameINTEL".}
+proc getPerfQueryInfoINTEL*(queryId: uint32, queryNameLength: uint32, queryName: ptr char, dataSize: ptr uint32, noCounters: ptr uint32, noInstances: ptr uint32, capsMask: ptr uint32): void {.glew_lib, importc: "glGetPerfQueryInfoINTEL".}
+proc texScissorFuncINTEL*(target: GLenum, lfunc: GLenum, hfunc: GLenum): void {.glew_lib, importc: "glTexScissorFuncINTEL".}
+proc texScissorINTEL*(target: GLenum, tlow: float32, thigh: float32): void {.glew_lib, importc: "glTexScissorINTEL".}
+proc blendBarrierKHR*(): void {.glew_lib, importc: "glBlendBarrierKHR".}
+proc debugMessageControl*(source: GLenum, tipe: GLenum, severity: GLenum, count: int32, ids: ptr uint32, enabled: bool): void {.glew_lib, importc: "glDebugMessageControl".}
+proc debugMessageInsert*(source: GLenum, tipe: GLenum, id: uint32, severity: GLenum, length: int32, buf: cstring): void {.glew_lib, importc: "glDebugMessageInsert".}
+proc getDebugMessageLog*(count: uint32, bufSize: int32, sources: ptr GLenum, types: ptr GLenum, ids: ptr uint32, severities: ptr GLenum, lengths: ptr int32, messageLog: ptr char): uint32 {.glew_lib, importc: "glGetDebugMessageLog".}
+proc getObjectLabel*(identifier: GLenum, name: uint32, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib, importc: "glGetObjectLabel".}
+proc getObjectPtrLabel*(poiinter: pointer, bufSize: int32, length: ptr int32, label: ptr char): void {.glew_lib, importc: "glGetObjectPtrLabel".}
+proc objectLabel*(identifier: GLenum, name: uint32, length: int32, label: cstring): void {.glew_lib, importc: "glObjectLabel".}
+proc objectPtrLabel*(poiinter: pointer, length: int32, label: cstring): void {.glew_lib, importc: "glObjectPtrLabel".}
+proc popDebugGroup*(): void {.glew_lib, importc: "glPopDebugGroup".}
+proc pushDebugGroup*(source: GLenum, id: uint32, length: int32, message: cstring): void {.glew_lib, importc: "glPushDebugGroup".}
+proc maxShaderCompilerThreadsKHR*(count: uint32): void {.glew_lib, importc: "glMaxShaderCompilerThreadsKHR".}
+proc getnUniformfv*(program: uint32, location: int32, bufSize: int32, params: ptr float32): void {.glew_lib, importc: "glGetnUniformfv".}
+proc getnUniformiv*(program: uint32, location: int32, bufSize: int32, params: ptr int32): void {.glew_lib, importc: "glGetnUniformiv".}
+proc getnUniformuiv*(program: uint32, location: int32, bufSize: int32, params: ptr uint32): void {.glew_lib, importc: "glGetnUniformuiv".}
+proc readnPixels*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, bufSize: int32, data: pointer): void {.glew_lib, importc: "glReadnPixels".}
+proc bufferRegionEnabled*(): uint32 {.glew_lib, importc: "glBufferRegionEnabled".}
+proc deleteBufferRegion*(region: GLenum): void {.glew_lib, importc: "glDeleteBufferRegion".}
+proc drawBufferRegion*(region: uint32, x: int32, y: int32, width: int32, height: int32, xDest: int32, yDest: int32): void {.glew_lib, importc: "glDrawBufferRegion".}
+proc newBufferRegion*(region: GLenum): uint32 {.glew_lib, importc: "glNewBufferRegion".}
+proc readBufferRegion*(region: uint32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glReadBufferRegion".}
+proc resizeBuffersMESA*(): void {.glew_lib, importc: "glResizeBuffersMESA".}
+proc windowPos2dMESA*(x: float64, y: float64): void {.glew_lib, importc: "glWindowPos2dMESA".}
+proc windowPos2dvMESA*(p: ptr float64): void {.glew_lib, importc: "glWindowPos2dvMESA".}
+proc windowPos2fMESA*(x: float32, y: float32): void {.glew_lib, importc: "glWindowPos2fMESA".}
+proc windowPos2fvMESA*(p: ptr float32): void {.glew_lib, importc: "glWindowPos2fvMESA".}
+proc windowPos2iMESA*(x: int32, y: int32): void {.glew_lib, importc: "glWindowPos2iMESA".}
+proc windowPos2ivMESA*(p: ptr int32): void {.glew_lib, importc: "glWindowPos2ivMESA".}
+proc windowPos2sMESA*(x: int16, y: int16): void {.glew_lib, importc: "glWindowPos2sMESA".}
+proc windowPos2svMESA*(p: ptr int16): void {.glew_lib, importc: "glWindowPos2svMESA".}
+proc windowPos3dMESA*(x: float64, y: float64, z: float64): void {.glew_lib, importc: "glWindowPos3dMESA".}
+proc windowPos3dvMESA*(p: ptr float64): void {.glew_lib, importc: "glWindowPos3dvMESA".}
+proc windowPos3fMESA*(x: float32, y: float32, z: float32): void {.glew_lib, importc: "glWindowPos3fMESA".}
+proc windowPos3fvMESA*(p: ptr float32): void {.glew_lib, importc: "glWindowPos3fvMESA".}
+proc windowPos3iMESA*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glWindowPos3iMESA".}
+proc windowPos3ivMESA*(p: ptr int32): void {.glew_lib, importc: "glWindowPos3ivMESA".}
+proc windowPos3sMESA*(x: int16, y: int16, z: int16): void {.glew_lib, importc: "glWindowPos3sMESA".}
+proc windowPos3svMESA*(p: ptr int16): void {.glew_lib, importc: "glWindowPos3svMESA".}
+proc windowPos4dMESA*(x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glWindowPos4dMESA".}
+proc windowPos4dvMESA*(p: ptr float64): void {.glew_lib, importc: "glWindowPos4dvMESA".}
+proc windowPos4fMESA*(x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glWindowPos4fMESA".}
+proc windowPos4fvMESA*(p: ptr float32): void {.glew_lib, importc: "glWindowPos4fvMESA".}
+proc windowPos4iMESA*(x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glWindowPos4iMESA".}
+proc windowPos4ivMESA*(p: ptr int32): void {.glew_lib, importc: "glWindowPos4ivMESA".}
+proc windowPos4sMESA*(x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glWindowPos4sMESA".}
+proc windowPos4svMESA*(p: ptr int16): void {.glew_lib, importc: "glWindowPos4svMESA".}
+proc beginConditionalRenderNVX*(id: uint32): void {.glew_lib, importc: "glBeginConditionalRenderNVX".}
+proc endConditionalRenderNVX*(): void {.glew_lib, importc: "glEndConditionalRenderNVX".}
+proc lGPUCopyImageSubDataNVX*(sourceGpu: uint32, destinationGpuMask: uint32, srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srxY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glLGPUCopyImageSubDataNVX".}
+proc lGPUInterlockNVX*(): void {.glew_lib, importc: "glLGPUInterlockNVX".}
+proc lGPUNamedBufferSubDataNVX*(gpuMask: uint32, buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glLGPUNamedBufferSubDataNVX".}
+proc stereoParameterfNV*(pname: GLenum, param: float32): void {.glew_lib, importc: "glStereoParameterfNV".}
+proc stereoParameteriNV*(pname: GLenum, param: int32): void {.glew_lib, importc: "glStereoParameteriNV".}
+proc multiDrawArraysIndirectBindlessNV*(mode: GLenum, indirect: pointer, drawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectBindlessNV".}
+proc multiDrawElementsIndirectBindlessNV*(mode: GLenum, tipe: GLenum, indirect: pointer, drawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectBindlessNV".}
+proc multiDrawArraysIndirectBindlessCountNV*(mode: GLenum, indirect: pointer, drawCount: int32, maxDrawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib, importc: "glMultiDrawArraysIndirectBindlessCountNV".}
+proc multiDrawElementsIndirectBindlessCountNV*(mode: GLenum, tipe: GLenum, indirect: pointer, drawCount: int32, maxDrawCount: int32, stride: int32, vertexBufferCount: int32): void {.glew_lib, importc: "glMultiDrawElementsIndirectBindlessCountNV".}
+proc getImageHandleNV*(texture: uint32, level: int32, layered: bool, layer: int32, format: GLenum): uint64 {.glew_lib, importc: "glGetImageHandleNV".}
+proc getTextureHandleNV*(texture: uint32): uint64 {.glew_lib, importc: "glGetTextureHandleNV".}
+proc getTextureSamplerHandleNV*(texture: uint32, sampler: uint32): uint64 {.glew_lib, importc: "glGetTextureSamplerHandleNV".}
+proc isImageHandleResidentNV*(handle: uint64): bool {.glew_lib, importc: "glIsImageHandleResidentNV".}
+proc isTextureHandleResidentNV*(handle: uint64): bool {.glew_lib, importc: "glIsTextureHandleResidentNV".}
+proc makeImageHandleNonResidentNV*(handle: uint64): void {.glew_lib, importc: "glMakeImageHandleNonResidentNV".}
+proc makeImageHandleResidentNV*(handle: uint64, access: GLenum): void {.glew_lib, importc: "glMakeImageHandleResidentNV".}
+proc makeTextureHandleNonResidentNV*(handle: uint64): void {.glew_lib, importc: "glMakeTextureHandleNonResidentNV".}
+proc makeTextureHandleResidentNV*(handle: uint64): void {.glew_lib, importc: "glMakeTextureHandleResidentNV".}
+proc programUniformHandleui64NV*(program: uint32, location: int32, value: uint64): void {.glew_lib, importc: "glProgramUniformHandleui64NV".}
+proc programUniformHandleui64vNV*(program: uint32, location: int32, count: int32, values: ptr uint64): void {.glew_lib, importc: "glProgramUniformHandleui64vNV".}
+proc uniformHandleui64NV*(location: int32, value: uint64): void {.glew_lib, importc: "glUniformHandleui64NV".}
+proc uniformHandleui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniformHandleui64vNV".}
+proc blendBarrierNV*(): void {.glew_lib, importc: "glBlendBarrierNV".}
+proc blendParameteriNV*(pname: GLenum, value: int32): void {.glew_lib, importc: "glBlendParameteriNV".}
+proc viewportPositionWScaleNV*(index: uint32, xcoeff: float32, ycoeff: float32): void {.glew_lib, importc: "glViewportPositionWScaleNV".}
+proc callCommandListNV*(list: uint32): void {.glew_lib, importc: "glCallCommandListNV".}
+proc commandListSegmentsNV*(list: uint32, segments: uint32): void {.glew_lib, importc: "glCommandListSegmentsNV".}
+proc compileCommandListNV*(list: uint32): void {.glew_lib, importc: "glCompileCommandListNV".}
+proc createCommandListsNV*(n: int32, lists: ptr uint32): void {.glew_lib, importc: "glCreateCommandListsNV".}
+proc createStatesNV*(n: int32, states: ptr uint32): void {.glew_lib, importc: "glCreateStatesNV".}
+proc deleteCommandListsNV*(n: int32, lists: ptr uint32): void {.glew_lib, importc: "glDeleteCommandListsNV".}
+proc deleteStatesNV*(n: int32, states: ptr uint32): void {.glew_lib, importc: "glDeleteStatesNV".}
+proc drawCommandsAddressNV*(primitiveMode: GLenum, indirects: ptr uint64, sizes: ptr int32, count: uint32): void {.glew_lib, importc: "glDrawCommandsAddressNV".}
+proc drawCommandsNV*(primitiveMode: GLenum, buffer: uint32, indirects: ptr int32, sizes: ptr int32, count: uint32): void {.glew_lib, importc: "glDrawCommandsNV".}
+proc drawCommandsStatesAddressNV*(indirects: ptr uint64, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib, importc: "glDrawCommandsStatesAddressNV".}
+proc drawCommandsStatesNV*(buffer: uint32, indirects: ptr int32, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib, importc: "glDrawCommandsStatesNV".}
+proc getCommandHeaderNV*(tokenID: GLenum, size: uint32): uint32 {.glew_lib, importc: "glGetCommandHeaderNV".}
+proc getStageIndexNV*(shadertype: GLenum): uint16 {.glew_lib, importc: "glGetStageIndexNV".}
+proc isCommandListNV*(list: uint32): bool {.glew_lib, importc: "glIsCommandListNV".}
+proc isStateNV*(state: uint32): bool {.glew_lib, importc: "glIsStateNV".}
+proc listDrawCommandsStatesClientNV*(list: uint32, segment: uint32, indirects: ptr void, sizes: ptr int32, states: ptr uint32, fbos: ptr uint32, count: uint32): void {.glew_lib, importc: "glListDrawCommandsStatesClientNV".}
+proc stateCaptureNV*(state: uint32, mode: GLenum): void {.glew_lib, importc: "glStateCaptureNV".}
+proc beginConditionalRenderNV*(id: uint32, mode: GLenum): void {.glew_lib, importc: "glBeginConditionalRenderNV".}
+proc endConditionalRenderNV*(): void {.glew_lib, importc: "glEndConditionalRenderNV".}
+proc subpixelPrecisionBiasNV*(xbits: uint32, ybits: uint32): void {.glew_lib, importc: "glSubpixelPrecisionBiasNV".}
+proc conservativeRasterParameterfNV*(pname: GLenum, value: float32): void {.glew_lib, importc: "glConservativeRasterParameterfNV".}
+proc conservativeRasterParameteriNV*(pname: GLenum, param: int32): void {.glew_lib, importc: "glConservativeRasterParameteriNV".}
+proc copyBufferSubDataNV*(readtarget: GLenum, writetarget: GLenum, readoffset: int32, writeoffset: int32, size: int32): void {.glew_lib, importc: "glCopyBufferSubDataNV".}
+proc copyImageSubDataNV*(srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, width: int32, height: int32, depth: int32): void {.glew_lib, importc: "glCopyImageSubDataNV".}
+proc clearDepthdNV*(depth: float64): void {.glew_lib, importc: "glClearDepthdNV".}
+proc depthBoundsdNV*(zmin: float64, zmax: float64): void {.glew_lib, importc: "glDepthBoundsdNV".}
+proc depthRangedNV*(zNear: float64, zFar: float64): void {.glew_lib, importc: "glDepthRangedNV".}
+proc drawBuffersNV*(n: int32, bufs: ptr GLenum): void {.glew_lib, importc: "glDrawBuffersNV".}
+proc drawArraysInstancedNV*(mode: GLenum, first: int32, count: int32, primcount: int32): void {.glew_lib, importc: "glDrawArraysInstancedNV".}
+proc drawElementsInstancedNV*(mode: GLenum, count: int32, tipe: GLenum, indices: pointer, primcount: int32): void {.glew_lib, importc: "glDrawElementsInstancedNV".}
+proc drawTextureNV*(texture: uint32, sampler: uint32, x0: float32, y0: float32, x1: float32, y1: float32, z: float32, s0: float32, t0: float32, s1: float32, t1: float32): void {.glew_lib, importc: "glDrawTextureNV".}
+proc drawVkImageNV*(vkImage: uint64, sampler: uint32, x0: float32, y0: float32, x1: float32, y1: float32, z: float32, s0: float32, t0: float32, s1: float32, t1: float32): void {.glew_lib, importc: "glDrawVkImageNV".}
+proc evalMapsNV*(target: GLenum, mode: GLenum): void {.glew_lib, importc: "glEvalMapsNV".}
+proc getMapAttribParameterfvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMapAttribParameterfvNV".}
+proc getMapAttribParameterivNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMapAttribParameterivNV".}
+proc getMapControlPointsNV*(target: GLenum, index: uint32, tipe: GLenum, ustride: int32, vstride: int32, packed: bool, points: pointer): void {.glew_lib, importc: "glGetMapControlPointsNV".}
+proc getMapParameterfvNV*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMapParameterfvNV".}
+proc getMapParameterivNV*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMapParameterivNV".}
+proc mapControlPointsNV*(target: GLenum, index: uint32, tipe: GLenum, ustride: int32, vstride: int32, uorder: int32, vorder: int32, packed: bool, points: pointer): void {.glew_lib, importc: "glMapControlPointsNV".}
+proc mapParameterfvNV*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glMapParameterfvNV".}
+proc mapParameterivNV*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMapParameterivNV".}
+proc getMultisamplefvNV*(pname: GLenum, index: uint32, val: ptr float32): void {.glew_lib, importc: "glGetMultisamplefvNV".}
+proc sampleMaskIndexedNV*(index: uint32, mask: uint32): void {.glew_lib, importc: "glSampleMaskIndexedNV".}
+proc texRenderbufferNV*(target: GLenum, renderbuffer: uint32): void {.glew_lib, importc: "glTexRenderbufferNV".}
+proc deleteFencesNV*(n: int32, fences: ptr uint32): void {.glew_lib, importc: "glDeleteFencesNV".}
+proc finishFenceNV*(fence: uint32): void {.glew_lib, importc: "glFinishFenceNV".}
+proc genFencesNV*(n: int32, fences: ptr uint32): void {.glew_lib, importc: "glGenFencesNV".}
+proc getFenceivNV*(fence: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFenceivNV".}
+proc isFenceNV*(fence: uint32): bool {.glew_lib, importc: "glIsFenceNV".}
+proc setFenceNV*(fence: uint32, condition: GLenum): void {.glew_lib, importc: "glSetFenceNV".}
+proc testFenceNV*(fence: uint32): bool {.glew_lib, importc: "glTestFenceNV".}
+proc fragmentCoverageColorNV*(color: uint32): void {.glew_lib, importc: "glFragmentCoverageColorNV".}
+proc getProgramNamedParameterdvNV*(id: uint32, len: int32, name: ptr uint8, params: ptr float64): void {.glew_lib, importc: "glGetProgramNamedParameterdvNV".}
+proc getProgramNamedParameterfvNV*(id: uint32, len: int32, name: ptr uint8, params: ptr float32): void {.glew_lib, importc: "glGetProgramNamedParameterfvNV".}
+proc programNamedParameter4dNV*(id: uint32, len: int32, name: ptr uint8, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glProgramNamedParameter4dNV".}
+proc programNamedParameter4dvNV*(id: uint32, len: int32, name: ptr uint8, v: ptr float64): void {.glew_lib, importc: "glProgramNamedParameter4dvNV".}
+proc programNamedParameter4fNV*(id: uint32, len: int32, name: ptr uint8, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glProgramNamedParameter4fNV".}
+proc programNamedParameter4fvNV*(id: uint32, len: int32, name: ptr uint8, v: ptr float32): void {.glew_lib, importc: "glProgramNamedParameter4fvNV".}
+proc blitFramebufferNV*(srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glBlitFramebufferNV".}
+proc renderbufferStorageMultisampleNV*(target: GLenum, samples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisampleNV".}
+proc renderbufferStorageMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalformat: GLenum, width: int32, height: int32): void {.glew_lib, importc: "glRenderbufferStorageMultisampleCoverageNV".}
+proc programVertexLimitNV*(target: GLenum, limit: int32): void {.glew_lib, importc: "glProgramVertexLimitNV".}
+proc multicastBarrierNV*(): void {.glew_lib, importc: "glMulticastBarrierNV".}
+proc multicastBlitFramebufferNV*(srcGpu: uint32, dstGpu: uint32, srcX0: int32, srcY0: int32, srcX1: int32, srcY1: int32, dstX0: int32, dstY0: int32, dstX1: int32, dstY1: int32, mask: uint32, filter: GLenum): void {.glew_lib, importc: "glMulticastBlitFramebufferNV".}
+proc multicastBufferSubDataNV*(gpuMask: uint32, buffer: uint32, offset: int32, size: int32, data: pointer): void {.glew_lib, importc: "glMulticastBufferSubDataNV".}
+proc multicastCopyBufferSubDataNV*(readGpu: uint32, writeGpuMask: uint32, readBuffer: uint32, writeBuffer: uint32, readOffset: int32, writeOffset: int32, size: int32): void {.glew_lib, importc: "glMulticastCopyBufferSubDataNV".}
+proc multicastCopyImageSubDataNV*(srcGpu: uint32, dstGpuMask: uint32, srcName: uint32, srcTarget: GLenum, srcLevel: int32, srcX: int32, srcY: int32, srcZ: int32, dstName: uint32, dstTarget: GLenum, dstLevel: int32, dstX: int32, dstY: int32, dstZ: int32, srcWidth: int32, srcHeight: int32, srcDepth: int32): void {.glew_lib, importc: "glMulticastCopyImageSubDataNV".}
+proc multicastFramebufferSampleLocationsfvNV*(gpu: uint32, framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glMulticastFramebufferSampleLocationsfvNV".}
+proc multicastGetQueryObjecti64vNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glMulticastGetQueryObjecti64vNV".}
+proc multicastGetQueryObjectivNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMulticastGetQueryObjectivNV".}
+proc multicastGetQueryObjectui64vNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glMulticastGetQueryObjectui64vNV".}
+proc multicastGetQueryObjectuivNV*(gpu: uint32, id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glMulticastGetQueryObjectuivNV".}
+proc multicastWaitSyncNV*(signalGpu: uint32, waitGpuMask: uint32): void {.glew_lib, importc: "glMulticastWaitSyncNV".}
+proc renderGpuMaskNV*(mask: uint32): void {.glew_lib, importc: "glRenderGpuMaskNV".}
+proc programEnvParameterI4iNV*(target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glProgramEnvParameterI4iNV".}
+proc programEnvParameterI4ivNV*(target: GLenum, index: uint32, params: ptr int32): void {.glew_lib, importc: "glProgramEnvParameterI4ivNV".}
+proc programEnvParameterI4uiNV*(target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib, importc: "glProgramEnvParameterI4uiNV".}
+proc programEnvParameterI4uivNV*(target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib, importc: "glProgramEnvParameterI4uivNV".}
+proc programEnvParametersI4ivNV*(target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib, importc: "glProgramEnvParametersI4ivNV".}
+proc programEnvParametersI4uivNV*(target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib, importc: "glProgramEnvParametersI4uivNV".}
+proc programLocalParameterI4iNV*(target: GLenum, index: uint32, x: int32, y: int32, z: int32, w: int32): void {.glew_lib, importc: "glProgramLocalParameterI4iNV".}
+proc programLocalParameterI4ivNV*(target: GLenum, index: uint32, params: ptr int32): void {.glew_lib, importc: "glProgramLocalParameterI4ivNV".}
+proc programLocalParameterI4uiNV*(target: GLenum, index: uint32, x: uint32, y: uint32, z: uint32, w: uint32): void {.glew_lib, importc: "glProgramLocalParameterI4uiNV".}
+proc programLocalParameterI4uivNV*(target: GLenum, index: uint32, params: ptr uint32): void {.glew_lib, importc: "glProgramLocalParameterI4uivNV".}
+proc programLocalParametersI4ivNV*(target: GLenum, index: uint32, count: int32, params: ptr int32): void {.glew_lib, importc: "glProgramLocalParametersI4ivNV".}
+proc programLocalParametersI4uivNV*(target: GLenum, index: uint32, count: int32, params: ptr uint32): void {.glew_lib, importc: "glProgramLocalParametersI4uivNV".}
+proc getUniformi64vNV*(program: uint32, location: int32, params: ptr int64): void {.glew_lib, importc: "glGetUniformi64vNV".}
+proc getUniformui64vNV*(program: uint32, location: int32, params: ptr uint64): void {.glew_lib, importc: "glGetUniformui64vNV".}
+proc programUniform1i64NV*(program: uint32, location: int32, x: int64): void {.glew_lib, importc: "glProgramUniform1i64NV".}
+proc programUniform1i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform1i64vNV".}
+proc programUniform1ui64NV*(program: uint32, location: int32, x: uint64): void {.glew_lib, importc: "glProgramUniform1ui64NV".}
+proc programUniform1ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform1ui64vNV".}
+proc programUniform2i64NV*(program: uint32, location: int32, x: int64, y: int64): void {.glew_lib, importc: "glProgramUniform2i64NV".}
+proc programUniform2i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform2i64vNV".}
+proc programUniform2ui64NV*(program: uint32, location: int32, x: uint64, y: uint64): void {.glew_lib, importc: "glProgramUniform2ui64NV".}
+proc programUniform2ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform2ui64vNV".}
+proc programUniform3i64NV*(program: uint32, location: int32, x: int64, y: int64, z: int64): void {.glew_lib, importc: "glProgramUniform3i64NV".}
+proc programUniform3i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform3i64vNV".}
+proc programUniform3ui64NV*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib, importc: "glProgramUniform3ui64NV".}
+proc programUniform3ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform3ui64vNV".}
+proc programUniform4i64NV*(program: uint32, location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib, importc: "glProgramUniform4i64NV".}
+proc programUniform4i64vNV*(program: uint32, location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glProgramUniform4i64vNV".}
+proc programUniform4ui64NV*(program: uint32, location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib, importc: "glProgramUniform4ui64NV".}
+proc programUniform4ui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniform4ui64vNV".}
+proc uniform1i64NV*(location: int32, x: int64): void {.glew_lib, importc: "glUniform1i64NV".}
+proc uniform1i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform1i64vNV".}
+proc uniform1ui64NV*(location: int32, x: uint64): void {.glew_lib, importc: "glUniform1ui64NV".}
+proc uniform1ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform1ui64vNV".}
+proc uniform2i64NV*(location: int32, x: int64, y: int64): void {.glew_lib, importc: "glUniform2i64NV".}
+proc uniform2i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform2i64vNV".}
+proc uniform2ui64NV*(location: int32, x: uint64, y: uint64): void {.glew_lib, importc: "glUniform2ui64NV".}
+proc uniform2ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform2ui64vNV".}
+proc uniform3i64NV*(location: int32, x: int64, y: int64, z: int64): void {.glew_lib, importc: "glUniform3i64NV".}
+proc uniform3i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform3i64vNV".}
+proc uniform3ui64NV*(location: int32, x: uint64, y: uint64, z: uint64): void {.glew_lib, importc: "glUniform3ui64NV".}
+proc uniform3ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform3ui64vNV".}
+proc uniform4i64NV*(location: int32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib, importc: "glUniform4i64NV".}
+proc uniform4i64vNV*(location: int32, count: int32, value: ptr int64): void {.glew_lib, importc: "glUniform4i64vNV".}
+proc uniform4ui64NV*(location: int32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib, importc: "glUniform4ui64NV".}
+proc uniform4ui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniform4ui64vNV".}
+proc color3hNV*(red: uint16, green: uint16, blue: uint16): void {.glew_lib, importc: "glColor3hNV".}
+proc color3hvNV*(v: ptr uint16): void {.glew_lib, importc: "glColor3hvNV".}
+proc color4hNV*(red: uint16, green: uint16, blue: uint16, alpha: uint16): void {.glew_lib, importc: "glColor4hNV".}
+proc color4hvNV*(v: ptr uint16): void {.glew_lib, importc: "glColor4hvNV".}
+proc fogCoordhNV*(fog: uint16): void {.glew_lib, importc: "glFogCoordhNV".}
+proc fogCoordhvNV*(fog: ptr uint16): void {.glew_lib, importc: "glFogCoordhvNV".}
+proc multiTexCoord1hNV*(target: GLenum, s: uint16): void {.glew_lib, importc: "glMultiTexCoord1hNV".}
+proc multiTexCoord1hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib, importc: "glMultiTexCoord1hvNV".}
+proc multiTexCoord2hNV*(target: GLenum, s: uint16, t: uint16): void {.glew_lib, importc: "glMultiTexCoord2hNV".}
+proc multiTexCoord2hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib, importc: "glMultiTexCoord2hvNV".}
+proc multiTexCoord3hNV*(target: GLenum, s: uint16, t: uint16, r: uint16): void {.glew_lib, importc: "glMultiTexCoord3hNV".}
+proc multiTexCoord3hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib, importc: "glMultiTexCoord3hvNV".}
+proc multiTexCoord4hNV*(target: GLenum, s: uint16, t: uint16, r: uint16, q: uint16): void {.glew_lib, importc: "glMultiTexCoord4hNV".}
+proc multiTexCoord4hvNV*(target: GLenum, v: ptr uint16): void {.glew_lib, importc: "glMultiTexCoord4hvNV".}
+proc normal3hNV*(nx: uint16, ny: uint16, nz: uint16): void {.glew_lib, importc: "glNormal3hNV".}
+proc normal3hvNV*(v: ptr uint16): void {.glew_lib, importc: "glNormal3hvNV".}
+proc secondaryColor3hNV*(red: uint16, green: uint16, blue: uint16): void {.glew_lib, importc: "glSecondaryColor3hNV".}
+proc secondaryColor3hvNV*(v: ptr uint16): void {.glew_lib, importc: "glSecondaryColor3hvNV".}
+proc texCoord1hNV*(s: uint16): void {.glew_lib, importc: "glTexCoord1hNV".}
+proc texCoord1hvNV*(v: ptr uint16): void {.glew_lib, importc: "glTexCoord1hvNV".}
+proc texCoord2hNV*(s: uint16, t: uint16): void {.glew_lib, importc: "glTexCoord2hNV".}
+proc texCoord2hvNV*(v: ptr uint16): void {.glew_lib, importc: "glTexCoord2hvNV".}
+proc texCoord3hNV*(s: uint16, t: uint16, r: uint16): void {.glew_lib, importc: "glTexCoord3hNV".}
+proc texCoord3hvNV*(v: ptr uint16): void {.glew_lib, importc: "glTexCoord3hvNV".}
+proc texCoord4hNV*(s: uint16, t: uint16, r: uint16, q: uint16): void {.glew_lib, importc: "glTexCoord4hNV".}
+proc texCoord4hvNV*(v: ptr uint16): void {.glew_lib, importc: "glTexCoord4hvNV".}
+proc vertex2hNV*(x: uint16, y: uint16): void {.glew_lib, importc: "glVertex2hNV".}
+proc vertex2hvNV*(v: ptr uint16): void {.glew_lib, importc: "glVertex2hvNV".}
+proc vertex3hNV*(x: uint16, y: uint16, z: uint16): void {.glew_lib, importc: "glVertex3hNV".}
+proc vertex3hvNV*(v: ptr uint16): void {.glew_lib, importc: "glVertex3hvNV".}
+proc vertex4hNV*(x: uint16, y: uint16, z: uint16, w: uint16): void {.glew_lib, importc: "glVertex4hNV".}
+proc vertex4hvNV*(v: ptr uint16): void {.glew_lib, importc: "glVertex4hvNV".}
+proc vertexAttrib1hNV*(index: uint32, x: uint16): void {.glew_lib, importc: "glVertexAttrib1hNV".}
+proc vertexAttrib1hvNV*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib1hvNV".}
+proc vertexAttrib2hNV*(index: uint32, x: uint16, y: uint16): void {.glew_lib, importc: "glVertexAttrib2hNV".}
+proc vertexAttrib2hvNV*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib2hvNV".}
+proc vertexAttrib3hNV*(index: uint32, x: uint16, y: uint16, z: uint16): void {.glew_lib, importc: "glVertexAttrib3hNV".}
+proc vertexAttrib3hvNV*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib3hvNV".}
+proc vertexAttrib4hNV*(index: uint32, x: uint16, y: uint16, z: uint16, w: uint16): void {.glew_lib, importc: "glVertexAttrib4hNV".}
+proc vertexAttrib4hvNV*(index: uint32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttrib4hvNV".}
+proc vertexAttribs1hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttribs1hvNV".}
+proc vertexAttribs2hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttribs2hvNV".}
+proc vertexAttribs3hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttribs3hvNV".}
+proc vertexAttribs4hvNV*(index: uint32, n: int32, v: ptr uint16): void {.glew_lib, importc: "glVertexAttribs4hvNV".}
+proc vertexWeighthNV*(weight: uint16): void {.glew_lib, importc: "glVertexWeighthNV".}
+proc vertexWeighthvNV*(weight: ptr uint16): void {.glew_lib, importc: "glVertexWeighthvNV".}
+proc vertexAttribDivisorNV*(index: uint32, divisor: uint32): void {.glew_lib, importc: "glVertexAttribDivisorNV".}
+proc getInternalformatSampleivNV*(target: GLenum, internalformat: GLenum, samples: int32, pname: GLenum, bufSize: int32, params: ptr int32): void {.glew_lib, importc: "glGetInternalformatSampleivNV".}
+proc uniformMatrix2x3fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2x3fvNV".}
+proc uniformMatrix2x4fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix2x4fvNV".}
+proc uniformMatrix3x2fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3x2fvNV".}
+proc uniformMatrix3x4fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix3x4fvNV".}
+proc uniformMatrix4x2fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4x2fvNV".}
+proc uniformMatrix4x3fvNV*(location: int32, count: int32, transpose: bool, value: ptr float32): void {.glew_lib, importc: "glUniformMatrix4x3fvNV".}
+proc beginOcclusionQueryNV*(id: uint32): void {.glew_lib, importc: "glBeginOcclusionQueryNV".}
+proc deleteOcclusionQueriesNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteOcclusionQueriesNV".}
+proc endOcclusionQueryNV*(): void {.glew_lib, importc: "glEndOcclusionQueryNV".}
+proc genOcclusionQueriesNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenOcclusionQueriesNV".}
+proc getOcclusionQueryivNV*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetOcclusionQueryivNV".}
+proc getOcclusionQueryuivNV*(id: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetOcclusionQueryuivNV".}
+proc isOcclusionQueryNV*(id: uint32): bool {.glew_lib, importc: "glIsOcclusionQueryNV".}
+proc programBufferParametersIivNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr int32): void {.glew_lib, importc: "glProgramBufferParametersIivNV".}
+proc programBufferParametersIuivNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr uint32): void {.glew_lib, importc: "glProgramBufferParametersIuivNV".}
+proc programBufferParametersfvNV*(target: GLenum, buffer: uint32, index: uint32, count: int32, params: ptr float32): void {.glew_lib, importc: "glProgramBufferParametersfvNV".}
+proc copyPathNV*(resultPath: uint32, srcPath: uint32): void {.glew_lib, importc: "glCopyPathNV".}
+proc coverFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glCoverFillPathInstancedNV".}
+proc coverFillPathNV*(path: uint32, coverMode: GLenum): void {.glew_lib, importc: "glCoverFillPathNV".}
+proc coverStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glCoverStrokePathInstancedNV".}
+proc coverStrokePathNV*(path: uint32, coverMode: GLenum): void {.glew_lib, importc: "glCoverStrokePathNV".}
+proc deletePathsNV*(path: uint32, rangee: int32): void {.glew_lib, importc: "glDeletePathsNV".}
+proc genPathsNV*(rangee: int32): uint32 {.glew_lib, importc: "glGenPathsNV".}
+proc getPathColorGenfvNV*(color: GLenum, pname: GLenum, value: ptr float32): void {.glew_lib, importc: "glGetPathColorGenfvNV".}
+proc getPathColorGenivNV*(color: GLenum, pname: GLenum, value: ptr int32): void {.glew_lib, importc: "glGetPathColorGenivNV".}
+proc getPathCommandsNV*(path: uint32, commands: ptr uint8): void {.glew_lib, importc: "glGetPathCommandsNV".}
+proc getPathCoordsNV*(path: uint32, coords: ptr float32): void {.glew_lib, importc: "glGetPathCoordsNV".}
+proc getPathDashArrayNV*(path: uint32, dashArray: ptr float32): void {.glew_lib, importc: "glGetPathDashArrayNV".}
+proc getPathLengthNV*(path: uint32, startSegment: int32, numSegments: int32): float32 {.glew_lib, importc: "glGetPathLengthNV".}
+proc getPathMetricRangeNV*(metricQueryMask: uint32, firstPathName: uint32, numPaths: int32, stride: int32, metrics: ptr float32): void {.glew_lib, importc: "glGetPathMetricRangeNV".}
+proc getPathMetricsNV*(metricQueryMask: uint32, numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, stride: int32, metrics: ptr float32): void {.glew_lib, importc: "glGetPathMetricsNV".}
+proc getPathParameterfvNV*(path: uint32, pname: GLenum, value: ptr float32): void {.glew_lib, importc: "glGetPathParameterfvNV".}
+proc getPathParameterivNV*(path: uint32, pname: GLenum, value: ptr int32): void {.glew_lib, importc: "glGetPathParameterivNV".}
+proc getPathSpacingNV*(pathListMode: GLenum, numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, advanceScale: float32, kerningScale: float32, transformType: GLenum, returnedSpacing: ptr float32): void {.glew_lib, importc: "glGetPathSpacingNV".}
+proc getPathTexGenfvNV*(texCoordSet: GLenum, pname: GLenum, value: ptr float32): void {.glew_lib, importc: "glGetPathTexGenfvNV".}
+proc getPathTexGenivNV*(texCoordSet: GLenum, pname: GLenum, value: ptr int32): void {.glew_lib, importc: "glGetPathTexGenivNV".}
+proc getProgramResourcefvNV*(program: uint32, programInterface: GLenum, index: uint32, propCount: int32, props: ptr GLenum, bufSize: int32, length: ptr int32, params: ptr float32): void {.glew_lib, importc: "glGetProgramResourcefvNV".}
+proc interpolatePathsNV*(resultPath: uint32, pathA: uint32, pathB: uint32, weight: float32): void {.glew_lib, importc: "glInterpolatePathsNV".}
+proc isPathNV*(path: uint32): bool {.glew_lib, importc: "glIsPathNV".}
+proc isPointInFillPathNV*(path: uint32, mask: uint32, x: float32, y: float32): bool {.glew_lib, importc: "glIsPointInFillPathNV".}
+proc isPointInStrokePathNV*(path: uint32, x: float32, y: float32): bool {.glew_lib, importc: "glIsPointInStrokePathNV".}
+proc matrixLoad3x2fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixLoad3x2fNV".}
+proc matrixLoad3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixLoad3x3fNV".}
+proc matrixLoadTranspose3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixLoadTranspose3x3fNV".}
+proc matrixMult3x2fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixMult3x2fNV".}
+proc matrixMult3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixMult3x3fNV".}
+proc matrixMultTranspose3x3fNV*(matrixMode: GLenum, m: ptr float32): void {.glew_lib, importc: "glMatrixMultTranspose3x3fNV".}
+proc pathColorGenNV*(color: GLenum, genMode: GLenum, colorFormat: GLenum, coeffs: ptr float32): void {.glew_lib, importc: "glPathColorGenNV".}
+proc pathCommandsNV*(path: uint32, numCommands: int32, commands: ptr uint8, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib, importc: "glPathCommandsNV".}
+proc pathCoordsNV*(path: uint32, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib, importc: "glPathCoordsNV".}
+proc pathCoverDepthFuncNV*(zfunc: GLenum): void {.glew_lib, importc: "glPathCoverDepthFuncNV".}
+proc pathDashArrayNV*(path: uint32, dashCount: int32, dashArray: ptr float32): void {.glew_lib, importc: "glPathDashArrayNV".}
+proc pathFogGenNV*(genMode: GLenum): void {.glew_lib, importc: "glPathFogGenNV".}
+proc pathGlyphIndexArrayNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, firstGlyphIndex: uint32, numGlyphs: int32, pathParameterTemplate: uint32, emScale: float32): GLenum {.glew_lib, importc: "glPathGlyphIndexArrayNV".}
+proc pathGlyphIndexRangeNV*(fontTarget: GLenum, fontName: pointer, fontStyle: uint32, pathParameterTemplate: uint32, emScale: float32, baseAndCount: ptr uint32): GLenum {.glew_lib, importc: "glPathGlyphIndexRangeNV".}
+proc pathGlyphRangeNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, firstGlyph: uint32, numGlyphs: int32, handleMissingGlyphs: GLenum, pathParameterTemplate: uint32, emScale: float32): void {.glew_lib, importc: "glPathGlyphRangeNV".}
+proc pathGlyphsNV*(firstPathName: uint32, fontTarget: GLenum, fontName: pointer, fontStyle: uint32, numGlyphs: int32, tipe: GLenum, charcodes: pointer, handleMissingGlyphs: GLenum, pathParameterTemplate: uint32, emScale: float32): void {.glew_lib, importc: "glPathGlyphsNV".}
+proc pathMemoryGlyphIndexArrayNV*(firstPathName: uint32, fontTarget: GLenum, fontSize: int32, fontData: pointer, faceIndex: int32, firstGlyphIndex: uint32, numGlyphs: int32, pathParameterTemplate: uint32, emScale: float32): GLenum {.glew_lib, importc: "glPathMemoryGlyphIndexArrayNV".}
+proc pathParameterfNV*(path: uint32, pname: GLenum, value: float32): void {.glew_lib, importc: "glPathParameterfNV".}
+proc pathParameterfvNV*(path: uint32, pname: GLenum, value: ptr float32): void {.glew_lib, importc: "glPathParameterfvNV".}
+proc pathParameteriNV*(path: uint32, pname: GLenum, value: int32): void {.glew_lib, importc: "glPathParameteriNV".}
+proc pathParameterivNV*(path: uint32, pname: GLenum, value: ptr int32): void {.glew_lib, importc: "glPathParameterivNV".}
+proc pathStencilDepthOffsetNV*(factor: float32, units: float32): void {.glew_lib, importc: "glPathStencilDepthOffsetNV".}
+proc pathStencilFuncNV*(fun: GLenum, reff: int32, mask: uint32): void {.glew_lib, importc: "glPathStencilFuncNV".}
+proc pathStringNV*(path: uint32, format: GLenum, length: int32, pathString: pointer): void {.glew_lib, importc: "glPathStringNV".}
+proc pathSubCommandsNV*(path: uint32, commandStart: int32, commandsToDelete: int32, numCommands: int32, commands: ptr uint8, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib, importc: "glPathSubCommandsNV".}
+proc pathSubCoordsNV*(path: uint32, coordStart: int32, numCoords: int32, coordType: GLenum, coords: pointer): void {.glew_lib, importc: "glPathSubCoordsNV".}
+proc pathTexGenNV*(texCoordSet: GLenum, genMode: GLenum, components: int32, coeffs: ptr float32): void {.glew_lib, importc: "glPathTexGenNV".}
+proc pointAlongPathNV*(path: uint32, startSegment: int32, numSegments: int32, distance: float32, x: ptr float32, y: ptr float32, tangentX: ptr float32, tangentY: ptr float32): bool {.glew_lib, importc: "glPointAlongPathNV".}
+proc programPathFragmentInputGenNV*(program: uint32, location: int32, genMode: GLenum, components: int32, coeffs: ptr float32): void {.glew_lib, importc: "glProgramPathFragmentInputGenNV".}
+proc stencilFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, fillMode: GLenum, mask: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glStencilFillPathInstancedNV".}
+proc stencilFillPathNV*(path: uint32, fillMode: GLenum, mask: uint32): void {.glew_lib, importc: "glStencilFillPathNV".}
+proc stencilStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, reference: int32, mask: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glStencilStrokePathInstancedNV".}
+proc stencilStrokePathNV*(path: uint32, reference: int32, mask: uint32): void {.glew_lib, importc: "glStencilStrokePathNV".}
+proc stencilThenCoverFillPathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, fillMode: GLenum, mask: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glStencilThenCoverFillPathInstancedNV".}
+proc stencilThenCoverFillPathNV*(path: uint32, fillMode: GLenum, mask: uint32, coverMode: GLenum): void {.glew_lib, importc: "glStencilThenCoverFillPathNV".}
+proc stencilThenCoverStrokePathInstancedNV*(numPaths: int32, pathNameType: GLenum, paths: pointer, pathBase: uint32, reference: int32, mask: uint32, coverMode: GLenum, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glStencilThenCoverStrokePathInstancedNV".}
+proc stencilThenCoverStrokePathNV*(path: uint32, reference: int32, mask: uint32, coverMode: GLenum): void {.glew_lib, importc: "glStencilThenCoverStrokePathNV".}
+proc transformPathNV*(resultPath: uint32, srcPath: uint32, transformType: GLenum, transformValues: ptr float32): void {.glew_lib, importc: "glTransformPathNV".}
+proc weightPathsNV*(resultPath: uint32, numPaths: int32, paths: ptr uint32, weights: ptr float32): void {.glew_lib, importc: "glWeightPathsNV".}
+proc flushPixelDataRangeNV*(target: GLenum): void {.glew_lib, importc: "glFlushPixelDataRangeNV".}
+proc pixelDataRangeNV*(target: GLenum, length: int32, poynter: pointer): void {.glew_lib, importc: "glPixelDataRangeNV".}
+proc pointParameteriNV*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPointParameteriNV".}
+proc pointParameterivNV*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glPointParameterivNV".}
+proc polygonModeNV*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glPolygonModeNV".}
+proc getVideoi64vNV*(video_slot: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetVideoi64vNV".}
+proc getVideoivNV*(video_slot: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVideoivNV".}
+proc getVideoui64vNV*(video_slot: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetVideoui64vNV".}
+proc getVideouivNV*(video_slot: uint32, pname: GLenum, params: ptr uint32): void {.glew_lib, importc: "glGetVideouivNV".}
+proc presentFrameDualFillNV*(video_slot: uint32, minPresentTime: uint64, beginPresentTimeId: uint32, presentDurationId: uint32, tipe: GLenum, target0: GLenum, fill0: uint32, target1: GLenum, fill1: uint32, target2: GLenum, fill2: uint32, target3: GLenum, fill3: uint32): void {.glew_lib, importc: "glPresentFrameDualFillNV".}
+proc presentFrameKeyedNV*(video_slot: uint32, minPresentTime: uint64, beginPresentTimeId: uint32, presentDurationId: uint32, tipe: GLenum, target0: GLenum, fill0: uint32, key0: uint32, target1: GLenum, fill1: uint32, key1: uint32): void {.glew_lib, importc: "glPresentFrameKeyedNV".}
+proc primitiveRestartIndexNV*(index: uint32): void {.glew_lib, importc: "glPrimitiveRestartIndexNV".}
+proc primitiveRestartNV*(): void {.glew_lib, importc: "glPrimitiveRestartNV".}
+proc combinerInputNV*(stage: GLenum, portion: GLenum, variable: GLenum, input: GLenum, mapping: GLenum, componentUsage: GLenum): void {.glew_lib, importc: "glCombinerInputNV".}
+proc combinerOutputNV*(stage: GLenum, portion: GLenum, abOutput: GLenum, cdOutput: GLenum, sumOutput: GLenum, scale: GLenum, bias: GLenum, abDotProduct: bool, cdDotProduct: bool, muxSum: bool): void {.glew_lib, importc: "glCombinerOutputNV".}
+proc combinerParameterfNV*(pname: GLenum, param: float32): void {.glew_lib, importc: "glCombinerParameterfNV".}
+proc combinerParameterfvNV*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glCombinerParameterfvNV".}
+proc combinerParameteriNV*(pname: GLenum, param: int32): void {.glew_lib, importc: "glCombinerParameteriNV".}
+proc combinerParameterivNV*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glCombinerParameterivNV".}
+proc finalCombinerInputNV*(variable: GLenum, input: GLenum, mapping: GLenum, componentUsage: GLenum): void {.glew_lib, importc: "glFinalCombinerInputNV".}
+proc getCombinerInputParameterfvNV*(stage: GLenum, portion: GLenum, variable: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetCombinerInputParameterfvNV".}
+proc getCombinerInputParameterivNV*(stage: GLenum, portion: GLenum, variable: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetCombinerInputParameterivNV".}
+proc getCombinerOutputParameterfvNV*(stage: GLenum, portion: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetCombinerOutputParameterfvNV".}
+proc getCombinerOutputParameterivNV*(stage: GLenum, portion: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetCombinerOutputParameterivNV".}
+proc getFinalCombinerInputParameterfvNV*(variable: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetFinalCombinerInputParameterfvNV".}
+proc getFinalCombinerInputParameterivNV*(variable: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFinalCombinerInputParameterivNV".}
+proc combinerStageParameterfvNV*(stage: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glCombinerStageParameterfvNV".}
+proc getCombinerStageParameterfvNV*(stage: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetCombinerStageParameterfvNV".}
+proc framebufferSampleLocationsfvNV*(target: GLenum, start: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glFramebufferSampleLocationsfvNV".}
+proc namedFramebufferSampleLocationsfvNV*(framebuffer: uint32, start: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glNamedFramebufferSampleLocationsfvNV".}
+proc getBufferParameterui64vNV*(target: GLenum, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetBufferParameterui64vNV".}
+proc getIntegerui64vNV*(value: GLenum, result: ptr uint64): void {.glew_lib, importc: "glGetIntegerui64vNV".}
+proc getNamedBufferParameterui64vNV*(buffer: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetNamedBufferParameterui64vNV".}
+proc isBufferResidentNV*(target: GLenum): bool {.glew_lib, importc: "glIsBufferResidentNV".}
+proc isNamedBufferResidentNV*(buffer: uint32): bool {.glew_lib, importc: "glIsNamedBufferResidentNV".}
+proc makeBufferNonResidentNV*(target: GLenum): void {.glew_lib, importc: "glMakeBufferNonResidentNV".}
+proc makeBufferResidentNV*(target: GLenum, access: GLenum): void {.glew_lib, importc: "glMakeBufferResidentNV".}
+proc makeNamedBufferNonResidentNV*(buffer: uint32): void {.glew_lib, importc: "glMakeNamedBufferNonResidentNV".}
+proc makeNamedBufferResidentNV*(buffer: uint32, access: GLenum): void {.glew_lib, importc: "glMakeNamedBufferResidentNV".}
+proc programUniformui64NV*(program: uint32, location: int32, value: uint64): void {.glew_lib, importc: "glProgramUniformui64NV".}
+proc programUniformui64vNV*(program: uint32, location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glProgramUniformui64vNV".}
+proc uniformui64NV*(location: int32, value: uint64): void {.glew_lib, importc: "glUniformui64NV".}
+proc uniformui64vNV*(location: int32, count: int32, value: ptr uint64): void {.glew_lib, importc: "glUniformui64vNV".}
+proc compressedTexImage3DNV*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, border: int32, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexImage3DNV".}
+proc compressedTexSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, imageSize: int32, data: pointer): void {.glew_lib, importc: "glCompressedTexSubImage3DNV".}
+proc copyTexSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glCopyTexSubImage3DNV".}
+proc framebufferTextureLayerNV*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, layer: int32): void {.glew_lib, importc: "glFramebufferTextureLayerNV".}
+proc texImage3DNV*(target: GLenum, level: int32, internalFormat: GLenum, width: int32, height: int32, depth: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage3DNV".}
+proc texSubImage3DNV*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage3DNV".}
+proc textureBarrierNV*(): void {.glew_lib, importc: "glTextureBarrierNV".}
+proc texImage2DMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTexImage2DMultisampleCoverageNV".}
+proc texImage3DMultisampleCoverageNV*(target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTexImage3DMultisampleCoverageNV".}
+proc textureImage2DMultisampleCoverageNV*(texture: uint32, target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTextureImage2DMultisampleCoverageNV".}
+proc textureImage2DMultisampleNV*(texture: uint32, target: GLenum, samples: int32, internalFormat: int32, width: int32, height: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTextureImage2DMultisampleNV".}
+proc textureImage3DMultisampleCoverageNV*(texture: uint32, target: GLenum, coverageSamples: int32, colorSamples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTextureImage3DMultisampleCoverageNV".}
+proc textureImage3DMultisampleNV*(texture: uint32, target: GLenum, samples: int32, internalFormat: int32, width: int32, height: int32, depth: int32, fixedSampleLocations: bool): void {.glew_lib, importc: "glTextureImage3DMultisampleNV".}
+proc activeVaryingNV*(program: uint32, name: cstring): void {.glew_lib, importc: "glActiveVaryingNV".}
+proc beginTransformFeedbackNV*(primitiveMode: GLenum): void {.glew_lib, importc: "glBeginTransformFeedbackNV".}
+proc bindBufferBaseNV*(target: GLenum, index: uint32, buffer: uint32): void {.glew_lib, importc: "glBindBufferBaseNV".}
+proc bindBufferOffsetNV*(target: GLenum, index: uint32, buffer: uint32, offset: int32): void {.glew_lib, importc: "glBindBufferOffsetNV".}
+proc bindBufferRangeNV*(target: GLenum, index: uint32, buffer: uint32, offset: int32, size: int32): void {.glew_lib, importc: "glBindBufferRangeNV".}
+proc endTransformFeedbackNV*(): void {.glew_lib, importc: "glEndTransformFeedbackNV".}
+proc getActiveVaryingNV*(program: uint32, index: uint32, bufSize: int32, length: ptr int32, size: ptr int32, tipe: ptr GLenum, name: ptr char): void {.glew_lib, importc: "glGetActiveVaryingNV".}
+proc getTransformFeedbackVaryingNV*(program: uint32, index: uint32, location: ptr int32): void {.glew_lib, importc: "glGetTransformFeedbackVaryingNV".}
+proc getVaryingLocationNV*(program: uint32, name: cstring): int32 {.glew_lib, importc: "glGetVaryingLocationNV".}
+proc transformFeedbackAttribsNV*(count: uint32, attribs: ptr int32, bufferMode: GLenum): void {.glew_lib, importc: "glTransformFeedbackAttribsNV".}
+proc transformFeedbackVaryingsNV*(program: uint32, count: int32, locations: ptr int32, bufferMode: GLenum): void {.glew_lib, importc: "glTransformFeedbackVaryingsNV".}
+proc bindTransformFeedbackNV*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBindTransformFeedbackNV".}
+proc deleteTransformFeedbacksNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteTransformFeedbacksNV".}
+proc drawTransformFeedbackNV*(mode: GLenum, id: uint32): void {.glew_lib, importc: "glDrawTransformFeedbackNV".}
+proc genTransformFeedbacksNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenTransformFeedbacksNV".}
+proc isTransformFeedbackNV*(id: uint32): bool {.glew_lib, importc: "glIsTransformFeedbackNV".}
+proc pauseTransformFeedbackNV*(): void {.glew_lib, importc: "glPauseTransformFeedbackNV".}
+proc resumeTransformFeedbackNV*(): void {.glew_lib, importc: "glResumeTransformFeedbackNV".}
+proc vDPAUFiniNV*(): void {.glew_lib, importc: "glVDPAUFiniNV".}
+proc vDPAUGetSurfaceivNV*(surface: int32, pname: GLenum, bufSize: int32, length: ptr int32, values: ptr int32): void {.glew_lib, importc: "glVDPAUGetSurfaceivNV".}
+proc vDPAUInitNV*(vdpDevice: pointer, getProcAddress: pointer): void {.glew_lib, importc: "glVDPAUInitNV".}
+proc vDPAUIsSurfaceNV*(surface: int32): void {.glew_lib, importc: "glVDPAUIsSurfaceNV".}
+proc vDPAUMapSurfacesNV*(numSurfaces: int32, surfaces: ptr int32): void {.glew_lib, importc: "glVDPAUMapSurfacesNV".}
+proc vDPAURegisterOutputSurfaceNV*(vdpSurface: pointer, target: GLenum, numTextureNames: int32, textureNames: ptr uint32): int32 {.glew_lib, importc: "glVDPAURegisterOutputSurfaceNV".}
+proc vDPAURegisterVideoSurfaceNV*(vdpSurface: pointer, target: GLenum, numTextureNames: int32, textureNames: ptr uint32): int32 {.glew_lib, importc: "glVDPAURegisterVideoSurfaceNV".}
+proc vDPAUSurfaceAccessNV*(surface: int32, access: GLenum): void {.glew_lib, importc: "glVDPAUSurfaceAccessNV".}
+proc vDPAUUnmapSurfacesNV*(numSurface: int32, surfaces: ptr int32): void {.glew_lib, importc: "glVDPAUUnmapSurfacesNV".}
+proc vDPAUUnregisterSurfaceNV*(surface: int32): void {.glew_lib, importc: "glVDPAUUnregisterSurfaceNV".}
+proc flushVertexArrayRangeNV*(): void {.glew_lib, importc: "glFlushVertexArrayRangeNV".}
+proc vertexArrayRangeNV*(length: int32, poynter: pointer): void {.glew_lib, importc: "glVertexArrayRangeNV".}
+proc getVertexAttribLi64vNV*(index: uint32, pname: GLenum, params: ptr int64): void {.glew_lib, importc: "glGetVertexAttribLi64vNV".}
+proc getVertexAttribLui64vNV*(index: uint32, pname: GLenum, params: ptr uint64): void {.glew_lib, importc: "glGetVertexAttribLui64vNV".}
+proc vertexAttribL1i64NV*(index: uint32, x: int64): void {.glew_lib, importc: "glVertexAttribL1i64NV".}
+proc vertexAttribL1i64vNV*(index: uint32, v: ptr int64): void {.glew_lib, importc: "glVertexAttribL1i64vNV".}
+proc vertexAttribL1ui64NV*(index: uint32, x: uint64): void {.glew_lib, importc: "glVertexAttribL1ui64NV".}
+proc vertexAttribL1ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib, importc: "glVertexAttribL1ui64vNV".}
+proc vertexAttribL2i64NV*(index: uint32, x: int64, y: int64): void {.glew_lib, importc: "glVertexAttribL2i64NV".}
+proc vertexAttribL2i64vNV*(index: uint32, v: ptr int64): void {.glew_lib, importc: "glVertexAttribL2i64vNV".}
+proc vertexAttribL2ui64NV*(index: uint32, x: uint64, y: uint64): void {.glew_lib, importc: "glVertexAttribL2ui64NV".}
+proc vertexAttribL2ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib, importc: "glVertexAttribL2ui64vNV".}
+proc vertexAttribL3i64NV*(index: uint32, x: int64, y: int64, z: int64): void {.glew_lib, importc: "glVertexAttribL3i64NV".}
+proc vertexAttribL3i64vNV*(index: uint32, v: ptr int64): void {.glew_lib, importc: "glVertexAttribL3i64vNV".}
+proc vertexAttribL3ui64NV*(index: uint32, x: uint64, y: uint64, z: uint64): void {.glew_lib, importc: "glVertexAttribL3ui64NV".}
+proc vertexAttribL3ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib, importc: "glVertexAttribL3ui64vNV".}
+proc vertexAttribL4i64NV*(index: uint32, x: int64, y: int64, z: int64, w: int64): void {.glew_lib, importc: "glVertexAttribL4i64NV".}
+proc vertexAttribL4i64vNV*(index: uint32, v: ptr int64): void {.glew_lib, importc: "glVertexAttribL4i64vNV".}
+proc vertexAttribL4ui64NV*(index: uint32, x: uint64, y: uint64, z: uint64, w: uint64): void {.glew_lib, importc: "glVertexAttribL4ui64NV".}
+proc vertexAttribL4ui64vNV*(index: uint32, v: ptr uint64): void {.glew_lib, importc: "glVertexAttribL4ui64vNV".}
+proc vertexAttribLFormatNV*(index: uint32, size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glVertexAttribLFormatNV".}
+proc bufferAddressRangeNV*(pname: GLenum, index: uint32, address: uint64, length: int32): void {.glew_lib, importc: "glBufferAddressRangeNV".}
+proc colorFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glColorFormatNV".}
+proc edgeFlagFormatNV*(stride: int32): void {.glew_lib, importc: "glEdgeFlagFormatNV".}
+proc fogCoordFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib, importc: "glFogCoordFormatNV".}
+proc getIntegerui64i_vNV*(value: GLenum, index: uint32, result: ptr uint64): void {.glew_lib, importc: "glGetIntegerui64i_vNV".}
+proc indexFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib, importc: "glIndexFormatNV".}
+proc normalFormatNV*(tipe: GLenum, stride: int32): void {.glew_lib, importc: "glNormalFormatNV".}
+proc secondaryColorFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glSecondaryColorFormatNV".}
+proc texCoordFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glTexCoordFormatNV".}
+proc vertexAttribFormatNV*(index: uint32, size: int32, tipe: GLenum, normalized: bool, stride: int32): void {.glew_lib, importc: "glVertexAttribFormatNV".}
+proc vertexAttribIFormatNV*(index: uint32, size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glVertexAttribIFormatNV".}
+proc vertexFormatNV*(size: int32, tipe: GLenum, stride: int32): void {.glew_lib, importc: "glVertexFormatNV".}
+proc areProgramsResidentNV*(n: int32, ids: ptr uint32, residences: ptr bool): bool {.glew_lib, importc: "glAreProgramsResidentNV".}
+proc bindProgramNV*(target: GLenum, id: uint32): void {.glew_lib, importc: "glBindProgramNV".}
+proc deleteProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glDeleteProgramsNV".}
+proc executeProgramNV*(target: GLenum, id: uint32, params: ptr float32): void {.glew_lib, importc: "glExecuteProgramNV".}
+proc genProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glGenProgramsNV".}
+proc getProgramParameterdvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetProgramParameterdvNV".}
+proc getProgramParameterfvNV*(target: GLenum, index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetProgramParameterfvNV".}
+proc getProgramStringNV*(id: uint32, pname: GLenum, program: ptr uint8): void {.glew_lib, importc: "glGetProgramStringNV".}
+proc getProgramivNV*(id: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetProgramivNV".}
+proc getTrackMatrixivNV*(target: GLenum, address: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTrackMatrixivNV".}
+proc getVertexAttribPointervNV*(index: uint32, pname: GLenum, poynter: ptr void): void {.glew_lib, importc: "glGetVertexAttribPointervNV".}
+proc getVertexAttribdvNV*(index: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVertexAttribdvNV".}
+proc getVertexAttribfvNV*(index: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVertexAttribfvNV".}
+proc getVertexAttribivNV*(index: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVertexAttribivNV".}
+proc isProgramNV*(id: uint32): bool {.glew_lib, importc: "glIsProgramNV".}
+proc loadProgramNV*(target: GLenum, id: uint32, len: int32, program: ptr uint8): void {.glew_lib, importc: "glLoadProgramNV".}
+proc programParameter4dNV*(target: GLenum, index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glProgramParameter4dNV".}
+proc programParameter4dvNV*(target: GLenum, index: uint32, params: ptr float64): void {.glew_lib, importc: "glProgramParameter4dvNV".}
+proc programParameter4fNV*(target: GLenum, index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glProgramParameter4fNV".}
+proc programParameter4fvNV*(target: GLenum, index: uint32, params: ptr float32): void {.glew_lib, importc: "glProgramParameter4fvNV".}
+proc programParameters4dvNV*(target: GLenum, index: uint32, num: int32, params: ptr float64): void {.glew_lib, importc: "glProgramParameters4dvNV".}
+proc programParameters4fvNV*(target: GLenum, index: uint32, num: int32, params: ptr float32): void {.glew_lib, importc: "glProgramParameters4fvNV".}
+proc requestResidentProgramsNV*(n: int32, ids: ptr uint32): void {.glew_lib, importc: "glRequestResidentProgramsNV".}
+proc trackMatrixNV*(target: GLenum, address: uint32, matrix: GLenum, transform: GLenum): void {.glew_lib, importc: "glTrackMatrixNV".}
+proc vertexAttrib1dNV*(index: uint32, x: float64): void {.glew_lib, importc: "glVertexAttrib1dNV".}
+proc vertexAttrib1dvNV*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib1dvNV".}
+proc vertexAttrib1fNV*(index: uint32, x: float32): void {.glew_lib, importc: "glVertexAttrib1fNV".}
+proc vertexAttrib1fvNV*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib1fvNV".}
+proc vertexAttrib1sNV*(index: uint32, x: int16): void {.glew_lib, importc: "glVertexAttrib1sNV".}
+proc vertexAttrib1svNV*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib1svNV".}
+proc vertexAttrib2dNV*(index: uint32, x: float64, y: float64): void {.glew_lib, importc: "glVertexAttrib2dNV".}
+proc vertexAttrib2dvNV*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib2dvNV".}
+proc vertexAttrib2fNV*(index: uint32, x: float32, y: float32): void {.glew_lib, importc: "glVertexAttrib2fNV".}
+proc vertexAttrib2fvNV*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib2fvNV".}
+proc vertexAttrib2sNV*(index: uint32, x: int16, y: int16): void {.glew_lib, importc: "glVertexAttrib2sNV".}
+proc vertexAttrib2svNV*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib2svNV".}
+proc vertexAttrib3dNV*(index: uint32, x: float64, y: float64, z: float64): void {.glew_lib, importc: "glVertexAttrib3dNV".}
+proc vertexAttrib3dvNV*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib3dvNV".}
+proc vertexAttrib3fNV*(index: uint32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glVertexAttrib3fNV".}
+proc vertexAttrib3fvNV*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib3fvNV".}
+proc vertexAttrib3sNV*(index: uint32, x: int16, y: int16, z: int16): void {.glew_lib, importc: "glVertexAttrib3sNV".}
+proc vertexAttrib3svNV*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib3svNV".}
+proc vertexAttrib4dNV*(index: uint32, x: float64, y: float64, z: float64, w: float64): void {.glew_lib, importc: "glVertexAttrib4dNV".}
+proc vertexAttrib4dvNV*(index: uint32, v: ptr float64): void {.glew_lib, importc: "glVertexAttrib4dvNV".}
+proc vertexAttrib4fNV*(index: uint32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glVertexAttrib4fNV".}
+proc vertexAttrib4fvNV*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glVertexAttrib4fvNV".}
+proc vertexAttrib4sNV*(index: uint32, x: int16, y: int16, z: int16, w: int16): void {.glew_lib, importc: "glVertexAttrib4sNV".}
+proc vertexAttrib4svNV*(index: uint32, v: ptr int16): void {.glew_lib, importc: "glVertexAttrib4svNV".}
+proc vertexAttrib4ubNV*(index: uint32, x: uint8, y: uint8, z: uint8, w: uint8): void {.glew_lib, importc: "glVertexAttrib4ubNV".}
+proc vertexAttrib4ubvNV*(index: uint32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttrib4ubvNV".}
+proc vertexAttribPointerNV*(index: uint32, size: int32, tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glVertexAttribPointerNV".}
+proc vertexAttribs1dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribs1dvNV".}
+proc vertexAttribs1fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib, importc: "glVertexAttribs1fvNV".}
+proc vertexAttribs1svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib, importc: "glVertexAttribs1svNV".}
+proc vertexAttribs2dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribs2dvNV".}
+proc vertexAttribs2fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib, importc: "glVertexAttribs2fvNV".}
+proc vertexAttribs2svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib, importc: "glVertexAttribs2svNV".}
+proc vertexAttribs3dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribs3dvNV".}
+proc vertexAttribs3fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib, importc: "glVertexAttribs3fvNV".}
+proc vertexAttribs3svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib, importc: "glVertexAttribs3svNV".}
+proc vertexAttribs4dvNV*(index: uint32, n: int32, v: ptr float64): void {.glew_lib, importc: "glVertexAttribs4dvNV".}
+proc vertexAttribs4fvNV*(index: uint32, n: int32, v: ptr float32): void {.glew_lib, importc: "glVertexAttribs4fvNV".}
+proc vertexAttribs4svNV*(index: uint32, n: int32, v: ptr int16): void {.glew_lib, importc: "glVertexAttribs4svNV".}
+proc vertexAttribs4ubvNV*(index: uint32, n: int32, v: ptr uint8): void {.glew_lib, importc: "glVertexAttribs4ubvNV".}
+proc beginVideoCaptureNV*(video_capture_slot: uint32): void {.glew_lib, importc: "glBeginVideoCaptureNV".}
+proc bindVideoCaptureStreamBufferNV*(video_capture_slot: uint32, stream: uint32, frame_region: GLenum, offset: int32): void {.glew_lib, importc: "glBindVideoCaptureStreamBufferNV".}
+proc bindVideoCaptureStreamTextureNV*(video_capture_slot: uint32, stream: uint32, frame_region: GLenum, target: GLenum, texture: uint32): void {.glew_lib, importc: "glBindVideoCaptureStreamTextureNV".}
+proc endVideoCaptureNV*(video_capture_slot: uint32): void {.glew_lib, importc: "glEndVideoCaptureNV".}
+proc getVideoCaptureStreamdvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glGetVideoCaptureStreamdvNV".}
+proc getVideoCaptureStreamfvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetVideoCaptureStreamfvNV".}
+proc getVideoCaptureStreamivNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVideoCaptureStreamivNV".}
+proc getVideoCaptureivNV*(video_capture_slot: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetVideoCaptureivNV".}
+proc videoCaptureNV*(video_capture_slot: uint32, sequence_num: ptr uint32, capture_time: ptr uint64): GLenum {.glew_lib, importc: "glVideoCaptureNV".}
+proc videoCaptureStreamParameterdvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float64): void {.glew_lib, importc: "glVideoCaptureStreamParameterdvNV".}
+proc videoCaptureStreamParameterfvNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glVideoCaptureStreamParameterfvNV".}
+proc videoCaptureStreamParameterivNV*(video_capture_slot: uint32, stream: uint32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glVideoCaptureStreamParameterivNV".}
+proc depthRangeArrayfvNV*(first: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glDepthRangeArrayfvNV".}
+proc depthRangeIndexedfNV*(index: uint32, n: float32, f: float32): void {.glew_lib, importc: "glDepthRangeIndexedfNV".}
+proc disableiNV*(target: GLenum, index: uint32): void {.glew_lib, importc: "glDisableiNV".}
+proc enableiNV*(target: GLenum, index: uint32): void {.glew_lib, importc: "glEnableiNV".}
+proc getFloati_vNV*(target: GLenum, index: uint32, data: ptr float32): void {.glew_lib, importc: "glGetFloati_vNV".}
+proc isEnablediNV*(target: GLenum, index: uint32): bool {.glew_lib, importc: "glIsEnablediNV".}
+proc scissorArrayvNV*(first: uint32, count: int32, v: ptr int32): void {.glew_lib, importc: "glScissorArrayvNV".}
+proc scissorIndexedNV*(index: uint32, left: int32, bottom: int32, width: int32, height: int32): void {.glew_lib, importc: "glScissorIndexedNV".}
+proc scissorIndexedvNV*(index: uint32, v: ptr int32): void {.glew_lib, importc: "glScissorIndexedvNV".}
+proc viewportArrayvNV*(first: uint32, count: int32, v: ptr float32): void {.glew_lib, importc: "glViewportArrayvNV".}
+proc viewportIndexedfNV*(index: uint32, x: float32, y: float32, w: float32, h: float32): void {.glew_lib, importc: "glViewportIndexedfNV".}
+proc viewportIndexedfvNV*(index: uint32, v: ptr float32): void {.glew_lib, importc: "glViewportIndexedfvNV".}
+proc viewportSwizzleNV*(index: uint32, swizzlex: GLenum, swizzley: GLenum, swizzlez: GLenum, swizzlew: GLenum): void {.glew_lib, importc: "glViewportSwizzleNV".}
+proc framebufferTextureMultiviewOVR*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, baseViewIndex: int32, numViews: int32): void {.glew_lib, importc: "glFramebufferTextureMultiviewOVR".}
+proc framebufferTextureMultisampleMultiviewOVR*(target: GLenum, attachment: GLenum, texture: uint32, level: int32, samples: int32, baseViewIndex: int32, numViews: int32): void {.glew_lib, importc: "glFramebufferTextureMultisampleMultiviewOVR".}
+proc alphaFuncQCOM*(fun: GLenum, reff: float32): void {.glew_lib, importc: "glAlphaFuncQCOM".}
+proc disableDriverControlQCOM*(driverControl: uint32): void {.glew_lib, importc: "glDisableDriverControlQCOM".}
+proc enableDriverControlQCOM*(driverControl: uint32): void {.glew_lib, importc: "glEnableDriverControlQCOM".}
+proc getDriverControlStringQCOM*(driverControl: uint32, bufSize: int32, length: ptr int32, driverControlString: ptr char): void {.glew_lib, importc: "glGetDriverControlStringQCOM".}
+proc getDriverControlsQCOM*(num: ptr int32, size: int32, driverControls: ptr uint32): void {.glew_lib, importc: "glGetDriverControlsQCOM".}
+proc extGetBufferPointervQCOM*(target: GLenum, params: ptr void): void {.glew_lib, importc: "glExtGetBufferPointervQCOM".}
+proc extGetBuffersQCOM*(buffers: ptr uint32, maxBuffers: int32, numBuffers: ptr int32): void {.glew_lib, importc: "glExtGetBuffersQCOM".}
+proc extGetFramebuffersQCOM*(framebuffers: ptr uint32, maxFramebuffers: int32, numFramebuffers: ptr int32): void {.glew_lib, importc: "glExtGetFramebuffersQCOM".}
+proc extGetRenderbuffersQCOM*(renderbuffers: ptr uint32, maxRenderbuffers: int32, numRenderbuffers: ptr int32): void {.glew_lib, importc: "glExtGetRenderbuffersQCOM".}
+proc extGetTexLevelParameterivQCOM*(texture: uint32, face: GLenum, level: int32, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glExtGetTexLevelParameterivQCOM".}
+proc extGetTexSubImageQCOM*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, width: int32, height: int32, depth: int32, format: GLenum, tipe: GLenum, texels: pointer): void {.glew_lib, importc: "glExtGetTexSubImageQCOM".}
+proc extGetTexturesQCOM*(textures: ptr uint32, maxTextures: int32, numTextures: ptr int32): void {.glew_lib, importc: "glExtGetTexturesQCOM".}
+proc extTexObjectStateOverrideiQCOM*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glExtTexObjectStateOverrideiQCOM".}
+proc extGetProgramBinarySourceQCOM*(program: uint32, shadertype: GLenum, source: ptr char, length: ptr int32): void {.glew_lib, importc: "glExtGetProgramBinarySourceQCOM".}
+proc extGetProgramsQCOM*(programs: ptr uint32, maxPrograms: int32, numPrograms: ptr int32): void {.glew_lib, importc: "glExtGetProgramsQCOM".}
+proc extGetShadersQCOM*(shaders: ptr uint32, maxShaders: int32, numShaders: ptr int32): void {.glew_lib, importc: "glExtGetShadersQCOM".}
+proc extIsProgramBinaryQCOM*(program: uint32): bool {.glew_lib, importc: "glExtIsProgramBinaryQCOM".}
+proc framebufferFoveationConfigQCOM*(fbo: uint32, numLayers: uint32, focalPointsPerLayer: uint32, requestedFeatures: uint32, providedFeatures: ptr uint32): void {.glew_lib, importc: "glFramebufferFoveationConfigQCOM".}
+proc framebufferFoveationParametersQCOM*(fbo: uint32, layer: uint32, focalPoint: uint32, focalX: float32, focalY: float32, gainX: float32, gainY: float32, foveaArea: float32): void {.glew_lib, importc: "glFramebufferFoveationParametersQCOM".}
+proc framebufferFetchBarrierQCOM*(): void {.glew_lib, importc: "glFramebufferFetchBarrierQCOM".}
+proc endTilingQCOM*(preserveMask: uint32): void {.glew_lib, importc: "glEndTilingQCOM".}
+proc startTilingQCOM*(x: uint32, y: uint32, width: uint32, height: uint32, preserveMask: uint32): void {.glew_lib, importc: "glStartTilingQCOM".}
+proc alphaFuncx*(fun: GLenum, reff: int32): void {.glew_lib, importc: "glAlphaFuncx".}
+proc clearColorx*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib, importc: "glClearColorx".}
+proc clearDepthx*(depth: int32): void {.glew_lib, importc: "glClearDepthx".}
+proc color4x*(red: int32, green: int32, blue: int32, alpha: int32): void {.glew_lib, importc: "glColor4x".}
+proc depthRangex*(zNear: int32, zFar: int32): void {.glew_lib, importc: "glDepthRangex".}
+proc fogx*(pname: GLenum, param: int32): void {.glew_lib, importc: "glFogx".}
+proc fogxv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFogxv".}
+proc frustumf*(left: float32, right: float32, bottom: float32, top: float32, zNear: float32, zFar: float32): void {.glew_lib, importc: "glFrustumf".}
+proc frustumx*(left: int32, right: int32, bottom: int32, top: int32, zNear: int32, zFar: int32): void {.glew_lib, importc: "glFrustumx".}
+proc lightModelx*(pname: GLenum, param: int32): void {.glew_lib, importc: "glLightModelx".}
+proc lightModelxv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glLightModelxv".}
+proc lightx*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glLightx".}
+proc lightxv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glLightxv".}
+proc lineWidthx*(width: int32): void {.glew_lib, importc: "glLineWidthx".}
+proc loadMatrixx*(m: ptr int32): void {.glew_lib, importc: "glLoadMatrixx".}
+proc materialx*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glMaterialx".}
+proc materialxv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glMaterialxv".}
+proc multMatrixx*(m: ptr int32): void {.glew_lib, importc: "glMultMatrixx".}
+proc multiTexCoord4x*(target: GLenum, s: int32, t: int32, r: int32, q: int32): void {.glew_lib, importc: "glMultiTexCoord4x".}
+proc normal3x*(nx: int32, ny: int32, nz: int32): void {.glew_lib, importc: "glNormal3x".}
+proc orthof*(left: float32, right: float32, bottom: float32, top: float32, zNear: float32, zFar: float32): void {.glew_lib, importc: "glOrthof".}
+proc orthox*(left: int32, right: int32, bottom: int32, top: int32, zNear: int32, zFar: int32): void {.glew_lib, importc: "glOrthox".}
+proc pointSizex*(size: int32): void {.glew_lib, importc: "glPointSizex".}
+proc polygonOffsetx*(factor: int32, units: int32): void {.glew_lib, importc: "glPolygonOffsetx".}
+proc rotatex*(angle: int32, x: int32, y: int32, z: int32): void {.glew_lib, importc: "glRotatex".}
+proc sampleCoveragex*(value: int32, invert: bool): void {.glew_lib, importc: "glSampleCoveragex".}
+proc scalex*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glScalex".}
+proc texEnvx*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTexEnvx".}
+proc texEnvxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexEnvxv".}
+proc texParameterx*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glTexParameterx".}
+proc translatex*(x: int32, y: int32, z: int32): void {.glew_lib, importc: "glTranslatex".}
+proc clipPlanef*(plane: GLenum, equation: ptr float32): void {.glew_lib, importc: "glClipPlanef".}
+proc clipPlanex*(plane: GLenum, equation: ptr int32): void {.glew_lib, importc: "glClipPlanex".}
+proc getClipPlanef*(pname: GLenum, eqn: ptr float32): void {.glew_lib, importc: "glGetClipPlanef".}
+proc getClipPlanex*(pname: GLenum, eqn: ptr int32): void {.glew_lib, importc: "glGetClipPlanex".}
+proc getFixedv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetFixedv".}
+proc getLightxv*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetLightxv".}
+proc getMaterialxv*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMaterialxv".}
+proc getTexEnvxv*(env: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexEnvxv".}
+proc getTexParameterxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetTexParameterxv".}
+proc pointParameterx*(pname: GLenum, param: int32): void {.glew_lib, importc: "glPointParameterx".}
+proc pointParameterxv*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glPointParameterxv".}
+proc pointSizePointerOES*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glPointSizePointerOES".}
+proc texParameterxv*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glTexParameterxv".}
+proc errorStringREGAL*(error: GLenum): ptr char {.glew_lib, importc: "glErrorStringREGAL".}
+proc getExtensionREGAL*(ext: cstring): bool {.glew_lib, importc: "glGetExtensionREGAL".}
+proc isSupportedREGAL*(ext: cstring): bool {.glew_lib, importc: "glIsSupportedREGAL".}
+proc getProcAddressREGAL*(name: cstring): void {.glew_lib, importc: "glGetProcAddressREGAL".}
+proc detailTexFuncSGIS*(target: GLenum, n: int32, points: ptr float32): void {.glew_lib, importc: "glDetailTexFuncSGIS".}
+proc getDetailTexFuncSGIS*(target: GLenum, points: ptr float32): void {.glew_lib, importc: "glGetDetailTexFuncSGIS".}
+proc fogFuncSGIS*(n: int32, points: ptr float32): void {.glew_lib, importc: "glFogFuncSGIS".}
+proc getFogFuncSGIS*(points: ptr float32): void {.glew_lib, importc: "glGetFogFuncSGIS".}
+proc sampleMaskSGIS*(value: float32, invert: bool): void {.glew_lib, importc: "glSampleMaskSGIS".}
+proc samplePatternSGIS*(pattern: GLenum): void {.glew_lib, importc: "glSamplePatternSGIS".}
+proc interleavedTextureCoordSetsSGIS*(factor: int32): void {.glew_lib, importc: "glInterleavedTextureCoordSetsSGIS".}
+proc selectTextureCoordSetSGIS*(target: GLenum): void {.glew_lib, importc: "glSelectTextureCoordSetSGIS".}
+proc selectTextureSGIS*(target: GLenum): void {.glew_lib, importc: "glSelectTextureSGIS".}
+proc selectTextureTransformSGIS*(target: GLenum): void {.glew_lib, importc: "glSelectTextureTransformSGIS".}
+proc multisampleSubRectPosSGIS*(x: int32, y: int32): void {.glew_lib, importc: "glMultisampleSubRectPosSGIS".}
+proc getSharpenTexFuncSGIS*(target: GLenum, points: ptr float32): void {.glew_lib, importc: "glGetSharpenTexFuncSGIS".}
+proc sharpenTexFuncSGIS*(target: GLenum, n: int32, points: ptr float32): void {.glew_lib, importc: "glSharpenTexFuncSGIS".}
+proc texImage4DSGIS*(target: GLenum, level: int32, internalformat: GLenum, width: int32, height: int32, depth: int32, extent: int32, border: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexImage4DSGIS".}
+proc texSubImage4DSGIS*(target: GLenum, level: int32, xoffset: int32, yoffset: int32, zoffset: int32, woffset: int32, width: int32, height: int32, depth: int32, extent: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glTexSubImage4DSGIS".}
+proc getTexFilterFuncSGIS*(target: GLenum, filter: GLenum, weights: ptr float32): void {.glew_lib, importc: "glGetTexFilterFuncSGIS".}
+proc texFilterFuncSGIS*(target: GLenum, filter: GLenum, n: int32, weights: ptr float32): void {.glew_lib, importc: "glTexFilterFuncSGIS".}
+proc asyncMarkerSGIX*(marker: uint32): void {.glew_lib, importc: "glAsyncMarkerSGIX".}
+proc deleteAsyncMarkersSGIX*(marker: uint32, rangee: int32): void {.glew_lib, importc: "glDeleteAsyncMarkersSGIX".}
+proc finishAsyncSGIX*(markerp: ptr uint32): int32 {.glew_lib, importc: "glFinishAsyncSGIX".}
+proc genAsyncMarkersSGIX*(rangee: int32): uint32 {.glew_lib, importc: "glGenAsyncMarkersSGIX".}
+proc isAsyncMarkerSGIX*(marker: uint32): bool {.glew_lib, importc: "glIsAsyncMarkerSGIX".}
+proc pollAsyncSGIX*(markerp: ptr uint32): int32 {.glew_lib, importc: "glPollAsyncSGIX".}
+proc addressSpace*(space: GLenum, mask: uint32): void {.glew_lib, importc: "glAddressSpace".}
+proc dataPipe*(space: GLenum): int32 {.glew_lib, importc: "glDataPipe".}
+proc flushRasterSGIX*(): void {.glew_lib, importc: "glFlushRasterSGIX".}
+proc fogLayersSGIX*(n: int32, points: ptr float32): void {.glew_lib, importc: "glFogLayersSGIX".}
+proc getFogLayersSGIX*(points: ptr float32): void {.glew_lib, importc: "glGetFogLayersSGIX".}
+proc textureFogSGIX*(pname: GLenum): void {.glew_lib, importc: "glTextureFogSGIX".}
+proc fragmentColorMaterialSGIX*(face: GLenum, mode: GLenum): void {.glew_lib, importc: "glFragmentColorMaterialSGIX".}
+proc fragmentLightModelfSGIX*(pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentLightModelfSGIX".}
+proc fragmentLightModelfvSGIX*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentLightModelfvSGIX".}
+proc fragmentLightModeliSGIX*(pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentLightModeliSGIX".}
+proc fragmentLightModelivSGIX*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentLightModelivSGIX".}
+proc fragmentLightfSGIX*(light: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentLightfSGIX".}
+proc fragmentLightfvSGIX*(light: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentLightfvSGIX".}
+proc fragmentLightiSGIX*(light: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentLightiSGIX".}
+proc fragmentLightivSGIX*(light: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentLightivSGIX".}
+proc fragmentMaterialfSGIX*(face: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glFragmentMaterialfSGIX".}
+proc fragmentMaterialfvSGIX*(face: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glFragmentMaterialfvSGIX".}
+proc fragmentMaterialiSGIX*(face: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glFragmentMaterialiSGIX".}
+proc fragmentMaterialivSGIX*(face: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glFragmentMaterialivSGIX".}
+proc getFragmentLightfvSGIX*(light: GLenum, value: GLenum, data: ptr float32): void {.glew_lib, importc: "glGetFragmentLightfvSGIX".}
+proc getFragmentLightivSGIX*(light: GLenum, value: GLenum, data: ptr int32): void {.glew_lib, importc: "glGetFragmentLightivSGIX".}
+proc getFragmentMaterialfvSGIX*(face: GLenum, pname: GLenum, data: ptr float32): void {.glew_lib, importc: "glGetFragmentMaterialfvSGIX".}
+proc getFragmentMaterialivSGIX*(face: GLenum, pname: GLenum, data: ptr int32): void {.glew_lib, importc: "glGetFragmentMaterialivSGIX".}
+proc frameZoomSGIX*(factor: int32): void {.glew_lib, importc: "glFrameZoomSGIX".}
+proc iglooInterfaceSGIX*(pname: GLenum, param: pointer): void {.glew_lib, importc: "glIglooInterfaceSGIX".}
+proc allocMPEGPredictorsSGIX*(width: int32, height: int32, n: int32, predictors: ptr uint32): void {.glew_lib, importc: "glAllocMPEGPredictorsSGIX".}
+proc deleteMPEGPredictorsSGIX*(n: int32, predictors: ptr uint32): void {.glew_lib, importc: "glDeleteMPEGPredictorsSGIX".}
+proc genMPEGPredictorsSGIX*(n: int32, predictors: ptr uint32): void {.glew_lib, importc: "glGenMPEGPredictorsSGIX".}
+proc getMPEGParameterfvSGIX*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetMPEGParameterfvSGIX".}
+proc getMPEGParameterivSGIX*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetMPEGParameterivSGIX".}
+proc getMPEGPredictorSGIX*(target: GLenum, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glGetMPEGPredictorSGIX".}
+proc getMPEGQuantTableubv*(target: GLenum, values: ptr uint8): void {.glew_lib, importc: "glGetMPEGQuantTableubv".}
+proc isMPEGPredictorSGIX*(predictor: uint32): bool {.glew_lib, importc: "glIsMPEGPredictorSGIX".}
+proc mPEGPredictorSGIX*(target: GLenum, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glMPEGPredictorSGIX".}
+proc mPEGQuantTableubv*(target: GLenum, values: ptr uint8): void {.glew_lib, importc: "glMPEGQuantTableubv".}
+proc swapMPEGPredictorsSGIX*(target0: GLenum, target1: GLenum): void {.glew_lib, importc: "glSwapMPEGPredictorsSGIX".}
+proc getNonlinLightfvSGIX*(light: GLenum, pname: GLenum, terms: ptr int32, data: ptr float32): void {.glew_lib, importc: "glGetNonlinLightfvSGIX".}
+proc getNonlinMaterialfvSGIX*(face: GLenum, pname: GLenum, terms: ptr int32, data: ptr float32): void {.glew_lib, importc: "glGetNonlinMaterialfvSGIX".}
+proc nonlinLightfvSGIX*(light: GLenum, pname: GLenum, terms: int32, params: ptr float32): void {.glew_lib, importc: "glNonlinLightfvSGIX".}
+proc nonlinMaterialfvSGIX*(face: GLenum, pname: GLenum, terms: int32, params: ptr float32): void {.glew_lib, importc: "glNonlinMaterialfvSGIX".}
+proc pixelTexGenSGIX*(mode: GLenum): void {.glew_lib, importc: "glPixelTexGenSGIX".}
+proc deformSGIX*(mask: uint32): void {.glew_lib, importc: "glDeformSGIX".}
+proc loadIdentityDeformationMapSGIX*(mask: uint32): void {.glew_lib, importc: "glLoadIdentityDeformationMapSGIX".}
+proc meshBreadthSGIX*(breadth: int32): void {.glew_lib, importc: "glMeshBreadthSGIX".}
+proc meshStrideSGIX*(stride: int32): void {.glew_lib, importc: "glMeshStrideSGIX".}
+proc referencePlaneSGIX*(equation: ptr float64): void {.glew_lib, importc: "glReferencePlaneSGIX".}
+proc spriteParameterfSGIX*(pname: GLenum, param: float32): void {.glew_lib, importc: "glSpriteParameterfSGIX".}
+proc spriteParameterfvSGIX*(pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glSpriteParameterfvSGIX".}
+proc spriteParameteriSGIX*(pname: GLenum, param: int32): void {.glew_lib, importc: "glSpriteParameteriSGIX".}
+proc spriteParameterivSGIX*(pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glSpriteParameterivSGIX".}
+proc tagSampleBufferSGIX*(): void {.glew_lib, importc: "glTagSampleBufferSGIX".}
+proc getVectorOperationSGIX*(operation: GLenum): void {.glew_lib, importc: "glGetVectorOperationSGIX".}
+proc vectorOperationSGIX*(operation: GLenum): void {.glew_lib, importc: "glVectorOperationSGIX".}
+proc areVertexArraysResidentSGIX*(n: int32, arrays: ptr uint32, residences: ptr bool): bool {.glew_lib, importc: "glAreVertexArraysResidentSGIX".}
+proc bindVertexArraySGIX*(arrai: uint32): void {.glew_lib, importc: "glBindVertexArraySGIX".}
+proc deleteVertexArraysSGIX*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glDeleteVertexArraysSGIX".}
+proc genVertexArraysSGIX*(n: int32, arrays: ptr uint32): void {.glew_lib, importc: "glGenVertexArraysSGIX".}
+proc isVertexArraySGIX*(arrai: uint32): bool {.glew_lib, importc: "glIsVertexArraySGIX".}
+proc prioritizeVertexArraysSGIX*(n: int32, arrays: ptr uint32, priorities: ptr float32): void {.glew_lib, importc: "glPrioritizeVertexArraysSGIX".}
+proc colorTableParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glColorTableParameterfvSGI".}
+proc colorTableParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glColorTableParameterivSGI".}
+proc colorTableSGI*(target: GLenum, internalformat: GLenum, width: int32, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib, importc: "glColorTableSGI".}
+proc copyColorTableSGI*(target: GLenum, internalformat: GLenum, x: int32, y: int32, width: int32): void {.glew_lib, importc: "glCopyColorTableSGI".}
+proc getColorTableParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetColorTableParameterfvSGI".}
+proc getColorTableParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetColorTableParameterivSGI".}
+proc getColorTableSGI*(target: GLenum, format: GLenum, tipe: GLenum, table: pointer): void {.glew_lib, importc: "glGetColorTableSGI".}
+proc getPixelTransformParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glGetPixelTransformParameterfvSGI".}
+proc getPixelTransformParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glGetPixelTransformParameterivSGI".}
+proc pixelTransformParameterfSGI*(target: GLenum, pname: GLenum, param: float32): void {.glew_lib, importc: "glPixelTransformParameterfSGI".}
+proc pixelTransformParameterfvSGI*(target: GLenum, pname: GLenum, params: ptr float32): void {.glew_lib, importc: "glPixelTransformParameterfvSGI".}
+proc pixelTransformParameteriSGI*(target: GLenum, pname: GLenum, param: int32): void {.glew_lib, importc: "glPixelTransformParameteriSGI".}
+proc pixelTransformParameterivSGI*(target: GLenum, pname: GLenum, params: ptr int32): void {.glew_lib, importc: "glPixelTransformParameterivSGI".}
+proc pixelTransformSGI*(target: GLenum): void {.glew_lib, importc: "glPixelTransformSGI".}
+proc finishTextureSUNX*(): void {.glew_lib, importc: "glFinishTextureSUNX".}
+proc globalAlphaFactorbSUN*(factor: int8): void {.glew_lib, importc: "glGlobalAlphaFactorbSUN".}
+proc globalAlphaFactordSUN*(factor: float64): void {.glew_lib, importc: "glGlobalAlphaFactordSUN".}
+proc globalAlphaFactorfSUN*(factor: float32): void {.glew_lib, importc: "glGlobalAlphaFactorfSUN".}
+proc globalAlphaFactoriSUN*(factor: int32): void {.glew_lib, importc: "glGlobalAlphaFactoriSUN".}
+proc globalAlphaFactorsSUN*(factor: int16): void {.glew_lib, importc: "glGlobalAlphaFactorsSUN".}
+proc globalAlphaFactorubSUN*(factor: uint8): void {.glew_lib, importc: "glGlobalAlphaFactorubSUN".}
+proc globalAlphaFactoruiSUN*(factor: uint32): void {.glew_lib, importc: "glGlobalAlphaFactoruiSUN".}
+proc globalAlphaFactorusSUN*(factor: uint16): void {.glew_lib, importc: "glGlobalAlphaFactorusSUN".}
+proc readVideoPixelsSUN*(x: int32, y: int32, width: int32, height: int32, format: GLenum, tipe: GLenum, pixels: pointer): void {.glew_lib, importc: "glReadVideoPixelsSUN".}
+proc replacementCodePointerSUN*(tipe: GLenum, stride: int32, poynter: pointer): void {.glew_lib, importc: "glReplacementCodePointerSUN".}
+proc replacementCodeubSUN*(code: uint8): void {.glew_lib, importc: "glReplacementCodeubSUN".}
+proc replacementCodeubvSUN*(code: ptr uint8): void {.glew_lib, importc: "glReplacementCodeubvSUN".}
+proc replacementCodeuiSUN*(code: uint32): void {.glew_lib, importc: "glReplacementCodeuiSUN".}
+proc replacementCodeuivSUN*(code: ptr uint32): void {.glew_lib, importc: "glReplacementCodeuivSUN".}
+proc replacementCodeusSUN*(code: uint16): void {.glew_lib, importc: "glReplacementCodeusSUN".}
+proc replacementCodeusvSUN*(code: ptr uint16): void {.glew_lib, importc: "glReplacementCodeusvSUN".}
+proc color3fVertex3fSUN*(r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glColor3fVertex3fSUN".}
+proc color3fVertex3fvSUN*(c: ptr float32, v: ptr float32): void {.glew_lib, importc: "glColor3fVertex3fvSUN".}
+proc color4fNormal3fVertex3fSUN*(r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glColor4fNormal3fVertex3fSUN".}
+proc color4fNormal3fVertex3fvSUN*(c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glColor4fNormal3fVertex3fvSUN".}
+proc color4ubVertex2fSUN*(r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32): void {.glew_lib, importc: "glColor4ubVertex2fSUN".}
+proc color4ubVertex2fvSUN*(c: ptr uint8, v: ptr float32): void {.glew_lib, importc: "glColor4ubVertex2fvSUN".}
+proc color4ubVertex3fSUN*(r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glColor4ubVertex3fSUN".}
+proc color4ubVertex3fvSUN*(c: ptr uint8, v: ptr float32): void {.glew_lib, importc: "glColor4ubVertex3fvSUN".}
+proc normal3fVertex3fSUN*(nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glNormal3fVertex3fSUN".}
+proc normal3fVertex3fvSUN*(n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glNormal3fVertex3fvSUN".}
+proc replacementCodeuiColor3fVertex3fSUN*(rc: uint32, r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiColor3fVertex3fSUN".}
+proc replacementCodeuiColor3fVertex3fvSUN*(rc: ptr uint32, c: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiColor3fVertex3fvSUN".}
+proc replacementCodeuiColor4fNormal3fVertex3fSUN*(rc: uint32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiColor4fNormal3fVertex3fSUN".}
+proc replacementCodeuiColor4fNormal3fVertex3fvSUN*(rc: ptr uint32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiColor4fNormal3fVertex3fvSUN".}
+proc replacementCodeuiColor4ubVertex3fSUN*(rc: uint32, r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiColor4ubVertex3fSUN".}
+proc replacementCodeuiColor4ubVertex3fvSUN*(rc: ptr uint32, c: ptr uint8, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiColor4ubVertex3fvSUN".}
+proc replacementCodeuiNormal3fVertex3fSUN*(rc: uint32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiNormal3fVertex3fSUN".}
+proc replacementCodeuiNormal3fVertex3fvSUN*(rc: ptr uint32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiNormal3fVertex3fvSUN".}
+proc replacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN*(rc: uint32, s: float32, t: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN".}
+proc replacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN".}
+proc replacementCodeuiTexCoord2fNormal3fVertex3fSUN*(rc: uint32, s: float32, t: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN".}
+proc replacementCodeuiTexCoord2fNormal3fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN".}
+proc replacementCodeuiTexCoord2fVertex3fSUN*(rc: uint32, s: float32, t: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fVertex3fSUN".}
+proc replacementCodeuiTexCoord2fVertex3fvSUN*(rc: ptr uint32, tc: ptr float32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiTexCoord2fVertex3fvSUN".}
+proc replacementCodeuiVertex3fSUN*(rc: uint32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glReplacementCodeuiVertex3fSUN".}
+proc replacementCodeuiVertex3fvSUN*(rc: ptr uint32, v: ptr float32): void {.glew_lib, importc: "glReplacementCodeuiVertex3fvSUN".}
+proc texCoord2fColor3fVertex3fSUN*(s: float32, t: float32, r: float32, g: float32, b: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTexCoord2fColor3fVertex3fSUN".}
+proc texCoord2fColor3fVertex3fvSUN*(tc: ptr float32, c: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord2fColor3fVertex3fvSUN".}
+proc texCoord2fColor4fNormal3fVertex3fSUN*(s: float32, t: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTexCoord2fColor4fNormal3fVertex3fSUN".}
+proc texCoord2fColor4fNormal3fVertex3fvSUN*(tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord2fColor4fNormal3fVertex3fvSUN".}
+proc texCoord2fColor4ubVertex3fSUN*(s: float32, t: float32, r: uint8, g: uint8, b: uint8, a: uint8, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTexCoord2fColor4ubVertex3fSUN".}
+proc texCoord2fColor4ubVertex3fvSUN*(tc: ptr float32, c: ptr uint8, v: ptr float32): void {.glew_lib, importc: "glTexCoord2fColor4ubVertex3fvSUN".}
+proc texCoord2fNormal3fVertex3fSUN*(s: float32, t: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTexCoord2fNormal3fVertex3fSUN".}
+proc texCoord2fNormal3fVertex3fvSUN*(tc: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord2fNormal3fVertex3fvSUN".}
+proc texCoord2fVertex3fSUN*(s: float32, t: float32, x: float32, y: float32, z: float32): void {.glew_lib, importc: "glTexCoord2fVertex3fSUN".}
+proc texCoord2fVertex3fvSUN*(tc: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord2fVertex3fvSUN".}
+proc texCoord4fColor4fNormal3fVertex4fSUN*(s: float32, t: float32, p: float32, q: float32, r: float32, g: float32, b: float32, a: float32, nx: float32, ny: float32, nz: float32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glTexCoord4fColor4fNormal3fVertex4fSUN".}
+proc texCoord4fColor4fNormal3fVertex4fvSUN*(tc: ptr float32, c: ptr float32, n: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord4fColor4fNormal3fVertex4fvSUN".}
+proc texCoord4fVertex4fSUN*(s: float32, t: float32, p: float32, q: float32, x: float32, y: float32, z: float32, w: float32): void {.glew_lib, importc: "glTexCoord4fVertex4fSUN".}
+proc texCoord4fVertex4fvSUN*(tc: ptr float32, v: ptr float32): void {.glew_lib, importc: "glTexCoord4fVertex4fvSUN".}
+proc addSwapHintRectWIN*(x: int32, y: int32, width: int32, height: int32): void {.glew_lib, importc: "glAddSwapHintRectWIN".}

@@ -69,9 +69,9 @@ proc main =
 
   windowHint whContextVersionMajor, 4
   windowHint whContextVersionMinor, 1
-  windowHint whOpenglForwardCompat, glfwTRUE
-  windowHint whOpenglProfile      , glfwOpenglCoreProfile
-  windowHint whResizable          , glfwFalse
+  windowHint whOpenglForwardCompat, GLFW_TRUE
+  windowHint whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE
+  windowHint whResizable          , GLFW_FALSE
 
   var w: Window = createWindow(800, 600, "NimGL")
   assert w != nil
@@ -86,8 +86,8 @@ proc main =
     bg = vec(50f, 205f, 50f).rgb
 
   while not w.windowShouldClose:
-    glClearColor(bg.r, bg.g, bg.b, 1f)
-    glClear(GL_COLOR_BUFFER_BIT)
+    clearColor(bg.r, bg.g, bg.b, 1f)
+    clear(GL_COLOR_BUFFER_BIT)
 
     w.swapBuffers
     glfw.pollEvents()

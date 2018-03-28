@@ -19,9 +19,8 @@ when defined(glfwDLL):
   {.pragma: glfw_lib, dynlib: glfw_dll, cdecl.}
 else:
   {.compile: "private/glfw/src/vulkan.c".}
-  # Thanks to ephja for making this build system, my intention is not to copy
-  #   just that he did a wonderful job and saved me what could be hours.
-  # The rest of the implementention is mine.
+
+  # Thanks to ephja for making this build system
 
   when defined(windows):
     {.passC: "-D_GLFW_WIN32 -DGLFW_EXPOSE_NATIVE_WIN32",
@@ -90,39 +89,39 @@ type
 
 # Constants
 const 
-  glfwDontCare*             = -1
-  glfwFalse*                = 0
-  glfwTrue*                 = 1
+  GLFW_DONT_CARE*              = -1
+  GLFW_FALSE*                  = 0
+  GLFW_TRUE*                   = 1
 
-  glfwNoAPI*                = 0
-  glfwOpenglAPI*            = 0x00030001
-  glfwOPENGL_ES_API*        = 0x00030002
+  GLFW_NO_API*                 = 0
+  GLFW_OPENGL_API*             = 0X00030001
+  GLFW_OPENGL_ES_API*          = 0X00030002
 
-  glfwNoRobustness*         = 0
-  glfwNoResetNotification*  = 0x00031001
-  glfwLoseContextOnReset*   = 0x00031002
+  GLFW_NO_ROBUSTNESS*          = 0
+  GLFW_NO_RESET_NOTIFICATION*  = 0X00031001
+  GLFW_LOSE_CONTEXT_ON_RESET*  = 0X00031002
 
-  glfwOpenglAnyProfile*     = 0
-  glfwOpenglCoreProfile*    = 0x00032001
-  glfwOpenglCompatProfile*  = 0x00032002
+  GLFW_OPENGL_ANY_PROFILE*     = 0
+  GLFW_OPENGL_CORE_PROFILE*    = 0X00032001
+  GLFW_OPENGL_COMPAT_PROFILE*  = 0X00032002
 
-  glfwCursor*               = 0x00033001
-  glfwStickyKeys*           = 0x00033002
-  glfwStickyMouseButtons*   = 0x00033003
+  GLFW_CURSOR*                 = 0X00033001
+  GLFW_STICKY_KEYS*            = 0X00033002
+  GLFW_STICKY_MOUSE_BUTTONS*   = 0X00033003
 
-  glfwCursorNormal*         = 0x00034001
-  glfwCursorHidden*         = 0x00034002
-  glfwCursorDisabled*       = 0x00034003
+  GLFW_CURSOR_NORMAL*          = 0X00034001
+  GLFW_CURSOR_HIDDEN*          = 0X00034002
+  GLFW_CURSOR_DISABLED*        = 0X00034003
 
-  glfwAnyReleaseBehavior*   = 0
-  glfwReleaseBehaviorFlush* = 0x00035001
-  glfwReleaseBehaviorNone*  = 0x00035002
+  GLFW_ANY_RELEASE_BEHAVIOR*   = 0
+  GLFW_RELEASE_BEHAVIOR_FLUSH* = 0X00035001
+  GLFW_RELEASE_BEHAVIOR_NONE*  = 0X00035002
 
-  glfwNativeContextAPI*     = 0x00036001
-  glfwEGLContextAPI*        = 0x00036002
+  GLFW_NATIVE_CONTEXT_API*     = 0X00036001
+  GLFW_EGL_CONTEXT_API*        = 0X00036002
 
 type
-  CursorShape* {.size: cint.sizeof.} = enum
+  CursorShape* {.size: int32.sizeof.} = enum
     csArrow = 0x00036001
     csIbeam = 0x00036002
     csCrosshair = 0x00036003
@@ -130,109 +129,109 @@ type
     csHresize = 0x00036005
     csVresize = 0x00036006
 
-  WindowHint* {.size: cint.sizeof.} = enum
-    whFocused                = 0x00020001
+  WindowHint* {.size: int32.sizeof.} = enum
+    whFocused = 0x00020001
       ## specifies whether the windowed mode window will be given input focus
       ## when created.
       ## This hint is ignored for full screen and initially hidden windows
-    whResizable              = 0x00020003
+    whResizable = 0x00020003
       ## specifies whether the windowed mode window will be resizable by the user.
       ## The window will still be resizable using the glfwSetWindowSize function.
       ## This hint is ignored for full screen windows.
-    whVisible                = 0x00020004
+    whVisible = 0x00020004
       ## specifies whether the windowed mode window will be initially visible.
       ## This hint is ignored for full screen windows
-    whDecorated              = 0x00020005
+    whDecorated = 0x00020005
       ## specifies whether the windowed mode window will have window decorations
       ## such as a border, a close widget, etc. An undecorated window may still
       ## allow the user to generate close events on some platforms.
       ## This hint is ignored for full screen windows.
-    whAutoIconify            = 0x00020006
+    whAutoIconify = 0x00020006
       ## specifies whether the full screen window will automatically iconify and
       ## restore the previous video mode on input focus loss.
       ## This hint is ignored for windowed mode windows.
-    whFloating               = 0x00020007
+    whFloating = 0x00020007
       ## specifies whether the windowed mode window will be floating above other
       ## regular windows, also called topmost or always-on-top. This is intended
       ## primarily for debugging purposes and cannot be used to implement
       ## proper full screen windows.
       ## This hint is ignored for full screen windows.
-    whMaximized              = 0x00020008
+    whMaximized = 0x00020008
       ## specifies whether the windowed mode window will be maximized when created.
       ## This hint is ignored for full screen windows
-    whRedBits                = 0x00021001
+    whRedBits = 0x00021001
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whGreenBits              = 0x00021002
+    whGreenBits = 0x00021002
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whBlueBits               = 0x00021003
+    whBlueBits = 0x00021003
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whAlphaBits              = 0x00021004
+    whAlphaBits = 0x00021004
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whDepthBits              = 0x00021005
+    whDepthBits = 0x00021005
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whStencilBits            = 0x00021006
+    whStencilBits = 0x00021006
       ## specify the desired bit depths of the various components of the default
       ## framebuffer. glfwDontCare means the application has no preference.
-    whAccumRedBits           = 0x00021007
+    whAccumRedBits = 0x00021007
       ## specify the desired bit depths of the various components of the
       ## accumulation buffer. glfwDontCare means the application has no preference.
-    whAccumGreenBits         = 0x00021008
+    whAccumGreenBits = 0x00021008
       ## specify the desired bit depths of the various components of the
       ## accumulation buffer. glfwDontCare means the application has no preference.
-    whAccumBlueBits          = 0x00021009
+    whAccumBlueBits = 0x00021009
       ## specify the desired bit depths of the various components of the
       ## accumulation buffer. glfwDontCare means the application has no preference.
-    whAccumAlphaBits         = 0x0002100A
+    whAccumAlphaBits = 0x0002100A
       ## specify the desired bit depths of the various components of the
       ## accumulation buffer. glfwDontCare means the application has no preference.
-    whAuxBuffers             = 0x0002100B
+    whAuxBuffers = 0x0002100B
       ## specifies the desired number of auxiliary buffers. glfwDontCare means the application has no preference.
-    whStereo                 = 0x0002100C
+    whStereo = 0x0002100C
       ## specifies whether to use stereoscopic rendering. This is a hard constraint
-    whSamples                = 0x0002100D
+    whSamples = 0x0002100D
       ## specifies the desired number of samples to use for multisampling. Zero
       ## disables multisampling. glfwDontCare means the application has no preference
-    whSrgbCapable            = 0x0002100E
+    whSrgbCapable = 0x0002100E
       ## specifies whether the framebuffer should be sRGB capable.
       ## If supported, a created OpenGL context will support the
-    whRefreshRate            = 0x0002100F
+    whRefreshRate = 0x0002100F
       ## specifies the desired refresh rate for full screen windows.
       ## If set to glfwDontCare, the highest available refresh rate will be used.
       ## This hint is ignored for windowed mode windows
-    whDoubleBuffer           = 0x00021010
+    whDoubleBuffer = 0x00021010
       ## specifies whether the framebuffer should be double buffered.
       ## You nearly always want to use double buffering. This is a hard constraint.
-    whClientApi              = 0x00022001
+    whClientApi = 0x00022001
       ## specifies which client API to create the context for.
       ## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and 
-    whContextVersionMajor    = 0x00022002
+    whContextVersionMajor = 0x00022002
       ## specify the client API version that the created context must be compatible
       ## with. The exact behavior of these hints depend on the requested client API.
-    whContextVersionMinor    = 0x00022003
+    whContextVersionMinor = 0x00022003
       ## specify the client API version that the created context must be compatible
       ## with. The exact behavior of these hints depend on the requested client API.
-    whContextRevision        = 0x00022004
+    whContextRevision = 0x00022004
       ## indicate the client API version of the window's context.
-    whContextRobustness      = 0x00022005
+    whContextRobustness = 0x00022005
       ## specifies the robustness strategy to be used by the context.
       ## This can be one of glfwNoResetNotification or glfwLoseContextOnReset,
       ## or glfwNoRobustness to not request a robustness strategy.
-    whOpenglForwardCompat    = 0x00022006
+    whOpenglForwardCompat = 0x00022006
       ## specifies whether the OpenGL context should be forward-compatible, i.e.
       ## one where all functionality deprecated in the requested version of OpenGL
       ## is removed. This must only be used if the requested OpenGL version is 3.0
       ## or above.
       ## If OpenGL ES is requested, this hint is ignored.
-    whOpenglDebugContext     = 0x00022007
+    whOpenglDebugContext = 0x00022007
       ## ecifies whether to create a debug OpenGL context, which may have additional
       ## error and performance issue reporting functionality.
       ## If OpenGL ES is requested, this hint is ignored.
-    whOpenglProfile          = 0x00022008
+    whOpenglProfile = 0x00022008
       ## specifies which OpenGL profile to create the context for. Possible values
       ## are one of glfwOpenglCoreProfile or glfwOpenglCompatProfile, or
       ## glfwOpenglAnyProfile to not request a specific profile. If requesting
@@ -246,35 +245,35 @@ type
       ## behavior is glfwReleaseBehaviorFlush, the pipeline will be flushed
       ## whenever the context is released from being the current one. If the
       ## behavior is glfwReleaseBehaviorNone, the pipeline will not be flushed on release.
-    whContextNoError         = 0x0002200A
+    whContextNoError = 0x0002200A
       ## specifies whether errors should be generated by the context. If enabled,
       ## situations that would have generated errors instead cause undefined behavior
-    whContextCreationAPI     = 0x0002200B
+    whContextCreationAPI = 0x0002200B
       ## indicates the context creation API used to create the window's context;
       ## either glfwNativeContextAPI or glfwEGLContextAPI.
-  GLFWErrorCode* {.size: cint.sizeof.} = enum
+  GLFWErrorCode* {.size: int32.sizeof.} = enum
     ## Error Codes documented on the original documentation
-    glfwNotInitialized     = 0x00010001
+    glfwNotInitialized = 0x00010001
       ## GLFW has not been initialized.
     glfwNoCurrentContext  = 0x00010002
       ## No context is current for this thread.
-    glfwInvalidEnum        = 0x00010003
+    glfwInvalidEnum = 0x00010003
       ## One of the arguments to the function was an invalid enum value.
-    glfwInvalidValue       = 0x00010004
+    glfwInvalidValue = 0x00010004
       ## One of the arguments to the function was an invalid value.
-    glfwOutOfMemory       = 0x00010005
+    glfwOutOfMemory = 0x00010005
       ## A memory allocation failed.
-    glfwAPIUnavailable     = 0x00010006
+    glfwAPIUnavailable = 0x00010006
       ## GLFW could not find support for the requested API on the system.
     glfwVersionUnavailable = 0x00010007
       ## The requested OpenGL or OpenGL ES version is not available.
-    glfwPlatformError      = 0x00010008
+    glfwPlatformError = 0x00010008
       ## A platform-specific error occurred that does not match any of the
-    glfwFormatUnavailable  = 0x00010009
+    glfwFormatUnavailable = 0x00010009
       ## The requested format is not supported or available.
-    glfwNoWindowContext   = 0x0001000A
+    glfwNoWindowContext= 0x0001000A
       ## The specified window does not have an OpenGL or OpenGL ES context.
-  MouseButton* {.size: cint.sizeof.} = enum
+  MouseButton* {.size: int32.sizeof.} = enum
     ## Mouse Buttons
     mbLeft   = 0
     mbRight  = 1
@@ -284,7 +283,7 @@ type
     mb6      = 5
     mb7      = 6
     mb8      = 7
-  JoyStick* {.size: cint.sizeof.} = enum
+  JoyStick* {.size: int32.sizeof.} = enum
     ## Joystick references
     js1  = 0
     js2  = 1
@@ -301,23 +300,23 @@ type
     js13 = 12
     js14 = 13
     js15 = 14
-  KeyAction* {.size: cint.sizeof.} = enum
+  KeyAction* {.size: int32.sizeof.} = enum
     ## Action released on the key event
     kaRelease = (0, "release")
     kaPress   = (1, "press")
     kaRepeat  = (2, "repeat")
-  MouseAction* {.size: cint.sizeof.} = enum
+  MouseAction* {.size: int32.sizeof.} = enum
     ## Actions of the mouse
     maRelease = (0, "release")
     maPress   = (1, "press")
     maRepeat  = (2, "repeat")
-  KeyMod* {.size: cint.sizeof.} = enum
+  KeyMod* {.size: int32.sizeof.} = enum
     ## Key Modifiers, to modify actions
     kmShift   = 0x0001
     kmControl = 0x0002
     kmAlt     = 0x0004
     kmSuper   = 0x0008
-  Key* {.size: cint.sizeof.} = enum
+  Key* {.size: int32.sizeof.} = enum
     ## KeyCodes, a lot of them
     keyUnknown      = (-1, "unkown")
     keySpace        = (32, "space")
@@ -461,7 +460,7 @@ type
     ##
     ## ``mods`` Bit field describing which [modifier keys](@ref mods) were
     ## held down.
-  keyProc*    = proc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.}
+  keyProc*    = proc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
     ## ``window`` The ``Window`` that received the event.
@@ -483,9 +482,9 @@ type
     ##
     ## ``yoff`` The scroll offset along the y-axis.
 
-converter toBool*(x: cint): bool = x != 0
+converter toBool*(x: int32): bool = x != 0
 
-proc createWindow*(width: cint, height: cint, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
+proc createWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
@@ -558,7 +557,7 @@ proc setWindowTitle*(window: Window, title: cstring): void {.glfw_lib, importc: 
   ## This function sets the window title, encoded as UTF-8, of the specified
   ## window.
 
-proc windowHint*(hint: WindowHint, value: cint): void {.glfw_lib, importc: "glfwWindowHint".}
+proc windowHint*(hint: WindowHint, value: int32): void {.glfw_lib, importc: "glfwWindowHint".}
   ## This function sets hints for the next call to ``createWindow``  The
   ## hints, once set, retain their values until changed by a call to.
   ## ``windowHint`` or ``defaultWindowHints``, or until the library is

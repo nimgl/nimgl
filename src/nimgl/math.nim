@@ -108,17 +108,17 @@ template `s=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
 
 template vPtr*[R, T](vec: array[R, T]): ptr = vec[0].addr
   ## Gets the pointer to the first attribute in the array
-template rgba*(vec: Vec4f): Vec4f = [vec[0] / 255'f32,
-                                    vec[1] / 255'f32,
-                                    vec[2] / 255'f32, vec[3]]
+template rgba*(vec: Vec4f): Vec4f =
   ## Little utility to normalize rgba
-template rgb*(vec: Vec3f): Vec3f = [vec[0] / 255'f32,
-                                    vec[1] / 255'f32,
-                                    vec[2] / 255'f32]
+  if vec[3] > 1'f32:
+    [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3] / 100'f32]
+  else:
+    [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3]]
+template rgb*(vec: Vec3f): Vec3f =
   ## Little utility to normalize rgb
+  [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
 
-const
-  vecIndex = ['x', 'y', 'z', 'w']
+const vecIndex = ['x', 'y', 'z', 'w']
 
 proc `$`*[R, T](vec: Vec[R,T] | Vec1[T] | Vec2[T] | Vec3[T] | Vec4[T]): string =
   ## Converts a Vec into a string
@@ -128,11 +128,136 @@ proc `$`*[R, T](vec: Vec[R,T] | Vec1[T] | Vec2[T] | Vec3[T] | Vec4[T]): string =
   result = result.substr(0, result.len - 3) & ")"
 
 # "Constructors"
-
 proc vec*[T](x: T): Vec1[T] = [x]
+  ## Any type of data for Vec1
 proc vec*[T](x, y: T): Vec2[T] = [x, y]
+  ## Any type of data for Vec2
 proc vec*[T](x, y, z: T): Vec3[T] = [x, y, z]
+  ## Any type of data for Vec3
 proc vec*[T](x, y, z, w: T): Vec4[T] = [x, y, z, w]
+  ## Any type of data for Vec4
+
+proc vec2*[t](x: t): Vec2[t] = [x, x]
+  ## Uses the same value for the rest Vec2
+proc vec3*[t](x: t): Vec3[t] = [x, x, x]
+  ## Uses the same value for the rest Vec3
+proc vec4*[t](x: t): Vec4[t] = [x, x, x, x]
+  ## Uses the same value for the rest Vec4
+
+proc vec2f*(x: float32): Vec2[float32] = [x, x]
+  ## Uses the same value for the rest Vec2f
+proc vec3f*(x: float32): Vec3[float32] = [x, x, x]
+  ## Uses the same value for the rest Vec3f
+proc vec4f*(x: float32): Vec4[float32] = [x, x, x, x]
+  ## Uses the same value for the rest Vec4f
+proc vec2i*(x: int32): Vec2[int32] = [x, x]
+  ## Uses the same value for the rest Vec2i
+proc vec3i*(x: int32): Vec3[int32] = [x, x, x]
+  ## Uses the same value for the rest Vec3i
+proc vec4i*(x: int32): Vec4[int32] = [x, x, x, x]
+  ## Uses the same value for the rest Vec4i
+proc vec2ui*(x: uint32): Vec2[uint32] = [x, x]
+  ## Uses the same value for the rest Vec2ui
+proc vec3ui*(x: uint32): Vec3[uint32] = [x, x, x]
+  ## Uses the same value for the rest Vec3ui
+proc vec4ui*(x: uint32): Vec4[uint32] = [x, x, x, x]
+  ## Uses the same value for the rest Vec4ui
+
+proc vec*[R: static[int32], T](v: array[R, T]): Vec[R, T] = v
+  ## Array to Vec using the size of the Array
+
+proc vecf*(x: float32): Vec1[float32] = [x]
+  ## float32 to Vec1
+proc vecf*(x, y: float32): Vec2[float32] = [x, y]
+  ## float32 to Vec2
+proc vecf*(x, y, z: float32): Vec3[float32] = [x, y, z]
+  ## float32 to Vec3
+proc vecf*(x, y, z, w: float32): Vec4[float32] = [x, y, z, w]
+  ## float32 to Vec4
+proc veci*(x: int32): Vec1[int32] = [x]
+  ## int32 to Vec1
+proc veci*(x, y: int32): Vec2[int32] = [x, y]
+  ## int32 to Vec2
+proc veci*(x, y, z: int32): Vec3[int32] = [x, y, z]
+  ## int32 to Vec3
+proc veci*(x, y, z, w: int32): Vec4[int32] = [x, y, z, w]
+  ## int32 to Vec4
+proc vecui*(x: uint32): Vec1[uint32] = [x]
+  ## uint32 to Vec1
+proc vecui*(x, y: uint32): Vec2[uint32] = [x, y]
+  ## uint32 to Vec2
+proc vecui*(x, y, z: uint32): Vec3[uint32] = [x, y, z]
+  ## uint32 to Vec3
+proc vecui*(x, y, z, w: uint32): Vec4[uint32] = [x, y, z, w]
+  ## uint32 to Vec4
+
+proc vec1f*(x: float32): Vec1[float32] = [x]
+  ## float32 to Vec1
+proc vec2f*(x, y: float32): Vec2[float32] = [x, y]
+  ## float32 to Vec2
+proc vec3f*(x, y, z: float32): Vec3[float32] = [x, y, z]
+  ## float32 to Vec3
+proc vec4f*(x, y, z, w: float32): Vec4[float32] = [x, y, z, w]
+  ## float32 to Vec4
+proc vec1i*(x: int32): Vec1[int32] = [x]
+  ## int32 to Vec1
+proc vec2i*(x, y: int32): Vec2[int32] = [x, y]
+  ## int32 to Vec2
+proc vec3i*(x, y, z: int32): Vec3[int32] = [x, y, z]
+  ## int32 to Vec3
+proc vec4i*(x, y, z, w: int32): Vec4[int32] = [x, y, z, w]
+  ## int32 to Vec4
+proc vec1ui*(x: uint32): Vec1[uint32] = [x]
+  ## uint32 to Vec1
+proc vec2ui*(x, y: uint32): Vec2[uint32] = [x, y]
+  ## uint32 to Vec2
+proc vec3ui*(x, y, z: uint32): Vec3[uint32] = [x, y, z]
+  ## uint32 to Vec3
+proc vec4ui*(x, y, z, w: uint32): Vec4[uint32] = [x, y, z, w]
+  ## uint32 to Vec4
+
+proc vec1f*(): Vec1[float32] = [0'f32]
+  ## zeros of type float32 to Vec1
+proc vec2f*(): Vec2[float32] = [0'f32, 0'f32]
+  ## zeros of type float32 to Vec2
+proc vec3f*(): Vec3[float32] = [0'f32, 0'f32, 0'f32]
+  ## zeros of type float32 to Vec3
+proc vec4f*(): Vec4[float32] = [0'f32, 0'f32, 0'f32, 0'f32]
+  ## zeros of type float32 to Vec4
+proc vec1i*(): Vec1[int32] = [0'i32]
+  ## zeros of type int32 to Vec1
+proc vec2i*(): Vec2[int32] = [0'i32, 0'i32]
+  ## zeros of type int32 to Vec2
+proc vec3i*(): Vec3[int32] = [0'i32, 0'i32, 0'i32]
+  ## zeros of type int32 to Vec3
+proc vec4i*(): Vec4[int32] = [0'i32, 0'i32, 0'i32, 0'i32]
+  ## zeros of type int32 to Vec4
+proc vec1ui*(): Vec1[uint32] = [0'u32]
+  ## zeros of type uint32 to Vec1
+proc vec2ui*(): Vec2[uint32] = [0'u32, 0'u32]
+  ## zeros of type uint32 to Vec2
+proc vec3ui*(): Vec3[uint32] = [0'u32, 0'u32, 0'u32]
+  ## zeros of type uint32 to Vec3
+proc vec4ui*(): Vec4[uint32] = [0'u32, 0'u32, 0'u32, 0'u32]
+  ## zeros of type uint32 to Vec4
+
+proc vec1*[T](): Vec1[T] = [T(0)]
+  ## zeros of manual type T to Vec1
+proc vec2*[T](): Vec2[T] = [T(0), T(0)]
+  ## zeros of manual type T to Vec2
+proc vec3*[T](): Vec2[T] = [T(0), T(0), T(0)]
+  ## zeros of manual type T to Vec3
+proc vec4*[T](): Vec2[T] = [T(0), T(0), T(0), T(0)]
+  ## zeros of manual type T to Vec4
+
+template vec1*[T](v: seq[T]): Vec1[T] = vec(v[0])
+  ## seq of any type to Vec1
+template vec2*[T](v: seq[T]): Vec2[T] = vec(v[0], v[1])
+  ## seq of any type to Vec2
+template vec3*[T](v: seq[T]): Vec3[T] = vec(v[0], v[1], v[2])
+  ## seq of any type to Vec3
+template vec4*[T](v: seq[T]): Vec4[T] = vec(v[0], v[1], v[2], v[3])
+  ## seq of any type to Vec4
 
 proc vec1*[R, T] (vec: Vec[R, T]): Vec1[T] = [vec.x]
   ## Converts any Veci into a Vec1i
@@ -169,12 +294,12 @@ proc vec4*[T] (v1: Vec2[T], v2: Vec2[T]): Vec4[T] = [v1.x, v1.y, v2.x, v2.y]
 
 # Operations
 
-proc `+`*(v1, v2: Vec): Vec =
+proc `+`*[R: static[int32], T](v1, v2: array[R, T]): Vec[R, T] =
   ## Adding two vectors
   for n in 0 ..< v1.len:
     result[n] = v1[n] + v2[n]
 
-proc `-`*(v1, v2: Vec): Vec =
+proc `-`*[R: static[int32], T](v1, v2: array[R, T]): Vec[R, T] =
   ## Substracting two vectors
   for n in 0 ..< v1.len:
     result[n] = v1[n] - v2[n]
@@ -196,15 +321,144 @@ proc mag*(v: Vec): float32 =
     t += float32(v[n] * v[n])
   sqrt(t)
 
-proc dot*(v1, v2: Vec): float32 =
+proc dot*[R: static[int32], T](v1, v2: array[R, T]): float32 =
   ## Gives the dot product of this two vectors v1 . v2
   result  = 0f
   for n in 0 ..< v1.len:
     result += float32(v1[n] * v2[n])
 
-proc dot*(v1, v2: Vec, angle: float32): float32 =
+proc dot*[R: static[int32], T](v1, v2: array[R, T], angle: float32): float32 =
   ## Gives the dot product of this two vectors with the given angle
   dot(v1, v2) * cos(angle)
+
+proc sqrt*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## square root of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].sqrt)
+
+proc cbrt*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## cube root of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].cbrt)
+
+proc log10*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## log10 of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].log10)
+
+proc log2*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## log2 of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].log2)
+
+proc ln*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## natural log of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].ln)
+
+proc pow*[R: static[int32], T](v: array[R, T], p: int): Vec[R, T] =
+  ## power of p of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = v[n]
+    for t in 1 ..< p:
+      result[n] = T(v[n] * result[n])
+
+proc pow*[R: static[int32], T](v: array[R, T], p: float): Vec[R, T] =
+  ## power of p of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].pow(p))
+
+proc exp*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## E to the power of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].exp())
+
+proc cos*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## cosine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].cos())
+
+proc cosh*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## hyperbolic cosine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].cosh())
+
+proc sin*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## sine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].cos())
+
+proc sinh*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## hyperbolic sine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].sinh())
+
+proc tan*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## tangent of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].cos())
+
+proc tanh*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## hyperbolic tangent of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].tanh())
+
+proc arccos*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## arc cosine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].arccos())
+
+proc arcsin*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## arc sine of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].arcsin())
+
+proc arctan*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## arc tangent of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].arctan())
+  
+proc trunc*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## remove the decimal digits
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].trunc())
+  
+proc round*[R: static[int32], T](v: array[R, T], p: int): Vec[R, T] =
+  ## value rounded to the nearest integer
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].round(p))
+  
+proc floor*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## value rounded to the nearest integer below
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].floor())
+  
+proc ceil*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## value rounded to the nearest integer above
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].ceil())
+  
+proc degToRad*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## converts the values from degress to radians
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].degToRad())
+  
+proc radToDeg*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## converts the values from radians to degress
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].radToDeg())
+  
+proc abs*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## absolute values of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(v[n].abs())
+  
+proc sign*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
+  ## returns a number representing the sign of every value in the vector
+  for n in 0 ..< v.len:
+    result[n] = T(0)
+    if v[n] > 0: result[n] = T(1)
+    elif v[n] < 0: result[n] = T(-1)
 
 {.pop.}
 
@@ -362,8 +616,7 @@ proc identity2*[T](): Mat2x2[T] =
     [T(0), T(1)]
   ]
 
-
-# Algebra
+# Math
 
 proc ortho*(left, right, bottom, top, near, far: float32): Mat4x4[float32] =
   result = mat4(0.0f)

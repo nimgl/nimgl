@@ -1410,7 +1410,7 @@ function main() {
   <li><a class="reference" href="#mouseProc"
     title="mouseProc = proc (window: Window; button: MouseButton; action: MouseAction; mods: KeyMod): void"><wbr />mouse<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#keyProc"
-    title="keyProc = proc (window: Window; key: Key; scancode: cint; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="keyProc = proc (window: Window; key: Key; scancode: int32; action: KeyAction; mods: KeyMod): void"><wbr />key<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#scrollProc"
     title="scrollProc = proc (window: Window; xoff, yoff: cdouble): void"><wbr />scroll<wbr />Proc<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1419,60 +1419,60 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#glfwDontCare"
-    title="glfwDontCare = -1"><wbr />glfw<wbr />Dont<wbr />Care<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwFalse"
-    title="glfwFalse = 0"><wbr />glfw<wbr />False<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwTrue"
-    title="glfwTrue = 1"><wbr />glfw<wbr />True<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwNoAPI"
-    title="glfwNoAPI = 0"><wbr />glfw<wbr />No<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwOpenglAPI"
-    title="glfwOpenglAPI = 0x00030001"><wbr />glfw<wbr />Opengl<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwOPENGL_ES_API"
-    title="glfwOPENGL_ES_API = 0x00030002"><wbr />glfw<wbr />OPENGL_<wbr />ES_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwNoRobustness"
-    title="glfwNoRobustness = 0"><wbr />glfw<wbr />No<wbr />Robustness<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwNoResetNotification"
-    title="glfwNoResetNotification = 0x00031001"><wbr />glfw<wbr />No<wbr />Reset<wbr />Notification<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwLoseContextOnReset"
-    title="glfwLoseContextOnReset = 0x00031002"><wbr />glfw<wbr />Lose<wbr />Context<wbr />On<wbr />Reset<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwOpenglAnyProfile"
-    title="glfwOpenglAnyProfile = 0"><wbr />glfw<wbr />Opengl<wbr />Any<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwOpenglCoreProfile"
-    title="glfwOpenglCoreProfile = 0x00032001"><wbr />glfw<wbr />Opengl<wbr />Core<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwOpenglCompatProfile"
-    title="glfwOpenglCompatProfile = 0x00032002"><wbr />glfw<wbr />Opengl<wbr />Compat<wbr />Profile<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwCursor"
-    title="glfwCursor = 0x00033001"><wbr />glfw<wbr />Cursor<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwStickyKeys"
-    title="glfwStickyKeys = 0x00033002"><wbr />glfw<wbr />Sticky<wbr />Keys<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwStickyMouseButtons"
-    title="glfwStickyMouseButtons = 0x00033003"><wbr />glfw<wbr />Sticky<wbr />Mouse<wbr />Buttons<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwCursorNormal"
-    title="glfwCursorNormal = 0x00034001"><wbr />glfw<wbr />Cursor<wbr />Normal<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwCursorHidden"
-    title="glfwCursorHidden = 0x00034002"><wbr />glfw<wbr />Cursor<wbr />Hidden<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwCursorDisabled"
-    title="glfwCursorDisabled = 0x00034003"><wbr />glfw<wbr />Cursor<wbr />Disabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwAnyReleaseBehavior"
-    title="glfwAnyReleaseBehavior = 0"><wbr />glfw<wbr />Any<wbr />Release<wbr />Behavior<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwReleaseBehaviorFlush"
-    title="glfwReleaseBehaviorFlush = 0x00035001"><wbr />glfw<wbr />Release<wbr />Behavior<wbr />Flush<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwReleaseBehaviorNone"
-    title="glfwReleaseBehaviorNone = 0x00035002"><wbr />glfw<wbr />Release<wbr />Behavior<wbr />None<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwNativeContextAPI"
-    title="glfwNativeContextAPI = 0x00036001"><wbr />glfw<wbr />Native<wbr />Context<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#glfwEGLContextAPI"
-    title="glfwEGLContextAPI = 0x00036002"><wbr />glfw<wbr />EGLContext<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#GLFW_DONT_CARE"
+    title="GLFW_DONT_CARE = -1"><wbr />GLFW_<wbr />DONT_<wbr />CARE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_FALSE"
+    title="GLFW_FALSE = 0"><wbr />GLFW_<wbr />FALSE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_TRUE"
+    title="GLFW_TRUE = 1"><wbr />GLFW_<wbr />TRUE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_NO_API"
+    title="GLFW_NO_API = 0"><wbr />GLFW_<wbr />NO_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_OPENGL_API"
+    title="GLFW_OPENGL_API = 0x00030001"><wbr />GLFW_<wbr />OPENGL_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_OPENGL_ES_API"
+    title="GLFW_OPENGL_ES_API = 0x00030002"><wbr />GLFW_<wbr />OPENGL_<wbr />ES_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_NO_ROBUSTNESS"
+    title="GLFW_NO_ROBUSTNESS = 0"><wbr />GLFW_<wbr />NO_<wbr />ROBUSTNESS<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_NO_RESET_NOTIFICATION"
+    title="GLFW_NO_RESET_NOTIFICATION = 0x00031001"><wbr />GLFW_<wbr />NO_<wbr />RESET_<wbr />NOTIFICATION<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_LOSE_CONTEXT_ON_RESET"
+    title="GLFW_LOSE_CONTEXT_ON_RESET = 0x00031002"><wbr />GLFW_<wbr />LOSE_<wbr />CONTEXT_<wbr />ON_<wbr />RESET<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_OPENGL_ANY_PROFILE"
+    title="GLFW_OPENGL_ANY_PROFILE = 0"><wbr />GLFW_<wbr />OPENGL_<wbr />ANY_<wbr />PROFILE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_OPENGL_CORE_PROFILE"
+    title="GLFW_OPENGL_CORE_PROFILE = 0x00032001"><wbr />GLFW_<wbr />OPENGL_<wbr />CORE_<wbr />PROFILE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_OPENGL_COMPAT_PROFILE"
+    title="GLFW_OPENGL_COMPAT_PROFILE = 0x00032002"><wbr />GLFW_<wbr />OPENGL_<wbr />COMPAT_<wbr />PROFILE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_CURSOR"
+    title="GLFW_CURSOR = 0x00033001"><wbr />GLFW_<wbr />CURSOR<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_STICKY_KEYS"
+    title="GLFW_STICKY_KEYS = 0x00033002"><wbr />GLFW_<wbr />STICKY_<wbr />KEYS<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_STICKY_MOUSE_BUTTONS"
+    title="GLFW_STICKY_MOUSE_BUTTONS = 0x00033003"><wbr />GLFW_<wbr />STICKY_<wbr />MOUSE_<wbr />BUTTONS<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_CURSOR_NORMAL"
+    title="GLFW_CURSOR_NORMAL = 0x00034001"><wbr />GLFW_<wbr />CURSOR_<wbr />NORMAL<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_CURSOR_HIDDEN"
+    title="GLFW_CURSOR_HIDDEN = 0x00034002"><wbr />GLFW_<wbr />CURSOR_<wbr />HIDDEN<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_CURSOR_DISABLED"
+    title="GLFW_CURSOR_DISABLED = 0x00034003"><wbr />GLFW_<wbr />CURSOR_<wbr />DISABLED<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_ANY_RELEASE_BEHAVIOR"
+    title="GLFW_ANY_RELEASE_BEHAVIOR = 0"><wbr />GLFW_<wbr />ANY_<wbr />RELEASE_<wbr />BEHAVIOR<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_RELEASE_BEHAVIOR_FLUSH"
+    title="GLFW_RELEASE_BEHAVIOR_FLUSH = 0x00035001"><wbr />GLFW_<wbr />RELEASE_<wbr />BEHAVIOR_<wbr />FLUSH<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_RELEASE_BEHAVIOR_NONE"
+    title="GLFW_RELEASE_BEHAVIOR_NONE = 0x00035002"><wbr />GLFW_<wbr />RELEASE_<wbr />BEHAVIOR_<wbr />NONE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_NATIVE_CONTEXT_API"
+    title="GLFW_NATIVE_CONTEXT_API = 0x00036001"><wbr />GLFW_<wbr />NATIVE_<wbr />CONTEXT_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GLFW_EGL_CONTEXT_API"
+    title="GLFW_EGL_CONTEXT_API = 0x00036002"><wbr />GLFW_<wbr />EGL_<wbr />CONTEXT_<wbr />API<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#createWindow,cint,cint,cstring,Monitor,Window"
-    title="createWindow(width: cint; height: cint; title: cstring = &quot;NimGL&quot;;
+      <li><a class="reference" href="#createWindow,int32,int32,cstring,Monitor,Window"
+    title="createWindow(width: int32; height: int32; title: cstring = &quot;NimGL&quot;;
              monitor: Monitor = nil; share: Window = nil): Window"><wbr />create<wbr />Window<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#init,"
     title="init(): bool"><wbr />init<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1500,8 +1500,8 @@ function main() {
     title="getKey(window: Window; key: Key): KeyAction"><wbr />get<wbr />Key<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#setWindowTitle,Window,cstring"
     title="setWindowTitle(window: Window; title: cstring): void"><wbr />set<wbr />Window<wbr />Title<span class="attachedType" style="visibility:hidden">Window</span></a></li>
-  <li><a class="reference" href="#windowHint,WindowHint,cint"
-    title="windowHint(hint: WindowHint; value: cint): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
+  <li><a class="reference" href="#windowHint,WindowHint,int32"
+    title="windowHint(hint: WindowHint; value: int32): void"><wbr />window<wbr />Hint<span class="attachedType" style="visibility:hidden">WindowHint</span></a></li>
   <li><a class="reference" href="#defaultWindowHints,"
     title="defaultWindowHints(): void"><wbr />default<wbr />Window<wbr />Hints<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getProcAddress,cstring"
@@ -1534,8 +1534,8 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#16" id="66">Converters</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#toBool.c,cint"
-    title="toBool(x: cint): bool"><wbr />to<wbr />Bool<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#toBool.c,int32"
+    title="toBool(x: int32): bool"><wbr />to<wbr />Bool<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1779,7 +1779,7 @@ KeyCodes, a lot of them
 
 
 </dd>
-<dt id="keyProc"><a name="keyProc"></a><pre><span class="Identifier">keyProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">;</span> <span class="Identifier">scancode</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">KeyAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="keyProc"><a name="keyProc"></a><pre><span class="Identifier">keyProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">Key</span><span class="Other">;</span> <span class="Identifier">scancode</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <span class="Identifier">KeyAction</span><span class="Other">;</span> <span class="Identifier">mods</span><span class="Other">:</span> <span class="Identifier">KeyMod</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This is the function signature for keyboard key callback functions.</p>
@@ -1805,117 +1805,117 @@ KeyCodes, a lot of them
 <div class="section" id="10">
 <h1><a class="toc-backref" href="#10">Consts</a></h1>
 <dl class="item">
-<dt id="glfwDontCare"><a name="glfwDontCare"></a><pre><span class="Identifier">glfwDontCare</span> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
+<dt id="GLFW_DONT_CARE"><a name="GLFW_DONT_CARE"></a><pre><span class="Identifier">GLFW_DONT_CARE</span> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwFalse"><a name="glfwFalse"></a><pre><span class="Identifier">glfwFalse</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dt id="GLFW_FALSE"><a name="GLFW_FALSE"></a><pre><span class="Identifier">GLFW_FALSE</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwTrue"><a name="glfwTrue"></a><pre><span class="Identifier">glfwTrue</span> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
+<dt id="GLFW_TRUE"><a name="GLFW_TRUE"></a><pre><span class="Identifier">GLFW_TRUE</span> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwNoAPI"><a name="glfwNoAPI"></a><pre><span class="Identifier">glfwNoAPI</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dt id="GLFW_NO_API"><a name="GLFW_NO_API"></a><pre><span class="Identifier">GLFW_NO_API</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwOpenglAPI"><a name="glfwOpenglAPI"></a><pre><span class="Identifier">glfwOpenglAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00030001</span></pre></dt>
+<dt id="GLFW_OPENGL_API"><a name="GLFW_OPENGL_API"></a><pre><span class="Identifier">GLFW_OPENGL_API</span> <span class="Other">=</span> <span class="DecNumber">0x00030001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwOPENGL_ES_API"><a name="glfwOPENGL_ES_API"></a><pre><span class="Identifier">glfwOPENGL_ES_API</span> <span class="Other">=</span> <span class="DecNumber">0x00030002</span></pre></dt>
+<dt id="GLFW_OPENGL_ES_API"><a name="GLFW_OPENGL_ES_API"></a><pre><span class="Identifier">GLFW_OPENGL_ES_API</span> <span class="Other">=</span> <span class="DecNumber">0x00030002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwNoRobustness"><a name="glfwNoRobustness"></a><pre><span class="Identifier">glfwNoRobustness</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dt id="GLFW_NO_ROBUSTNESS"><a name="GLFW_NO_ROBUSTNESS"></a><pre><span class="Identifier">GLFW_NO_ROBUSTNESS</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwNoResetNotification"><a name="glfwNoResetNotification"></a><pre><span class="Identifier">glfwNoResetNotification</span> <span class="Other">=</span> <span class="DecNumber">0x00031001</span></pre></dt>
+<dt id="GLFW_NO_RESET_NOTIFICATION"><a name="GLFW_NO_RESET_NOTIFICATION"></a><pre><span class="Identifier">GLFW_NO_RESET_NOTIFICATION</span> <span class="Other">=</span> <span class="DecNumber">0x00031001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwLoseContextOnReset"><a name="glfwLoseContextOnReset"></a><pre><span class="Identifier">glfwLoseContextOnReset</span> <span class="Other">=</span> <span class="DecNumber">0x00031002</span></pre></dt>
+<dt id="GLFW_LOSE_CONTEXT_ON_RESET"><a name="GLFW_LOSE_CONTEXT_ON_RESET"></a><pre><span class="Identifier">GLFW_LOSE_CONTEXT_ON_RESET</span> <span class="Other">=</span> <span class="DecNumber">0x00031002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwOpenglAnyProfile"><a name="glfwOpenglAnyProfile"></a><pre><span class="Identifier">glfwOpenglAnyProfile</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dt id="GLFW_OPENGL_ANY_PROFILE"><a name="GLFW_OPENGL_ANY_PROFILE"></a><pre><span class="Identifier">GLFW_OPENGL_ANY_PROFILE</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwOpenglCoreProfile"><a name="glfwOpenglCoreProfile"></a><pre><span class="Identifier">glfwOpenglCoreProfile</span> <span class="Other">=</span> <span class="DecNumber">0x00032001</span></pre></dt>
+<dt id="GLFW_OPENGL_CORE_PROFILE"><a name="GLFW_OPENGL_CORE_PROFILE"></a><pre><span class="Identifier">GLFW_OPENGL_CORE_PROFILE</span> <span class="Other">=</span> <span class="DecNumber">0x00032001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwOpenglCompatProfile"><a name="glfwOpenglCompatProfile"></a><pre><span class="Identifier">glfwOpenglCompatProfile</span> <span class="Other">=</span> <span class="DecNumber">0x00032002</span></pre></dt>
+<dt id="GLFW_OPENGL_COMPAT_PROFILE"><a name="GLFW_OPENGL_COMPAT_PROFILE"></a><pre><span class="Identifier">GLFW_OPENGL_COMPAT_PROFILE</span> <span class="Other">=</span> <span class="DecNumber">0x00032002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwCursor"><a name="glfwCursor"></a><pre><span class="Identifier">glfwCursor</span> <span class="Other">=</span> <span class="DecNumber">0x00033001</span></pre></dt>
+<dt id="GLFW_CURSOR"><a name="GLFW_CURSOR"></a><pre><span class="Identifier">GLFW_CURSOR</span> <span class="Other">=</span> <span class="DecNumber">0x00033001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwStickyKeys"><a name="glfwStickyKeys"></a><pre><span class="Identifier">glfwStickyKeys</span> <span class="Other">=</span> <span class="DecNumber">0x00033002</span></pre></dt>
+<dt id="GLFW_STICKY_KEYS"><a name="GLFW_STICKY_KEYS"></a><pre><span class="Identifier">GLFW_STICKY_KEYS</span> <span class="Other">=</span> <span class="DecNumber">0x00033002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwStickyMouseButtons"><a name="glfwStickyMouseButtons"></a><pre><span class="Identifier">glfwStickyMouseButtons</span> <span class="Other">=</span> <span class="DecNumber">0x00033003</span></pre></dt>
+<dt id="GLFW_STICKY_MOUSE_BUTTONS"><a name="GLFW_STICKY_MOUSE_BUTTONS"></a><pre><span class="Identifier">GLFW_STICKY_MOUSE_BUTTONS</span> <span class="Other">=</span> <span class="DecNumber">0x00033003</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwCursorNormal"><a name="glfwCursorNormal"></a><pre><span class="Identifier">glfwCursorNormal</span> <span class="Other">=</span> <span class="DecNumber">0x00034001</span></pre></dt>
+<dt id="GLFW_CURSOR_NORMAL"><a name="GLFW_CURSOR_NORMAL"></a><pre><span class="Identifier">GLFW_CURSOR_NORMAL</span> <span class="Other">=</span> <span class="DecNumber">0x00034001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwCursorHidden"><a name="glfwCursorHidden"></a><pre><span class="Identifier">glfwCursorHidden</span> <span class="Other">=</span> <span class="DecNumber">0x00034002</span></pre></dt>
+<dt id="GLFW_CURSOR_HIDDEN"><a name="GLFW_CURSOR_HIDDEN"></a><pre><span class="Identifier">GLFW_CURSOR_HIDDEN</span> <span class="Other">=</span> <span class="DecNumber">0x00034002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwCursorDisabled"><a name="glfwCursorDisabled"></a><pre><span class="Identifier">glfwCursorDisabled</span> <span class="Other">=</span> <span class="DecNumber">0x00034003</span></pre></dt>
+<dt id="GLFW_CURSOR_DISABLED"><a name="GLFW_CURSOR_DISABLED"></a><pre><span class="Identifier">GLFW_CURSOR_DISABLED</span> <span class="Other">=</span> <span class="DecNumber">0x00034003</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwAnyReleaseBehavior"><a name="glfwAnyReleaseBehavior"></a><pre><span class="Identifier">glfwAnyReleaseBehavior</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dt id="GLFW_ANY_RELEASE_BEHAVIOR"><a name="GLFW_ANY_RELEASE_BEHAVIOR"></a><pre><span class="Identifier">GLFW_ANY_RELEASE_BEHAVIOR</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwReleaseBehaviorFlush"><a name="glfwReleaseBehaviorFlush"></a><pre><span class="Identifier">glfwReleaseBehaviorFlush</span> <span class="Other">=</span> <span class="DecNumber">0x00035001</span></pre></dt>
+<dt id="GLFW_RELEASE_BEHAVIOR_FLUSH"><a name="GLFW_RELEASE_BEHAVIOR_FLUSH"></a><pre><span class="Identifier">GLFW_RELEASE_BEHAVIOR_FLUSH</span> <span class="Other">=</span> <span class="DecNumber">0x00035001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwReleaseBehaviorNone"><a name="glfwReleaseBehaviorNone"></a><pre><span class="Identifier">glfwReleaseBehaviorNone</span> <span class="Other">=</span> <span class="DecNumber">0x00035002</span></pre></dt>
+<dt id="GLFW_RELEASE_BEHAVIOR_NONE"><a name="GLFW_RELEASE_BEHAVIOR_NONE"></a><pre><span class="Identifier">GLFW_RELEASE_BEHAVIOR_NONE</span> <span class="Other">=</span> <span class="DecNumber">0x00035002</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwNativeContextAPI"><a name="glfwNativeContextAPI"></a><pre><span class="Identifier">glfwNativeContextAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00036001</span></pre></dt>
+<dt id="GLFW_NATIVE_CONTEXT_API"><a name="GLFW_NATIVE_CONTEXT_API"></a><pre><span class="Identifier">GLFW_NATIVE_CONTEXT_API</span> <span class="Other">=</span> <span class="DecNumber">0x00036001</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="glfwEGLContextAPI"><a name="glfwEGLContextAPI"></a><pre><span class="Identifier">glfwEGLContextAPI</span> <span class="Other">=</span> <span class="DecNumber">0x00036002</span></pre></dt>
+<dt id="GLFW_EGL_CONTEXT_API"><a name="GLFW_EGL_CONTEXT_API"></a><pre><span class="Identifier">GLFW_EGL_CONTEXT_API</span> <span class="Other">=</span> <span class="DecNumber">0x00036002</span></pre></dt>
 <dd>
 
 
@@ -1925,7 +1925,7 @@ KeyCodes, a lot of them
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="createWindow"><a name="createWindow,cint,cint,cstring,Monitor,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createWindow</span><span class="Other">(</span><span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span> <span class="Other">=</span> <span class="StringLit">&quot;NimGL&quot;</span><span class="Other">;</span>
+<dt id="createWindow"><a name="createWindow,int32,int32,cstring,Monitor,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createWindow</span><span class="Other">(</span><span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span> <span class="Other">=</span> <span class="StringLit">&quot;NimGL&quot;</span><span class="Other">;</span>
                  <span class="Identifier">monitor</span><span class="Other">:</span> <span class="Identifier">Monitor</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">share</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Window</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwCreateWindow&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
@@ -2003,7 +2003,8 @@ This function returns the last state reported for the specified key to the speci
 This function sets the window title, encoded as UTF-8, of the specified window.
 
 </dd>
-<dt id="windowHint"><a name="windowHint,WindowHint,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">windowHint</span><span class="Other">(</span><span class="Identifier">hint</span><span class="Other">:</span> <span class="Identifier">WindowHint</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwWindowHint&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="windowHint"><a name="windowHint,WindowHint,int32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">windowHint</span><span class="Other">(</span><span class="Identifier">hint</span><span class="Other">:</span> <span class="Identifier">WindowHint</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
+    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwWindowHint&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This function sets hints for the next call to <tt class="docutils literal"><span class="pre">createWindow</span></tt>  The hints, once set, retain their values until changed by a call to. <tt class="docutils literal"><span class="pre">windowHint</span></tt> or <tt class="docutils literal"><span class="pre">defaultWindowHints</span></tt>, or until the library is terminated.</p>
 <p>To read more visit <a class="reference external" href="http://www.glfw.org/docs/latest/window_guide.html#window_hints_values">here</a>.</p>
@@ -2095,7 +2096,7 @@ This function returns the primary monitor.  This is usually the monitor where el
 <div class="section" id="16">
 <h1><a class="toc-backref" href="#16">Converters</a></h1>
 <dl class="item">
-<dt id="toBool"><a name="toBool.c,cint"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toBool</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="toBool"><a name="toBool.c,int32"></a><pre><span class="Keyword">converter</span> <span class="Identifier">toBool</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2110,7 +2111,7 @@ This function returns the primary monitor.  This is usually the monitor where el
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-27 21:17:34 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-28 13:51:12 UTC</small>
       </div>
     </div>
   </div>

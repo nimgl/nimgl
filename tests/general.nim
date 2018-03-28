@@ -14,17 +14,17 @@ proc keyProc(window: Window, key: Key, scancode: cint,
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
   if key == keySpace:
-    glPolygonMode(GL_FRONT_AND_BACK,
+    polygonMode(GL_FRONT_AND_BACK,
                   if action != kaRelease: GL_LINE else: GL_FILL)
 
 proc statusShader(shader: uint32) =
   var status: int32
-  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
+  getShaderiv(shader, GL_COMPILE_STATUS, status.addr);
   if status != GL_TRUE.ord:
     var
       log_length: int32
       message = newSeq[char](1024)
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
+    getShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
     echo message
 
 proc main =
@@ -33,11 +33,9 @@ proc main =
 
   windowHint whContextVersionMajor, 4
   windowHint whContextVersionMinor, 1
-  windowHint whOpenglForwardCompat, glfwTRUE
-  windowHint whOpenglProfile      , glfwOpenglCoreProfile
-  windowHint whResizable          , glfwFalse
-  windowHint whDecorated          , glfwTrue
-  windowHint whRefreshRate        , glfwDontCare
+  windowHint whOpenglForwardCompat, GLFW_TRUE
+  windowHint whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE
+  windowHint whResizable          , GLFW_FALSE
 
   var w: Window = createWindow(1280, 720)
   assert w != nil
@@ -48,8 +46,8 @@ proc main =
   # Glew / Opengl
   assert opengl.init() == GLEW_OK
 
-  glEnable(GL_BLEND)
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+  enable(GL_BLEND)
+  blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
   var
     vertices: seq[cfloat]
@@ -75,24 +73,24 @@ proc main =
     1'u32, 2'u32, 3'u32
   ]
 
-  glGenBuffers(1, vbo.addr)
-  glGenBuffers(1, ebo.addr)
-  glGenVertexArrays(1, vao.addr)
+  genBuffers(1, vbo.addr)
+  genBuffers(1, ebo.addr)
+  genVertexArrays(1, vao.addr)
 
-  glBindVertexArray(vao)
+  bindVertexArray(vao)
 
-  glBindBuffer(GL_ARRAY_BUFFER, vbo)
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
+  bindBuffer(GL_ARRAY_BUFFER, vbo)
+  bindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
 
-  glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vertices.len),
-              vertices[0].addr, GL_STATIC_DRAW)
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * indices.len),
+  bufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vertices.len),
+            vertices[0].addr, GL_STATIC_DRAW)
+  bufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * indices.len),
               indices[0].addr, GL_STATIC_DRAW)
 
-  glEnableVertexAttribArray(0)
-  glVertexAttribPointer(0'u32, 3, GL_FLOAT, false, cfloat.sizeof * 3, nil)
+  enableVertexAttribArray(0)
+  vertexAttribPointer(0'u32, 3, GL_FLOAT, false, cfloat.sizeof * 3, nil)
 
-  vertex = glCreateShader(GL_VERTEX_SHADER)
+  vertex = createShader(GL_VERTEX_SHADER)
   vsrc = """
 #version 330 core
 layout (location = 0) in vec3 aPos;
@@ -103,42 +101,42 @@ void main() {
   gl_Position = vec4(aPos, 1.0) * uMVP;
 }
   """
-  glShaderSource(vertex, 1, vsrc.addr, nil)
-  glCompileShader(vertex)
+  shaderSource(vertex, 1, vsrc.addr, nil)
+  compileShader(vertex)
   statusShader(vertex)
 
-  fragment = glCreateShader(GL_FRAGMENT_SHADER)
+  fragment = createShader(GL_FRAGMENT_SHADER)
   fsrc = """
 #version 330 core
-out vec4 FraColor;
+out vec4 FragColor;
 
-uniform vec3 uColor
+uniform vec3 uColor;
 
 void main() {
   FragColor = vec4(uColor, 1.0f);
 }
   """
-  glShaderSource(fragment, 1, fsrc.addr, nil)
-  glCompileShader(fragment)
+  shaderSource(fragment, 1, fsrc.addr, nil)
+  compileShader(fragment)
   statusShader(fragment)
 
-  program = glCreateProgram()
-  glAttachShader(program, vertex)
-  glAttachShader(program, fragment)
-  glLinkProgram(program)
+  program = createProgram()
+  attachShader(program, vertex)
+  attachShader(program, fragment)
+  linkProgram(program)
 
   var pLinked: int32
-  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
+  getProgramiv(program, GL_LINK_STATUS, pLinked.addr);
   if pLinked != GL_TRUE.ord:
     var
       log_length: int32
       message = newSeq[char](1024)
-    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
+    getProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo message
 
   let
-    uColor = glGetUniformLocation(program, "uColor")
-    uMVP   = glGetUniformLocation(program, "uMVP")
+    uColor = getUniformLocation(program, "uColor")
+    uMVP   = getUniformLocation(program, "uMVP")
   var
     bg    = vec(33f, 33f, 33f).rgb
     color = vec(102f, 187f, 106f).rgb
@@ -153,17 +151,17 @@ void main() {
 
   styleColorsDark(nil)
 
-  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+  polygonMode(GL_FRONT_AND_BACK, GL_FILL)
   while not w.windowShouldClose:
-    glClearColor(bg.r, bg.g, bg.b, 1f)
-    glClear(GL_COLOR_BUFFER_BIT)
+    clearColor(bg.r, bg.g, bg.b, 1f)
+    clear(GL_COLOR_BUFFER_BIT)
 
-    glUseProgram(program)
-    glUniform3fv(uColor, 1, color.vPtr)
-    glUniformMatrix4fv(uMVP, 1, false, mvp.vPtr)
+    useProgram(program)
+    uniform3fv(uColor, 1, color.vPtr)
+    uniformMatrix4fv(uMVP, 1, false, mvp.vPtr)
 
-    glBindVertexArray(vao)
-    glDrawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)
+    bindVertexArray(vao)
+    drawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)
 
     w.swapBuffers
     glfw.pollEvents()
@@ -177,8 +175,8 @@ void main() {
 
   glfw.terminate()
 
-  glDeleteVertexArrays(1, vao.addr)
-  glDeleteBuffers(1, vbo.addr)
-  glDeleteBuffers(1, ebo.addr)
+  deleteVertexArrays(1, vao.addr)
+  deleteBuffers(1, vbo.addr)
+  deleteBuffers(1, ebo.addr)
 
 main()

@@ -1,6 +1,6 @@
 # Package
 
-version     = "0.0.1"
+version     = "0.0.2"
 author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
@@ -45,4 +45,5 @@ task docs, "Generate Documentation for all of the Library":
   genDocs("src/nimgl.nim", docDir)
   for dir in listDirs(srcDir):
     for file in listFiles(dir):
-      genDocs(file, docDir)
+      if file.nimExt:
+        genDocs(file, docDir)

@@ -9,11 +9,9 @@ proc main =
 
   windowHint whContextVersionMajor, 4
   windowHint whContextVersionMinor, 1
-  windowHint whOpenglForwardCompat, glfwTRUE
-  windowHint whOpenglProfile      , glfwOpenglCoreProfile
-  windowHint whResizable          , glfwFalse
-  windowHint whDecorated          , glfwTrue
-  windowHint whRefreshRate        , glfwDontCare
+  windowHint whOpenglForwardCompat, GLFW_TRUE
+  windowHint whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE
+  windowHint whResizable          , GLFW_FALSE
 
   var w = createWindow(800, 600)
   assert w != nil
