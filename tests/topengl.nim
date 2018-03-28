@@ -16,8 +16,8 @@ proc statusShader(shader: uint32) =
   if status != GL_TRUE.ord:
     var
       log_length: int32
-      message: cstring
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message);
+      message = newSeq[char](1024)
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
     echo message
 
 proc main =
@@ -112,11 +112,11 @@ void main() {
 
   var
     log_length: int32
-    message: cstring
+    message = newSeq[char](1024)
     pLinked: int32
   glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
   if pLinked != GL_TRUE.ord:
-    glGetProgramInfoLog(program, 1024, log_length.addr, message);
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo message
 
   let

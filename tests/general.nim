@@ -23,8 +23,8 @@ proc statusShader(shader: uint32) =
   if status != GL_TRUE.ord:
     var
       log_length: int32
-      message: cstring
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message);
+      message = newSeq[char](1024)
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
     echo message
 
 proc main =
@@ -110,9 +110,9 @@ void main() {
   fragment = glCreateShader(GL_FRAGMENT_SHADER)
   fsrc = """
 #version 330 core
-out vec4 FragColor;
+out vec4 FraColor;
 
-uniform vec3 uColor;
+uniform vec3 uColor
 
 void main() {
   FragColor = vec4(uColor, 1.0f);
@@ -132,8 +132,8 @@ void main() {
   if pLinked != GL_TRUE.ord:
     var
       log_length: int32
-      message: cstring
-    glGetProgramInfoLog(program, 1024, log_length.addr, message);
+      message = newSeq[char](1024)
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
     echo message
 
   let
