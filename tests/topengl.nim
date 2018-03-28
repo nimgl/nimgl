@@ -4,27 +4,21 @@
 import 
   nimgl/[glfw, math, opengl]
 
-converter toString(chars: seq[cchar]): string =
-  result = ""
-  for c in chars:
-    if c == '\0': continue
-    result.add c
-
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
   if key == keySpace:
     glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
 
-proc statusShader(shader: glUint) =
-  var status: glInt
+proc statusShader(shader: uint32) =
+  var status: int32
   glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
   if status != GL_TRUE.ord:
     var
-      log_length: glSizei
-      message = newSeq[char](1024)
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
-    echo toString(message)
+      log_length: int32
+      message: cstring
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message);
+    echo message
 
 proc main =
   # GLFW
@@ -49,10 +43,10 @@ proc main =
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
   var
-    mesh: tuple[vbo, vao, ebo: glUint]
-    vertex  : glUint
-    fragment: glUint
-    program : glUint
+    mesh: tuple[vbo, vao, ebo: uint32]
+    vertex  : uint32
+    fragment: uint32
+    program : uint32
 
   var vert = @[
      0.3f,  0.3f,
@@ -92,7 +86,7 @@ void main() {
   gl_Position = vec4(aPos, 0.0, 1.0) * uMVP;
 }
   """
-  glShaderSource(vertex, 1, vsrc.addr, nil)
+  glShaderSource(vertex, 1'i32, vsrc.addr, nil)
   glCompileShader(vertex)
   statusShader(vertex)
 
@@ -117,13 +111,13 @@ void main() {
   glLinkProgram(program)
 
   var
-    log_length: glSizei
-    message = newSeq[char](1024)
-    pLinked: glInt
+    log_length: int32
+    message: cstring
+    pLinked: int32
   glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
   if pLinked != GL_TRUE.ord:
-    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
-    echo toString(message)
+    glGetProgramInfoLog(program, 1024, log_length.addr, message);
+    echo message
 
   let
     uColor = glGetUniformLocation(program, "uColor")
