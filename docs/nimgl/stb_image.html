@@ -1243,7 +1243,11 @@ function main() {
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#ImageData"
-    title="ImageData = tuple[width: int32, height: int32, channels: int32, data: ptr char]"><wbr />Image<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="ImageData = object
+  width: int32
+  height: int32
+  channels: int32
+  data: ptr char"><wbr />Image<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1271,8 +1275,8 @@ function main() {
   <div id="tocRoot"></div>
   <p class="module-desc">
 <h1><a class="toc-backref" id="stb-image-h-image-loading-decoding-library" href="#stb-image-h-image-loading-decoding-library">stb_image.h - Image loading/decoding library</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
-<p>Thanks to Nothings for this awesome library. This are some bindings to directly interact with the library. WIP</p>
-<p>You can always visit the original &quot;doc&quot; embeded in the header file to get a better idea <a class="reference external" href="https://github.com/nothings/stb/blob/master/stb_image.h">here</a>.</p>
+<p>Thanks to Nothings for this awesome library. This are some bindings to directly interact with the library.</p>
+<p>You can always visit the original &quot;doc&quot; embeded in the header file to get a better idea <a class="reference external" href="https://github.com/nothings/stb/blob/master/stb_image.h">here</a>. </p>
 </p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
@@ -1282,7 +1286,12 @@ function main() {
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="ImageData"><a name="ImageData"></a><pre><span class="Identifier">ImageData</span> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">channels</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">,</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span><span class="Other">]</span></pre></dt>
+<dt id="ImageData"><a name="ImageData"></a><pre><span class="Identifier">ImageData</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">int32</span>
+  <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">int32</span>
+  <span class="Identifier">channels</span><span class="Other">:</span> <span class="Identifier">int32</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span>
+</pre></dt>
 <dd>
 
 
@@ -1310,7 +1319,7 @@ a utility to use normal integers instead o having to pass the addresses more inf
 </dd>
 <dt id="load"><a name="load,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ImageData</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-a utility to only give the filename and get a tupple with all the data
+a utility to only give the filename and get a tupple with all the data more info in the original proc
 
 </dd>
 <dt id="image_free"><a name="image_free,ptr.char"></a><pre><span class="Keyword">proc</span> <span class="Identifier">image_free</span><span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;stbi_image_free&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1334,7 +1343,7 @@ flip the image vertically, so the first pixel in the output array is the bottom 
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-28 21:01:18 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-28 23:35:27 UTC</small>
       </div>
     </div>
   </div>

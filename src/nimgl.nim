@@ -3,7 +3,7 @@
 
 ## Nim Game Library
 ## ====
-##
+## 
 ## Supported Libraries
 ## - `GLFW  <./nimgl/glfw.html>`_ Window Library
 ## - `OpenGL  <./nimgl/opengl.html>`_ Glew Loading Library

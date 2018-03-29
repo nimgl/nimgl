@@ -4,10 +4,10 @@
 ## stb_image.h - Image loading/decoding library
 ## ====
 ## `return <../nimgl.html>`_.  
-##
+## 
 ## Thanks to Nothings for this awesome library. This are some bindings to
-## directly interact with the library. WIP
-##
+## directly interact with the library.
+## 
 ## You can always visit the original "doc" embeded in the header file to get
 ## a better idea `here <https://github.com/nothings/stb/blob/master/stb_image.h>`_.
 
@@ -20,7 +20,7 @@ from os import splitPath
 {.pragma: stb_image, cdecl, importc.}
 
 type
-  ImageData* = tuple
+  ImageData* = object
     width: int32
     height: int32
     channels: int32
@@ -44,7 +44,7 @@ proc load*(filename: cstring, width, height, channels: var int32, components: in
 
 proc load*(filename: cstring): ImageData =
   ## a utility to only give the filename and get a tupple with all the data
-  #3 more info in the original proc
+  ## more info in the original proc
   result.data = load(filename, result.width.addr, result.height.addr, result.channels.addr)
 
 proc image_free*(data: ptr char): void {.stb_image, importc: "stbi_image_free".}

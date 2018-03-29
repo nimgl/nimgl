@@ -4,7 +4,7 @@
 ## GLFW Modules
 ## ====
 ## `return <../nimgl.html>`_.  
-##
+## 
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
 ## Or continue reading to get the documentation shown here.

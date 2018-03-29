@@ -13,6 +13,9 @@ requires "nim >= 0.18.0"
 
 # Tasks
 
+import
+  strutils
+
 const
   docDir = "docs"
 
@@ -28,10 +31,22 @@ proc nimExt(file: string): bool =
       return false
   return true
 
-proc genDocs(path: string, output: string) =
-  var src = path[4 .. path.len - 5]
-  echo "\nGenerating " & src & ".nim"
+proc genDocs(pathr: string, output: string) =
+  var
+    path = pathr.replace(r"\", "/")
+    src = path[4 .. path.len - 5]
+    sp = path.split("/")
+  echo "\n[INFO] generating " & src & ".nim"
+
+  discard sp.pop
+  mkDir(docDir & sp.join("/").substr(3))
   exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
+
+proc walkRecursive(dir: string) =
+  for f in listFiles(dir):
+    if f.nimExt: genDocs(f, docDir)
+  for od in listDirs(dir):
+    if od != "private": walkRecursive(od)
 
 task test, "test stuff under tests dir":
   for file in listFiles("tests"):
@@ -42,8 +57,4 @@ task general, "run tests/general.nim which is the general test for dev":
   exec("nim c -r tests/general.nim")
 
 task docs, "Generate Documentation for all of the Library":
-  genDocs("src/nimgl.nim", docDir)
-  for dir in listDirs(srcDir):
-    for file in listFiles(dir):
-      if file.nimExt:
-        genDocs(file, docDir)
+  walkRecursive(srcDir)
