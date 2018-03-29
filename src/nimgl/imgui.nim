@@ -24,6 +24,8 @@
 ## If you are on windows be sure to compile the cimgui dll with visual studio and
 ## not with mingw.
 
+# WIP
+
 import glfw
 
 when not defined(imguiSrc):

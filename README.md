@@ -48,10 +48,11 @@ Thank you so much :D
 |:-------:|:------------|
 | [GLFW](src/nimgl/glfw.nim) | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
 | [OpenGL](src/nimgl/opengl.nim) | Bindings to GLEW. GLEW is a cross-platform open-source extension loading library |
-| [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl |
-| [ImGUI](src/nimgl/imgui.nim) | Bloat-free graphical user interface library |
+| [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl (WIP) |
+| [ImGUI](src/nimgl/imgui.nim) | Bloat-free graphical user interface library (WIP) |
+| [stb_image](src/nimgl/stb_image.nim) | Image loading/decoding library (WIP) |
 
-### How it Looks
+### How it Looks 
 
 An example that spawns a green window
 
@@ -83,7 +84,7 @@ proc main =
   assert opengl.init() == GLEW_OK
 
   var
-    bg = vec(50f, 205f, 50f).rgb
+    bg = vec(178, 255, 89).rgb
 
   while not w.windowShouldClose:
     clearColor(bg.r, bg.g, bg.b, 1f)

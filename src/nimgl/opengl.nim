@@ -17,11 +17,7 @@
 
 from os import splitPath
 
-proc getHeaderPath(): string {.compileTime.} =
-  result = currentSourcePath()
-  result = result.splitPath.head & "/private/glew/include/GL"
-
-{.passC: "-DGLEW_NO_GLU -DGLEW_BUILD -DGLEW_STATIC -I" & getHeaderPath().}
+{.passC: "-DGLEW_NO_GLU -DGLEW_BUILD -DGLEW_STATIC -I" & currentSourcePath().splitPath.head & "/private/glew/include/GL".}
 
 when defined(glewDLL):
   when defined(windows):

@@ -86,6 +86,11 @@ type
     ## Pointer reference for a GLFW Monitor
   Cursor*  = ptr object
     ## Opaque cursor object.
+  Image* = object
+    ## GlfwImage data
+    width*: int32
+    height*: int32
+    pixels*: ptr char
 
 # Constants
 const 
@@ -484,7 +489,14 @@ type
 
 converter toBool*(x: int32): bool = x != 0
 
+proc setWindowIcon*(window: Window, count: int32, images: ptr Image): void {.glfw_lib, importc: "glfwSetWindowIcon".}
+  ## This function sets the icon of the specified window.  If passed an array of
+  ## candidate images, those of or closest to the sizes desired by the system are
+  ## selected.  If no images are specified, the window reverts to its default
+  ## icon.
+
 proc createWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
+  # TODO: Some day make it so the default window has a nice NimGL logo :D like lwjgl
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
