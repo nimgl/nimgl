@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## stb_image.h - Image loading/decoding library
+## STB Module | stb_image.h - Image loading/decoding library
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -28,7 +28,7 @@ type
 
 proc load*(filename: cstring, width, height, channels: ptr int32, components: int = 0): ptr char {.stb_image, importc: "stbi_load".}
   ## returns a pointer to the image requested, nil if nothind found.
-  ## width and Height as you imagine are from the image
+  ## width and height as you imagine are from the image
   ## channels, how many channels the image has 
   ##    1  grey
   ##    2  grey, alpha

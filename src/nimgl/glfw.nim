@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## GLFW Modules
+## GLFW Module
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -496,7 +496,6 @@ proc setWindowIcon*(window: Window, count: int32, images: ptr Image): void {.glf
   ## icon.
 
 proc createWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
-  # TODO: Some day make it so the default window has a nice NimGL logo :D like lwjgl
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.

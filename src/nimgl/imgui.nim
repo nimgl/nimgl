@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## ImGUI Bindings
+## ImGUI Module
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
