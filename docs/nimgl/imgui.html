@@ -1232,7 +1232,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="imgui-bindings_toc" href="#imgui-bindings">ImGUI Bindings</a></li>
+<li><a class="reference" id="imgui-module_toc" href="#imgui-module">ImGUI Module</a></li>
 <li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
@@ -1316,12 +1316,12 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="imgui-bindings" href="#imgui-bindings">ImGUI Bindings</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
+<h1><a class="toc-backref" id="imgui-module" href="#imgui-module">ImGUI Module</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
 <p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/imgui.cpp">here</a>.</p>
 <p>Do to this library most of the binding libraries are written in C, we want to continue supporting only C libraries so you can alwyas use the backend of your choice. We are binding <a class="reference external" href="https://github.com/Extrawurst/cimgui.git">cimgui</a> which is a thin c wrapper of the c++ version. It is up to date and has great support.</p>
-<p>Unless you want to compile witch cpp please provide a dll of the library, made with cimgui.</p>
+<p>NOTE: Unless you want to compile witch cpp please provide a dll of the library, made with cimgui.</p>
 <p>Even tho we try to keep this bindings the closes to the source, this one specially needs some extra work to fully function with glfw, so there are some helper functions to help with the proccess</p>
-<p>If you are on windows be sure to compile the cimgui dll with visual studio and not with mingw. </p>
+<p>HACK: If you are on windows be sure to compile the cimgui dll with visual studio and not with mingw.</p>
 </p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
@@ -1460,7 +1460,7 @@ Destroy the glfw integration
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-28 23:35:25 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-29 23:06:58 UTC</small>
       </div>
     </div>
   </div>

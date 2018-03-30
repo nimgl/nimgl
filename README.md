@@ -60,13 +60,13 @@ An example that spawns a green window
 import
   nimgl/[glfw, math, opengl]
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+proc keyProc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
 
 proc main =
-  # GLFW
-  assert glfw.init()
+  if not glfw.init():
+    quit(-1)
 
   windowHint whContextVersionMajor, 4
   windowHint whContextVersionMinor, 1
@@ -75,16 +75,16 @@ proc main =
   windowHint whResizable          , GLFW_FALSE
 
   var w: Window = createWindow(800, 600, "NimGL")
-  assert w != nil
+  if w == nil:
+    quit(-1)
 
   w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
-  # Glew / Opengl
-  assert opengl.init() == GLEW_OK
+  if opengl.init() != GLEW_OK:
+    quit(-1)
 
-  var
-    bg = vec(178, 255, 89).rgb
+  var bg = vec(178f, 255f, 89f).rgb
 
   while not w.windowShouldClose:
     clearColor(bg.r, bg.g, bg.b, 1f)

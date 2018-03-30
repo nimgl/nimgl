@@ -1,13 +1,11 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## Vectors
+## Vector - Math Module
 ## =======
 ## `return <../math.html>`_.  
 ## 
 ## Lovely vectors with some useful utilities
-
-# TODO: Some SIMD optimization
 
 import
   pure/math

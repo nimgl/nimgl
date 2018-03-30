@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## ImGUI Bindings
+## ImGUI Module
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -14,14 +14,14 @@
 ## which is a thin c wrapper of the c++ version. It is up to date and has great
 ## support.
 ## 
-## Unless you want to compile witch cpp please provide a dll of the library,
+## NOTE: Unless you want to compile witch cpp please provide a dll of the library,
 ## made with cimgui.
 ## 
 ## Even tho we try to keep this bindings the closes to the source, this one specially
 ## needs some extra work to fully function with glfw, so there are some helper functions
 ## to help with the proccess
 ## 
-## If you are on windows be sure to compile the cimgui dll with visual studio and
+## HACK: If you are on windows be sure to compile the cimgui dll with visual studio and
 ## not with mingw.
 
 # WIP

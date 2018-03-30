@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## GLFW Modules
+## GLFW Module
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -256,7 +256,7 @@ type
     whContextCreationAPI = 0x0002200B
       ## indicates the context creation API used to create the window's context;
       ## either glfwNativeContextAPI or glfwEGLContextAPI.
-  GLFWErrorCode* {.size: int32.sizeof.} = enum
+  ErrorCode* {.size: int32.sizeof.} = enum
     ## Error Codes documented on the original documentation
     glfwNotInitialized = 0x00010001
       ## GLFW has not been initialized.
@@ -447,32 +447,32 @@ type
     keyLast         = "last"
 
 type
-  charProc*   = proc(window: Window, code: cuint): void {.cdecl.}
+  charProc* = proc(window: Window, code: cuint): void {.cdecl.}
     ## This is the function signature for Unicode character callback functions.
     ##
     ## ``window`` The window that received the event.
     ##
     ## ``codepoint`` The Unicode code point of the character.
-  mouseProc*  = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
+  mouseProc* = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for mouse button callback functions.
     ##
-    ## ``window`` The window that received the event.
+    ## ``window`` window that received the event.
     ##
-    ## ``button`` The [mouse button](@ref buttons) that was pressed or
+    ## ``button`` ``MouseButton`` that was pressed or
     ## released.
     ##
-    ## ``action`` One of `GLFW_PRESS` or `GLFW_RELEASE`.
+    ## ``action`` One of ``kaPress` or ``kaRelease``.
     ##
-    ## ``mods`` Bit field describing which [modifier keys](@ref mods) were
+    ## ``mods`` Bit field describing which ``KeyMods`` were
     ## held down.
-  keyProc*    = proc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.}
+  keyProc* = proc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
-    ## ``window`` The ``Window`` that received the event.
+    ## ``window`` ``Window`` that received the event.
     ##
-    ## ``key`` The ``Key`` that was pressed or released.
+    ## ``key`` ``Key`` that was pressed or released.
     ##
-    ## ``scancode`` The system-specific scancode of the key.
+    ## ``scancode`` system-specific scancode of the key.
     ##
     ## ``action`` ``kaPress``, ``kaRelease`` or ``kaRepeat``.
     ##
@@ -481,11 +481,11 @@ type
   scrollProc* = proc(window: Window, xoff, yoff: cdouble): void {.cdecl.}
     ## This is the functions signature for scroll callback functions.
     ##
-    ## ``window`` The window that received the event.
+    ## ``window`` window that received the event.
     ##
-    ## ``xoff`` The scroll offset along the x-axis.
+    ## ``xoff`` scroll offset along the x-axis.
     ##
-    ## ``yoff`` The scroll offset along the y-axis.
+    ## ``yoff`` scroll offset along the y-axis.
 
 converter toBool*(x: int32): bool = x != 0
 
@@ -496,7 +496,6 @@ proc setWindowIcon*(window: Window, count: int32, images: ptr Image): void {.glf
   ## icon.
 
 proc createWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
-  # TODO: Some day make it so the default window has a nice NimGL logo :D like lwjgl
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
@@ -582,21 +581,28 @@ proc defaultWindowHints*(): void {.glfw_lib, importc: "glfwDefaultWindowHints".}
 
 proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetProcAddress".}
   ## This function returns the address of the specified OpenGL or OpenGL ES
-  ## [core or extension function](@ref context_glext), if it is supported
+  ## core or extension function, if it is supported
   ## by the current context.
   ##
   ## A context must be current on the calling thread.  Calling this function
-  ## without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.
+  ## without a current context will cause a GLFW_NO_CURRENT_CONTEXT error.
 
 proc getCursorPos*(window: Window, xpos: ptr cdouble, ypos: ptr cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
   ## This function returns the position of the cursor, in screen coordinates,
   ## relative to the upper-left corner of the client area of the specified
   ## window.
 
+proc getCursorPos*(window: Window): tuple[xpos, ypos: cdouble] =
+  ## This function returns the position of the cursor, in screen coordinates,
+  ## relative to the upper-left corner of the client area of the specified
+  ## window.
+  ## help function.
+  getCursorPos(window, result.xpos.addr, result.ypos.addr)
+
 proc getClipboardString*(window: Window): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
   ## This function returns the contents of the system clipboard, if it contains
   ## or is convertible to a UTF-8 encoded string.  If the clipboard is empty or
-  ## if its contents cannot be converted, `NULL` is returned and a @ref
+  ## if its contents cannot be converted, `NULL` is returned and a 
   ## GLFW_FORMAT_UNAVAILABLE error is generated.
 
 proc setClipboardString*(window: Window, clip: cstring): void {.glfw_lib, importc: "glfwSetClipboardString".}
@@ -617,7 +623,7 @@ proc setCharCallback*(window: Window, callback: charProc): void {.glfw_lib, impo
   ##
   ## The character callback is intended for Unicode text input.  As it deals with
   ## characters, it is keyboard layout dependent, whereas the
-  ## [key callback](@ref glfwSetKeyCallback) is not.  Characters do not map 1:1
+  ## ``setKeyCallback`` is not. Characters do not map 1:1
   ## to physical keys, as a key may produce zero, one or more characters.  If you
   ## want to know whether a specific physical key was pressed or released, see
   ## the key callback instead.
@@ -631,13 +637,13 @@ proc setScrollCallback*(window: Window, callback: scrollProc): void {.glfw_lib, 
   ## wheel or a touchpad scrolling area.
 
 proc createStandardCursor*(shape: CursorShape): Cursor {.glfw_lib, importc: "glfwCreateStandardCursor".}
-  ## Returns a cursor with a [standard shape](@ref shapes), that can be set for
-  ## a window with @ref glfwSetCursor.
+  ## Returns a cursor with a ``CursorShape``, that can be set for
+  ## a window with ``setCursor``.
 
 proc destroyCursor*(cursor: Cursor): void {.glfw_lib, importc: "glfwDestroyCursor".}
-  ## This function destroys a cursor previously created with @ref
-  ## glfwCreateCursor. Any remaining cursors will be destroyed by @ref
-  ## glfwTerminate.
+  ## This function destroys a cursor previously created with
+  ## ``createCursor``. Any remaining cursors will be destroyed by
+  ## ``terminate``.
 
 proc getPrimaryMonitor*(): Monitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".}
   ## This function returns the primary monitor.  This is usually the monitor
@@ -645,5 +651,8 @@ proc getPrimaryMonitor*(): Monitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".
 
 when defined(windows):
   proc getWin32Window*(window: Window): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
-    ## @return The `HWND` of the specified window, or `NULL` if an
-    ## [error](@ref error_handling) occurred.
+    ## returns The ``HWND`` of the specified window, or ``nil`` if an
+    ## error occurred.
+else:
+  proc getWin32Window*(window: Window): pointer = nil
+  ## if you are not working in windows this returns a nil so you can check

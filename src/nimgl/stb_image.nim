@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## stb_image.h - Image loading/decoding library
+## STB Module | stb_image.h - Image loading/decoding library
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -28,7 +28,7 @@ type
 
 proc load*(filename: cstring, width, height, channels: ptr int32, components: int = 0): ptr char {.stb_image, importc: "stbi_load".}
   ## returns a pointer to the image requested, nil if nothind found.
-  ## width and Height as you imagine are from the image
+  ## width and height as you imagine are from the image
   ## channels, how many channels the image has 
   ##    1  grey
   ##    2  grey, alpha
@@ -36,11 +36,6 @@ proc load*(filename: cstring, width, height, channels: ptr int32, components: in
   ##    4  red, green, blue, alpha
   ## components, define if you require some especific number of channels. If 0
   ## uses the number of channels the image has.
-
-proc load*(filename: cstring, width, height, channels: var int32, components: int = 0): ptr char =
-  ## a utility to use normal integers instead o having to pass the addresses
-  ## more info in the original proc
-  load(filename, width.addr, height.addr, channels.addr, components)
 
 proc load*(filename: cstring): ImageData =
   ## a utility to only give the filename and get a tupple with all the data

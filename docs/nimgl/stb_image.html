@@ -1232,7 +1232,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="stb-image-h-image-loading-decoding-library_toc" href="#stb-image-h-image-loading-decoding-library">stb_image.h - Image loading/decoding library</a></li>
+<li><a class="reference" id="stb-module-stb-image-h-image-loading-decoding-library_toc" href="#stb-module-stb-image-h-image-loading-decoding-library">STB Module | stb_image.h - Image loading/decoding library</a></li>
 <li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
@@ -1256,8 +1256,6 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#load,cstring,ptr.int32,ptr.int32,ptr.int32,int"
     title="load(filename: cstring; width, height, channels: ptr int32; components: int = 0): ptr char"><wbr />load<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#load,cstring,int32,int32,int32,int"
-    title="load(filename: cstring; width, height, channels: var int32; components: int = 0): ptr char"><wbr />load<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#load,cstring"
     title="load(filename: cstring): ImageData"><wbr />load<span class="attachedType" style="visibility:hidden">ImageData</span></a></li>
   <li><a class="reference" href="#image_free,ptr.char"
@@ -1274,9 +1272,9 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="stb-image-h-image-loading-decoding-library" href="#stb-image-h-image-loading-decoding-library">stb_image.h - Image loading/decoding library</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
+<h1><a class="toc-backref" id="stb-module-stb-image-h-image-loading-decoding-library" href="#stb-module-stb-image-h-image-loading-decoding-library">STB Module | stb_image.h - Image loading/decoding library</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
 <p>Thanks to Nothings for this awesome library. This are some bindings to directly interact with the library.</p>
-<p>You can always visit the original &quot;doc&quot; embeded in the header file to get a better idea <a class="reference external" href="https://github.com/nothings/stb/blob/master/stb_image.h">here</a>. </p>
+<p>You can always visit the original &quot;doc&quot; embeded in the header file to get a better idea <a class="reference external" href="https://github.com/nothings/stb/blob/master/stb_image.h">here</a>.</p>
 </p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
@@ -1304,17 +1302,11 @@ function main() {
 <dt id="load"><a name="load,cstring,ptr.int32,ptr.int32,ptr.int32,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">,</span> <span class="Identifier">channels</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">components</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;stbi_load&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-returns a pointer to the image requested, nil if nothind found. width and Height as you imagine are from the image<dl class="docutils"><dt>channels, how many channels the image has</dt>
+returns a pointer to the image requested, nil if nothind found. width and height as you imagine are from the image<dl class="docutils"><dt>channels, how many channels the image has</dt>
 <dd>1  grey 2  grey, alpha 3  red, green, blue 4  red, green, blue, alpha</dd>
 </dl>
 <p>components, define if you require some especific number of channels. If 0 uses the number of channels the image has.</p>
 
-
-</dd>
-<dt id="load"><a name="load,cstring,int32,int32,int32,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">,</span> <span class="Identifier">channels</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">int32</span><span class="Other">;</span> <span class="Identifier">components</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-a utility to use normal integers instead o having to pass the addresses more info in the original proc
 
 </dd>
 <dt id="load"><a name="load,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ImageData</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1343,7 +1335,7 @@ flip the image vertically, so the first pixel in the output array is the bottom 
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-28 23:35:27 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-29 23:07:00 UTC</small>
       </div>
     </div>
   </div>

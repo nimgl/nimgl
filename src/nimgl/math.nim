@@ -1,7 +1,7 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-## Math
+## Math Module
 ## ====
 ## `return <../nimgl.html>`_.  
 ## 
@@ -12,14 +12,14 @@
 ## useful functions to help interface with opengl. We use the std math's module
 ## to avoid rewriting what has already been writen.
 ## 
-## All of this library is using int32, uint32 and float32 to be able to interact
+## NOTE: All of this library is using int32, uint32 and float32 to be able to interact
 ## with C. please don't forget to put 'i32, 'ui32 and 'f32 we have some converters
 ## but don't rely on them.
 ## 
-## Also everything in here is in Radians so use the radToDeg and degToRad to
+## NOTE: Also everything in here is in Radians so use the radToDeg and degToRad to
 ## convert back and forth
 ## 
-## This library is made for graphics engines so if you want to do more advanced
+## NOTE: This library is made for graphics engines so if you want to do more advanced
 ## linear algebra stuff please use `Neo <https://github.com/unicredit/neo>`_.
 ## 
 ## Math Stuff

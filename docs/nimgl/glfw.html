@@ -1232,7 +1232,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="glfw-modules_toc" href="#glfw-modules">GLFW Modules</a></li>
+<li><a class="reference" id="glfw-module_toc" href="#glfw-module">GLFW Module</a></li>
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
@@ -1340,8 +1340,8 @@ function main() {
                               ## situations that would have generated errors instead cause undefined behavior
   whContextCreationAPI = 0x0002200B ## indicates the context creation API used to create the window&#x27;s context;
                                  ## either glfwNativeContextAPI or glfwEGLContextAPI."><wbr />Window<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GLFWErrorCode"
-    title="GLFWErrorCode = enum
+  <li><a class="reference" href="#ErrorCode"
+    title="ErrorCode = enum
   glfwNotInitialized = 0x00010001, ## GLFW has not been initialized.
   glfwNoCurrentContext = 0x00010002, ## No context is current for this thread.
   glfwInvalidEnum = 0x00010003, ## One of the arguments to the function was an invalid enum value.
@@ -1351,7 +1351,7 @@ function main() {
   glfwVersionUnavailable = 0x00010007, ## The requested OpenGL or OpenGL ES version is not available.
   glfwPlatformError = 0x00010008, ## A platform-specific error occurred that does not match any of the
   glfwFormatUnavailable = 0x00010009, ## The requested format is not supported or available.
-  glfwNoWindowContext = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />GLFWError<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
+  glfwNoWindowContext = 0x0001000A ## The specified window does not have an OpenGL or OpenGL ES context."><wbr />Error<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#MouseButton"
     title="MouseButton = enum
   mbLeft = 0, mbRight = 1, mbMiddle = 2, mb4 = 3, mb5 = 4, mb6 = 5, mb7 = 6, mb8 = 7"><wbr />Mouse<wbr />Button<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1515,6 +1515,8 @@ function main() {
     title="getProcAddress(procname: cstring): pointer"><wbr />get<wbr />Proc<wbr />Address<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCursorPos,Window,ptr.cdouble,ptr.cdouble"
     title="getCursorPos(window: Window; xpos: ptr cdouble; ypos: ptr cdouble): void"><wbr />get<wbr />Cursor<wbr />Pos<span class="attachedType" style="visibility:hidden">Window</span></a></li>
+  <li><a class="reference" href="#getCursorPos,Window"
+    title="getCursorPos(window: Window): tuple[xpos, ypos: cdouble]"><wbr />get<wbr />Cursor<wbr />Pos<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#getClipboardString,Window"
     title="getClipboardString(window: Window): cstring"><wbr />get<wbr />Clipboard<wbr />String<span class="attachedType" style="visibility:hidden">Window</span></a></li>
   <li><a class="reference" href="#setClipboardString,Window,cstring"
@@ -1553,8 +1555,8 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc">
-<h1><a class="toc-backref" id="glfw-modules" href="#glfw-modules">GLFW Modules</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
-<p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="http://www.glfw.org/docs/latest/">here</a>. Or continue reading to get the documentation shown here. </p>
+<h1><a class="toc-backref" id="glfw-module" href="#glfw-module">GLFW Module</a></h1><p><a class="reference external" href="../nimgl.html">return</a>.</p>
+<p>This bindings follow most of the original library You can check the original documentation <a class="reference external" href="http://www.glfw.org/docs/latest/">here</a>. Or continue reading to get the documentation shown here.</p>
 </p>
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
@@ -1685,7 +1687,7 @@ GlfwImage data
 
 
 </dd>
-<dt id="GLFWErrorCode"><a name="GLFWErrorCode"></a><pre><span class="Identifier">GLFWErrorCode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="ErrorCode"><a name="ErrorCode"></a><pre><span class="Identifier">ErrorCode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">glfwNotInitialized</span> <span class="Other">=</span> <span class="DecNumber">0x00010001</span><span class="Other">,</span> <span class="Comment">## GLFW has not been initialized.</span>
   <span class="Identifier">glfwNoCurrentContext</span> <span class="Other">=</span> <span class="DecNumber">0x00010002</span><span class="Other">,</span> <span class="Comment">## No context is current for this thread.</span>
   <span class="Identifier">glfwInvalidEnum</span> <span class="Other">=</span> <span class="DecNumber">0x00010003</span><span class="Other">,</span> <span class="Comment">## One of the arguments to the function was an invalid enum value.</span>
@@ -1788,10 +1790,10 @@ KeyCodes, a lot of them
     <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This is the function signature for mouse button callback functions.</p>
-<p><tt class="docutils literal"><span class="pre">window</span></tt> The window that received the event.</p>
-<p><tt class="docutils literal"><span class="pre">button</span></tt> The [mouse button](@ref buttons) that was pressed or released.</p>
-<p><tt class="docutils literal"><span class="pre">action</span></tt> One of <cite>GLFW_PRESS</cite> or <cite>GLFW_RELEASE</cite>.</p>
-<p><tt class="docutils literal"><span class="pre">mods</span></tt> Bit field describing which [modifier keys](@ref mods) were held down.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> window that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">button</span></tt> <tt class="docutils literal"><span class="pre">MouseButton</span></tt> that was pressed or released.</p>
+<p><tt class="docutils literal"><span class="pre">action</span></tt> One of <tt class="docutils literal"><span class="pre">kaPress` or ``kaRelease</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">mods</span></tt> Bit field describing which <tt class="docutils literal"><span class="pre">KeyMods</span></tt> were held down.</p>
 
 
 </dd>
@@ -1799,9 +1801,9 @@ KeyCodes, a lot of them
     <span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This is the function signature for keyboard key callback functions.</p>
-<p><tt class="docutils literal"><span class="pre">window</span></tt> The <tt class="docutils literal"><span class="pre">Window</span></tt> that received the event.</p>
-<p><tt class="docutils literal"><span class="pre">key</span></tt> The <tt class="docutils literal"><span class="pre">Key</span></tt> that was pressed or released.</p>
-<p><tt class="docutils literal"><span class="pre">scancode</span></tt> The system-specific scancode of the key.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> <tt class="docutils literal"><span class="pre">Window</span></tt> that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">key</span></tt> <tt class="docutils literal"><span class="pre">Key</span></tt> that was pressed or released.</p>
+<p><tt class="docutils literal"><span class="pre">scancode</span></tt> system-specific scancode of the key.</p>
 <p><tt class="docutils literal"><span class="pre">action</span></tt> <tt class="docutils literal"><span class="pre">kaPress</span></tt>, <tt class="docutils literal"><span class="pre">kaRelease</span></tt> or <tt class="docutils literal"><span class="pre">kaRepeat</span></tt>.</p>
 <p><tt class="docutils literal"><span class="pre">mods</span></tt> Bit field describing which <tt class="docutils literal"><span class="pre">KeyMods</span></tt> were held down.</p>
 
@@ -1810,9 +1812,9 @@ KeyCodes, a lot of them
 <dt id="scrollProc"><a name="scrollProc"></a><pre><span class="Identifier">scrollProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">xoff</span><span class="Other">,</span> <span class="Identifier">yoff</span><span class="Other">:</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This is the functions signature for scroll callback functions.</p>
-<p><tt class="docutils literal"><span class="pre">window</span></tt> The window that received the event.</p>
-<p><tt class="docutils literal"><span class="pre">xoff</span></tt> The scroll offset along the x-axis.</p>
-<p><tt class="docutils literal"><span class="pre">yoff</span></tt> The scroll offset along the y-axis.</p>
+<p><tt class="docutils literal"><span class="pre">window</span></tt> window that received the event.</p>
+<p><tt class="docutils literal"><span class="pre">xoff</span></tt> scroll offset along the x-axis.</p>
+<p><tt class="docutils literal"><span class="pre">yoff</span></tt> scroll offset along the y-axis.</p>
 
 
 </dd>
@@ -2041,8 +2043,8 @@ Resets all window hints to their default values.
 <dt id="getProcAddress"><a name="getProcAddress,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getProcAddress</span><span class="Other">(</span><span class="Identifier">procname</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetProcAddress&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-<p>This function returns the address of the specified OpenGL or OpenGL ES [core or extension function](@ref context_glext), if it is supported by the current context.</p>
-<p>A context must be current on the calling thread.  Calling this function without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.</p>
+<p>This function returns the address of the specified OpenGL or OpenGL ES core or extension function, if it is supported by the current context.</p>
+<p>A context must be current on the calling thread.  Calling this function without a current context will cause a GLFW_NO_CURRENT_CONTEXT error.</p>
 
 
 </dd>
@@ -2052,10 +2054,15 @@ Resets all window hints to their default values.
 This function returns the position of the cursor, in screen coordinates, relative to the upper-left corner of the client area of the specified window.
 
 </dd>
+<dt id="getCursorPos"><a name="getCursorPos,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCursorPos</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">xpos</span><span class="Other">,</span> <span class="Identifier">ypos</span><span class="Other">:</span> <span class="Identifier">cdouble</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+This function returns the position of the cursor, in screen coordinates, relative to the upper-left corner of the client area of the specified window. help function.
+
+</dd>
 <dt id="getClipboardString"><a name="getClipboardString,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClipboardString</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cstring</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetClipboardString&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-This function returns the contents of the system clipboard, if it contains or is convertible to a UTF-8 encoded string.  If the clipboard is empty or if its contents cannot be converted, <cite>NULL</cite> is returned and a @ref GLFW_FORMAT_UNAVAILABLE error is generated.
+This function returns the contents of the system clipboard, if it contains or is convertible to a UTF-8 encoded string.  If the clipboard is empty or if its contents cannot be converted, <cite>NULL</cite> is returned and a GLFW_FORMAT_UNAVAILABLE error is generated.
 
 </dd>
 <dt id="setClipboardString"><a name="setClipboardString,Window,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setClipboardString</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">;</span> <span class="Identifier">clip</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
@@ -2080,7 +2087,7 @@ This function sets the mouse button callback of the specified window, which is c
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwSetCharCallback&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 <p>This function sets the character callback of the specified window, which is called when a Unicode character is input.</p>
-<p>The character callback is intended for Unicode text input.  As it deals with characters, it is keyboard layout dependent, whereas the [key callback](@ref glfwSetKeyCallback) is not.  Characters do not map 1:1 to physical keys, as a key may produce zero, one or more characters.  If you want to know whether a specific physical key was pressed or released, see the key callback instead.</p>
+<p>The character callback is intended for Unicode text input.  As it deals with characters, it is keyboard layout dependent, whereas the <tt class="docutils literal"><span class="pre">setKeyCallback</span></tt> is not. Characters do not map 1:1 to physical keys, as a key may produce zero, one or more characters.  If you want to know whether a specific physical key was pressed or released, see the key callback instead.</p>
 
 
 </dd>
@@ -2095,12 +2102,12 @@ This function sets the mouse button callback of the specified window, which is c
 <dt id="createStandardCursor"><a name="createStandardCursor,CursorShape"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createStandardCursor</span><span class="Other">(</span><span class="Identifier">shape</span><span class="Other">:</span> <span class="Identifier">CursorShape</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Cursor</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span>
     <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwCreateStandardCursor&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Returns a cursor with a [standard shape](@ref shapes), that can be set for a window with @ref glfwSetCursor.
+Returns a cursor with a <tt class="docutils literal"><span class="pre">CursorShape</span></tt>, that can be set for a window with <tt class="docutils literal"><span class="pre">setCursor</span></tt>.
 
 </dd>
 <dt id="destroyCursor"><a name="destroyCursor,Cursor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">destroyCursor</span><span class="Other">(</span><span class="Identifier">cursor</span><span class="Other">:</span> <span class="Identifier">Cursor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwDestroyCursor&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-This function destroys a cursor previously created with @ref glfwCreateCursor. Any remaining cursors will be destroyed by @ref glfwTerminate.
+This function destroys a cursor previously created with <tt class="docutils literal"><span class="pre">createCursor</span></tt>. Any remaining cursors will be destroyed by <tt class="docutils literal"><span class="pre">terminate</span></tt>.
 
 </dd>
 <dt id="getPrimaryMonitor"><a name="getPrimaryMonitor,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPrimaryMonitor</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Monitor</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetPrimaryMonitor&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -2110,7 +2117,7 @@ This function returns the primary monitor.  This is usually the monitor where el
 </dd>
 <dt id="getWin32Window"><a name="getWin32Window,Window"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getWin32Window</span><span class="Other">(</span><span class="Identifier">window</span><span class="Other">:</span> <span class="Identifier">Window</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;glfwGetWin32Window&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-@return The <cite>HWND</cite> of the specified window, or <cite>NULL</cite> if an [error](@ref error_handling) occurred.
+returns The <tt class="docutils literal"><span class="pre">HWND</span></tt> of the specified window, or <tt class="docutils literal"><span class="pre">nil</span></tt> if an error occurred.
 
 </dd>
 
@@ -2133,7 +2140,7 @@ This function returns the primary monitor.  This is usually the monitor where el
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-28 23:35:25 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-29 23:06:58 UTC</small>
       </div>
     </div>
   </div>
