@@ -12,10 +12,10 @@ import
 
 type
   Vec*[R: static[int32], T] = array[R, T]
-    ## Primitive type of Vector
+    ## primitive type of Vector
 
   Vec1*[T] = Vec[1, T]
-    ## The combination of the three Vec1
+    ## the combination of the three Vec1
   Vec1i*   = Vec1[int32]
     ## Vec1 of in
   Vec1ui*  = Vec1[uint32]
@@ -33,7 +33,7 @@ type
     ## Vec2 of float32
 
   Vec3*[T] = Vec[3, T]
-    ## The combination of the three Vec3
+    ## the combination of the three Vec3
   Vec3i*   = Vec3[int32]
     ## Vec3 of in
   Vec3ui*  = Vec3[uint32]
@@ -51,11 +51,11 @@ type
     ## Vec4 of float32
 
   Vecf*    = Vec4f  | Vec3f  | Vec2f  | Vec1f
-    ## Packs all the float32 vectors
+    ## packs all the float32 vectors
   Veci*    = Vec4i  | Vec3i  | Vec2i  | Vec1i
-    ## Packs all the uint32 vectors
+    ## packs all the uint32 vectors
   Vecui*   = Vec4ui | Vec3ui | Vec2ui | Vec1ui
-    ## Packs all the int32 vectors
+    ## packs all the int32 vectors
 
 {.push inline.}
 
@@ -63,45 +63,45 @@ template  x*[R, T](vec: Vec[R, T]): untyped = vec[0]
 template  y*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
 template  z*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
 template  w*[T](vec: Vec4[T]): untyped = vec[3]
-template `x=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
-template `y=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
-template `z=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
-template `w=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
+template `x=`*[R, T](vec: var Vec[R, T], e: T): untyped = vec[0] = e
+template `y=`*[T](vec: var Vec2[T] | var Vec3[T] | var Vec4[T], e: T): untyped = vec[1] = e
+template `z=`*[T](vec: var Vec3[T] | var Vec4[T], e: T): untyped = vec[2] = e
+template `w=`*[T](vec: var Vec4[T], e: T): untyped = vec[3] = e
 
 template  r*[R, T](vec: Vec[R, T]): untyped = vec[0]
 template  g*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
 template  b*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
 template  a*[T](vec: Vec4[T]): untyped = vec[3]
-template `r=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
-template `g=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
-template `b=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
-template `a=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
+template `r=`*[R, T](vec: var Vec[R, T], e: T): untyped = vec[0] = e
+template `g=`*[T](vec: var Vec2[T] | var Vec3[T] | var Vec4[T], e: T): untyped = vec[1] = e
+template `b=`*[T](vec: var Vec3[T] | var Vec4[T], e: T): untyped = vec[2] = e
+template `a=`*[T](vec: var Vec4[T], e: T): untyped = vec[3] = e
 
 template  i*[R, T](vec: Vec[R, T]): untyped = vec[0]
 template  j*[T](vec: Vec2[T] | Vec3[T] | Vec4[T]): untyped = vec[1]
 template  k*[T](vec: Vec3[T] | Vec4[T]): untyped = vec[2]
 template  s*[T](vec: Vec4[T]): untyped = vec[3]
-template `i=`*[R, T](vec: Vec[R, T], e: T): untyped = vec[0] = e
-template `j=`*[T](vec: Vec2[T] | Vec3[T] | Vec4[T], e: T): untyped = vec[1] = e
-template `k=`*[T](vec: Vec3[T] | Vec4[T], e: T): untyped = vec[2] = e
-template `s=`*[T](vec: Vec4[T], e: T): untyped = vec[3] = e
+template `i=`*[R, T](vec: var Vec[R, T], e: T): untyped = vec[0] = e
+template `j=`*[T](vec: var Vec2[T] | var Vec3[T] | var Vec4[T], e: T): untyped = vec[1] = e
+template `k=`*[T](vec: var Vec3[T] | var Vec4[T], e: T): untyped = vec[2] = e
+template `s=`*[T](vec: var Vec4[T], e: T): untyped = vec[3] = e
 
 template vPtr*[R, T](vec: array[R, T]): ptr = vec[0].addr
-  ## Gets the pointer to the first attribute in the array
+  ## gets the pointer to the first attribute in the array
 template rgba*(vec: Vec4f): Vec4f =
-  ## Little utility to normalize rgba
+  ## little utility to normalize rgba
   if vec[3] > 1'f32:
     [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3] / 100'f32]
   else:
     [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32, vec[3]]
 template rgb*(vec: Vec3f): Vec3f =
-  ## Little utility to normalize rgb
+  ## little utility to normalize rgb
   [vec[0] / 255'f32, vec[1] / 255'f32, vec[2] / 255'f32]
 
 const vecIndex = ['x', 'y', 'z', 'w']
 
 proc `$`*[R, T](vec: Vec[R,T] | Vec1[T] | Vec2[T] | Vec3[T] | Vec4[T]): string =
-  ## Converts a Vec into a string
+  ## converts a Vec into a string
   result = "vec" & $vec.len & "("
   for n in 0 ..< vec.len:
     result = result & vecIndex[n] & ": " & $vec[n] & ", "
@@ -109,39 +109,39 @@ proc `$`*[R, T](vec: Vec[R,T] | Vec1[T] | Vec2[T] | Vec3[T] | Vec4[T]): string =
 
 # "Constructors"
 proc vec*[T](x: T): Vec1[T] = [x]
-  ## Any type of data for Vec1
+  ## any type of data for Vec1
 proc vec*[T](x, y: T): Vec2[T] = [x, y]
-  ## Any type of data for Vec2
+  ## any type of data for Vec2
 proc vec*[T](x, y, z: T): Vec3[T] = [x, y, z]
-  ## Any type of data for Vec3
+  ## any type of data for Vec3
 proc vec*[T](x, y, z, w: T): Vec4[T] = [x, y, z, w]
-  ## Any type of data for Vec4
+  ## any type of data for Vec4
 
 proc vec2*[t](x: t): Vec2[t] = [x, x]
-  ## Uses the same value for the rest Vec2
+  ## uses the same value for the rest Vec2
 proc vec3*[t](x: t): Vec3[t] = [x, x, x]
-  ## Uses the same value for the rest Vec3
+  ## uses the same value for the rest Vec3
 proc vec4*[t](x: t): Vec4[t] = [x, x, x, x]
-  ## Uses the same value for the rest Vec4
+  ## uses the same value for the rest Vec4
 
 proc vec2f*(x: float32): Vec2[float32] = [x, x]
-  ## Uses the same value for the rest Vec2f
+  ## uses the same value for the rest Vec2f
 proc vec3f*(x: float32): Vec3[float32] = [x, x, x]
-  ## Uses the same value for the rest Vec3f
+  ## uses the same value for the rest Vec3f
 proc vec4f*(x: float32): Vec4[float32] = [x, x, x, x]
-  ## Uses the same value for the rest Vec4f
+  ## uses the same value for the rest Vec4f
 proc vec2i*(x: int32): Vec2[int32] = [x, x]
-  ## Uses the same value for the rest Vec2i
+  ## uses the same value for the rest Vec2i
 proc vec3i*(x: int32): Vec3[int32] = [x, x, x]
-  ## Uses the same value for the rest Vec3i
+  ## uses the same value for the rest Vec3i
 proc vec4i*(x: int32): Vec4[int32] = [x, x, x, x]
-  ## Uses the same value for the rest Vec4i
+  ## uses the same value for the rest Vec4i
 proc vec2ui*(x: uint32): Vec2[uint32] = [x, x]
-  ## Uses the same value for the rest Vec2ui
+  ## uses the same value for the rest Vec2ui
 proc vec3ui*(x: uint32): Vec3[uint32] = [x, x, x]
-  ## Uses the same value for the rest Vec3ui
+  ## uses the same value for the rest Vec3ui
 proc vec4ui*(x: uint32): Vec4[uint32] = [x, x, x, x]
-  ## Uses the same value for the rest Vec4ui
+  ## uses the same value for the rest Vec4ui
 
 proc vec*[R: static[int32], T](v: array[R, T]): Vec[R, T] = v
   ## Array to Vec using the size of the Array
@@ -240,11 +240,11 @@ template vec4*[T](v: seq[T]): Vec4[T] = vec(v[0], v[1], v[2], v[3])
   ## seq of any type to Vec4
 
 proc vec1*[R, T] (vec: Vec[R, T]): Vec1[T] = [vec.x]
-  ## Converts any Veci into a Vec1i
+  ## converts any Veci into a Vec1i
 proc vec2*[T] (vec: Vec2[T] | Vec3[T] | Vec4[T]): Vec2[T] = [vec.x, vec.y]
-  ## Converts any Vec2,3,4i into a Vec2i
+  ## converts any Vec2,3,4i into a Vec2i
 proc vec3*[T] (vec: Vec3[T] | Vec4[T]): Vec3[T] = [vec.x, vec.y, vec.z]
-  ## Converts any Vec3,4 into a Vec3
+  ## converts any Vec3,4 into a Vec3
 
 proc vec1*[T] (x: T): Vec1[T] = [x]
   ## x to Vec1
@@ -275,40 +275,40 @@ proc vec4*[T] (v1: Vec2[T], v2: Vec2[T]): Vec4[T] = [v1.x, v1.y, v2.x, v2.y]
 # Operations
 
 proc `+`*[R: static[int32], T](v1, v2: array[R, T]): Vec[R, T] =
-  ## Adding two vectors
+  ## adding two vectors
   for n in 0 ..< v1.len:
     result[n] = v1[n] + v2[n]
 
 proc `-`*[R: static[int32], T](v1, v2: array[R, T]): Vec[R, T] =
-  ## Substracting two vectors
+  ## substracting two vectors
   for n in 0 ..< v1.len:
     result[n] = v1[n] - v2[n]
 
 proc `*`*[R: static[int32], T](v: array[R, T], s: T): Vec[R, T] =
-  ## Multiplying one vector a scale v * s
+  ## multiplying one vector a scale v * s
   for n in 0 ..< v.len:
     result[n] = T(v[n] * s)
 
 proc `/`*[R: static[int32], T](v: array[R, T], s: T): Vec[R, T] =
-  ## Dividing one vector with a scale v / s
+  ## dividing one vector with a scale v / s
   for n in 0 ..< v.len:
     result[n] = T(v[n].float / s.float)
 
 proc mag*(v: Vec): float32 =
-  ## Magnitude of this vector |v|
+  ## magnitude of this vector |v|
   var t: float32
   for n in 0 ..< v.len:
     t += float32(v[n] * v[n])
   sqrt(t)
 
 proc dot*[R: static[int32], T](v1, v2: array[R, T]): float32 =
-  ## Gives the dot product of this two vectors v1 . v2
+  ## gives the dot product of this two vectors v1 . v2
   result  = 0f
   for n in 0 ..< v1.len:
     result += float32(v1[n] * v2[n])
 
 proc dot*[R: static[int32], T](v1, v2: array[R, T], angle: float32): float32 =
-  ## Gives the dot product of this two vectors with the given angle
+  ## gives the dot product of this two vectors with the given angle
   dot(v1, v2) * cos(angle)
 
 proc sqrt*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
@@ -439,5 +439,25 @@ proc sign*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
     result[n] = T(0)
     if v[n] > 0: result[n] = T(1)
     elif v[n] < 0: result[n] = T(-1)
+
+proc `+=`*[R: static[int32], T](v1: var array[R, T], v2: array[R, T]): void =
+  ## adding two vectors and assigning it to the vector
+  for n in 0 ..< v1.len:
+    v1[n] = v1[n] + v2[n]
+
+proc `-=`*[R: static[int32], T](v1: var array[R, T], v2: array[R, T]): void =
+  ## substracting two vectors and assigning it to the vector
+  for n in 0 ..< v1.len:
+    v1[n] = v1[n] - v2[n]
+
+proc `*=`*[R: static[int32], T](v: var array[R, T], s: T): void =
+  ## multiplying one vector a scale v * s and assigning it to the vector
+  for n in 0 ..< v.len:
+    v[n] = T(v[n] * s)
+
+proc `/=`*[R: static[int32], T](v: var array[R, T], s: T): void =
+  ## dividing one vector with a scale v / s and assigning it to the vector
+  for n in 0 ..< v.len:
+    v[n] = T(v[n].float / s.float)
 
 {.pop.}

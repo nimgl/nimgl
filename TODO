@@ -1,10 +1,12 @@
 nimgl:
   glfw:
-    ☐ continue adding integration with native window, to easily add vulkan
     ☐ add more procedures
     ☐ add an icon to the default window like lwjgl
+    ☐ continue adding integration with native window, to easily add vulkan
+    ☐ add vulkan support
   opengl:
     ☐ in the future, make it's own loader to not depend on glew
+    ☐ automate documentation adding
     ☐ add wgl interfaces
     ☐ add glx interfaces
     ☐ add egl interfaces
@@ -14,7 +16,7 @@ nimgl:
       ☐ simd everything posible
       ☐ try to add more utilities
     matrix:
-      ☐ add basic transformations
+      ☐ add basic transformations @today
       ☐ add more transforms @critical
   imgui:
     ☐ make it work @high
@@ -43,6 +45,7 @@ nimgl:
     ☐ investigate other technologies that can be added
 
 gl2nim:
+  ☐ clean the code?
   ☐ add support for:
     ☐ eglew.h
     ☐ glxew.h
@@ -50,3 +53,7 @@ gl2nim:
 
 vk2nim:
   ☐ make it
+
+Archive:
+  ✔ clean the documentation @done(18-03-29 22:38)
+  ✔ make help procs for the procs that neeed pointers @done(18-03-29 22:38)

@@ -37,11 +37,6 @@ proc load*(filename: cstring, width, height, channels: ptr int32, components: in
   ## components, define if you require some especific number of channels. If 0
   ## uses the number of channels the image has.
 
-proc load*(filename: cstring, width, height, channels: var int32, components: int = 0): ptr char =
-  ## a utility to use normal integers instead o having to pass the addresses
-  ## more info in the original proc
-  load(filename, width.addr, height.addr, channels.addr, components)
-
 proc load*(filename: cstring): ImageData =
   ## a utility to only give the filename and get a tupple with all the data
   ## more info in the original proc
