@@ -13,7 +13,7 @@ import
 
 type
   Mat*[C, R: static[int32], T] = array[C, Vec[R, T]]
-    ## Primitive type of Matrix
+    ## primitive type of Matrix
   Mat4*[R: static[int32], T] = Mat[4, R, T]
   Mat3*[R: static[int32], T] = Mat[3, R, T]
   Mat2*[R: static[int32], T] = Mat[2, R, T]
@@ -53,7 +53,7 @@ template `c=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[2] = e
 template `d=`*[C, R, T](mat: array[C, array[R, T]], e: T): untyped = mat[3] = e
 
 proc `$`*[C, R, T](mat: array[C, array[R, T]]): string =
-  ## Converts Mat to string
+  ## converts Mat to string
   result = "mat" & $mat.len & "\n  ["
   for c in 0 ..< mat.len:
     for r in 0 ..< mat[c].len:
@@ -63,45 +63,45 @@ proc `$`*[C, R, T](mat: array[C, array[R, T]]): string =
       result = result & "\n  ["
 
 template vPtr*[C, R, T](mat: array[C, array[R, T]]): ptr = mat[0][0].addr
-  ## Gets the pointer to the first attribute in the array
+  ## gets the pointer to the first attribute in the array
 
 # "Constructors"
 
 proc mat4x4*[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T] =
-  ## Creates a 4x4 Matrix
+  ## creates a 4x4 Matrix
   [c0, c1, c2, c4]
 
 proc mat4*[T](c0, c1, c2, c4: Vec4[T]): Mat4x4[T] =
-  ## Creates a 4x4 Matrix
+  ## creates a 4x4 Matrix
   [c0, c1, c2, c4]
 
 proc mat3x3*[T](c0, c1, c2: Vec3[T]): Mat3x3[T] =
-  ## Creates a 3x3 Matrix
+  ## creates a 3x3 Matrix
   [c0, c1, c2]
 
 proc mat3*[T](c0, c1, c2: Vec3[T]): Mat3x3[T] =
-  ## Creates a 3x3 Matrix
+  ## creates a 3x3 Matrix
   [c0, c1, c2]
 
 proc mat2x2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
-  ## Creates a 2x2 Matrix
+  ## creates a 2x2 Matrix
   [c0, c1]
 
 proc mat2*[T](c0, c1: Vec2[T]): Mat2x2[T] =
-  ## Creates a 2x2 Matrix
+  ## creates a 2x2 Matrix
   [c0, c1]
 
 
 proc mat4x3*[T](c0, c1, c2, c3: Vec3[T]): Mat4x3[T] =
-  ## Creates a 4x3 Matrix
+  ## creates a 4x3 Matrix
   [c0, c1, c2, c3]
 
 proc mat4x2*[T](c0, c1, c2, c3: Vec2[T]): Mat4x2[T] =
-  ## Creates a 4x2 Matrix
+  ## creates a 4x2 Matrix
   [c0, c1, c2, c3]
 
 proc mat4x1*[T](c0, c1, c2, c3: Vec1[T]): Mat4x1[T] =
-  ## Creates a 4x1 Matrix
+  ## creates a 4x1 Matrix
   [c0, c1, c2, c3]
 
 proc mat4*[T](n: T): Mat4x4[T] =
@@ -121,11 +121,11 @@ proc identity4*[T](): Mat4x4[T] =
   ]
 
 proc mat3x4*[T](c0, c1, c2: Vec4[T]): Mat3x4[T] =
-  ## Creates a 3x4 Matrix
+  ## creates a 3x4 Matrix
   [c0, c1, c2]
 
 proc mat3x2*[T](c0, c1, c2: Vec2[T]): Mat3x2[T] =
-  ## Creates a 4x2 Matrix
+  ## creates a 4x2 Matrix
   [c0, c1, c2]
 
 proc mat3*[T](n: T): Mat3x3[T] =
@@ -144,11 +144,11 @@ proc identity3*[T](): Mat3x3[T] =
 
 
 proc mat2x4*[T](c0, c1: Vec4[T]): Mat2x4[T] =
-  ## Creates a 3x4 Matrix
+  ## creates a 3x4 Matrix
   [c0, c1]
 
 proc mat2x3*[T](c0, c1: Vec3[T]): Mat2x3[T] =
-  ## Creates a 4x2 Matrix
+  ## creates a 4x2 Matrix
   [c0, c1]
 
 proc mat2*[T](n: T): Mat2x2[T] =
@@ -163,7 +163,7 @@ proc identity2*[T](): Mat2x2[T] =
     [T(0), T(1)]
   ]
 
-# Math
+# Transformations
 
 proc ortho*(left, right, bottom, top, near, far: float32): Mat4x4[float32] =
   result = mat4(0.0f)
