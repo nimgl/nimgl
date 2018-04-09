@@ -152,4 +152,8 @@ $RECYCLE.BIN/
 *.dylib
 
 # End of https://www.gitignore.io/api/c,osx,nim,c++,linux,macos,windows,visualstudiocode
+tests/general
 tests/tgeneral
+tests/tglfw
+tests/tmath
+tests/topengl
