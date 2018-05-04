@@ -587,17 +587,10 @@ proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetPr
   ## A context must be current on the calling thread.  Calling this function
   ## without a current context will cause a GLFW_NO_CURRENT_CONTEXT error.
 
-proc getCursorPos*(window: Window, xpos: ptr cdouble, ypos: ptr cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
+proc getCursorPos*(window: Window, xpos, ypos: var cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
   ## This function returns the position of the cursor, in screen coordinates,
   ## relative to the upper-left corner of the client area of the specified
   ## window.
-
-proc getCursorPos*(window: Window): tuple[xpos, ypos: cdouble] =
-  ## This function returns the position of the cursor, in screen coordinates,
-  ## relative to the upper-left corner of the client area of the specified
-  ## window.
-  ## help function.
-  getCursorPos(window, result.xpos.addr, result.ypos.addr)
 
 proc getClipboardString*(window: Window): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
   ## This function returns the contents of the system clipboard, if it contains
@@ -649,10 +642,31 @@ proc getPrimaryMonitor*(): Monitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".
   ## This function returns the primary monitor.  This is usually the monitor
   ## where elements like the task bar or global menu bar are located.
 
+proc getWindowSize*(window: Window, width, height: var int32) {.glfw_lib, importc: "glfwGetWindowSize".}
+  ## This function retrieves the size, in screen coordinates, of the client area
+  ## of the specified window.  If you wish to retrieve the size of the
+  ## framebuffer of the window in pixels, see ``getFramebufferSize``.
+
+proc getFramebufferSize*(window: Window, width, height: var int32) {.glfw_lib, importc: "glfwGetFramebufferSize".}
+  ## This function retrieves the size, in screen coordinates, of the client area
+  ## of the specified window.  If you wish to retrieve the size of the
+  ## framebuffer of the window in pixels, see ``getFramebufferSize``.
+
+proc getWindowAttrib*(window: Window, attrib: WindowHint): int32 {.glfw_lib, importc: "glfwGetWindowAttrib".}
+  ## This function returns the value of an attribute of the specified window or
+  ## its OpenGL or OpenGL ES context.
+  # To be honest I don't know if it returns a boolean int or if it can have different
+  # values so, I return int
+
+proc getMouseButton*(window: Window, button: int32): int32 {.glfw_lib, importc: "glfwGetMouseButton".}
+  ## This function returns the last state reported for the specified mouse button
+  ## to the specified window.  The returned state is one of ``maPress`` or
+  ## ``maRelease``.
+
 when defined(windows):
   proc getWin32Window*(window: Window): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
     ## returns The ``HWND`` of the specified window, or ``nil`` if an
     ## error occurred.
 else:
   proc getWin32Window*(window: Window): pointer = nil
-  ## if you are not working in windows this returns a nil so you can check
+  ## if you are not working in windows this returns a nil so you can still use it

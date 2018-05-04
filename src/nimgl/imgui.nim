@@ -26,7 +26,8 @@
 
 # WIP
 
-import glfw
+import
+  glfw, math/vector
 
 when not defined(imguiSrc):
   when defined(windows):
@@ -88,6 +89,15 @@ type
   GetCBProc = proc (window: Window): cstring {.cdecl.}
   SetCPProc = proc (window: Window, text: cstring): void {.cdecl.}
 
+  ImVec2* = tuple
+    x: float32
+    y: float32
+  ImVec4* = tuple
+    x: float32
+    y: float32
+    z: float32
+    w: float32
+
   IO* {.importc: "struct ImGuiIO".} = ptr object
     ## This is where your app communicate with ImGui. Access via getIO().
     KeyMap: array[512, int32]
@@ -102,6 +112,11 @@ type
     KeyAlt : bool
     KeyShift: bool
     KeySuper: bool
+    DisplaySize: ImVec2
+    DisplayFramebufferScale: ImVec2
+    DeltaTime: float32
+    MousePos: ImVec2
+    MouseDown: array[5, bool]
 
 var
   gWindow: Window
@@ -111,8 +126,17 @@ var
   gMousePressed: array[3, bool]
   glslVer: cstring
     ## Version of glsl to use
+  gFontTexture: uint32 = 0
+    ## Texture id of opengl
+  gTime: cdouble
   
 proc getIO*(): IO {.imgui_lib, importc: "igGetIO".}
+proc newFrame*() {.imgui_lib, importc: "igNewFrame".}
+proc render*() {.imgui_lib, importc: "igRender".}
+
+# proc text*(format: cstring, args: varargs[untyped]) {.imgui_lib, importc: "igText".}
+# unstable https://github.com/nim-lang/Nim/issues/1154
+proc text*(format: cstring) {.imgui_lib, importc: "igText".}
 
 proc createContext*(malloc: pointer = nil, free: pointer = nil): Context {.imgui_lib, importc: "igCreateContext".}
 
@@ -135,7 +159,7 @@ proc setClipboardText*(window: Window, text: cstring) {.cdecl.} =
   ## Set the clipboard Text data
   window.setClipboardString(text)
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
+proc keyProc(window: Window, key: glfw.Key, scancode: cint, action: KeyAction, mods: KeyMod){.cdecl.} =
   var io = getIO()
   io.KeysDown[key.ord] = action != kaRelease
 
@@ -163,15 +187,11 @@ proc installCallbacks(window: Window): void =
   window.setScrollCallback(scrollProc)
   window.setCharCallback(charProc)
 
-proc init*(window: Window, installCallbacks: bool, glslVersion: int): void =
+proc init*(window: Window, installCallbacks: bool, glslVersion: int = 150): bool =
   ## Starts glfw integration
   gWindow = window
 
-  glslVer = "#version "
-  if glslVersion == 0:
-    glslVer = $glslVer & "150\n"
-  else:
-    glslVer = $glslVer & $glslVersion & "\n"
+  glslVer = "#version " & $glslVersion & "\n"
   
   var io = getIO()
   io.KeyMap[ikTab.ord]        = keyTab.ord
@@ -210,6 +230,45 @@ proc init*(window: Window, installCallbacks: bool, glslVersion: int): void =
   gCursors[cResizeNWSE.ord] = createStandardCursor(csArrow);
 
   if installCallbacks: installCallbacks(window)
+  return true
+
+proc createDeviceObjects() =
+  echo 'a'
+
+proc implNewFrame*() =
+  if gFontTexture == 0:
+    createDeviceObjects()
+
+  var
+    io: IO = getIO()
+    wSize: Vec2[int32]
+    dSize: Vec2[int32]
+
+  gWindow.getWindowSize(wSize.x, wSize.y)
+  gWindow.getFrameBufferSize(dSize.x, dSize.y)
+
+  io.DisplaySize = (wSize.x.float32, wSize.y.float32)
+  io.DisplayFramebufferScale = (
+    (if wSize.x > 0: dSize.x.float32 / wSize.x.float32 else: 0'f32),
+    (if wSize.y > 0: dSize.y.float32 / wSize.y.float32 else: 0'f32),
+  )
+
+  let currentTime = getTime()
+  io.DeltaTime = if gTime > 0: currentTime.float32 - gTime.float32 else: 1'f32 / 60'f32
+  gTime = currentTime
+
+  if gWindow.getWindowAttrib(whFocused) > 0:
+    var mousePos: Vec2[cdouble]
+    gWindow.getCursorPos(mousePos.x, mousePos.y)
+    io.MousePos = (mousePos.x.float32, mousePos.y.float32)
+  else:
+    io.MousePos = (-float32.high, -float32.high)
+
+  for i in 0..<3:
+    io.MouseDown[i] = gMousePressed[i] or gWindow.getMouseButton(i.int32) != 0
+    gMousePressed[i] = false
+
+  newFrame()
 
 proc shutdown*(): void =
   ## Destroy the glfw integration

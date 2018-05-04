@@ -147,12 +147,14 @@ void main() {
   var
     ctx = createContext()
     io  = getIO()
-  imgui.init(w, false, 330)
 
-  styleColorsDark(nil)
+  assert imgui.init(w, false, 330) == true
+  styleColorsDark()
 
   polygonMode(GL_FRONT_AND_BACK, GL_FILL)
   while not w.windowShouldClose:
+    imgui.implNewFrame()
+
     clearColor(bg.r, bg.g, bg.b, 1f)
     clear(GL_COLOR_BUFFER_BIT)
 
