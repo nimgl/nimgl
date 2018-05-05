@@ -7,7 +7,7 @@
 ]#
 
 import 
-  nimgl/[imgui, glfw, math, opengl]
+  nimgl/[imgui, glfw, math, opengl, imgui/implGL]
 
 proc keyProc(window: Window, key: Key, scancode: cint,
             action: KeyAction, mods: KeyMod): void {.cdecl.} =
@@ -148,12 +148,12 @@ void main() {
     ctx = createContext()
     io  = getIO()
 
-  assert imgui.init(w, false, 330) == true
+  assert implGL.init(w, false, 330) == true
   styleColorsDark()
 
   polygonMode(GL_FRONT_AND_BACK, GL_FILL)
   while not w.windowShouldClose:
-    imgui.implNewFrame()
+    implGL.newFrame()
 
     clearColor(bg.r, bg.g, bg.b, 1f)
     clear(GL_COLOR_BUFFER_BIT)
@@ -165,13 +165,16 @@ void main() {
     bindVertexArray(vao)
     drawElements(GL_TRIANGLES, indices.len.cint, GL_UNSIGNED_INT, nil)
 
+    imgui.render()
+    implGL.renderData()
+
     w.swapBuffers
     glfw.pollEvents()
 
   w.destroyWindow
 
   # +Imgui
-  imgui.shutdown()
+  implGL.shutdown()
   ctx.destroyContext
   # -Imgui
 
