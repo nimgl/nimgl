@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu
+    steps:
+      - checkout
+      # installs build tools and opengl dev
+      - run: |
+          apt-get update
+          apt-get -y install build-essential freeglut3 freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libglu1-mesa-dev libgl1-mesa-glx libgl1-mesa-dev git xorg-dev curl
+      # adds github to dowload submodules
+      - run: |
+          mkdir ~/.ssh
+          mv .circleci/ssh_config ~/.ssh/config
+          git submodule update --init --recursive
+      # installs nim
+      - run: |
+          curl -O https://nim-lang.org/choosenim/init.sh
+          sh init.sh -y
+      # build
+      - run: |
+          export PATH=/root/.nimble/bin:$PATH
+          nimble test

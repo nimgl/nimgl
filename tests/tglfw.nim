@@ -2,7 +2,10 @@
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
 import
-  nimgl/glfw
+  nimgl/glfw, os
+
+if os.getEnv("CI") != "":
+  quit()
 
 proc main =
   assert init()
@@ -15,7 +18,7 @@ proc main =
 
   var w = createWindow(800, 600)
   assert w != nil
-  
+
   w.makeContextCurrent
 
   while not w.windowShouldClose:

@@ -1,10 +1,10 @@
-# Copyright (C) CavariuX. All Rights Reserved
+# Copyright (C) CavariuX. MIT License
 # Written by Leonardo Mariscal <lmariscal@pm.me>, 2018
 
 ## ImGUI OpenGl 3 Implementation Module
 ## ====
-## `return <../imgui.html>`_.  
-## 
+## `return <../imgui.html>`_.
+##
 ## This is an implementation to test and show the usage of this bindings, if you
 ## are looking to use some simple debug tools feel free to use this implementation
 ## but if you want to write your own debug system, we highly recommend you to
@@ -77,7 +77,7 @@ proc init*(window: Window, installCallbacks: bool, glslVersio: int = 150): bool 
   gWindow = window
 
   glslVersion = "#version " & $glslVersio & "\n"
-  
+
   var io = getIO()
   io.KeyMap[ikTab.ord]        = keyTab.ord
   io.KeyMap[ikLeftArrow.ord]  = keyLeft.ord
@@ -126,7 +126,7 @@ proc createFontsTexture*() =
 
     lastTexture: int32
 
-  # I GIVE UP, (FOR TODAY) THIS IS TRYING TO KILL ME PLEASE HELP
+  # HELP: I trully don't know what to do with this rebel proc
   io.Fonts.getTexDataAsRGBA32(pixels, width.addr, height.addr, nil)
 
   getIntegerv(GL_TEXTURE_BINDING_2D, lastTexture.addr)
@@ -173,7 +173,7 @@ void main() {
 	Out_Color = Frag_Color * texture( Texture, Frag_UV.st);
 }
     """
-  
+
   gShaderHandle = createProgram()
   gVertHandle   = createShader(GL_VERTEX_SHADER)
   gFragHandle   = createShader(GL_FRAGMENT_SHADER)

@@ -17,13 +17,13 @@ NimGL is open source and is under the MIT License, we highly encourage every dev
 
 ### Install
 
-You will need nimble to install this library.  
+You will need nimble to install this library.
 
 ```shell
 nimble install nimgl
 ```
 
-After that you can access all the bindings by importing them like.  
+After that you can access all the bindings by importing them like.
 
 ```shell
 import nimgl/<binding>
@@ -39,20 +39,20 @@ It is currently being developed and tested on
 I'm only one person and I use this library almost daily for school and personal
 projects. If you are missing some extension, procedures or bindings or anything
 related, feel free to PR any feature or open an issue with the specification and
-if you can some links to the docs so I can have an idea on how to implement it.  
+if you can some links to the docs so I can have an idea on how to implement it.
 Thank you so much :D
 
 ### Bindings Currently Supported
 
-| Library | Description |
-|:-------:|:------------|
-| [GLFW](src/nimgl/glfw.nim) | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
-| [OpenGL](src/nimgl/opengl.nim) | Bindings to GLEW. GLEW is a cross-platform open-source extension loading library |
-| [Math](src/nimgl/math.nim) | A linear algebra library to interact directly with opengl (WIP) |
-| [ImGUI](src/nimgl/imgui.nim) | Bloat-free graphical user interface library (WIP) |
-| [stb_image](src/nimgl/stb_image.nim) | Image loading/decoding library (WIP) |
+| Library                              | Description                                                                                       |
+| :-------:                            | :------------                                                                                     |
+| [GLFW](src/nimgl/glfw.nim)           | It provides a simple API for creating windows, contexts and surfaces, receiving input and events. |
+| [OpenGL](src/nimgl/opengl.nim)       | Bindings to GLEW. GLEW is a cross-platform open-source extension loading library                  |
+| [Math](src/nimgl/math.nim)           | A linear algebra library to interact directly with opengl (WIP)                                   |
+| [ImGUI](src/nimgl/imgui.nim)         | Bloat-free graphical user interface library (WIP)                                                 |
+| [stb_image](src/nimgl/stb_image.nim) | Image loading/decoding library (WIP)                                                              |
 
-### How it Looks 
+### How it Looks
 
 An example that spawns a green window
 

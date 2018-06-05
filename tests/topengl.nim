@@ -1,8 +1,11 @@
 # Copyright (C) CavariuX. License on the root folder.
 # Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
 
-import 
-  nimgl/[glfw, math, opengl]
+import
+  nimgl/[glfw, math, opengl], os
+
+if os.getEnv("CI") != "":
+  quit()
 
 proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
