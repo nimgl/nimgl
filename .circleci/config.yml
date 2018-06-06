@@ -14,11 +14,26 @@ jobs:
           mkdir ~/.ssh
           mv .circleci/ssh_config ~/.ssh/config
           git submodule update --init --recursive
-      # installs nim
+      # install nim
       - run: |
+          curl -o nimver https://api.github.com/repos/nim-lang/Nim/tags
+          echo 'why circleci' >> nimver
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "nimver" }}
+          - v1-dependencies-
+
+      - run: |
+          export PATH=~/.nimble/bin:$PATH
           curl -O https://nim-lang.org/choosenim/init.sh
           sh init.sh -y
+
+      - save_cache:
+          paths:
+            - ~/.nimble
+          key: v1-dependencies-{{ checksum "nimver" }}
       # build
       - run: |
-          export PATH=/root/.nimble/bin:$PATH
+          export PATH=~/.nimble/bin:$PATH
           nimble test
