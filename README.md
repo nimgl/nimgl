@@ -1,11 +1,9 @@
 [![CircleCI](https://circleci.com/gh/cavariux/nimgl.svg?style=svg)](https://circleci.com/gh/cavariux/nimgl)
 [![GitHub stars](https://img.shields.io/github/stars/cavariux/nimgl.svg?style=social&logo=github&label=Stars)](https://github.com/cavariux/nimgl)
-<a href="https://www.buymeacoffee.com/cavariux" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" alt="Buy Me A Coffee" height="25"></a>
+[![Buy Me A Coffee](https://img.shields.io/badge/buy%20coffee-donate-orange.svg?style=flat-square)](https://buymeacoff.ee/cavariux)
 ![GitHub last commit](https://img.shields.io/github/last-commit/cavariux/nimgl.svg?style=flat-square)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![docs](https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square)](https://nimgl.org)
-
-[![CircleCI](https://circleci.com/gh/cavariux/nimgl.svg?style=svg)](https://circleci.com/gh/cavariux/nimgl)
 
 ## Nim Game Library (WIP) [![nimble](https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png)](https://github.com/nim-lang/nimble)
 
@@ -28,7 +26,7 @@ nimble install nimgl
 
 After that you can access all the bindings by importing them like.
 
-```shell
+```nim
 import nimgl/<binding>
 ```
 
@@ -36,6 +34,7 @@ It is currently being developed and tested on
 
 * Windows 10
 * Mac High Sierra
+* Linux Ubuntu 18.04
 
 ### Contribute
 
@@ -71,33 +70,31 @@ proc main =
   if not glfw.init():
     quit(-1)
 
-  windowHint whContextVersionMajor, 4
-  windowHint whContextVersionMinor, 1
-  windowHint whOpenglForwardCompat, GLFW_TRUE
-  windowHint whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE
-  windowHint whResizable          , GLFW_FALSE
+  windowHint(whContextVersionMajor, 4)
+  windowHint(whContextVersionMinor, 1)
+  windowHint(whOpenglForwardCompat, GLFW_TRUE)
+  windowHint(whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE)
+  windowHint(whResizable          , GLFW_FALSE)
 
-  var w: Window = createWindow(800, 600, "NimGL")
+  var w: Window = createWindow(800, 600, "NimGL", nil, nil)
   if w == nil:
     quit(-1)
 
   w.setKeyCallback(keyProc)
-  w.makeContextCurrent
+  w.makeContextCurrent()
 
   if opengl.init() != GLEW_OK:
     quit(-1)
 
-  var bg = vec(178f, 255f, 89f).rgb
+  var bg = vec(178f, 255f, 89f).rgb()
 
   while not w.windowShouldClose:
+    glfw.pollEvents()
     clearColor(bg.r, bg.g, bg.b, 1f)
     clear(GL_COLOR_BUFFER_BIT)
+    w.swapBuffers()
 
-    w.swapBuffers
-    glfw.pollEvents()
-
-  w.destroyWindow
-
+  w.destroyWindow()
   glfw.terminate()
 
 main()
