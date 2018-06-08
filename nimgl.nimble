@@ -5,7 +5,7 @@ author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
 srcDir      = "src"
-skipDirs    = @["tools", ".vscode"]
+skipDirs    = @["tools", ".circleci", '.github', 'tests']
 
 # Dependencies
 
