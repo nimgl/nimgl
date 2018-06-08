@@ -36,7 +36,7 @@ proc genDocs(pathr: string, output: string) =
     path = pathr.replace(r"\", "/")
     src = path[4 .. path.len - 5]
     sp = path.split("/")
-  echo "\n[INFO] generating " & src & ".nim"
+  echo "\n[info] generating " & src & ".nim"
 
   discard sp.pop
   mkDir(docDir & sp.join("/").substr(3))
@@ -51,7 +51,8 @@ proc walkRecursive(dir: string) =
 task test, "test stuff under tests dir":
   for file in listFiles("tests"):
     if file[6] == 't' and file.nimExt:
-      exec("nim c -r " & file)
+      echo "\n[info] testing " & file[6..<file.len]
+      exec("nim c --verbosity:0 --hints:off -r " & file)
 
 task general, "run tests/general.nim which is the general test for dev":
   exec("nim c -r tests/general.nim")

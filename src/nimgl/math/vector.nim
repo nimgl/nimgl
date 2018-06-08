@@ -3,8 +3,8 @@
 
 ## Vector - Math Module
 ## =======
-## `return <../math.html>`_.  
-## 
+## `return <../math.html>`_.
+##
 ## Lovely vectors with some useful utilities
 
 import
@@ -225,9 +225,9 @@ proc vec1*[T](): Vec1[T] = [T(0)]
   ## zeros of manual type T to Vec1
 proc vec2*[T](): Vec2[T] = [T(0), T(0)]
   ## zeros of manual type T to Vec2
-proc vec3*[T](): Vec2[T] = [T(0), T(0), T(0)]
+proc vec3*[T](): Vec3[T] = [T(0), T(0), T(0)]
   ## zeros of manual type T to Vec3
-proc vec4*[T](): Vec2[T] = [T(0), T(0), T(0), T(0)]
+proc vec4*[T](): Vec4[T] = [T(0), T(0), T(0), T(0)]
   ## zeros of manual type T to Vec4
 
 template vec1*[T](v: seq[T]): Vec1[T] = vec(v[0])
@@ -397,42 +397,42 @@ proc arctan*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## arc tangent of every value in the vector
   for n in 0 ..< v.len:
     result[n] = T(v[n].arctan())
-  
+
 proc trunc*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## remove the decimal digits
   for n in 0 ..< v.len:
     result[n] = T(v[n].trunc())
-  
+
 proc round*[R: static[int32], T](v: array[R, T], p: int): Vec[R, T] =
   ## value rounded to the nearest integer
   for n in 0 ..< v.len:
     result[n] = T(v[n].round(p))
-  
+
 proc floor*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## value rounded to the nearest integer below
   for n in 0 ..< v.len:
     result[n] = T(v[n].floor())
-  
+
 proc ceil*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## value rounded to the nearest integer above
   for n in 0 ..< v.len:
     result[n] = T(v[n].ceil())
-  
+
 proc degToRad*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## converts the values from degress to radians
   for n in 0 ..< v.len:
     result[n] = T(v[n].degToRad())
-  
+
 proc radToDeg*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## converts the values from radians to degress
   for n in 0 ..< v.len:
     result[n] = T(v[n].radToDeg())
-  
+
 proc abs*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## absolute values of every value in the vector
   for n in 0 ..< v.len:
     result[n] = T(v[n].abs())
-  
+
 proc sign*[R: static[int32], T](v: array[R, T]): Vec[R, T] =
   ## returns a number representing the sign of every value in the vector
   for n in 0 ..< v.len:
