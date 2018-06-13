@@ -3,8 +3,8 @@
 
 ## GLFW Module
 ## ====
-## `return <../nimgl.html>`_.  
-## 
+## `return <../nimgl.html>`_.
+##
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
 ## Or continue reading to get the documentation shown here.
@@ -26,50 +26,52 @@ else:
     {.passC: "-D_GLFW_WIN32 -DGLFW_EXPOSE_NATIVE_WIN32",
       passL: "-lopengl32 -lgdi32",
       compile: "private/glfw/src/win32_init.c",
+      compile: "private/glfw/src/win32_joystick.c",
       compile: "private/glfw/src/win32_monitor.c",
       compile: "private/glfw/src/win32_time.c",
-      compile: "private/glfw/src/win32_tls.c",
+      compile: "private/glfw/src/win32_thread.c",
       compile: "private/glfw/src/win32_window.c",
-      compile: "private/glfw/src/win32_joystick.c",
       compile: "private/glfw/src/wgl_context.c",
-      compile: "private/glfw/src/egl_context.c".}
+      compile: "private/glfw/src/egl_context.c",
+      compile: "private/glfw/src/osmesa_context.c".}
   elif defined(macosx):
     {.passC: "-D_GLFW_COCOA -D_GLFW_USE_CHDIR -D_GLFW_USE_MENUBAR -D_GLFW_USE_RETINA",
       passL: "-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo",
       compile: "private/glfw/src/cocoa_init.m",
-      compile: "private/glfw/src/cocoa_monitor.m",
-      compile: "private/glfw/src/cocoa_time.c",
-      compile: "private/glfw/src/posix_tls.c",
-      compile: "private/glfw/src/cocoa_window.m",
       compile: "private/glfw/src/cocoa_joystick.m",
-      compile: "private/glfw/src/nsgl_context.m".}
+      compile: "private/glfw/src/cocoa_monitor.m",
+      compile: "private/glfw/src/cocoa_window.m",
+      compile: "private/glfw/src/cocoa_time.c",
+      compile: "private/glfw/src/posix_thread.c",
+      compile: "private/glfw/src/nsgl_context.m",
+      compile: "private/glfw/src/egl_context.c",
+      compile: "private/glfw/src/osmesa_context.c".}
   else:
     {.passL: "-pthread -lGL -lX11 -lXrandr -lXxf86vm -lXi -lXcursor -lm -lXinerama".}
 
     when defined(mir):
-      {.passC: "-D_GLFW_WAYLAND",
-        compile: "private/glfw/src/wl_init.c",
-        compile: "private/glfw/src/wl_monitor.c",
-        compile: "private/glfw/src/wl_window.c",
-        compile: "private/glfw/src/egl_context.c".}
-    elif defined(wayland):
       {.passC: "-D_GLFW_MIR",
         compile: "private/glfw/src/mir_init.c",
         compile: "private/glfw/src/mir_monitor.c",
-        compile: "private/glfw/src/mir_window.c",
-        compile: "private/glfw/src/egl_context.c".}
+        compile: "private/glfw/src/mir_window.c".}
+    elif defined(wayland):
+      {.passC: "-D_GLFW_WAYLAND",
+        compile: "private/glfw/src/wl_init.c",
+        compile: "private/glfw/src/wl_monitor.c",
+        compile: "private/glfw/src/wl_window.c".}
     else:
       {.passC: "-D_GLFW_X11",
         compile: "private/glfw/src/x11_init.c",
         compile: "private/glfw/src/x11_monitor.c",
         compile: "private/glfw/src/x11_window.c",
-        compile: "private/glfw/src/glx_context.c",
-        compile: "private/glfw/src/egl_context.c".}
+        compile: "private/glfw/src/glx_context.c".}
 
     {.compile: "private/glfw/src/xkb_unicode.c",
       compile: "private/glfw/src/linux_joystick.c",
       compile: "private/glfw/src/posix_time.c",
-      compile: "private/glfw/src/posix_tls.c".}
+      compile: "private/glfw/src/egl_context.c",
+      compile: "private/glfw/src/osmesa_context.c",
+      compile: "private/glfw/src/posix_thread.c".}
 
   {.compile: "private/glfw/src/context.c",
     compile: "private/glfw/src/init.c",
@@ -93,7 +95,7 @@ type
     pixels*: ptr char
 
 # Constants
-const 
+const
   GLFW_DONT_CARE*              = -1
   GLFW_FALSE*                  = 0
   GLFW_TRUE*                   = 1
@@ -213,7 +215,7 @@ type
       ## You nearly always want to use double buffering. This is a hard constraint.
     whClientApi = 0x00022001
       ## specifies which client API to create the context for.
-      ## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and 
+      ## Possible values are glfwOpenglAPI, glfwOpenglEsAPI and
     whContextVersionMajor = 0x00022002
       ## specify the client API version that the created context must be compatible
       ## with. The exact behavior of these hints depend on the requested client API.
@@ -595,7 +597,7 @@ proc getCursorPos*(window: Window, xpos, ypos: var cdouble): void {.glfw_lib, im
 proc getClipboardString*(window: Window): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
   ## This function returns the contents of the system clipboard, if it contains
   ## or is convertible to a UTF-8 encoded string.  If the clipboard is empty or
-  ## if its contents cannot be converted, `NULL` is returned and a 
+  ## if its contents cannot be converted, `NULL` is returned and a
   ## GLFW_FORMAT_UNAVAILABLE error is generated.
 
 proc setClipboardString*(window: Window, clip: cstring): void {.glfw_lib, importc: "glfwSetClipboardString".}

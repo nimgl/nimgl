@@ -5,6 +5,10 @@ jobs:
       - image: cavariux/nimgl
     steps:
       - checkout
+      - run: |
+          mkdir -p ~/.ssh
+          mv .circleci/ssh_config ~/.ssh/config
+          git submodule update --init --recursi
       # adds github to dowload submodules
       - run: |
           mkdir -p ~/.ssh
@@ -17,6 +21,10 @@ jobs:
       - image: cavariux/nimgl:alpine
     steps:
       - checkout
+      - run: |
+          mkdir -p ~/.ssh
+          mv .circleci/ssh_config ~/.ssh/config
+          git submodule update --init --recursi
       # adds github to dowload submodules
       - run: |
           mkdir -p ~/.ssh

@@ -37,13 +37,13 @@ when not defined(imguiSrc):
     const imgui_dll* = "cimgui.so"
   {.pragma: imgui_lib, dynlib: imgui_dll, cdecl.}
 else:
-  {.compile: "private/imgui/imgui/imgui.cpp",
-    compile: "private/imgui/imgui/imgui_draw.cpp",
-    compile: "private/imgui/imgui/imgui_demo.cpp",
-    compile: "private/imgui/cimgui/cimgui.cpp",
-    compile: "private/imgui/cimgui/drawList.cpp",
-    compile: "private/imgui/cimgui/fontAtlas.cpp",
-    compile: "private/imgui/cimgui/listClipper.cpp" .}
+  {.compile: "private/cimgui/imgui/imgui.cpp",
+    compile: "private/cimgui/imgui/imgui_draw.cpp",
+    compile: "private/cimgui/imgui/imgui_demo.cpp",
+    compile: "private/cimgui/cimgui/cimgui.cpp",
+    compile: "private/cimgui/cimgui/drawList.cpp",
+    compile: "private/cimgui/cimgui/fontAtlas.cpp",
+    compile: "private/cimgui/cimgui/listClipper.cpp" .}
   {.pragma: imgui_lib, cdecl.}
 
 type

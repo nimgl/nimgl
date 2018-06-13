@@ -52,7 +52,8 @@ task test, "test stuff under tests dir":
   for file in listFiles("tests"):
     if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
-      exec("nim c --verbosity:0 --hints:off -r " & file)
+      #exec("nim c --verbosity:0 --hints:off -r " & file)
+      exec("nim c -r " & file)
 
 task general, "run tests/general.nim which is the general test for dev":
   exec("nim c -r tests/general.nim")
