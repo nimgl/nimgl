@@ -6261,7 +6261,7 @@ proc glGetProcAddress(name: cstring): pointer =
     if result == nil:
       echo $name & " <- has not been found"
       echo "are you sure an opengl context is running?"
-  
+
 proc load1_0() =
   cglCullFace = cast[proc (mode: GLenum): void {.cdecl.}](glGetProcAddress("glCullFace"))
   cglFrontFace = cast[proc (mode: GLenum): void {.cdecl.}](glGetProcAddress("glFrontFace"))
@@ -7059,7 +7059,7 @@ template glTypedCallTemplate(cgl: any, name: string): untyped =
   when defined(opengl_debug):
     if glNimDebugPostProc != nil:
       glNimDebugPostProc(name)
-  
+
 # Wrapper to add documentation and future manual modifications
 proc glActiveShaderProgram*(pipeline: GLuint, program: GLuint): void =
   ## Set the active program object for a program pipeline object
@@ -9532,7 +9532,7 @@ proc glLoadMatrixx*(m: ptr GLfixed): void =
   ## Replace the current matrix with the specified matrix
   ## Specifies a pointer to 16 consecutive values, which are used as the
   ## elements of a
-  ## 
+  ##
   ## 4times4column-major matrix.
   glCallTemplate(cglLoadMatrixx(m), "glLoadMatrixx")
 proc glVertexAttribL4d*(index: GLuint, x: GLdouble, y: GLdouble, z: GLdouble, w: GLdouble): void =
@@ -9652,7 +9652,7 @@ proc glMultMatrixx*(m: ptr GLfixed): void =
   ## Multiply the current matrix with the specified matrix
   ## Points to 16 consecutive values that are used as the elements of
   ## a
-  ## 
+  ##
   ## 4times4column-major matrix.
   glCallTemplate(cglMultMatrixx(m), "glMultMatrixx")
 proc glVertexAttrib4Nbv*(index: GLuint, v: ptr GLbyte): void =
@@ -10535,7 +10535,7 @@ proc glSampleCoverage*(value: GLfloat, invert: GLboolean): void =
   ## Specify multisample coverage parameters
   ## Specify a single floating-point sample coverage value.  The value is
   ## clamped to the range
-  ## 
+  ##
   ## 01.
   ## The initial value is 1.0.
   glCallTemplate(cglSampleCoverage(value, invert), "glSampleCoverage")
@@ -10543,7 +10543,7 @@ proc glSampleCoveragex*(value: GLclampx, invert: GLboolean): void =
   ## Specify multisample coverage parameters
   ## Specify a single floating-point sample coverage value.  The value is
   ## clamped to the range
-  ## 
+  ##
   ## 01.
   ## The initial value is 1.0.
   glCallTemplate(cglSampleCoveragex(value, invert), "glSampleCoveragex")

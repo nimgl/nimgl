@@ -4,7 +4,8 @@ We are really glad you're reading this, because we need volunteer developers to 
 
 === Code of Conduct
 
-This project and everyone participating in it is governed by the link:CODE_OF_CONDUCT.adoc[Code of Conduct]. By participating, you are expected to uphold this code. Please report unacceptable behavior to mailto:leo@cav.bz[leo@cav.bz].
+This project and everyone participating in it is governed by the link:CODE_OF_CONDUCT.adoc[Code of Conduct]. By
+participating, you are expected to uphold this code. Please report unacceptable behavior to mailto:leo@cav.bz[leo@cav.bz].
 
 === Help and Improvements
 

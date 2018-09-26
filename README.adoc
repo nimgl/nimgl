@@ -51,7 +51,7 @@ Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
 
 === Bindings Currently Supported
 
-[%header,cols="1,3"]
+[%header,cols="2,3"]
 |===
 | Library | Description
 
@@ -76,7 +76,6 @@ An example that spawns a green window
 [source,nim]
 -----------------
 import nimgl/[glfw, opengl]
-import glm
 
 proc keyProc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
@@ -100,11 +99,9 @@ proc main() =
 
   assert glInit()
 
-  var bg = vec3(0.69f, 1f, 0.34f)
-
   while not w.windowShouldClose:
     glfw.pollEvents()
-    glClearColor(bg.r, bg.g, bg.b, 1f)
+    glClearColor(0.68f, 1f, 0.34f, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
     w.swapBuffers()
 
