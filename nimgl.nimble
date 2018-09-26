@@ -1,6 +1,6 @@
 # Package
 
-version     = "0.1.0"
+version     = "0.2.0"
 author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
@@ -53,6 +53,7 @@ task test, "test stuff under tests dir":
     if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
       #exec("nim c --verbosity:0 --hints:off -r " & file)
+      exec("nimble install -y glm")
       exec("nim c -r -d:opengl_debug " & file)
 
 task general, "run tests/general.nim which is the general test for dev":
