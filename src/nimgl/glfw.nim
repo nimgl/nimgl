@@ -2,8 +2,6 @@
 
 ## GLFW Module
 ## ====
-## `return <../nimgl.html>`_.
-##
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
 ## Or continue reading to get the documentation shown here.
@@ -20,7 +18,6 @@ else:
   {.compile: "private/glfw/src/vulkan.c".}
 
   # Thanks to ephja for making this build system
-
   when defined(windows):
     {.passC: "-D_GLFW_WIN32 -DGLFW_EXPOSE_NATIVE_WIN32",
       passL: "-lopengl32 -lgdi32",
@@ -81,13 +78,13 @@ else:
   {.pragma: glfw_lib, cdecl.}
 
 type
-  Window* = ptr object
+  GLFWWindow* = ptr object
     ## Pointer reference for a GLFW Window
-  Monitor* = ptr object
+  GLFWMonitor* = ptr object
     ## Pointer reference for a GLFW Monitor
-  Cursor*  = ptr object
+  GLFWCursor*  = ptr object
     ## Opaque cursor object.
-  Image* = object
+  GLFWImage* = object
     ## GlfwImage data
     width*: int32
     height*: int32
@@ -111,7 +108,7 @@ const
   GLFW_OPENGL_CORE_PROFILE*    = 0X00032001
   GLFW_OPENGL_COMPAT_PROFILE*  = 0X00032002
 
-  GLFW_CURSOR*                 = 0X00033001
+  EGLFW_CURSOR*                 = 0X00033001
   GLFW_STICKY_KEYS*            = 0X00033002
   GLFW_STICKY_MOUSE_BUTTONS*   = 0X00033003
 
@@ -127,7 +124,7 @@ const
   GLFW_EGL_CONTEXT_API*        = 0X00036002
 
 type
-  CursorShape* {.size: int32.sizeof.} = enum
+  GLFWCursorShape* {.size: int32.sizeof.} = enum
     csArrow = 0x00036001
     csIbeam = 0x00036002
     csCrosshair = 0x00036003
@@ -135,7 +132,7 @@ type
     csHresize = 0x00036005
     csVresize = 0x00036006
 
-  WindowHint* {.size: int32.sizeof.} = enum
+  GLFWWindowHint* {.size: int32.sizeof.} = enum
     whFocused = 0x00020001
       ## specifies whether the windowed mode window will be given input focus
       ## when created.
@@ -257,7 +254,7 @@ type
     whContextCreationAPI = 0x0002200B
       ## indicates the context creation API used to create the window's context;
       ## either glfwNativeContextAPI or glfwEGLContextAPI.
-  ErrorCode* {.size: int32.sizeof.} = enum
+  GLFWErrorCode* {.size: int32.sizeof.} = enum
     ## Error Codes documented on the original documentation
     glfwNotInitialized = 0x00010001
       ## GLFW has not been initialized.
@@ -279,7 +276,7 @@ type
       ## The requested format is not supported or available.
     glfwNoWindowContext= 0x0001000A
       ## The specified window does not have an OpenGL or OpenGL ES context.
-  MouseButton* {.size: int32.sizeof.} = enum
+  GLFWMouseButton* {.size: int32.sizeof.} = enum
     ## Mouse Buttons
     mbLeft   = 0
     mbRight  = 1
@@ -289,7 +286,7 @@ type
     mb6      = 5
     mb7      = 6
     mb8      = 7
-  JoyStick* {.size: int32.sizeof.} = enum
+  GLFWJoyStick* {.size: int32.sizeof.} = enum
     ## Joystick references
     js1  = 0
     js2  = 1
@@ -306,23 +303,23 @@ type
     js13 = 12
     js14 = 13
     js15 = 14
-  KeyAction* {.size: int32.sizeof.} = enum
+  GLFWKeyAction* {.size: int32.sizeof.} = enum
     ## Action released on the key event
     kaRelease = (0, "release")
     kaPress   = (1, "press")
     kaRepeat  = (2, "repeat")
-  MouseAction* {.size: int32.sizeof.} = enum
+  GLFWMouseAction* {.size: int32.sizeof.} = enum
     ## Actions of the mouse
     maRelease = (0, "release")
     maPress   = (1, "press")
     maRepeat  = (2, "repeat")
-  KeyMod* {.size: int32.sizeof.} = enum
+  GLFWKeyMod* {.size: int32.sizeof.} = enum
     ## Key Modifiers, to modify actions
     kmShift   = 0x0001
     kmControl = 0x0002
     kmAlt     = 0x0004
     kmSuper   = 0x0008
-  Key* {.size: int32.sizeof.} = enum
+  GLFWKey* {.size: int32.sizeof.} = enum
     ## KeyCodes, a lot of them
     keyUnknown      = (-1, "unkown")
     keySpace        = (32, "space")
@@ -448,13 +445,13 @@ type
     keyLast         = "last"
 
 type
-  charProc* = proc(window: Window, code: cuint): void {.cdecl.}
+  glfwCharProc* = proc(window: GLFWWindow, code: cuint): void {.cdecl.}
     ## This is the function signature for Unicode character callback functions.
     ##
     ## ``window`` The window that received the event.
     ##
     ## ``codepoint`` The Unicode code point of the character.
-  mouseProc* = proc(window: Window, button: MouseButton, action: MouseAction, mods: KeyMod): void {.cdecl.}
+  glfwMouseProc* = proc(window: GLFWWindow, button: GLFWMouseButton, action: GLFWMouseAction, mods: GLFWKeyMod): void {.cdecl.}
     ## This is the function signature for mouse button callback functions.
     ##
     ## ``window`` window that received the event.
@@ -466,7 +463,7 @@ type
     ##
     ## ``mods`` Bit field describing which ``KeyMods`` were
     ## held down.
-  keyProc* = proc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.}
+  glfwKeyProc* = proc(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.}
     ## This is the function signature for keyboard key callback functions.
     ##
     ## ``window`` ``Window`` that received the event.
@@ -479,7 +476,7 @@ type
     ##
     ## ``mods`` Bit field describing which ``KeyMods`` were
     ## held down.
-  scrollProc* = proc(window: Window, xoff, yoff: cdouble): void {.cdecl.}
+  glfwScrollProc* = proc(window: GLFWWindow, xoff, yoff: cdouble): void {.cdecl.}
     ## This is the functions signature for scroll callback functions.
     ##
     ## ``window`` window that received the event.
@@ -490,20 +487,22 @@ type
 
 converter toBool*(x: int32): bool = x != 0
 
-proc setWindowIcon*(window: Window, count: int32, images: ptr Image): void {.glfw_lib, importc: "glfwSetWindowIcon".}
+## All functions that start with a window won't have glfw prefix to be able to use them as member funcs in oop
+
+proc setWindowIcon*(window: GLFWWindow, count: int32, images: ptr GLFWImage): void {.glfw_lib, importc: "glfwSetWindowIcon".}
   ## This function sets the icon of the specified window.  If passed an array of
   ## candidate images, those of or closest to the sizes desired by the system are
   ## selected.  If no images are specified, the window reverts to its default
   ## icon.
 
-proc createWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: Monitor = nil, share: Window = nil): Window {.glfw_lib, importc: "glfwCreateWindow".}
+proc glfwCreateWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: GLFWMonitor = nil, share: GLFWWindow = nil): GLFWWindow {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
   ## We recommend you to generate a config and modify it instead but this is
   ## the official way to create a window
 
-proc init*(): bool {.glfw_lib, importc: "glfwInit".}
+proc glfwInit*(): bool {.glfw_lib, importc: "glfwInit".}
   ## Initializes the GLFW library. Before most GLFW functions can
   ## be used, GLFW must be initialized, and before an application terminates GLFW
   ## should be terminated in order to free any resources allocated during or
@@ -511,65 +510,65 @@ proc init*(): bool {.glfw_lib, importc: "glfwInit".}
   ##
   ## Returns ``glfwTRUE`` if successful, or ``glfwFALSE`` if an error ocurred.
 
-proc terminate*(): void {.glfw_lib, importc: "glfwTerminate".}
+proc glfwTerminate*(): void {.glfw_lib, importc: "glfwTerminate".}
   ## Destroys all remaining windows and cursors, restores any
   ## modified gamma ramps and frees any other allocated resources.  Once this
   ## function is called, you must again call ``glfwInit`` successfully before
   ## you will be able to use most GLFW functions.
 
-proc destroyWindow*(window: Window): void {.glfw_lib, importc: "glfwDestroyWindow".}
+proc destroyWindow*(window: GLFWWindow): void {.glfw_lib, importc: "glfwDestroyWindow".}
   ## Destroys the specified window and its context.  On calling
   ## this function, no further callbacks will be called for that window.
 
-proc makeContextCurrent*(window: Window): void {.glfw_lib, importc: "glfwMakeContextCurrent".}
+proc makeContextCurrent*(window: GLFWWindow): void {.glfw_lib, importc: "glfwMakeContextCurrent".}
   ## Makes the OpenGL or OpenGL ES context of the specified window
   ## current on the calling thread.  A context can only be made current on
   ## a single thread at a time and each thread can have only a single current
 
-proc setWindowShouldClose*(window: Window, value: bool): void {.glfw_lib, importc: "glfwSetWindowShouldClose".}
+proc setWindowShouldClose*(window: GLFWWindow, value: bool): void {.glfw_lib, importc: "glfwSetWindowShouldClose".}
   ## This function sets the value of the close flag of the specified window.
   ## This can be used to override the user's attempt to close the window, or
   ## to signal that it should be closed.
 
-proc windowShouldClose*(window: Window): bool {.glfw_lib, importc: "glfwWindowShouldClose".}
+proc windowShouldClose*(window: GLFWWindow): bool {.glfw_lib, importc: "glfwWindowShouldClose".}
   ## Returns the value of the close flag of the specified window.
 
-proc swapBuffers*(window: Window): void {.glfw_lib, importc: "glfwSwapBuffers".}
+proc swapBuffers*(window: GLFWWindow): void {.glfw_lib, importc: "glfwSwapBuffers".}
   ## Swaps the front and back buffers of the specified window when
   ## rendering with OpenGL or OpenGL ES.  If the swap interval is greater than
   ## zero, the GPU driver waits the specified number of screen updates before
   ## swapping the buffers.
 
-proc pollEvents*(): void {.glfw_lib, importc: "glfwPollEvents".}
+proc glfwPollEvents*(): void {.glfw_lib, importc: "glfwPollEvents".}
   ## Processes only those events that are already in the event
   ## queue and then returns immediately.  Processing events will cause the window
   ## and input callbacks associated with those events to be called.
 
-proc getTime*(): cdouble {.glfw_lib, importc: "glfwGetTime".}
+proc glfwGetTime*(): cdouble {.glfw_lib, importc: "glfwGetTime".}
   ## This function returns the value of the GLFW timer. Unless the timer has
   ## been set using ``setTime``, the timer measures time elapsed since GLFW
   ## was initialized.
 
-proc setTime*(time: cdouble): void {.glfw_lib, importc: "glfwSetTime".}
+proc glfwSetTime*(time: cdouble): void {.glfw_lib, importc: "glfwSetTime".}
   ## This function sets the value of the GLFW timer.  It then continues to count
   ## up from that value.  The value must be a positive finite number less than
   ## or equal to 18446744073.0, which is approximately 584.5 years.
 
-proc getCurrentContext*(): Window {.glfw_lib, importc: "glfwGetCurrentContext".}
+proc glfwGetCurrentContext*(): GLFWWindow {.glfw_lib, importc: "glfwGetCurrentContext".}
   ## This function returns the window whose OpenGL or OpenGL ES context is
   ## current on the calling thread.
 
-proc getKey*(window: Window, key: Key): KeyAction {.glfw_lib, importc: "glfwGetKey".}
+proc getKey*(window: GLFWWindow, key: GLFWKey): GLFWKeyAction {.glfw_lib, importc: "glfwGetKey".}
   ## This function returns the last state reported for the specified key to the
   ## specified window.  The returned state is one of ``kaPress`` or
   ## ``kaRelease``.  The higher-level action ``kaRepeat`` is only reported to
   ## the key callback.
 
-proc setWindowTitle*(window: Window, title: cstring): void {.glfw_lib, importc: "glfwSetWindowTitle".}
+proc setWindowTitle*(window: GLFWWindow, title: cstring): void {.glfw_lib, importc: "glfwSetWindowTitle".}
   ## This function sets the window title, encoded as UTF-8, of the specified
   ## window.
 
-proc windowHint*(hint: WindowHint, value: int32): void {.glfw_lib, importc: "glfwWindowHint".}
+proc glfwWindowHint*(hint: GLFWWindowHint, value: int32): void {.glfw_lib, importc: "glfwWindowHint".}
   ## This function sets hints for the next call to ``createWindow``  The
   ## hints, once set, retain their values until changed by a call to.
   ## ``windowHint`` or ``defaultWindowHints``, or until the library is
@@ -577,10 +576,10 @@ proc windowHint*(hint: WindowHint, value: int32): void {.glfw_lib, importc: "glf
   ##
   ## To read more visit `here <http://www.glfw.org/docs/latest/window_guide.html#window_hints_values>`_.
 
-proc defaultWindowHints*(): void {.glfw_lib, importc: "glfwDefaultWindowHints".}
+proc glfwDefaultWindowHints*(): void {.glfw_lib, importc: "glfwDefaultWindowHints".}
   ## Resets all window hints to their default values.
 
-proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetProcAddress".}
+proc glfwGetProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetProcAddress".}
   ## This function returns the address of the specified OpenGL or OpenGL ES
   ## core or extension function, if it is supported
   ## by the current context.
@@ -588,30 +587,30 @@ proc getProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwGetPr
   ## A context must be current on the calling thread.  Calling this function
   ## without a current context will cause a GLFW_NO_CURRENT_CONTEXT error.
 
-proc getCursorPos*(window: Window, xpos, ypos: var cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
+proc getCursorPos*(window: GLFWWindow, xpos, ypos: var cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
   ## This function returns the position of the cursor, in screen coordinates,
   ## relative to the upper-left corner of the client area of the specified
   ## window.
 
-proc getClipboardString*(window: Window): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
+proc getClipboardString*(window: GLFWWindow): cstring {.glfw_lib, importc: "glfwGetClipboardString".}
   ## This function returns the contents of the system clipboard, if it contains
   ## or is convertible to a UTF-8 encoded string.  If the clipboard is empty or
   ## if its contents cannot be converted, `NULL` is returned and a
   ## GLFW_FORMAT_UNAVAILABLE error is generated.
 
-proc setClipboardString*(window: Window, clip: cstring): void {.glfw_lib, importc: "glfwSetClipboardString".}
+proc setClipboardString*(window: GLFWWindow, clip: cstring): void {.glfw_lib, importc: "glfwSetClipboardString".}
   ## This function sets the system clipboard to the specified, UTF-8 encoded
   ## string.
 
-proc setKeyCallback*(window: Window, callback: keyProc): void {.glfw_lib, importc: "glfwSetKeyCallback".}
+proc setKeyCallback*(window: GLFWWindow, callback: glfwKeyProc): void {.glfw_lib, importc: "glfwSetKeyCallback".}
   ## This function sets the key callback of the specified window, which is called
   ## when a key is pressed, repeated or released.
 
-proc setMouseButtonCallback*(window: Window, cbfun: mouseProc): void {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
+proc setMouseButtonCallback*(window: GLFWWindow, cbfun: glfwMouseProc): void {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
   ## This function sets the mouse button callback of the specified window, which
   ## is called when a mouse button is pressed or released.
 
-proc setCharCallback*(window: Window, callback: charProc): void {.glfw_lib, importc: "glfwSetCharCallback".}
+proc setCharCallback*(window: GLFWWindow, callback: glfwCharProc): void {.glfw_lib, importc: "glfwSetCharCallback".}
   ## This function sets the character callback of the specified window, which is
   ## called when a Unicode character is input.
   ##
@@ -622,7 +621,7 @@ proc setCharCallback*(window: Window, callback: charProc): void {.glfw_lib, impo
   ## want to know whether a specific physical key was pressed or released, see
   ## the key callback instead.
 
-proc setScrollCallback*(window: Window, callback: scrollProc): void {.glfw_lib, importc: "glfwSetScrollCallback".}
+proc setScrollCallback*(window: GLFWWindow, callback: glfwScrollProc): void {.glfw_lib, importc: "glfwSetScrollCallback".}
   ## This function sets the scroll callback of the specified window, which is
   ## called when a scrolling device is used, such as a mouse wheel or scrolling
   ## area of a touchpad.
@@ -630,44 +629,44 @@ proc setScrollCallback*(window: Window, callback: scrollProc): void {.glfw_lib, 
   ## The scroll callback receives all scrolling input, like that from a mouse
   ## wheel or a touchpad scrolling area.
 
-proc createStandardCursor*(shape: CursorShape): Cursor {.glfw_lib, importc: "glfwCreateStandardCursor".}
+proc glfwCreateStandardCursor*(shape: GLFWCursorShape): GLFWCursor {.glfw_lib, importc: "glfwCreateStandardCursor".}
   ## Returns a cursor with a ``CursorShape``, that can be set for
   ## a window with ``setCursor``.
 
-proc destroyCursor*(cursor: Cursor): void {.glfw_lib, importc: "glfwDestroyCursor".}
+proc glfwDestroyCursor*(cursor: GLFWCursor): void {.glfw_lib, importc: "glfwDestroyCursor".}
   ## This function destroys a cursor previously created with
   ## ``createCursor``. Any remaining cursors will be destroyed by
   ## ``terminate``.
 
-proc getPrimaryMonitor*(): Monitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".}
+proc glfwGetPrimaryMonitor*(): GLFWMonitor {.glfw_lib, importc: "glfwGetPrimaryMonitor".}
   ## This function returns the primary monitor.  This is usually the monitor
   ## where elements like the task bar or global menu bar are located.
 
-proc getWindowSize*(window: Window, width, height: var int32) {.glfw_lib, importc: "glfwGetWindowSize".}
+proc getWindowSize*(window: GLFWWindow, width, height: var int32) {.glfw_lib, importc: "glfwGetWindowSize".}
   ## This function retrieves the size, in screen coordinates, of the client area
   ## of the specified window.  If you wish to retrieve the size of the
   ## framebuffer of the window in pixels, see ``getFramebufferSize``.
 
-proc getFramebufferSize*(window: Window, width, height: var int32) {.glfw_lib, importc: "glfwGetFramebufferSize".}
+proc getFramebufferSize*(window: GLFWWindow, width, height: var int32) {.glfw_lib, importc: "glfwGetFramebufferSize".}
   ## This function retrieves the size, in screen coordinates, of the client area
   ## of the specified window.  If you wish to retrieve the size of the
   ## framebuffer of the window in pixels, see ``getFramebufferSize``.
 
-proc getWindowAttrib*(window: Window, attrib: WindowHint): int32 {.glfw_lib, importc: "glfwGetWindowAttrib".}
+proc getWindowAttrib*(window: GLFWWindow, attrib: GLFWWindowHint): int32 {.glfw_lib, importc: "glfwGetWindowAttrib".}
   ## This function returns the value of an attribute of the specified window or
   ## its OpenGL or OpenGL ES context.
   # To be honest I don't know if it returns a boolean int or if it can have different
   # values so, I return int
 
-proc getMouseButton*(window: Window, button: int32): int32 {.glfw_lib, importc: "glfwGetMouseButton".}
+proc getMouseButton*(window: GLFWWindow, button: int32): int32 {.glfw_lib, importc: "glfwGetMouseButton".}
   ## This function returns the last state reported for the specified mouse button
   ## to the specified window.  The returned state is one of ``maPress`` or
   ## ``maRelease``.
 
 when defined(windows):
-  proc getWin32Window*(window: Window): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
+  proc getWin32Window*(window: GLFWWindow): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
     ## returns The ``HWND`` of the specified window, or ``nil`` if an
     ## error occurred.
 else:
-  proc getWin32Window*(window: Window): pointer = nil
+  proc getWin32Window*(window: GLFWWindow): pointer = nil
   ## if you are not working in windows this returns a nil so you can still use it

@@ -8,7 +8,7 @@ import os
 if os.getEnv("CI") != "":
   quit()
 
-proc keyProc(window: Window, key: Key, scancode: cint, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: cint, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
   if key == keySpace:
@@ -35,15 +35,15 @@ proc postGL(name: string) =
 
 proc main =
   # GLFW
-  assert glfw.init()
+  assert glfwInit()
 
-  windowHint whContextVersionMajor, 4
-  windowHint whContextVersionMinor, 1
-  windowHint whOpenglForwardCompat, GLFW_TRUE
-  windowHint whOpenglProfile      , GLFW_OPENGL_CORE_PROFILE
-  windowHint whResizable          , GLFW_FALSE
+  glfwWindowHint(whContextVersionMajor, 4)
+  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
+  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: Window = createWindow(800, 600)
+  var w: GLFWWindow = glfwCreateWindow(800, 600)
   assert w != nil
 
   w.setKeyCallback(keyProc)
@@ -156,11 +156,11 @@ void main() {
     glDrawElements(GL_TRIANGLES, ind.len.cint, GL_UNSIGNED_INT, nil)
 
     w.swapBuffers
-    glfw.pollEvents()
+    glfwPollEvents()
 
   w.destroyWindow
 
-  glfw.terminate()
+  glfwTerminate()
 
   glDeleteVertexArrays(1, mesh.vao.addr)
   glDeleteBuffers(1, mesh.vbo.addr)

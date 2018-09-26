@@ -2,8 +2,6 @@
 
 ## ImGUI Module
 ## ====
-## `return <../nimgl.html>`_.
-##
 ## This bindings follow most of the original library
 ## You can check the original documentation `here <https://github.com/ocornut/imgui/blob/master/imgui.cpp>`_.
 ##
@@ -84,8 +82,8 @@ type
   Context* = ptr object
     ## ImGUI context object
 
-  GetCBProc = proc (window: Window): cstring {.cdecl.}
-  SetCPProc = proc (window: Window, text: cstring): void {.cdecl.}
+  GetCBProc = proc (window: GLFWWindow): cstring {.cdecl.}
+  SetCPProc = proc (window: GLFWWindow, text: cstring): void {.cdecl.}
 
   ImVec2* = tuple
     x: float32

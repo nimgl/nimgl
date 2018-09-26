@@ -65,7 +65,7 @@ Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
 | link:src/nimgl/imgui.nim[ImGUI]
 | Bloat-free graphical user interface library (WIP)
 
-| link:src/nimgl/stb_image.nim[STB Image]
+| link:src/nimgl/stb_image.nim[stb_image]
 | Image loading/decoding library (WIP)
 |===
 
@@ -77,20 +77,20 @@ An example that spawns a green window
 -----------------
 import nimgl/[glfw, opengl]
 
-proc keyProc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
 
 proc main() =
-  assert glfw.init()
+  assert glfwInit()
 
-  windowHint(whContextVersionMajor, 4)
-  windowHint(whContextVersionMinor, 1)
-  windowHint(whOpenglForwardCompat, GLFW_TRUE)
-  windowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
-  windowHint(whResizable, GLFW_FALSE)
+  glfwWindowHint(whContextVersionMajor, 4)
+  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
+  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: Window = createWindow(800, 600, "NimGL", nil, nil)
+  var w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
   if w == nil:
     quit(-1)
 
@@ -100,13 +100,13 @@ proc main() =
   assert glInit()
 
   while not w.windowShouldClose:
-    glfw.pollEvents()
+    glfwPollEvents()
     glClearColor(0.68f, 1f, 0.34f, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
     w.swapBuffers()
 
   w.destroyWindow()
-  glfw.terminate()
+  glfwTerminate()
 
 main()
 -----------------

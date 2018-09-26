@@ -2,8 +2,6 @@
 
 ## STB Module | stb_image.h - Image loading/decoding library
 ## ====
-## `return <../nimgl.html>`_.
-##
 ## Thanks to Nothings for this awesome library. This are some bindings to
 ## directly interact with the library.
 ##
