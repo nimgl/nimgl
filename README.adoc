@@ -1,0 +1,115 @@
+link:https://circleci.com/gh/cavariux/nimgl[image:https://circleci.com/gh/lmariscal/nimgl.svg?style=svg[alt="circleci"]]
+link:https://github.com/cavariux/nimgl[image:https://img.shields.io/github/stars/lmariscal/nimgl.svg?style=social&logo=github&label=Stars[alt="stars"]]
+link:https://buymeacoff.ee/cavariux[image:https://img.shields.io/badge/buy%20coffee-donate-orange.svg?style=flat-square[alt="buy me a coffee"]]
+image:https://img.shields.io/github/last-commit/lmariscal/nimgl.svg?style=flat-square[alt="last commit"]
+link:LICENSE[image:https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square[alt="license"]]
+link:https://nimgl.org/[image:https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square[alt="docs"]]
+
+
+== Nim Game Library (WIP) image:https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png[alt="nimble"]
+
+NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics.
+
+This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines if you don't have experience working with low level graphic developments.
+We try to keep this bindings as similar to the originals but we do have some usefull toolkits or some variations on functions to help with the development.
+
+NimGL is open source and is under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
+
+==== NimGL is under heavy development so expect drastic changes and improvements
+
+=== Install
+
+You will need nimble to install this library.
+
+[source,shell]
+-----------------
+nimble install nimgl
+-----------------
+
+After that you can access all the bindings by importing them like.
+
+[source,nim]
+-----------------
+import nimgl/<binding>
+-----------------
+
+It is currently being developed and tested on
+
+* Windows 10
+* Mac High Sierra
+* Linux Ubuntu 18.04
+
+=== Contribute
+
+I'm only one person and I use this library almost daily for school and personal
+projects. If you are missing some extension, procedures or bindings or anything
+related, feel free to PR any feature or open an issue with the specification and
+if you can some links to the docs so I can have an idea on how to implement it. +
+Thank you so much 🎉
+
+Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
+
+=== Bindings Currently Supported
+
+[%header,cols="1,3"]
+|===
+| Library | Description
+
+| link:src/nimgl/glfw.nim[GLFW]
+| It provides a simple API for creating windows, contexts and surfaces, receiving input and events.
+
+| link:src/nimgl/opengl.nim[OpenGL]
+| Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D
+  vector graphics. NimGL supports modern OpenGL.
+
+| link:src/nimgl/imgui.nim[ImGUI]
+| Bloat-free graphical user interface library (WIP)
+
+| link:src/nimgl/stb_image.nim[STB Image]
+| Image loading/decoding library (WIP)
+|===
+
+=== How it Looks
+
+An example that spawns a green window
+
+[source,nim]
+-----------------
+import nimgl/[glfw, opengl]
+import glm
+
+proc keyProc(window: Window, key: Key, scancode: int32, action: KeyAction, mods: KeyMod): void {.cdecl.} =
+  if key == keyESCAPE and action == kaPress:
+    window.setWindowShouldClose(true)
+
+proc main() =
+  assert glfw.init()
+
+  windowHint(whContextVersionMajor, 4)
+  windowHint(whContextVersionMinor, 1)
+  windowHint(whOpenglForwardCompat, GLFW_TRUE)
+  windowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  windowHint(whResizable, GLFW_FALSE)
+
+  var w: Window = createWindow(800, 600, "NimGL", nil, nil)
+  if w == nil:
+    quit(-1)
+
+  w.setKeyCallback(keyProc)
+  w.makeContextCurrent()
+
+  assert glInit()
+
+  var bg = vec3(0.69f, 1f, 0.34f)
+
+  while not w.windowShouldClose:
+    glfw.pollEvents()
+    glClearColor(bg.r, bg.g, bg.b, 1f)
+    glClear(GL_COLOR_BUFFER_BIT)
+    w.swapBuffers()
+
+  w.destroyWindow()
+  glfw.terminate()
+
+main()
+-----------------

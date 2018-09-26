@@ -1,8 +1,6 @@
-# Copyright (C) CavariuX. License on the root folder.
-# Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
+# Copyright 2018, NimGL contributors.
 
-import
-  nimgl/glfw, os
+import nimgl/glfw, os
 
 if os.getEnv("CI") != "":
   quit()

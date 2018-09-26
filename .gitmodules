@@ -1,6 +1,3 @@
-[submodule "tools/gl2nim"]
-	path = tools/gl2nim
-	url = git@github.com:cavariux/gl2nim.git
 [submodule "src/nimgl/private/cimgui"]
 	path = src/nimgl/private/cimgui
 	url = git@github.com:Extrawurst/cimgui.git

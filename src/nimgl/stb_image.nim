@@ -1,13 +1,12 @@
-# Copyright (C) CavariuX. License on the root folder.
-# Written by Leonardo Mariscal <cavariux@cleverbyte.io>, 2018
+# Copyright 2018, NimGL contributors.
 
 ## STB Module | stb_image.h - Image loading/decoding library
 ## ====
-## `return <../nimgl.html>`_.  
-## 
+## `return <../nimgl.html>`_.
+##
 ## Thanks to Nothings for this awesome library. This are some bindings to
 ## directly interact with the library.
-## 
+##
 ## You can always visit the original "doc" embeded in the header file to get
 ## a better idea `here <https://github.com/nothings/stb/blob/master/stb_image.h>`_.
 
@@ -24,12 +23,12 @@ type
     width: int32
     height: int32
     channels: int32
-    data: ptr char 
+    data: ptr char
 
 proc load*(filename: cstring, width, height, channels: ptr int32, components: int = 0): ptr char {.stb_image, importc: "stbi_load".}
   ## returns a pointer to the image requested, nil if nothind found.
   ## width and height as you imagine are from the image
-  ## channels, how many channels the image has 
+  ## channels, how many channels the image has
   ##    1  grey
   ##    2  grey, alpha
   ##    3  red, green, blue
