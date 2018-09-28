@@ -6255,11 +6255,7 @@ var
 proc glGetProcAddress(name: cstring): pointer =
   ## Gets a pointer to the procedure
   ## If `release` is not defined it will check that the address has been found.
-  result = cglGetProcAddress(name)
-  when not defined(release):
-    if result == nil:
-      echo $name & " <- has not been found"
-      echo "are you sure an opengl context is running?"
+  cglGetProcAddress(name)
 
 proc load1_0() =
   cglCullFace = cast[proc (mode: GLenum): void {.cdecl.}](glGetProcAddress("glCullFace"))

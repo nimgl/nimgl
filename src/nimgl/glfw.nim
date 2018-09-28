@@ -82,8 +82,12 @@ type
     ## Pointer reference for a GLFW Window
   GLFWMonitor* = ptr object
     ## Pointer reference for a GLFW Monitor
-  GLFWCursor*  = ptr object
+  GLFWCursor* = ptr object
     ## Opaque cursor object.
+  GLFWGamepadState* = object
+    ## This describes the input state of a gamepad.
+    buttons*: array[15, bool]
+    axes*: array[6, float]
   GLFWImage* = object
     ## GlfwImage data
     width*: int32
@@ -286,7 +290,12 @@ type
     mb6      = 5
     mb7      = 6
     mb8      = 7
-  GLFWJoyStick* {.size: int32.sizeof.} = enum
+    mbLast
+  GLFWJoystickState* {.size: int32.sizeof.} = enum
+    ## State of the Joystick
+    jsConnected    = 0x00040001
+    jsDisconnected = 0x00040002
+  GLFWJoystick* {.size: int32.sizeof.} = enum
     ## Joystick references
     js1  = 0
     js2  = 1
@@ -303,22 +312,44 @@ type
     js13 = 12
     js14 = 13
     js15 = 14
+    jsLast
   GLFWKeyAction* {.size: int32.sizeof.} = enum
     ## Action released on the key event
     kaRelease = (0, "release")
     kaPress   = (1, "press")
     kaRepeat  = (2, "repeat")
+    kaLast    = "Last"
   GLFWMouseAction* {.size: int32.sizeof.} = enum
     ## Actions of the mouse
     maRelease = (0, "release")
     maPress   = (1, "press")
     maRepeat  = (2, "repeat")
+    maLast    = "Last"
   GLFWKeyMod* {.size: int32.sizeof.} = enum
     ## Key Modifiers, to modify actions
     kmShift   = 0x0001
     kmControl = 0x0002
     kmAlt     = 0x0004
     kmSuper   = 0x0008
+    kmLast
+  GLFWGamepad* {.size: int32.sizeof.} = enum
+    ## Gamepad buttons
+    gpA           = 0,
+    gpB           = 1,
+    gpX           = 2,
+    gpY           = 3,
+    gpLeftBumper  = 4,
+    gpRighTBumper = 5,
+    gpBack        = 6,
+    gpStart       = 7,
+    gpGuide       = 8,
+    gpLeftThumb   = 9,
+    gpRightThumb  = 10,
+    gpDpadUp      = 11,
+    gpDpadRight   = 12,
+    gpDpadDown    = 13,
+    gpDpadLeft    = 14,
+    gpLast
   GLFWKey* {.size: int32.sizeof.} = enum
     ## KeyCodes, a lot of them
     keyUnknown      = (-1, "unkown")
@@ -445,19 +476,24 @@ type
     keyLast         = "last"
 
 type
+  glfwJoystickProc* = proc(joystick: GLFWJoystick, state: GLFWJoystickState): void {.cdecl.}
+    ## This is the function signature for joystick configuration callback functions.
+    ##
+    ## ``joy`` The joystick that was connected or disconnected.
+    ##
+    ## ``event`` One of GLFWJoystickState
   glfwCharProc* = proc(window: GLFWWindow, code: cuint): void {.cdecl.}
     ## This is the function signature for Unicode character callback functions.
     ##
     ## ``window`` The window that received the event.
     ##
     ## ``codepoint`` The Unicode code point of the character.
-  glfwMouseProc* = proc(window: GLFWWindow, button: GLFWMouseButton, action: GLFWMouseAction, mods: GLFWKeyMod): void {.cdecl.}
+  glfwMouseButtonProc* = proc(window: GLFWWindow, button: GLFWMouseButton, action: GLFWMouseAction, mods: GLFWKeyMod): void {.cdecl.}
     ## This is the function signature for mouse button callback functions.
     ##
     ## ``window`` window that received the event.
     ##
-    ## ``button`` ``MouseButton`` that was pressed or
-    ## released.
+    ## ``button`` ``MouseButton`` that was pressed or released.
     ##
     ## ``action`` One of ``kaPress` or ``kaRelease``.
     ##
@@ -474,8 +510,7 @@ type
     ##
     ## ``action`` ``kaPress``, ``kaRelease`` or ``kaRepeat``.
     ##
-    ## ``mods`` Bit field describing which ``KeyMods`` were
-    ## held down.
+    ## ``mods`` Bit field describing which ``KeyMods`` were held down.
   glfwScrollProc* = proc(window: GLFWWindow, xoff, yoff: cdouble): void {.cdecl.}
     ## This is the functions signature for scroll callback functions.
     ##
@@ -484,6 +519,82 @@ type
     ## ``xoff`` scroll offset along the x-axis.
     ##
     ## ``yoff`` scroll offset along the y-axis.
+  glfwErrorProc* = proc(error: GLFWErrorCode, description: cstring): void {.cdecl.}
+    ## This is the function signature for error callback functions.
+    ##
+    ## ``error`` An error code.
+    ##
+    ## ``description`` A UTF-8 encoded string describing the error.
+  glfwCursorPosProc* = proc(window: GLFWWindow, xpos: float64, ypos: float64): void {.cdecl.}
+    ## This is the function signature for cursor position callback functions.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``xpos`` The new cursor x-coordinate, relative to the left edge of the client area.
+    ##
+    ## ``ypos`` The new cursor y-coordinate, relative to the top edge of the client area.
+  glfwCursorEnterProc* = proc(window: GLFWWindow, entered: bool): void {.cdecl.}
+    ## This is the function signature for cursor enter/leave callback functions.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``entered`` GLFW_TRUE if the cursor entered the window's client area, or GLFW_FALSE if it left it.
+  glfwCharModProc* = proc(window: GLFWWindow, codepoint: uint32, mods: GLFWKeyMod): void {.cdecl.}
+    ## This is the function signature for Unicode character with modifiers callback functions. It is called for each input character, regardless of what modifier keys are held down.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``codepoint`` The Unicode code point of the character.
+    ##
+    ## ``mods	Bit`` field describing which modifier keys were held down.
+  glfwDropProc* = proc(window: GLFWWindow, count: int32, paths: cstringArray): void {.cdecl.}
+    ## This is the function signature for file drop callbacks.
+    ##
+    ## ``window`` The window that received the event.
+    ##
+    ## ``count`` The number of dropped files.
+    ##
+    ## ``paths`` The UTF-8 encoded file and/or directory path names.
+  glfwWindowPosProc* = proc(window: GLFWWindow, xpos: int32, ypos: int32): void {.cdecl.}
+    ## This is the function signature for window position callback functions.
+    ##
+    ## ``window`` The window that was moved.
+    ##
+    ## ``xpos`` The new x-coordinate, in screen coordinates, of the upper-left corner of the client area of the window.
+    ##
+    ## ``ypos`` The new y-coordinate, in screen coordinates, of the upper-left corner of the client area of the window.
+  glfwWindowSizeProc* = proc(window: GLFWWindow, widht: int32, height: int32): void {.cdecl.}
+    ## This is the function signature for window size callback functions.
+    ##
+    ## ``window`` The window that was resized.
+    ## ``width`` The new width, in screen coordinates, of the window.
+    ## ``height`` The new height, in screen coordinates, of the window.
+  glfwWindowCloseProc* = proc(window: GLFWWindow): void {.cdecl.}
+    ## This is the function signature for window close callback functions.
+    ##
+    ## ``window`` The window that the user attempted to close.
+  glfwWindowRefreshProc* = proc(window: GLFWWindow): void {.cdecl.}
+    ## This is the function signature for window refresh callback functions.
+    ##
+    ## ``window`` The window whose content needs to be refreshed.
+  glfwWindowFocusProc* = proc(window: GLFWWindow, focused: bool): void {.cdecl.}
+    ## This is the function signature for window focus callback functions.
+    ##
+    ## ``window`` The window that gained or lost input focus.
+    ##
+    ## ``focused`` GLFW_TRUE if the window was given input focus, or GLFW_FALSE if it lost it.
+  glfwWindowIconifyProc* = proc(window: GLFWWindow, iconified: bool): void {.cdecl.}
+    ## This is the function signature for window iconify/restore callback functions.
+    ##
+    ## ``window`` The window that was iconified or restored.
+    ##
+    ## ``iconified`` GLFW_TRUE if the window was iconified, or GLFW_FALSE if it was restored.
+  glfwFramebufferSizeProc* = proc(window: GLFWWindow, widht: int32, height: int32): void {.cdecl.}
+    ## This is the function signature for framebuffer resize callback functions.
+    ##
+    ## ``window`` The window whose framebuffer was resized.
+    ## ``width`` The new width, in pixels, of the framebuffer.
+    ## ``height`` The new height, in pixels, of the framebuffer.
 
 converter toBool*(x: int32): bool = x != 0
 
@@ -602,15 +713,17 @@ proc setClipboardString*(window: GLFWWindow, clip: cstring): void {.glfw_lib, im
   ## This function sets the system clipboard to the specified, UTF-8 encoded
   ## string.
 
-proc setKeyCallback*(window: GLFWWindow, callback: glfwKeyProc): void {.glfw_lib, importc: "glfwSetKeyCallback".}
+proc setKeyCallback*(window: GLFWWindow, `proc`: glfwKeyProc): glfwKeyProc {.glfw_lib, importc: "glfwSetKeyCallback".}
   ## This function sets the key callback of the specified window, which is called
   ## when a key is pressed, repeated or released.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
 
-proc setMouseButtonCallback*(window: GLFWWindow, cbfun: glfwMouseProc): void {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
+proc setMouseButtonCallback*(window: GLFWWindow, `proc`: glfwMouseButtonProc): glfwMouseButtonProc {.glfw_lib, importc: "glfwSetMouseButtonCallback".}
   ## This function sets the mouse button callback of the specified window, which
   ## is called when a mouse button is pressed or released.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
 
-proc setCharCallback*(window: GLFWWindow, callback: glfwCharProc): void {.glfw_lib, importc: "glfwSetCharCallback".}
+proc setCharCallback*(window: GLFWWindow, `proc`: glfwCharProc): glfwCharProc {.glfw_lib, importc: "glfwSetCharCallback".}
   ## This function sets the character callback of the specified window, which is
   ## called when a Unicode character is input.
   ##
@@ -620,14 +733,16 @@ proc setCharCallback*(window: GLFWWindow, callback: glfwCharProc): void {.glfw_l
   ## to physical keys, as a key may produce zero, one or more characters.  If you
   ## want to know whether a specific physical key was pressed or released, see
   ## the key callback instead.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
 
-proc setScrollCallback*(window: GLFWWindow, callback: glfwScrollProc): void {.glfw_lib, importc: "glfwSetScrollCallback".}
+proc setScrollCallback*(window: GLFWWindow, callback: glfwScrollProc): glfwScrollProc {.glfw_lib, importc: "glfwSetScrollCallback".}
   ## This function sets the scroll callback of the specified window, which is
   ## called when a scrolling device is used, such as a mouse wheel or scrolling
   ## area of a touchpad.
   ##
   ## The scroll callback receives all scrolling input, like that from a mouse
   ## wheel or a touchpad scrolling area.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
 
 proc glfwCreateStandardCursor*(shape: GLFWCursorShape): GLFWCursor {.glfw_lib, importc: "glfwCreateStandardCursor".}
   ## Returns a cursor with a ``CursorShape``, that can be set for
@@ -663,10 +778,108 @@ proc getMouseButton*(window: GLFWWindow, button: int32): int32 {.glfw_lib, impor
   ## to the specified window.  The returned state is one of ``maPress`` or
   ## ``maRelease``.
 
+proc glfwJoystickPresent*(joystick: GLFWJoystick): bool {.glfw_lib, importc: "glfwJoystickPresent".}
+  ## This function returns whether the specified joystick is present.
+  ## Returns GLFW_TRUE if the joystick is present, or GLFW_FALSE otherwise.
+
+proc glfwGetJoystickName*(joystick: GLFWJoystick): cstring {.glfw_lib, importc: "glfwGetJoystickName".}
+  ## This function returns the name, encoded as UTF-8, of the specified joystick. The returned string is allocated and
+  ## freed by GLFW. You should not free it yourself.
+  ## Querying a joystick slot with no device present is not an error, but will cause this function to return NULL.
+  ## Call glfwJoystickPresent to check device presence.
+
+proc glfwGetGamepadName*(joystick: GLFWJoystick): cstring {.glfw_lib, importc: "glfwGetGamepadName".}
+  ## This function returns the human-readable name of the gamepad from the gamepad mapping assigned to the specified joystick.
+  ## If the specified joystick is not present or does not have a gamepad mapping this function will return NULL but will
+  ## not generate an error. Call glfwJoystickPresent to check whether it is present regardless of whether it has a mapping.
+
+proc glfwGetGamepadState*(joystick: GLFWJoystick, state: ptr GLFWGamepadState): bool {.glfw_lib, importc: "glfwGetGamepadState".}
+  ## This function retrives the state of the specified joystick remapped to an Xbox-like gamepad.
+  ## If the specified joystick is not present or does not have a gamepad mapping this function will return GLFW_FALSE but
+  ## will not generate an error. Call glfwJoystickPresent to check whether it is present regardless of whether it has a mapping.
+  ## The Guide button may not be available for input as it is often hooked by the system or the Steam client.
+  ## Not all devices have all the buttons or axes provided by GLFWgamepadstate. Unavailable buttons and axes will always
+  ## report GLFW_RELEASE and 0.0 respectively.
+
+proc glfwSetJoystickCallback*(`proc`: glfwJoystickProc): glfwJoystickProc {.glfw_lib, importc: "glfwSetJoystickCallback".}
+  ## This function sets the joystick configuration callback, or removes the currently set callback. This is called when a
+  ## joystick is connected to or disconnected from the system.
+  ## Returns The previously set callback, or nil if no callback was set or the library had not been initialized.
+
+proc glfwSetErrorCallback*(`proc`: glfwErrorProc): glfwErrorProc {.glfw_lib, importc: "glfwSetErrorCallback".}
+  ## This function sets the error callback, which is called with an error code and a human-readable description each time a GLFW error occurs.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setCursorPosCallback*(window: GLFWWindow, `proc`: glfwCursorPosProc): glfwCursorPosProc {.glfw_lib, importc: "glfwSetCursorPosCallback".}
+  ## This function sets the cursor position callback of the specified window, which is called when the cursor is moved.
+  ## The callback is provided with the position, in screen coordinates, relative to the upper-left corner of the client
+  ## area of the window.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setCursorEnterCallback*(window: GLFWWindow, `proc`: glfwCursorEnterProc): glfwCursorEnterProc {.glfw_lib, importc: "glfwSetCursorEnterCallback".}
+  ## This function sets the cursor boundary crossing callback of the specified window, which is called when the cursor
+  ## enters or leaves the client area of the window.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setCharModsCallback*(window: GLFWWindow, `proc`: glfwCharModProc): glfwCharModProc {.glfw_lib, importc: "glfwSetCharModsCallback".}
+  ## This function sets the character with modifiers callback of the specified window, which is called when a Unicode
+  ## character is input regardless of what modifier keys are used.
+  ## The character with modifiers callback is intended for implementing custom Unicode character input. For regular
+  ## Unicode text input, see the character callback. Like the character callback, the character with modifiers callback
+  ## deals with characters and is keyboard layout dependent. Characters do not map 1:1 to physical keys, as a key may produce
+  ## zero, one or more characters. If you want to know whether a specific physical key was pressed or released, see the
+  ## key callback instead.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setDropCallback*(window: GLFWWindow, `proc`: glfwDropProc): glfwDropProc {.glfw_lib, importc: "glfwSetDropCallback".}
+  ## This function sets the file drop callback of the specified window, which is called when one or more dragged files are
+  ## dropped on the window.
+  ## Because the path array and its strings may have been generated specifically for that event, they are not guaranteed
+  ## to be valid after the callback has returned. If you wish to use them after the callback returns, you need to make a deep copy.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowPosCallback*(window: GLFWWindow, `proc`: glfwWindowPosProc): glfwWindowPosProc {.glfw_lib, importc: "glfwSetWindowPosCallback".}
+  ## This function sets the position callback of the specified window, which is called when the window is moved.
+  ## The callback is provided with the screen position of the upper-left corner of the client area of the window.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowSizeCallback*(window: GLFWWindow, `proc`: glfwWindowSizeProc): glfwWindowSizeProc {.glfw_lib, importc: "glfwSetWindowSizeCallback".}
+  ## This function sets the size callback of the specified window, which is called when the window is resized.
+  ## The callback is provided with the size, in screen coordinates, of the client area of the window.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowCloseCallback*(window: GLFWWindow, `proc`: glfwWindowCloseProc): glfwWindowCloseProc {.glfw_lib, importc: "glfwSetWindowCloseCallback".}
+  ## This function sets the close callback of the specified window, which is called when the user attempts to close the
+  ## window, for example by clicking the close widget in the title bar.
+  ## The close flag is set before this callback is called, but you can modify it at any time with glfwSetWindowShouldClose.
+  ## The close callback is not triggered by glfwDestroyWindow.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowRefreshCallback*(window: GLFWWindow, `proc`: glfwWindowRefreshProc): glfwWindowRefreshProc {.glfw_lib, importc: "glfwSetWindowRefreshCallback".}
+  ## This function sets the refresh callback of the specified window, which is called when the client area of the window
+  ## needs to be redrawn, for example if the window has been exposed after having been covered by another window.
+  ## On compositing window systems such as Aero, Compiz or Aqua, where the window contents are saved off-screen, this
+  ## callback may be called only very infrequently or never at all.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowFocusCallback*(window: GLFWWindow, `proc`: glfwWindowFocusProc): glfwWindowFocusProc {.glfw_lib, importc: "glfwSetWindowFocusCallback".}
+  ## This function sets the focus callback of the specified window, which is called when the window gains or loses input focus.
+  ## After the focus callback is called for a window that lost input focus, synthetic key and mouse button release events
+  ## will be generated for all such that had been pressed. For more information, see glfwSetKeyCallback and glfwSetMouseButtonCallback.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setWindowIconifyCallback*(window: GLFWWindow, `proc`: glfwWindowIconifyProc): glfwWindowIconifyProc {.glfw_lib, importc: "glfwSetWindowIconifyCallback".}
+  ## This function sets the iconification callback of the specified window, which is called when the window is iconified or restored.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setFramebufferSizeCallback*(window: GLFWWindow, `proc`: glfwFramebufferSizeProc): glfwFramebufferSizeProc {.glfw_lib, importc: "glfwSetFramebufferSizeCallback".}
+  ## This function sets the framebuffer resize callback of the specified window, which is called when the framebuffer
+  ## of the specified window is resized.
+  ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
 when defined(windows):
   proc getWin32Window*(window: GLFWWindow): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
-    ## returns The ``HWND`` of the specified window, or ``nil`` if an
-    ## error occurred.
+    ## returns The ``HWND`` of the specified window, or ``nil`` if an error occurred.
 else:
   proc getWin32Window*(window: GLFWWindow): pointer = nil
-  ## if you are not working in windows this returns a nil so you can still use it
+    ## if you are not working in windows this returns a nil so you can still use it

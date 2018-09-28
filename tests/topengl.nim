@@ -46,7 +46,7 @@ proc main =
   var w: GLFWWindow = glfwCreateWindow(800, 600)
   assert w != nil
 
-  w.setKeyCallback(keyProc)
+  discard w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
   # Opengl

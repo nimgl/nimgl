@@ -3,15 +3,15 @@ link:https://github.com/lmariscal/nimgl[image:https://img.shields.io/github/star
 link:https://buymeacoff.ee/lmariscal[image:https://img.shields.io/badge/buy%20coffee-donate-orange.svg?style=flat-square[alt="buy me a coffee"]]
 image:https://img.shields.io/github/last-commit/lmariscal/nimgl.svg?style=flat-square[alt="last commit"]
 link:LICENSE[image:https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square[alt="license"]]
-link:https://nimgl.org/[image:https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square[alt="docs"]]
+link:https://nimgl.org/docs/nimgl.html[image:https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square[alt="docs"]]
 
 
 == Nim Game Library (WIP) image:https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png[alt="nimble"]
 
 NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics.
 
-This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines if you don't have experience working with low level graphic developments.
-We try to keep this bindings as similar to the originals but we do have some usefull toolkits or some variations on functions to help with the development.
+This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines if you don't have experience working with low level graphics developments.
+We try to keep this bindings as similar to the originals but we do have some usefull toolkits or some variations on procedures to help with development and suit it to the language.
 
 NimGL is open source and is under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
 
@@ -42,9 +42,9 @@ It is currently being developed and tested on
 === Contribute
 
 I'm only one person and I use this library almost daily for school and personal
-projects. If you are missing some extension, procedures or bindings or anything
-related, feel free to PR any feature or open an issue with the specification and
-if you can some links to the docs so I can have an idea on how to implement it. +
+projects. If you are missing some extension, procedures, bindings or anything
+related feel free to PR them or open an Issue with the specification and
+if you can some examples to have an idea on how to implement it. +
 Thank you so much 🎉
 
 Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
@@ -71,7 +71,7 @@ Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
 
 === How it Looks
 
-An example that spawns a green window
+An example that spawns a green window:
 
 [source,nim]
 -----------------
@@ -94,7 +94,7 @@ proc main() =
   if w == nil:
     quit(-1)
 
-  w.setKeyCallback(keyProc)
+  discard w.setKeyCallback(keyProc)
   w.makeContextCurrent()
 
   assert glInit()
