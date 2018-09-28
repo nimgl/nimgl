@@ -49,6 +49,7 @@ proc walkRecursive(dir: string) =
     if od != "private": walkRecursive(od)
 
 task test, "test stuff under tests dir":
+  exec("nimble install -y glm")
   for file in listFiles("tests"):
     if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
