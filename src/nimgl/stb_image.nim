@@ -18,12 +18,12 @@ from os import splitPath
 
 type
   ImageData* = object
-    width: int32
-    height: int32
-    channels: int32
-    data: ptr char
+    width*: int32
+    height*: int32
+    channels*: int32
+    data*: ptr char
 
-proc load*(filename: cstring, width, height, channels: ptr int32, components: int = 0): ptr char {.stb_image, importc: "stbi_load".}
+proc stbi_load*(filename: cstring, width: ptr int32, height: ptr int32, channels: ptr int32, components: int32 = 0): ptr char {.stb_image, importc: "stbi_load".}
   ## returns a pointer to the image requested, nil if nothind found.
   ## width and height as you imagine are from the image
   ## channels, how many channels the image has
@@ -34,13 +34,29 @@ proc load*(filename: cstring, width, height, channels: ptr int32, components: in
   ## components, define if you require some especific number of channels. If 0
   ## uses the number of channels the image has.
 
-proc load*(filename: cstring): ImageData =
+proc stbi_load*(filename: cstring, components: int32 = 0): ImageData =
   ## a utility to only give the filename and get a tupple with all the data
   ## more info in the original proc
-  result.data = load(filename, result.width.addr, result.height.addr, result.channels.addr)
+  result.data = stbi_load(filename, result.width.addr, result.height.addr, result.channels.addr, components)
 
-proc image_free*(data: ptr char): void {.stb_image, importc: "stbi_image_free".}
+proc stbi_load_from_memory*(buffer: ptr char, len: int32, width: ptr int32, height: ptr int32, channels: ptr int32, components: int32 = 0): ptr char {.stb_image, importc: "stbi_load_from_memory".}
+  ## returns a pointer to the image loaded from the buffer
+  ## width and height as you imagine are from the image
+  ## channels, how many channels the image has
+  ##    1  grey
+  ##    2  grey, alpha
+  ##    3  red, green, blue
+  ##    4  red, green, blue, alpha
+  ## components, define if you require some especific number of channels. If 0
+  ## uses the number of channels the image has.
+
+proc stbi_load_from_memory*(buffer: ptr char, len: int32, components: int32 = 0): ImageData =
+  ## a utility to only give the filename and get a tupple with all the data
+  ## more info in the original proc
+  result.data = stbi_load_from_memory(buffer, len, result.width.addr, result.height.addr, result.channels.addr, components)
+
+proc stbi_image_free*(data: ptr char): void {.stb_image, importc: "stbi_image_free".}
   ## frees the data, loaded from stbi_load
 
-proc set_flip_vertically_on_load*(state: bool): void {.stb_image, importc: "stbi_set_flip_vertically_on_load".}
+proc stbi_set_flip_vertically_on_load*(state: bool): void {.stb_image, importc: "stbi_set_flip_vertically_on_load".}
   ## flip the image vertically, so the first pixel in the output array is the bottom left

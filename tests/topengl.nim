@@ -27,31 +27,23 @@ proc statusShader(shader: uint32) =
 proc toRGB(vec: Vec3[float32]): Vec3[float32] =
   return vec3(vec.x / 255, vec.y / 255, vec.z / 255)
 
-proc preGL(name: string) =
-  echo "pre" & name
-
-proc postGL(name: string) =
-  echo "post" & name
-
 proc main =
   # GLFW
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 4)
-  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whContextVersionMajor, 3)
+  glfwWindowHint(whContextVersionMinor, 2)
   glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: GLFWWindow = glfwCreateWindow(800, 600)
+  let w: GLFWWindow = glfwCreateWindow(800, 600)
   assert w != nil
 
   discard w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
   # Opengl
-  glNimDebugPostProc = postGL
-  glNimDebugPreProc = preGL
   assert glInit()
 
   echo $glVersionMajor & "." & $glVersionMinor

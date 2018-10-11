@@ -8,13 +8,13 @@ if os.getEnv("CI") != "":
 proc main =
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 4)
-  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whContextVersionMajor, 3)
+  glfwWindowHint(whContextVersionMinor, 2)
   glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w = glfwCreateWindow(800, 600)
+  let w = glfwCreateWindow(800, 600)
   assert w != nil
 
   w.makeContextCurrent

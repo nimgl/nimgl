@@ -6,6 +6,9 @@
 ## You can check the original documentation `here <http://www.glfw.org/docs/latest/>`_.
 ## Or continue reading to get the documentation shown here.
 
+import private/logo
+import stb_image
+
 when defined(glfwDLL):
   when defined(windows):
     const glfw_dll* = "glfw3.dll"
@@ -606,12 +609,22 @@ proc setWindowIcon*(window: GLFWWindow, count: int32, images: ptr GLFWImage): vo
   ## selected.  If no images are specified, the window reverts to its default
   ## icon.
 
-proc glfwCreateWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: GLFWMonitor = nil, share: GLFWWindow = nil): GLFWWindow {.glfw_lib, importc: "glfwCreateWindow".}
+proc glfwCreateWindowC(width: int32, height: int32, title: cstring = "NimGL", monitor: GLFWMonitor = nil, share: GLFWWindow = nil): GLFWWindow {.glfw_lib, importc: "glfwCreateWindow".}
   ## Creates a window and its associated OpenGL or OpenGL ES
   ## context. Most of the options controlling how the window and its context
   ## should be created are specified with ``window_hints``.
   ## We recommend you to generate a config and modify it instead but this is
   ## the official way to create a window
+
+proc glfwCreateWindow*(width: int32, height: int32, title: cstring = "NimGL", monitor: GLFWMonitor = nil, share: GLFWWindow = nil, icon: bool = true): GLFWWindow =
+  ## Creates a window and its associated OpenGL or OpenGL ES
+  ## Utility to create the window with a proper icon.
+  result = glfwCreateWindowC(width, height, title, monitor, share)
+  if not icon: return result
+  let data: ImageData = stbi_load_from_memory(cast[ptr char](nimgl_logo[0].addr), nimgl_logo.len.int32)
+  var image: GLFWImage = GLFWImage(pixels: data.data, width: data.width, height: data.height)
+  result.setWindowIcon(1, image.addr)
+  image.pixels.stbi_image_free()
 
 proc glfwInit*(): bool {.glfw_lib, importc: "glfwInit".}
   ## Initializes the GLFW library. Before most GLFW functions can
