@@ -90,7 +90,7 @@ proc main() =
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
+  let w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
   if w == nil:
     quit(-1)
 

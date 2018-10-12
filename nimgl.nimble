@@ -57,7 +57,7 @@ task test, "test stuff under tests dir":
       exec("nim c -r -d:opengl_debug " & file)
 
 task general, "run tests/general.nim which is the general test for dev":
-  exec("nim c -r -d:opengl_debug tests/topengl.nim")
+  exec("nim c -r -d:opengl_debug tests/timgui.nim")
 
 task docs, "Generate Documentation for all of the Library":
   walkRecursive(srcDir)
