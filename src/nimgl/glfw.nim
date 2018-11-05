@@ -115,7 +115,7 @@ const
   GLFW_OPENGL_CORE_PROFILE*    = 0X00032001
   GLFW_OPENGL_COMPAT_PROFILE*  = 0X00032002
 
-  EGLFW_CURSOR*                 = 0X00033001
+  EGLFW_CURSOR*                = 0X00033001
   GLFW_STICKY_KEYS*            = 0X00033002
   GLFW_STICKY_MOUSE_BUTTONS*   = 0X00033003
 
@@ -485,7 +485,7 @@ type
     ## ``joy`` The joystick that was connected or disconnected.
     ##
     ## ``event`` One of GLFWJoystickState
-  glfwCharProc* = proc(window: GLFWWindow, code: cuint): void {.cdecl.}
+  glfwCharProc* = proc(window: GLFWWindow, code: uint32): void {.cdecl.}
     ## This is the function signature for Unicode character callback functions.
     ##
     ## ``window`` The window that received the event.
@@ -514,7 +514,7 @@ type
     ## ``action`` ``kaPress``, ``kaRelease`` or ``kaRepeat``.
     ##
     ## ``mods`` Bit field describing which ``KeyMods`` were held down.
-  glfwScrollProc* = proc(window: GLFWWindow, xoff, yoff: cdouble): void {.cdecl.}
+  glfwScrollProc* = proc(window: GLFWWindow, xoff: float64, yoff: float64): void {.cdecl.}
     ## This is the functions signature for scroll callback functions.
     ##
     ## ``window`` window that received the event.
@@ -668,12 +668,12 @@ proc glfwPollEvents*(): void {.glfw_lib, importc: "glfwPollEvents".}
   ## queue and then returns immediately.  Processing events will cause the window
   ## and input callbacks associated with those events to be called.
 
-proc glfwGetTime*(): cdouble {.glfw_lib, importc: "glfwGetTime".}
+proc glfwGetTime*(): float64 {.glfw_lib, importc: "glfwGetTime".}
   ## This function returns the value of the GLFW timer. Unless the timer has
   ## been set using ``setTime``, the timer measures time elapsed since GLFW
   ## was initialized.
 
-proc glfwSetTime*(time: cdouble): void {.glfw_lib, importc: "glfwSetTime".}
+proc glfwSetTime*(time: float64): void {.glfw_lib, importc: "glfwSetTime".}
   ## This function sets the value of the GLFW timer.  It then continues to count
   ## up from that value.  The value must be a positive finite number less than
   ## or equal to 18446744073.0, which is approximately 584.5 years.
@@ -711,7 +711,7 @@ proc glfwGetProcAddress*(procname: cstring): pointer {.glfw_lib, importc: "glfwG
   ## A context must be current on the calling thread.  Calling this function
   ## without a current context will cause a GLFW_NO_CURRENT_CONTEXT error.
 
-proc getCursorPos*(window: GLFWWindow, xpos, ypos: var cdouble): void {.glfw_lib, importc: "glfwGetCursorPos".}
+proc getCursorPos*(window: GLFWWindow, xpos: ptr float64, ypos: ptr float64): void {.glfw_lib, importc: "glfwGetCursorPos".}
   ## This function returns the position of the cursor, in screen coordinates,
   ## relative to the upper-left corner of the client area of the specified
   ## window.
@@ -770,12 +770,12 @@ proc glfwGetPrimaryMonitor*(): GLFWMonitor {.glfw_lib, importc: "glfwGetPrimaryM
   ## This function returns the primary monitor.  This is usually the monitor
   ## where elements like the task bar or global menu bar are located.
 
-proc getWindowSize*(window: GLFWWindow, width, height: var int32) {.glfw_lib, importc: "glfwGetWindowSize".}
+proc getWindowSize*(window: GLFWWindow, width: ptr int32, height: ptr int32) {.glfw_lib, importc: "glfwGetWindowSize".}
   ## This function retrieves the size, in screen coordinates, of the client area
   ## of the specified window.  If you wish to retrieve the size of the
   ## framebuffer of the window in pixels, see ``getFramebufferSize``.
 
-proc getFramebufferSize*(window: GLFWWindow, width, height: var int32) {.glfw_lib, importc: "glfwGetFramebufferSize".}
+proc getFramebufferSize*(window: GLFWWindow, width: ptr int32, height: ptr int32) {.glfw_lib, importc: "glfwGetFramebufferSize".}
   ## This function retrieves the size, in screen coordinates, of the client area
   ## of the specified window.  If you wish to retrieve the size of the
   ## framebuffer of the window in pixels, see ``getFramebufferSize``.
@@ -889,6 +889,27 @@ proc setFramebufferSizeCallback*(window: GLFWWindow, `proc`: glfwFramebufferSize
   ## This function sets the framebuffer resize callback of the specified window, which is called when the framebuffer
   ## of the specified window is resized.
   ## Returns The previously set callback, or nil if no callback was set or an error occurred.
+
+proc setCursorPos*(window: GLFWWindow, xpos: float64, ypos: float64): void {.glfw_lib, importc: "glfwSetCursorPos".}
+  ## This function sets the position, in screen coordinates, of the cursor relative to the upper-left corner of the client
+  ## area of the specified window. The window must have input focus. If the window does not have input focus when this
+  ## function is called, it fails silently.
+  ## Do not use this function to implement things like camera controls. GLFW already provides the GLFW_CURSOR_DISABLED
+  ## cursor mode that hides the cursor, transparently re-centers it and provides unconstrained cursor motion.
+  ## See glfwSetInputMode for more information.
+
+proc getInputMode*(window: GLFWWindow, mode: int32): int32 {.glfw_lib, importc: "glfwGetInputMode".}
+  ## This function returns the value of an input option for the specified window. The mode must be one of EGLFW_CURSOR,
+  ## GLFW_STICKY_KEYS or GLFW_STICKY_MOUSE_BUTTONS.
+
+proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.glfw_lib, importc: "glfwSetInputMode".}
+  ## This function sets an input mode option for the specified window. The mode must be one of #GLFW_CURSOR,
+  ## GLFW_STICKY_KEYS or GLFW_STICKY_MOUSE_BUTTONS.
+
+proc setCursor*(window: GLFWWindow, cursor: GLFWCursor): void {.glfw_lib, importc: "glfwSetCursor".}
+  ## This function sets the cursor image to be used when the cursor is over the client area of the specified window.
+  ## The set cursor will only be visible when the cursor mode of the window is GLFW_CURSOR_NORMAL.
+  ##On some platforms, the set cursor may not be visible unless the window also has input focus.
 
 when defined(windows):
   proc getWin32Window*(window: GLFWWindow): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
