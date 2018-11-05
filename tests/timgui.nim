@@ -1,46 +1,186 @@
-import nimgl/[glfw, opengl, imgui]
+# Copyright 2018, NimGL contributors.
 
-proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
+import nimgl/glfw
+import nimgl/opengl
+import nimgl/imgui
+import nimgl/imgui/[impl_glfw, impl_opengl]
+import glm
+import os
+
+if os.getEnv("CI") != "":
+  quit()
+
+proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: cint, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
   if key == keyESCAPE and action == kaPress:
     window.setWindowShouldClose(true)
+  if key == keySpace:
+    glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
+  igGlfwKeyCallback(window, key, scancode, action, mods)
 
-proc main() =
+proc statusShader(shader: uint32) =
+  var status: int32
+  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
+  if status != GL_TRUE.ord:
+    var
+      log_length: int32
+      message = newSeq[char](1024)
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
+    echo message
+
+proc toRGB(vec: Vec3[float32]): Vec3[float32] =
+  return vec3(vec.x / 255, vec.y / 255, vec.z / 255)
+
+proc main =
+  # GLFW
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 4)
-  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whContextVersionMajor, 3)
+  glfwWindowHint(whContextVersionMinor, 2)
   glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
-  if w == nil:
-    quit(-1)
+  let w: GLFWWindow = glfwCreateWindow(800, 600)
+  assert w != nil
 
   discard w.setKeyCallback(keyProc)
-  w.makeContextCurrent()
+  w.makeContextCurrent
 
+  # Opengl
   assert glInit()
 
-  echo "ImGui v" & $igGetVersion()
-  let context = igCreateContext(nil)
+  let context = igCreateContext()
   let io = igGetIO()
 
-  var tex_pixels: ptr char
-  var tex_w: int32
-  var tex_h: int32
-  imFontAtlas_GetTexDataAsRGBA32(tex_pixels.addr, tex_w.addr, tex_h.addr, nil)
+  assert igGlfwInitForOpenGL(w, false)
+  assert igOpenGL3Init()
+
+  igStyleColorsDark()
+
+  echo $glVersionMajor & "." & $glVersionMinor
+
+  glEnable(GL_BLEND)
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+  var
+    mesh: tuple[vbo, vao, ebo: uint32]
+    vertex  : uint32
+    fragment: uint32
+    program : uint32
+
+  var vert = @[
+     0.3f,  0.3f,
+     0.3f, -0.3f,
+    -0.3f, -0.3f,
+    -0.3f,  0.3f
+  ]
+
+  var ind = @[
+    0'u32, 1'u32, 3'u32,
+    1'u32, 2'u32, 3'u32
+  ]
+
+  glGenBuffers(1, mesh.vbo.addr)
+  glGenBuffers(1, mesh.ebo.addr)
+  glGenVertexArrays(1, mesh.vao.addr)
+
+  glBindVertexArray(mesh.vao)
+
+  glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo)
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo)
+
+  glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vert.len), vert[0].addr, GL_STATIC_DRAW)
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * ind.len), ind[0].addr, GL_STATIC_DRAW)
+
+  glEnableVertexAttribArray(0)
+  glVertexAttribPointer(0'u32, 2, EGL_FLOAT, false, cfloat.sizeof * 2, nil)
+
+  vertex = glCreateShader(GL_VERTEX_SHADER)
+  var vsrc: cstring = """
+#version 330 core
+layout (location = 0) in vec2 aPos;
+
+uniform mat4 uMVP;
+
+void main() {
+  gl_Position = vec4(aPos, 0.0, 1.0) * uMVP;
+}
+  """
+  glShaderSource(vertex, 1'i32, vsrc.addr, nil)
+  glCompileShader(vertex)
+  statusShader(vertex)
+
+  fragment = glCreateShader(GL_FRAGMENT_SHADER)
+  var fsrc: cstring = """
+#version 330 core
+out vec4 FragColor;
+
+uniform vec3 uColor;
+
+void main() {
+  FragColor = vec4(uColor, 1.0f);
+}
+  """
+  glShaderSource(fragment, 1, fsrc.addr, nil)
+  glCompileShader(fragment)
+  statusShader(fragment)
+
+  program = glCreateProgram()
+  glAttachShader(program, vertex)
+  glAttachShader(program, fragment)
+  glLinkProgram(program)
+
+  var
+    log_length: int32
+    message = newSeq[char](1024)
+    pLinked: int32
+  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
+  if pLinked != GL_TRUE.ord:
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
+    echo message
+
+  let
+    uColor = glGetUniformLocation(program, "uColor")
+    uMVP   = glGetUniformLocation(program, "uMVP")
+  var
+    bg    = vec3(33f, 33f, 33f).toRgb()
+    color = vec3(50f, 205f, 50f).toRgb()
+    mvp   = ortho(-2f, 2f, -1.5f, 1.5f, -1f, 1f)
 
   while not w.windowShouldClose:
     glfwPollEvents()
 
-    glClearColor(0.68f, 1f, 0.34f, 1f)
+    igOpenGL3NewFrame()
+    igGlfwNewFrame()
+    igNewFrame()
+
+    igShowDemoWindow(nil)
+
+    igRender()
+
+    glClearColor(bg.r, bg.g, bg.b, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
+
+    glUseProgram(program)
+    glUniform3fv(uColor, 1, color.caddr)
+    glUniformMatrix4fv(uMVP, 1, false, mvp.caddr)
+
+    glBindVertexArray(mesh.vao)
+    glDrawElements(GL_TRIANGLES, ind.len.cint, GL_UNSIGNED_INT, nil)
+
+    igOpenGL3RenderDrawData(igGetDrawData())
 
     w.swapBuffers()
 
+  igOpenGL3Shutdown()
+  igGlfwShutdown()
   context.igDestroyContext()
+
   w.destroyWindow()
   glfwTerminate()
+
+  glDeleteVertexArrays(1, mesh.vao.addr)
+  glDeleteBuffers(1, mesh.vbo.addr)
+  glDeleteBuffers(1, mesh.ebo.addr)
 
 main()
