@@ -63,7 +63,7 @@ Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
   vector graphics. NimGL supports modern OpenGL.
 
 | link:src/nimgl/imgui.nim[ImGUI]
-| Bloat-free graphical user interface library (WIP)
+| Bloat-free graphical user interface library
 
 | link:src/nimgl/stb_image.nim[stb_image]
 | Image loading/decoding library (WIP)

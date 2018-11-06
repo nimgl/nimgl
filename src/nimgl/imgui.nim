@@ -10,16 +10,12 @@
 ##
 ## Do to this library most of the binding libraries are written in C, we want
 ## to continue supporting only C libraries so you can always use the backend of
-## your choice. We are binding `cimgui <https://github.com/Extrawurst/cimgui.git>`_
+## your choice. We are binding `cimgui <https://github.com/cimgui/cimgui.git>`_
 ## which is a thin c wrapper of the c++ version. It is up to date and has great
 ## support.
 ##
 ## NOTE: Unless you want to compile witch cpp please provide a dll of the library,
 ## made with cimgui.
-##
-## Even tho we try to keep this bindings the closes to the source, this one specially
-## needs some extra work to fully function with glfw, so there are some helper functions
-## to help with the proccess
 ##
 ## HACK: If you are on windows be sure to compile the cimgui dll with visual studio and
 ## not with mingw.
@@ -30,7 +26,6 @@ proc currentSourceDir(): string =
   result = currentSourcePath()
   result = result.replace("\\", "/")
   result = result[0 ..< result.rfind("/")]
-  echo result
 
 when not defined(imguiSrc):
   when defined(windows):
