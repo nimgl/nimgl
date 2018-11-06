@@ -2,6 +2,8 @@
 
 import nimgl/glfw
 import nimgl/opengl
+import nimgl/imgui
+import nimgl/imgui/[impl_glfw, impl_opengl]
 import glm
 import os
 
@@ -13,15 +15,16 @@ proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: cint, action: GLFWKeyAc
     window.setWindowShouldClose(true)
   if key == keySpace:
     glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
+  igGlfwKeyCallback(window, key, scancode, action, mods)
 
 proc statusShader(shader: uint32) =
   var status: int32
-  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
+  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr)
   if status != GL_TRUE.ord:
     var
       log_length: int32
       message = newSeq[char](1024)
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr)
     echo message
 
 proc toRGB(vec: Vec3[float32]): Vec3[float32] =
@@ -37,7 +40,7 @@ proc main =
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  let w: GLFWWindow = glfwCreateWindow(800, 600)
+  let w: GLFWWindow = glfwCreateWindow(1280, 720)
   assert w != nil
 
   discard w.setKeyCallback(keyProc)
@@ -45,6 +48,14 @@ proc main =
 
   # Opengl
   assert glInit()
+
+  let context = igCreateContext()
+  let io = igGetIO()
+
+  assert igGlfwInitForOpenGL(w, false)
+  assert igOpenGL3Init()
+
+  igStyleColorsDark()
 
   echo $glVersionMajor & "." & $glVersionMinor
 
@@ -76,9 +87,9 @@ proc main =
   glBindVertexArray(mesh.vao)
 
   glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo)
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo)
-
   glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vert.len), vert[0].addr, GL_STATIC_DRAW)
+
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo)
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * ind.len), ind[0].addr, GL_STATIC_DRAW)
 
   glEnableVertexAttribArray(0)
@@ -123,9 +134,9 @@ void main() {
     log_length: int32
     message = newSeq[char](1024)
     pLinked: int32
-  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
+  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr)
   if pLinked != GL_TRUE.ord:
-    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr)
     echo message
 
   let
@@ -137,6 +148,16 @@ void main() {
     mvp   = ortho(-2f, 2f, -1.5f, 1.5f, -1f, 1f)
 
   while not w.windowShouldClose:
+    glfwPollEvents()
+
+    igOpenGL3NewFrame()
+    igGlfwNewFrame()
+    igNewFrame()
+
+    igShowDemoWindow(nil)
+
+    igRender()
+
     glClearColor(bg.r, bg.g, bg.b, 1f)
     glClear(GL_COLOR_BUFFER_BIT)
 
@@ -145,13 +166,17 @@ void main() {
     glUniformMatrix4fv(uMVP, 1, false, mvp.caddr)
 
     glBindVertexArray(mesh.vao)
-    glDrawElements(GL_TRIANGLES, ind.len.cint, GL_UNSIGNED_INT, nil)
+    glDrawElements(GL_TRIANGLES, ind.len.int32, GL_UNSIGNED_INT, nil)
 
-    w.swapBuffers
-    glfwPollEvents()
+    igOpenGL3RenderDrawData(igGetDrawData())
 
-  w.destroyWindow
+    w.swapBuffers()
 
+  igOpenGL3Shutdown()
+  igGlfwShutdown()
+  context.igDestroyContext()
+
+  w.destroyWindow()
   glfwTerminate()
 
   glDeleteVertexArrays(1, mesh.vao.addr)

@@ -63,7 +63,7 @@ Read the link:CONTRIBUTING.adoc[Contribution Guide] for more information.
   vector graphics. NimGL supports modern OpenGL.
 
 | link:src/nimgl/imgui.nim[ImGUI]
-| Bloat-free graphical user interface library (WIP)
+| Bloat-free graphical user interface library
 
 | link:src/nimgl/stb_image.nim[stb_image]
 | Image loading/decoding library (WIP)
@@ -84,13 +84,13 @@ proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyA
 proc main() =
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 4)
-  glfwWindowHint(whContextVersionMinor, 1)
+  glfwWindowHint(whContextVersionMajor, 3)
+  glfwWindowHint(whContextVersionMinor, 2)
   glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  var w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
+  let w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
   if w == nil:
     quit(-1)
 

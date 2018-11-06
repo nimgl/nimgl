@@ -34,6 +34,10 @@ A great way to help is creating tests to verify the integrity of every release.
 | opengl bindings work and give correct data
 | No
 
+| timgui
+| imgui bindings actually build
+| No
+
 |===
 
 More to come...
