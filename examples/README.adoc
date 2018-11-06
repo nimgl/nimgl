@@ -1,0 +1,32 @@
+== Examples
+
+This examples purpose is to help check the stability of the bindings and to give some example on how to use them on
+other projects. So feel free to check the tests and learn on how to use them.
+
+I still need to add more examples to test the stability of the bindings. Some bindings depend on another bindings for
+certain functionality so expect some tests to contain several bindings.
+
+As this is a graphics library it needs some specific hardware that most of the computers have but cannot test on some
+CI servers. In the future it would be nice to implement the CI service with Xvfb.
+
+=== Which examples are integrated
+
+[%header%, cols="1,5,1"]
+|===
+| File | Purpose | CI
+
+| tglfw
+| glfw is initialized correctly and that a window opens
+| No
+
+| topengl
+| opengl bindings work and give correct data
+| No
+
+| timgui
+| imgui bindings actually build
+| No
+
+|===
+
+More to come...

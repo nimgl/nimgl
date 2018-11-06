@@ -5,7 +5,7 @@ author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
 srcDir      = "src"
-skipDirs    = @[".circleci", ".github", "tests"]
+skipDirs    = @[".circleci", ".github", "examples"]
 
 # Dependencies
 
