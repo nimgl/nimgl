@@ -5,7 +5,7 @@ author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
 srcDir      = "src"
-skipDirs    = @[".circleci", ".github", "tests"]
+skipDirs    = @[".circleci", ".github", "examples"]
 
 # Dependencies
 
@@ -48,16 +48,16 @@ proc walkRecursive(dir: string) =
   for od in listDirs(dir):
     if od != "private": walkRecursive(od)
 
-task test, "test stuff under tests dir":
+task test, "test stuff under examples dir":
   exec("nimble install -y glm")
-  for file in listFiles("tests"):
+  for file in listFiles("examples"):
     if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
       #exec("nim c --verbosity:0 --hints:off -r " & file)
       exec("nim c -d:opengl_debug " & file)
 
-task general, "run tests/general.nim which is the general test for dev":
-  exec("nim c -r -d:opengl_debug tests/timgui.nim")
+task general, "run examples/general.nim which is the general test for dev":
+  exec("nim c -r -d:opengl_debug examples/timgui.nim")
 
 task docs, "Generate Documentation for all of the Library":
   walkRecursive(srcDir)
