@@ -161,7 +161,7 @@ proc igGlfwNewFrame*() =
   gWindow.getWindowSize(w.addr, h.addr)
   gWindow.getFramebufferSize(displayW.addr, displayH.addr)
   io.displaySize = ImVec2(x: w.float32, y: h.float32)
-  io.displayFramebufferScale = ImVec2(x: if w > 0: displayW.float32 else: 0.0f, y: if h > 0: displayH.float32 else: 0.0f)
+  io.displayFramebufferScale = ImVec2(x: if w > 0: displayW.float32 / w.float32 else: 0.0f, y: if h > 0: displayH.float32 / h.float32 else: 0.0f)
 
   let currentTime = glfwGetTime()
   io.deltaTime = if gTime > 0.0f: (currentTime - gTime).float32 else: (1.0f / 60.0f).float32

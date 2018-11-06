@@ -40,7 +40,7 @@ proc main =
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
 
-  let w: GLFWWindow = glfwCreateWindow(800, 600)
+  let w: GLFWWindow = glfwCreateWindow(1280, 720)
   assert w != nil
 
   discard w.setKeyCallback(keyProc)

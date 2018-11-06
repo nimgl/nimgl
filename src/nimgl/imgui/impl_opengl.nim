@@ -96,7 +96,7 @@ out vec4 Frag_Color;
 void main() {
   Frag_UV = UV;
   Frag_Color = Color;
-  gl_Position = ProjMtx * vec4(Position.xy,0,1);
+  gl_Position = ProjMtx * vec4(Position.xy, 0, 1);
 }
   """
   var fragment_shader_glsl: cstring = """
@@ -159,10 +159,8 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
     last_active_texture: int32
     last_program: int32
     last_texture: int32
-    last_sampler: int32
     last_array_buffer: int32
     last_vertex_array: int32
-    last_polygon_mode: array[2, int32]
     last_viewport: array[4, int32]
     last_scissor_box: array[4, int32]
     last_blend_src_rgb: int32
@@ -180,10 +178,8 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   glActiveTexture(GL_TEXTURE_0)
   glGetIntegerv(GL_CURRENT_PROGRAM, last_program.addr)
   glGetIntegerv(GL_TEXTURE_BINDING_2D, last_texture.addr)
-  glGetIntegerv(GL_SAMPLER_BINDING, last_sampler.addr)
   glGetIntegerv(GL_ARRAY_BUFFER_BINDING, last_array_buffer.addr)
   glGetIntegerv(GL_VERTEX_ARRAY_BINDING, last_vertex_array.addr)
-  glGetIntegerv(GL_POLYGON_MODE, last_polygon_mode[0].addr)
   glGetIntegerv(GL_VIEWPORT, last_viewport[0].addr)
   glGetIntegerv(GL_SCISSOR_BOX, last_scissor_box[0].addr)
   glGetIntegerv(GL_BLEND_SRC_RGB, last_blend_src_rgb.addr)
@@ -205,21 +201,19 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   glEnable(GL_SCISSOR_TEST)
 
   glViewport(0, 0, fb_width, fb_height)
-  var L = data.displayPos.x
-  var R = data.displayPos.x + data.displaySize.x
-  var T = data.displayPos.y
-  var B = data.displayPos.y + data.displaySize.y
-  var ortho_projection: seq[seq[float32]] = @[
-    @[2.0f/(R-L),   0.0f,         0.0f,   0.0f],
-    @[0.0f,         2.0f/(T-B),   0.0f,   0.0f],
-    @[0.0f,         0.0f,        -1.0f,   0.0f],
-    @[(R+L)/(L-R),  (T+B)/(B-T),  0.0f,   1.0f],
+  let L: float32 = data.displayPos.x
+  let R: float32 = data.displayPos.x + data.displaySize.x
+  let T: float32 = data.displayPos.y
+  let B: float32 = data.displayPos.y + data.displaySize.y
+  var ortho_projection: array[4, array[4, float32]] = [
+    [ 2.0f/(R-L),   0.0f,         0.0f,   0.0f ],
+    [ 0.0f,         2.0f/(T-B),   0.0f,   0.0f ],
+    [ 0.0f,         0.0f,        -1.0f,   0.0f ],
+    [ (R+L)/(L-R),  (T+B)/(B-T),  0.0f,   1.0f ],
   ]
-  # var ortho_projection = ortho(L, R, B, T, -1.0f, 1.0f)
   glUseProgram(gShaderHandle)
   glUniform1i(gAttribLocationTex, 0)
   glUniformMatrix4fv(gAttribLocationProjMtx, 1, false, ortho_projection[0][0].addr)
-  # glBindSampler(0, 0)
 
   var vaoHandle: uint32 = 0
   glGenVertexArrays(1, vaoHandle.addr)
@@ -232,15 +226,10 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   glVertexAttribPointer(gAttribLocationUV.uint32, 2, EGL_FLOAT, false, ImDrawVert.sizeof().int32, cast[pointer](8));
   glVertexAttribPointer(gAttribLocationColor.uint32, 4, GL_UNSIGNED_BYTE, true, ImDrawVert.sizeof().int32, cast[pointer](16));
 
-  let pos: ImVec2 = data.displayPos
+  let pos = data.displayPos
   for n in 0 ..< data.cmdListsCount:
     var cmd_list = data.cmdLists[n]
-    var idx_buffer_ofset: ImDrawIdx = 0'u16
-
-    # echo cmd_list.cmdBuffer
-    # echo cmd_list.vtxBuffer
-    # echo cmd_list.idxBuffer
-    # echo "====\n"
+    var idx_buffer_offset: int = 0
 
     glBindBuffer(GL_ARRAY_BUFFER, gVboHandle)
     glBufferData(GL_ARRAY_BUFFER, (cmd_list.vtxBuffer.size * ImDrawVert.sizeof()).int32, cmd_list.vtxBuffer.data[0].addr, GL_STREAM_DRAW)
@@ -254,18 +243,18 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
       if pcmd.userCallback != nil:
         pcmd.userCallback(cmd_list, pcmd.addr)
       else:
-        let clip_rect: ImVec4 = ImVec4(x: pcmd.clipRect.x - pos.x, y: pcmd.clipRect.y - pos.y, z: pcmd.clipRect.z - pos.x, w: pcmd.clipRect.w - pos.y)
+        var clip_rect = ImVec4(x: pcmd.clipRect.x - pos.x, y: pcmd.clipRect.y - pos.y, z: pcmd.clipRect.z - pos.x, w: pcmd.clipRect.w - pos.y)
         if clip_rect.x < fb_width.float32 and clip_rect.y < fb_height.float32 and clip_rect.z >= 0.0f and clip_rect.w >= 0.0f:
-          glScissor(clip_rect.x.int32, (fb_height.float32 - clip_rect.w).int32, (clip_rect.z - clip_rect.x).int32, (clip_rect.w - clip_rect.y).int32)
+          glScissor(clip_rect.x.int32, (fb_height.float32 - clip_rect.w).int32, (clip_rect.z - clip_rect.x).int32, (clip_rect.w - clip_rect.y).int32);
           glBindTexture(GL_TEXTURE_2D, cast[uint32](pcmd.textureId))
-          glDrawElements(GL_TRIANGLES, pcmd.elemCount.int32, if ImDrawIdx.sizeof == 2: GL_UNSIGNED_SHORT else: GL_UNSIGNED_INT, cast[pointer](idx_buffer_ofset))
-      idx_buffer_ofset = idx_buffer_ofset + pcmd.elemCount.uint16
+          glDrawElements(GL_TRIANGLES, pcmd.elemCount.int32, if ImDrawIdx.sizeof == 2: GL_UNSIGNED_SHORT else: GL_UNSIGNED_INT, cast[pointer](idx_buffer_offset))
+        idx_buffer_offset.inc(pcmd.elemCount.int32 * ImDrawIdx.sizeof())
 
     glDeleteVertexArrays(1, vaoHandle.addr)
 
+    # Restore modified GL State
     glUseProgram(last_program.uint32)
     glBindTexture(GL_TEXTURE_2D, last_texture.uint32)
-    glBindSampler(0, last_sampler.uint32)
     glActiveTexture(last_active_texture.uint32)
     glBindVertexArray(last_vertex_array.uint32)
     glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer.uint32)
@@ -275,10 +264,9 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
     if last_enable_blend: glEnable(GL_BLEND) else: glDisable(GL_BLEND)
     if last_enable_cull_face: glEnable(GL_CULL_FACE) else: glDisable(GL_CULL_FACE)
     if last_enable_depth_test: glEnable(GL_DEPTH_TEST) else: glDisable(GL_DEPTH_TEST)
-    if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_TEST)
+    if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_BOX)
 
-    glPolygonMode(GL_FRONT_AND_BACK, cast[GLenum](last_polygon_mode[0]))
-    glViewPort(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3])
+    glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3])
     glScissor(last_scissor_box[0], last_scissor_box[1], last_scissor_box[2], last_scissor_box[3])
 
 proc igOpenGL3DestroyFontsTexture() =

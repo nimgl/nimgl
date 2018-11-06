@@ -28,6 +28,7 @@ import strutils
 
 proc currentSourceDir(): string =
   result = currentSourcePath()
+  result = result.replace("\\", "/")
   result = result[0 ..< result.rfind("/")]
   echo result
 
