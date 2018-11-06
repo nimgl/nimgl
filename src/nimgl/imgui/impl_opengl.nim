@@ -147,7 +147,6 @@ proc igOpenGL3NewFrame*() =
     igOpenGL3CreateDeviceObjects()
 
 proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
-  # echo $data[]
   let io = igGetIO()
   let fb_width = (data.displaySize.x * io.displayFramebufferScale.x).int32
   let fb_height = (data.displaySize.y * io.displayFramebufferScale.y).int32
@@ -222,9 +221,9 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   glEnableVertexAttribArray(gAttribLocationPosition.uint32)
   glEnableVertexAttribArray(gAttribLocationUV.uint32)
   glEnableVertexAttribArray(gAttribLocationColor.uint32)
-  glVertexAttribPointer(gAttribLocationPosition.uint32, 2, EGL_FLOAT, false, ImDrawVert.sizeof().int32, cast[pointer](0)); # @TODO: actually calculate offset
-  glVertexAttribPointer(gAttribLocationUV.uint32, 2, EGL_FLOAT, false, ImDrawVert.sizeof().int32, cast[pointer](8));
-  glVertexAttribPointer(gAttribLocationColor.uint32, 4, GL_UNSIGNED_BYTE, true, ImDrawVert.sizeof().int32, cast[pointer](16));
+  glVertexAttribPointer(gAttribLocationPosition.uint32, 2, EGL_FLOAT, false, ImDrawVert.sizeof().int32, cast[pointer](0)) # @TODO: actually calculate offset
+  glVertexAttribPointer(gAttribLocationUV.uint32, 2, EGL_FLOAT, false, ImDrawVert.sizeof().int32, cast[pointer](8))
+  glVertexAttribPointer(gAttribLocationColor.uint32, 4, GL_UNSIGNED_BYTE, true, ImDrawVert.sizeof().int32, cast[pointer](16))
 
   let pos = data.displayPos
   for n in 0 ..< data.cmdListsCount:
@@ -245,29 +244,29 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
       else:
         var clip_rect = ImVec4(x: pcmd.clipRect.x - pos.x, y: pcmd.clipRect.y - pos.y, z: pcmd.clipRect.z - pos.x, w: pcmd.clipRect.w - pos.y)
         if clip_rect.x < fb_width.float32 and clip_rect.y < fb_height.float32 and clip_rect.z >= 0.0f and clip_rect.w >= 0.0f:
-          glScissor(clip_rect.x.int32, (fb_height.float32 - clip_rect.w).int32, (clip_rect.z - clip_rect.x).int32, (clip_rect.w - clip_rect.y).int32);
+          glScissor(clip_rect.x.int32, (fb_height.float32 - clip_rect.w).int32, (clip_rect.z - clip_rect.x).int32, (clip_rect.w - clip_rect.y).int32)
           glBindTexture(GL_TEXTURE_2D, cast[uint32](pcmd.textureId))
           glDrawElements(GL_TRIANGLES, pcmd.elemCount.int32, if ImDrawIdx.sizeof == 2: GL_UNSIGNED_SHORT else: GL_UNSIGNED_INT, cast[pointer](idx_buffer_offset))
         idx_buffer_offset.inc(pcmd.elemCount.int32 * ImDrawIdx.sizeof())
 
-    glDeleteVertexArrays(1, vaoHandle.addr)
+  glDeleteVertexArrays(1, vaoHandle.addr)
 
-    # Restore modified GL State
-    glUseProgram(last_program.uint32)
-    glBindTexture(GL_TEXTURE_2D, last_texture.uint32)
-    glActiveTexture(last_active_texture.uint32)
-    glBindVertexArray(last_vertex_array.uint32)
-    glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer.uint32)
-    glBlendEquationSeparate(last_blend_equation_rgb.uint32, last_blend_equation_alpha.uint32)
-    glBlendFuncSeparate(last_blend_src_rgb.uint32, last_blend_dst_rgb.uint32, last_blend_src_alpha.uint32, last_blend_dst_alpha.uint32)
+  # Restore modified GL State
+  glUseProgram(last_program.uint32)
+  glBindTexture(GL_TEXTURE_2D, last_texture.uint32)
+  glActiveTexture(last_active_texture.uint32)
+  glBindVertexArray(last_vertex_array.uint32)
+  glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer.uint32)
+  glBlendEquationSeparate(last_blend_equation_rgb.uint32, last_blend_equation_alpha.uint32)
+  glBlendFuncSeparate(last_blend_src_rgb.uint32, last_blend_dst_rgb.uint32, last_blend_src_alpha.uint32, last_blend_dst_alpha.uint32)
 
-    if last_enable_blend: glEnable(GL_BLEND) else: glDisable(GL_BLEND)
-    if last_enable_cull_face: glEnable(GL_CULL_FACE) else: glDisable(GL_CULL_FACE)
-    if last_enable_depth_test: glEnable(GL_DEPTH_TEST) else: glDisable(GL_DEPTH_TEST)
-    if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_BOX)
+  if last_enable_blend: glEnable(GL_BLEND) else: glDisable(GL_BLEND)
+  if last_enable_cull_face: glEnable(GL_CULL_FACE) else: glDisable(GL_CULL_FACE)
+  if last_enable_depth_test: glEnable(GL_DEPTH_TEST) else: glDisable(GL_DEPTH_TEST)
+  if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_BOX)
 
-    glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3])
-    glScissor(last_scissor_box[0], last_scissor_box[1], last_scissor_box[2], last_scissor_box[3])
+  glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3])
+  glScissor(last_scissor_box[0], last_scissor_box[1], last_scissor_box[2], last_scissor_box[3])
 
 proc igOpenGL3DestroyFontsTexture() =
   if gFontTexture > 0'u32:

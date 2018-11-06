@@ -19,12 +19,12 @@ proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: cint, action: GLFWKeyAc
 
 proc statusShader(shader: uint32) =
   var status: int32
-  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr);
+  glGetShaderiv(shader, GL_COMPILE_STATUS, status.addr)
   if status != GL_TRUE.ord:
     var
       log_length: int32
       message = newSeq[char](1024)
-    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr);
+    glGetShaderInfoLog(shader, 1024, log_length.addr, message[0].addr)
     echo message
 
 proc toRGB(vec: Vec3[float32]): Vec3[float32] =
@@ -87,9 +87,9 @@ proc main =
   glBindVertexArray(mesh.vao)
 
   glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo)
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo)
-
   glBufferData(GL_ARRAY_BUFFER, cint(cfloat.sizeof * vert.len), vert[0].addr, GL_STATIC_DRAW)
+
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo)
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, cint(cuint.sizeof * ind.len), ind[0].addr, GL_STATIC_DRAW)
 
   glEnableVertexAttribArray(0)
@@ -134,9 +134,9 @@ void main() {
     log_length: int32
     message = newSeq[char](1024)
     pLinked: int32
-  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr);
+  glGetProgramiv(program, GL_LINK_STATUS, pLinked.addr)
   if pLinked != GL_TRUE.ord:
-    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr);
+    glGetProgramInfoLog(program, 1024, log_length.addr, message[0].addr)
     echo message
 
   let
@@ -166,7 +166,7 @@ void main() {
     glUniformMatrix4fv(uMVP, 1, false, mvp.caddr)
 
     glBindVertexArray(mesh.vao)
-    glDrawElements(GL_TRIANGLES, ind.len.cint, GL_UNSIGNED_INT, nil)
+    glDrawElements(GL_TRIANGLES, ind.len.int32, GL_UNSIGNED_INT, nil)
 
     igOpenGL3RenderDrawData(igGetDrawData())
 
