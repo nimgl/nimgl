@@ -43,6 +43,7 @@ find them at http://editorconfig.org/.
 . Run `nimble build`
 . Modify, commit and push.
 . Create Pull Request with squashed commits and changelog.
+. Remember to make the Pull Request to the `develop` branch
 
 === License Note
 
