@@ -263,7 +263,7 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   if last_enable_blend: glEnable(GL_BLEND) else: glDisable(GL_BLEND)
   if last_enable_cull_face: glEnable(GL_CULL_FACE) else: glDisable(GL_CULL_FACE)
   if last_enable_depth_test: glEnable(GL_DEPTH_TEST) else: glDisable(GL_DEPTH_TEST)
-  if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_BOX)
+  if last_enable_scissor_test: glEnable(GL_SCISSOR_TEST) else: glDisable(GL_SCISSOR_TEST)
 
   glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3])
   glScissor(last_scissor_box[0], last_scissor_box[1], last_scissor_box[2], last_scissor_box[3])
