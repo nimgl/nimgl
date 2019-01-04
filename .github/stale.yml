@@ -6,7 +6,7 @@ daysUntilClose: 1
 exemptLabels:
   - important
 
-staleLabel: wontfix
+staleLabel: "Status: Abandoned"
 markComment: >
   Thanks for contributing to this issue. As it has been 61 days since the last activity, we are automatically closing
   the issue in 24 hours. This is often because the request was already solved in some way and it just wasn't updated or
