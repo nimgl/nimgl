@@ -1,0 +1,8 @@
+== Contributors
+
+Wanted to create a file with all the contributors. +
+To thank all of the amazing people investing their free time in this project. +
+Does not matter the size or impact, matters the effort! +
+
+- link:https://github.com/zacharycarter[@zacharycarter]
+- link:https://github.com/slugspace[@slugspace]
