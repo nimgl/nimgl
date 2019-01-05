@@ -42,7 +42,9 @@ find them at http://editorconfig.org/.
 . Clone the repo with git.
 . Run `nimble build`
 . Modify, commit and push.
+. Put yourself on the link:CONTRIBUTORS.adoc[CONTRIBUTORS] file!
 . Create Pull Request with squashed commits and changelog.
+. Remember to make the Pull Request to the `develop` branch
 
 === License Note
 

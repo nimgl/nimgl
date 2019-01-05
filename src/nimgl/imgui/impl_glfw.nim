@@ -20,6 +20,12 @@ var
   gMouseJustPressed: array[5, bool]
   gMouseCursors: array[ImGuiMouseCursor_COUNT, GLFWCursor]
 
+  # Store previous callbacks so they can be chained
+  gPrevMouseButtonCallback: glfwMouseButtonProc = nil
+  gPrevScrollCallback: glfwScrollProc = nil
+  gPrevKeyCallback: glfwKeyProc = nil
+  gPrevCharCallback: glfwCharProc = nil
+
 proc igGlfwGetClipboardText(user_data: pointer): cstring {.cdecl.} =
   cast[GLFWwindow](user_data).getClipboardString()
 
@@ -27,15 +33,24 @@ proc igGlfwSetClipboardText(user_data: pointer, text: cstring): void {.cdecl.} =
   cast[GLFWwindow](user_data).setClipboardString(text)
 
 proc igGlfwMouseCallback*(window: GLFWWindow, button: GLFWMouseButton, action: GLFWMouseAction, mods: GLFWKeyMod): void {.cdecl.} =
+  if gPrevMouseButtonCallback != nil:
+    gPrevMouseButtonCallback(window, button, action, mods)
+
   if action == maPress and button.ord >= 0 and button.ord < gMouseJustPressed.len:
     gMouseJustPressed[button.ord] = true
 
 proc igGlfwScrollCallback*(window: GLFWWindow, xoff: float64, yoff: float64): void {.cdecl.} =
+  if gPrevScrollCallback != nil:
+    gPrevScrollCallback(window, xoff, yoff)
+
   let io = igGetIO()
   io.mouseWheelH += xoff.float32
   io.mouseWheel += yoff.float32
 
 proc igGlfwKeyCallback*(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
+  if gPrevKeyCallback != nil:
+    gPrevKeyCallback(window, key, scancode, action, mods)
+
   let io = igGetIO()
   if key.ord < 511 and key.ord >= 0:
     if action == kaPress:
@@ -49,15 +64,19 @@ proc igGlfwKeyCallback*(window: GLFWWindow, key: GLFWKey, scancode: int32, actio
   io.keySuper = io.keysDown[keyLeftSuper.ord] or io.keysDown[keyRightSuper.ord]
 
 proc igGlfwCharCallback*(window: GLFWWindow, code: uint32): void {.cdecl.} =
+  if gPrevCharCallback != nil:
+    gPrevCharCallback(window, code)
+
   let io = igGetIO()
   if code > 0'u32 and code < 0x10000'u32:
     io.addInputCharacter(cast[ImWchar](code))
 
 proc igGlfwInstallCallbacks(window: GLFWwindow) =
-  discard gWindow.setMouseButtonCallback(igGlfwMouseCallback)
-  discard gWindow.setScrollCallback(igGlfwScrollCallback)
-  discard gWindow.setKeyCallback(igGlfwKeyCallback)
-  discard gWindow.setCharCallback(igGlfwCharCallback)
+  # The already set callback proc should be returned. Store these and and chain callbacks.
+  gPrevMouseButtonCallback = gWindow.setMouseButtonCallback(igGlfwMouseCallback)
+  gPrevScrollCallback = gWindow.setScrollCallback(igGlfwScrollCallback)
+  gPrevKeyCallback = gWindow.setKeyCallback(igGlfwKeyCallback)
+  gPrevCharCallback = gWindow.setCharCallback(igGlfwCharCallback)
 
 proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwClientApi): bool =
   gWindow = window
