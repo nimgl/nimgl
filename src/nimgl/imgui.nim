@@ -407,7 +407,7 @@ type
   ImU64* = uint64
   ImWchar* = uint16
 
-  carray* {.unchecked.}[T] = array[0..0, T]
+  carray* {.unchecked.}[T] = UncheckedArray[T]
   ImDrawData* {.importc: "ImDrawData", header: "<cimgui.h>".} = object
     valid* {.importc: "Valid".} : bool
     cmdLists* {.importc: "CmdLists".} : carray[ptr ImDrawList]
