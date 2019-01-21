@@ -663,6 +663,11 @@ proc swapBuffers*(window: GLFWWindow): void {.glfw_lib, importc: "glfwSwapBuffer
   ## zero, the GPU driver waits the specified number of screen updates before
   ## swapping the buffers.
 
+proc glfwSwapInterval*(interval: int32): void {.glfw_lib, importc: "glfwSwapInterval".}
+  ## Sets the number of v-blanks that must occur before the front and back buffers are swapped.
+  ## If this is set greater than 0, the GPU will wait for specified number of screen updates before
+  ## swapping the buffers.
+
 proc glfwPollEvents*(): void {.glfw_lib, importc: "glfwPollEvents".}
   ## Processes only those events that are already in the event
   ## queue and then returns immediately.  Processing events will cause the window
