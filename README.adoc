@@ -1,25 +1,17 @@
 link:https://circleci.com/gh/lmariscal/nimgl[image:https://circleci.com/gh/lmariscal/nimgl.svg?style=svg[alt="circleci"]]
-link:https://github.com/lmariscal/nimgl[image:https://img.shields.io/github/stars/lmariscal/nimgl.svg?style=social&logo=github&label=Stars[alt="stars"]]
-link:https://buymeacoff.ee/lmariscal[image:https://img.shields.io/badge/buy%20coffee-donate-orange.svg?style=flat-square[alt="buy me a coffee"]]
-image:https://img.shields.io/github/last-commit/lmariscal/nimgl.svg?style=flat-square[alt="last commit"]
-link:LICENSE[image:https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square[alt="license"]]
 link:https://nimgl.org/docs/nimgl.html[image:https://img.shields.io/badge/docs-passing-ff69b4.svg?style=flat-square[alt="docs"]]
 
 
-== Nim Game Library (WIP) image:https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png[alt="nimble"]
+== Nim Game Library (WIP) link:https://github.com/nim-lang/nimble[image:https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png[alt="nimble"]]
 
 NimGL (Nim Game Library) is a collection of bindings for popular APIs, mostly used in computer graphics.
 
 This collection of bindings is heavily inspired by LWJGL3, it enables low level access and it is not a framework, so we highly encourage you to use other game engines if you don't have experience working with low level graphics developments.
 We try to keep this bindings as similar to the originals but we do have some usefull toolkits or some variations on procedures to help with development and suit it to the language.
 
-NimGL is open source and is under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
-
-==== NimGL is under heavy development so expect drastic changes and improvements
-
 === Install
 
-You will need nimble to install this library.
+You will need link:https://github.com/nim-lang/nimble[nimble] to install this library.
 
 [source,shell]
 -----------------
@@ -36,8 +28,8 @@ import nimgl/<binding>
 It is currently being developed and tested on
 
 * Windows 10
-* Mac High Sierra
-* Linux Ubuntu 18.04
+* MacOS Mojave
+* Linux Ubuntu 18.10
 
 === Contribute
 
@@ -110,3 +102,15 @@ proc main() =
 
 main()
 -----------------
+
+=== License
+
+link:https://github.com/lmariscal/nimgl/blob/master/LICENSE[MIT License].
+
+NimGL is open source and is under the MIT License, we highly encourage every developer that uses it to make improvements and fork them here.
+
+=== Contributors
+
+Thank you to every contributor that has spent their time improving this library.
+
+link:https://github.com/lmariscal/nimgl/graphs/contributors[List of all contributors.]

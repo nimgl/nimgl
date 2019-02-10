@@ -1,4 +1,4 @@
-# Copyright 2018, NimGL contributors.
+# Copyright 2019, NimGL contributors.
 
 ## STB Module | stb_image.h - Image loading/decoding library
 ## ====
@@ -22,11 +22,24 @@ type
     height*: int32
     channels*: int32
     data*: ptr cuchar
+  STBIChannels* {.size: int32.sizeof.} = enum ## Enum to avoid using ugly constants
+    stbiDefault = 0
+    stbiGrey = 1
+    stbiGrey_alpha = 2
+    stbiRGB = 3
+    stbiRGBAlpha = 4
+
+converter toInt32*(x: STBIChannels): int32 =
+  x.int32
+
+converter toInt*(x: STBIChannels): int =
+  x.int
 
 proc stbiLoad*(filename: cstring, width: ptr int32, height: ptr int32, channels: ptr int32, components: int32 = 0): ptr cuchar {.stb_image, importc: "stbi_load".}
   ## returns a pointer to the image requested, nil if nothind found.
   ## width and height as you imagine are from the image
   ## channels, how many channels the image has
+  ##    0  default
   ##    1  grey
   ##    2  grey, alpha
   ##    3  red, green, blue
