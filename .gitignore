@@ -160,5 +160,6 @@ tests/tglfw
 tests/tmath
 tests/topengl
 imgui.ini
+docs/
 
 # End of https://www.gitignore.io/api/c,osx,nim,c++,linux,macos,windows,visualstudiocode

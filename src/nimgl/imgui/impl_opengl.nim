@@ -1,7 +1,7 @@
 # Copyright 2018, NimGL contributors.
 
-## ImGUI OpenGL3 / OpenGL ES2 / OpenGL ES3 (modern OpenGL with shaders / programmatic pipeline) Implementation
-## ===
+## ImGUI OpenGL (modern OpenGL with shaders / programmatic pipeline) Implementation
+## ====
 ## Implementation based on the imgui examples implementations.
 ## Feel free to use and modify this implementation.
 ## This needs to be used along with a Platform Binding (e.g. GLFW, SDL, Win32, custom..)

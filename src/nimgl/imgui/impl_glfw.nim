@@ -1,7 +1,7 @@
 # Copyright 2018, NimGL contributors.
 
 ## ImGUI GLFW Implementation
-## ===
+## ====
 ## Implementation based on the imgui examples implementations.
 ## Feel free to use and modify this implementation.
 ## This needs to be used along with a Renderer.
