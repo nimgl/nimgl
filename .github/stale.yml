@@ -4,7 +4,10 @@ daysUntilStale: 61
 daysUntilClose: 1
 
 exemptLabels:
-  - important
+  - "Status: On Hold"
+  - "Status: Available"
+  - "Status: Review Needed"
+  - "(ノ°Д°）ノ︵ ┻━┻"
 
 staleLabel: "Status: Abandoned"
 markComment: >
