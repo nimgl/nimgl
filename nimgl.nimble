@@ -51,7 +51,7 @@ proc walkRecursive(dir: string) =
 task test, "test stuff under examples dir":
   exec("nimble install -y glm")
   for file in listFiles("examples"):
-    if file[6] == 't' and file.nimExt:
+    if file[9] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
       #exec("nim c --verbosity:0 --hints:off -r " & file)
       exec("nim c -d:opengl_debug " & file)
