@@ -131,17 +131,20 @@ const
   ImGuiColorEditFlags_AlphaPreview* = 131072
   ImGuiColorEditFlags_AlphaPreviewHalf* = 262144
   ImGuiColorEditFlags_HDR* = 524288
-  ImGuiColorEditFlags_RGB* = 1048576
-  ImGuiColorEditFlags_HSV* = 2097152
-  ImGuiColorEditFlags_HEX* = 4194304
+  ImGuiColorEditFlags_DisplayRGB* = 1048576
+  ImGuiColorEditFlags_DisplayHSV* = 2097152
+  ImGuiColorEditFlags_DisplayHex* = 4194304
   ImGuiColorEditFlags_Uint8* = 8388608
   ImGuiColorEditFlags_Float* = 16777216
   ImGuiColorEditFlags_PickerHueBar* = 33554432
   ImGuiColorEditFlags_PickerHueWheel* = 67108864
-  ImGuiColorEditFlags_InputsMask* = 7340032
+  ImGuiColorEditFlags_InputRGB* = 134217728
+  ImGuiColorEditFlags_InputHSV* = 268435456
+  ImGuiColorEditFlags_OptionsDefault* = 177209344
+  ImGuiColorEditFlags_DisplayMask* = 7340032
   ImGuiColorEditFlags_DataTypeMask* = 25165824
   ImGuiColorEditFlags_PickerMask* = 100663296
-  ImGuiColorEditFlags_OptionsDefault* = 42991616
+  ImGuiColorEditFlags_InputMask* = 402653184
   ImGuiComboFlags_None* = 0
   ImGuiComboFlags_PopupAlignLeft* = 1
   ImGuiComboFlags_HeightSmall* = 2
@@ -164,13 +167,17 @@ const
   ImGuiConfigFlags_NoMouseCursorChange* = 32
   ImGuiConfigFlags_IsSRGB* = 1048576
   ImGuiConfigFlags_IsTouchScreen* = 2097152
-  ImGuiDataType_S32* = 0
-  ImGuiDataType_U32* = 1
-  ImGuiDataType_S64* = 2
-  ImGuiDataType_U64* = 3
-  ImGuiDataType_Float* = 4
-  ImGuiDataType_Double* = 5
-  ImGuiDataType_COUNT* = 6
+  ImGuiDataType_S8* = 0
+  ImGuiDataType_U8* = 1
+  ImGuiDataType_S16* = 2
+  ImGuiDataType_U16* = 3
+  ImGuiDataType_S32* = 4
+  ImGuiDataType_U32* = 5
+  ImGuiDataType_S64* = 6
+  ImGuiDataType_U64* = 7
+  ImGuiDataType_Float* = 8
+  ImGuiDataType_Double* = 9
+  ImGuiDataType_COUNT* = 10
   ImGuiDir_None* = -1
   ImGuiDir_Left* = 0
   ImGuiDir_Right* = 1
@@ -273,11 +280,12 @@ const
   ImGuiNavInput_TweakSlow* = 14
   ImGuiNavInput_TweakFast* = 15
   ImGuiNavInput_KeyMenu* = 16
-  ImGuiNavInput_KeyLeft* = 17
-  ImGuiNavInput_KeyRight* = 18
-  ImGuiNavInput_KeyUp* = 19
-  ImGuiNavInput_KeyDown* = 20
-  ImGuiNavInput_COUNT* = 21
+  ImGuiNavInput_KeyTab* = 17
+  ImGuiNavInput_KeyLeft* = 18
+  ImGuiNavInput_KeyRight* = 19
+  ImGuiNavInput_KeyUp* = 20
+  ImGuiNavInput_KeyDown* = 21
+  ImGuiNavInput_COUNT* = 22
   ImGuiNavInput_InternalStart* = 16
   ImGuiSelectableFlags_None* = 0
   ImGuiSelectableFlags_DontClosePopups* = 1
@@ -400,11 +408,15 @@ type
   ImGuiTabItemFlags* = int32
   ImGuiTreeNodeFlags* = int32
   ImGuiWindowFlags* = int32
-  ImS32* = uint32
+  ImS16* = int16
+  ImS32* = int32
   ImS64* = int64
+  ImS8* = char
   ImTextureID* = pointer
+  ImU16* = uint16
   ImU32* = uint32
   ImU64* = uint64
+  ImU8* = char
   ImWchar* = uint16
 
   carray* {.unchecked.}[T] = UncheckedArray[T]
@@ -863,6 +875,7 @@ proc getGlyphRangesDefault*(self: ptr ImFontAtlas): ptr ImWchar {.imgui_lib, imp
 proc getGlyphRangesJapanese*(self: ptr ImFontAtlas): ptr ImWchar {.imgui_lib, importc: "ImFontAtlas_GetGlyphRangesJapanese".}
 proc getGlyphRangesKorean*(self: ptr ImFontAtlas): ptr ImWchar {.imgui_lib, importc: "ImFontAtlas_GetGlyphRangesKorean".}
 proc getGlyphRangesThai*(self: ptr ImFontAtlas): ptr ImWchar {.imgui_lib, importc: "ImFontAtlas_GetGlyphRangesThai".}
+proc getGlyphRangesVietnamese*(self: ptr ImFontAtlas): ptr ImWchar {.imgui_lib, importc: "ImFontAtlas_GetGlyphRangesVietnamese".}
 proc getMouseCursorTexData*(self: ptr ImFontAtlas, cursor: ImGuiMouseCursor, out_offset: ptr ImVec2, out_size: ptr ImVec2, out_uv_border: ptr ImVec2, out_uv_fill: ptr ImVec2): bool {.imgui_lib, importc: "ImFontAtlas_GetMouseCursorTexData".}
 proc getTexDataAsAlpha8*(self: ptr ImFontAtlas, out_pixels: ptr ptr char, out_width: ptr int32, out_height: ptr int32, out_bytes_per_pixel: ptr int32 = nil): void {.imgui_lib, importc: "ImFontAtlas_GetTexDataAsAlpha8".}
 proc getTexDataAsRGBA32*(self: ptr ImFontAtlas, out_pixels: ptr ptr char, out_width: ptr int32, out_height: ptr int32, out_bytes_per_pixel: ptr int32 = nil): void {.imgui_lib, importc: "ImFontAtlas_GetTexDataAsRGBA32".}
@@ -1445,6 +1458,7 @@ proc igEndPopup*(): void {.imgui_lib, importc: "igEndPopup".}
 proc igEndTabBar*(): void {.imgui_lib, importc: "igEndTabBar".}
 proc igEndTabItem*(): void {.imgui_lib, importc: "igEndTabItem".}
 proc igEndTooltip*(): void {.imgui_lib, importc: "igEndTooltip".}
+proc igGetBackgroundDrawList*(): ptr ImDrawList {.imgui_lib, importc: "igGetBackgroundDrawList".}
 proc igGetClipboardText*(): cstring {.imgui_lib, importc: "igGetClipboardText".}
 proc igGetColorU32*(idx: ImGuiCol, alpha_mul: float32 = 1.0f): ImU32 {.imgui_lib, importc: "igGetColorU32".}
 proc igGetColumnIndex*(): int32 {.imgui_lib, importc: "igGetColumnIndex".}
@@ -1466,6 +1480,7 @@ proc igGetDrawListSharedData*(): ptr ImDrawListSharedData {.imgui_lib, importc: 
 proc igGetFont*(): ptr ImFont {.imgui_lib, importc: "igGetFont".}
 proc igGetFontSize*(): float32 {.imgui_lib, importc: "igGetFontSize".}
 proc igGetFontTexUvWhitePixel*(): ImVec2 {.imgui_lib, importc: "igGetFontTexUvWhitePixel".}
+proc igGetForegroundDrawList*(): ptr ImDrawList {.imgui_lib, importc: "igGetForegroundDrawList".}
 proc igGetFrameCount*(): int32 {.imgui_lib, importc: "igGetFrameCount".}
 proc igGetFrameHeight*(): float32 {.imgui_lib, importc: "igGetFrameHeight".}
 proc igGetFrameHeightWithSpacing*(): float32 {.imgui_lib, importc: "igGetFrameHeightWithSpacing".}
@@ -1480,7 +1495,6 @@ proc igGetMouseCursor*(): ImGuiMouseCursor {.imgui_lib, importc: "igGetMouseCurs
 proc igGetMouseDragDelta*(button: int32 = 0, lock_threshold: float32 = -1.0f): ImVec2 {.imgui_lib, importc: "igGetMouseDragDelta".}
 proc igGetMousePos*(): ImVec2 {.imgui_lib, importc: "igGetMousePos".}
 proc igGetMousePosOnOpeningCurrentPopup*(): ImVec2 {.imgui_lib, importc: "igGetMousePosOnOpeningCurrentPopup".}
-proc igGetOverlayDrawList*(): ptr ImDrawList {.imgui_lib, importc: "igGetOverlayDrawList".}
 proc igGetScrollMaxX*(): float32 {.imgui_lib, importc: "igGetScrollMaxX".}
 proc igGetScrollMaxY*(): float32 {.imgui_lib, importc: "igGetScrollMaxY".}
 proc igGetScrollX*(): float32 {.imgui_lib, importc: "igGetScrollX".}
@@ -1518,6 +1532,7 @@ proc igInputScalar*(label: cstring, data_type: ImGuiDataType, v: pointer, step: 
 proc igInputScalarN*(label: cstring, data_type: ImGuiDataType, v: pointer, components: int32, step: pointer = nil, step_fast: pointer = nil, format: cstring = nil, flags: ImGuiInputTextFlags = 0): bool {.imgui_lib, importc: "igInputScalarN".}
 proc igInputText*(label: cstring, buf: cstring, buf_size: uint32, flags: ImGuiInputTextFlags = 0, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.imgui_lib, importc: "igInputText".}
 proc igInputTextMultiline*(label: cstring, buf: cstring, buf_size: uint32, size: ImVec2, flags: ImGuiInputTextFlags = 0, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.imgui_lib, importc: "igInputTextMultiline".}
+proc igInputTextWithHint*(label: cstring, hint: cstring, buf: cstring, buf_size: uint32, flags: ImGuiInputTextFlags = 0, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.imgui_lib, importc: "igInputTextWithHint".}
 proc igInvisibleButton*(str_id: cstring, size: ImVec2): bool {.imgui_lib, importc: "igInvisibleButton".}
 proc igIsAnyItemActive*(): bool {.imgui_lib, importc: "igIsAnyItemActive".}
 proc igIsAnyItemFocused*(): bool {.imgui_lib, importc: "igIsAnyItemFocused".}
@@ -1558,9 +1573,9 @@ proc igLoadIniSettingsFromMemory*(ini_data: cstring, ini_size: uint32 = 0): void
 proc igLogButtons*(): void {.imgui_lib, importc: "igLogButtons".}
 proc igLogFinish*(): void {.imgui_lib, importc: "igLogFinish".}
 proc igLogText*(fmt: cstring): void {.imgui_lib, importc: "igLogText", varargs.}
-proc igLogToClipboard*(max_depth: int32 = -1): void {.imgui_lib, importc: "igLogToClipboard".}
-proc igLogToFile*(max_depth: int32 = -1, filename: cstring = nil): void {.imgui_lib, importc: "igLogToFile".}
-proc igLogToTTY*(max_depth: int32 = -1): void {.imgui_lib, importc: "igLogToTTY".}
+proc igLogToClipboard*(auto_open_depth: int32 = -1): void {.imgui_lib, importc: "igLogToClipboard".}
+proc igLogToFile*(auto_open_depth: int32 = -1, filename: cstring = nil): void {.imgui_lib, importc: "igLogToFile".}
+proc igLogToTTY*(auto_open_depth: int32 = -1): void {.imgui_lib, importc: "igLogToTTY".}
 proc igMemAlloc*(size: uint32): pointer {.imgui_lib, importc: "igMemAlloc".}
 proc igMemFree*(`ptr`: pointer): void {.imgui_lib, importc: "igMemFree".}
 proc igMenuItem*(label: cstring, shortcut: cstring = nil, selected: bool = false, enabled: bool = true): bool {.imgui_lib, importc: "igMenuItem".}
@@ -1607,7 +1622,7 @@ proc igSetCursorPos*(local_pos: ImVec2): void {.imgui_lib, importc: "igSetCursor
 proc igSetCursorPosX*(local_x: float32): void {.imgui_lib, importc: "igSetCursorPosX".}
 proc igSetCursorPosY*(local_y: float32): void {.imgui_lib, importc: "igSetCursorPosY".}
 proc igSetCursorScreenPos*(pos: ImVec2): void {.imgui_lib, importc: "igSetCursorScreenPos".}
-proc igSetDragDropPayload*(`type`: cstring, data: pointer, size: uint32, cond: ImGuiCond = 0): bool {.imgui_lib, importc: "igSetDragDropPayload".}
+proc igSetDragDropPayload*(`type`: cstring, data: pointer, sz: uint32, cond: ImGuiCond = 0): bool {.imgui_lib, importc: "igSetDragDropPayload".}
 proc igSetItemAllowOverlap*(): void {.imgui_lib, importc: "igSetItemAllowOverlap".}
 proc igSetItemDefaultFocus*(): void {.imgui_lib, importc: "igSetItemDefaultFocus".}
 proc igSetKeyboardFocusHere*(offset: int32 = 0): void {.imgui_lib, importc: "igSetKeyboardFocusHere".}
