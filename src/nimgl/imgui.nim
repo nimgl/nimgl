@@ -688,6 +688,7 @@ type
     mouseDoubleClicked* {.importc: "MouseDoubleClicked".} : array[5, bool]
     mouseReleased* {.importc: "MouseReleased".} : array[5, bool]
     mouseDownOwned* {.importc: "MouseDownOwned".} : array[5, bool]
+    mouseDownWasDoubleClick* {.importc: "MouseDownWasDoubleClick".} : array[5, bool]
     mouseDownDuration* {.importc: "MouseDownDuration".} : array[5, float32]
     mouseDownDurationPrev* {.importc: "MouseDownDurationPrev".} : array[5, float32]
     mouseDragMaxDistanceAbs* {.importc: "MouseDragMaxDistanceAbs".} : array[5, ImVec2]
@@ -807,8 +808,8 @@ proc addCircle*(self: ptr ImDrawList, centre: ImVec2, radius: float32, col: ImU3
 proc addCircleFilled*(self: ptr ImDrawList, centre: ImVec2, radius: float32, col: ImU32, num_segments: int32 = 12): void {.imgui_lib, importc: "ImDrawList_AddCircleFilled".}
 proc addConvexPolyFilled*(self: ptr ImDrawList, points: ptr ImVec2, num_points: int32, col: ImU32): void {.imgui_lib, importc: "ImDrawList_AddConvexPolyFilled".}
 proc addDrawCmd*(self: ptr ImDrawList): void {.imgui_lib, importc: "ImDrawList_AddDrawCmd".}
-proc addImage*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, col: ImU32 = 0xFFFFFFF): void {.imgui_lib, importc: "ImDrawList_AddImage".}
-proc addImageQuad*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, c: ImVec2, d: ImVec2, uv_a: ImVec2, uv_b: ImVec2, uv_c: ImVec2, uv_d: ImVec2, col: ImU32 = 0xFFFFFFF): void {.imgui_lib, importc: "ImDrawList_AddImageQuad".}
+proc addImage*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, col: ImU32): void {.imgui_lib, importc: "ImDrawList_AddImage".}
+proc addImageQuad*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, c: ImVec2, d: ImVec2, uv_a: ImVec2, uv_b: ImVec2, uv_c: ImVec2, uv_d: ImVec2, col: ImU32): void {.imgui_lib, importc: "ImDrawList_AddImageQuad".}
 proc addImageRounded*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, col: ImU32, rounding: float32, rounding_corners: int32 = ImDrawCornerFlags_All): void {.imgui_lib, importc: "ImDrawList_AddImageRounded".}
 proc addLine*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: ImU32, thickness: float32 = 1.0f): void {.imgui_lib, importc: "ImDrawList_AddLine".}
 proc addPolyline*(self: ptr ImDrawList, points: ptr ImVec2, num_points: int32, col: ImU32, closed: bool, thickness: float32): void {.imgui_lib, importc: "ImDrawList_AddPolyline".}
@@ -1428,7 +1429,7 @@ proc igColorPicker4*(label: cstring, col: ptr float, flags: ImGuiColorEditFlags 
 proc igColumns*(count: int32 = 1, id: cstring = nil, border: bool = true): void {.imgui_lib, importc: "igColumns".}
 proc igCombo*(label: cstring, current_item: ptr int32, items: ptr ptr char, items_count: int32, popup_max_height_in_items: int32 = -1): bool {.imgui_lib, importc: "igCombo".}
 proc igCreateContext*(shared_font_atlas: ptr ImFontAtlas = nil): ptr ImGuiContext {.imgui_lib, importc: "igCreateContext".}
-proc igDebugCheckVersionAndDataLayout*(version_str: cstring, sz_io: uint32, sz_style: uint32, sz_vec2: uint32, sz_vec4: uint32, sz_drawvert: uint32): bool {.imgui_lib, importc: "igDebugCheckVersionAndDataLayout".}
+proc igDebugCheckVersionAndDataLayout*(version_str: cstring, sz_io: uint32, sz_style: uint32, sz_vec2: uint32, sz_vec4: uint32, sz_drawvert: uint32, sz_drawidx: uint32): bool {.imgui_lib, importc: "igDebugCheckVersionAndDataLayout".}
 proc igDestroyContext*(ctx: ptr ImGuiContext = nil): void {.imgui_lib, importc: "igDestroyContext".}
 proc igDragFloat*(label: cstring, v: ptr float32, v_speed: float32 = 1.0f, v_min: float32 = 0.0f, v_max: float32 = 0.0f, format: cstring = "%.3f", power: float32 = 1.0f): bool {.imgui_lib, importc: "igDragFloat".}
 proc igDragFloat2*(label: cstring, v: ptr float, v_speed: float32 = 1.0f, v_min: float32 = 0.0f, v_max: float32 = 0.0f, format: cstring = "%.3f", power: float32 = 1.0f): bool {.imgui_lib, importc: "igDragFloat2".}
@@ -1466,7 +1467,6 @@ proc igGetColumnOffset*(column_index: int32 = -1): float32 {.imgui_lib, importc:
 proc igGetColumnWidth*(column_index: int32 = -1): float32 {.imgui_lib, importc: "igGetColumnWidth".}
 proc igGetColumnsCount*(): int32 {.imgui_lib, importc: "igGetColumnsCount".}
 proc igGetContentRegionAvail*(): ImVec2 {.imgui_lib, importc: "igGetContentRegionAvail".}
-proc igGetContentRegionAvailWidth*(): float32 {.imgui_lib, importc: "igGetContentRegionAvailWidth".}
 proc igGetContentRegionMax*(): ImVec2 {.imgui_lib, importc: "igGetContentRegionMax".}
 proc igGetCurrentContext*(): ptr ImGuiContext {.imgui_lib, importc: "igGetCurrentContext".}
 proc igGetCursorPos*(): ImVec2 {.imgui_lib, importc: "igGetCursorPos".}
@@ -1608,7 +1608,7 @@ proc igPushTextWrapPos*(wrap_local_pos_x: float32 = 0.0f): void {.imgui_lib, imp
 proc igRadioButton*(label: cstring, active: bool): bool {.imgui_lib, importc: "igRadioButton".}
 proc igRender*(): void {.imgui_lib, importc: "igRender".}
 proc igResetMouseDragDelta*(button: int32 = 0): void {.imgui_lib, importc: "igResetMouseDragDelta".}
-proc igSameLine*(local_pos_x: float32 = 0.0f, spacing_w: float32 = -1.0f): void {.imgui_lib, importc: "igSameLine".}
+proc igSameLine*(offset_from_start_x: float32 = 0.0f, spacing: float32 = -1.0f): void {.imgui_lib, importc: "igSameLine".}
 proc igSaveIniSettingsToDisk*(ini_filename: cstring): void {.imgui_lib, importc: "igSaveIniSettingsToDisk".}
 proc igSaveIniSettingsToMemory*(out_ini_size: ptr uint32 = nil): cstring {.imgui_lib, importc: "igSaveIniSettingsToMemory".}
 proc igSelectable*(label: cstring, selected: bool = false, flags: ImGuiSelectableFlags = 0, size: ImVec2): bool {.imgui_lib, importc: "igSelectable".}
@@ -1627,6 +1627,7 @@ proc igSetItemAllowOverlap*(): void {.imgui_lib, importc: "igSetItemAllowOverlap
 proc igSetItemDefaultFocus*(): void {.imgui_lib, importc: "igSetItemDefaultFocus".}
 proc igSetKeyboardFocusHere*(offset: int32 = 0): void {.imgui_lib, importc: "igSetKeyboardFocusHere".}
 proc igSetMouseCursor*(`type`: ImGuiMouseCursor): void {.imgui_lib, importc: "igSetMouseCursor".}
+proc igSetNextItemWidth*(item_width: float32): void {.imgui_lib, importc: "igSetNextItemWidth".}
 proc igSetNextTreeNodeOpen*(is_open: bool, cond: ImGuiCond = 0): void {.imgui_lib, importc: "igSetNextTreeNodeOpen".}
 proc igSetNextWindowBgAlpha*(alpha: float32): void {.imgui_lib, importc: "igSetNextWindowBgAlpha".}
 proc igSetNextWindowCollapsed*(collapsed: bool, cond: ImGuiCond = 0): void {.imgui_lib, importc: "igSetNextWindowCollapsed".}
