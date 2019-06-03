@@ -95,7 +95,7 @@ type
     ## GlfwImage data
     width*: int32
     height*: int32
-    pixels*: ptr char
+    pixels*: ptr cuchar
 
 # Constants
 const
@@ -621,7 +621,7 @@ proc glfwCreateWindow*(width: int32, height: int32, title: cstring = "NimGL", mo
   ## Utility to create the window with a proper icon.
   result = glfwCreateWindowC(width, height, title, monitor, share)
   if not icon: return result
-  let data: ImageData = stbiLoadFromMemory(cast[ptr char](nimgl_logo[0].addr), nimgl_logo.len.int32)
+  let data: ImageData = stbiLoadFromMemory(cast[ptr cuchar](nimgl_logo[0].addr), nimgl_logo.len.int32)
   var image: GLFWImage = GLFWImage(pixels: data.data, width: data.width, height: data.height)
   result.setWindowIcon(1, image.addr)
   image.pixels.stbiImageFree()

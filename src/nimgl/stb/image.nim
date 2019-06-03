@@ -68,7 +68,7 @@ proc stbiLoadFromMemory*(buffer: ptr cuchar, len: int32, components: int32 = 0):
   ## more info in the original proc
   result.data = stbi_load_from_memory(buffer, len, result.width.addr, result.height.addr, result.channels.addr, components)
 
-proc stbiImageFree*(data: ptr cuchar): void {.stb_image, importc: "stbi_image_free".}
+proc stbiImageFree*(data: pointer): void {.stb_image, importc: "stbi_image_free".}
   ## frees the data, loaded from stbi_load
 
 proc imageFree*(image: ImageData): void =

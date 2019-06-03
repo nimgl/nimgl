@@ -8,10 +8,11 @@
 
 import ../imgui, ../glfw
 
-type GlfwClientApi = enum
-  igGlfwClientApi_Unkown
-  igGlfwClientApi_OpenGl
-  igGlfwClientApi_Vulkan
+type
+  GlfwClientApi = enum
+    igGlfwClientApi_Unkown
+    igGlfwClientApi_OpenGl
+    igGlfwClientApi_Vulkan
 
 var
   gWindow: GLFWwindow
@@ -108,8 +109,11 @@ proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwCli
   io.keyMap[ImGuiKey_Y] = keyY.ord
   io.keyMap[ImGuiKey_Z] = keyZ.ord
 
-  io.setClipboardTextFn = igGlfwSetClipboardText
-  io.getClipboardTextFn = igGlfwGetClipboardText
+  # HELP: If you know how to convert char * to const char * through Nim pragmas
+  # and types, I would love to know.
+  when not defined(cpp):
+    io.setClipboardTextFn = igGlfwSetClipboardText
+    io.getClipboardTextFn = igGlfwGetClipboardText
   io.clipboardUserData = gWindow
   when defined windows:
     io.imeWindowHandle = gWindow.getWin32Window()
