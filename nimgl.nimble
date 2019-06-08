@@ -19,34 +19,24 @@ import
 const
   docDir = "docs"
 
-before test:
-  when defined(vcc):
-    echo("Installing Visual Studio Variables")
-    exec(r"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat")
-
 proc nimExt(file: string): bool =
-  var ext = ".nim"
-  for n in 0 ..< ext.len:
-    if file[file.len - (n + 1)] != ext[ext.len - (n + 1)]:
-      return false
-  return true
+  file[file.len - 4 ..< file.len] == ".nim"
 
 proc genDocs(pathr: string, output: string) =
   var
     path = pathr.replace(r"\", "/")
-    src = path[4 .. path.len - 5]
-    sp = path.split("/")
+    src = path[path.rfind("/") + 1 .. path.len - 5]
   echo "\n[info] generating " & src & ".nim"
 
-  discard sp.pop
-  mkDir(docDir & sp.join("/").substr(3))
+  if src == "nimgl":
+    src = "index"
   exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
 
 proc walkRecursive(dir: string) =
   for f in listFiles(dir):
     if f.nimExt: genDocs(f, docDir)
   for od in listDirs(dir):
-    if od != "private": walkRecursive(od)
+    walkRecursive(od)
 
 task test, "test stuff under examples dir":
   exec("nimble install -y glm")

@@ -4,13 +4,13 @@
 ## ====
 ##
 ## Supported Libraries
-## - `ImGUI  <./nimgl/imgui.html>`_ Fast UI Development tool for debug and testing
-##   - `Impl_GLFW <./nimgl/imgui/impl_glfw.html>`_ ImGui implementation for GLFW
-##   - `Impl_OpenGL <./nimgl/imgui/impl_opengl.html>`_ ImGui implementation for OpenGL
-## - `GLFW  <./nimgl/glfw.html>`_ Window Library
-## - `OpenGL  <./nimgl/opengl.html>`_ Glew Loading Library
+## - `ImGUI  <./imgui.html>`_ Fast UI Development tool for debug and testing
+##   - `Impl_GLFW <./impl_glfw.html>`_ ImGui implementation for GLFW
+##   - `Impl_OpenGL <./impl_opengl.html>`_ ImGui implementation for OpenGL
+## - `GLFW  <./glfw.html>`_ Window Library
+## - `OpenGL  <./opengl.html>`_ Glew Loading Library
 ## - STB
-##   - `Image  <./nimgl/stb/image.html>`_ Image loading/decoding library
+##   - `Image  <./image.html>`_ Image loading/decoding library
 
 #[
   This is just a stationary file to keep the structure of the nimble project.
