@@ -82,17 +82,31 @@ else:
 
 type
   GLFWWindow* = ptr object
-    ## Pointer reference for a GLFW Window
+    ## Opaque window object
   GLFWMonitor* = ptr object
-    ## Pointer reference for a GLFW Monitor
+    ## Opaque monitor object
   GLFWCursor* = ptr object
     ## Opaque cursor object.
+  GLFWVidMode* = object
+    ## This describes a single video mode.
+    width*: int32
+    height*: int32
+    redBits*: int32
+    greenBits*: int32
+    blueBits*: int32
+    refreshRate*: int32
+  GLFWGammaRamp* = object
+    ## This describes the gamma ramp for a monitor.
+    red*: uint16
+    green*: uint16
+    blue*: uint16
+    size*: uint32
   GLFWGamepadState* = object
     ## This describes the input state of a gamepad.
     buttons*: array[15, bool]
     axes*: array[6, float]
   GLFWImage* = object
-    ## GlfwImage data
+    ## This describes a single 2D image.
     width*: int32
     height*: int32
     pixels*: ptr cuchar
@@ -138,6 +152,10 @@ type
     csHand = 0x00036004
     csHresize = 0x00036005
     csVresize = 0x00036006
+
+  GLFWMonitorEvent* {.size: int32.sizeof.} = enum
+    meConnected = 0x00040001
+    meDisconnected = 0x00040002
 
   GLFWWindowHint* {.size: int32.sizeof.} = enum
     whFocused = 0x00020001
@@ -598,6 +616,11 @@ type
     ## ``window`` The window whose framebuffer was resized.
     ## ``width`` The new width, in pixels, of the framebuffer.
     ## ``height`` The new height, in pixels, of the framebuffer.
+  glfwMonitorProc* = proc(monitor: GLFWMonitor, event: GLFWMonitorEvent): void {.cdecl.}
+    ## This is the function signature for monitor configuration callback functions.
+    ##
+    ## ``monitor`` The monitor that was connected or disconnected.
+    ## ``event`` One of ``meConnected`` or ``meDisconnected``.
 
 converter toBool*(x: int32): bool = x != 0
 
@@ -775,6 +798,11 @@ proc glfwGetPrimaryMonitor*(): GLFWMonitor {.glfw_lib, importc: "glfwGetPrimaryM
   ## This function returns the primary monitor.  This is usually the monitor
   ## where elements like the task bar or global menu bar are located.
 
+proc glfwGetMonitors*(count: var int32): ptr UncheckedArray[GLFWMonitor] {.glfw_lib, importc: "glfwGetMonitors".}
+  ## This function returns an array of handles for all currently connected
+  ## monitors. The primary monitor is always first in the returned array. If no
+  ## monitors were found, this function returns NULL.
+
 proc getWindowSize*(window: GLFWWindow, width: ptr int32, height: ptr int32) {.glfw_lib, importc: "glfwGetWindowSize".}
   ## This function retrieves the size, in screen coordinates, of the client area
   ## of the specified window.  If you wish to retrieve the size of the
@@ -904,17 +932,130 @@ proc setCursorPos*(window: GLFWWindow, xpos: float64, ypos: float64): void {.glf
   ## See glfwSetInputMode for more information.
 
 proc getInputMode*(window: GLFWWindow, mode: int32): int32 {.glfw_lib, importc: "glfwGetInputMode".}
-  ## This function returns the value of an input option for the specified window. The mode must be one of EGLFW_CURSOR,
+  ## This function returns the value of an input option for the specified
+  ## window. The mode must be one of EGLFW_CURSOR,
   ## GLFW_STICKY_KEYS or GLFW_STICKY_MOUSE_BUTTONS.
 
 proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.glfw_lib, importc: "glfwSetInputMode".}
-  ## This function sets an input mode option for the specified window. The mode must be one of #GLFW_CURSOR,
+  ## This function sets an input mode option for the specified window. The mode
+  ## must be one of #GLFW_CURSOR,
   ## GLFW_STICKY_KEYS or GLFW_STICKY_MOUSE_BUTTONS.
 
 proc setCursor*(window: GLFWWindow, cursor: GLFWCursor): void {.glfw_lib, importc: "glfwSetCursor".}
-  ## This function sets the cursor image to be used when the cursor is over the client area of the specified window.
-  ## The set cursor will only be visible when the cursor mode of the window is GLFW_CURSOR_NORMAL.
-  ##On some platforms, the set cursor may not be visible unless the window also has input focus.
+  ## This function sets the cursor image to be used when the cursor is over the
+  ## client area of the specified window.
+  ## The set cursor will only be visible when the cursor mode of the window is
+  ## GLFW_CURSOR_NORMAL.
+  ##On some platforms, the set cursor may not be visible unless the window also
+  ##has input focus.
+
+proc getMonitorPos*(monitor: GLFWMonitor, xpos: var int32, ypos: var int32): void {.glfw_lib, importc: "glfwGetMonitorPos".}
+  ## This function returns the position, in screen coordinates, of the
+  ## upper-left corner of the specified monitor.
+  ##
+  ## Any or all of the position arguments may be NULL. If an error occurs, all
+  ## non-NULL position arguments will be set to zero.
+
+proc getMonitorWorkarea*(monitor: GLFWMonitor, xpos: var int32, ypos: var int32, width: var int32, height: var int32): void {.glfw_lib, importc: "glfwGetMonitorWorkarea".}
+  ## This function returns the position, in screen coordinates, of the
+  ## upper-left corner of the work area of the specified monitor along with the
+  ## work area size in screen coordinates. The work area is defined as the area
+  ## of the monitor not occluded by the operating system task bar where present.
+  ## If no task bar exists then the work area is the monitor resolution in
+  ## screen coordinates.
+  ##
+  ## Any or all of the position and size arguments may be NULL. If an error
+  ## occurs, all non-NULL position and size arguments will be set to zero.
+
+proc getMonitorPhysicalSize*(monitor: GLFWMonitor, widthMM: var int32, heightMM: var int32): void {.glfw_lib, importc: "glfwGetMonitorPhysicalSize".}
+  ## This function returns the size, in millimetres, of the display area of the
+  ## specified monitor.
+  ##
+  ## Some systems do not provide accurate monitor size information, either
+  ## because the monitor EDID data is incorrect or because the driver does not
+  ## report it accurately.
+  ##
+  ## Any or all of the size arguments may be NULL. If an error occurs, all
+  ## non-NULL size arguments will be set to zero.
+
+proc getMonitorContentScale*(monitor: GLFWMonitor, xscale: var float32, yscale: var float32): void {.glfw_lib, importc: "glfwGetMonitorContentScale".}
+  ## This function retrieves the content scale for the specified monitor. The
+  ## content scale is the ratio between the current DPI and the platform's
+  ## default DPI. This is especially important for text and any UI elements. If
+  ## the pixel dimensions of your UI scaled by this look appropriate on your
+  ## machine then it should appear at a reasonable size on other machines
+  ## regardless of their DPI and scaling settings. This relies on the system DPI
+  ## and scaling settings being somewhat correct.
+  ##
+  ## The content scale may depend on both the monitor resolution and pixel
+  ## density and on user settings. It may be very different from the raw DPI
+  ## calculated from the physical size and current resolution.
+
+proc getMonitorName*(monitor: GLFWMonitor): cstring {.glfw_lib, importc: "glfwGetMonitorName".}
+  ## This function returns a human-readable name, encoded as UTF-8, of the
+  ## specified monitor. The name typically reflects the make and model of the
+  ## monitor and is not guaranteed to be unique among the connected monitors.
+
+proc setMonitorUserPointer*(monitor: GLFWMonitor, `ptr`: pointer): void {.glfw_lib, importc: "glfwSetMonitorUserPointer".}
+  ## This function sets the user-defined pointer of the specified monitor.
+  ## The current value is retained until the monitor is disconnected.
+  ## The initial value is ``nil``.
+  ##
+  ## This function may be called from the monitor callback, even for a monitor
+  ## that is being disconnected.
+
+proc getMonitorUserPointer*(monitor: GLFWMonitor): pointer {.glfw_lib, importc: "glfwGetMonitorUserPointer".}
+  ## This function returns the current value of the user-defined pointer of the
+  ## specified monitor. The initial value is ``nil``.
+  ##
+  ## This function may be called from the monitor callback, even for a monitor
+  ## that is being disconnected.
+
+proc setMonitorCallback*(`proc`: glfwMonitorProc): glfwMonitorProc {.glfw_lib, importc: "glfwSetMonitorCallback".}
+  ## This function sets the monitor configuration callback, or removes the
+  ## currently set callback. This is called when a monitor is connected to or
+  ## disconnected from the system.
+
+proc getVidModes*(monitor: GLFWMonitor, count: var int32): ptr UncheckedArray[GLFWVidMode] {.glfw_lib, importc: "glfwGetVideoModes".}
+  ## This function returns an array of all video modes supported by the
+  ## specified monitor. The returned array is sorted in ascending order, first
+  ## by color bit depth (the sum of all channel depths) and then by resolution
+  ## area (the product of width and height).
+
+proc getVidMode*(monitor: GLFWMonitor): GLFWVidMode {.glfw_lib, importc: "glfwGetVideoMode".}
+  ## This function returns the current video mode of the specified monitor. If
+  ## you have created a full screen window for that monitor, the return value
+  ## will depend on whether that window is iconified.
+
+proc setGamma*(monitor: GLFWMonitor, gamma: float32): void {.glfw_lib, importc: "glfwSetGamma".}
+  ## This function generates an appropriately sized gamma ramp from the
+  ## specified exponent and then calls glfwSetGammaRamp with it. The value must
+  ## be a finite number greater than zero.
+  ##
+  ## The software controlled gamma ramp is applied in addition to the hardware
+  ## gamma correction, which today is usually an approximation of sRGB gamma.
+  ## This means that setting a perfectly linear ramp, or gamma 1.0, will produce
+  ## the default (usually sRGB-like) behavior.
+  ##
+  ## For gamma correct rendering with OpenGL or OpenGL ES, see the
+  ## GLFW_SRGB_CAPABLE hint.
+
+proc getGammaRamp*(monitor: GLFWMonitor): ptr GLFWGammaRamp {.glfw_lib, importc: "glfwGetGammaRamp".}
+  ## This function returns the current gamma ramp of the specified monitor.
+
+proc setGammaRamp*(monitor: GLFWMonitor, ramp: ptr GLFWGammaRamp): void {.glfw_lib, importc: "glfwSetGammaRamp".}
+  ## This function sets the current gamma ramp for the specified monitor.
+  ## The original gamma ramp for that monitor is saved by GLFW the first time
+  ## this function is called and is restored by glfwTerminate.
+  ##
+  ## The software controlled gamma ramp is applied in addition to the hardware
+  ## gamma correction, which today is usually an approximation of sRGB gamma.
+  ## This means that setting a perfectly linear ramp, or gamma 1.0, will produce
+  ## the default (usually sRGB-like) behavior.
+  ##
+  ## For gamma correct rendering with OpenGL or OpenGL ES, see the
+  ## GLFW_SRGB_CAPABLE hint.
+
 
 when defined(windows):
   proc getWin32Window*(window: GLFWWindow): pointer {.glfw_lib, importc: "glfwGetWin32Window".}
