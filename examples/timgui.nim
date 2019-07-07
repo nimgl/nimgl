@@ -21,7 +21,7 @@ proc main() =
   assert glInit()
 
   let context = igCreateContext()
-  let io = igGetIO()
+  #let io = igGetIO()
 
   assert igGlfwInitForOpenGL(w, true)
   assert igOpenGL3Init()
@@ -43,12 +43,12 @@ proc main() =
       igShowDemoWindow(show_demo.addr)
 
     # Simple window
-    discard igBegin("Hello, world!")
+    igBegin("Hello, world!")
 
     igText("This is some useful text.")
-    discard igCheckbox("Demo Window", show_demo.addr)
+    igCheckbox("Demo Window", show_demo.addr)
 
-    discard igSliderFloat("float", somefloat.addr, 0.0f, 1.0f)
+    igSliderFloat("float", somefloat.addr, 0.0f, 1.0f)
 
     if igButton("Button", ImVec2(x: 0, y: 0)):
       counter.inc

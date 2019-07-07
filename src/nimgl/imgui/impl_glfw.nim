@@ -1,4 +1,4 @@
-# Copyright 2018, NimGL contributors.
+# Copyright 2019, NimGL contributors.
 
 ## ImGUI GLFW Implementation
 ## ====
@@ -19,7 +19,7 @@ var
   gClientApi = igGlfwClientApi_Unkown
   gTime: float64 = 0.0f
   gMouseJustPressed: array[5, bool]
-  gMouseCursors: array[ImGuiMouseCursor_COUNT, GLFWCursor]
+  gMouseCursors: array[ImGuiMouseCursor.high.int32 + 1, GLFWCursor]
 
   # Store previous callbacks so they can be chained
   gPrevMouseButtonCallback: glfwMouseButtonProc = nil
@@ -84,30 +84,30 @@ proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwCli
   gTime = 0.0f
 
   let io = igGetIO()
-  io.backendFlags = io.backendFlags or ImGuiBackendFlags_HasMouseCursors
-  io.backendFlags = io.backendFlags or ImGuiBackendFlags_HasSetMousePos
+  io.backendFlags = (io.backendFlags.int32 or ImGuiBackendFlags.HasMouseCursors.int32).ImGuiBackendFlags
+  io.backendFlags = (io.backendFlags.int32 or ImGuiBackendFlags.HasSetMousePos.int32).ImGuiBackendFlags
 
-  io.keyMap[ImGuiKey_Tab] = keyTab.ord
-  io.keyMap[ImGuiKey_LeftArrow] = keyLeft.ord
-  io.keyMap[ImGuiKey_RightArrow] = keyRight.ord
-  io.keyMap[ImGuiKey_UpArrow] = keyUp.ord
-  io.keyMap[ImGuiKey_DownArrow] = keyDown.ord
-  io.keyMap[ImGuiKey_PageUp] = keyPage_up.ord
-  io.keyMap[ImGuiKey_PageDown] = keyPage_down.ord
-  io.keyMap[ImGuiKey_Home] = keyHome.ord
-  io.keyMap[ImGuiKey_End] = keyEnd.ord
-  io.keyMap[ImGuiKey_Insert] = keyInsert.ord
-  io.keyMap[ImGuiKey_Delete] = keyDelete.ord
-  io.keyMap[ImGuiKey_Backspace] = keyBackspace.ord
-  io.keyMap[ImGuiKey_Space] = keySpace.ord
-  io.keyMap[ImGuiKey_Enter] = keyEnter.ord
-  io.keyMap[ImGuiKey_Escape] = keyEscape.ord
-  io.keyMap[ImGuiKey_A] = keyA.ord
-  io.keyMap[ImGuiKey_C] = keyC.ord
-  io.keyMap[ImGuiKey_V] = keyV.ord
-  io.keyMap[ImGuiKey_X] = keyX.ord
-  io.keyMap[ImGuiKey_Y] = keyY.ord
-  io.keyMap[ImGuiKey_Z] = keyZ.ord
+  io.keyMap[ImGuiKey.Tab.int32] = keyTab.ord
+  io.keyMap[ImGuiKey.LeftArrow.int32] = keyLeft.ord
+  io.keyMap[ImGuiKey.RightArrow.int32] = keyRight.ord
+  io.keyMap[ImGuiKey.UpArrow.int32] = keyUp.ord
+  io.keyMap[ImGuiKey.DownArrow.int32] = keyDown.ord
+  io.keyMap[ImGuiKey.PageUp.int32] = keyPage_up.ord
+  io.keyMap[ImGuiKey.PageDown.int32] = keyPage_down.ord
+  io.keyMap[ImGuiKey.Home.int32] = keyHome.ord
+  io.keyMap[ImGuiKey.End.int32] = keyEnd.ord
+  io.keyMap[ImGuiKey.Insert.int32] = keyInsert.ord
+  io.keyMap[ImGuiKey.Delete.int32] = keyDelete.ord
+  io.keyMap[ImGuiKey.Backspace.int32] = keyBackspace.ord
+  io.keyMap[ImGuiKey.Space.int32] = keySpace.ord
+  io.keyMap[ImGuiKey.Enter.int32] = keyEnter.ord
+  io.keyMap[ImGuiKey.Escape.int32] = keyEscape.ord
+  io.keyMap[ImGuiKey.A.int32] = keyA.ord
+  io.keyMap[ImGuiKey.C.int32] = keyC.ord
+  io.keyMap[ImGuiKey.V.int32] = keyV.ord
+  io.keyMap[ImGuiKey.X.int32] = keyX.ord
+  io.keyMap[ImGuiKey.Y.int32] = keyY.ord
+  io.keyMap[ImGuiKey.Z.int32] = keyZ.ord
 
   # HELP: If you know how to convert char * to const char * through Nim pragmas
   # and types, I would love to know.
@@ -118,14 +118,14 @@ proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwCli
   when defined windows:
     io.imeWindowHandle = gWindow.getWin32Window()
 
-  gMouseCursors[ImGuiMouseCursor_Arrow] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor_TextInput] = glfwCreateStandardCursor(csIbeam)
-  gMouseCursors[ImGuiMouseCursor_ResizeAll] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor_ResizeNS] = glfwCreateStandardCursor(csVresize)
-  gMouseCursors[ImGuiMouseCursor_ResizeEW] = glfwCreateStandardCursor(csHresize)
-  gMouseCursors[ImGuiMouseCursor_ResizeNESW] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor_ResizeNWSE] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor_Hand] = glfwCreateStandardCursor(csHand)
+  gMouseCursors[ImGuiMouseCursor.Arrow.int32] = glfwCreateStandardCursor(csArrow)
+  gMouseCursors[ImGuiMouseCursor.TextInput.int32] = glfwCreateStandardCursor(csIbeam)
+  gMouseCursors[ImGuiMouseCursor.ResizeAll.int32] = glfwCreateStandardCursor(csArrow)
+  gMouseCursors[ImGuiMouseCursor.ResizeNS.int32] = glfwCreateStandardCursor(csVresize)
+  gMouseCursors[ImGuiMouseCursor.ResizeEW.int32] = glfwCreateStandardCursor(csHresize)
+  gMouseCursors[ImGuiMouseCursor.ResizeNESW.int32] = glfwCreateStandardCursor(csArrow)
+  gMouseCursors[ImGuiMouseCursor.ResizeNWSE.int32] = glfwCreateStandardCursor(csArrow)
+  gMouseCursors[ImGuiMouseCursor.Hand.int32] = glfwCreateStandardCursor(csHand)
 
   if install_callbacks:
     igGlfwInstallCallbacks(window)
@@ -163,11 +163,11 @@ proc igGlfwUpdateMousePosAndButtons() =
 
 proc igGlfwUpdateMouseCursor() =
   let io = igGetIO()
-  if (io.configFlags and ImGuiConfigFlags_NoMouseCursorChange) or (gWindow.getInputMode(EGLFW_CURSOR) == GLFW_CURSOR_DISABLED):
+  if (io.configFlags.int32 and ImGuiConfigFlags.NoMouseCursorChange.int32) or (gWindow.getInputMode(EGLFW_CURSOR) == GLFW_CURSOR_DISABLED):
     return
 
   var igCursor: ImGuiMouseCursor = igGetMouseCursor()
-  if igCursor == ImGuiMouseCursor_None or io.mouseDrawCursor:
+  if igCursor == ImGuiMouseCursor.None or io.mouseDrawCursor:
     gWindow.setInputMode(EGLFW_CURSOR, GLFW_CURSOR_HIDDEN)
   else:
     gWindow.setInputMode(EGLFW_CURSOR, GLFW_CURSOR_NORMAL)
@@ -196,7 +196,7 @@ proc igGlfwNewFrame*() =
   # @TODO: gamepad mapping
 
 proc igGlfwShutdown*() =
-  for i in 0 ..< ImGuiMouseCursor_COUNT:
+  for i in 0 ..< ImGuiMouseCursor.high.int32 + 1:
     glfwDestroyCursor(gMouseCursors[i])
     gMouseCursors[i] = nil
   gClientApi = igGlfwClientApi_Unkown
