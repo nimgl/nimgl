@@ -7,7 +7,6 @@
 ## Or continue reading to get the documentation shown here.
 
 import private/logo
-import stb/image
 
 when defined(glfwDLL):
   when defined(windows):
@@ -644,10 +643,8 @@ proc glfwCreateWindow*(width: int32, height: int32, title: cstring = "NimGL", mo
   ## Utility to create the window with a proper icon.
   result = glfwCreateWindowC(width, height, title, monitor, share)
   if not icon: return result
-  let data: ImageData = stbiLoadFromMemory(cast[ptr cuchar](nimgl_logo[0].addr), nimgl_logo.len.int32)
-  var image: GLFWImage = GLFWImage(pixels: data.data, width: data.width, height: data.height)
+  var image: GLFWImage = GLFWImage(pixels: cast[ptr cuchar](nimgl_logo[0].addr), width: nimglLogoWidth, height: nimglLogoHeight)
   result.setWindowIcon(1, image.addr)
-  image.pixels.stbiImageFree()
 
 proc glfwInit*(): bool {.glfw_lib, importc: "glfwInit".}
   ## Initializes the GLFW library. Before most GLFW functions can

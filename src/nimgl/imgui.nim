@@ -25,16 +25,16 @@ proc currentSourceDir(): string =
   result = currentSourcePath().replace("\\", "/")
   result = result[0 ..< result.rfind("/")]
 
-{.passC: "-I" & currentSourceDir() & "/private/cimgui" & " -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1".}
+{.passc: "-I" & currentSourceDir() & "/private/cimgui" & " -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1".}
 
 when not defined(imguiSrc):
   when defined(windows):
-    const imgui_dll* = "cimgui.dll"
+    const imguiDll* = "cimgui.dll"
   elif defined(macosx):
-    const imgui_dll* = "cimgui.dylib"
+    const imguiDll* = "cimgui.dylib"
   else:
-    const imgui_dll* = "cimgui.so"
-  {.passC: "-DCIMGUI_DEFINE_ENUMS_AND_STRUCTS".}
+    const imguiDll* = "cimgui.so"
+  {.passc: "-DCIMGUI_DEFINE_ENUMS_AND_STRUCTS".}
   {.pragma: imgui_header, header: "cimgui.h".}
 else:
   {.compile: "private/cimgui/cimgui.cpp",
@@ -705,7 +705,7 @@ type
 
 # Procs
 when not defined(imguiSrc):
-  {.push dynlib: imgui_dll, cdecl, discardable.}
+  {.push dynlib: imguiDll, cdecl, discardable.}
 else:
   {.push nodecl, discardable.}
 
