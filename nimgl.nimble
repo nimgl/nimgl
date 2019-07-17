@@ -5,11 +5,11 @@ author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
 srcDir      = "src"
-skipDirs    = @[".circleci", ".github", "examples"]
+skipDirs    = @[".github", "tests"]
 
 # Dependencies
 
-requires "nim >= 0.18.0"
+requires "nim >= 0.20.0"
 
 # Tasks
 
@@ -23,11 +23,9 @@ proc nimExt(file: string): bool =
   file[file.len - 4 ..< file.len] == ".nim"
 
 proc genDocs(pathr: string, output: string) =
-  var
-    path = pathr.replace(r"\", "/")
-    src = path[path.rfind("/") + 1 .. path.len - 5]
+  let path = pathr.replace(r"\", "/")
+  var src = path[path.rfind("/") + 1 .. path.len - 5]
   echo "\n[info] generating " & src & ".nim"
-
   if src == "nimgl":
     src = "index"
   exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
@@ -38,16 +36,12 @@ proc walkRecursive(dir: string) =
   for od in listDirs(dir):
     walkRecursive(od)
 
-task test, "test stuff under examples dir":
+task test, "Run files under tests dir":
   exec("nimble install -y glm")
-  for file in listFiles("examples"):
-    if file[9] == 't' and file.nimExt:
+  for file in listFiles("tests"):
+    if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
-      #exec("nim c --verbosity:0 --hints:off -r " & file)
       exec("nim c -d:opengl_debug " & file)
 
-task general, "run examples/general.nim which is the general test for dev":
-  exec("nim c -r -d:opengl_debug examples/timgui.nim")
-
-task docs, "Generate Documentation for all of the Library":
+task docs, "Generate documentation for all of the library":
   walkRecursive(srcDir)
