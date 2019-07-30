@@ -47,6 +47,7 @@ else:
 # Enums
 type
   ImDrawCornerFlags* {.pure, size: int32.sizeof.} = enum
+    None = 0
     TopLeft = 1
     TopRight = 2
     Top = 3
@@ -259,12 +260,13 @@ type
     Space = 12
     Enter = 13
     Escape = 14
-    A = 15
-    C = 16
-    V = 17
-    X = 18
-    Y = 19
-    Z = 20
+    KeyPadEnter = 15
+    A = 16
+    C = 17
+    V = 18
+    X = 19
+    Y = 20
+    Z = 21
   ImGuiMouseCursor* {.pure, size: int32.sizeof.} = enum
     None = -1
     Arrow = 0
@@ -396,7 +398,6 @@ type
 type
   ImDrawCallback* = proc(parent_list: ptr ImDrawList, cmd: ptr ImDrawCmd): void {.cdecl.}
   ImDrawIdx* = uint16
-  ImGuiColumnsFlags* = int32
   ImGuiID* = uint32
   ImGuiInputTextCallback* = proc(data: ptr ImGuiInputTextCallbackData): int32 {.cdecl.}
   ImGuiSizeCallback* = proc(data: ptr ImGuiSizeCallbackData): void {.cdecl.}
@@ -407,6 +408,13 @@ type
     size* {.importc: "Size".}: int32
     capacity* {.importc: "Capacity".}: int32
     data* {.importc: "Data".}: UncheckedArray[T]
+  ImGuiStoragePairData* {.union.} = object
+    val_i* {.importc: "val_i".}: int32 # Breaking naming convetion to denote "low level"
+    val_f* {.importc: "val_f".}: float32
+    val_p* {.importc: "val_p".}: pointer
+  ImGuiStoragePair* {.importc: "ImGuiStoragePair", imgui_header.} = object
+    key* {.importc: "key".}: ImGuiID
+    data*: ImGuiStoragePairData
   ImPairData* {.union.} = object
     val_i* {.importc: "val_i".}: int32 # Breaking naming convetion to denote "low level"
     val_f* {.importc: "val_f".}: float32
@@ -416,15 +424,6 @@ type
     data*: ImPairData
   ImDrawListSharedData* {.importc: "ImDrawListSharedData", imgui_header.} = object
   ImGuiContext* {.importc: "ImGuiContext", imgui_header.} = object
-  CustomRect* {.importc: "CustomRect", imgui_header.} = object
-    id* {.importc: "ID".}: uint32
-    width* {.importc: "Width".}: uint16
-    height* {.importc: "Height".}: uint16
-    x* {.importc: "X".}: uint16
-    y* {.importc: "Y".}: uint16
-    glyphAdvanceX* {.importc: "GlyphAdvanceX".}: float32
-    glyphOffset* {.importc: "GlyphOffset".}: ImVec2
-    font* {.importc: "Font".}: ptr ImFont
   ImColor* {.importc: "ImColor", imgui_header.} = object
     value* {.importc: "Value".}: ImVec4
   ImDrawChannel* {.importc: "ImDrawChannel", imgui_header.} = object
@@ -500,9 +499,18 @@ type
     texUvScale* {.importc: "TexUvScale".}: ImVec2
     texUvWhitePixel* {.importc: "TexUvWhitePixel".}: ImVec2
     fonts* {.importc: "Fonts".}: ImVector[ptr ImFont]
-    customRects* {.importc: "CustomRects".}: ImVector[CustomRect]
+    customRects* {.importc: "CustomRects".}: ImVector[ImFontAtlasCustomRect]
     configData* {.importc: "ConfigData".}: ImVector[ImFontConfig]
     customRectIds* {.importc: "CustomRectIds".}: array[1, int32]
+  ImFontAtlasCustomRect* {.importc: "ImFontAtlasCustomRect", imgui_header.} = object
+    id* {.importc: "ID".}: uint32
+    width* {.importc: "Width".}: uint16
+    height* {.importc: "Height".}: uint16
+    x* {.importc: "X".}: uint16
+    y* {.importc: "Y".}: uint16
+    glyphAdvanceX* {.importc: "GlyphAdvanceX".}: float32
+    glyphOffset* {.importc: "GlyphOffset".}: ImVec2
+    font* {.importc: "Font".}: ptr ImFont
   ImFontConfig* {.importc: "ImFontConfig", imgui_header.} = object
     fontData* {.importc: "FontData".}: pointer
     fontDataSize* {.importc: "FontDataSize".}: int32
@@ -546,7 +554,7 @@ type
     mouseDoubleClickTime* {.importc: "MouseDoubleClickTime".}: float32
     mouseDoubleClickMaxDist* {.importc: "MouseDoubleClickMaxDist".}: float32
     mouseDragThreshold* {.importc: "MouseDragThreshold".}: float32
-    keyMap* {.importc: "KeyMap".}: array[21, int32]
+    keyMap* {.importc: "KeyMap".}: array[22, int32]
     keyRepeatDelay* {.importc: "KeyRepeatDelay".}: float32
     keyRepeatRate* {.importc: "KeyRepeatRate".}: float32
     userData* {.importc: "UserData".}: pointer
@@ -649,7 +657,7 @@ type
     currentSize* {.importc: "CurrentSize".}: ImVec2
     desiredSize* {.importc: "DesiredSize".}: ImVec2
   ImGuiStorage* {.importc: "ImGuiStorage", imgui_header.} = object
-    data* {.importc: "Data".}: ImVector[ImPair]
+    data* {.importc: "Data".}: ImVector[ImGuiStoragePair]
   ImGuiStyle* {.importc: "ImGuiStyle", imgui_header.} = object
     alpha* {.importc: "Alpha".}: float32
     windowPadding* {.importc: "WindowPadding".}: ImVec2
@@ -676,6 +684,7 @@ type
     grabRounding* {.importc: "GrabRounding".}: float32
     tabRounding* {.importc: "TabRounding".}: float32
     tabBorderSize* {.importc: "TabBorderSize".}: float32
+    colorButtonPosition* {.importc: "ColorButtonPosition".}: ImGuiDir
     buttonTextAlign* {.importc: "ButtonTextAlign".}: ImVec2
     selectableTextAlign* {.importc: "SelectableTextAlign".}: ImVec2
     displayWindowPadding* {.importc: "DisplayWindowPadding".}: ImVec2
@@ -689,8 +698,11 @@ type
     buf* {.importc: "Buf".}: ImVector[int8]
   ImGuiTextFilter* {.importc: "ImGuiTextFilter", imgui_header.} = object
     inputBuf* {.importc: "InputBuf".}: array[256, int8]
-    filters* {.importc: "Filters".}: ImVector[TextRange]
+    filters* {.importc: "Filters".}: ImVector[ImGuiTextRange]
     countGrep* {.importc: "CountGrep".}: int32
+  ImGuiTextRange* {.importc: "ImGuiTextRange", imgui_header.} = object
+    b* {.importc: "b".}: cstring
+    e* {.importc: "e".}: cstring
   ImVec2* {.importc: "ImVec2", imgui_header.} = object
     x* {.importc: "x".}: float32
     y* {.importc: "y".}: float32
@@ -699,19 +711,13 @@ type
     y* {.importc: "y".}: float32
     z* {.importc: "z".}: float32
     w* {.importc: "w".}: float32
-  TextRange* {.importc: "TextRange", imgui_header.} = object
-    b* {.importc: "b".}: cstring
-    e* {.importc: "e".}: cstring
 
 # Procs
 when not defined(imguiSrc):
-  {.push dynlib: imguiDll, cdecl, discardable.}
+  {.push dynlib: imgui_dll, cdecl, discardable.}
 else:
   {.push nodecl, discardable.}
 
-proc newCustomRect*(): void {.importc: "CustomRect_CustomRect".}
-proc isPacked*(self: ptr CustomRect): bool {.importc: "CustomRect_IsPacked".}
-proc destroy*(self: ptr CustomRect): void {.importc: "CustomRect_destroy".}
 proc hsv*(self: ptr ImColor, h: float32, s: float32, v: float32, a: float32 = 1.0f): ImColor {.importc: "ImColor_HSV".}
 proc newImColor*(): void {.importc: "ImColor_ImColor".}
 proc newImColor*(r: int32, g: int32, b: int32, a: int32 = 255): void {.importc: "ImColor_ImColorInt".}
@@ -742,13 +748,13 @@ proc addConvexPolyFilled*(self: ptr ImDrawList, points: ptr ImVec2, num_points: 
 proc addDrawCmd*(self: ptr ImDrawList): void {.importc: "ImDrawList_AddDrawCmd".}
 proc addImage*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2 = ImVec2(x: 0, y: 0), uv_b: ImVec2 = ImVec2(x: 1, y: 1), col: uint32 = high(uint32)): void {.importc: "ImDrawList_AddImage".}
 proc addImageQuad*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, c: ImVec2, d: ImVec2, uv_a: ImVec2 = ImVec2(x: 0, y: 0), uv_b: ImVec2 = ImVec2(x: 1, y: 0), uv_c: ImVec2 = ImVec2(x: 1, y: 1), uv_d: ImVec2 = ImVec2(x: 0, y: 1), col: uint32 = high(uint32)): void {.importc: "ImDrawList_AddImageQuad".}
-proc addImageRounded*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, col: uint32, rounding: float32, rounding_corners: int32 = ImDrawCornerFlags.All.int32): void {.importc: "ImDrawList_AddImageRounded".}
+proc addImageRounded*(self: ptr ImDrawList, user_texture_id: ImTextureID, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, col: uint32, rounding: float32, rounding_corners: ImDrawCornerFlags = ImDrawCornerFlags.All): void {.importc: "ImDrawList_AddImageRounded".}
 proc addLine*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: uint32, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddLine".}
 proc addPolyline*(self: ptr ImDrawList, points: ptr ImVec2, num_points: int32, col: uint32, closed: bool, thickness: float32): void {.importc: "ImDrawList_AddPolyline".}
 proc addQuad*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, c: ImVec2, d: ImVec2, col: uint32, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddQuad".}
 proc addQuadFilled*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, c: ImVec2, d: ImVec2, col: uint32): void {.importc: "ImDrawList_AddQuadFilled".}
-proc addRect*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: uint32, rounding: float32 = 0.0f, rounding_corners_flags: int32 = ImDrawCornerFlags.All.int32, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddRect".}
-proc addRectFilled*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: uint32, rounding: float32 = 0.0f, rounding_corners_flags: int32 = ImDrawCornerFlags.All.int32): void {.importc: "ImDrawList_AddRectFilled".}
+proc addRect*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: uint32, rounding: float32 = 0.0f, rounding_corners: ImDrawCornerFlags = ImDrawCornerFlags.All, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddRect".}
+proc addRectFilled*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col: uint32, rounding: float32 = 0.0f, rounding_corners: ImDrawCornerFlags = ImDrawCornerFlags.All): void {.importc: "ImDrawList_AddRectFilled".}
 proc addRectFilledMultiColor*(self: ptr ImDrawList, a: ImVec2, b: ImVec2, col_upr_left: uint32, col_upr_right: uint32, col_bot_right: uint32, col_bot_left: uint32): void {.importc: "ImDrawList_AddRectFilledMultiColor".}
 proc addText*(self: ptr ImDrawList, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil): void {.importc: "ImDrawList_AddText".}
 proc addText*(self: ptr ImDrawList, font: ptr ImFont, font_size: float32, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil, wrap_width: float32 = 0.0f, cpu_fine_clip_rect: ptr ImVec4 = nil): void {.importc: "ImDrawList_AddTextFontPtr".}
@@ -770,7 +776,7 @@ proc pathClear*(self: ptr ImDrawList): void {.importc: "ImDrawList_PathClear".}
 proc pathFillConvex*(self: ptr ImDrawList, col: uint32): void {.importc: "ImDrawList_PathFillConvex".}
 proc pathLineTo*(self: ptr ImDrawList, pos: ImVec2): void {.importc: "ImDrawList_PathLineTo".}
 proc pathLineToMergeDuplicate*(self: ptr ImDrawList, pos: ImVec2): void {.importc: "ImDrawList_PathLineToMergeDuplicate".}
-proc pathRect*(self: ptr ImDrawList, rect_min: ImVec2, rect_max: ImVec2, rounding: float32 = 0.0f, rounding_corners_flags: int32 = ImDrawCornerFlags.All.int32): void {.importc: "ImDrawList_PathRect".}
+proc pathRect*(self: ptr ImDrawList, rect_min: ImVec2, rect_max: ImVec2, rounding: float32 = 0.0f, rounding_corners: ImDrawCornerFlags = ImDrawCornerFlags.All): void {.importc: "ImDrawList_PathRect".}
 proc pathStroke*(self: ptr ImDrawList, col: uint32, closed: bool, thickness: float32 = 1.0f): void {.importc: "ImDrawList_PathStroke".}
 proc popClipRect*(self: ptr ImDrawList): void {.importc: "ImDrawList_PopClipRect".}
 proc popTextureID*(self: ptr ImDrawList): void {.importc: "ImDrawList_PopTextureID".}
@@ -787,6 +793,9 @@ proc pushTextureID*(self: ptr ImDrawList, texture_id: ImTextureID): void {.impor
 proc updateClipRect*(self: ptr ImDrawList): void {.importc: "ImDrawList_UpdateClipRect".}
 proc updateTextureID*(self: ptr ImDrawList): void {.importc: "ImDrawList_UpdateTextureID".}
 proc destroy*(self: ptr ImDrawList): void {.importc: "ImDrawList_destroy".}
+proc newImFontAtlasCustomRect*(): void {.importc: "ImFontAtlasCustomRect_ImFontAtlasCustomRect".}
+proc isPacked*(self: ptr ImFontAtlasCustomRect): bool {.importc: "ImFontAtlasCustomRect_IsPacked".}
+proc destroy*(self: ptr ImFontAtlasCustomRect): void {.importc: "ImFontAtlasCustomRect_destroy".}
 proc addCustomRectFontGlyph*(self: ptr ImFontAtlas, font: ptr ImFont, id: ImWchar, width: int32, height: int32, advance_x: float32, offset: ImVec2 = ImVec2(x: 0, y: 0)): int32 {.importc: "ImFontAtlas_AddCustomRectFontGlyph".}
 proc addCustomRectRegular*(self: ptr ImFontAtlas, id: uint32, width: int32, height: int32): int32 {.importc: "ImFontAtlas_AddCustomRectRegular".}
 proc addFont*(self: ptr ImFontAtlas, font_cfg: ptr ImFontConfig): ptr ImFont {.importc: "ImFontAtlas_AddFont".}
@@ -796,12 +805,12 @@ proc addFontFromMemoryCompressedBase85TTF*(self: ptr ImFontAtlas, compressed_fon
 proc addFontFromMemoryCompressedTTF*(self: ptr ImFontAtlas, compressed_font_data: pointer, compressed_font_size: int32, size_pixels: float32, font_cfg: ptr ImFontConfig = nil, glyph_ranges: ptr ImWchar = nil): ptr ImFont {.importc: "ImFontAtlas_AddFontFromMemoryCompressedTTF".}
 proc addFontFromMemoryTTF*(self: ptr ImFontAtlas, font_data: pointer, font_size: int32, size_pixels: float32, font_cfg: ptr ImFontConfig = nil, glyph_ranges: ptr ImWchar = nil): ptr ImFont {.importc: "ImFontAtlas_AddFontFromMemoryTTF".}
 proc build*(self: ptr ImFontAtlas): bool {.importc: "ImFontAtlas_Build".}
-proc calcCustomRectUV*(self: ptr ImFontAtlas, rect: ptr CustomRect, out_uv_min: ptr ImVec2, out_uv_max: ptr ImVec2): void {.importc: "ImFontAtlas_CalcCustomRectUV".}
+proc calcCustomRectUV*(self: ptr ImFontAtlas, rect: ptr ImFontAtlasCustomRect, out_uv_min: ptr ImVec2, out_uv_max: ptr ImVec2): void {.importc: "ImFontAtlas_CalcCustomRectUV".}
 proc clear*(self: ptr ImFontAtlas): void {.importc: "ImFontAtlas_Clear".}
 proc clearFonts*(self: ptr ImFontAtlas): void {.importc: "ImFontAtlas_ClearFonts".}
 proc clearInputData*(self: ptr ImFontAtlas): void {.importc: "ImFontAtlas_ClearInputData".}
 proc clearTexData*(self: ptr ImFontAtlas): void {.importc: "ImFontAtlas_ClearTexData".}
-proc getCustomRectByIndex*(self: ptr ImFontAtlas, index: int32): ptr CustomRect {.importc: "ImFontAtlas_GetCustomRectByIndex".}
+proc getCustomRectByIndex*(self: ptr ImFontAtlas, index: int32): ptr ImFontAtlasCustomRect {.importc: "ImFontAtlas_GetCustomRectByIndex".}
 proc getGlyphRangesChineseFull*(self: ptr ImFontAtlas): ptr ImWchar {.importc: "ImFontAtlas_GetGlyphRangesChineseFull".}
 proc getGlyphRangesChineseSimplifiedCommon*(self: ptr ImFontAtlas): ptr ImWchar {.importc: "ImFontAtlas_GetGlyphRangesChineseSimplifiedCommon".}
 proc getGlyphRangesCyrillic*(self: ptr ImFontAtlas): ptr ImWchar {.importc: "ImFontAtlas_GetGlyphRangesCyrillic".}
@@ -868,6 +877,10 @@ proc isDataType*(self: ptr ImGuiPayload, `type`: cstring): bool {.importc: "ImGu
 proc isDelivery*(self: ptr ImGuiPayload): bool {.importc: "ImGuiPayload_IsDelivery".}
 proc isPreview*(self: ptr ImGuiPayload): bool {.importc: "ImGuiPayload_IsPreview".}
 proc destroy*(self: ptr ImGuiPayload): void {.importc: "ImGuiPayload_destroy".}
+proc newImGuiStoragePair*(key: ImGuiID, val_i: int32): void {.importc: "ImGuiStoragePair_ImGuiStoragePairInt".}
+proc newImGuiStoragePair*(key: ImGuiID, val_f: float32): void {.importc: "ImGuiStoragePair_ImGuiStoragePairFloat".}
+proc newImGuiStoragePair*(key: ImGuiID, val_p: pointer): void {.importc: "ImGuiStoragePair_ImGuiStoragePairPtr".}
+proc destroy*(self: ptr ImGuiStoragePair): void {.importc: "ImGuiStoragePair_destroy".}
 proc buildSortByKey*(self: ptr ImGuiStorage): void {.importc: "ImGuiStorage_BuildSortByKey".}
 proc clear*(self: ptr ImGuiStorage): void {.importc: "ImGuiStorage_Clear".}
 proc getBool*(self: ptr ImGuiStorage, key: ImGuiID, default_val: bool = false): bool {.importc: "ImGuiStorage_GetBool".}
@@ -905,35 +918,17 @@ proc newImGuiTextFilter*(default_filter: cstring = ""): void {.importc: "ImGuiTe
 proc isActive*(self: ptr ImGuiTextFilter): bool {.importc: "ImGuiTextFilter_IsActive".}
 proc passFilter*(self: ptr ImGuiTextFilter, text: cstring, text_end: cstring = nil): bool {.importc: "ImGuiTextFilter_PassFilter".}
 proc destroy*(self: ptr ImGuiTextFilter): void {.importc: "ImGuiTextFilter_destroy".}
+proc newImGuiTextRange*(): void {.importc: "ImGuiTextRange_ImGuiTextRange".}
+proc newImGuiTextRange*(b: cstring, e: cstring): void {.importc: "ImGuiTextRange_ImGuiTextRangeStr".}
+proc destroy*(self: ptr ImGuiTextRange): void {.importc: "ImGuiTextRange_destroy".}
+proc empty*(self: ptr ImGuiTextRange): bool {.importc: "ImGuiTextRange_empty".}
+proc split*(self: ptr ImGuiTextRange, separator: int8, `out`: ptr ImVector[ImGuiTextRange]): void {.importc: "ImGuiTextRange_split".}
 proc newImVec2*(): void {.importc: "ImVec2_ImVec2".}
 proc newImVec2*(x: float32, y: float32): void {.importc: "ImVec2_ImVec2Float".}
 proc destroy*(self: ptr ImVec2): void {.importc: "ImVec2_destroy".}
 proc newImVec4*(): void {.importc: "ImVec4_ImVec4".}
 proc newImVec4*(x: float32, y: float32, z: float32, w: float32): void {.importc: "ImVec4_ImVec4Float".}
 proc destroy*(self: ptr ImVec4): void {.importc: "ImVec4_destroy".}
-proc grow_capacity*(self: ptr ImVector[CustomRect], sz: int32): int32 {.importc: "ImVector_CustomRect__grow_capacity".}
-proc back*(self: ptr ImVector[CustomRect]): ptr CustomRect {.importc: "ImVector_CustomRect_back".}
-proc begin*(self: ptr ImVector[CustomRect]): ptr CustomRect {.importc: "ImVector_CustomRect_begin".}
-proc capacity*(self: ptr ImVector[CustomRect]): int32 {.importc: "ImVector_CustomRect_capacity".}
-proc clear*(self: ptr ImVector[CustomRect]): void {.importc: "ImVector_CustomRect_clear".}
-proc destroy*(self: ptr ImVector[CustomRect]): void {.importc: "ImVector_CustomRect_destroy".}
-proc empty*(self: ptr ImVector[CustomRect]): bool {.importc: "ImVector_CustomRect_empty".}
-proc `end`*(self: ptr ImVector[CustomRect]): ptr CustomRect {.importc: "ImVector_CustomRect_end".}
-proc erase*(self: ptr ImVector[CustomRect], it: ptr CustomRect): ptr CustomRect {.importc: "ImVector_CustomRect_erase".}
-proc erase*(self: ptr ImVector[CustomRect], it: ptr CustomRect, it_last: ptr CustomRect): ptr CustomRect {.importc: "ImVector_CustomRect_eraseTPtr".}
-proc erase_unsorted*(self: ptr ImVector[CustomRect], it: ptr CustomRect): ptr CustomRect {.importc: "ImVector_CustomRect_erase_unsorted".}
-proc front*(self: ptr ImVector[CustomRect]): ptr CustomRect {.importc: "ImVector_CustomRect_front".}
-proc index_from_ptr*(self: ptr ImVector[CustomRect], it: ptr CustomRect): int32 {.importc: "ImVector_CustomRect_index_from_ptr".}
-proc insert*(self: ptr ImVector[CustomRect], it: ptr CustomRect, v: CustomRect): ptr CustomRect {.importc: "ImVector_CustomRect_insert".}
-proc pop_back*(self: ptr ImVector[CustomRect]): void {.importc: "ImVector_CustomRect_pop_back".}
-proc push_back*(self: ptr ImVector[CustomRect], v: CustomRect): void {.importc: "ImVector_CustomRect_push_back".}
-proc push_front*(self: ptr ImVector[CustomRect], v: CustomRect): void {.importc: "ImVector_CustomRect_push_front".}
-proc reserve*(self: ptr ImVector[CustomRect], new_capacity: int32): void {.importc: "ImVector_CustomRect_reserve".}
-proc resize*(self: ptr ImVector[CustomRect], new_size: int32): void {.importc: "ImVector_CustomRect_resize".}
-proc resize*(self: ptr ImVector[CustomRect], new_size: int32, v: CustomRect): void {.importc: "ImVector_CustomRect_resizeT".}
-proc size*(self: ptr ImVector[CustomRect]): int32 {.importc: "ImVector_CustomRect_size".}
-proc size_in_bytes*(self: ptr ImVector[CustomRect]): int32 {.importc: "ImVector_CustomRect_size_in_bytes".}
-proc swap*(self: ptr ImVector[CustomRect], rhs: ImVector[CustomRect]): void {.importc: "ImVector_CustomRect_swap".}
 proc grow_capacity*(self: ptr ImVector[ImDrawChannel], sz: int32): int32 {.importc: "ImVector_ImDrawChannel__grow_capacity".}
 proc back*(self: ptr ImVector[ImDrawChannel]): ptr ImDrawChannel {.importc: "ImVector_ImDrawChannel_back".}
 proc begin*(self: ptr ImVector[ImDrawChannel]): ptr ImDrawChannel {.importc: "ImVector_ImDrawChannel_begin".}
@@ -1026,6 +1021,29 @@ proc resize*(self: ptr ImVector[ImDrawVert], new_size: int32, v: ImDrawVert): vo
 proc size*(self: ptr ImVector[ImDrawVert]): int32 {.importc: "ImVector_ImDrawVert_size".}
 proc size_in_bytes*(self: ptr ImVector[ImDrawVert]): int32 {.importc: "ImVector_ImDrawVert_size_in_bytes".}
 proc swap*(self: ptr ImVector[ImDrawVert], rhs: ImVector[ImDrawVert]): void {.importc: "ImVector_ImDrawVert_swap".}
+proc grow_capacity*(self: ptr ImVector[ImFontAtlasCustomRect], sz: int32): int32 {.importc: "ImVector_ImFontAtlasCustomRect__grow_capacity".}
+proc back*(self: ptr ImVector[ImFontAtlasCustomRect]): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_back".}
+proc begin*(self: ptr ImVector[ImFontAtlasCustomRect]): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_begin".}
+proc capacity*(self: ptr ImVector[ImFontAtlasCustomRect]): int32 {.importc: "ImVector_ImFontAtlasCustomRect_capacity".}
+proc clear*(self: ptr ImVector[ImFontAtlasCustomRect]): void {.importc: "ImVector_ImFontAtlasCustomRect_clear".}
+proc destroy*(self: ptr ImVector[ImFontAtlasCustomRect]): void {.importc: "ImVector_ImFontAtlasCustomRect_destroy".}
+proc empty*(self: ptr ImVector[ImFontAtlasCustomRect]): bool {.importc: "ImVector_ImFontAtlasCustomRect_empty".}
+proc `end`*(self: ptr ImVector[ImFontAtlasCustomRect]): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_end".}
+proc erase*(self: ptr ImVector[ImFontAtlasCustomRect], it: ptr ImFontAtlasCustomRect): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_erase".}
+proc erase*(self: ptr ImVector[ImFontAtlasCustomRect], it: ptr ImFontAtlasCustomRect, it_last: ptr ImFontAtlasCustomRect): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_eraseTPtr".}
+proc erase_unsorted*(self: ptr ImVector[ImFontAtlasCustomRect], it: ptr ImFontAtlasCustomRect): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_erase_unsorted".}
+proc front*(self: ptr ImVector[ImFontAtlasCustomRect]): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_front".}
+proc index_from_ptr*(self: ptr ImVector[ImFontAtlasCustomRect], it: ptr ImFontAtlasCustomRect): int32 {.importc: "ImVector_ImFontAtlasCustomRect_index_from_ptr".}
+proc insert*(self: ptr ImVector[ImFontAtlasCustomRect], it: ptr ImFontAtlasCustomRect, v: ImFontAtlasCustomRect): ptr ImFontAtlasCustomRect {.importc: "ImVector_ImFontAtlasCustomRect_insert".}
+proc pop_back*(self: ptr ImVector[ImFontAtlasCustomRect]): void {.importc: "ImVector_ImFontAtlasCustomRect_pop_back".}
+proc push_back*(self: ptr ImVector[ImFontAtlasCustomRect], v: ImFontAtlasCustomRect): void {.importc: "ImVector_ImFontAtlasCustomRect_push_back".}
+proc push_front*(self: ptr ImVector[ImFontAtlasCustomRect], v: ImFontAtlasCustomRect): void {.importc: "ImVector_ImFontAtlasCustomRect_push_front".}
+proc reserve*(self: ptr ImVector[ImFontAtlasCustomRect], new_capacity: int32): void {.importc: "ImVector_ImFontAtlasCustomRect_reserve".}
+proc resize*(self: ptr ImVector[ImFontAtlasCustomRect], new_size: int32): void {.importc: "ImVector_ImFontAtlasCustomRect_resize".}
+proc resize*(self: ptr ImVector[ImFontAtlasCustomRect], new_size: int32, v: ImFontAtlasCustomRect): void {.importc: "ImVector_ImFontAtlasCustomRect_resizeT".}
+proc size*(self: ptr ImVector[ImFontAtlasCustomRect]): int32 {.importc: "ImVector_ImFontAtlasCustomRect_size".}
+proc size_in_bytes*(self: ptr ImVector[ImFontAtlasCustomRect]): int32 {.importc: "ImVector_ImFontAtlasCustomRect_size_in_bytes".}
+proc swap*(self: ptr ImVector[ImFontAtlasCustomRect], rhs: ImVector[ImFontAtlasCustomRect]): void {.importc: "ImVector_ImFontAtlasCustomRect_swap".}
 proc grow_capacity*(self: ptr ImVector[ImFontConfig], sz: int32): int32 {.importc: "ImVector_ImFontConfig__grow_capacity".}
 proc back*(self: ptr ImVector[ImFontConfig]): ptr ImFontConfig {.importc: "ImVector_ImFontConfig_back".}
 proc begin*(self: ptr ImVector[ImFontConfig]): ptr ImFontConfig {.importc: "ImVector_ImFontConfig_begin".}
@@ -1095,6 +1113,52 @@ proc resize*(self: ptr ImVector[ptr ImFont], new_size: int32, v: ptr ImFont): vo
 proc size*(self: ptr ImVector[ptr ImFont]): int32 {.importc: "ImVector_ImFontPtr_size".}
 proc size_in_bytes*(self: ptr ImVector[ptr ImFont]): int32 {.importc: "ImVector_ImFontPtr_size_in_bytes".}
 proc swap*(self: ptr ImVector[ptr ImFont], rhs: ImVector[ptr ImFont]): void {.importc: "ImVector_ImFontPtr_swap".}
+proc grow_capacity*(self: ptr ImVector[ImGuiStoragePair], sz: int32): int32 {.importc: "ImVector_ImGuiStoragePair__grow_capacity".}
+proc back*(self: ptr ImVector[ImGuiStoragePair]): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_back".}
+proc begin*(self: ptr ImVector[ImGuiStoragePair]): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_begin".}
+proc capacity*(self: ptr ImVector[ImGuiStoragePair]): int32 {.importc: "ImVector_ImGuiStoragePair_capacity".}
+proc clear*(self: ptr ImVector[ImGuiStoragePair]): void {.importc: "ImVector_ImGuiStoragePair_clear".}
+proc destroy*(self: ptr ImVector[ImGuiStoragePair]): void {.importc: "ImVector_ImGuiStoragePair_destroy".}
+proc empty*(self: ptr ImVector[ImGuiStoragePair]): bool {.importc: "ImVector_ImGuiStoragePair_empty".}
+proc `end`*(self: ptr ImVector[ImGuiStoragePair]): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_end".}
+proc erase*(self: ptr ImVector[ImGuiStoragePair], it: ptr ImGuiStoragePair): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_erase".}
+proc erase*(self: ptr ImVector[ImGuiStoragePair], it: ptr ImGuiStoragePair, it_last: ptr ImGuiStoragePair): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_eraseTPtr".}
+proc erase_unsorted*(self: ptr ImVector[ImGuiStoragePair], it: ptr ImGuiStoragePair): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_erase_unsorted".}
+proc front*(self: ptr ImVector[ImGuiStoragePair]): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_front".}
+proc index_from_ptr*(self: ptr ImVector[ImGuiStoragePair], it: ptr ImGuiStoragePair): int32 {.importc: "ImVector_ImGuiStoragePair_index_from_ptr".}
+proc insert*(self: ptr ImVector[ImGuiStoragePair], it: ptr ImGuiStoragePair, v: ImGuiStoragePair): ptr ImGuiStoragePair {.importc: "ImVector_ImGuiStoragePair_insert".}
+proc pop_back*(self: ptr ImVector[ImGuiStoragePair]): void {.importc: "ImVector_ImGuiStoragePair_pop_back".}
+proc push_back*(self: ptr ImVector[ImGuiStoragePair], v: ImGuiStoragePair): void {.importc: "ImVector_ImGuiStoragePair_push_back".}
+proc push_front*(self: ptr ImVector[ImGuiStoragePair], v: ImGuiStoragePair): void {.importc: "ImVector_ImGuiStoragePair_push_front".}
+proc reserve*(self: ptr ImVector[ImGuiStoragePair], new_capacity: int32): void {.importc: "ImVector_ImGuiStoragePair_reserve".}
+proc resize*(self: ptr ImVector[ImGuiStoragePair], new_size: int32): void {.importc: "ImVector_ImGuiStoragePair_resize".}
+proc resize*(self: ptr ImVector[ImGuiStoragePair], new_size: int32, v: ImGuiStoragePair): void {.importc: "ImVector_ImGuiStoragePair_resizeT".}
+proc size*(self: ptr ImVector[ImGuiStoragePair]): int32 {.importc: "ImVector_ImGuiStoragePair_size".}
+proc size_in_bytes*(self: ptr ImVector[ImGuiStoragePair]): int32 {.importc: "ImVector_ImGuiStoragePair_size_in_bytes".}
+proc swap*(self: ptr ImVector[ImGuiStoragePair], rhs: ImVector[ImGuiStoragePair]): void {.importc: "ImVector_ImGuiStoragePair_swap".}
+proc grow_capacity*(self: ptr ImVector[ImGuiTextRange], sz: int32): int32 {.importc: "ImVector_ImGuiTextRange__grow_capacity".}
+proc back*(self: ptr ImVector[ImGuiTextRange]): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_back".}
+proc begin*(self: ptr ImVector[ImGuiTextRange]): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_begin".}
+proc capacity*(self: ptr ImVector[ImGuiTextRange]): int32 {.importc: "ImVector_ImGuiTextRange_capacity".}
+proc clear*(self: ptr ImVector[ImGuiTextRange]): void {.importc: "ImVector_ImGuiTextRange_clear".}
+proc destroy*(self: ptr ImVector[ImGuiTextRange]): void {.importc: "ImVector_ImGuiTextRange_destroy".}
+proc empty*(self: ptr ImVector[ImGuiTextRange]): bool {.importc: "ImVector_ImGuiTextRange_empty".}
+proc `end`*(self: ptr ImVector[ImGuiTextRange]): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_end".}
+proc erase*(self: ptr ImVector[ImGuiTextRange], it: ptr ImGuiTextRange): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_erase".}
+proc erase*(self: ptr ImVector[ImGuiTextRange], it: ptr ImGuiTextRange, it_last: ptr ImGuiTextRange): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_eraseTPtr".}
+proc erase_unsorted*(self: ptr ImVector[ImGuiTextRange], it: ptr ImGuiTextRange): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_erase_unsorted".}
+proc front*(self: ptr ImVector[ImGuiTextRange]): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_front".}
+proc index_from_ptr*(self: ptr ImVector[ImGuiTextRange], it: ptr ImGuiTextRange): int32 {.importc: "ImVector_ImGuiTextRange_index_from_ptr".}
+proc insert*(self: ptr ImVector[ImGuiTextRange], it: ptr ImGuiTextRange, v: ImGuiTextRange): ptr ImGuiTextRange {.importc: "ImVector_ImGuiTextRange_insert".}
+proc pop_back*(self: ptr ImVector[ImGuiTextRange]): void {.importc: "ImVector_ImGuiTextRange_pop_back".}
+proc push_back*(self: ptr ImVector[ImGuiTextRange], v: ImGuiTextRange): void {.importc: "ImVector_ImGuiTextRange_push_back".}
+proc push_front*(self: ptr ImVector[ImGuiTextRange], v: ImGuiTextRange): void {.importc: "ImVector_ImGuiTextRange_push_front".}
+proc reserve*(self: ptr ImVector[ImGuiTextRange], new_capacity: int32): void {.importc: "ImVector_ImGuiTextRange_reserve".}
+proc resize*(self: ptr ImVector[ImGuiTextRange], new_size: int32): void {.importc: "ImVector_ImGuiTextRange_resize".}
+proc resize*(self: ptr ImVector[ImGuiTextRange], new_size: int32, v: ImGuiTextRange): void {.importc: "ImVector_ImGuiTextRange_resizeT".}
+proc size*(self: ptr ImVector[ImGuiTextRange]): int32 {.importc: "ImVector_ImGuiTextRange_size".}
+proc size_in_bytes*(self: ptr ImVector[ImGuiTextRange]): int32 {.importc: "ImVector_ImGuiTextRange_size_in_bytes".}
+proc swap*(self: ptr ImVector[ImGuiTextRange], rhs: ImVector[ImGuiTextRange]): void {.importc: "ImVector_ImGuiTextRange_swap".}
 proc grow_capacity*(self: ptr ImVector[ImTextureID], sz: int32): int32 {.importc: "ImVector_ImTextureID__grow_capacity".}
 proc back*(self: ptr ImVector[ImTextureID]): ptr ImTextureID {.importc: "ImVector_ImTextureID_back".}
 proc begin*(self: ptr ImVector[ImTextureID]): ptr ImTextureID {.importc: "ImVector_ImTextureID_begin".}
@@ -1187,52 +1251,6 @@ proc resize*(self: ptr ImVector[ImVec4], new_size: int32, v: ImVec4): void {.imp
 proc size*(self: ptr ImVector[ImVec4]): int32 {.importc: "ImVector_ImVec4_size".}
 proc size_in_bytes*(self: ptr ImVector[ImVec4]): int32 {.importc: "ImVector_ImVec4_size_in_bytes".}
 proc swap*(self: ptr ImVector[ImVec4], rhs: ImVector[ImVec4]): void {.importc: "ImVector_ImVec4_swap".}
-proc grow_capacity*(self: ptr ImVector[ImPair], sz: int32): int32 {.importc: "ImVector_Pair__grow_capacity".}
-proc back*(self: ptr ImVector[ImPair]): ptr ImPair {.importc: "ImVector_Pair_back".}
-proc begin*(self: ptr ImVector[ImPair]): ptr ImPair {.importc: "ImVector_Pair_begin".}
-proc capacity*(self: ptr ImVector[ImPair]): int32 {.importc: "ImVector_Pair_capacity".}
-proc clear*(self: ptr ImVector[ImPair]): void {.importc: "ImVector_Pair_clear".}
-proc destroy*(self: ptr ImVector[ImPair]): void {.importc: "ImVector_Pair_destroy".}
-proc empty*(self: ptr ImVector[ImPair]): bool {.importc: "ImVector_Pair_empty".}
-proc `end`*(self: ptr ImVector[ImPair]): ptr ImPair {.importc: "ImVector_Pair_end".}
-proc erase*(self: ptr ImVector[ImPair], it: ptr ImPair): ptr ImPair {.importc: "ImVector_Pair_erase".}
-proc erase*(self: ptr ImVector[ImPair], it: ptr ImPair, it_last: ptr ImPair): ptr ImPair {.importc: "ImVector_Pair_eraseTPtr".}
-proc erase_unsorted*(self: ptr ImVector[ImPair], it: ptr ImPair): ptr ImPair {.importc: "ImVector_Pair_erase_unsorted".}
-proc front*(self: ptr ImVector[ImPair]): ptr ImPair {.importc: "ImVector_Pair_front".}
-proc index_from_ptr*(self: ptr ImVector[ImPair], it: ptr ImPair): int32 {.importc: "ImVector_Pair_index_from_ptr".}
-proc insert*(self: ptr ImVector[ImPair], it: ptr ImPair, v: ImPair): ptr ImPair {.importc: "ImVector_Pair_insert".}
-proc pop_back*(self: ptr ImVector[ImPair]): void {.importc: "ImVector_Pair_pop_back".}
-proc push_back*(self: ptr ImVector[ImPair], v: ImPair): void {.importc: "ImVector_Pair_push_back".}
-proc push_front*(self: ptr ImVector[ImPair], v: ImPair): void {.importc: "ImVector_Pair_push_front".}
-proc reserve*(self: ptr ImVector[ImPair], new_capacity: int32): void {.importc: "ImVector_Pair_reserve".}
-proc resize*(self: ptr ImVector[ImPair], new_size: int32): void {.importc: "ImVector_Pair_resize".}
-proc resize*(self: ptr ImVector[ImPair], new_size: int32, v: ImPair): void {.importc: "ImVector_Pair_resizeT".}
-proc size*(self: ptr ImVector[ImPair]): int32 {.importc: "ImVector_Pair_size".}
-proc size_in_bytes*(self: ptr ImVector[ImPair]): int32 {.importc: "ImVector_Pair_size_in_bytes".}
-proc swap*(self: ptr ImVector[ImPair], rhs: ImVector[ImPair]): void {.importc: "ImVector_Pair_swap".}
-proc grow_capacity*(self: ptr ImVector[TextRange], sz: int32): int32 {.importc: "ImVector_TextRange__grow_capacity".}
-proc back*(self: ptr ImVector[TextRange]): ptr TextRange {.importc: "ImVector_TextRange_back".}
-proc begin*(self: ptr ImVector[TextRange]): ptr TextRange {.importc: "ImVector_TextRange_begin".}
-proc capacity*(self: ptr ImVector[TextRange]): int32 {.importc: "ImVector_TextRange_capacity".}
-proc clear*(self: ptr ImVector[TextRange]): void {.importc: "ImVector_TextRange_clear".}
-proc destroy*(self: ptr ImVector[TextRange]): void {.importc: "ImVector_TextRange_destroy".}
-proc empty*(self: ptr ImVector[TextRange]): bool {.importc: "ImVector_TextRange_empty".}
-proc `end`*(self: ptr ImVector[TextRange]): ptr TextRange {.importc: "ImVector_TextRange_end".}
-proc erase*(self: ptr ImVector[TextRange], it: ptr TextRange): ptr TextRange {.importc: "ImVector_TextRange_erase".}
-proc erase*(self: ptr ImVector[TextRange], it: ptr TextRange, it_last: ptr TextRange): ptr TextRange {.importc: "ImVector_TextRange_eraseTPtr".}
-proc erase_unsorted*(self: ptr ImVector[TextRange], it: ptr TextRange): ptr TextRange {.importc: "ImVector_TextRange_erase_unsorted".}
-proc front*(self: ptr ImVector[TextRange]): ptr TextRange {.importc: "ImVector_TextRange_front".}
-proc index_from_ptr*(self: ptr ImVector[TextRange], it: ptr TextRange): int32 {.importc: "ImVector_TextRange_index_from_ptr".}
-proc insert*(self: ptr ImVector[TextRange], it: ptr TextRange, v: TextRange): ptr TextRange {.importc: "ImVector_TextRange_insert".}
-proc pop_back*(self: ptr ImVector[TextRange]): void {.importc: "ImVector_TextRange_pop_back".}
-proc push_back*(self: ptr ImVector[TextRange], v: TextRange): void {.importc: "ImVector_TextRange_push_back".}
-proc push_front*(self: ptr ImVector[TextRange], v: TextRange): void {.importc: "ImVector_TextRange_push_front".}
-proc reserve*(self: ptr ImVector[TextRange], new_capacity: int32): void {.importc: "ImVector_TextRange_reserve".}
-proc resize*(self: ptr ImVector[TextRange], new_size: int32): void {.importc: "ImVector_TextRange_resize".}
-proc resize*(self: ptr ImVector[TextRange], new_size: int32, v: TextRange): void {.importc: "ImVector_TextRange_resizeT".}
-proc size*(self: ptr ImVector[TextRange]): int32 {.importc: "ImVector_TextRange_size".}
-proc size_in_bytes*(self: ptr ImVector[TextRange]): int32 {.importc: "ImVector_TextRange_size_in_bytes".}
-proc swap*(self: ptr ImVector[TextRange], rhs: ImVector[TextRange]): void {.importc: "ImVector_TextRange_swap".}
 proc grow_capacity*(self: ptr ImVector, sz: int32): int32 {.importc: "ImVector__grow_capacity".}
 proc back*[T](self: ptr ImVector): ptr T {.importc: "ImVector_back".}
 proc begin*[T](self: ptr ImVector): ptr T {.importc: "ImVector_begin".}
@@ -1304,17 +1322,6 @@ proc resize*[T](self: ptr ImVector, new_size: int32, v: T): void {.importc: "ImV
 proc size*(self: ptr ImVector): int32 {.importc: "ImVector_size".}
 proc size_in_bytes*(self: ptr ImVector): int32 {.importc: "ImVector_size_in_bytes".}
 proc swap*(self: ptr ImVector, rhs: ImVector): void {.importc: "ImVector_swap".}
-proc newPair*(key: ImGuiID, val_i: int32): void {.importc: "Pair_PairInt".}
-proc newPair*(key: ImGuiID, val_f: float32): void {.importc: "Pair_PairFloat".}
-proc newPair*(key: ImGuiID, val_p: pointer): void {.importc: "Pair_PairPtr".}
-proc destroy*(self: ptr ImPair): void {.importc: "Pair_destroy".}
-proc newTextRange*(): void {.importc: "TextRange_TextRange".}
-proc newTextRange*(b: cstring, e: cstring): void {.importc: "TextRange_TextRangeStr".}
-proc begin*(self: ptr TextRange): cstring {.importc: "TextRange_begin".}
-proc destroy*(self: ptr TextRange): void {.importc: "TextRange_destroy".}
-proc empty*(self: ptr TextRange): bool {.importc: "TextRange_empty".}
-proc `end`*(self: ptr TextRange): cstring {.importc: "TextRange_end".}
-proc split*(self: ptr TextRange, separator: int8, `out`: ptr ImVector[TextRange]): void {.importc: "TextRange_split".}
 proc igAcceptDragDropPayload*(`type`: cstring, flags: ImGuiDragDropFlags = 0.ImGuiDragDropFlags): ptr ImGuiPayload {.importc: "igAcceptDragDropPayload".}
 proc igAlignTextToFramePadding*(): void {.importc: "igAlignTextToFramePadding".}
 proc igArrowButton*(str_id: cstring, dir: ImGuiDir): bool {.importc: "igArrowButton".}
@@ -1590,7 +1597,9 @@ proc igSetNextWindowFocus*(): void {.importc: "igSetNextWindowFocus".}
 proc igSetNextWindowPos*(pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond, pivot: ImVec2 = ImVec2(x: 0, y: 0)): void {.importc: "igSetNextWindowPos".}
 proc igSetNextWindowSize*(size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetNextWindowSize".}
 proc igSetNextWindowSizeConstraints*(size_min: ImVec2, size_max: ImVec2, custom_callback: ImGuiSizeCallback = nil, custom_callback_data: pointer = nil): void {.importc: "igSetNextWindowSizeConstraints".}
+proc igSetScrollFromPosX*(local_x: float32, center_x_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosX".}
 proc igSetScrollFromPosY*(local_y: float32, center_y_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosY".}
+proc igSetScrollHereX*(center_x_ratio: float32 = 0.5f): void {.importc: "igSetScrollHereX".}
 proc igSetScrollHereY*(center_y_ratio: float32 = 0.5f): void {.importc: "igSetScrollHereY".}
 proc igSetScrollX*(scroll_x: float32): void {.importc: "igSetScrollX".}
 proc igSetScrollY*(scroll_y: float32): void {.importc: "igSetScrollY".}
@@ -1639,7 +1648,6 @@ proc igTextUnformatted*(text: cstring, text_end: cstring = nil): void {.importc:
 proc igTextV*(fmt: cstring): void {.importc: "igTextV", varargs.}
 proc igTextWrapped*(fmt: cstring): void {.importc: "igTextWrapped", varargs.}
 proc igTextWrappedV*(fmt: cstring): void {.importc: "igTextWrappedV", varargs.}
-proc igTreeAdvanceToLabelPos*(): void {.importc: "igTreeAdvanceToLabelPos".}
 proc igTreeNode*(label: cstring): bool {.importc: "igTreeNodeStr".}
 proc igTreeNode*(str_id: cstring, fmt: cstring): bool {.importc: "igTreeNodeStrStr", varargs.}
 proc igTreeNode*(ptr_id: pointer, fmt: cstring): bool {.importc: "igTreeNodePtr", varargs.}
