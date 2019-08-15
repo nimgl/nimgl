@@ -12,7 +12,7 @@
 
 from os import splitPath
 
-{.passC: "-DSTB_IMAGE_IMPLEMENTATION -I" & currentSourcePath().splitPath.head & "/../private/stb",
+{.passC: "-DSTB_IMAGE_IMPLEMENTATION -I\"" & currentSourcePath().splitPath.head & "/../private/stb\"",
   compile: "../private/stb/stb_image.c"}
 {.pragma: stb_image, cdecl, importc.}
 
