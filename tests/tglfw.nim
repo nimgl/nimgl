@@ -9,7 +9,7 @@ proc main =
   assert glfwInit()
 
   glfwWindowHint(whContextVersionMajor, 3)
-  glfwWindowHint(whContextVersionMinor, 2)
+  glfwWindowHint(whContextVersionMinor, 3)
   glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
   glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(whResizable, GLFW_FALSE)
