@@ -53,11 +53,13 @@ with the development and to better suit it to the language.
 We highly recommend using a Nimble project to easily add requirements such as
 NimGL.
 
+Please use the development version as it contains all the new bindings, features
+and fixes. It is located under the `1.0` branch which in the future will become
+the `master` branch.
+
 ### Installation
 
-1. Install Nimble, it comes pre installed with Nim. If you want to use the
-   development NimGL version you must use a version older than 0.10.2,
-   specifically anything after hash `7c2b9f6`
+1. Install Nimble, it comes pre installed with Nim.
 2. Directly install via Nimble
 ```sh
 nimble install nimgl # nimgl@#1.0 to use the development version
