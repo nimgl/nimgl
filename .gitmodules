@@ -1,6 +1,6 @@
 [submodule "src/nimgl/private/cimgui"]
 	path = src/nimgl/private/cimgui
-	url = https://github.com/cimgui/cimgui.git
+	url = https://github.com/nimgl/cimgui.git
 [submodule "src/nimgl/private/glfw"]
 	path = src/nimgl/private/glfw
 	url = https://github.com/glfw/glfw.git
