@@ -55,9 +55,7 @@ NimGL.
 
 ### Installation
 
-1. Install Nimble, it comes pre installed with Nim. If you want to use the
-   development NimGL version you must use a version older than 0.10.2,
-   specifically anything after hash `7c2b9f6`
+1. Install Nimble, it comes pre installed with Nim.
 2. Directly install via Nimble
 ```sh
 nimble install nimgl # nimgl@#1.0 to use the development version
