@@ -9,7 +9,7 @@ skipDirs    = @[".github", "tests"]
 
 # Dependencies
 
-requires "nim >= 0.20.0"
+requires "nim >= 1.0.0"
 
 # Tasks
 
@@ -36,9 +36,9 @@ proc walkRecursive(dir: string) =
   for od in listDirs(dir):
     walkRecursive(od)
 
-task test, "Run files under tests dir":
+task test, "Run files under examples dir":
   exec("nimble install -y glm")
-  for file in listFiles("tests"):
+  for file in listFiles("examples"):
     if file[6] == 't' and file.nimExt:
       echo "\n[info] testing " & file[6..<file.len]
       exec("nim c -d:opengl_debug " & file)
