@@ -53,26 +53,46 @@ with the development and to better suit it to the language.
 We highly recommend using a Nimble project to easily add requirements such as
 NimGL.
 
-It seems nimble has issues with branches, mostly asking them in the .nimble
-file. So please install and manually link it, I apologize for this and if you
-know a way around this please let me know. Below are the instructions.
-
 I recommend using the development version (this branch) but if you find yourself
 disliking the rhythm of updates you can always go back to the legacy (`master`
-branch) version.
+branch) version. This branch eventually will become `master` and `master` will
+become `0.3`.
 
 ### Installation
 
+#### With Nimble file (recommended)
+
 1. Install Nimble, it comes pre installed with Nim.
-3. Download repository in another directory
-```sh
-nimble develop nimgl
-```
-5. Go back to your project
-6. Add it to your .nimble file
+2. Add it to your .nimble file.
 ```nim
 requires "nimgl >= 1.0.0"
 ```
+3. Build with nimble.
+```sh
+nimble build
+```
+
+#### With Nimble install
+
+1. Install Nimble, it comes pre installed with Nim.
+2. Install NimGL with Nimble.
+```sh
+nimble install nimgl@#1.0
+```
+3. Build with Nim.
+```sh
+nim c -r main.nim
+```
+
+#### Develop with Nimble
+
+1. Install Nimble, it comes pre installed with Nim.
+2. Clone and link with Nimble in another directory.
+```sh
+nimble develop nimgl
+```
+3. Build with either Nim or Nimble.
+
 
 It is currently being developed and tested on
 
