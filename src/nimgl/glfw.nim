@@ -953,17 +953,6 @@ proc getMonitorPos*(monitor: GLFWMonitor, xpos: var int32, ypos: var int32): voi
   ## Any or all of the position arguments may be NULL. If an error occurs, all
   ## non-NULL position arguments will be set to zero.
 
-proc getMonitorWorkarea*(monitor: GLFWMonitor, xpos: var int32, ypos: var int32, width: var int32, height: var int32): void {.glfw_lib, importc: "glfwGetMonitorWorkarea".}
-  ## This function returns the position, in screen coordinates, of the
-  ## upper-left corner of the work area of the specified monitor along with the
-  ## work area size in screen coordinates. The work area is defined as the area
-  ## of the monitor not occluded by the operating system task bar where present.
-  ## If no task bar exists then the work area is the monitor resolution in
-  ## screen coordinates.
-  ##
-  ## Any or all of the position and size arguments may be NULL. If an error
-  ## occurs, all non-NULL position and size arguments will be set to zero.
-
 proc getMonitorPhysicalSize*(monitor: GLFWMonitor, widthMM: var int32, heightMM: var int32): void {.glfw_lib, importc: "glfwGetMonitorPhysicalSize".}
   ## This function returns the size, in millimetres, of the display area of the
   ## specified monitor.
@@ -1019,7 +1008,7 @@ proc getVidModes*(monitor: GLFWMonitor, count: var int32): ptr UncheckedArray[GL
   ## by color bit depth (the sum of all channel depths) and then by resolution
   ## area (the product of width and height).
 
-proc getVidMode*(monitor: GLFWMonitor): GLFWVidMode {.glfw_lib, importc: "glfwGetVideoMode".}
+proc getVidMode*(monitor: GLFWMonitor): ptr GLFWVidMode {.glfw_lib, importc: "glfwGetVideoMode".}
   ## This function returns the current video mode of the specified monitor. If
   ## you have created a full screen window for that monitor, the return value
   ## will depend on whether that window is iconified.
