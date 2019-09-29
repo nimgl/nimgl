@@ -108,19 +108,19 @@ Please refer to each binding documentation to further understand its usage.
 ```nim
 import nimgl/[glfw, opengl]
 
-proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: int32,
-             action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
-  if key == keyESCAPE and action == kaPress:
+proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
+             action: int32, mods: int32): void {.cdecl.} =
+  if key == GLFWKey.ESCAPE and action == GLFWPress:
     window.setWindowShouldClose(true)
 
 proc main() =
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 3)
-  glfwWindowHint(whContextVersionMinor, 3)
-  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE) # Used for Mac
-  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
-  glfwWindowHint(whResizable, GLFW_FALSE)
+  glfwWindowHint(GLFWContextVersionMajor, 3)
+  glfwWindowHint(GLFWContextVersionMinor, 3)
+  glfwWindowHint(GLFWOpenglForwardCompat, GLFW_TRUE) # Used for Mac
+  glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
   let w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL")
   if w == nil:
