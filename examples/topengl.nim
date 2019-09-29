@@ -8,11 +8,11 @@ import os
 if os.getEnv("CI") != "":
   quit()
 
-proc keyProc(window: GLFWWindow, key: GLFWKey, scancode: cint, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
-  if key == keyESCAPE and action == kaPress:
+proc keyProc(window: GLFWWindow, key: int32, scancode: int32, action: int32, mods: int32): void {.cdecl.} =
+  if key == GLFWKey.Escape and action == GLFWPress:
     window.setWindowShouldClose(true)
-  if key == keySpace:
-    glPolygonMode(GL_FRONT_AND_BACK, if action != kaRelease: GL_LINE else: GL_FILL)
+  if key == GLFWKey.Space:
+    glPolygonMode(GL_FRONT_AND_BACK, if action != GLFWRelease: GL_LINE else: GL_FILL)
 
 proc statusShader(shader: uint32) =
   var status: int32
@@ -31,13 +31,13 @@ proc main =
   # GLFW
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 3)
-  glfwWindowHint(whContextVersionMinor, 3)
-  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
-  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
-  glfwWindowHint(whResizable, GLFW_FALSE)
+  glfwWindowHint(GLFWContextVersionMajor, 3)
+  glfwWindowHint(GLFWContextVersionMinor, 3)
+  glfwWindowHint(GLFWOpenglForwardCompat, GLFW_TRUE)
+  glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
-  let w: GLFWWindow = glfwCreateWindow(800, 600)
+  let w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
   assert w != nil
 
   discard w.setKeyCallback(keyProc)

@@ -10,34 +10,34 @@ import ../imgui, ../glfw
 
 type
   GlfwClientApi = enum
-    igGlfwClientApi_Unkown
-    igGlfwClientApi_OpenGl
-    igGlfwClientApi_Vulkan
+    igGlfwClientApiUnkown
+    igGlfwClientApiOpenGl
+    igGlfwClientApiVulkan
 
 var
   gWindow: GLFWwindow
-  gClientApi = igGlfwClientApi_Unkown
+  gClientApi = igGlfwClientApiUnkown
   gTime: float64 = 0.0f
   gMouseJustPressed: array[5, bool]
   gMouseCursors: array[ImGuiMouseCursor.high.int32 + 1, GLFWCursor]
 
   # Store previous callbacks so they can be chained
-  gPrevMouseButtonCallback: glfwMouseButtonProc = nil
-  gPrevScrollCallback: glfwScrollProc = nil
-  gPrevKeyCallback: glfwKeyProc = nil
-  gPrevCharCallback: glfwCharProc = nil
+  gPrevMouseButtonCallback: GLFWMousebuttonFun = nil
+  gPrevScrollCallback: GLFWScrollFun = nil
+  gPrevKeyCallback: GLFWKeyFun = nil
+  gPrevCharCallback: GLFWCharFun = nil
 
-proc igGlfwGetClipboardText(user_data: pointer): cstring {.cdecl.} =
-  cast[GLFWwindow](user_data).getClipboardString()
+proc igGlfwGetClipboardText(userData: pointer): cstring {.cdecl.} =
+  cast[GLFWwindow](userData).getClipboardString()
 
-proc igGlfwSetClipboardText(user_data: pointer, text: cstring): void {.cdecl.} =
-  cast[GLFWwindow](user_data).setClipboardString(text)
+proc igGlfwSetClipboardText(userData: pointer, text: cstring): void {.cdecl.} =
+  cast[GLFWwindow](userData).setClipboardString(text)
 
-proc igGlfwMouseCallback*(window: GLFWWindow, button: GLFWMouseButton, action: GLFWMouseAction, mods: GLFWKeyMod): void {.cdecl.} =
+proc igGlfwMouseCallback*(window: GLFWWindow, button: int32, action: int32, mods: int32): void {.cdecl.} =
   if gPrevMouseButtonCallback != nil:
     gPrevMouseButtonCallback(window, button, action, mods)
 
-  if action == maPress and button.ord >= 0 and button.ord < gMouseJustPressed.len:
+  if action == GLFWPress and button.ord >= 0 and button.ord < gMouseJustPressed.len:
     gMouseJustPressed[button.ord] = true
 
 proc igGlfwScrollCallback*(window: GLFWWindow, xoff: float64, yoff: float64): void {.cdecl.} =
@@ -48,21 +48,21 @@ proc igGlfwScrollCallback*(window: GLFWWindow, xoff: float64, yoff: float64): vo
   io.mouseWheelH += xoff.float32
   io.mouseWheel += yoff.float32
 
-proc igGlfwKeyCallback*(window: GLFWWindow, key: GLFWKey, scancode: int32, action: GLFWKeyAction, mods: GLFWKeyMod): void {.cdecl.} =
+proc igGlfwKeyCallback*(window: GLFWWindow, key: int32, scancode: int32, action: int32, mods: int32): void {.cdecl.} =
   if gPrevKeyCallback != nil:
     gPrevKeyCallback(window, key, scancode, action, mods)
 
   let io = igGetIO()
   if key.ord < 511 and key.ord >= 0:
-    if action == kaPress:
+    if action == GLFWPress:
       io.keysDown[key.ord] = true
-    elif action == kaRelease:
+    elif action == GLFWRelease:
       io.keysDown[key.ord] = false
 
-  io.keyCtrl = io.keysDown[keyLeftControl.ord] or io.keysDown[keyRightControl.ord]
-  io.keyShift = io.keysDown[keyLeftShift.ord] or io.keysDown[keyRightShift.ord]
-  io.keyAlt = io.keysDown[keyLeftAlt.ord] or io.keysDown[keyRightAlt.ord]
-  io.keySuper = io.keysDown[keyLeftSuper.ord] or io.keysDown[keyRightSuper.ord]
+  io.keyCtrl = io.keysDown[GLFWKey.LeftControl.ord] or io.keysDown[GLFWKey.RightControl.ord]
+  io.keyShift = io.keysDown[GLFWKey.LeftShift.ord] or io.keysDown[GLFWKey.RightShift.ord]
+  io.keyAlt = io.keysDown[GLFWKey.LeftAlt.ord] or io.keysDown[GLFWKey.RightAlt.ord]
+  io.keySuper = io.keysDown[GLFWKey.LeftSuper.ord] or io.keysDown[GLFWKey.RightSuper.ord]
 
 proc igGlfwCharCallback*(window: GLFWWindow, code: uint32): void {.cdecl.} =
   if gPrevCharCallback != nil:
@@ -79,7 +79,7 @@ proc igGlfwInstallCallbacks(window: GLFWwindow) =
   gPrevKeyCallback = gWindow.setKeyCallback(igGlfwKeyCallback)
   gPrevCharCallback = gWindow.setCharCallback(igGlfwCharCallback)
 
-proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwClientApi): bool =
+proc igGlfwInit(window: GLFWwindow, installCallbacks: bool, clientApi: GlfwClientApi): bool =
   gWindow = window
   gTime = 0.0f
 
@@ -87,27 +87,27 @@ proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwCli
   io.backendFlags = (io.backendFlags.int32 or ImGuiBackendFlags.HasMouseCursors.int32).ImGuiBackendFlags
   io.backendFlags = (io.backendFlags.int32 or ImGuiBackendFlags.HasSetMousePos.int32).ImGuiBackendFlags
 
-  io.keyMap[ImGuiKey.Tab.int32] = keyTab.ord
-  io.keyMap[ImGuiKey.LeftArrow.int32] = keyLeft.ord
-  io.keyMap[ImGuiKey.RightArrow.int32] = keyRight.ord
-  io.keyMap[ImGuiKey.UpArrow.int32] = keyUp.ord
-  io.keyMap[ImGuiKey.DownArrow.int32] = keyDown.ord
-  io.keyMap[ImGuiKey.PageUp.int32] = keyPage_up.ord
-  io.keyMap[ImGuiKey.PageDown.int32] = keyPage_down.ord
-  io.keyMap[ImGuiKey.Home.int32] = keyHome.ord
-  io.keyMap[ImGuiKey.End.int32] = keyEnd.ord
-  io.keyMap[ImGuiKey.Insert.int32] = keyInsert.ord
-  io.keyMap[ImGuiKey.Delete.int32] = keyDelete.ord
-  io.keyMap[ImGuiKey.Backspace.int32] = keyBackspace.ord
-  io.keyMap[ImGuiKey.Space.int32] = keySpace.ord
-  io.keyMap[ImGuiKey.Enter.int32] = keyEnter.ord
-  io.keyMap[ImGuiKey.Escape.int32] = keyEscape.ord
-  io.keyMap[ImGuiKey.A.int32] = keyA.ord
-  io.keyMap[ImGuiKey.C.int32] = keyC.ord
-  io.keyMap[ImGuiKey.V.int32] = keyV.ord
-  io.keyMap[ImGuiKey.X.int32] = keyX.ord
-  io.keyMap[ImGuiKey.Y.int32] = keyY.ord
-  io.keyMap[ImGuiKey.Z.int32] = keyZ.ord
+  io.keyMap[ImGuiKey.Tab.int32] = GLFWKey.Tab
+  io.keyMap[ImGuiKey.LeftArrow.int32] = GLFWKey.Left
+  io.keyMap[ImGuiKey.RightArrow.int32] = GLFWKey.Right
+  io.keyMap[ImGuiKey.UpArrow.int32] = GLFWKey.Up
+  io.keyMap[ImGuiKey.DownArrow.int32] = GLFWKey.Down
+  io.keyMap[ImGuiKey.PageUp.int32] = GLFWKey.PageUp
+  io.keyMap[ImGuiKey.PageDown.int32] = GLFWKey.PageDown
+  io.keyMap[ImGuiKey.Home.int32] = GLFWKey.Home
+  io.keyMap[ImGuiKey.End.int32] = GLFWKey.End
+  io.keyMap[ImGuiKey.Insert.int32] = GLFWKey.Insert
+  io.keyMap[ImGuiKey.Delete.int32] = GLFWKey.Delete
+  io.keyMap[ImGuiKey.Backspace.int32] = GLFWKey.Backspace
+  io.keyMap[ImGuiKey.Space.int32] = GLFWKey.Space
+  io.keyMap[ImGuiKey.Enter.int32] = GLFWKey.Enter
+  io.keyMap[ImGuiKey.Escape.int32] = GLFWKey.Escape
+  io.keyMap[ImGuiKey.A.int32] = GLFWKey.A
+  io.keyMap[ImGuiKey.C.int32] = GLFWKey.C
+  io.keyMap[ImGuiKey.V.int32] = GLFWKey.V
+  io.keyMap[ImGuiKey.X.int32] = GLFWKey.X
+  io.keyMap[ImGuiKey.Y.int32] = GLFWKey.Y
+  io.keyMap[ImGuiKey.Z.int32] = GLFWKey.Z
 
   # HELP: If you know how to convert char * to const char * through Nim pragmas
   # and types, I would love to know.
@@ -115,26 +115,26 @@ proc igGlfwInit(window: GLFWwindow, install_callbacks: bool, client_api: GlfwCli
     io.setClipboardTextFn = igGlfwSetClipboardText
     io.getClipboardTextFn = igGlfwGetClipboardText
   io.clipboardUserData = gWindow
-  when defined windows:
-    io.imeWindowHandle = gWindow.getWin32Window()
+  # when defined windows:
+  #   io.imeWindowHandle = gWindow.getWin32Window()
 
-  gMouseCursors[ImGuiMouseCursor.Arrow.int32] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor.TextInput.int32] = glfwCreateStandardCursor(csIbeam)
-  gMouseCursors[ImGuiMouseCursor.ResizeAll.int32] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor.ResizeNS.int32] = glfwCreateStandardCursor(csVresize)
-  gMouseCursors[ImGuiMouseCursor.ResizeEW.int32] = glfwCreateStandardCursor(csHresize)
-  gMouseCursors[ImGuiMouseCursor.ResizeNESW.int32] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor.ResizeNWSE.int32] = glfwCreateStandardCursor(csArrow)
-  gMouseCursors[ImGuiMouseCursor.Hand.int32] = glfwCreateStandardCursor(csHand)
+  gMouseCursors[ImGuiMouseCursor.Arrow.int32] = glfwCreateStandardCursor(GLFWArrowCursor)
+  gMouseCursors[ImGuiMouseCursor.TextInput.int32] = glfwCreateStandardCursor(GLFWIbeamCursor)
+  gMouseCursors[ImGuiMouseCursor.ResizeAll.int32] = glfwCreateStandardCursor(GLFWArrowCursor)
+  gMouseCursors[ImGuiMouseCursor.ResizeNS.int32] = glfwCreateStandardCursor(GLFWVresizeCursor)
+  gMouseCursors[ImGuiMouseCursor.ResizeEW.int32] = glfwCreateStandardCursor(GLFWHresizeCursor)
+  gMouseCursors[ImGuiMouseCursor.ResizeNESW.int32] = glfwCreateStandardCursor(GLFWArrowCursor)
+  gMouseCursors[ImGuiMouseCursor.ResizeNWSE.int32] = glfwCreateStandardCursor(GLFWArrowCursor)
+  gMouseCursors[ImGuiMouseCursor.Hand.int32] = glfwCreateStandardCursor(GLFWHandCursor)
 
-  if install_callbacks:
+  if installCallbacks:
     igGlfwInstallCallbacks(window)
 
-  gClientApi = client_api
+  gClientApi = clientApi
   return true
 
-proc igGlfwInitForOpenGL*(window: GLFWwindow, install_callbacks: bool): bool =
-  igGlfwInit(window, install_callbacks, igGlfwClientApi_OpenGL)
+proc igGlfwInitForOpenGL*(window: GLFWwindow, installCallbacks: bool): bool =
+  igGlfwInit(window, installCallbacks, igGlfwClientApiOpenGL)
 
 # @TODO: Vulkan support
 
@@ -150,7 +150,7 @@ proc igGlfwUpdateMousePosAndButtons() =
   when defined(emscripten): # TODO: actually add support for all the library with emscripten
     let focused = true
   else:
-    let focused = gWindow.getWindowAttrib(whFocused) != 0
+    let focused = gWindow.getWindowAttrib(GLFWFocused) != 0
 
   if focused:
     if io.wantSetMousePos:
@@ -163,14 +163,15 @@ proc igGlfwUpdateMousePosAndButtons() =
 
 proc igGlfwUpdateMouseCursor() =
   let io = igGetIO()
-  if (io.configFlags.int32 and ImGuiConfigFlags.NoMouseCursorChange.int32) or (gWindow.getInputMode(EGLFW_CURSOR) == GLFW_CURSOR_DISABLED):
+  if ((io.configFlags.int32 and ImGuiConfigFlags.NoMouseCursorChange.int32) == 1) or (gWindow.getInputMode(GLFWCursorSpecial) == GLFWCursorDisabled):
     return
 
   var igCursor: ImGuiMouseCursor = igGetMouseCursor()
   if igCursor == ImGuiMouseCursor.None or io.mouseDrawCursor:
-    gWindow.setInputMode(EGLFW_CURSOR, GLFW_CURSOR_HIDDEN)
+    gWindow.setInputMode(GLFWCursorSpecial, GLFWCursorHidden)
   else:
-    gWindow.setInputMode(EGLFW_CURSOR, GLFW_CURSOR_NORMAL)
+    gWindow.setCursor(gMouseCursors[igCursor.int32])
+    gWindow.setInputMode(GLFWCursorSpecial, GLFWCursorNormal)
 
 proc igGlfwNewFrame*() =
   let io = igGetIO()
@@ -197,6 +198,6 @@ proc igGlfwNewFrame*() =
 
 proc igGlfwShutdown*() =
   for i in 0 ..< ImGuiMouseCursor.high.int32 + 1:
-    glfwDestroyCursor(gMouseCursors[i])
+    gMouseCursors[i].destroyCursor()
     gMouseCursors[i] = nil
-  gClientApi = igGlfwClientApi_Unkown
+  gClientApi = igGlfwClientApiUnkown

@@ -6,11 +6,11 @@ import nimgl/[opengl, glfw]
 proc main() =
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 3)
-  glfwWindowHint(whContextVersionMinor, 3)
-  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
-  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
-  glfwWindowHint(whResizable, GLFW_FALSE)
+  glfwWindowHint(GLFWContextVersionMajor, 3)
+  glfwWindowHint(GLFWContextVersionMinor, 3)
+  glfwWindowHint(GLFWOpenglForwardCompat, GLFW_TRUE)
+  glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
   var w: GLFWWindow = glfwCreateWindow(1280, 720)
   if w == nil:
@@ -26,7 +26,7 @@ proc main() =
   assert igGlfwInitForOpenGL(w, true)
   assert igOpenGL3Init()
 
-  igStyleColorsDark()
+  igStyleColorsCherry()
 
   var show_demo: bool = true
   var somefloat: float32 = 0.0f

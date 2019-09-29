@@ -8,18 +8,24 @@ if os.getEnv("CI") != "":
 proc main =
   assert glfwInit()
 
-  glfwWindowHint(whContextVersionMajor, 3)
-  glfwWindowHint(whContextVersionMinor, 3)
-  glfwWindowHint(whOpenglForwardCompat, GLFW_TRUE)
-  glfwWindowHint(whOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
-  glfwWindowHint(whResizable, GLFW_FALSE)
+  glfwWindowHint(GLFWContextVersionMajor, 3)
+  glfwWindowHint(GLFWContextVersionMinor, 3)
+  glfwWindowHint(GLFWOpenglForwardCompat, GLFW_TRUE)
+  glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
-  let w = glfwCreateWindow(800, 600)
+  var monitor = glfwGetPrimaryMonitor()
+
+  var videoMode = monitor.getVideoMode()
+  echo videoMode.width
+  echo videoMode.height
+
+  let w = glfwCreateWindow(800, 600, "NimGL", nil, nil)
   assert w != nil
 
-  w.makeContextCurrent
+  w.makeContextCurrent()
 
-  while not w.windowShouldClose:
+  while not w.windowShouldClose():
     w.swapBuffers()
     glfwPollEvents()
     w.setWindowShouldClose(true)
