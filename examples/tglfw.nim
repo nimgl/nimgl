@@ -1,6 +1,6 @@
 # Copyright 2018, NimGL contributors.
 
-import nimgl/glfw, os
+import nimgl/glfw, nimgl/glfw/native, os
 
 if os.getEnv("CI") != "":
   quit()
@@ -24,6 +24,9 @@ proc main =
   assert w != nil
 
   w.makeContextCurrent()
+  when defined(windows):
+    var hwnd = w.getWin32Window()
+    assert hwnd != nil
 
   while not w.windowShouldClose():
     w.swapBuffers()

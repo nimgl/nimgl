@@ -25,7 +25,7 @@ else:
 
   # Thanks to ephja for making this build system
   when defined(windows):
-    {.passC: "-D_GLFW_WIN32 -DGLFW_EXPOSE_NATIVE_WIN32",
+    {.passC: "-D_GLFW_WIN32",
       passL: "-lopengl32 -lgdi32",
       compile: "private/glfw/src/win32_init.c",
       compile: "private/glfw/src/win32_joystick.c",
@@ -81,6 +81,9 @@ else:
     compile: "private/glfw/src/monitor.c",
     compile: "private/glfw/src/window.c".}
 
+when defined(vulkan):
+  include ./vulkan/vulkan_types
+
 # Constants and Enums
 const
   GLFWVersionMajor* = 3
@@ -94,7 +97,7 @@ const
     ## This is incremented when features are added to the API but it remains
     ## backward-compatible.
     ## @ingroup init
-  GLFWVersionRevision* = 0
+  GLFWVersionRevision* = 1
     ## @brief The revision number of the GLFW library.
     ##
     ## This is incremented when a bug fix release is made that does not contain any
@@ -638,28 +641,28 @@ const
   GLFWContextVersionMajor* = 0x00022002
     ## @brief Context client API major version hint and attribute.
     ##
-    ## Context client API major version hint and
-    ## attribute.
+    ## Context client API major version hint
+    ## and attribute.
   GLFWContextVersionMinor* = 0x00022003
     ## @brief Context client API minor version hint and attribute.
     ##
-    ## Context client API minor version hint and
-    ## attribute.
+    ## Context client API minor version hint
+    ## and attribute.
   GLFWContextRevision* = 0x00022004
     ## @brief Context client API revision number hint and attribute.
     ##
-    ## Context client API revision number hint and
+    ## Context client API revision number
     ## attribute.
   GLFWContextRobustness* = 0x00022005
     ## @brief Context robustness hint and attribute.
     ##
-    ## Context client API revision number hint and
-    ## attribute.
+    ## Context client API revision number hint
+    ## and attribute.
   GLFWOpenglForwardCompat* = 0x00022006
     ## @brief OpenGL forward-compatibility hint and attribute.
     ##
-    ## OpenGL forward-compatibility hint and
-    ## attribute.
+    ## OpenGL forward-compatibility hint
+    ## and attribute.
   GLFWOpenglDebugContext* = 0x00022007
     ## @brief OpenGL debug context hint and attribute.
     ##
@@ -823,13 +826,21 @@ type
     ## @since Added in version 3.2.
     ##
     ## @ingroup vulkan
-  GLFWErrorFun* = proc(error: int32, description: cstring): void {.cdecl.}
-    ## @brief The function signature for error callbacks.
+  GLFWErrorFun* = proc(error_code: int32, description: cstring): void {.cdecl.}
+    ## @brief The function pointer type for error callbacks.
     ##
-    ## This is the function signature for error callback functions.
+    ## This is the function pointer type for error callbacks.  An error callback
+    ## function has the following signature:
+    ## @code
+    ## void callback_name(int error_code, const char* description)
+    ## @endcode
     ##
-    ## @paramin error An error code.
+    ## @paramin error_code An error code.  Future releases may add
+    ## more error codes.
     ## @param[in] description A UTF-8 encoded string describing the error.
+    ##
+    ## @pointer_lifetime The error description string is valid until the callback
+    ## function returns.
     ##
     ## @sa  error_handling
     ## @sa  glfwSetErrorCallback
@@ -838,9 +849,13 @@ type
     ##
     ## @ingroup init
   GLFWWindowposFun* = proc(window: GLFWWindow, xpos: int32, ypos: int32): void {.cdecl.}
-    ## @brief The function signature for window position callbacks.
+    ## @brief The function pointer type for window position callbacks.
     ##
-    ## This is the function signature for window position callback functions.
+    ## This is the function pointer type for window position callbacks.  A window
+    ## position callback function has the following signature:
+    ## @code
+    ## void callback_name(GLFWwindow* window, int xpos, int ypos)
+    ## @endcode
     ##
     ## @param[in] window The window that was moved.
     ## @param[in] xpos The new x-coordinate, in screen coordinates, of the
@@ -855,9 +870,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowsizeFun* = proc(window: GLFWWindow, width: int32, height: int32): void {.cdecl.}
-    ## @brief The function signature for window resize callbacks.
+    ## @brief The function pointer type for window size callbacks.
     ##
-    ## This is the function signature for window size callback functions.
+    ## This is the function pointer type for window size callbacks.  A window size
+    ## callback function has the following signature:
+    ## @code
+    ## void callback_name(GLFWwindow* window, int width, int height)
+    ## @endcode
     ##
     ## @param[in] window The window that was resized.
     ## @param[in] width The new width, in screen coordinates, of the window.
@@ -871,9 +890,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowcloseFun* = proc(window: GLFWWindow): void {.cdecl.}
-    ## @brief The function signature for window close callbacks.
+    ## @brief The function pointer type for window close callbacks.
     ##
-    ## This is the function signature for window close callback functions.
+    ## This is the function pointer type for window close callbacks.  A window
+    ## close callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window)
+    ## @endcode
     ##
     ## @param[in] window The window that the user attempted to close.
     ##
@@ -885,9 +908,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowrefreshFun* = proc(window: GLFWWindow): void {.cdecl.}
-    ## @brief The function signature for window content refresh callbacks.
+    ## @brief The function pointer type for window content refresh callbacks.
     ##
-    ## This is the function signature for window refresh callback functions.
+    ## This is the function pointer type for window content refresh callbacks.
+    ## A window content refresh callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window);
+    ## @endcode
     ##
     ## @param[in] window The window whose content needs to be refreshed.
     ##
@@ -899,9 +926,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowfocusFun* = proc(window: GLFWWindow, focused: bool): void {.cdecl.}
-    ## @brief The function signature for window focus/defocus callbacks.
+    ## @brief The function pointer type for window focus callbacks.
     ##
-    ## This is the function signature for window focus callback functions.
+    ## This is the function pointer type for window focus callbacks.  A window
+    ## focus callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int focused)
+    ## @endcode
     ##
     ## @param[in] window The window that gained or lost input focus.
     ## @param[in] focused `GLFW_TRUE` if the window was given input focus, or
@@ -914,10 +945,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowiconifyFun* = proc(window: GLFWWindow, iconified: bool): void {.cdecl.}
-    ## @brief The function signature for window iconify/restore callbacks.
+    ## @brief The function pointer type for window iconify callbacks.
     ##
-    ## This is the function signature for window iconify/restore callback
-    ## functions.
+    ## This is the function pointer type for window iconify callbacks.  A window
+    ## iconify callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int iconified)
+    ## @endcode
     ##
     ## @param[in] window The window that was iconified or restored.
     ## @param[in] iconified `GLFW_TRUE` if the window was iconified, or
@@ -930,10 +964,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowmaximizeFun* = proc(window: GLFWWindow, iconified: int32): void {.cdecl.}
-    ## @brief The function signature for window maximize/restore callbacks.
+    ## @brief The function pointer type for window maximize callbacks.
     ##
-    ## This is the function signature for window maximize/restore callback
-    ## functions.
+    ## This is the function pointer type for window maximize callbacks.  A window
+    ## maximize callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int maximized)
+    ## @endcode
     ##
     ## @param[in] window The window that was maximized or restored.
     ## @param[in] iconified `GLFW_TRUE` if the window was maximized, or
@@ -946,10 +983,13 @@ type
     ##
     ## @ingroup window
   GLFWFramebuffersizeFun* = proc(window: GLFWWindow, width: int32, height: int32): void {.cdecl.}
-    ## @brief The function signature for framebuffer resize callbacks.
+    ## @brief The function pointer type for framebuffer size callbacks.
     ##
-    ## This is the function signature for framebuffer resize callback
-    ## functions.
+    ## This is the function pointer type for framebuffer size callbacks.
+    ## A framebuffer size callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int width, int height)
+    ## @endcode
     ##
     ## @param[in] window The window whose framebuffer was resized.
     ## @param[in] width The new width, in pixels, of the framebuffer.
@@ -962,10 +1002,13 @@ type
     ##
     ## @ingroup window
   GLFWWindowcontentscaleFun* = proc(window: GLFWWindow, xscale: float, yscale: float): void {.cdecl.}
-    ## @brief The function signature for window content scale callbacks.
+    ## @brief The function pointer type for window content scale callbacks.
     ##
-    ## This is the function signature for window content scale callback
-    ## functions.
+    ## This is the function pointer type for window content scale callbacks.
+    ## A window content scale callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, float xscale, float yscale)
+    ## @endcode
     ##
     ## @param[in] window The window whose content scale changed.
     ## @param[in] xscale The new x-axis content scale of the window.
@@ -978,14 +1021,19 @@ type
     ##
     ## @ingroup window
   GLFWMousebuttonFun* = proc(window: GLFWWindow, button: int32, action: int32, mods: int32): void {.cdecl.}
-    ## @brief The function signature for mouse button callbacks.
+    ## @brief The function pointer type for mouse button callbacks.
     ##
-    ## This is the function signature for mouse button callback functions.
+    ## This is the function pointer type for mouse button callback functions.
+    ## A mouse button callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int button, int action, int mods)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @paramin button The mouse button that was pressed or
     ## released.
-    ## @param[in] action One of `GLFW_PRESS` or `GLFW_RELEASE`.
+    ## @param[in] action One of `GLFW_PRESS` or `GLFW_RELEASE`.  Future releases
+    ## may add more actions.
     ## @paramin mods Bit field describing which modifier keys were
     ## held down.
     ##
@@ -997,9 +1045,13 @@ type
     ##
     ## @ingroup input
   GLFWCursorposFun* = proc(window: GLFWWindow, xpos: float64, ypos: float64): void {.cdecl.}
-    ## @brief The function signature for cursor position callbacks.
+    ## @brief The function pointer type for cursor position callbacks.
     ##
-    ## This is the function signature for cursor position callback functions.
+    ## This is the function pointer type for cursor position callbacks.  A cursor
+    ## position callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, double xpos, double ypos);
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @param[in] xpos The new cursor x-coordinate, relative to the left edge of
@@ -1014,9 +1066,13 @@ type
     ##
     ## @ingroup input
   GLFWCursorenterFun* = proc(window: GLFWWindow, entered: bool): void {.cdecl.}
-    ## @brief The function signature for cursor enter/leave callbacks.
+    ## @brief The function pointer type for cursor enter/leave callbacks.
     ##
-    ## This is the function signature for cursor enter/leave callback functions.
+    ## This is the function pointer type for cursor enter/leave callbacks.
+    ## A cursor enter/leave callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int entered)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @param[in] entered `GLFW_TRUE` if the cursor entered the window's content
@@ -1029,9 +1085,13 @@ type
     ##
     ## @ingroup input
   GLFWScrollFun* = proc(window: GLFWWindow, xoffset: float64, yoffset: float64): void {.cdecl.}
-    ## @brief The function signature for scroll callbacks.
+    ## @brief The function pointer type for scroll callbacks.
     ##
-    ## This is the function signature for scroll callback functions.
+    ## This is the function pointer type for scroll callbacks.  A scroll callback
+    ## function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, double xoffset, double yoffset)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @param[in] xoffset The scroll offset along the x-axis.
@@ -1044,14 +1104,19 @@ type
     ##
     ## @ingroup input
   GLFWKeyFun* = proc(window: GLFWWindow, key: int32, scancode: int32, action: int32, mods: int32): void {.cdecl.}
-    ## @brief The function signature for keyboard key callbacks.
+    ## @brief The function pointer type for keyboard key callbacks.
     ##
-    ## This is the function signature for keyboard key callback functions.
+    ## This is the function pointer type for keyboard key callbacks.  A keyboard
+    ## key callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int key, int scancode, int action, int mods)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @paramin key The keyboard key that was pressed or released.
     ## @param[in] scancode The system-specific scancode of the key.
-    ## @param[in] action `GLFW_PRESS`, `GLFW_RELEASE` or `GLFW_REPEAT`.
+    ## @param[in] action `GLFW_PRESS`, `GLFW_RELEASE` or `GLFW_REPEAT`.  Future
+    ## releases may add more actions.
     ## @paramin mods Bit field describing which modifier keys were
     ## held down.
     ##
@@ -1063,9 +1128,13 @@ type
     ##
     ## @ingroup input
   GLFWCharFun* = proc(window: GLFWWindow, codepoint: uint32): void {.cdecl.}
-    ## @brief The function signature for Unicode character callbacks.
+    ## @brief The function pointer type for Unicode character callbacks.
     ##
-    ## This is the function signature for Unicode character callback functions.
+    ## This is the function pointer type for Unicode character callbacks.
+    ## A Unicode character callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, unsigned int codepoint)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @param[in] codepoint The Unicode code point of the character.
@@ -1078,12 +1147,16 @@ type
     ##
     ## @ingroup input
   GLFWCharmodsFun* = proc(window: GLFWWindow, codepoint: uint32, mods: int32): void {.cdecl.}
-    ## @brief The function signature for Unicode character with modifiers
+    ## @brief The function pointer type for Unicode character with modifiers
     ## callbacks.
     ##
-    ## This is the function signature for Unicode character with modifiers callback
-    ## functions.  It is called for each input character, regardless of what
-    ## modifier keys are held down.
+    ## This is the function pointer type for Unicode character with modifiers
+    ## callbacks.  It is called for each input character, regardless of what
+    ## modifier keys are held down.  A Unicode character with modifiers callback
+    ## function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, unsigned int codepoint, int mods)
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
     ## @param[in] codepoint The Unicode code point of the character.
@@ -1098,14 +1171,21 @@ type
     ## @since Added in version 3.1.
     ##
     ## @ingroup input
-  GLFWDropFun* = proc(window: GLFWWindow, count: int32, paths: ptr cstring): void {.cdecl.}
-    ## @brief The function signature for file drop callbacks.
+  GLFWDropFun* = proc(window: GLFWWindow, path_count: int32, paths: ptr cstring): void {.cdecl.}
+    ## @brief The function pointer type for path drop callbacks.
     ##
-    ## This is the function signature for file drop callbacks.
+    ## This is the function pointer type for path drop callbacks.  A path drop
+    ## callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWwindow* window, int path_count, const char* paths[])
+    ## @endcode
     ##
     ## @param[in] window The window that received the event.
-    ## @param[in] count The number of dropped files.
+    ## @param[in] path_count The number of dropped paths.
     ## @param[in] paths The UTF-8 encoded file and/or directory path names.
+    ##
+    ## @pointer_lifetime The path array and its strings are valid until the
+    ## callback function returns.
     ##
     ## @sa  path_drop
     ## @sa  glfwSetDropCallback
@@ -1114,13 +1194,17 @@ type
     ##
     ## @ingroup input
   GLFWMonitorFun* = proc(monitor: GLFWMonitor, event: int32): void {.cdecl.}
-    ## @brief The function signature for monitor configuration callbacks.
+    ## @brief The function pointer type for monitor configuration callbacks.
     ##
-    ## This is the function signature for monitor configuration callback functions.
+    ## This is the function pointer type for monitor configuration callbacks.
+    ## A monitor callback function has the following signature:
+    ## @code
+    ## void function_name(GLFWmonitor* monitor, int event)
+    ## @endcode
     ##
     ## @param[in] monitor The monitor that was connected or disconnected.
-    ## @param[in] event One of `GLFW_CONNECTED` or `GLFW_DISCONNECTED`.  Remaining
-    ## values reserved for future use.
+    ## @param[in] event One of `GLFW_CONNECTED` or `GLFW_DISCONNECTED`.  Future
+    ## releases may add more events.
     ##
     ## @sa  monitor_event
     ## @sa  glfwSetMonitorCallback
@@ -1129,14 +1213,17 @@ type
     ##
     ## @ingroup monitor
   GLFWJoystickFun* = proc(jid: int32, event: int32): void {.cdecl.}
-    ## @brief The function signature for joystick configuration callbacks.
+    ## @brief The function pointer type for joystick configuration callbacks.
     ##
-    ## This is the function signature for joystick configuration callback
-    ## functions.
+    ## This is the function pointer type for joystick configuration callbacks.
+    ## A joystick configuration callback function has the following signature:
+    ## @code
+    ## void function_name(int jid, int event)
+    ## @endcode
     ##
     ## @param[in] jid The joystick that was connected or disconnected.
-    ## @param[in] event One of `GLFW_CONNECTED` or `GLFW_DISCONNECTED`.  Remaining
-    ## values reserved for future use.
+    ## @param[in] event One of `GLFW_CONNECTED` or `GLFW_DISCONNECTED`.  Future
+    ## releases may add more events.
     ##
     ## @sa  joystick_event
     ## @sa  glfwSetJoystickCallback
@@ -1339,7 +1426,7 @@ proc glfwGetError*(description: ptr cstring): int32 {.importc: "glfwGetError".}
   ## @since Added in version 3.3.
   ##
   ## @ingroup init
-proc glfwSetErrorCallback*(cbfun: GLFWErrorfun): GLFWErrorfun {.importc: "glfwSetErrorCallback".}
+proc glfwSetErrorCallback*(callback: GLFWErrorfun): GLFWErrorfun {.importc: "glfwSetErrorCallback".}
   ## @brief Sets the error callback.
   ##
   ## This function sets the error callback, which is called with an error code
@@ -1360,9 +1447,16 @@ proc glfwSetErrorCallback*(cbfun: GLFWErrorfun): GLFWErrorfun {.importc: "glfwSe
   ## Once set, the error callback remains set even after the library has been
   ## terminated.
   ##
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void callback_name(int error_code, const char* description)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## callback pointer type.
   ##
   ## @errors None.
   ##
@@ -1449,7 +1543,7 @@ proc getMonitorPos*(monitor: GLFWMonitor, xpos: ptr int32, ypos: ptr int32): voi
   ##
   ## @ingroup monitor
 proc getMonitorWorkarea*(monitor: GLFWMonitor, xpos: ptr int32, ypos: ptr int32, width: ptr int32, height: ptr int32): void {.importc: "glfwGetMonitorWorkarea".}
-  ## @brief Retrives the work area of the monitor.
+  ## @brief Retrieves the work area of the monitor.
   ##
   ## This function returns the position, in screen coordinates, of the upper-left
   ## corner of the work area of the specified monitor along with the work area
@@ -1609,17 +1703,24 @@ proc getMonitorUserPointer*(monitor: GLFWMonitor): pointer {.importc: "glfwGetMo
   ## @since Added in version 3.3.
   ##
   ## @ingroup monitor
-proc glfwSetMonitorCallback*(cbfun: GLFWMonitorfun): GLFWMonitorfun {.importc: "glfwSetMonitorCallback".}
+proc glfwSetMonitorCallback*(callback: GLFWMonitorfun): GLFWMonitorfun {.importc: "glfwSetMonitorCallback".}
   ## @brief Sets the monitor configuration callback.
   ##
   ## This function sets the monitor configuration callback, or removes the
   ## currently set callback.  This is called when a monitor is connected to or
   ## disconnected from the system.
   ##
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWmonitor* monitor, int event)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -1708,7 +1809,7 @@ proc setGamma*(monitor: GLFWMonitor, gamma: float): void {.importc: "glfwSetGamm
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
   ## GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
-  ## @remark @wayland Gamma handling is a priviledged protocol, this function
+  ## @remark @wayland Gamma handling is a privileged protocol, this function
   ## will thus never be implemented and emits  GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -1730,7 +1831,7 @@ proc getGammaRamp*(monitor: GLFWMonitor): ptr GLFWGammaramp {.importc: "glfwGetG
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
   ## GLFW_PLATFORM_ERROR.
   ##
-  ## @remark @wayland Gamma handling is a priviledged protocol, this function
+  ## @remark @wayland Gamma handling is a privileged protocol, this function
   ## will thus never be implemented and emits  GLFW_PLATFORM_ERROR while
   ## returning `NULL`.
   ##
@@ -1772,7 +1873,7 @@ proc setGammaRamp*(monitor: GLFWMonitor, ramp: ptr GLFWGammaramp): void {.import
   ##
   ## @remark @win32 The gamma ramp size must be 256.
   ##
-  ## @remark @wayland Gamma handling is a priviledged protocol, this function
+  ## @remark @wayland Gamma handling is a privileged protocol, this function
   ## will thus never be implemented and emits  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The specified gamma ramp is copied before this function
@@ -1983,7 +2084,7 @@ proc glfwCreateWindowC*(width: int32, height: int32, title: cstring, monitor: GL
   ##
   ## @remark @macos When activating frame autosaving with
   ## GLFW_COCOA_FRAME_NAME, the specified
-  ## window size and position may be overriden by previously saved values.
+  ## window size and position may be overridden by previously saved values.
   ##
   ## @remark @x11 Some window managers will not respect the placement of
   ## initially hidden windows.
@@ -2881,7 +2982,7 @@ proc getWindowUserPointer*(window: GLFWWindow): pointer {.importc: "glfwGetWindo
   ## @since Added in version 3.0.
   ##
   ## @ingroup window
-proc setWindowPosCallback*(window: GLFWWindow, cbfun: GLFWWindowposfun): GLFWWindowposfun {.importc: "glfwSetWindowPosCallback".}
+proc setWindowPosCallback*(window: GLFWWindow, callback: GLFWWindowposfun): GLFWWindowposfun {.importc: "glfwSetWindowPosCallback".}
   ## @brief Sets the position callback for the specified window.
   ##
   ## This function sets the position callback of the specified window, which is
@@ -2890,10 +2991,17 @@ proc setWindowPosCallback*(window: GLFWWindow, cbfun: GLFWWindowposfun): GLFWWin
   ## area of the window.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int xpos, int ypos)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -2907,7 +3015,7 @@ proc setWindowPosCallback*(window: GLFWWindow, cbfun: GLFWWindowposfun): GLFWWin
   ## @since Added in version 3.0.
   ##
   ## @ingroup window
-proc setWindowSizeCallback*(window: GLFWWindow, cbfun: GLFWWindowsizefun): GLFWWindowsizefun {.importc: "glfwSetWindowSizeCallback".}
+proc setWindowSizeCallback*(window: GLFWWindow, callback: GLFWWindowsizefun): GLFWWindowsizefun {.importc: "glfwSetWindowSizeCallback".}
   ## @brief Sets the size callback for the specified window.
   ##
   ## This function sets the size callback of the specified window, which is
@@ -2915,10 +3023,17 @@ proc setWindowSizeCallback*(window: GLFWWindow, cbfun: GLFWWindowsizefun): GLFWW
   ## in screen coordinates, of the content area of the window.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int width, int height)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -2930,7 +3045,7 @@ proc setWindowSizeCallback*(window: GLFWWindow, cbfun: GLFWWindowsizefun): GLFWW
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup window
-proc setWindowCloseCallback*(window: GLFWWindow, cbfun: GLFWWindowclosefun): GLFWWindowclosefun {.importc: "glfwSetWindowCloseCallback".}
+proc setWindowCloseCallback*(window: GLFWWindow, callback: GLFWWindowclosefun): GLFWWindowclosefun {.importc: "glfwSetWindowCloseCallback".}
   ## @brief Sets the close callback for the specified window.
   ##
   ## This function sets the close callback of the specified window, which is
@@ -2943,10 +3058,17 @@ proc setWindowCloseCallback*(window: GLFWWindow, cbfun: GLFWWindowclosefun): GLF
   ## The close callback is not triggered by  glfwDestroyWindow.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -2961,7 +3083,7 @@ proc setWindowCloseCallback*(window: GLFWWindow, cbfun: GLFWWindowclosefun): GLF
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup window
-proc setWindowRefreshCallback*(window: GLFWWindow, cbfun: GLFWWindowrefreshfun): GLFWWindowrefreshfun {.importc: "glfwSetWindowRefreshCallback".}
+proc setWindowRefreshCallback*(window: GLFWWindow, callback: GLFWWindowrefreshfun): GLFWWindowrefreshfun {.importc: "glfwSetWindowRefreshCallback".}
   ## @brief Sets the refresh callback for the specified window.
   ##
   ## This function sets the refresh callback of the specified window, which is
@@ -2973,10 +3095,17 @@ proc setWindowRefreshCallback*(window: GLFWWindow, cbfun: GLFWWindowrefreshfun):
   ## very infrequently or never at all.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window);
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -2988,7 +3117,7 @@ proc setWindowRefreshCallback*(window: GLFWWindow, cbfun: GLFWWindowrefreshfun):
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup window
-proc setWindowFocusCallback*(window: GLFWWindow, cbfun: GLFWWindowfocusfun): GLFWWindowfocusfun {.importc: "glfwSetWindowFocusCallback".}
+proc setWindowFocusCallback*(window: GLFWWindow, callback: GLFWWindowfocusfun): GLFWWindowfocusfun {.importc: "glfwSetWindowFocusCallback".}
   ## @brief Sets the focus callback for the specified window.
   ##
   ## This function sets the focus callback of the specified window, which is
@@ -3000,10 +3129,17 @@ proc setWindowFocusCallback*(window: GLFWWindow, cbfun: GLFWWindowfocusfun): GLF
   ## and  glfwSetMouseButtonCallback.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int focused)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3014,17 +3150,24 @@ proc setWindowFocusCallback*(window: GLFWWindow, cbfun: GLFWWindowfocusfun): GLF
   ## @since Added in version 3.0.
   ##
   ## @ingroup window
-proc setWindowIconifyCallback*(window: GLFWWindow, cbfun: GLFWWindowiconifyfun): GLFWWindowiconifyfun {.importc: "glfwSetWindowIconifyCallback".}
+proc setWindowIconifyCallback*(window: GLFWWindow, callback: GLFWWindowiconifyfun): GLFWWindowiconifyfun {.importc: "glfwSetWindowIconifyCallback".}
   ## @brief Sets the iconify callback for the specified window.
   ##
   ## This function sets the iconification callback of the specified window, which
   ## is called when the window is iconified or restored.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int iconified)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3038,17 +3181,24 @@ proc setWindowIconifyCallback*(window: GLFWWindow, cbfun: GLFWWindowiconifyfun):
   ## @since Added in version 3.0.
   ##
   ## @ingroup window
-proc setWindowMaximizeCallback*(window: GLFWWindow, cbfun: GLFWWindowmaximizefun): GLFWWindowmaximizefun {.importc: "glfwSetWindowMaximizeCallback".}
+proc setWindowMaximizeCallback*(window: GLFWWindow, callback: GLFWWindowmaximizefun): GLFWWindowmaximizefun {.importc: "glfwSetWindowMaximizeCallback".}
   ## @brief Sets the maximize callback for the specified window.
   ##
   ## This function sets the maximization callback of the specified window, which
   ## is called when the window is maximized or restored.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int maximized)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3059,17 +3209,24 @@ proc setWindowMaximizeCallback*(window: GLFWWindow, cbfun: GLFWWindowmaximizefun
   ## @since Added in version 3.3.
   ##
   ## @ingroup window
-proc setFramebufferSizeCallback*(window: GLFWWindow, cbfun: GLFWFramebuffersizefun): GLFWFramebuffersizefun {.importc: "glfwSetFramebufferSizeCallback".}
+proc setFramebufferSizeCallback*(window: GLFWWindow, callback: GLFWFramebuffersizefun): GLFWFramebuffersizefun {.importc: "glfwSetFramebufferSizeCallback".}
   ## @brief Sets the framebuffer resize callback for the specified window.
   ##
   ## This function sets the framebuffer resize callback of the specified window,
   ## which is called when the framebuffer of the specified window is resized.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int width, int height)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3080,17 +3237,24 @@ proc setFramebufferSizeCallback*(window: GLFWWindow, cbfun: GLFWFramebuffersizef
   ## @since Added in version 3.0.
   ##
   ## @ingroup window
-proc setWindowContentScaleCallback*(window: GLFWWindow, cbfun: GLFWWindowcontentscalefun): GLFWWindowcontentscalefun {.importc: "glfwSetWindowContentScaleCallback".}
+proc setWindowContentScaleCallback*(window: GLFWWindow, callback: GLFWWindowcontentscalefun): GLFWWindowcontentscalefun {.importc: "glfwSetWindowContentScaleCallback".}
   ## @brief Sets the window content scale callback for the specified window.
   ##
   ## This function sets the window content scale callback of the specified window,
   ## which is called when the content scale of the specified window changes.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, float xscale, float yscale)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3409,9 +3573,11 @@ proc glfwGetKeyName*(key: int32, scancode: int32): cstring {.importc: "glfwGetKe
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
   ## GLFW_PLATFORM_ERROR.
   ##
+  ## @remark The contents of the returned string may change when a keyboard
+  ## layout change event is received.
+  ##
   ## @pointer_lifetime The returned string is allocated and freed by GLFW.  You
-  ## should not free it yourself.  It is valid until the next call to
-  ## glfwGetKeyName, or until the library is terminated.
+  ## should not free it yourself.  It is valid until the library is terminated.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -3688,7 +3854,7 @@ proc setCursor*(window: GLFWWindow, cursor: GLFWCursor): void {.importc: "glfwSe
   ## @since Added in version 3.1.
   ##
   ## @ingroup input
-proc setKeyCallback*(window: GLFWWindow, cbfun: GLFWKeyfun): GLFWKeyfun {.importc: "glfwSetKeyCallback".}
+proc setKeyCallback*(window: GLFWWindow, callback: GLFWKeyfun): GLFWKeyfun {.importc: "glfwSetKeyCallback".}
   ## @brief Sets the key callback.
   ##
   ## This function sets the key callback of the specified window, which is called
@@ -3714,10 +3880,17 @@ proc setKeyCallback*(window: GLFWWindow, cbfun: GLFWKeyfun): GLFWKeyfun {.import
   ## scancode may be zero.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new key callback, or `NULL` to remove the currently
+  ## @param[in] callback The new key callback, or `NULL` to remove the currently
   ## set callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int key, int scancode, int action, int mods)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3729,7 +3902,7 @@ proc setKeyCallback*(window: GLFWWindow, cbfun: GLFWKeyfun): GLFWKeyfun {.import
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup input
-proc setCharCallback*(window: GLFWWindow, cbfun: GLFWCharfun): GLFWCharfun {.importc: "glfwSetCharCallback".}
+proc setCharCallback*(window: GLFWWindow, callback: GLFWCharfun): GLFWCharfun {.importc: "glfwSetCharCallback".}
   ## @brief Sets the Unicode character callback.
   ##
   ## This function sets the character callback of the specified window, which is
@@ -3748,10 +3921,17 @@ proc setCharCallback*(window: GLFWWindow, cbfun: GLFWCharfun): GLFWCharfun {.imp
   ## on Windows.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, unsigned int codepoint)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3763,7 +3943,7 @@ proc setCharCallback*(window: GLFWWindow, cbfun: GLFWCharfun): GLFWCharfun {.imp
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup input
-proc setCharModsCallback*(window: GLFWWindow, cbfun: GLFWCharmodsfun): GLFWCharmodsfun {.importc: "glfwSetCharModsCallback".}
+proc setCharModsCallback*(window: GLFWWindow, callback: GLFWCharmodsfun): GLFWCharmodsfun {.importc: "glfwSetCharModsCallback".}
   ## @brief Sets the Unicode character with modifiers callback.
   ##
   ## This function sets the character with modifiers callback of the specified
@@ -3780,10 +3960,17 @@ proc setCharModsCallback*(window: GLFWWindow, cbfun: GLFWCharmodsfun): GLFWCharm
   ## key callback instead.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or an
   ## error occurred.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, unsigned int codepoint, int mods)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @deprecated Scheduled for removal in version 4.0.
   ##
@@ -3796,7 +3983,7 @@ proc setCharModsCallback*(window: GLFWWindow, cbfun: GLFWCharmodsfun): GLFWCharm
   ## @since Added in version 3.1.
   ##
   ## @ingroup input
-proc setMouseButtonCallback*(window: GLFWWindow, cbfun: GLFWMousebuttonfun): GLFWMousebuttonfun {.importc: "glfwSetMouseButtonCallback".}
+proc setMouseButtonCallback*(window: GLFWWindow, callback: GLFWMousebuttonfun): GLFWMousebuttonfun {.importc: "glfwSetMouseButtonCallback".}
   ## @brief Sets the mouse button callback.
   ##
   ## This function sets the mouse button callback of the specified window, which
@@ -3809,10 +3996,17 @@ proc setMouseButtonCallback*(window: GLFWWindow, cbfun: GLFWMousebuttonfun): GLF
   ## window focus callback has been called.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int button, int action, int mods)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3824,7 +4018,7 @@ proc setMouseButtonCallback*(window: GLFWWindow, cbfun: GLFWMousebuttonfun): GLF
   ## @glfw3 Added window handle parameter and return value.
   ##
   ## @ingroup input
-proc setCursorPosCallback*(window: GLFWWindow, cbfun: GLFWCursorposfun): GLFWCursorposfun {.importc: "glfwSetCursorPosCallback".}
+proc setCursorPosCallback*(window: GLFWWindow, callback: GLFWCursorposfun): GLFWCursorposfun {.importc: "glfwSetCursorPosCallback".}
   ## @brief Sets the cursor position callback.
   ##
   ## This function sets the cursor position callback of the specified window,
@@ -3833,10 +4027,17 @@ proc setCursorPosCallback*(window: GLFWWindow, cbfun: GLFWCursorposfun): GLFWCur
   ## content area of the window.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, double xpos, double ypos);
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3847,18 +4048,25 @@ proc setCursorPosCallback*(window: GLFWWindow, cbfun: GLFWCursorposfun): GLFWCur
   ## @since Added in version 3.0.  Replaces `glfwSetMousePosCallback`.
   ##
   ## @ingroup input
-proc setCursorEnterCallback*(window: GLFWWindow, cbfun: GLFWCursorenterfun): GLFWCursorenterfun {.importc: "glfwSetCursorEnterCallback".}
-  ## @brief Sets the cursor enter/exit callback.
+proc setCursorEnterCallback*(window: GLFWWindow, callback: GLFWCursorenterfun): GLFWCursorenterfun {.importc: "glfwSetCursorEnterCallback".}
+  ## @brief Sets the cursor enter/leave callback.
   ##
   ## This function sets the cursor boundary crossing callback of the specified
   ## window, which is called when the cursor enters or leaves the content area of
   ## the window.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int entered)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3869,7 +4077,7 @@ proc setCursorEnterCallback*(window: GLFWWindow, cbfun: GLFWCursorenterfun): GLF
   ## @since Added in version 3.0.
   ##
   ## @ingroup input
-proc setScrollCallback*(window: GLFWWindow, cbfun: GLFWScrollfun): GLFWScrollfun {.importc: "glfwSetScrollCallback".}
+proc setScrollCallback*(window: GLFWWindow, callback: GLFWScrollfun): GLFWScrollfun {.importc: "glfwSetScrollCallback".}
   ## @brief Sets the scroll callback.
   ##
   ## This function sets the scroll callback of the specified window, which is
@@ -3880,10 +4088,17 @@ proc setScrollCallback*(window: GLFWWindow, cbfun: GLFWScrollfun): GLFWScrollfun
   ## wheel or a touchpad scrolling area.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new scroll callback, or `NULL` to remove the currently
-  ## set callback.
+  ## @param[in] callback The new scroll callback, or `NULL` to remove the
+  ## currently set callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, double xoffset, double yoffset)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -3894,11 +4109,11 @@ proc setScrollCallback*(window: GLFWWindow, cbfun: GLFWScrollfun): GLFWScrollfun
   ## @since Added in version 3.0.  Replaces `glfwSetMouseWheelCallback`.
   ##
   ## @ingroup input
-proc setDropCallback*(window: GLFWWindow, cbfun: GLFWDropfun): GLFWDropfun {.importc: "glfwSetDropCallback".}
-  ## @brief Sets the file drop callback.
+proc setDropCallback*(window: GLFWWindow, callback: GLFWDropfun): GLFWDropfun {.importc: "glfwSetDropCallback".}
+  ## @brief Sets the path drop callback.
   ##
-  ## This function sets the file drop callback of the specified window, which is
-  ## called when one or more dragged files are dropped on the window.
+  ## This function sets the path drop callback of the specified window, which is
+  ## called when one or more dragged paths are dropped on the window.
   ##
   ## Because the path array and its strings may have been generated specifically
   ## for that event, they are not guaranteed to be valid after the callback has
@@ -3906,10 +4121,17 @@ proc setDropCallback*(window: GLFWWindow, cbfun: GLFWDropfun): GLFWDropfun {.imp
   ## make a deep copy.
   ##
   ## @param[in] window The window whose callback to set.
-  ## @param[in] cbfun The new file drop callback, or `NULL` to remove the
+  ## @param[in] callback The new file drop callback, or `NULL` to remove the
   ## currently set callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(GLFWwindow* window, int path_count, const char* paths[])
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -4099,7 +4321,7 @@ proc glfwGetJoystickName*(jid: int32): cstring {.importc: "glfwGetJoystickName".
   ##
   ## @ingroup input
 proc glfwGetJoystickGUID*(jid: int32): cstring {.importc: "glfwGetJoystickGUID".}
-  ## @brief Returns the SDL comaptible GUID of the specified joystick.
+  ## @brief Returns the SDL compatible GUID of the specified joystick.
   ##
   ## This function returns the SDL compatible GUID, as a UTF-8 encoded
   ## hexadecimal string, of the specified joystick.  The returned string is
@@ -4209,7 +4431,7 @@ proc glfwJoystickIsGamepad*(jid: int32): int32 {.importc: "glfwJoystickIsGamepad
   ## @since Added in version 3.3.
   ##
   ## @ingroup input
-proc glfwSetJoystickCallback*(cbfun: GLFWJoystickfun): GLFWJoystickfun {.importc: "glfwSetJoystickCallback".}
+proc glfwSetJoystickCallback*(callback: GLFWJoystickfun): GLFWJoystickfun {.importc: "glfwSetJoystickCallback".}
   ## @brief Sets the joystick configuration callback.
   ##
   ## This function sets the joystick configuration callback, or removes the
@@ -4222,10 +4444,17 @@ proc glfwSetJoystickCallback*(cbfun: GLFWJoystickfun): GLFWJoystickfun {.importc
   ## called by joystick functions.  The function will then return whatever it
   ## returns if the joystick is not present.
   ##
-  ## @param[in] cbfun The new callback, or `NULL` to remove the currently set
+  ## @param[in] callback The new callback, or `NULL` to remove the currently set
   ## callback.
   ## @return The previously set callback, or `NULL` if no callback was set or the
   ## library had not been initialized.
+  ##
+  ## @callback_signature
+  ## @code
+  ## void function_name(int jid, int event)
+  ## @endcode
+  ## For more information about the callback parameters, see the
+  ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
@@ -4299,7 +4528,7 @@ proc glfwGetGamepadName*(jid: int32): cstring {.importc: "glfwGetGamepadName".}
 proc glfwGetGamepadState*(jid: bool, state: ptr GLFWGamepadstate): bool {.importc: "glfwGetGamepadState".}
   ## @brief Retrieves the state of the specified joystick remapped as a gamepad.
   ##
-  ## This function retrives the state of the specified joystick remapped to
+  ## This function retrieves the state of the specified joystick remapped to
   ## an Xbox-like gamepad.
   ##
   ## If the specified joystick is not present or does not have a gamepad mapping
@@ -4384,23 +4613,26 @@ proc getClipboardString*(window: GLFWWindow): cstring {.importc: "glfwGetClipboa
   ##
   ## @ingroup input
 proc glfwGetTime*(): float64 {.importc: "glfwGetTime".}
-  ## @brief Returns the value of the GLFW timer.
+  ## @brief Returns the GLFW time.
   ##
-  ## This function returns the value of the GLFW timer.  Unless the timer has
-  ## been set using  glfwSetTime, the timer measures time elapsed since GLFW
-  ## was initialized.
+  ## This function returns the current GLFW time, in seconds.  Unless the time
+  ## has been set using  glfwSetTime it measures time elapsed since GLFW was
+  ## initialized.
+  ##
+  ## This function and  glfwSetTime are helper functions on top of
+  ## glfwGetTimerFrequency and  glfwGetTimerValue.
   ##
   ## The resolution of the timer is system dependent, but is usually on the order
   ## of a few micro- or nanoseconds.  It uses the highest-resolution monotonic
   ## time source on each supported platform.
   ##
-  ## @return The current value, in seconds, or zero if an
+  ## @return The current time, in seconds, or zero if an
   ## error occurred.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
   ##
   ## @thread_safety This function may be called from any thread.  Reading and
-  ## writing of the internal timer offset is not atomic, so it needs to be
+  ## writing of the internal base time is not atomic, so it needs to be
   ## externally synchronized with calls to  glfwSetTime.
   ##
   ## @sa  time
@@ -4409,23 +4641,26 @@ proc glfwGetTime*(): float64 {.importc: "glfwGetTime".}
   ##
   ## @ingroup input
 proc glfwSetTime*(time: float64): void {.importc: "glfwSetTime".}
-  ## @brief Sets the GLFW timer.
+  ## @brief Sets the GLFW time.
   ##
-  ## This function sets the value of the GLFW timer.  It then continues to count
-  ## up from that value.  The value must be a positive finite number less than
-  ## or equal to 18446744073.0, which is approximately 584.5 years.
+  ## This function sets the current GLFW time, in seconds.  The value must be
+  ## a positive finite number less than or equal to 18446744073.0, which is
+  ## approximately 584.5 years.
+  ##
+  ## This function and  glfwGetTime are helper functions on top of
+  ## glfwGetTimerFrequency and  glfwGetTimerValue.
   ##
   ## @param[in] time The new value, in seconds.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
   ## GLFW_INVALID_VALUE.
   ##
-  ## @remark The upper limit of the timer is calculated as
+  ## @remark The upper limit of GLFW time is calculated as
   ## floor((2<sup>64</sup> - 1) / 10<sup>9</sup>) and is due to implementations
   ## storing nanoseconds in 64 bits.  The limit may be increased in the future.
   ##
   ## @thread_safety This function may be called from any thread.  Reading and
-  ## writing of the internal timer offset is not atomic, so it needs to be
+  ## writing of the internal base time is not atomic, so it needs to be
   ## externally synchronized with calls to  glfwGetTime.
   ##
   ## @sa  time
@@ -4678,7 +4913,7 @@ proc glfwGetProcAddress*(procname: cstring): GLFWGlproc {.importc: "glfwGetProcA
   ## @since Added in version 1.0.
   ##
   ## @ingroup context
-proc glfwVulkanSupported*(): int32 {.importc: "glfwVulkanSupported".}
+proc glfwVulkanSupported*(): bool {.importc: "glfwVulkanSupported".}
   ## @brief Returns whether the Vulkan loader and an ICD have been found.
   ##
   ## This function returns whether the Vulkan loader and any minimally functional
@@ -4709,7 +4944,7 @@ proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): ptr cstring {.import
   ##
   ## This function returns an array of names of Vulkan instance extensions required
   ## by GLFW for creating Vulkan surfaces for GLFW windows.  If successful, the
-  ## list will always contains `VK_KHR_surface`, so if you don't require any
+  ## list will always contain `VK_KHR_surface`, so if you don't require any
   ## additional extensions you can pass this list directly to the
   ## `VkInstanceCreateInfo` struct.
   ##
@@ -4749,6 +4984,145 @@ proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): ptr cstring {.import
   ## @since Added in version 3.2.
   ##
   ## @ingroup vulkan
+when defined(vulkan):
+  proc glfwGetInstanceProcAddress*(instance: VkInstance, procname: cstring): GLFWVkproc {.importc: "glfwGetInstanceProcAddress".}
+    ## @brief Returns the address of the specified Vulkan instance function.
+    ##
+    ## This function returns the address of the specified Vulkan core or extension
+    ## function for the specified instance.  If instance is set to `NULL` it can
+    ## return any function exported from the Vulkan loader, including at least the
+    ## following functions:
+    ##
+    ## - `vkEnumerateInstanceExtensionProperties`
+    ## - `vkEnumerateInstanceLayerProperties`
+    ## - `vkCreateInstance`
+    ## - `vkGetInstanceProcAddr`
+    ##
+    ## If Vulkan is not available on the machine, this function returns `NULL` and
+    ## generates a  GLFW_API_UNAVAILABLE error.  Call  glfwVulkanSupported
+    ## to check whether Vulkan is at least minimally available.
+    ##
+    ## This function is equivalent to calling `vkGetInstanceProcAddr` with
+    ## a platform-specific query of the Vulkan loader as a fallback.
+    ##
+    ## @param[in] instance The Vulkan instance to query, or `NULL` to retrieve
+    ## functions related to instance creation.
+    ## @param[in] procname The ASCII encoded name of the function.
+    ## @return The address of the function, or `NULL` if an
+    ## error occurred.
+    ##
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+    ## GLFW_API_UNAVAILABLE.
+    ##
+    ## @pointer_lifetime The returned function pointer is valid until the library
+    ## is terminated.
+    ##
+    ## @thread_safety This function may be called from any thread.
+    ##
+    ## @sa  vulkan_proc
+    ##
+    ## @since Added in version 3.2.
+    ##
+    ## @ingroup vulkan
+
+when defined(vulkan):
+  proc glfwGetPhysicalDevicePresentationSupport*(instance: VkInstance, device: VkPhysicalDevice, queuefamily: uint32): int32 {.importc: "glfwGetPhysicalDevicePresentationSupport".}
+    ## @brief Returns whether the specified queue family can present images.
+    ##
+    ## This function returns whether the specified queue family of the specified
+    ## physical device supports presentation to the platform GLFW was built for.
+    ##
+    ## If Vulkan or the required window surface creation instance extensions are
+    ## not available on the machine, or if the specified instance was not created
+    ## with the required extensions, this function returns `GLFW_FALSE` and
+    ## generates a  GLFW_API_UNAVAILABLE error.  Call  glfwVulkanSupported
+    ## to check whether Vulkan is at least minimally available and
+    ## glfwGetRequiredInstanceExtensions to check what instance extensions are
+    ## required.
+    ##
+    ## @param[in] instance The instance that the physical device belongs to.
+    ## @param[in] device The physical device that the queue family belongs to.
+    ## @param[in] queuefamily The index of the queue family to query.
+    ## @return `GLFW_TRUE` if the queue family supports presentation, or
+    ## `GLFW_FALSE` otherwise.
+    ##
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+    ## GLFW_API_UNAVAILABLE and  GLFW_PLATFORM_ERROR.
+    ##
+    ## @remark @macos This function currently always returns `GLFW_TRUE`, as the
+    ## `VK_MVK_macos_surface` extension does not provide
+    ## a `vkGetPhysicalDevice*PresentationSupport` type function.
+    ##
+    ## @thread_safety This function may be called from any thread.  For
+    ## synchronization details of Vulkan objects, see the Vulkan specification.
+    ##
+    ## @sa  vulkan_present
+    ##
+    ## @since Added in version 3.2.
+    ##
+    ## @ingroup vulkan
+
+when defined(vulkan):
+  proc glfwCreateWindowSurface*(instance: VkInstance, window: GLFWWindow, allocator: ptr VkAllocationCallbacks, surface: ptr VkSurfaceKHR): VkResult {.importc: "glfwCreateWindowSurface".}
+    ## @brief Creates a Vulkan surface for the specified window.
+    ##
+    ## This function creates a Vulkan surface for the specified window.
+    ##
+    ## If the Vulkan loader or at least one minimally functional ICD were not found,
+    ## this function returns `VK_ERROR_INITIALIZATION_FAILED` and generates a
+    ## GLFW_API_UNAVAILABLE error.  Call  glfwVulkanSupported to check whether
+    ## Vulkan is at least minimally available.
+    ##
+    ## If the required window surface creation instance extensions are not
+    ## available or if the specified instance was not created with these extensions
+    ## enabled, this function returns `VK_ERROR_EXTENSION_NOT_PRESENT` and
+    ## generates a  GLFW_API_UNAVAILABLE error.  Call
+    ## glfwGetRequiredInstanceExtensions to check what instance extensions are
+    ## required.
+    ##
+    ## The window surface cannot be shared with another API so the window must
+    ## have been created with the client api hint
+    ## set to `GLFW_NO_API` otherwise it generates a  GLFW_INVALID_VALUE error
+    ## and returns `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`.
+    ##
+    ## The window surface must be destroyed before the specified Vulkan instance.
+    ## It is the responsibility of the caller to destroy the window surface.  GLFW
+    ## does not destroy it for you.  Call `vkDestroySurfaceKHR` to destroy the
+    ## surface.
+    ##
+    ## @param[in] instance The Vulkan instance to create the surface in.
+    ## @param[in] window The window to create the surface for.
+    ## @param[in] allocator The allocator to use, or `NULL` to use the default
+    ## allocator.
+    ## @param[out] surface Where to store the handle of the surface.  This is set
+    ## to `VK_NULL_HANDLE` if an error occurred.
+    ## @return `VK_SUCCESS` if successful, or a Vulkan error code if an
+    ## error occurred.
+    ##
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+    ## GLFW_API_UNAVAILABLE,  GLFW_PLATFORM_ERROR and  GLFW_INVALID_VALUE
+    ##
+    ## @remark If an error occurs before the creation call is made, GLFW returns
+    ## the Vulkan error code most appropriate for the error.  Appropriate use of
+    ##  glfwVulkanSupported and  glfwGetRequiredInstanceExtensions should
+    ## eliminate almost all occurrences of these errors.
+    ##
+    ## @remark @macos This function currently only supports the
+    ## `VK_MVK_macos_surface` extension from MoltenVK.
+    ##
+    ## @remark @macos This function creates and sets a `CAMetalLayer` instance for
+    ## the window content view, which is required for MoltenVK to function.
+    ##
+    ## @thread_safety This function may be called from any thread.  For
+    ## synchronization details of Vulkan objects, see the Vulkan specification.
+    ##
+    ## @sa  vulkan_surface
+    ## @sa  glfwGetRequiredInstanceExtensions
+    ##
+    ## @since Added in version 3.2.
+    ##
+    ## @ingroup vulkan
+
 
 {.pop.}
 

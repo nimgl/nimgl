@@ -6,7 +6,7 @@
 ## Feel free to use and modify this implementation.
 ## This needs to be used along with a Renderer.
 
-import ../imgui, ../glfw
+import ../imgui, ../glfw, ../glfw/native
 
 type
   GlfwClientApi = enum
@@ -115,8 +115,8 @@ proc igGlfwInit(window: GLFWwindow, installCallbacks: bool, clientApi: GlfwClien
     io.setClipboardTextFn = igGlfwSetClipboardText
     io.getClipboardTextFn = igGlfwGetClipboardText
   io.clipboardUserData = gWindow
-  # when defined windows:
-  #   io.imeWindowHandle = gWindow.getWin32Window()
+  when defined windows:
+    io.imeWindowHandle = gWindow.getWin32Window()
 
   gMouseCursors[ImGuiMouseCursor.Arrow.int32] = glfwCreateStandardCursor(GLFWArrowCursor)
   gMouseCursors[ImGuiMouseCursor.TextInput.int32] = glfwCreateStandardCursor(GLFWIbeamCursor)
