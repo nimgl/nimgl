@@ -13,48 +13,57 @@
 ## NOTE: This bindings only support modern OpenGL (3.2 >=)
 ## so fixed pipelines are not supported.
 
-# Thanks to ephja for this loading system
-when defined(windows):
-  const glDLL = "opengl32.dll"
-elif defined(macosx):
-  const glDLL = "/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/libGL.dylib"
-else:
-  const glDLL = "libGL.so.1"
+import strutils
 
-import dynlib, strutils
+var glGetProc: proc(procName: cstring): pointer {.cdecl.}
 
-let glHandle = loadLib(glDLL)
-if isNil(glHandle): quit("could not load: " & gldll)
+when not defined(glCustomLoader):
+  import dynlib
 
-when defined(windows):
-  var wglGetProcAddress = cast[proc (s: cstring): pointer {.stdcall.}](
-    symAddr(glHandle, "wglGetProcAddress"))
-elif defined(linux):
-  var glxGetProcAddress = cast[proc (s: cstring): pointer {.cdecl.}](
-    symAddr(glHandle, "glXGetProcAddress"))
-  var glxGetProcAddressArb = cast[proc (s: cstring): pointer {.cdecl.}](
-    symAddr(glHandle, "glXGetProcAddressARB"))
-
-proc glGetProc(procName: cstring): pointer =
+  # Thanks to ephja for this loading system
   when defined(windows):
-    result = symAddr(glHandle, procName)
-    if result != nil:
-      return
-    if not isNil(wglGetProcAddress):
-      result = wglGetProcAddress(procName)
+    const glDLL = "opengl32.dll"
+  elif defined(macosx):
+    const glDLL = "/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/libGL.dylib"
+  else:
+    const glDLL = "libGL.so.1"
+
+  let glHandle = loadLib(glDLL)
+  if isNil(glHandle):
+    quit("could not load: " & gldll)
+
+  when defined(windows):
+    var wglGetProcAddress = cast[proc (s: cstring): pointer {.stdcall.}](
+      symAddr(glHandle, "wglGetProcAddress"))
   elif defined(linux):
-    result = symAddr(glHandle, procname)
-    if result != nil:
-      return
-    if not isNil(glxGetProcAddressArb):
-      result = glxGetProcAddressArb(procName)
+    var glxGetProcAddress = cast[proc (s: cstring): pointer {.cdecl.}](
+      symAddr(glHandle, "glXGetProcAddress"))
+    var glxGetProcAddressArb = cast[proc (s: cstring): pointer {.cdecl.}](
+      symAddr(glHandle, "glXGetProcAddressARB"))
+
+  glGetProc = proc(procName: cstring): pointer {.cdecl.} =
+    when defined(windows):
+      result = symAddr(glHandle, procName)
       if result != nil:
         return
-    if not isNil(glxGetProcAddress):
-      result = glxGetProcAddress(procName)
-  else:
-    result = symAddr(glHandle, procName)
-  if result == nil: raiseInvalidLibrary(procName)
+      if not isNil(wglGetProcAddress):
+        result = wglGetProcAddress(procName)
+    elif defined(linux):
+      result = symAddr(glHandle, procname)
+      if result != nil:
+        return
+      if not isNil(glxGetProcAddressArb):
+        result = glxGetProcAddressArb(procName)
+        if result != nil:
+          return
+      if not isNil(glxGetProcAddress):
+        result = glxGetProcAddress(procName)
+    else:
+      result = symAddr(glHandle, procName)
+    if result == nil: raiseInvalidLibrary(procName)
+
+proc setGLGetProc*(getProc: proc(procName: cstring): pointer {.cdecl.}) =
+  glGetProc = getProc
 
 type
   GLenum* = distinct uint32
