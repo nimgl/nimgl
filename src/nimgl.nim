@@ -8,7 +8,8 @@
 ##   - `Impl_GLFW <./impl_glfw.html>`_ ImGui implementation for GLFW
 ##   - `Impl_OpenGL <./impl_opengl.html>`_ ImGui implementation for OpenGL
 ## - `GLFW  <./glfw.html>`_ Window Library
-## - `OpenGL  <./opengl.html>`_ Glew Loading Library
+##   - `Native <./native.html>`_ Native window handler access
+## - `OpenGL  <./opengl.html>`_ Modern OpenGL Loading Library
 ## - STB
 ##   - `Image  <./image.html>`_ Image loading/decoding library
 
