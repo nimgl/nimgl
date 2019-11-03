@@ -254,11 +254,11 @@ proc igOpenGL3RenderDrawData*(data: ptr ImDrawData) =
   # Restore modified GL State
   glUseProgram(last_program.uint32)
   glBindTexture(GL_TEXTURE_2D, last_texture.uint32)
-  glActiveTexture(last_active_texture.uint32)
+  glActiveTexture(last_active_texture.GLenum)
   glBindVertexArray(last_vertex_array.uint32)
   glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer.uint32)
-  glBlendEquationSeparate(last_blend_equation_rgb.uint32, last_blend_equation_alpha.uint32)
-  glBlendFuncSeparate(last_blend_src_rgb.uint32, last_blend_dst_rgb.uint32, last_blend_src_alpha.uint32, last_blend_dst_alpha.uint32)
+  glBlendEquationSeparate(last_blend_equation_rgb.GLenum, last_blend_equation_alpha.GLenum)
+  glBlendFuncSeparate(last_blend_src_rgb.GLenum, last_blend_dst_rgb.GLenum, last_blend_src_alpha.GLenum, last_blend_dst_alpha.GLenum)
 
   if last_enable_blend: glEnable(GL_BLEND) else: glDisable(GL_BLEND)
   if last_enable_cull_face: glEnable(GL_CULL_FACE) else: glDisable(GL_CULL_FACE)
