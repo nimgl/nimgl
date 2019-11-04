@@ -156,25 +156,21 @@ Read the [Contribution Guide](CONTRIBUTING.md) for more information.
 
 ## Supported Bindings
 
-| Library              | Description                                                                                                                                                                                   |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [GLFW][glfw-url]     | Create multiple windows, handle user input (keyboard, mouse, gaming peripherals) and manage contexts. Also features multi-monitor support, clipboard access, file drag-n-drop, and much more. |
-| [OpenGL][opengl-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                       |
-| [ImGUI][imgui-url]   | Dear ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application.                 |
-| [stb_image][stb-url] | Image loading/decoding from file/memory: JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC                                                                                                               |
+| Library              | Description                                                                                                                                                                                                    |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [GLFW][glfw-url]     | Create multiple windows, handle user input (keyboard, mouse, gaming peripherals) and manage contexts. Also features multi-monitor support, clipboard access, file drag-n-drop, and much more.                  |
+| [Vulkan][opengl-url] | A new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms. |
+| [OpenGL][vulkan-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                                        |
+| [ImGUI][imgui-url]   | Dear ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application.                                  |
+| [stb_image][stb-url] | Image loading/decoding from file/memory: JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC                                                                                                                                |
 
 ## Roadmap
 
 Goals for before June of 2020:
 
-- Implement automatic generation for all bindings, if not possible at least
-  facilitate its manual modification.
-- Add better documentation for each binding.
-- Add Vulkan into the mixture.
 - Create optional helper functions for each binding to further facilitate
   development.
-- Make a thesis paper in Spanish and do my best to translate it to English.
-- CI integration with Travis
+- CI integration with Github Actions
 
 You can read a small post about the future of the project
 [here](https://notes.ldmd.mx/nimgl_1.0.html).
@@ -218,3 +214,5 @@ developer that uses it to make improvements and fork them here.
 [opengl-url]: https://www.khronos.org/opengl/
 [imgui-url]: https://github.com/ocornut/imgui
 [stb-url]: https://github.com/nothings/stb#stb
+[vulkan-url]: https://github.com/nothings/stb#stb
+[vulkan-url]: https://www.khronos.org/vulkan/
