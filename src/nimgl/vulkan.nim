@@ -4939,7 +4939,7 @@ proc newVkLayerProperties*(layerName: array[VK_MAX_EXTENSION_NAME_SIZE, char], s
   result.implementationVersion = implementationVersion
   result.description = description
 
-proc newVkApplicationInfo*(sType: VkStructureType, pNext: pointer = nil, pApplicationName: cstring, applicationVersion: uint32, pEngineName: cstring, engineVersion: uint32, apiVersion: uint32): VkApplicationInfo =
+proc newVkApplicationInfo*(sType: VkStructureType = VkStructureTypeApplicationInfo, pNext: pointer = nil, pApplicationName: cstring, applicationVersion: uint32, pEngineName: cstring, engineVersion: uint32, apiVersion: uint32): VkApplicationInfo =
   result.sType = sType
   result.pNext = pNext
   result.pApplicationName = pApplicationName
@@ -4956,7 +4956,7 @@ proc newVkAllocationCallbacks*(pUserData: pointer = nil, pfnAllocation: PFN_vkAl
   result.pfnInternalAllocation = pfnInternalAllocation
   result.pfnInternalFree = pfnInternalFree
 
-proc newVkDeviceQueueCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float): VkDeviceQueueCreateInfo =
+proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureTypeDeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float): VkDeviceQueueCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -4964,7 +4964,7 @@ proc newVkDeviceQueueCreateInfo*(sType: VkStructureType, pNext: pointer = nil, f
   result.queueCount = queueCount
   result.pQueuePriorities = pQueuePriorities
 
-proc newVkDeviceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDeviceCreateFlags, queueCreateInfoCount: uint32, pQueueCreateInfos: ptr VkDeviceQueueCreateInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
+proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureTypeDeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags, queueCreateInfoCount: uint32, pQueueCreateInfos: ptr VkDeviceQueueCreateInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -4976,7 +4976,7 @@ proc newVkDeviceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags:
   result.ppEnabledExtensionNames = ppEnabledExtensionNames
   result.pEnabledFeatures = pEnabledFeatures
 
-proc newVkInstanceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray): VkInstanceCreateInfo =
+proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureTypeInstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray): VkInstanceCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -4998,7 +4998,7 @@ proc newVkPhysicalDeviceMemoryProperties*(memoryTypeCount: uint32, memoryTypes: 
   result.memoryHeapCount = memoryHeapCount
   result.memoryHeaps = memoryHeaps
 
-proc newVkMemoryAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, allocationSize: VkDeviceSize, memoryTypeIndex: uint32): VkMemoryAllocateInfo =
+proc newVkMemoryAllocateInfo*(sType: VkStructureType = VkStructureTypeMemoryAllocateInfo, pNext: pointer = nil, allocationSize: VkDeviceSize, memoryTypeIndex: uint32): VkMemoryAllocateInfo =
   result.sType = sType
   result.pNext = pNext
   result.allocationSize = allocationSize
@@ -5029,7 +5029,7 @@ proc newVkMemoryHeap*(size: VkDeviceSize, flags: VkMemoryHeapFlags): VkMemoryHea
   result.size = size
   result.flags = flags
 
-proc newVkMappedMemoryRange*(sType: VkStructureType, pNext: pointer = nil, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMappedMemoryRange =
+proc newVkMappedMemoryRange*(sType: VkStructureType = VkStructureTypeMappedMemoryRange, pNext: pointer = nil, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMappedMemoryRange =
   result.sType = sType
   result.pNext = pNext
   result.memory = memory
@@ -5058,7 +5058,7 @@ proc newVkDescriptorImageInfo*(sampler: VkSampler, imageView: VkImageView, image
   result.imageView = imageView
   result.imageLayout = imageLayout
 
-proc newVkWriteDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
+proc newVkWriteDescriptorSet*(sType: VkStructureType = VkStructureTypeWriteDescriptorSet, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
   result.sType = sType
   result.pNext = pNext
   result.dstSet = dstSet
@@ -5070,7 +5070,7 @@ proc newVkWriteDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, dstS
   result.pBufferInfo = pBufferInfo
   result.pTexelBufferView = pTexelBufferView
 
-proc newVkCopyDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, srcSet: VkDescriptorSet, srcBinding: uint32, srcArrayElement: uint32, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32): VkCopyDescriptorSet =
+proc newVkCopyDescriptorSet*(sType: VkStructureType = VkStructureTypeCopyDescriptorSet, pNext: pointer = nil, srcSet: VkDescriptorSet, srcBinding: uint32, srcArrayElement: uint32, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32): VkCopyDescriptorSet =
   result.sType = sType
   result.pNext = pNext
   result.srcSet = srcSet
@@ -5081,7 +5081,7 @@ proc newVkCopyDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, srcSe
   result.dstArrayElement = dstArrayElement
   result.descriptorCount = descriptorCount
 
-proc newVkBufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkBufferCreateInfo =
+proc newVkBufferCreateInfo*(sType: VkStructureType = VkStructureTypeBufferCreateInfo, pNext: pointer = nil, flags: VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkBufferCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5091,7 +5091,7 @@ proc newVkBufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags:
   result.queueFamilyIndexCount = queueFamilyIndexCount
   result.pQueueFamilyIndices = pQueueFamilyIndices
 
-proc newVkBufferViewCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkBufferViewCreateFlags, buffer: VkBuffer, format: VkFormat, offset: VkDeviceSize, range: VkDeviceSize): VkBufferViewCreateInfo =
+proc newVkBufferViewCreateInfo*(sType: VkStructureType = VkStructureTypeBufferViewCreateInfo, pNext: pointer = nil, flags: VkBufferViewCreateFlags, buffer: VkBuffer, format: VkFormat, offset: VkDeviceSize, range: VkDeviceSize): VkBufferViewCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5118,13 +5118,13 @@ proc newVkImageSubresourceRange*(aspectMask: VkImageAspectFlags, baseMipLevel: u
   result.baseArrayLayer = baseArrayLayer
   result.layerCount = layerCount
 
-proc newVkMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags): VkMemoryBarrier =
+proc newVkMemoryBarrier*(sType: VkStructureType = VkStructureTypeMemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags): VkMemoryBarrier =
   result.sType = sType
   result.pNext = pNext
   result.srcAccessMask = srcAccessMask
   result.dstAccessMask = dstAccessMask
 
-proc newVkBufferMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize): VkBufferMemoryBarrier =
+proc newVkBufferMemoryBarrier*(sType: VkStructureType = VkStructureTypeBufferMemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize): VkBufferMemoryBarrier =
   result.sType = sType
   result.pNext = pNext
   result.srcAccessMask = srcAccessMask
@@ -5135,7 +5135,7 @@ proc newVkBufferMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, src
   result.offset = offset
   result.size = size
 
-proc newVkImageMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, oldLayout: VkImageLayout, newLayout: VkImageLayout, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, image: VkImage, subresourceRange: VkImageSubresourceRange): VkImageMemoryBarrier =
+proc newVkImageMemoryBarrier*(sType: VkStructureType = VkStructureTypeImageMemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, oldLayout: VkImageLayout, newLayout: VkImageLayout, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, image: VkImage, subresourceRange: VkImageSubresourceRange): VkImageMemoryBarrier =
   result.sType = sType
   result.pNext = pNext
   result.srcAccessMask = srcAccessMask
@@ -5147,7 +5147,7 @@ proc newVkImageMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcA
   result.image = image
   result.subresourceRange = subresourceRange
 
-proc newVkImageCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, initialLayout: VkImageLayout): VkImageCreateInfo =
+proc newVkImageCreateInfo*(sType: VkStructureType = VkStructureTypeImageCreateInfo, pNext: pointer = nil, flags: VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, initialLayout: VkImageLayout): VkImageCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5171,7 +5171,7 @@ proc newVkSubresourceLayout*(offset: VkDeviceSize, size: VkDeviceSize, rowPitch:
   result.arrayPitch = arrayPitch
   result.depthPitch = depthPitch
 
-proc newVkImageViewCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkImageViewCreateFlags, image: VkImage, viewType: VkImageViewType, format: VkFormat, components: VkComponentMapping, subresourceRange: VkImageSubresourceRange): VkImageViewCreateInfo =
+proc newVkImageViewCreateInfo*(sType: VkStructureType = VkStructureTypeImageViewCreateInfo, pNext: pointer = nil, flags: VkImageViewCreateFlags, image: VkImage, viewType: VkImageViewType, format: VkFormat, components: VkComponentMapping, subresourceRange: VkImageSubresourceRange): VkImageViewCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5216,7 +5216,7 @@ proc newVkSparseImageMemoryBindInfo*(image: VkImage, bindCount: uint32, pBinds: 
   result.bindCount = bindCount
   result.pBinds = pBinds
 
-proc newVkBindSparseInfo*(sType: VkStructureType, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, bufferBindCount: uint32, pBufferBinds: ptr VkSparseBufferMemoryBindInfo, imageOpaqueBindCount: uint32, pImageOpaqueBinds: ptr VkSparseImageOpaqueMemoryBindInfo, imageBindCount: uint32, pImageBinds: ptr VkSparseImageMemoryBindInfo, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkBindSparseInfo =
+proc newVkBindSparseInfo*(sType: VkStructureType = VkStructureTypeBindSparseInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, bufferBindCount: uint32, pBufferBinds: ptr VkSparseBufferMemoryBindInfo, imageOpaqueBindCount: uint32, pImageOpaqueBinds: ptr VkSparseImageOpaqueMemoryBindInfo, imageBindCount: uint32, pImageBinds: ptr VkSparseImageMemoryBindInfo, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkBindSparseInfo =
   result.sType = sType
   result.pNext = pNext
   result.waitSemaphoreCount = waitSemaphoreCount
@@ -5258,7 +5258,7 @@ proc newVkImageResolve*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkO
   result.dstOffset = dstOffset
   result.extent = extent
 
-proc newVkShaderModuleCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkShaderModuleCreateFlags, codeSize: uint, pCode: ptr uint32): VkShaderModuleCreateInfo =
+proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureTypeShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags, codeSize: uint, pCode: ptr uint32): VkShaderModuleCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5272,7 +5272,7 @@ proc newVkDescriptorSetLayoutBinding*(binding: uint32, descriptorType: VkDescrip
   result.stageFlags = stageFlags
   result.pImmutableSamplers = pImmutableSamplers
 
-proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags, bindingCount: uint32, pBindings: ptr VkDescriptorSetLayoutBinding): VkDescriptorSetLayoutCreateInfo =
+proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType = VkStructureTypeDescriptorSetLayoutCreateInfo, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags, bindingCount: uint32, pBindings: ptr VkDescriptorSetLayoutBinding): VkDescriptorSetLayoutCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5283,7 +5283,7 @@ proc newVkDescriptorPoolSize*(`type`: VkDescriptorType, descriptorCount: uint32)
   result.`type` = `type`
   result.descriptorCount = descriptorCount
 
-proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizeCount: uint32, pPoolSizes: ptr VkDescriptorPoolSize): VkDescriptorPoolCreateInfo =
+proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType = VkStructureTypeDescriptorPoolCreateInfo, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizeCount: uint32, pPoolSizes: ptr VkDescriptorPoolSize): VkDescriptorPoolCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5291,7 +5291,7 @@ proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil
   result.poolSizeCount = poolSizeCount
   result.pPoolSizes = pPoolSizes
 
-proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout): VkDescriptorSetAllocateInfo =
+proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType = VkStructureTypeDescriptorSetAllocateInfo, pNext: pointer = nil, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout): VkDescriptorSetAllocateInfo =
   result.sType = sType
   result.pNext = pNext
   result.descriptorPool = descriptorPool
@@ -5309,7 +5309,7 @@ proc newVkSpecializationInfo*(mapEntryCount: uint32, pMapEntries: ptr VkSpeciali
   result.dataSize = dataSize
   result.pData = pData
 
-proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineShaderStageCreateFlags, stage: VkShaderStageFlagBits, module: VkShaderModule, pName: cstring, pSpecializationInfo: ptr VkSpecializationInfo): VkPipelineShaderStageCreateInfo =
+proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType = VkStructureTypePipelineShaderStageCreateInfo, pNext: pointer = nil, flags: VkPipelineShaderStageCreateFlags, stage: VkShaderStageFlagBits, module: VkShaderModule, pName: cstring, pSpecializationInfo: ptr VkSpecializationInfo): VkPipelineShaderStageCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5318,7 +5318,7 @@ proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType, pNext: pointer 
   result.pName = pName
   result.pSpecializationInfo = pSpecializationInfo
 
-proc newVkComputePipelineCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCreateFlags, stage: VkPipelineShaderStageCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkComputePipelineCreateInfo =
+proc newVkComputePipelineCreateInfo*(sType: VkStructureType = VkStructureTypeComputePipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags, stage: VkPipelineShaderStageCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkComputePipelineCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5338,7 +5338,7 @@ proc newVkVertexInputAttributeDescription*(location: uint32, binding: uint32, fo
   result.format = format
   result.offset = offset
 
-proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptionCount: uint32, pVertexBindingDescriptions: ptr VkVertexInputBindingDescription, vertexAttributeDescriptionCount: uint32, pVertexAttributeDescriptions: ptr VkVertexInputAttributeDescription): VkPipelineVertexInputStateCreateInfo =
+proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineVertexInputStateCreateInfo, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptionCount: uint32, pVertexBindingDescriptions: ptr VkVertexInputBindingDescription, vertexAttributeDescriptionCount: uint32, pVertexAttributeDescriptions: ptr VkVertexInputAttributeDescription): VkPipelineVertexInputStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5347,20 +5347,20 @@ proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType, pNext: poi
   result.vertexAttributeDescriptionCount = vertexAttributeDescriptionCount
   result.pVertexAttributeDescriptions = pVertexAttributeDescriptions
 
-proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineInputAssemblyStateCreateFlags, topology: VkPrimitiveTopology, primitiveRestartEnable: VkBool32): VkPipelineInputAssemblyStateCreateInfo =
+proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineInputAssemblyStateCreateInfo, pNext: pointer = nil, flags: VkPipelineInputAssemblyStateCreateFlags, topology: VkPrimitiveTopology, primitiveRestartEnable: VkBool32): VkPipelineInputAssemblyStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
   result.topology = topology
   result.primitiveRestartEnable = primitiveRestartEnable
 
-proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineTessellationStateCreateFlags, patchControlPoints: uint32): VkPipelineTessellationStateCreateInfo =
+proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineTessellationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineTessellationStateCreateFlags, patchControlPoints: uint32): VkPipelineTessellationStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
   result.patchControlPoints = patchControlPoints
 
-proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags, viewportCount: uint32, pViewports: ptr VkViewport, scissorCount: uint32, pScissors: ptr VkRect2D): VkPipelineViewportStateCreateInfo =
+proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineViewportStateCreateInfo, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags, viewportCount: uint32, pViewports: ptr VkViewport, scissorCount: uint32, pScissors: ptr VkRect2D): VkPipelineViewportStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5369,7 +5369,7 @@ proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType, pNext: pointe
   result.scissorCount = scissorCount
   result.pScissors = pScissors
 
-proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float, depthBiasClamp: float, depthBiasSlopeFactor: float, lineWidth: float): VkPipelineRasterizationStateCreateInfo =
+proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineRasterizationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float, depthBiasClamp: float, depthBiasSlopeFactor: float, lineWidth: float): VkPipelineRasterizationStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5384,7 +5384,7 @@ proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType, pNext: p
   result.depthBiasSlopeFactor = depthBiasSlopeFactor
   result.lineWidth = lineWidth
 
-proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
+proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineMultisampleStateCreateInfo, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5405,7 +5405,7 @@ proc newVkPipelineColorBlendAttachmentState*(blendEnable: VkBool32, srcColorBlen
   result.alphaBlendOp = alphaBlendOp
   result.colorWriteMask = colorWriteMask
 
-proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float]): VkPipelineColorBlendStateCreateInfo =
+proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float]): VkPipelineColorBlendStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5415,7 +5415,7 @@ proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType, pNext: poin
   result.pAttachments = pAttachments
   result.blendConstants = blendConstants
 
-proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags, dynamicStateCount: uint32, pDynamicStates: ptr VkDynamicState): VkPipelineDynamicStateCreateInfo =
+proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineDynamicStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags, dynamicStateCount: uint32, pDynamicStates: ptr VkDynamicState): VkPipelineDynamicStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5431,7 +5431,7 @@ proc newVkStencilOpState*(failOp: VkStencilOp, passOp: VkStencilOp, depthFailOp:
   result.writeMask = writeMask
   result.reference = reference
 
-proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float, maxDepthBounds: float): VkPipelineDepthStencilStateCreateInfo =
+proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineDepthStencilStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float, maxDepthBounds: float): VkPipelineDepthStencilStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5445,7 +5445,7 @@ proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType, pNext: po
   result.minDepthBounds = minDepthBounds
   result.maxDepthBounds = maxDepthBounds
 
-proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
+proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType = VkStructureTypeGraphicsPipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5466,7 +5466,7 @@ proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType, pNext: pointer = n
   result.basePipelineHandle = basePipelineHandle
   result.basePipelineIndex = basePipelineIndex
 
-proc newVkPipelineCacheCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCacheCreateFlags, initialDataSize: uint, pInitialData: pointer = nil): VkPipelineCacheCreateInfo =
+proc newVkPipelineCacheCreateInfo*(sType: VkStructureType = VkStructureTypePipelineCacheCreateInfo, pNext: pointer = nil, flags: VkPipelineCacheCreateFlags, initialDataSize: uint, pInitialData: pointer = nil): VkPipelineCacheCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5478,7 +5478,7 @@ proc newVkPushConstantRange*(stageFlags: VkShaderStageFlags, offset: uint32, siz
   result.offset = offset
   result.size = size
 
-proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange): VkPipelineLayoutCreateInfo =
+proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureTypePipelineLayoutCreateInfo, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange): VkPipelineLayoutCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5487,7 +5487,7 @@ proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil
   result.pushConstantRangeCount = pushConstantRangeCount
   result.pPushConstantRanges = pPushConstantRanges
 
-proc newVkSamplerCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float, anisotropyEnable: VkBool32, maxAnisotropy: float, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float, maxLod: float, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
+proc newVkSamplerCreateInfo*(sType: VkStructureType = VkStructureTypeSamplerCreateInfo, pNext: pointer = nil, flags: VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float, anisotropyEnable: VkBool32, maxAnisotropy: float, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float, maxLod: float, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5507,20 +5507,20 @@ proc newVkSamplerCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags
   result.borderColor = borderColor
   result.unnormalizedCoordinates = unnormalizedCoordinates
 
-proc newVkCommandPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkCommandPoolCreateFlags, queueFamilyIndex: uint32): VkCommandPoolCreateInfo =
+proc newVkCommandPoolCreateInfo*(sType: VkStructureType = VkStructureTypeCommandPoolCreateInfo, pNext: pointer = nil, flags: VkCommandPoolCreateFlags, queueFamilyIndex: uint32): VkCommandPoolCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
   result.queueFamilyIndex = queueFamilyIndex
 
-proc newVkCommandBufferAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, commandPool: VkCommandPool, level: VkCommandBufferLevel, commandBufferCount: uint32): VkCommandBufferAllocateInfo =
+proc newVkCommandBufferAllocateInfo*(sType: VkStructureType = VkStructureTypeCommandBufferAllocateInfo, pNext: pointer = nil, commandPool: VkCommandPool, level: VkCommandBufferLevel, commandBufferCount: uint32): VkCommandBufferAllocateInfo =
   result.sType = sType
   result.pNext = pNext
   result.commandPool = commandPool
   result.level = level
   result.commandBufferCount = commandBufferCount
 
-proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType, pNext: pointer = nil, renderPass: VkRenderPass, subpass: uint32, framebuffer: VkFramebuffer, occlusionQueryEnable: VkBool32, queryFlags: VkQueryControlFlags, pipelineStatistics: VkQueryPipelineStatisticFlags): VkCommandBufferInheritanceInfo =
+proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType = VkStructureTypeCommandBufferInheritanceInfo, pNext: pointer = nil, renderPass: VkRenderPass, subpass: uint32, framebuffer: VkFramebuffer, occlusionQueryEnable: VkBool32, queryFlags: VkQueryControlFlags, pipelineStatistics: VkQueryPipelineStatisticFlags): VkCommandBufferInheritanceInfo =
   result.sType = sType
   result.pNext = pNext
   result.renderPass = renderPass
@@ -5530,13 +5530,13 @@ proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType, pNext: pointer =
   result.queryFlags = queryFlags
   result.pipelineStatistics = pipelineStatistics
 
-proc newVkCommandBufferBeginInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkCommandBufferUsageFlags, pInheritanceInfo: ptr VkCommandBufferInheritanceInfo): VkCommandBufferBeginInfo =
+proc newVkCommandBufferBeginInfo*(sType: VkStructureType = VkStructureTypeCommandBufferBeginInfo, pNext: pointer = nil, flags: VkCommandBufferUsageFlags, pInheritanceInfo: ptr VkCommandBufferInheritanceInfo): VkCommandBufferBeginInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
   result.pInheritanceInfo = pInheritanceInfo
 
-proc newVkRenderPassBeginInfo*(sType: VkStructureType, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValueCount: uint32, pClearValues: ptr VkClearValue): VkRenderPassBeginInfo =
+proc newVkRenderPassBeginInfo*(sType: VkStructureType = VkStructureTypeRenderPassBeginInfo, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValueCount: uint32, pClearValues: ptr VkClearValue): VkRenderPassBeginInfo =
   result.sType = sType
   result.pNext = pNext
   result.renderPass = renderPass
@@ -5590,7 +5590,7 @@ proc newVkSubpassDependency*(srcSubpass: uint32, dstSubpass: uint32, srcStageMas
   result.dstAccessMask = dstAccessMask
   result.dependencyFlags = dependencyFlags
 
-proc newVkRenderPassCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency): VkRenderPassCreateInfo =
+proc newVkRenderPassCreateInfo*(sType: VkStructureType = VkStructureTypeRenderPassCreateInfo, pNext: pointer = nil, flags: VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency): VkRenderPassCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5601,12 +5601,12 @@ proc newVkRenderPassCreateInfo*(sType: VkStructureType, pNext: pointer = nil, fl
   result.dependencyCount = dependencyCount
   result.pDependencies = pDependencies
 
-proc newVkEventCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkEventCreateFlags): VkEventCreateInfo =
+proc newVkEventCreateInfo*(sType: VkStructureType = VkStructureTypeEventCreateInfo, pNext: pointer = nil, flags: VkEventCreateFlags): VkEventCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
 
-proc newVkFenceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkFenceCreateFlags): VkFenceCreateInfo =
+proc newVkFenceCreateInfo*(sType: VkStructureType = VkStructureTypeFenceCreateInfo, pNext: pointer = nil, flags: VkFenceCreateFlags): VkFenceCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5783,12 +5783,12 @@ proc newVkPhysicalDeviceLimits*(maxImageDimension1D: uint32, maxImageDimension2D
   result.optimalBufferCopyRowPitchAlignment = optimalBufferCopyRowPitchAlignment
   result.nonCoherentAtomSize = nonCoherentAtomSize
 
-proc newVkSemaphoreCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkSemaphoreCreateFlags): VkSemaphoreCreateInfo =
+proc newVkSemaphoreCreateInfo*(sType: VkStructureType = VkStructureTypeSemaphoreCreateInfo, pNext: pointer = nil, flags: VkSemaphoreCreateFlags): VkSemaphoreCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
 
-proc newVkQueryPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkQueryPoolCreateFlags, queryType: VkQueryType, queryCount: uint32, pipelineStatistics: VkQueryPipelineStatisticFlags): VkQueryPoolCreateInfo =
+proc newVkQueryPoolCreateInfo*(sType: VkStructureType = VkStructureTypeQueryPoolCreateInfo, pNext: pointer = nil, flags: VkQueryPoolCreateFlags, queryType: VkQueryType, queryCount: uint32, pipelineStatistics: VkQueryPipelineStatisticFlags): VkQueryPoolCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5796,7 +5796,7 @@ proc newVkQueryPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, fla
   result.queryCount = queryCount
   result.pipelineStatistics = pipelineStatistics
 
-proc newVkFramebufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkFramebufferCreateFlags, renderPass: VkRenderPass, attachmentCount: uint32, pAttachments: ptr VkImageView, width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
+proc newVkFramebufferCreateInfo*(sType: VkStructureType = VkStructureTypeFramebufferCreateInfo, pNext: pointer = nil, flags: VkFramebufferCreateFlags, renderPass: VkRenderPass, attachmentCount: uint32, pAttachments: ptr VkImageView, width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5825,7 +5825,7 @@ proc newVkDispatchIndirectCommand*(x: uint32, y: uint32, z: uint32): VkDispatchI
   result.y = y
   result.z = z
 
-proc newVkSubmitInfo*(sType: VkStructureType, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, pWaitDstStageMask: ptr VkPipelineStageFlags, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkSubmitInfo =
+proc newVkSubmitInfo*(sType: VkStructureType = VkStructureTypeSubmitInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, pWaitDstStageMask: ptr VkPipelineStageFlags, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkSubmitInfo =
   result.sType = sType
   result.pNext = pNext
   result.waitSemaphoreCount = waitSemaphoreCount

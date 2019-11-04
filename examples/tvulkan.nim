@@ -37,7 +37,6 @@ proc cleanUp() =
 
 proc initVulkan() =
   var appInfo = newVkApplicationInfo(
-    sType = VkStructureTypeApplicationInfo,
     pApplicationName = "NimGL Vulkan Example",
     applicationVersion = vkMakeVersion(1, 0, 0),
     pEngineName = "No Engine",
@@ -50,7 +49,6 @@ proc initVulkan() =
   glfwExtensions = glfwGetRequiredInstanceExtensions(glfwExtensionCount.addr)
 
   var instanceCreateInfo = newVkInstanceCreateInfo(
-    sType = VkStructureTypeInstanceCreateInfo,
     pApplicationInfo = appInfo.addr,
     enabledExtensionCount = glfwExtensionCount,
     ppEnabledExtensionNames = glfwExtensions,
