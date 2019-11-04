@@ -9,7 +9,8 @@
 ##   - `Impl_OpenGL <./impl_opengl.html>`_ ImGui implementation for OpenGL
 ## - `GLFW  <./glfw.html>`_ Window Library
 ##   - `Native <./native.html>`_ Native window handler access
-## - `OpenGL  <./opengl.html>`_ Modern OpenGL Loading Library
+## - `OpenGL  <./opengl.html>`_ Modern OpenGL bindings
+## - `Vulkan  <./vulkan.html>`_ Vulkan bindings
 ## - STB
 ##   - `Image  <./image.html>`_ Image loading/decoding library
 

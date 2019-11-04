@@ -28,7 +28,7 @@ proc genDocs(pathr: string, output: string) =
   echo "\n[info] generating " & src & ".nim"
   if src == "nimgl":
     src = "index"
-  exec("nim doc -o:" & output & "/" & src & ".html" & " " & path)
+  exec("nim doc -d:vulkan -o:" & output & "/" & src & ".html" & " " & path)
 
 proc walkRecursive(dir: string) =
   for f in listFiles(dir):

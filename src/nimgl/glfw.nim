@@ -82,7 +82,7 @@ else:
     compile: "private/glfw/src/window.c".}
 
 when defined(vulkan):
-  include ./vulkan/vulkan_types
+  import ./vulkan
 
 # Constants and Enums
 const
@@ -1171,7 +1171,7 @@ type
     ## @since Added in version 3.1.
     ##
     ## @ingroup input
-  GLFWDropFun* = proc(window: GLFWWindow, path_count: int32, paths: ptr cstring): void {.cdecl.}
+  GLFWDropFun* = proc(window: GLFWWindow, path_count: int32, paths: cstringArray): void {.cdecl.}
     ## @brief The function pointer type for path drop callbacks.
     ##
     ## This is the function pointer type for path drop callbacks.  A path drop
@@ -1397,7 +1397,7 @@ proc glfwGetVersionString*(): cstring {.importc: "glfwGetVersionString".}
   ## @since Added in version 3.0.
   ##
   ## @ingroup init
-proc glfwGetError*(description: ptr cstring): int32 {.importc: "glfwGetError".}
+proc glfwGetError*(description: cstringArray): int32 {.importc: "glfwGetError".}
   ## @brief Returns and clears the last error for the calling thread.
   ##
   ## This function returns and clears the error code of the last
@@ -4939,7 +4939,7 @@ proc glfwVulkanSupported*(): bool {.importc: "glfwVulkanSupported".}
   ## @since Added in version 3.2.
   ##
   ## @ingroup vulkan
-proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): ptr cstring {.importc: "glfwGetRequiredInstanceExtensions".}
+proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): cstringArray {.importc: "glfwGetRequiredInstanceExtensions".}
   ## @brief Returns the Vulkan instance extensions required by GLFW.
   ##
   ## This function returns an array of names of Vulkan instance extensions required
