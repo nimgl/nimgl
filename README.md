@@ -154,8 +154,8 @@ Read the [Contribution Guide](CONTRIBUTING.md) for more information.
 | Library              | Description                                                                                                                                                                                                    |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [GLFW][glfw-url]     | Create multiple windows, handle user input (keyboard, mouse, gaming peripherals) and manage contexts. Also features multi-monitor support, clipboard access, file drag-n-drop, and much more.                  |
-| [Vulkan][opengl-url] | A new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms. |
-| [OpenGL][vulkan-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                                        |
+| [Vulkan][vulkan-url] | A new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms. |
+| [OpenGL][opengl-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                                        |
 | [ImGUI][imgui-url]   | Dear ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application.                                  |
 
 ## Roadmap
@@ -200,6 +200,4 @@ developer that uses it to make improvements and fork them here.
 [glfw-url]: https://glfw.org/
 [opengl-url]: https://www.khronos.org/opengl/
 [imgui-url]: https://github.com/ocornut/imgui
-[stb-url]: https://github.com/nothings/stb#stb
-[vulkan-url]: https://github.com/nothings/stb#stb
 [vulkan-url]: https://www.khronos.org/vulkan/
