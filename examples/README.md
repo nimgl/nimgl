@@ -17,5 +17,6 @@ Xvfb. All the tests go through the CI by compiling them but they are not tested 
 | tglfw.nim   | GLFW is initialized correctly and that a window opens | :x: |
 | topengl.nim | OpenGL bindings work and give out correct data        | :x: |
 | timgui.nim  | ImGui actually build and display demo window          | :x: |
+| tvulkan.nim | Vulkan bindings work                                  | :x: |
 
 ###### More to come...

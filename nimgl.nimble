@@ -1,6 +1,6 @@
 # Package
 
-version     = "1.0.0" # pre-pre^100 1.0
+version     = "1.0.0"
 author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"

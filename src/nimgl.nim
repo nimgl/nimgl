@@ -11,8 +11,6 @@
 ##   - `Native <./native.html>`_ Native window handler access
 ## - `OpenGL  <./opengl.html>`_ Modern OpenGL bindings
 ## - `Vulkan  <./vulkan.html>`_ Vulkan bindings
-## - STB
-##   - `Image  <./image.html>`_ Image loading/decoding library
 
 #[
   This is just a stationary file to keep the structure of the nimble project.

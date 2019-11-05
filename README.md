@@ -53,11 +53,6 @@ with the development and to better suit it to the language.
 We highly recommend using a Nimble project to easily add requirements such as
 NimGL.
 
-I recommend using the development version (this branch) but if you find yourself
-disliking the rhythm of updates you can always go back to the legacy (`master`
-branch) version. This branch eventually will become `master` and `master` will
-become `0.3`.
-
 ### Installation
 
 #### With Nimble file (recommended)
@@ -77,7 +72,7 @@ nimble build
 1. Install Nimble, it comes pre installed with Nim.
 2. Install NimGL with Nimble.
 ```sh
-nimble install nimgl@#1.0
+nimble install nimgl
 ```
 3. Build with Nim.
 ```sh
@@ -97,7 +92,7 @@ nimble develop nimgl
 It is currently being developed and tested on
 
 - Windows 10
-- MacOS Mojave
+- MacOS Catalina
 - Linux Ubuntu 18.10
 
 ### Usage
@@ -162,7 +157,6 @@ Read the [Contribution Guide](CONTRIBUTING.md) for more information.
 | [Vulkan][opengl-url] | A new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms. |
 | [OpenGL][vulkan-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                                        |
 | [ImGUI][imgui-url]   | Dear ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application.                                  |
-| [stb_image][stb-url] | Image loading/decoding from file/memory: JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC                                                                                                                                |
 
 ## Roadmap
 
@@ -182,13 +176,6 @@ Please let me know if you want to be showcased or removed from here.
 chip-8 emulator by [@kraptor](https://github.com/kraptor)
 <img src="https://user-images.githubusercontent.com/7249728/60570947-e6787f80-9d72-11e9-8b26-d189f44b1256.gif">
 
-## Contact
-
-Leonardo Mariscal - [@thelmariscal](https://twitter.com/thelmariscal) - leo at
-ldmd dot mx
-
-You can also contact me through the official Nim IRC channel
-[FreeNode#nim](irc://freenode.net/nim) as `lmariscal` where I will be notified.
 
 ## Credits
 
