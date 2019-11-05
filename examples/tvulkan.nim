@@ -53,7 +53,6 @@ proc initVulkan() =
     enabledExtensionCount = glfwExtensionCount,
     ppEnabledExtensionNames = glfwExtensions,
     enabledLayerCount = 0,
-    flags = 0.VkInstanceCreateFlags,
     ppEnabledLayerNames = nil,
   )
 
