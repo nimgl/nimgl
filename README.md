@@ -179,7 +179,7 @@ chip-8 emulator by [@kraptor](https://github.com/kraptor)
 
 ## Credits
 
-Developed by [Leonardo Mariscal](https://www.ldmd.mx) and all the amazing
+Developed by [Leonardo Mariscal](https://lmariscal.com/) and all the amazing
 contributors in GitHub.
 
 Heavily inspired by [LWJGL3](https://github.com/LWJGL/lwjgl3) and
