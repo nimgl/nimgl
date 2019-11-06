@@ -13,7 +13,7 @@ when not defined(vkCustomLoader):
   when defined(windows):
     const vkDLL = "vulkan-1.dll"
   elif defined(macosx):
-    quit("libvulkan.1.dylib")
+    const vkDLL = "libMoltenVK.dylib"
   else:
     const vkDLL = "libvulkan.so.1"
 
@@ -26,9 +26,10 @@ when not defined(vkCustomLoader):
     quit("failed to load `vkGetInstanceProcAddr` from " & vkDLL)
 
   vkGetProc = proc(procName: cstring): pointer {.cdecl.} =
-    result = vkGetProcAddress(procName)
-    if result != nil:
-      return
+    when defined(windows):
+      result = vkGetProcAddress(procName)
+      if result != nil:
+        return
     result = symAddr(vkHandleDLL, procName)
     if result == nil:
       raiseInvalidLibrary(procName)
@@ -9263,6 +9264,7 @@ proc loadVK_KHR_pipeline_executable_properties*() =
 proc vkInit*(load1_0: bool = true, load1_1: bool = true): bool =
   if load1_0:
     vkLoad1_0()
-  if load1_1:
-    vkLoad1_1()
+  when not defined(macosx):
+    if load1_1:
+      vkLoad1_1()
   return true

@@ -36,12 +36,16 @@ proc cleanUp() =
   glfwTerminate()
 
 proc initVulkan() =
+  when defined(macosx):
+    let vkVersion = vkApiVersion1_0.uint32
+  else:
+    let vkVersion = vkApiVersion1_1.uint32
   var appInfo = newVkApplicationInfo(
     pApplicationName = "NimGL Vulkan Example",
     applicationVersion = vkMakeVersion(1, 0, 0),
     pEngineName = "No Engine",
     engineVersion = vkMakeVersion(1, 0, 0),
-    apiVersion = vkApiVersion1_1
+    apiVersion = vkVersion
   )
 
   var glfwExtensionCount: uint32 = 0
