@@ -4144,7 +4144,7 @@ proc setDropCallback*(window: GLFWWindow, callback: GLFWDropfun): GLFWDropfun {.
   ## @since Added in version 3.1.
   ##
   ## @ingroup input
-proc glfwJoystickPresent*(jid: bool): bool {.importc: "glfwJoystickPresent".}
+proc glfwJoystickPresent*(jid: int32): bool {.importc: "glfwJoystickPresent".}
   ## @brief Returns whether the specified joystick is present.
   ##
   ## This function returns whether the specified joystick is present.
@@ -4525,7 +4525,7 @@ proc glfwGetGamepadName*(jid: int32): cstring {.importc: "glfwGetGamepadName".}
   ## @since Added in version 3.3.
   ##
   ## @ingroup input
-proc glfwGetGamepadState*(jid: bool, state: ptr GLFWGamepadstate): bool {.importc: "glfwGetGamepadState".}
+proc glfwGetGamepadState*(jid: int32, state: ptr GLFWGamepadstate): bool {.importc: "glfwGetGamepadState".}
   ## @brief Retrieves the state of the specified joystick remapped as a gamepad.
   ##
   ## This function retrieves the state of the specified joystick remapped to
