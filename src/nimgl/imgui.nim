@@ -297,11 +297,10 @@ type
     TweakSlow = 14
     TweakFast = 15
     KeyMenu = 16
-    KeyTab = 17
-    KeyLeft = 18
-    KeyRight = 19
-    KeyUp = 20
-    KeyDown = 21
+    KeyLeft = 17
+    KeyRight = 18
+    KeyUp = 19
+    KeyDown = 20
   ImGuiSelectableFlags* {.pure, size: int32.sizeof.} = enum
     None = 0
     DontClosePopups = 1
@@ -596,7 +595,7 @@ type
     keyAlt* {.importc: "KeyAlt".}: bool
     keySuper* {.importc: "KeySuper".}: bool
     keysDown* {.importc: "KeysDown".}: array[512, bool]
-    navInputs* {.importc: "NavInputs".}: array[22, float32]
+    navInputs* {.importc: "NavInputs".}: array[21, float32]
     wantCaptureMouse* {.importc: "WantCaptureMouse".}: bool
     wantCaptureKeyboard* {.importc: "WantCaptureKeyboard".}: bool
     wantTextInput* {.importc: "WantTextInput".}: bool
@@ -625,8 +624,8 @@ type
     mouseDragMaxDistanceSqr* {.importc: "MouseDragMaxDistanceSqr".}: array[5, float32]
     keysDownDuration* {.importc: "KeysDownDuration".}: array[512, float32]
     keysDownDurationPrev* {.importc: "KeysDownDurationPrev".}: array[512, float32]
-    navInputsDownDuration* {.importc: "NavInputsDownDuration".}: array[22, float32]
-    navInputsDownDurationPrev* {.importc: "NavInputsDownDurationPrev".}: array[22, float32]
+    navInputsDownDuration* {.importc: "NavInputsDownDuration".}: array[21, float32]
+    navInputsDownDurationPrev* {.importc: "NavInputsDownDurationPrev".}: array[21, float32]
     inputQueueCharacters* {.importc: "InputQueueCharacters".}: ImVector[ImWchar]
   ImGuiInputTextCallbackData* {.importc: "ImGuiInputTextCallbackData", imgui_header.} = object
     eventFlag* {.importc: "EventFlag".}: ImGuiInputTextFlags
@@ -961,6 +960,7 @@ proc push_front*[T](self: ptr ImVector, v: T): void {.importc: "ImVector_push_fr
 proc reserve*(self: ptr ImVector, new_capacity: int32): void {.importc: "ImVector_reserve".}
 proc resize*(self: ptr ImVector, new_size: int32): void {.importc: "ImVector_resize".}
 proc resize*[T](self: ptr ImVector, new_size: int32, v: T): void {.importc: "ImVector_resizeT".}
+proc shrink*(self: ptr ImVector, new_size: int32): void {.importc: "ImVector_shrink".}
 proc size*(self: ptr ImVector): int32 {.importc: "ImVector_size".}
 proc size_in_bytes*(self: ptr ImVector): int32 {.importc: "ImVector_size_in_bytes".}
 proc swap*(self: ptr ImVector, rhs: ImVector): void {.importc: "ImVector_swap".}
@@ -1026,8 +1026,8 @@ proc igDragInt2*(label: cstring, v: var array[2, int32], v_speed: float32 = 1.0f
 proc igDragInt3*(label: cstring, v: var array[3, int32], v_speed: float32 = 1.0f, v_min: int32 = 0, v_max: int32 = 0, format: cstring = "%d"): bool {.importc: "igDragInt3".}
 proc igDragInt4*(label: cstring, v: var array[4, int32], v_speed: float32 = 1.0f, v_min: int32 = 0, v_max: int32 = 0, format: cstring = "%d"): bool {.importc: "igDragInt4".}
 proc igDragIntRange2*(label: cstring, v_current_min: ptr int32, v_current_max: ptr int32, v_speed: float32 = 1.0f, v_min: int32 = 0, v_max: int32 = 0, format: cstring = "%d", format_max: cstring = nil): bool {.importc: "igDragIntRange2".}
-proc igDragScalar*(label: cstring, data_type: ImGuiDataType, v: pointer, v_speed: float32, v_min: pointer = nil, v_max: pointer = nil, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igDragScalar".}
-proc igDragScalarN*(label: cstring, data_type: ImGuiDataType, v: pointer, components: int32, v_speed: float32, v_min: pointer = nil, v_max: pointer = nil, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igDragScalarN".}
+proc igDragScalar*(label: cstring, data_type: ImGuiDataType, p_data: pointer, v_speed: float32, p_min: pointer = nil, p_max: pointer = nil, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igDragScalar".}
+proc igDragScalarN*(label: cstring, data_type: ImGuiDataType, p_data: pointer, components: int32, v_speed: float32, p_min: pointer = nil, p_max: pointer = nil, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igDragScalarN".}
 proc igDummy*(size: ImVec2): void {.importc: "igDummy".}
 proc igEnd*(): void {.importc: "igEnd".}
 proc igEndChild*(): void {.importc: "igEndChild".}
@@ -1117,8 +1117,8 @@ proc igInputInt*(label: cstring, v: ptr int32, step: int32 = 1, step_fast: int32
 proc igInputInt2*(label: cstring, v: var array[2, int32], flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputInt2".}
 proc igInputInt3*(label: cstring, v: var array[3, int32], flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputInt3".}
 proc igInputInt4*(label: cstring, v: var array[4, int32], flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputInt4".}
-proc igInputScalar*(label: cstring, data_type: ImGuiDataType, v: pointer, step: pointer = nil, step_fast: pointer = nil, format: cstring = nil, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputScalar".}
-proc igInputScalarN*(label: cstring, data_type: ImGuiDataType, v: pointer, components: int32, step: pointer = nil, step_fast: pointer = nil, format: cstring = nil, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputScalarN".}
+proc igInputScalar*(label: cstring, data_type: ImGuiDataType, p_data: pointer, p_step: pointer = nil, p_step_fast: pointer = nil, format: cstring = nil, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputScalar".}
+proc igInputScalarN*(label: cstring, data_type: ImGuiDataType, p_data: pointer, components: int32, p_step: pointer = nil, p_step_fast: pointer = nil, format: cstring = nil, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags): bool {.importc: "igInputScalarN".}
 proc igInputText*(label: cstring, buf: cstring, buf_size: uint, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.importc: "igInputText".}
 proc igInputTextMultiline*(label: cstring, buf: cstring, buf_size: uint, size: ImVec2 = ImVec2(x: 0, y: 0), flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.importc: "igInputTextMultiline".}
 proc igInputTextWithHint*(label: cstring, hint: cstring, buf: cstring, buf_size: uint, flags: ImGuiInputTextFlags = 0.ImGuiInputTextFlags, callback: ImGuiInputTextCallback = nil, user_data: pointer = nil): bool {.importc: "igInputTextWithHint".}
@@ -1135,6 +1135,7 @@ proc igIsItemDeactivatedAfterEdit*(): bool {.importc: "igIsItemDeactivatedAfterE
 proc igIsItemEdited*(): bool {.importc: "igIsItemEdited".}
 proc igIsItemFocused*(): bool {.importc: "igIsItemFocused".}
 proc igIsItemHovered*(flags: ImGuiHoveredFlags = 0.ImGuiHoveredFlags): bool {.importc: "igIsItemHovered".}
+proc igIsItemToggledOpen*(): bool {.importc: "igIsItemToggledOpen".}
 proc igIsItemVisible*(): bool {.importc: "igIsItemVisible".}
 proc igIsKeyDown*(user_key_index: int32): bool {.importc: "igIsKeyDown".}
 proc igIsKeyPressed*(user_key_index: int32, repeat: bool = true): bool {.importc: "igIsKeyPressed".}
@@ -1274,8 +1275,8 @@ proc igSliderInt*(label: cstring, v: ptr int32, v_min: int32, v_max: int32, form
 proc igSliderInt2*(label: cstring, v: var array[2, int32], v_min: int32, v_max: int32, format: cstring = "%d"): bool {.importc: "igSliderInt2".}
 proc igSliderInt3*(label: cstring, v: var array[3, int32], v_min: int32, v_max: int32, format: cstring = "%d"): bool {.importc: "igSliderInt3".}
 proc igSliderInt4*(label: cstring, v: var array[4, int32], v_min: int32, v_max: int32, format: cstring = "%d"): bool {.importc: "igSliderInt4".}
-proc igSliderScalar*(label: cstring, data_type: ImGuiDataType, v: pointer, v_min: pointer, v_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igSliderScalar".}
-proc igSliderScalarN*(label: cstring, data_type: ImGuiDataType, v: pointer, components: int32, v_min: pointer, v_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igSliderScalarN".}
+proc igSliderScalar*(label: cstring, data_type: ImGuiDataType, p_data: pointer, p_min: pointer, p_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igSliderScalar".}
+proc igSliderScalarN*(label: cstring, data_type: ImGuiDataType, p_data: pointer, components: int32, p_min: pointer, p_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igSliderScalarN".}
 proc igSmallButton*(label: cstring): bool {.importc: "igSmallButton".}
 proc igSpacing*(): void {.importc: "igSpacing".}
 proc igStyleColorsClassic*(dst: ptr ImGuiStyle = nil): void {.importc: "igStyleColorsClassic".}
@@ -1306,7 +1307,7 @@ proc igTreePush*(ptr_id: pointer = nil): void {.importc: "igTreePushPtr".}
 proc igUnindent*(indent_w: float32 = 0.0f): void {.importc: "igUnindent".}
 proc igVSliderFloat*(label: cstring, size: ImVec2, v: ptr float32, v_min: float32, v_max: float32, format: cstring = "%.3f", power: float32 = 1.0f): bool {.importc: "igVSliderFloat".}
 proc igVSliderInt*(label: cstring, size: ImVec2, v: ptr int32, v_min: int32, v_max: int32, format: cstring = "%d"): bool {.importc: "igVSliderInt".}
-proc igVSliderScalar*(label: cstring, size: ImVec2, data_type: ImGuiDataType, v: pointer, v_min: pointer, v_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igVSliderScalar".}
+proc igVSliderScalar*(label: cstring, size: ImVec2, data_type: ImGuiDataType, p_data: pointer, p_min: pointer, p_max: pointer, format: cstring = nil, power: float32 = 1.0f): bool {.importc: "igVSliderScalar".}
 proc igValue*(prefix: cstring, b: bool): void {.importc: "igValueBool".}
 proc igValue*(prefix: cstring, v: int32): void {.importc: "igValueInt".}
 proc igValue*(prefix: cstring, v: uint32): void {.importc: "igValueUint".}
