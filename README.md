@@ -53,6 +53,15 @@ with the development and to better suit it to the language.
 We highly recommend using a Nimble project to easily add requirements such as
 NimGL.
 
+### Requirements
+
+#### Ubuntu
+
+Install the `xorg-dev` metapackage:
+```sh
+sudo apt xorg-dev
+```
+
 ### Installation
 
 #### With Nimble file (recommended)
