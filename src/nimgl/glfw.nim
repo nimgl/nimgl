@@ -97,7 +97,7 @@ const
     ## This is incremented when features are added to the API but it remains
     ## backward-compatible.
     ## @ingroup init
-  GLFWVersionRevision* = 1
+  GLFWVersionRevision* = 2
     ## @brief The revision number of the GLFW library.
     ##
     ## This is incremented when a bug fix release is made that does not contain any
@@ -4969,8 +4969,9 @@ proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): cstringArray {.impor
   ## returned array, as it is an error to specify an extension more than once in
   ## the `VkInstanceCreateInfo` struct.
   ##
-  ## @remark @macos This function currently only supports the
-  ## `VK_MVK_macos_surface` extension from MoltenVK.
+  ## @remark @macos This function currently supports either the
+  ## `VK_MVK_macos_surface` extension from MoltenVK or `VK_EXT_metal_surface`
+  ## extension.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
   ## should not free it yourself.  It is guaranteed to be valid only until the
