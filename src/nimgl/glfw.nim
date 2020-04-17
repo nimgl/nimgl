@@ -91,13 +91,13 @@ const
     ##
     ## This is incremented when the API is changed in non-compatible ways.
     ## @ingroup init
-  GLFWVersionMinor* = 3
+  GLFWVersionMinor* = 4
     ## @brief The minor version number of the GLFW library.
     ##
     ## This is incremented when features are added to the API but it remains
     ## backward-compatible.
     ## @ingroup init
-  GLFWVersionRevision* = 2
+  GLFWVersionRevision* = 0
     ## @brief The revision number of the GLFW library.
     ##
     ## This is incremented when a bug fix release is made that does not contain any
@@ -511,6 +511,16 @@ const
     ## a function that requires it to have one.
     ##
     ## @analysis Application programmer error.  Fix the offending call.
+  GLFWCursorUnavailable* = 0x0001000B
+    ## @brief The specified cursor shape is not available.
+    ##
+    ## The specified standard cursor shape is not available, either because the
+    ## current system cursor theme does not provide it or because it is not
+    ## available on the platform.
+    ##
+    ## @analysis Platform or system settings limitation.  Pick another
+    ## standard cursor shape or create a
+    ## custom cursor.
   GLFWFocused* = 0x00020001
     ## @brief Input focus window hint and attribute
     ##
@@ -706,6 +716,9 @@ const
   GLFWX11InstanceName* = 0x00024002
     ## @brief X11 specific
     ## window hint.
+  GLFWWin32KeyboardMenu* = 0x00025001
+    ## @brief X11 specific
+    ## window hint.
   GLFWNoApi* = 0
   GLFWOpenglApi* = 0x00030001
   GLFWOpenglEsApi* = 0x00030002
@@ -732,27 +745,85 @@ const
   GLFWArrowCursor* = 0x00036001
     ## @brief The regular arrow cursor shape.
     ##
-    ## The regular arrow cursor.
+    ## The regular arrow cursor shape.
   GLFWIbeamCursor* = 0x00036002
     ## @brief The text input I-beam cursor shape.
     ##
     ## The text input I-beam cursor shape.
   GLFWCrosshairCursor* = 0x00036003
-    ## @brief The crosshair shape.
+    ## @brief The crosshair cursor shape.
     ##
-    ## The crosshair shape.
-  GLFWHandCursor* = 0x00036004
-    ## @brief The hand shape.
+    ## The crosshair cursor shape.
+  GLFWPointingHandCursor* = 0x00036004
+    ## @brief The pointing hand cursor shape.
     ##
-    ## The hand shape.
-  GLFWHresizeCursor* = 0x00036005
-    ## @brief The horizontal resize arrow shape.
+    ## The pointing hand cursor shape.
+  GLFWResizeEwCursor* = 0x00036005
+    ## @brief The horizontal resize/move arrow shape.
     ##
-    ## The horizontal resize arrow shape.
-  GLFWVresizeCursor* = 0x00036006
-    ## @brief The vertical resize arrow shape.
+    ## The horizontal resize/move arrow shape.  This is usually a horizontal
+    ## double-headed arrow.
+  GLFWResizeNsCursor* = 0x00036006
+    ## @brief The vertical resize/move arrow shape.
     ##
-    ## The vertical resize arrow shape.
+    ## The vertical resize/move shape.  This is usually a vertical double-headed
+    ## arrow.
+  GLFWResizeNwseCursor* = 0x00036007
+    ## @brief The top-left to bottom-right diagonal resize/move arrow shape.
+    ##
+    ## The top-left to bottom-right diagonal resize/move shape.  This is usually
+    ## a diagonal double-headed arrow.
+    ##
+    ## @note @macos This shape is provided by a private system API and may fail
+    ## with  GLFW_CURSOR_UNAVAILABLE in the future.
+    ##
+    ## @note @x11 This shape is provided by a newer standard not supported by all
+    ## cursor themes.
+    ##
+    ## @note @wayland This shape is provided by a newer standard not supported by
+    ## all cursor themes.
+  GLFWResizeNeswCursor* = 0x00036008
+    ## @brief The top-right to bottom-left diagonal resize/move arrow shape.
+    ##
+    ## The top-right to bottom-left diagonal resize/move shape.  This is usually
+    ## a diagonal double-headed arrow.
+    ##
+    ## @note @macos This shape is provided by a private system API and may fail
+    ## with  GLFW_CURSOR_UNAVAILABLE in the future.
+    ##
+    ## @note @x11 This shape is provided by a newer standard not supported by all
+    ## cursor themes.
+    ##
+    ## @note @wayland This shape is provided by a newer standard not supported by
+    ## all cursor themes.
+  GLFWResizeAllCursor* = 0x00036009
+    ## @brief The omni-directional resize/move cursor shape.
+    ##
+    ## The omni-directional resize cursor/move shape.  This is usually either
+    ## a combined horizontal and vertical double-headed arrow or a grabbing hand.
+  GLFWNotAllowedCursor* = 0x0003600A
+    ## @brief The operation-not-allowed shape.
+    ##
+    ## The operation-not-allowed shape.  This is usually a circle with a diagonal
+    ## line through it.
+    ##
+    ## @note @x11 This shape is provided by a newer standard not supported by all
+    ## cursor themes.
+    ##
+    ## @note @wayland This shape is provided by a newer standard not supported by
+    ## all cursor themes.
+  GLFWHresizeCursor* = GLFW_RESIZE_EW_CURSOR
+    ## @brief Legacy name for compatibility.
+    ##
+    ## This is an alias for compatibility with earlier versions.
+  GLFWVresizeCursor* = GLFW_RESIZE_NS_CURSOR
+    ## @brief Legacy name for compatibility.
+    ##
+    ## This is an alias for compatibility with earlier versions.
+  GLFWHandCursor* = GLFW_POINTING_HAND_CURSOR
+    ## @brief Legacy name for compatibility.
+    ##
+    ## This is an alias for compatibility with earlier versions.
   GLFWConnected* = 0x00040001
   GLFWDisconnected* = 0x00040002
   GLFWJoystickHatButtons* = 0x00050001
@@ -1274,6 +1345,18 @@ proc glfwInit*(): bool {.importc: "glfwInit".}
   ## application to the `Contents/Resources` subdirectory of the application's
   ## bundle, if present.  This can be disabled with the
   ## GLFW_COCOA_CHDIR_RESOURCES init hint.
+  ##
+  ## @remark @macos This function will create the main menu and dock icon for the
+  ## application.  If GLFW finds a `MainMenu.nib` it is loaded and assumed to
+  ## contain a menu bar.  Otherwise a minimal menu bar is created manually with
+  ## common commands like Hide, Quit and About.  The About entry opens a minimal
+  ## about dialog with information from the application's bundle.  The menu bar
+  ## and dock icon can be disabled entirely with the  GLFW_COCOA_MENUBAR init
+  ## hint.
+  ##
+  ## @remark @x11 This function will set the `LC_CTYPE` category of the
+  ## application locale according to the current environment if that category is
+  ## still "C".  This is because the "C" locale breaks Unicode text input.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2052,25 +2135,17 @@ proc glfwCreateWindowC*(width: int32, height: int32, title: cstring, monitor: GL
   ## @remark @win32 The context to share resources with must not be current on
   ## any other thread.
   ##
-  ## @remark @macos The OS only supports forward-compatible core profile contexts
-  ## for OpenGL versions 3.2 and later.  Before creating an OpenGL context of
-  ## version 3.2 or later you must set the
-  ## GLFW_OPENGL_FORWARD_COMPAT and
-  ## GLFW_OPENGL_PROFILE hints accordingly.
-  ## OpenGL 3.0 and 3.1 contexts are not supported at all on macOS.
+  ## @remark @macos The OS only supports core profile contexts for OpenGL
+  ## versions 3.2 and later.  Before creating an OpenGL context of version 3.2 or
+  ## later you must set the GLFW_OPENGL_PROFILE
+  ## hint accordingly.  OpenGL 3.0 and 3.1 contexts are not supported at all
+  ## on macOS.
   ##
   ## @remark @macos The GLFW window has no icon, as it is not a document
   ## window, but the dock icon will be the same as the application bundle's icon.
   ## For more information on bundles, see the
   ## [Bundle Programming Guide](https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/)
   ## in the Mac Developer Library.
-  ##
-  ## @remark @macos The first time a window is created the menu bar is created.
-  ## If GLFW finds a `MainMenu.nib` it is loaded and assumed to contain a menu
-  ## bar.  Otherwise a minimal menu bar is created manually with common commands
-  ## like Hide, Quit and About.  The About entry opens a minimal about dialog
-  ## with information from the application's bundle.  Menu bar creation can be
-  ## disabled entirely with the  GLFW_COCOA_MENUBAR init hint.
   ##
   ## @remark @macos On OS X 10.10 and later the window frame will not be rendered
   ## at full resolution on Retina displays unless the
@@ -2080,7 +2155,7 @@ proc glfwCreateWindowC*(width: int32, height: int32, title: cstring, monitor: GL
   ## [High Resolution Guidelines for OS X](https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html)
   ## in the Mac Developer Library.  The GLFW test and example programs use
   ## a custom `Info.plist` template for this, which can be found as
-  ## `CMake/MacOSXBundleInfo.plist.in` in the source tree.
+  ## `CMake/Info.plist.in` in the source tree.
   ##
   ## @remark @macos When activating frame autosaving with
   ## GLFW_COCOA_FRAME_NAME, the specified
@@ -2629,8 +2704,8 @@ proc iconifyWindow*(window: GLFWWindow): void {.importc: "glfwIconifyWindow".}
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
   ## GLFW_PLATFORM_ERROR.
   ##
-  ## @remark @wayland There is no concept of iconification in wl_shell, this
-  ## function will emit  GLFW_PLATFORM_ERROR when using this deprecated
+  ## @remark @wayland Once a window is iconified,  glfwRestoreWindow won’t
+  ## be able to restore it.  This is a design decision of the xdg-shell
   ## protocol.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3170,9 +3245,6 @@ proc setWindowIconifyCallback*(window: GLFWWindow, callback: GLFWWindowiconifyfu
   ## function pointer type.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED.
-  ##
-  ## @remark @wayland The wl_shell protocol has no concept of iconification,
-  ## this callback will never be called when using this deprecated protocol.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -3786,19 +3858,44 @@ proc createCursor*(image: ptr GLFWImage, xhot: int32, yhot: int32): GLFWCursor {
 proc glfwCreateStandardCursor*(shape: int32): GLFWCursor {.importc: "glfwCreateStandardCursor".}
   ## @brief Creates a cursor with a standard shape.
   ##
-  ## Returns a cursor with a standard shape, that can be set for
-  ## a window with  glfwSetCursor.
+  ## Returns a cursor with a standard shape, that can be set for a window with
+  ##  glfwSetCursor.  The images for these cursors come from the system
+  ## cursor theme and their exact appearance will vary between platforms.
+  ##
+  ## Most of these shapes are guaranteed to exist on every supported platform but
+  ## a few may not be present.  See the table below for details.
+  ##
+  ## Cursor shape                    Windows  macOS  X11     Wayland
+  ## ------------------------------  -------  -----  ------  -------
+  ##  GLFW_ARROW_CURSOR          Yes      Yes    Yes     Yes
+  ##  GLFW_IBEAM_CURSOR          Yes      Yes    Yes     Yes
+  ##  GLFW_CROSSHAIR_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_POINTING_HAND_CURSOR  Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_EW_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_NS_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_NWSE_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##  GLFW_RESIZE_NESW_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##  GLFW_RESIZE_ALL_CURSOR     Yes      Yes    Yes     Yes
+  ##  GLFW_NOT_ALLOWED_CURSOR    Yes      Yes    Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##
+  ## 1) This uses a private system API and may fail in the future.
+  ##
+  ## 2) This uses a newer standard that not all cursor themes support.
+  ##
+  ## If the requested shape is not available, this function emits a
+  ## GLFW_CURSOR_UNAVAILABLE error and returns `NULL`.
   ##
   ## @paramin shape One of the standard shapes.
   ## @return A new cursor ready to use or `NULL` if an
   ## error occurred.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
-  ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
+  ## GLFW_INVALID_ENUM,  GLFW_CURSOR_UNAVAILABLE and
+  ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
-  ## @sa  cursor_object
+  ## @sa  cursor_standard
   ## @sa  glfwCreateCursor
   ##
   ## @since Added in version 3.1.
