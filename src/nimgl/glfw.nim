@@ -313,12 +313,12 @@ const
   GLFWModCapsLock* = 0x0010
     ## @brief If this bit is set the Caps Lock key is enabled.
     ##
-    ## If this bit is set the Caps Lock key is enabled and the
+    ## If this bit is set the Caps Lock key is enabled and the 
     ## GLFW_LOCK_KEY_MODS input mode is set.
   GLFWModNumLock* = 0x0020
     ## @brief If this bit is set the Num Lock key is enabled.
     ##
-    ## If this bit is set the Num Lock key is enabled and the
+    ## If this bit is set the Num Lock key is enabled and the 
     ## GLFW_LOCK_KEY_MODS input mode is set.
 type
   GLFWMouseButton* {.pure, size: int32.sizeof.} = enum
@@ -1072,7 +1072,7 @@ type
     ## @since Added in version 3.0.
     ##
     ## @ingroup window
-  GLFWWindowcontentscaleFun* = proc(window: GLFWWindow, xscale: float, yscale: float): void {.cdecl.}
+  GLFWWindowcontentscaleFun* = proc(window: GLFWWindow, xscale: float32, yscale: float32): void {.cdecl.}
     ## @brief The function pointer type for window content scale callbacks.
     ##
     ## This is the function pointer type for window content scale callbacks.
@@ -1343,7 +1343,7 @@ proc glfwInit*(): bool {.importc: "glfwInit".}
   ##
   ## @remark @macos This function will change the current directory of the
   ## application to the `Contents/Resources` subdirectory of the application's
-  ## bundle, if present.  This can be disabled with the
+  ## bundle, if present.  This can be disabled with the 
   ## GLFW_COCOA_CHDIR_RESOURCES init hint.
   ##
   ## @remark @macos This function will create the main menu and dock icon for the
@@ -1413,7 +1413,7 @@ proc glfwInitHint*(hint: int32, value: int32): void {.importc: "glfwInitHint".}
   ## @paramin hint The init hint to set.
   ## @param[in] value The new value of the init hint.
   ##
-  ## @errors Possible errors include  GLFW_INVALID_ENUM and
+  ## @errors Possible errors include  GLFW_INVALID_ENUM and 
   ## GLFW_INVALID_VALUE.
   ##
   ## @remarks This function may be called before  glfwInit.
@@ -1515,7 +1515,7 @@ proc glfwSetErrorCallback*(callback: GLFWErrorfun): GLFWErrorfun {.importc: "glf
   ## This function sets the error callback, which is called with an error code
   ## and a human-readable description each time a GLFW error occurs.
   ##
-  ## The error code is set before the callback is called.  Calling
+  ## The error code is set before the callback is called.  Calling 
   ## glfwGetError from the error callback will return the same value as the error
   ## code argument.
   ##
@@ -1593,7 +1593,7 @@ proc glfwGetPrimaryMonitor*(): GLFWMonitor {.importc: "glfwGetPrimaryMonitor".}
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
-  ## @remark The primary monitor is always first in the array returned by
+  ## @remark The primary monitor is always first in the array returned by 
   ## glfwGetMonitors.
   ##
   ## @sa  monitor_monitors
@@ -1615,7 +1615,7 @@ proc getMonitorPos*(monitor: GLFWMonitor, xpos: ptr int32, ypos: ptr int32): voi
   ## @param[out] xpos Where to store the monitor x-coordinate, or `NULL`.
   ## @param[out] ypos Where to store the monitor y-coordinate, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -1644,7 +1644,7 @@ proc getMonitorWorkarea*(monitor: GLFWMonitor, xpos: ptr int32, ypos: ptr int32,
   ## @param[out] width Where to store the monitor width, or `NULL`.
   ## @param[out] height Where to store the monitor height, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -1686,7 +1686,7 @@ proc getMonitorPhysicalSize*(monitor: GLFWMonitor, widthMM: ptr int32, heightMM:
   ## @since Added in version 3.0.
   ##
   ## @ingroup monitor
-proc getMonitorContentScale*(monitor: GLFWMonitor, xscale: ptr float, yscale: ptr float): void {.importc: "glfwGetMonitorContentScale".}
+proc getMonitorContentScale*(monitor: GLFWMonitor, xscale: ptr float32, yscale: ptr float32): void {.importc: "glfwGetMonitorContentScale".}
   ## @brief Retrieves the content scale for the specified monitor.
   ##
   ## This function retrieves the content scale for the specified monitor.  The
@@ -1705,7 +1705,7 @@ proc getMonitorContentScale*(monitor: GLFWMonitor, xscale: ptr float, yscale: pt
   ## @param[out] xscale Where to store the x-axis content scale, or `NULL`.
   ## @param[out] yscale Where to store the y-axis content scale, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -1828,7 +1828,7 @@ proc getVideoModes*(monitor: GLFWMonitor, count: ptr int32): ptr GLFWVidmode {.i
   ## @return An array of video modes, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
@@ -1856,7 +1856,7 @@ proc getVideoMode*(monitor: GLFWMonitor): ptr GLFWVidmode {.importc: "glfwGetVid
   ## @return The current mode of the monitor, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
@@ -1871,7 +1871,7 @@ proc getVideoMode*(monitor: GLFWMonitor): ptr GLFWVidmode {.importc: "glfwGetVid
   ## @since Added in version 3.0.  Replaces `glfwGetDesktopMode`.
   ##
   ## @ingroup monitor
-proc setGamma*(monitor: GLFWMonitor, gamma: float): void {.importc: "glfwSetGamma".}
+proc setGamma*(monitor: GLFWMonitor, gamma: float32): void {.importc: "glfwSetGamma".}
   ## @brief Generates a gamma ramp and sets it for the specified monitor.
   ##
   ## This function generates an appropriately sized gamma ramp from the specified
@@ -1883,13 +1883,13 @@ proc setGamma*(monitor: GLFWMonitor, gamma: float): void {.importc: "glfwSetGamm
   ## This means that setting a perfectly linear ramp, or gamma 1.0, will produce
   ## the default (usually sRGB-like) behavior.
   ##
-  ## For gamma correct rendering with OpenGL or OpenGL ES, see the
+  ## For gamma correct rendering with OpenGL or OpenGL ES, see the 
   ## GLFW_SRGB_CAPABLE hint.
   ##
   ## @param[in] monitor The monitor whose gamma ramp to set.
   ## @param[in] gamma The desired exponent.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland Gamma handling is a privileged protocol, this function
@@ -1911,7 +1911,7 @@ proc getGammaRamp*(monitor: GLFWMonitor): ptr GLFWGammaramp {.importc: "glfwGetG
   ## @return The current gamma ramp, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland Gamma handling is a privileged protocol, this function
@@ -1942,13 +1942,13 @@ proc setGammaRamp*(monitor: GLFWMonitor, ramp: ptr GLFWGammaramp): void {.import
   ## This means that setting a perfectly linear ramp, or gamma 1.0, will produce
   ## the default (usually sRGB-like) behavior.
   ##
-  ## For gamma correct rendering with OpenGL or OpenGL ES, see the
+  ## For gamma correct rendering with OpenGL or OpenGL ES, see the 
   ## GLFW_SRGB_CAPABLE hint.
   ##
   ## @param[in] monitor The monitor whose gamma ramp to set.
   ## @param[in] ramp The gamma ramp to use.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark The size of the specified gamma ramp should match the size of the
@@ -2007,7 +2007,7 @@ proc glfwWindowHint*(hint: int32, value: int32): void {.importc: "glfwWindowHint
   ## @paramin hint The window hint to set.
   ## @param[in] value The new value of the window hint.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2040,7 +2040,7 @@ proc glfwWindowHintString*(hint: int32, value: cstring): void {.importc: "glfwWi
   ## @paramin hint The window hint to set.
   ## @param[in] value The new value of the window hint.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @pointer_lifetime The specified string is copied before this function
@@ -2071,7 +2071,7 @@ proc glfwCreateWindowC*(width: int32, height: int32, title: cstring, monitor: GL
   ## requested, as not all parameters and hints are
   ## hard constraints.  This includes the size of the
   ## window, especially for full screen windows.  To query the actual attributes
-  ## of the created window, framebuffer and context, see
+  ## of the created window, framebuffer and context, see 
   ## glfwGetWindowAttrib,  glfwGetWindowSize and  glfwGetFramebufferSize.
   ##
   ## To create a full screen window, you need to specify the monitor the window
@@ -2119,9 +2119,9 @@ proc glfwCreateWindowC*(width: int32, height: int32, title: cstring, monitor: GL
   ## @return The handle of the created window, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
-  ## GLFW_INVALID_ENUM,  GLFW_INVALID_VALUE,  GLFW_API_UNAVAILABLE,
-  ## GLFW_VERSION_UNAVAILABLE,  GLFW_FORMAT_UNAVAILABLE and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
+  ## GLFW_INVALID_ENUM,  GLFW_INVALID_VALUE,  GLFW_API_UNAVAILABLE, 
+  ## GLFW_VERSION_UNAVAILABLE,  GLFW_FORMAT_UNAVAILABLE and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @win32 Window creation will fail if the Microsoft GDI software
@@ -2210,7 +2210,7 @@ proc destroyWindow*(window: GLFWWindow): void {.importc: "glfwDestroyWindow".}
   ##
   ## @param[in] window The window to destroy.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @note The context of the specified window must not be current on any other
@@ -2273,7 +2273,7 @@ proc setWindowTitle*(window: GLFWWindow, title: cstring): void {.importc: "glfwS
   ## @param[in] window The window whose title to change.
   ## @param[in] title The UTF-8 encoded window title.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @macos The window title will not be updated until the next time you
@@ -2309,7 +2309,7 @@ proc setWindowIcon*(window: GLFWWindow, count: int32, images: ptr GLFWImage): vo
   ## @param[in] images The images to create the icon from.  This is ignored if
   ## count is zero.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The specified image data is copied before this function
@@ -2347,11 +2347,11 @@ proc getWindowPos*(window: GLFWWindow, xpos: ptr int32, ypos: ptr int32): void {
   ## @param[out] ypos Where to store the y-coordinate of the upper-left corner of
   ## the content area, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland There is no way for an application to retrieve the global
-  ## position of its windows, this function will always emit
+  ## position of its windows, this function will always emit 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2379,11 +2379,11 @@ proc setWindowPos*(window: GLFWWindow, xpos: int32, ypos: int32): void {.importc
   ## @param[in] xpos The x-coordinate of the upper-left corner of the content area.
   ## @param[in] ypos The y-coordinate of the upper-left corner of the content area.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland There is no way for an application to set the global
-  ## position of its windows, this function will always emit
+  ## position of its windows, this function will always emit 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2411,7 +2411,7 @@ proc getWindowSize*(window: GLFWWindow, width: ptr int32, height: ptr int32): vo
   ## @param[out] height Where to store the height, in screen coordinates, of the
   ## content area, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2447,7 +2447,7 @@ proc setWindowSizeLimits*(window: GLFWWindow, minwidth: int32, minheight: int32,
   ## @param[in] maxheight The maximum height, in screen coordinates, of the
   ## content area, or `GLFW_DONT_CARE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark If you set size limits and an aspect ratio that conflict, the
@@ -2488,7 +2488,7 @@ proc setWindowAspectRatio*(window: GLFWWindow, numer: int32, denom: int32): void
   ## @param[in] denom The denominator of the desired aspect ratio, or
   ## `GLFW_DONT_CARE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark If you set size limits and an aspect ratio that conflict, the
@@ -2528,7 +2528,7 @@ proc setWindowSize*(window: GLFWWindow, width: int32, height: int32): void {.imp
   ## @param[in] height The desired height, in screen coordinates, of the window
   ## content area.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland A full screen window will not attempt to change the mode,
@@ -2560,7 +2560,7 @@ proc getFramebufferSize*(window: GLFWWindow, width: ptr int32, height: ptr int32
   ## @param[out] height Where to store the height, in pixels, of the framebuffer,
   ## or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2596,7 +2596,7 @@ proc getWindowFrameSize*(window: GLFWWindow, left: ptr int32, top: ptr int32, ri
   ## @param[out] bottom Where to store the size, in screen coordinates, of the
   ## bottom edge of the window frame, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2606,7 +2606,7 @@ proc getWindowFrameSize*(window: GLFWWindow, left: ptr int32, top: ptr int32, ri
   ## @since Added in version 3.1.
   ##
   ## @ingroup window
-proc getWindowContentScale*(window: GLFWWindow, xscale: ptr float, yscale: ptr float): void {.importc: "glfwGetWindowContentScale".}
+proc getWindowContentScale*(window: GLFWWindow, xscale: ptr float32, yscale: ptr float32): void {.importc: "glfwGetWindowContentScale".}
   ## @brief Retrieves the content scale for the specified window.
   ##
   ## This function retrieves the content scale for the specified window.  The
@@ -2625,7 +2625,7 @@ proc getWindowContentScale*(window: GLFWWindow, xscale: ptr float, yscale: ptr f
   ## @param[out] xscale Where to store the x-axis content scale, or `NULL`.
   ## @param[out] yscale Where to store the y-axis content scale, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2637,7 +2637,7 @@ proc getWindowContentScale*(window: GLFWWindow, xscale: ptr float, yscale: ptr f
   ## @since Added in version 3.3.
   ##
   ## @ingroup window
-proc getWindowOpacity*(window: GLFWWindow): float {.importc: "glfwGetWindowOpacity".}
+proc getWindowOpacity*(window: GLFWWindow): float32 {.importc: "glfwGetWindowOpacity".}
   ## @brief Returns the opacity of the whole window.
   ##
   ## This function returns the opacity of the window, including any decorations.
@@ -2651,7 +2651,7 @@ proc getWindowOpacity*(window: GLFWWindow): float {.importc: "glfwGetWindowOpaci
   ## @param[in] window The window to query.
   ## @return The opacity value of the specified window.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2662,7 +2662,7 @@ proc getWindowOpacity*(window: GLFWWindow): float {.importc: "glfwGetWindowOpaci
   ## @since Added in version 3.3.
   ##
   ## @ingroup window
-proc setWindowOpacity*(window: GLFWWindow, opacity: float): void {.importc: "glfwSetWindowOpacity".}
+proc setWindowOpacity*(window: GLFWWindow, opacity: float32): void {.importc: "glfwSetWindowOpacity".}
   ## @brief Sets the opacity of the whole window.
   ##
   ## This function sets the opacity of the window, including any decorations.
@@ -2678,7 +2678,7 @@ proc setWindowOpacity*(window: GLFWWindow, opacity: float): void {.importc: "glf
   ## @param[in] window The window to set the opacity for.
   ## @param[in] opacity The desired opacity of the specified window.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2701,7 +2701,7 @@ proc iconifyWindow*(window: GLFWWindow): void {.importc: "glfwIconifyWindow".}
   ##
   ## @param[in] window The window to iconify.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland Once a window is iconified,  glfwRestoreWindow won’t
@@ -2730,7 +2730,7 @@ proc restoreWindow*(window: GLFWWindow): void {.importc: "glfwRestoreWindow".}
   ##
   ## @param[in] window The window to restore.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2753,7 +2753,7 @@ proc maximizeWindow*(window: GLFWWindow): void {.importc: "glfwMaximizeWindow".}
   ##
   ## @param[in] window The window to maximize.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @par Thread Safety
@@ -2780,7 +2780,7 @@ proc showWindow*(window: GLFWWindow): void {.importc: "glfwShowWindow".}
   ##
   ## @param[in] window The window to make visible.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2800,7 +2800,7 @@ proc hideWindow*(window: GLFWWindow): void {.importc: "glfwHideWindow".}
   ##
   ## @param[in] window The window to hide.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -2834,7 +2834,7 @@ proc focusWindow*(window: GLFWWindow): void {.importc: "glfwFocusWindow".}
   ##
   ## @param[in] window The window to give input focus.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland It is not possible for an application to bring its windows
@@ -2860,7 +2860,7 @@ proc requestWindowAttention*(window: GLFWWindow): void {.importc: "glfwRequestWi
   ##
   ## @param[in] window The window to request attention to.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @macos Attention is requested to the application as a whole, not the
@@ -2927,7 +2927,7 @@ proc setWindowMonitor*(window: GLFWWindow, monitor: GLFWMonitor, xpos: int32, yp
   ## @param[in] refreshRate The desired refresh rate, in Hz, of the video mode,
   ## or `GLFW_DONT_CARE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark The OpenGL or OpenGL ES context will not be destroyed or otherwise
@@ -2962,10 +2962,10 @@ proc getWindowAttrib*(window: GLFWWindow, attrib: int32): int32 {.importc: "glfw
   ## @return The value of the attribute, or zero if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
-  ## @remark Framebuffer related hints are not window attributes.  See
+  ## @remark Framebuffer related hints are not window attributes.  See 
   ## window_attribs_fb for more information.
   ##
   ## @remark Zero is a valid value for many window and context related
@@ -3003,7 +3003,7 @@ proc setWindowAttrib*(window: GLFWWindow, attrib: int32, value: int32): void {.i
   ## @param[in] attrib A supported window attribute.
   ## @param[in] value `GLFW_TRUE` or `GLFW_FALSE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM,  GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark Calling  glfwGetWindowAttrib will always return the latest
@@ -3360,7 +3360,7 @@ proc glfwPollEvents*(): void {.importc: "glfwPollEvents".}
   ##
   ## Event processing is not required for joystick input to work.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @reentrancy This function must not be called from a callback.
@@ -3403,7 +3403,7 @@ proc glfwWaitEvents*(): void {.importc: "glfwWaitEvents".}
   ##
   ## Event processing is not required for joystick input to work.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @reentrancy This function must not be called from a callback.
@@ -3422,7 +3422,7 @@ proc glfwWaitEventsTimeout*(timeout: float64): void {.importc: "glfwWaitEventsTi
   ##
   ## This function puts the calling thread to sleep until at least one event is
   ## available in the event queue, or until the specified timeout is reached.  If
-  ## one or more events are available, it behaves exactly like
+  ## one or more events are available, it behaves exactly like 
   ## glfwPollEvents, i.e. the events in the queue are processed and the function
   ## then returns immediately.  Processing events will cause the window and input
   ## callbacks associated with those events to be called.
@@ -3450,7 +3450,7 @@ proc glfwWaitEventsTimeout*(timeout: float64): void {.importc: "glfwWaitEventsTi
   ##
   ## @param[in] timeout The maximum amount of time, in seconds, to wait.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_VALUE and  GLFW_PLATFORM_ERROR.
   ##
   ## @reentrancy This function must not be called from a callback.
@@ -3470,7 +3470,7 @@ proc glfwPostEmptyEvent*(): void {.importc: "glfwPostEmptyEvent".}
   ## This function posts an empty event from the current thread to the event
   ## queue, causing  glfwWaitEvents or  glfwWaitEventsTimeout to return.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function may be called from any thread.
@@ -3495,7 +3495,7 @@ proc getInputMode*(window: GLFWWindow, mode: int32): int32 {.importc: "glfwGetIn
   ## `GLFW_STICKY_MOUSE_BUTTONS`, `GLFW_LOCK_KEY_MODS` or
   ## `GLFW_RAW_MOUSE_MOTION`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3539,14 +3539,14 @@ proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.import
   ##
   ## If the mode is `GLFW_LOCK_KEY_MODS`, the value must be either `GLFW_TRUE` to
   ## enable lock key modifier bits, or `GLFW_FALSE` to disable them.  If enabled,
-  ## callbacks that receive modifier bits will also have the
+  ## callbacks that receive modifier bits will also have the 
   ## GLFW_MOD_CAPS_LOCK bit set when the event was generated with Caps Lock on,
   ## and the  GLFW_MOD_NUM_LOCK bit when Num Lock was on.
   ##
   ## If the mode is `GLFW_RAW_MOUSE_MOTION`, the value must be either `GLFW_TRUE`
   ## to enable raw (unscaled and unaccelerated) mouse motion when the cursor is
   ## disabled, or `GLFW_FALSE` to disable it.  If raw motion is not supported,
-  ## attempting to set this will emit  GLFW_PLATFORM_ERROR.  Call
+  ## attempting to set this will emit  GLFW_PLATFORM_ERROR.  Call 
   ## glfwRawMouseMotionSupported to check for support.
   ##
   ## @param[in] window The window whose input mode to set.
@@ -3555,7 +3555,7 @@ proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.import
   ## `GLFW_RAW_MOUSE_MOTION`.
   ## @param[in] value The new value of the specified input mode.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3642,7 +3642,7 @@ proc glfwGetKeyName*(key: int32, scancode: int32): cstring {.importc: "glfwGetKe
   ## @param[in] scancode The scancode of the key to query.
   ## @return The UTF-8 encoded, layout-specific name of the key, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark The contents of the returned string may change when a keyboard
@@ -3670,7 +3670,7 @@ proc glfwGetKeyScancode*(key: int32): int32 {.importc: "glfwGetKeyScancode".}
   ## @return The platform-specific scancode for the key, or `-1` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function may be called from any thread.
@@ -3707,7 +3707,7 @@ proc getKey*(window: GLFWWindow, key: int32): int32 {.importc: "glfwGetKey".}
   ## not a valid key for this function.
   ## @return One of `GLFW_PRESS` or `GLFW_RELEASE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3734,7 +3734,7 @@ proc getMouseButton*(window: GLFWWindow, button: int32): int32 {.importc: "glfwG
   ## @paramin button The desired mouse button.
   ## @return One of `GLFW_PRESS` or `GLFW_RELEASE`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3770,7 +3770,7 @@ proc getCursorPos*(window: GLFWWindow, xpos: ptr float64, ypos: ptr float64): vo
   ## @param[out] ypos Where to store the cursor y-coordinate, relative to the to
   ## top edge of the content area, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3805,7 +3805,7 @@ proc setCursorPos*(window: GLFWWindow, xpos: float64, ypos: float64): void {.imp
   ## @param[in] ypos The desired y-coordinate, relative to the top edge of the
   ## content area.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @remark @wayland This function will only work when the cursor mode is
@@ -3822,7 +3822,7 @@ proc setCursorPos*(window: GLFWWindow, xpos: float64, ypos: float64): void {.imp
 proc createCursor*(image: ptr GLFWImage, xhot: int32, yhot: int32): GLFWCursor {.importc: "glfwCreateCursor".}
   ## @brief Creates a custom cursor.
   ##
-  ## Creates a new custom cursor image that can be set for a window with
+  ## Creates a new custom cursor image that can be set for a window with 
   ## glfwSetCursor.  The cursor can be destroyed with  glfwDestroyCursor.
   ## Any remaining cursors are destroyed by  glfwTerminate.
   ##
@@ -3840,7 +3840,7 @@ proc createCursor*(image: ptr GLFWImage, xhot: int32, yhot: int32): GLFWCursor {
   ## @return The handle of the created cursor, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The specified image data is copied before this function
@@ -3882,15 +3882,15 @@ proc glfwCreateStandardCursor*(shape: int32): GLFWCursor {.importc: "glfwCreateS
   ##
   ## 2) This uses a newer standard that not all cursor themes support.
   ##
-  ## If the requested shape is not available, this function emits a
+  ## If the requested shape is not available, this function emits a 
   ## GLFW_CURSOR_UNAVAILABLE error and returns `NULL`.
   ##
   ## @paramin shape One of the standard shapes.
   ## @return A new cursor ready to use or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
-  ## GLFW_INVALID_ENUM,  GLFW_CURSOR_UNAVAILABLE and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
+  ## GLFW_INVALID_ENUM,  GLFW_CURSOR_UNAVAILABLE and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -3904,8 +3904,8 @@ proc glfwCreateStandardCursor*(shape: int32): GLFWCursor {.importc: "glfwCreateS
 proc destroyCursor*(cursor: GLFWCursor): void {.importc: "glfwDestroyCursor".}
   ## @brief Destroys a cursor.
   ##
-  ## This function destroys a cursor previously created with
-  ## glfwCreateCursor.  Any remaining cursors will be destroyed by
+  ## This function destroys a cursor previously created with 
+  ## glfwCreateCursor.  Any remaining cursors will be destroyed by 
   ## glfwTerminate.
   ##
   ## If the specified cursor is current for any window, that window will be
@@ -3913,7 +3913,7 @@ proc destroyCursor*(cursor: GLFWCursor): void {.importc: "glfwDestroyCursor".}
   ##
   ## @param[in] cursor The cursor object to destroy.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @reentrancy This function must not be called from a callback.
@@ -3941,7 +3941,7 @@ proc setCursor*(window: GLFWWindow, cursor: GLFWCursor): void {.importc: "glfwSe
   ## @param[in] cursor The cursor to set, or `NULL` to switch back to the default
   ## arrow cursor.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -4241,7 +4241,7 @@ proc setDropCallback*(window: GLFWWindow, callback: GLFWDropfun): GLFWDropfun {.
   ## @since Added in version 3.1.
   ##
   ## @ingroup input
-proc glfwJoystickPresent*(jid: int32): bool {.importc: "glfwJoystickPresent".}
+proc glfwJoystickPresent*(jid: int32): int32 {.importc: "glfwJoystickPresent".}
   ## @brief Returns whether the specified joystick is present.
   ##
   ## This function returns whether the specified joystick is present.
@@ -4253,7 +4253,7 @@ proc glfwJoystickPresent*(jid: int32): bool {.importc: "glfwJoystickPresent".}
   ## @paramin jid The joystick to query.
   ## @return `GLFW_TRUE` if the joystick is present, or `GLFW_FALSE` otherwise.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -4263,7 +4263,7 @@ proc glfwJoystickPresent*(jid: int32): bool {.importc: "glfwJoystickPresent".}
   ## @since Added in version 3.0.  Replaces `glfwGetJoystickParam`.
   ##
   ## @ingroup input
-proc glfwGetJoystickAxes*(jid: int32, count: ptr int32): ptr float {.importc: "glfwGetJoystickAxes".}
+proc glfwGetJoystickAxes*(jid: int32, count: ptr int32): ptr float32 {.importc: "glfwGetJoystickAxes".}
   ## @brief Returns the values of all axes of the specified joystick.
   ##
   ## This function returns the values of all axes of the specified joystick.
@@ -4280,7 +4280,7 @@ proc glfwGetJoystickAxes*(jid: int32, count: ptr int32): ptr float {.importc: "g
   ## @return An array of axis values, or `NULL` if the joystick is not present or
   ## an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
@@ -4300,11 +4300,11 @@ proc glfwGetJoystickButtons*(jid: int32, count: ptr int32): ptr cuchar {.importc
   ## This function returns the state of all buttons of the specified joystick.
   ## Each element in the array is either `GLFW_PRESS` or `GLFW_RELEASE`.
   ##
-  ## For backward compatibility with earlier versions that did not have
+  ## For backward compatibility with earlier versions that did not have 
   ## glfwGetJoystickHats, the button array also includes all hats, each
   ## represented as four buttons.  The hats are in the same order as returned by
   ## __glfwGetJoystickHats__ and are in the order _up_, _right_, _down_ and
-  ## _left_.  To disable these extra buttons, set the
+  ## _left_.  To disable these extra buttons, set the 
   ## GLFW_JOYSTICK_HAT_BUTTONS init hint before initialization.
   ##
   ## If the specified joystick is not present this function will return `NULL`
@@ -4318,7 +4318,7 @@ proc glfwGetJoystickButtons*(jid: int32, count: ptr int32): ptr cuchar {.importc
   ## @return An array of button states, or `NULL` if the joystick is not present
   ## or an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
@@ -4373,7 +4373,7 @@ proc glfwGetJoystickHats*(jid: int32, count: ptr int32): ptr cuchar {.importc: "
   ## @return An array of hat states, or `NULL` if the joystick is not present
   ## or an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
@@ -4403,7 +4403,7 @@ proc glfwGetJoystickName*(jid: int32): cstring {.importc: "glfwGetJoystickName".
   ## @return The UTF-8 encoded name of the joystick, or `NULL` if the joystick
   ## is not present or an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned string is allocated and freed by GLFW.  You
@@ -4442,7 +4442,7 @@ proc glfwGetJoystickGUID*(jid: int32): cstring {.importc: "glfwGetJoystickGUID".
   ## @return The UTF-8 encoded GUID of the joystick, or `NULL` if the joystick
   ## is not present or an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned string is allocated and freed by GLFW.  You
@@ -4517,7 +4517,7 @@ proc glfwJoystickIsGamepad*(jid: int32): int32 {.importc: "glfwJoystickIsGamepad
   ## @return `GLFW_TRUE` if a joystick is both present and has a gamepad mapping,
   ## or `GLFW_FALSE` otherwise.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -4582,7 +4582,7 @@ proc glfwUpdateGamepadMappings*(string: cstring): int32 {.importc: "glfwUpdateGa
   ## @return `GLFW_TRUE` if successful, or `GLFW_FALSE` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_VALUE.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -4622,7 +4622,7 @@ proc glfwGetGamepadName*(jid: int32): cstring {.importc: "glfwGetGamepadName".}
   ## @since Added in version 3.3.
   ##
   ## @ingroup input
-proc glfwGetGamepadState*(jid: int32, state: ptr GLFWGamepadstate): bool {.importc: "glfwGetGamepadState".}
+proc glfwGetGamepadState*(jid: int32, state: ptr GLFWGamepadstate): int32 {.importc: "glfwGetGamepadState".}
   ## @brief Retrieves the state of the specified joystick remapped as a gamepad.
   ##
   ## This function retrieves the state of the specified joystick remapped to
@@ -4636,7 +4636,7 @@ proc glfwGetGamepadState*(jid: int32, state: ptr GLFWGamepadstate): bool {.impor
   ## The Guide button may not be available for input as it is often hooked by the
   ## system or the Steam client.
   ##
-  ## Not all devices have all the buttons or axes provided by
+  ## Not all devices have all the buttons or axes provided by 
   ## GLFWgamepadstate.  Unavailable buttons and axes will always report
   ## `GLFW_RELEASE` and 0.0 respectively.
   ##
@@ -4646,7 +4646,7 @@ proc glfwGetGamepadState*(jid: int32, state: ptr GLFWGamepadstate): bool {.impor
   ## connected, it has no gamepad mapping or an error
   ## occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_ENUM.
   ##
   ## @thread_safety This function must only be called from the main thread.
@@ -4667,7 +4667,7 @@ proc setClipboardString*(window: GLFWWindow, string: cstring): void {.importc: "
   ## @param[in] window Deprecated.  Any valid window or `NULL`.
   ## @param[in] string A UTF-8 encoded string.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The specified string is copied before this function
@@ -4686,18 +4686,18 @@ proc getClipboardString*(window: GLFWWindow): cstring {.importc: "glfwGetClipboa
   ##
   ## This function returns the contents of the system clipboard, if it contains
   ## or is convertible to a UTF-8 encoded string.  If the clipboard is empty or
-  ## if its contents cannot be converted, `NULL` is returned and a
+  ## if its contents cannot be converted, `NULL` is returned and a 
   ## GLFW_FORMAT_UNAVAILABLE error is generated.
   ##
   ## @param[in] window Deprecated.  Any valid window or `NULL`.
   ## @return The contents of the clipboard as a UTF-8 encoded string, or `NULL`
   ## if an error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @pointer_lifetime The returned string is allocated and freed by GLFW.  You
-  ## should not free it yourself.  It is valid until the next call to
+  ## should not free it yourself.  It is valid until the next call to 
   ## glfwGetClipboardString or  glfwSetClipboardString, or until the library
   ## is terminated.
   ##
@@ -4716,7 +4716,7 @@ proc glfwGetTime*(): float64 {.importc: "glfwGetTime".}
   ## has been set using  glfwSetTime it measures time elapsed since GLFW was
   ## initialized.
   ##
-  ## This function and  glfwSetTime are helper functions on top of
+  ## This function and  glfwSetTime are helper functions on top of 
   ## glfwGetTimerFrequency and  glfwGetTimerValue.
   ##
   ## The resolution of the timer is system dependent, but is usually on the order
@@ -4744,12 +4744,12 @@ proc glfwSetTime*(time: float64): void {.importc: "glfwSetTime".}
   ## a positive finite number less than or equal to 18446744073.0, which is
   ## approximately 584.5 years.
   ##
-  ## This function and  glfwGetTime are helper functions on top of
+  ## This function and  glfwGetTime are helper functions on top of 
   ## glfwGetTimerFrequency and  glfwGetTimerValue.
   ##
   ## @param[in] time The new value, in seconds.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_INVALID_VALUE.
   ##
   ## @remark The upper limit of GLFW time is calculated as
@@ -4769,7 +4769,7 @@ proc glfwGetTimerValue*(): uint64 {.importc: "glfwGetTimerValue".}
   ## @brief Returns the current value of the raw timer.
   ##
   ## This function returns the current value of the raw timer, measured in
-  ## 1&nbsp;/&nbsp;frequency seconds.  To get the frequency, call
+  ## 1&nbsp;/&nbsp;frequency seconds.  To get the frequency, call 
   ## glfwGetTimerFrequency.
   ##
   ## @return The value of the timer, or zero if an
@@ -4828,7 +4828,7 @@ proc makeContextCurrent*(window: GLFWWindow): void {.importc: "glfwMakeContextCu
   ## @param[in] window The window whose context to make current, or `NULL` to
   ## detach the current context.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_NO_WINDOW_CONTEXT and  GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function may be called from any thread.
@@ -4875,7 +4875,7 @@ proc swapBuffers*(window: GLFWWindow): void {.importc: "glfwSwapBuffers".}
   ##
   ## @param[in] window The window whose buffers to swap.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_NO_WINDOW_CONTEXT and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark __EGL:__ The context of the specified window must be current on the
@@ -4894,7 +4894,7 @@ proc glfwSwapInterval*(interval: int32): void {.importc: "glfwSwapInterval".}
   ## @brief Sets the swap interval for the current context.
   ##
   ## This function sets the swap interval for the current OpenGL or OpenGL ES
-  ## context, i.e. the number of screen updates to wait from the time
+  ## context, i.e. the number of screen updates to wait from the time 
   ## glfwSwapBuffers was called before swapping the buffers and returning.  This
   ## is sometimes called _vertical synchronization_, _vertical retrace
   ## synchronization_ or just _vsync_.
@@ -4902,7 +4902,7 @@ proc glfwSwapInterval*(interval: int32): void {.importc: "glfwSwapInterval".}
   ## A context that supports either of the `WGL_EXT_swap_control_tear` and
   ## `GLX_EXT_swap_control_tear` extensions also accepts _negative_ swap
   ## intervals, which allows the driver to swap immediately even if a frame
-  ## arrives a little bit late.  You can check for these extensions with
+  ## arrives a little bit late.  You can check for these extensions with 
   ## glfwExtensionSupported.
   ##
   ## A context must be current on the calling thread.  Calling this function
@@ -4914,7 +4914,7 @@ proc glfwSwapInterval*(interval: int32): void {.importc: "glfwSwapInterval".}
   ## @param[in] interval The minimum number of screen updates to wait for
   ## until the buffers are swapped by  glfwSwapBuffers.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_NO_CURRENT_CONTEXT and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark This function is not called during context creation, leaving the
@@ -4950,7 +4950,7 @@ proc glfwExtensionSupported*(extension: cstring): int32 {.importc: "glfwExtensio
   ## frequently.  The extension strings will not change during the lifetime of
   ## a context, so there is no danger in doing this.
   ##
-  ## This function does not apply to Vulkan.  If you are using Vulkan, see
+  ## This function does not apply to Vulkan.  If you are using Vulkan, see 
   ## glfwGetRequiredInstanceExtensions, `vkEnumerateInstanceExtensionProperties`
   ## and `vkEnumerateDeviceExtensionProperties` instead.
   ##
@@ -4958,8 +4958,8 @@ proc glfwExtensionSupported*(extension: cstring): int32 {.importc: "glfwExtensio
   ## @return `GLFW_TRUE` if the extension is available, or `GLFW_FALSE`
   ## otherwise.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
-  ## GLFW_NO_CURRENT_CONTEXT,  GLFW_INVALID_VALUE and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
+  ## GLFW_NO_CURRENT_CONTEXT,  GLFW_INVALID_VALUE and 
   ## GLFW_PLATFORM_ERROR.
   ##
   ## @thread_safety This function may be called from any thread.
@@ -4989,7 +4989,7 @@ proc glfwGetProcAddress*(procname: cstring): GLFWGlproc {.importc: "glfwGetProcA
   ## @return The address of the function, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
   ## GLFW_NO_CURRENT_CONTEXT and  GLFW_PLATFORM_ERROR.
   ##
   ## @remark The address of a given function is not guaranteed to be the same
@@ -5058,7 +5058,7 @@ proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): cstringArray {.impor
   ## @return An array of ASCII encoded extension names, or `NULL` if an
   ## error occurred.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
   ## GLFW_API_UNAVAILABLE.
   ##
   ## @remark Additional extensions may be required by future versions of GLFW.
@@ -5109,7 +5109,7 @@ when defined(vulkan):
     ## @return The address of the function, or `NULL` if an
     ## error occurred.
     ##
-    ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED and 
     ## GLFW_API_UNAVAILABLE.
     ##
     ## @pointer_lifetime The returned function pointer is valid until the library
@@ -5122,7 +5122,7 @@ when defined(vulkan):
     ## @since Added in version 3.2.
     ##
     ## @ingroup vulkan
-
+  
 when defined(vulkan):
   proc glfwGetPhysicalDevicePresentationSupport*(instance: VkInstance, device: VkPhysicalDevice, queuefamily: uint32): int32 {.importc: "glfwGetPhysicalDevicePresentationSupport".}
     ## @brief Returns whether the specified queue family can present images.
@@ -5134,7 +5134,7 @@ when defined(vulkan):
     ## not available on the machine, or if the specified instance was not created
     ## with the required extensions, this function returns `GLFW_FALSE` and
     ## generates a  GLFW_API_UNAVAILABLE error.  Call  glfwVulkanSupported
-    ## to check whether Vulkan is at least minimally available and
+    ## to check whether Vulkan is at least minimally available and 
     ## glfwGetRequiredInstanceExtensions to check what instance extensions are
     ## required.
     ##
@@ -5144,7 +5144,7 @@ when defined(vulkan):
     ## @return `GLFW_TRUE` if the queue family supports presentation, or
     ## `GLFW_FALSE` otherwise.
     ##
-    ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
     ## GLFW_API_UNAVAILABLE and  GLFW_PLATFORM_ERROR.
     ##
     ## @remark @macos This function currently always returns `GLFW_TRUE`, as the
@@ -5159,7 +5159,7 @@ when defined(vulkan):
     ## @since Added in version 3.2.
     ##
     ## @ingroup vulkan
-
+  
 when defined(vulkan):
   proc glfwCreateWindowSurface*(instance: VkInstance, window: GLFWWindow, allocator: ptr VkAllocationCallbacks, surface: ptr VkSurfaceKHR): VkResult {.importc: "glfwCreateWindowSurface".}
     ## @brief Creates a Vulkan surface for the specified window.
@@ -5167,14 +5167,14 @@ when defined(vulkan):
     ## This function creates a Vulkan surface for the specified window.
     ##
     ## If the Vulkan loader or at least one minimally functional ICD were not found,
-    ## this function returns `VK_ERROR_INITIALIZATION_FAILED` and generates a
+    ## this function returns `VK_ERROR_INITIALIZATION_FAILED` and generates a 
     ## GLFW_API_UNAVAILABLE error.  Call  glfwVulkanSupported to check whether
     ## Vulkan is at least minimally available.
     ##
     ## If the required window surface creation instance extensions are not
     ## available or if the specified instance was not created with these extensions
     ## enabled, this function returns `VK_ERROR_EXTENSION_NOT_PRESENT` and
-    ## generates a  GLFW_API_UNAVAILABLE error.  Call
+    ## generates a  GLFW_API_UNAVAILABLE error.  Call 
     ## glfwGetRequiredInstanceExtensions to check what instance extensions are
     ## required.
     ##
@@ -5197,7 +5197,7 @@ when defined(vulkan):
     ## @return `VK_SUCCESS` if successful, or a Vulkan error code if an
     ## error occurred.
     ##
-    ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+    ## @errors Possible errors include  GLFW_NOT_INITIALIZED, 
     ## GLFW_API_UNAVAILABLE,  GLFW_PLATFORM_ERROR and  GLFW_INVALID_VALUE
     ##
     ## @remark If an error occurs before the creation call is made, GLFW returns
@@ -5220,7 +5220,7 @@ when defined(vulkan):
     ## @since Added in version 3.2.
     ##
     ## @ingroup vulkan
-
+  
 
 {.pop.}
 
