@@ -1,4 +1,5 @@
 #include "imgui/imgui.h"
+#include "imgui/imgui_internal.h"
 #include "cimgui.h"
 
 // Should open an issue in cimgui about this...
