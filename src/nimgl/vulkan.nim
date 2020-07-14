@@ -1276,12 +1276,12 @@ type
     depth*: uint32
 
   VkViewport* = object
-    x*: float
-    y*: float
-    width*: float
-    height*: float
-    minDepth*: float
-    maxDepth*: float
+    x*: float32
+    y*: float32
+    width*: float32
+    height*: float32
+    minDepth*: float32
+    maxDepth*: float32
 
   VkRect2D* = object
     offset*: VkOffset2D
@@ -1342,7 +1342,7 @@ type
     flags*: VkDeviceQueueCreateFlags
     queueFamilyIndex*: uint32
     queueCount*: uint32
-    pQueuePriorities*: ptr float
+    pQueuePriorities*: ptr float32
 
   VkDeviceCreateInfo* = object
     sType*: VkStructureType
@@ -1759,10 +1759,10 @@ type
     cullMode*: VkCullModeFlags
     frontFace*: VkFrontFace
     depthBiasEnable*: VkBool32
-    depthBiasConstantFactor*: float
-    depthBiasClamp*: float
-    depthBiasSlopeFactor*: float
-    lineWidth*: float
+    depthBiasConstantFactor*: float32
+    depthBiasClamp*: float32
+    depthBiasSlopeFactor*: float32
+    lineWidth*: float32
 
   VkPipelineMultisampleStateCreateInfo* = object
     sType*: VkStructureType
@@ -1770,7 +1770,7 @@ type
     flags*: VkPipelineMultisampleStateCreateFlags
     rasterizationSamples*: VkSampleCountFlagBits
     sampleShadingEnable*: VkBool32
-    minSampleShading*: float
+    minSampleShading*: float32
     pSampleMask*: ptr VkSampleMask
     alphaToCoverageEnable*: VkBool32
     alphaToOneEnable*: VkBool32
@@ -1793,7 +1793,7 @@ type
     logicOp*: VkLogicOp
     attachmentCount*: uint32
     pAttachments*: ptr VkPipelineColorBlendAttachmentState
-    blendConstants*: array[4, float]
+    blendConstants*: array[4, float32]
 
   VkPipelineDynamicStateCreateInfo* = object
     sType*: VkStructureType
@@ -1822,8 +1822,8 @@ type
     stencilTestEnable*: VkBool32
     front*: VkStencilOpState
     back*: VkStencilOpState
-    minDepthBounds*: float
-    maxDepthBounds*: float
+    minDepthBounds*: float32
+    maxDepthBounds*: float32
 
   VkGraphicsPipelineCreateInfo* = object
     sType*: VkStructureType
@@ -1877,13 +1877,13 @@ type
     addressModeU*: VkSamplerAddressMode
     addressModeV*: VkSamplerAddressMode
     addressModeW*: VkSamplerAddressMode
-    mipLodBias*: float
+    mipLodBias*: float32
     anisotropyEnable*: VkBool32
-    maxAnisotropy*: float
+    maxAnisotropy*: float32
     compareEnable*: VkBool32
     compareOp*: VkCompareOp
-    minLod*: float
-    maxLod*: float
+    minLod*: float32
+    maxLod*: float32
     borderColor*: VkBorderColor
     unnormalizedCoordinates*: VkBool32
 
@@ -1926,12 +1926,12 @@ type
     pClearValues*: ptr VkClearValue
 
   VkClearColorValue* {.union.} = object
-    float32*: array[4, float]
+    float32*: array[4, float32]
     int32*: array[4, int32]
     uint32*: array[4, uint32]
 
   VkClearDepthStencilValue* = object
-    depth*: float
+    depth*: float32
     stencil*: uint32
 
   VkClearValue* {.union.} = object
@@ -2125,11 +2125,11 @@ type
     mipmapPrecisionBits*: uint32
     maxDrawIndexedIndexValue*: uint32
     maxDrawIndirectCount*: uint32
-    maxSamplerLodBias*: float
-    maxSamplerAnisotropy*: float
+    maxSamplerLodBias*: float32
+    maxSamplerAnisotropy*: float32
     maxViewports*: uint32
     maxViewportDimensions*: array[2, uint32]
-    viewportBoundsRange*: array[2, float]
+    viewportBoundsRange*: array[2, float32]
     viewportSubPixelBits*: uint32
     minMemoryMapAlignment*: uint
     minTexelBufferOffsetAlignment*: VkDeviceSize
@@ -2139,8 +2139,8 @@ type
     maxTexelOffset*: uint32
     minTexelGatherOffset*: int32
     maxTexelGatherOffset*: uint32
-    minInterpolationOffset*: float
-    maxInterpolationOffset*: float
+    minInterpolationOffset*: float32
+    maxInterpolationOffset*: float32
     subPixelInterpolationOffsetBits*: uint32
     maxFramebufferWidth*: uint32
     maxFramebufferHeight*: uint32
@@ -2157,15 +2157,15 @@ type
     storageImageSampleCounts*: VkSampleCountFlags
     maxSampleMaskWords*: uint32
     timestampComputeAndGraphics*: VkBool32
-    timestampPeriod*: float
+    timestampPeriod*: float32
     maxClipDistances*: uint32
     maxCullDistances*: uint32
     maxCombinedClipAndCullDistances*: uint32
     discreteQueuePriorities*: uint32
-    pointSizeRange*: array[2, float]
-    lineWidthRange*: array[2, float]
-    pointSizeGranularity*: float
-    lineWidthGranularity*: float
+    pointSizeRange*: array[2, float32]
+    lineWidthRange*: array[2, float32]
+    pointSizeGranularity*: float32
+    lineWidthGranularity*: float32
     strictLines*: VkBool32
     standardSampleLocations*: VkBool32
     optimalBufferCopyOffsetAlignment*: VkDeviceSize
@@ -2271,7 +2271,7 @@ type
     planeIndex*: uint32
     planeStackIndex*: uint32
     transform*: VkSurfaceTransformFlagBitsKHR
-    globalAlpha*: float
+    globalAlpha*: float32
     alphaMode*: VkDisplayPlaneAlphaFlagBitsKHR
     imageExtent*: VkExtent2D
 
@@ -2426,7 +2426,7 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pMarkerName*: cstring
-    color*: array[4, float]
+    color*: array[4, float32]
 
   VkDedicatedAllocationImageCreateInfoNV* = object
     sType*: VkStructureType
@@ -3171,8 +3171,8 @@ type
   VkDescriptorUpdateTemplateCreateInfoKHR* = object
 
   VkXYColorEXT* = object
-    x*: float
-    y*: float
+    x*: float32
+    y*: float32
 
   VkHdrMetadataEXT* = object
     sType*: VkStructureType
@@ -3181,10 +3181,10 @@ type
     displayPrimaryGreen*: VkXYColorEXT
     displayPrimaryBlue*: VkXYColorEXT
     whitePoint*: VkXYColorEXT
-    maxLuminance*: float
-    minLuminance*: float
-    maxContentLightLevel*: float
-    maxFrameAverageLightLevel*: float
+    maxLuminance*: float32
+    minLuminance*: float32
+    maxContentLightLevel*: float32
+    maxFrameAverageLightLevel*: float32
 
   VkDisplayNativeHdrSurfaceCapabilitiesAMD* = object
     sType*: VkStructureType
@@ -3235,8 +3235,8 @@ type
     pLayer*: ptr CAMetalLayer
 
   VkViewportWScalingNV* = object
-    xcoeff*: float
-    ycoeff*: float
+    xcoeff*: float32
+    ycoeff*: float32
 
   VkPipelineViewportWScalingStateCreateInfoNV* = object
     sType*: VkStructureType
@@ -3529,8 +3529,8 @@ type
     filterMinmaxImageComponentMapping*: VkBool32
 
   VkSampleLocationEXT* = object
-    x*: float
-    y*: float
+    x*: float32
+    y*: float32
 
   VkSampleLocationsInfoEXT* = object
     sType*: VkStructureType
@@ -3567,7 +3567,7 @@ type
     pNext*: pointer
     sampleLocationSampleCounts*: VkSampleCountFlags
     maxSampleLocationGridSize*: VkExtent2D
-    sampleLocationCoordinateRange*: array[2, float]
+    sampleLocationCoordinateRange*: array[2, float32]
     sampleLocationSubPixelBits*: uint32
     variableSampleLocations*: VkBool32
 
@@ -3636,7 +3636,7 @@ type
     coverageModulationMode*: VkCoverageModulationModeNV
     coverageModulationTableEnable*: VkBool32
     coverageModulationTableCount*: uint32
-    pCoverageModulationTable*: ptr float
+    pCoverageModulationTable*: ptr float32
 
   VkImageFormatListCreateInfoKHR* = object
     sType*: VkStructureType
@@ -3776,7 +3776,7 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pLabelName*: cstring
-    color*: array[4, float]
+    color*: array[4, float32]
 
   VkDebugUtilsMessengerCreateInfoEXT* = object
     sType*: VkStructureType
@@ -3820,9 +3820,9 @@ type
   VkPhysicalDeviceConservativeRasterizationPropertiesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
-    primitiveOverestimationSize*: float
-    maxExtraPrimitiveOverestimationSize*: float
-    extraPrimitiveOverestimationSizeGranularity*: float
+    primitiveOverestimationSize*: float32
+    maxExtraPrimitiveOverestimationSize*: float32
+    extraPrimitiveOverestimationSizeGranularity*: float32
     primitiveUnderestimation*: VkBool32
     conservativePointAndLineRasterization*: VkBool32
     degenerateTrianglesRasterized*: VkBool32
@@ -3864,7 +3864,7 @@ type
     pNext*: pointer
     flags*: VkPipelineRasterizationConservativeStateCreateFlagsEXT
     conservativeRasterizationMode*: VkConservativeRasterizationModeEXT
-    extraPrimitiveOverestimationSize*: float
+    extraPrimitiveOverestimationSize*: float32
 
   VkPhysicalDeviceDescriptorIndexingFeaturesEXT* = object
     sType*: VkStructureType
@@ -4527,7 +4527,7 @@ type
   VkMemoryPriorityAllocateInfoEXT* = object
     sType*: VkStructureType
     pNext*: pointer
-    priority*: float
+    priority*: float32
 
   VkPhysicalDeviceBufferDeviceAddressFeaturesEXT* = object
     sType*: VkStructureType
@@ -4690,7 +4690,7 @@ type
   VkPerformanceValueDataINTEL* {.union.} = object
     value32*: uint32
     value64*: uint64
-    valueFloat*: float
+    valueFloat*: float32
     valueBool*: VkBool32
     valueString*: ptr char
 
@@ -4896,7 +4896,7 @@ proc newVkExtent3D*(width: uint32, height: uint32, depth: uint32): VkExtent3D =
   result.height = height
   result.depth = depth
 
-proc newVkViewport*(x: float, y: float, width: float, height: float, minDepth: float, maxDepth: float): VkViewport =
+proc newVkViewport*(x: float32, y: float32, width: float32, height: float32, minDepth: float32, maxDepth: float32): VkViewport =
   result.x = x
   result.y = y
   result.width = width
@@ -4957,7 +4957,7 @@ proc newVkAllocationCallbacks*(pUserData: pointer = nil, pfnAllocation: PFN_vkAl
   result.pfnInternalAllocation = pfnInternalAllocation
   result.pfnInternalFree = pfnInternalFree
 
-proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureTypeDeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float): VkDeviceQueueCreateInfo =
+proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureTypeDeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float32): VkDeviceQueueCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5370,7 +5370,7 @@ proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType = VkStructureT
   result.scissorCount = scissorCount
   result.pScissors = pScissors
 
-proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineRasterizationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags = 0.VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float, depthBiasClamp: float, depthBiasSlopeFactor: float, lineWidth: float): VkPipelineRasterizationStateCreateInfo =
+proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineRasterizationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags = 0.VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32, lineWidth: float32): VkPipelineRasterizationStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5385,7 +5385,7 @@ proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStruc
   result.depthBiasSlopeFactor = depthBiasSlopeFactor
   result.lineWidth = lineWidth
 
-proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineMultisampleStateCreateInfo, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags = 0.VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
+proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineMultisampleStateCreateInfo, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags = 0.VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float32, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5406,7 +5406,7 @@ proc newVkPipelineColorBlendAttachmentState*(blendEnable: VkBool32, srcColorBlen
   result.alphaBlendOp = alphaBlendOp
   result.colorWriteMask = colorWriteMask
 
-proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float]): VkPipelineColorBlendStateCreateInfo =
+proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float32]): VkPipelineColorBlendStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5432,7 +5432,7 @@ proc newVkStencilOpState*(failOp: VkStencilOp, passOp: VkStencilOp, depthFailOp:
   result.writeMask = writeMask
   result.reference = reference
 
-proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineDepthStencilStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags = 0.VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float, maxDepthBounds: float): VkPipelineDepthStencilStateCreateInfo =
+proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType = VkStructureTypePipelineDepthStencilStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags = 0.VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float32, maxDepthBounds: float32): VkPipelineDepthStencilStateCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5488,7 +5488,7 @@ proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureTypePipe
   result.pushConstantRangeCount = pushConstantRangeCount
   result.pPushConstantRanges = pPushConstantRanges
 
-proc newVkSamplerCreateInfo*(sType: VkStructureType = VkStructureTypeSamplerCreateInfo, pNext: pointer = nil, flags: VkSamplerCreateFlags = 0.VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float, anisotropyEnable: VkBool32, maxAnisotropy: float, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float, maxLod: float, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
+proc newVkSamplerCreateInfo*(sType: VkStructureType = VkStructureTypeSamplerCreateInfo, pNext: pointer = nil, flags: VkSamplerCreateFlags = 0.VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float32, anisotropyEnable: VkBool32, maxAnisotropy: float32, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float32, maxLod: float32, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -5546,7 +5546,7 @@ proc newVkRenderPassBeginInfo*(sType: VkStructureType = VkStructureTypeRenderPas
   result.clearValueCount = clearValueCount
   result.pClearValues = pClearValues
 
-proc newVkClearDepthStencilValue*(depth: float, stencil: uint32): VkClearDepthStencilValue =
+proc newVkClearDepthStencilValue*(depth: float32, stencil: uint32): VkClearDepthStencilValue =
   result.depth = depth
   result.stencil = stencil
 
@@ -5676,7 +5676,7 @@ proc newVkPhysicalDeviceSparseProperties*(residencyStandard2DBlockShape: VkBool3
   result.residencyAlignedMipSize = residencyAlignedMipSize
   result.residencyNonResidentStrict = residencyNonResidentStrict
 
-proc newVkPhysicalDeviceLimits*(maxImageDimension1D: uint32, maxImageDimension2D: uint32, maxImageDimension3D: uint32, maxImageDimensionCube: uint32, maxImageArrayLayers: uint32, maxTexelBufferElements: uint32, maxUniformBufferRange: uint32, maxStorageBufferRange: uint32, maxPushConstantsSize: uint32, maxMemoryAllocationCount: uint32, maxSamplerAllocationCount: uint32, bufferImageGranularity: VkDeviceSize, sparseAddressSpaceSize: VkDeviceSize, maxBoundDescriptorSets: uint32, maxPerStageDescriptorSamplers: uint32, maxPerStageDescriptorUniformBuffers: uint32, maxPerStageDescriptorStorageBuffers: uint32, maxPerStageDescriptorSampledImages: uint32, maxPerStageDescriptorStorageImages: uint32, maxPerStageDescriptorInputAttachments: uint32, maxPerStageResources: uint32, maxDescriptorSetSamplers: uint32, maxDescriptorSetUniformBuffers: uint32, maxDescriptorSetUniformBuffersDynamic: uint32, maxDescriptorSetStorageBuffers: uint32, maxDescriptorSetStorageBuffersDynamic: uint32, maxDescriptorSetSampledImages: uint32, maxDescriptorSetStorageImages: uint32, maxDescriptorSetInputAttachments: uint32, maxVertexInputAttributes: uint32, maxVertexInputBindings: uint32, maxVertexInputAttributeOffset: uint32, maxVertexInputBindingStride: uint32, maxVertexOutputComponents: uint32, maxTessellationGenerationLevel: uint32, maxTessellationPatchSize: uint32, maxTessellationControlPerVertexInputComponents: uint32, maxTessellationControlPerVertexOutputComponents: uint32, maxTessellationControlPerPatchOutputComponents: uint32, maxTessellationControlTotalOutputComponents: uint32, maxTessellationEvaluationInputComponents: uint32, maxTessellationEvaluationOutputComponents: uint32, maxGeometryShaderInvocations: uint32, maxGeometryInputComponents: uint32, maxGeometryOutputComponents: uint32, maxGeometryOutputVertices: uint32, maxGeometryTotalOutputComponents: uint32, maxFragmentInputComponents: uint32, maxFragmentOutputAttachments: uint32, maxFragmentDualSrcAttachments: uint32, maxFragmentCombinedOutputResources: uint32, maxComputeSharedMemorySize: uint32, maxComputeWorkGroupCount: array[3, uint32], maxComputeWorkGroupInvocations: uint32, maxComputeWorkGroupSize: array[3, uint32], subPixelPrecisionBits: uint32, subTexelPrecisionBits: uint32, mipmapPrecisionBits: uint32, maxDrawIndexedIndexValue: uint32, maxDrawIndirectCount: uint32, maxSamplerLodBias: float, maxSamplerAnisotropy: float, maxViewports: uint32, maxViewportDimensions: array[2, uint32], viewportBoundsRange: array[2, float], viewportSubPixelBits: uint32, minMemoryMapAlignment: uint, minTexelBufferOffsetAlignment: VkDeviceSize, minUniformBufferOffsetAlignment: VkDeviceSize, minStorageBufferOffsetAlignment: VkDeviceSize, minTexelOffset: int32, maxTexelOffset: uint32, minTexelGatherOffset: int32, maxTexelGatherOffset: uint32, minInterpolationOffset: float, maxInterpolationOffset: float, subPixelInterpolationOffsetBits: uint32, maxFramebufferWidth: uint32, maxFramebufferHeight: uint32, maxFramebufferLayers: uint32, framebufferColorSampleCounts: VkSampleCountFlags, framebufferDepthSampleCounts: VkSampleCountFlags, framebufferStencilSampleCounts: VkSampleCountFlags, framebufferNoAttachmentsSampleCounts: VkSampleCountFlags, maxColorAttachments: uint32, sampledImageColorSampleCounts: VkSampleCountFlags, sampledImageIntegerSampleCounts: VkSampleCountFlags, sampledImageDepthSampleCounts: VkSampleCountFlags, sampledImageStencilSampleCounts: VkSampleCountFlags, storageImageSampleCounts: VkSampleCountFlags, maxSampleMaskWords: uint32, timestampComputeAndGraphics: VkBool32, timestampPeriod: float, maxClipDistances: uint32, maxCullDistances: uint32, maxCombinedClipAndCullDistances: uint32, discreteQueuePriorities: uint32, pointSizeRange: array[2, float], lineWidthRange: array[2, float], pointSizeGranularity: float, lineWidthGranularity: float, strictLines: VkBool32, standardSampleLocations: VkBool32, optimalBufferCopyOffsetAlignment: VkDeviceSize, optimalBufferCopyRowPitchAlignment: VkDeviceSize, nonCoherentAtomSize: VkDeviceSize): VkPhysicalDeviceLimits =
+proc newVkPhysicalDeviceLimits*(maxImageDimension1D: uint32, maxImageDimension2D: uint32, maxImageDimension3D: uint32, maxImageDimensionCube: uint32, maxImageArrayLayers: uint32, maxTexelBufferElements: uint32, maxUniformBufferRange: uint32, maxStorageBufferRange: uint32, maxPushConstantsSize: uint32, maxMemoryAllocationCount: uint32, maxSamplerAllocationCount: uint32, bufferImageGranularity: VkDeviceSize, sparseAddressSpaceSize: VkDeviceSize, maxBoundDescriptorSets: uint32, maxPerStageDescriptorSamplers: uint32, maxPerStageDescriptorUniformBuffers: uint32, maxPerStageDescriptorStorageBuffers: uint32, maxPerStageDescriptorSampledImages: uint32, maxPerStageDescriptorStorageImages: uint32, maxPerStageDescriptorInputAttachments: uint32, maxPerStageResources: uint32, maxDescriptorSetSamplers: uint32, maxDescriptorSetUniformBuffers: uint32, maxDescriptorSetUniformBuffersDynamic: uint32, maxDescriptorSetStorageBuffers: uint32, maxDescriptorSetStorageBuffersDynamic: uint32, maxDescriptorSetSampledImages: uint32, maxDescriptorSetStorageImages: uint32, maxDescriptorSetInputAttachments: uint32, maxVertexInputAttributes: uint32, maxVertexInputBindings: uint32, maxVertexInputAttributeOffset: uint32, maxVertexInputBindingStride: uint32, maxVertexOutputComponents: uint32, maxTessellationGenerationLevel: uint32, maxTessellationPatchSize: uint32, maxTessellationControlPerVertexInputComponents: uint32, maxTessellationControlPerVertexOutputComponents: uint32, maxTessellationControlPerPatchOutputComponents: uint32, maxTessellationControlTotalOutputComponents: uint32, maxTessellationEvaluationInputComponents: uint32, maxTessellationEvaluationOutputComponents: uint32, maxGeometryShaderInvocations: uint32, maxGeometryInputComponents: uint32, maxGeometryOutputComponents: uint32, maxGeometryOutputVertices: uint32, maxGeometryTotalOutputComponents: uint32, maxFragmentInputComponents: uint32, maxFragmentOutputAttachments: uint32, maxFragmentDualSrcAttachments: uint32, maxFragmentCombinedOutputResources: uint32, maxComputeSharedMemorySize: uint32, maxComputeWorkGroupCount: array[3, uint32], maxComputeWorkGroupInvocations: uint32, maxComputeWorkGroupSize: array[3, uint32], subPixelPrecisionBits: uint32, subTexelPrecisionBits: uint32, mipmapPrecisionBits: uint32, maxDrawIndexedIndexValue: uint32, maxDrawIndirectCount: uint32, maxSamplerLodBias: float32, maxSamplerAnisotropy: float32, maxViewports: uint32, maxViewportDimensions: array[2, uint32], viewportBoundsRange: array[2, float32], viewportSubPixelBits: uint32, minMemoryMapAlignment: uint, minTexelBufferOffsetAlignment: VkDeviceSize, minUniformBufferOffsetAlignment: VkDeviceSize, minStorageBufferOffsetAlignment: VkDeviceSize, minTexelOffset: int32, maxTexelOffset: uint32, minTexelGatherOffset: int32, maxTexelGatherOffset: uint32, minInterpolationOffset: float32, maxInterpolationOffset: float32, subPixelInterpolationOffsetBits: uint32, maxFramebufferWidth: uint32, maxFramebufferHeight: uint32, maxFramebufferLayers: uint32, framebufferColorSampleCounts: VkSampleCountFlags, framebufferDepthSampleCounts: VkSampleCountFlags, framebufferStencilSampleCounts: VkSampleCountFlags, framebufferNoAttachmentsSampleCounts: VkSampleCountFlags, maxColorAttachments: uint32, sampledImageColorSampleCounts: VkSampleCountFlags, sampledImageIntegerSampleCounts: VkSampleCountFlags, sampledImageDepthSampleCounts: VkSampleCountFlags, sampledImageStencilSampleCounts: VkSampleCountFlags, storageImageSampleCounts: VkSampleCountFlags, maxSampleMaskWords: uint32, timestampComputeAndGraphics: VkBool32, timestampPeriod: float32, maxClipDistances: uint32, maxCullDistances: uint32, maxCombinedClipAndCullDistances: uint32, discreteQueuePriorities: uint32, pointSizeRange: array[2, float32], lineWidthRange: array[2, float32], pointSizeGranularity: float32, lineWidthGranularity: float32, strictLines: VkBool32, standardSampleLocations: VkBool32, optimalBufferCopyOffsetAlignment: VkDeviceSize, optimalBufferCopyRowPitchAlignment: VkDeviceSize, nonCoherentAtomSize: VkDeviceSize): VkPhysicalDeviceLimits =
   result.maxImageDimension1D = maxImageDimension1D
   result.maxImageDimension2D = maxImageDimension2D
   result.maxImageDimension3D = maxImageDimension3D
@@ -5875,7 +5875,7 @@ proc newVkDisplayPlaneCapabilitiesKHR*(supportedAlpha: VkDisplayPlaneAlphaFlagsK
   result.minDstExtent = minDstExtent
   result.maxDstExtent = maxDstExtent
 
-proc newVkDisplaySurfaceCreateInfoKHR*(sType: VkStructureType, pNext: pointer = nil, flags: VkDisplaySurfaceCreateFlagsKHR = 0.VkDisplaySurfaceCreateFlagsKHR, displayMode: VkDisplayModeKHR, planeIndex: uint32, planeStackIndex: uint32, transform: VkSurfaceTransformFlagBitsKHR, globalAlpha: float, alphaMode: VkDisplayPlaneAlphaFlagBitsKHR, imageExtent: VkExtent2D): VkDisplaySurfaceCreateInfoKHR =
+proc newVkDisplaySurfaceCreateInfoKHR*(sType: VkStructureType, pNext: pointer = nil, flags: VkDisplaySurfaceCreateFlagsKHR = 0.VkDisplaySurfaceCreateFlagsKHR, displayMode: VkDisplayModeKHR, planeIndex: uint32, planeStackIndex: uint32, transform: VkSurfaceTransformFlagBitsKHR, globalAlpha: float32, alphaMode: VkDisplayPlaneAlphaFlagBitsKHR, imageExtent: VkExtent2D): VkDisplaySurfaceCreateInfoKHR =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -6034,7 +6034,7 @@ proc newVkDebugMarkerObjectTagInfoEXT*(sType: VkStructureType, pNext: pointer = 
   result.tagSize = tagSize
   result.pTag = pTag
 
-proc newVkDebugMarkerMarkerInfoEXT*(sType: VkStructureType, pNext: pointer = nil, pMarkerName: cstring, color: array[4, float]): VkDebugMarkerMarkerInfoEXT =
+proc newVkDebugMarkerMarkerInfoEXT*(sType: VkStructureType, pNext: pointer = nil, pMarkerName: cstring, color: array[4, float32]): VkDebugMarkerMarkerInfoEXT =
   result.sType = sType
   result.pNext = pNext
   result.pMarkerName = pMarkerName
@@ -6696,11 +6696,11 @@ proc newVkDescriptorUpdateTemplateCreateInfo*(sType: VkStructureType, pNext: poi
   result.pipelineLayout = pipelineLayout
   result.set = set
 
-proc newVkXYColorEXT*(x: float, y: float): VkXYColorEXT =
+proc newVkXYColorEXT*(x: float32, y: float32): VkXYColorEXT =
   result.x = x
   result.y = y
 
-proc newVkHdrMetadataEXT*(sType: VkStructureType, pNext: pointer = nil, displayPrimaryRed: VkXYColorEXT, displayPrimaryGreen: VkXYColorEXT, displayPrimaryBlue: VkXYColorEXT, whitePoint: VkXYColorEXT, maxLuminance: float, minLuminance: float, maxContentLightLevel: float, maxFrameAverageLightLevel: float): VkHdrMetadataEXT =
+proc newVkHdrMetadataEXT*(sType: VkStructureType, pNext: pointer = nil, displayPrimaryRed: VkXYColorEXT, displayPrimaryGreen: VkXYColorEXT, displayPrimaryBlue: VkXYColorEXT, whitePoint: VkXYColorEXT, maxLuminance: float32, minLuminance: float32, maxContentLightLevel: float32, maxFrameAverageLightLevel: float32): VkHdrMetadataEXT =
   result.sType = sType
   result.pNext = pNext
   result.displayPrimaryRed = displayPrimaryRed
@@ -6760,7 +6760,7 @@ proc newVkMetalSurfaceCreateInfoEXT*(sType: VkStructureType, pNext: pointer = ni
   result.flags = flags
   result.pLayer = pLayer
 
-proc newVkViewportWScalingNV*(xcoeff: float, ycoeff: float): VkViewportWScalingNV =
+proc newVkViewportWScalingNV*(xcoeff: float32, ycoeff: float32): VkViewportWScalingNV =
   result.xcoeff = xcoeff
   result.ycoeff = ycoeff
 
@@ -7016,7 +7016,7 @@ proc newVkPhysicalDeviceSamplerFilterMinmaxPropertiesEXT*(sType: VkStructureType
   result.filterMinmaxSingleComponentFormats = filterMinmaxSingleComponentFormats
   result.filterMinmaxImageComponentMapping = filterMinmaxImageComponentMapping
 
-proc newVkSampleLocationEXT*(x: float, y: float): VkSampleLocationEXT =
+proc newVkSampleLocationEXT*(x: float32, y: float32): VkSampleLocationEXT =
   result.x = x
   result.y = y
 
@@ -7050,7 +7050,7 @@ proc newVkPipelineSampleLocationsStateCreateInfoEXT*(sType: VkStructureType, pNe
   result.sampleLocationsEnable = sampleLocationsEnable
   result.sampleLocationsInfo = sampleLocationsInfo
 
-proc newVkPhysicalDeviceSampleLocationsPropertiesEXT*(sType: VkStructureType, pNext: pointer = nil, sampleLocationSampleCounts: VkSampleCountFlags, maxSampleLocationGridSize: VkExtent2D, sampleLocationCoordinateRange: array[2, float], sampleLocationSubPixelBits: uint32, variableSampleLocations: VkBool32): VkPhysicalDeviceSampleLocationsPropertiesEXT =
+proc newVkPhysicalDeviceSampleLocationsPropertiesEXT*(sType: VkStructureType, pNext: pointer = nil, sampleLocationSampleCounts: VkSampleCountFlags, maxSampleLocationGridSize: VkExtent2D, sampleLocationCoordinateRange: array[2, float32], sampleLocationSubPixelBits: uint32, variableSampleLocations: VkBool32): VkPhysicalDeviceSampleLocationsPropertiesEXT =
   result.sType = sType
   result.pNext = pNext
   result.sampleLocationSampleCounts = sampleLocationSampleCounts
@@ -7117,7 +7117,7 @@ proc newVkDescriptorPoolInlineUniformBlockCreateInfoEXT*(sType: VkStructureType,
   result.pNext = pNext
   result.maxInlineUniformBlockBindings = maxInlineUniformBlockBindings
 
-proc newVkPipelineCoverageModulationStateCreateInfoNV*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCoverageModulationStateCreateFlagsNV = 0.VkPipelineCoverageModulationStateCreateFlagsNV, coverageModulationMode: VkCoverageModulationModeNV, coverageModulationTableEnable: VkBool32, coverageModulationTableCount: uint32, pCoverageModulationTable: ptr float): VkPipelineCoverageModulationStateCreateInfoNV =
+proc newVkPipelineCoverageModulationStateCreateInfoNV*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCoverageModulationStateCreateFlagsNV = 0.VkPipelineCoverageModulationStateCreateFlagsNV, coverageModulationMode: VkCoverageModulationModeNV, coverageModulationTableEnable: VkBool32, coverageModulationTableCount: uint32, pCoverageModulationTable: ptr float32): VkPipelineCoverageModulationStateCreateInfoNV =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -7252,7 +7252,7 @@ proc newVkDebugUtilsObjectTagInfoEXT*(sType: VkStructureType, pNext: pointer = n
   result.tagSize = tagSize
   result.pTag = pTag
 
-proc newVkDebugUtilsLabelEXT*(sType: VkStructureType, pNext: pointer = nil, pLabelName: cstring, color: array[4, float]): VkDebugUtilsLabelEXT =
+proc newVkDebugUtilsLabelEXT*(sType: VkStructureType, pNext: pointer = nil, pLabelName: cstring, color: array[4, float32]): VkDebugUtilsLabelEXT =
   result.sType = sType
   result.pNext = pNext
   result.pLabelName = pLabelName
@@ -7297,7 +7297,7 @@ proc newVkPhysicalDeviceExternalMemoryHostPropertiesEXT*(sType: VkStructureType,
   result.pNext = pNext
   result.minImportedHostPointerAlignment = minImportedHostPointerAlignment
 
-proc newVkPhysicalDeviceConservativeRasterizationPropertiesEXT*(sType: VkStructureType, pNext: pointer = nil, primitiveOverestimationSize: float, maxExtraPrimitiveOverestimationSize: float, extraPrimitiveOverestimationSizeGranularity: float, primitiveUnderestimation: VkBool32, conservativePointAndLineRasterization: VkBool32, degenerateTrianglesRasterized: VkBool32, degenerateLinesRasterized: VkBool32, fullyCoveredFragmentShaderInputVariable: VkBool32, conservativeRasterizationPostDepthCoverage: VkBool32): VkPhysicalDeviceConservativeRasterizationPropertiesEXT =
+proc newVkPhysicalDeviceConservativeRasterizationPropertiesEXT*(sType: VkStructureType, pNext: pointer = nil, primitiveOverestimationSize: float32, maxExtraPrimitiveOverestimationSize: float32, extraPrimitiveOverestimationSizeGranularity: float32, primitiveUnderestimation: VkBool32, conservativePointAndLineRasterization: VkBool32, degenerateTrianglesRasterized: VkBool32, degenerateLinesRasterized: VkBool32, fullyCoveredFragmentShaderInputVariable: VkBool32, conservativeRasterizationPostDepthCoverage: VkBool32): VkPhysicalDeviceConservativeRasterizationPropertiesEXT =
   result.sType = sType
   result.pNext = pNext
   result.primitiveOverestimationSize = primitiveOverestimationSize
@@ -7339,7 +7339,7 @@ proc newVkPhysicalDeviceShaderCoreProperties2AMD*(sType: VkStructureType, pNext:
   result.shaderCoreFeatures = shaderCoreFeatures
   result.activeComputeUnitCount = activeComputeUnitCount
 
-proc newVkPipelineRasterizationConservativeStateCreateInfoEXT*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineRasterizationConservativeStateCreateFlagsEXT = 0.VkPipelineRasterizationConservativeStateCreateFlagsEXT, conservativeRasterizationMode: VkConservativeRasterizationModeEXT, extraPrimitiveOverestimationSize: float): VkPipelineRasterizationConservativeStateCreateInfoEXT =
+proc newVkPipelineRasterizationConservativeStateCreateInfoEXT*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineRasterizationConservativeStateCreateFlagsEXT = 0.VkPipelineRasterizationConservativeStateCreateFlagsEXT, conservativeRasterizationMode: VkConservativeRasterizationModeEXT, extraPrimitiveOverestimationSize: float32): VkPipelineRasterizationConservativeStateCreateInfoEXT =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -8004,7 +8004,7 @@ proc newVkPhysicalDeviceMemoryPriorityFeaturesEXT*(sType: VkStructureType, pNext
   result.pNext = pNext
   result.memoryPriority = memoryPriority
 
-proc newVkMemoryPriorityAllocateInfoEXT*(sType: VkStructureType, pNext: pointer = nil, priority: float): VkMemoryPriorityAllocateInfoEXT =
+proc newVkMemoryPriorityAllocateInfoEXT*(sType: VkStructureType, pNext: pointer = nil, priority: float32): VkMemoryPriorityAllocateInfoEXT =
   result.sType = sType
   result.pNext = pNext
   result.priority = priority
@@ -8441,10 +8441,10 @@ var
   vkCmdBindPipeline*: proc(commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline): void {.stdcall.}
   vkCmdSetViewport*: proc(commandBuffer: VkCommandBuffer, firstViewport: uint32, viewportCount: uint32, pViewports: ptr VkViewport): void {.stdcall.}
   vkCmdSetScissor*: proc(commandBuffer: VkCommandBuffer, firstScissor: uint32, scissorCount: uint32, pScissors: ptr VkRect2D): void {.stdcall.}
-  vkCmdSetLineWidth*: proc(commandBuffer: VkCommandBuffer, lineWidth: float): void {.stdcall.}
-  vkCmdSetDepthBias*: proc(commandBuffer: VkCommandBuffer, depthBiasConstantFactor: float, depthBiasClamp: float, depthBiasSlopeFactor: float): void {.stdcall.}
-  vkCmdSetBlendConstants*: proc(commandBuffer: VkCommandBuffer, blendConstants: array[4, float]): void {.stdcall.}
-  vkCmdSetDepthBounds*: proc(commandBuffer: VkCommandBuffer, minDepthBounds: float, maxDepthBounds: float): void {.stdcall.}
+  vkCmdSetLineWidth*: proc(commandBuffer: VkCommandBuffer, lineWidth: float32): void {.stdcall.}
+  vkCmdSetDepthBias*: proc(commandBuffer: VkCommandBuffer, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32): void {.stdcall.}
+  vkCmdSetBlendConstants*: proc(commandBuffer: VkCommandBuffer, blendConstants: array[4, float32]): void {.stdcall.}
+  vkCmdSetDepthBounds*: proc(commandBuffer: VkCommandBuffer, minDepthBounds: float32, maxDepthBounds: float32): void {.stdcall.}
   vkCmdSetStencilCompareMask*: proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, compareMask: uint32): void {.stdcall.}
   vkCmdSetStencilWriteMask*: proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, writeMask: uint32): void {.stdcall.}
   vkCmdSetStencilReference*: proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, reference: uint32): void {.stdcall.}
@@ -8788,10 +8788,10 @@ proc vkLoad1_0*() =
   vkCmdBindPipeline = cast[proc(commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline): void {.stdcall.}](vkGetProc("vkCmdBindPipeline"))
   vkCmdSetViewport = cast[proc(commandBuffer: VkCommandBuffer, firstViewport: uint32, viewportCount: uint32, pViewports: ptr VkViewport): void {.stdcall.}](vkGetProc("vkCmdSetViewport"))
   vkCmdSetScissor = cast[proc(commandBuffer: VkCommandBuffer, firstScissor: uint32, scissorCount: uint32, pScissors: ptr VkRect2D): void {.stdcall.}](vkGetProc("vkCmdSetScissor"))
-  vkCmdSetLineWidth = cast[proc(commandBuffer: VkCommandBuffer, lineWidth: float): void {.stdcall.}](vkGetProc("vkCmdSetLineWidth"))
-  vkCmdSetDepthBias = cast[proc(commandBuffer: VkCommandBuffer, depthBiasConstantFactor: float, depthBiasClamp: float, depthBiasSlopeFactor: float): void {.stdcall.}](vkGetProc("vkCmdSetDepthBias"))
-  vkCmdSetBlendConstants = cast[proc(commandBuffer: VkCommandBuffer, blendConstants: array[4, float]): void {.stdcall.}](vkGetProc("vkCmdSetBlendConstants"))
-  vkCmdSetDepthBounds = cast[proc(commandBuffer: VkCommandBuffer, minDepthBounds: float, maxDepthBounds: float): void {.stdcall.}](vkGetProc("vkCmdSetDepthBounds"))
+  vkCmdSetLineWidth = cast[proc(commandBuffer: VkCommandBuffer, lineWidth: float32): void {.stdcall.}](vkGetProc("vkCmdSetLineWidth"))
+  vkCmdSetDepthBias = cast[proc(commandBuffer: VkCommandBuffer, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32): void {.stdcall.}](vkGetProc("vkCmdSetDepthBias"))
+  vkCmdSetBlendConstants = cast[proc(commandBuffer: VkCommandBuffer, blendConstants: array[4, float32]): void {.stdcall.}](vkGetProc("vkCmdSetBlendConstants"))
+  vkCmdSetDepthBounds = cast[proc(commandBuffer: VkCommandBuffer, minDepthBounds: float32, maxDepthBounds: float32): void {.stdcall.}](vkGetProc("vkCmdSetDepthBounds"))
   vkCmdSetStencilCompareMask = cast[proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, compareMask: uint32): void {.stdcall.}](vkGetProc("vkCmdSetStencilCompareMask"))
   vkCmdSetStencilWriteMask = cast[proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, writeMask: uint32): void {.stdcall.}](vkGetProc("vkCmdSetStencilWriteMask"))
   vkCmdSetStencilReference = cast[proc(commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, reference: uint32): void {.stdcall.}](vkGetProc("vkCmdSetStencilReference"))
