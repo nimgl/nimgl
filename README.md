@@ -42,11 +42,11 @@
 NimGL (Nim Game Library) is a collection of bindings for popular libraries,
 mostly used in computer graphics. *A library of libraries.*
 
-This collection of bindings is heavily inspired by LWJGL3, it enables low level
+This collection of bindings is heavily inspired by LWJGL3. It enables low level
 access and it is not a framework, so we highly encourage you to use a game
-engine if you do not have experience working with low level graphics
-development. This bindings contain several optional helper procedures to help
-with the development and to better suit it to the language.
+engine if you do not have experience in working with low level graphics
+development. These bindings contain several optional helper procedures to help
+with development and to better suit it to the language.
 
 ## Getting Started
 
@@ -57,7 +57,7 @@ NimGL.
 
 #### With Nimble file (recommended)
 
-1. Install Nimble, it comes pre installed with Nim.
+1. Install Nimble, it comes preinstalled with Nim.
 2. Add it to your .nimble file.
 ```nim
 requires "nimgl >= 1.0.0"
@@ -69,7 +69,7 @@ nimble build
 
 #### With Nimble install
 
-1. Install Nimble, it comes pre installed with Nim.
+1. Install Nimble, it comes preinstalled with Nim.
 2. Install NimGL with Nimble.
 ```sh
 nimble install nimgl
@@ -81,7 +81,7 @@ nim c -r main.nim
 
 #### Develop with Nimble
 
-1. Install Nimble, it comes pre installed with Nim.
+1. Install Nimble, it comes preinstalled with Nim.
 2. Clone and link with Nimble in another directory.
 ```sh
 nimble develop nimgl
@@ -140,9 +140,9 @@ main()
 
 ## Contribute
 
-Your contributions truly mean the world to this project, if you are missing some
+Your contributions truly mean the world to this project. If you are missing some
 procedures, bindings or functionality feel free to open an Issue with the
-specification and some example on how to properly implement it.  For the
+specification and some example on how to properly implement it. For the
 adventurous also feel free to open a Pull Request which will be greatly
 appreciated.  
 Thank you so much :tada:
