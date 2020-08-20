@@ -154,11 +154,12 @@ $RECYCLE.BIN/
 ### NimGL ###
 
 # Tests
-tests/general
-tests/tgeneral
-tests/tglfw
-tests/tmath
-tests/topengl
+examples/general
+examples/tgeneral
+examples/tglfw
+examples/tmath
+examples/timgui
+examples/topengl
 imgui.ini
 docs/
 vk_layer_settings.txt
