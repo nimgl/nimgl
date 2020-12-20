@@ -147,7 +147,7 @@ adventurous also feel free to open a Pull Request which will be greatly
 appreciated.  
 Thank you so much :tada:
 
-Read the [Contribution Guide](CONTRIBUTING.md) for more information.
+Read the [Contribution Guide](https://github.com/nimgl/.github/blob/master/CONTRIBUTING.md) for more information.
 
 ## Supported Bindings
 
@@ -157,17 +157,6 @@ Read the [Contribution Guide](CONTRIBUTING.md) for more information.
 | [Vulkan][vulkan-url] | A new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms. |
 | [OpenGL][opengl-url] | Open Graphics Library is a cross-language, cross-platform application programming interface for rendering 2D and 3D vector graphics. NimGL only supports modern OpenGL.                                        |
 | [ImGUI][imgui-url]   | Dear ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application.                                  |
-
-## Roadmap
-
-Goals for before June of 2020:
-
-- Create optional helper functions for each binding to further facilitate
-  development.
-- CI integration with Github Actions
-
-You can read a small post about the future of the project
-[here](https://notes.ldmd.mx/nimgl_1.0.html).
 
 ## Gallery
 
