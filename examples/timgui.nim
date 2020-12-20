@@ -4,7 +4,7 @@ import nimgl/imgui, nimgl/imgui/[impl_opengl, impl_glfw]
 import nimgl/[opengl, glfw]
 
 proc main() =
-  assert glfwInit()
+  doAssert glfwInit()
 
   glfwWindowHint(GLFWContextVersionMajor, 3)
   glfwWindowHint(GLFWContextVersionMinor, 3)
@@ -18,13 +18,13 @@ proc main() =
 
   w.makeContextCurrent()
 
-  assert glInit()
+  doAssert glInit()
 
   let context = igCreateContext()
   #let io = igGetIO()
 
-  assert igGlfwInitForOpenGL(w, true)
-  assert igOpenGL3Init()
+  doAssert igGlfwInitForOpenGL(w, true)
+  doAssert igOpenGL3Init()
 
   igStyleColorsCherry()
 

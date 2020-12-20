@@ -29,7 +29,7 @@ proc toRGB(vec: Vec3[float32]): Vec3[float32] =
 
 proc main =
   # GLFW
-  assert glfwInit()
+  doAssert glfwInit()
 
   glfwWindowHint(GLFWContextVersionMajor, 3)
   glfwWindowHint(GLFWContextVersionMinor, 3)
@@ -38,13 +38,13 @@ proc main =
   glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
   let w: GLFWWindow = glfwCreateWindow(800, 600, "NimGL", nil, nil)
-  assert w != nil
+  doAssert w != nil
 
   discard w.setKeyCallback(keyProc)
   w.makeContextCurrent
 
   # Opengl
-  assert glInit()
+  doAssert glInit()
 
   echo $glVersionMajor & "." & $glVersionMinor
 

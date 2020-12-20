@@ -6,7 +6,7 @@ if os.getEnv("CI") != "":
   quit()
 
 proc main =
-  assert glfwInit()
+  doAssert glfwInit()
 
   glfwWindowHint(GLFWContextVersionMajor, 3)
   glfwWindowHint(GLFWContextVersionMinor, 3)
@@ -21,12 +21,12 @@ proc main =
   echo videoMode.height
 
   let w = glfwCreateWindow(800, 600, "NimGL", nil, nil)
-  assert w != nil
+  doAssert w != nil
 
   w.makeContextCurrent()
   when defined(windows):
     var hwnd = w.getWin32Window()
-    assert hwnd != nil
+    doAssert hwnd != nil
 
   while not w.windowShouldClose():
     w.swapBuffers()
