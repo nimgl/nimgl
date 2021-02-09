@@ -27,7 +27,7 @@ else:
   # Thanks to ephja for making this build system
   when defined(emscripten):
     {.passL: "-s USE_GLFW=3".}
-  when defined(windows):
+  elif defined(windows):
     when defined(vcc):
       {.passL: "opengl32.lib gdi32.lib user32.lib shell32.lib" .}
     else:
