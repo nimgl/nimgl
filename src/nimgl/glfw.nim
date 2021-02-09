@@ -21,9 +21,12 @@ when defined(glfwDLL):
   else:
     const glfw_dll* = "libglfw.so.3"
 else:
-  {.compile: "private/glfw/src/vulkan.c".}
+  when not defined(emscripten):
+    {.compile: "private/glfw/src/vulkan.c".}
 
   # Thanks to ephja for making this build system
+  when defined(emscripten):
+    {.passL: "-s USE_GLFW=3".}
   when defined(windows):
     {.passC: "-D_GLFW_WIN32",
       passL: "-lopengl32 -lgdi32",
@@ -75,11 +78,12 @@ else:
       compile: "private/glfw/src/osmesa_context.c",
       compile: "private/glfw/src/posix_thread.c".}
 
-  {.compile: "private/glfw/src/context.c",
-    compile: "private/glfw/src/init.c",
-    compile: "private/glfw/src/input.c",
-    compile: "private/glfw/src/monitor.c",
-    compile: "private/glfw/src/window.c".}
+  when not defined(emscripten):
+    {.compile: "private/glfw/src/context.c",
+      compile: "private/glfw/src/init.c",
+      compile: "private/glfw/src/input.c",
+      compile: "private/glfw/src/monitor.c",
+      compile: "private/glfw/src/window.c".}
 
 when defined(vulkan):
   import ./vulkan
@@ -91,18 +95,21 @@ const
     ##
     ## This is incremented when the API is changed in non-compatible ways.
     ## @ingroup init
+const
   GLFWVersionMinor* = 4
     ## @brief The minor version number of the GLFW library.
     ##
     ## This is incremented when features are added to the API but it remains
     ## backward-compatible.
     ## @ingroup init
+const
   GLFWVersionRevision* = 0
     ## @brief The revision number of the GLFW library.
     ##
     ## This is incremented when a bug fix release is made that does not contain any
     ## API changes.
     ## @ingroup init
+const
   GLFWTrue* = 1
     ## @brief One.
     ##
@@ -111,6 +118,7 @@ const
     ## to one.
     ##
     ## @ingroup init
+const
   GLFWFalse* = 0
     ## @brief Zero.
     ##
@@ -119,18 +127,21 @@ const
     ## equal to zero.
     ##
     ## @ingroup init
+const
   GLFWRelease* = 0
     ## @brief The key or mouse button was released.
     ##
     ## The key or mouse button was released.
     ##
     ## @ingroup input
+const
   GLFWPress* = 1
     ## @brief The key or mouse button was pressed.
     ##
     ## The key or mouse button was pressed.
     ##
     ## @ingroup input
+const
   GLFWRepeat* = 2
     ## @brief The key was held down until it repeated.
     ##
@@ -298,23 +309,28 @@ const
     ## @brief If this bit is set one or more Shift keys were held down.
     ##
     ## If this bit is set one or more Shift keys were held down.
+const
   GLFWModControl* = 0x0002
     ## @brief If this bit is set one or more Control keys were held down.
     ##
     ## If this bit is set one or more Control keys were held down.
+const
   GLFWModAlt* = 0x0004
     ## @brief If this bit is set one or more Alt keys were held down.
     ##
     ## If this bit is set one or more Alt keys were held down.
+const
   GLFWModSuper* = 0x0008
     ## @brief If this bit is set one or more Super keys were held down.
     ##
     ## If this bit is set one or more Super keys were held down.
+const
   GLFWModCapsLock* = 0x0010
     ## @brief If this bit is set the Caps Lock key is enabled.
     ##
     ## If this bit is set the Caps Lock key is enabled and the
     ## GLFW_LOCK_KEY_MODS input mode is set.
+const
   GLFWModNumLock* = 0x0020
     ## @brief If this bit is set the Num Lock key is enabled.
     ##
@@ -404,6 +420,7 @@ const
     ## No error has occurred.
     ##
     ## @analysis Yay.
+const
   GLFWNotInitialized* = 0x00010001
     ## @brief GLFW has not been initialized.
     ##
@@ -412,6 +429,7 @@ const
     ##
     ## @analysis Application programmer error.  Initialize GLFW before calling any
     ## function that requires initialization.
+const
   GLFWNoCurrentContext* = 0x00010002
     ## @brief No context is current for this thread.
     ##
@@ -421,6 +439,7 @@ const
     ##
     ## @analysis Application programmer error.  Ensure a context is current before
     ## calling functions that require a current context.
+const
   GLFWInvalidEnum* = 0x00010003
     ## @brief One of the arguments to the function was an invalid enum value.
     ##
@@ -428,6 +447,7 @@ const
     ## requesting  GLFW_RED_BITS with  glfwGetWindowAttrib.
     ##
     ## @analysis Application programmer error.  Fix the offending call.
+const
   GLFWInvalidValue* = 0x00010004
     ## @brief One of the arguments to the function was an invalid value.
     ##
@@ -438,6 +458,7 @@ const
     ## result in a  GLFW_VERSION_UNAVAILABLE error.
     ##
     ## @analysis Application programmer error.  Fix the offending call.
+const
   GLFWOutOfMemory* = 0x00010005
     ## @brief A memory allocation failed.
     ##
@@ -445,6 +466,7 @@ const
     ##
     ## @analysis A bug in GLFW or the underlying operating system.  Report the bug
     ## to our [issue tracker](https://github.com/glfw/glfw/issues).
+const
   GLFWApiUnavailable* = 0x00010006
     ## @brief GLFW could not find support for the requested API on the system.
     ##
@@ -460,6 +482,7 @@ const
     ## a WGL or GLX extension.  macOS does not provide OpenGL ES at all.  The Mesa
     ## EGL, OpenGL and OpenGL ES libraries do not interface with the Nvidia binary
     ## driver.  Older graphics drivers do not support Vulkan.
+const
   GLFWVersionUnavailable* = 0x00010007
     ## @brief The requested OpenGL or OpenGL ES version is not available.
     ##
@@ -476,6 +499,7 @@ const
     ## comes out before the 4.x series gets that far, also fail with this error and
     ## not  GLFW_INVALID_VALUE, because GLFW cannot know what future versions
     ## will exist.
+const
   GLFWPlatformError* = 0x00010008
     ## @brief A platform-specific error occurred that does not match any of the
     ## more specific categories.
@@ -486,6 +510,7 @@ const
     ## @analysis A bug or configuration error in GLFW, the underlying operating
     ## system or its drivers, or a lack of required resources.  Report the issue to
     ## our [issue tracker](https://github.com/glfw/glfw/issues).
+const
   GLFWFormatUnavailable* = 0x00010009
     ## @brief The requested format is not supported or available.
     ##
@@ -504,6 +529,7 @@ const
     ## @par
     ## If emitted when querying the clipboard, ignore the error or report it to
     ## the user, as appropriate.
+const
   GLFWNoWindowContext* = 0x0001000A
     ## @brief The specified window does not have an OpenGL or OpenGL ES context.
     ##
@@ -511,6 +537,7 @@ const
     ## a function that requires it to have one.
     ##
     ## @analysis Application programmer error.  Fix the offending call.
+const
   GLFWCursorUnavailable* = 0x0001000B
     ## @brief The specified cursor shape is not available.
     ##
@@ -521,253 +548,381 @@ const
     ## @analysis Platform or system settings limitation.  Pick another
     ## standard cursor shape or create a
     ## custom cursor.
+const
+  GLFWFeatureUnavailable* = 0x0001000C
+    ## @brief The requested feature is not provided by the platform.
+    ##
+    ## The requested feature is not provided by the platform, so GLFW is unable to
+    ## implement it.  The documentation for each function notes if it could emit
+    ## this error.
+    ##
+    ## @analysis Platform or platform version limitation.  The error can be ignored
+    ## unless the feature is critical to the application.
+    ##
+    ## @par
+    ## A function call that emits this error has no effect other than the error and
+    ## updating any existing out parameters.
+const
+  GLFWFeatureUnimplemented* = 0x0001000D
+    ## @brief The requested feature is not implemented for the platform.
+    ##
+    ## The requested feature has not yet been implemented in GLFW for this platform.
+    ##
+    ## @analysis An incomplete implementation of GLFW for this platform, hopefully
+    ## fixed in a future release.  The error can be ignored unless the feature is
+    ## critical to the application.
+    ##
+    ## @par
+    ## A function call that emits this error has no effect other than the error and
+    ## updating any existing out parameters.
+const
   GLFWFocused* = 0x00020001
     ## @brief Input focus window hint and attribute
     ##
     ## Input focus window hint or
     ## window attribute.
+const
   GLFWIconified* = 0x00020002
     ## @brief Window iconification window attribute
     ##
     ## Window iconification window attribute.
+const
   GLFWResizable* = 0x00020003
     ## @brief Window resize-ability window hint and attribute
     ##
     ## Window resize-ability window hint and
     ## window attribute.
+const
   GLFWVisible* = 0x00020004
     ## @brief Window visibility window hint and attribute
     ##
     ## Window visibility window hint and
     ## window attribute.
+const
   GLFWDecorated* = 0x00020005
     ## @brief Window decoration window hint and attribute
     ##
     ## Window decoration window hint and
     ## window attribute.
+const
   GLFWAutoIconify* = 0x00020006
     ## @brief Window auto-iconification window hint and attribute
     ##
     ## Window auto-iconification window hint and
     ## window attribute.
+const
   GLFWFloating* = 0x00020007
     ## @brief Window decoration window hint and attribute
     ##
     ## Window decoration window hint and
     ## window attribute.
+const
   GLFWMaximized* = 0x00020008
     ## @brief Window maximization window hint and attribute
     ##
     ## Window maximization window hint and
     ## window attribute.
+const
   GLFWCenterCursor* = 0x00020009
     ## @brief Cursor centering window hint
     ##
     ## Cursor centering window hint.
+const
   GLFWTransparentFramebuffer* = 0x0002000A
     ## @brief Window framebuffer transparency hint and attribute
     ##
     ## Window framebuffer transparency
     ## window hint and
     ## window attribute.
+const
   GLFWHovered* = 0x0002000B
     ## @brief Mouse cursor hover window attribute.
     ##
     ## Mouse cursor hover window attribute.
+const
   GLFWFocusOnShow* = 0x0002000C
     ## @brief Input focus on calling show window hint and attribute
     ##
     ## Input focus window hint or
     ## window attribute.
+const
+  GLFWMouseButtonPassthrough* = 0x0002000D
+    ## @brief Mouse input transparency window hint and attribute
+    ##
+    ## Mouse input transparency window hint or
+    ## window attribute.
+const
   GLFWRedBits* = 0x00021001
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWGreenBits* = 0x00021002
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWBlueBits* = 0x00021003
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAlphaBits* = 0x00021004
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWDepthBits* = 0x00021005
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWStencilBits* = 0x00021006
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAccumRedBits* = 0x00021007
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAccumGreenBits* = 0x00021008
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAccumBlueBits* = 0x00021009
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAccumAlphaBits* = 0x0002100A
     ## @brief Framebuffer bit depth hint.
     ##
     ## Framebuffer bit depth hint.
+const
   GLFWAuxBuffers* = 0x0002100B
     ## @brief Framebuffer auxiliary buffer hint.
     ##
     ## Framebuffer auxiliary buffer hint.
+const
   GLFWStereo* = 0x0002100C
     ## @brief OpenGL stereoscopic rendering hint.
     ##
     ## OpenGL stereoscopic rendering hint.
+const
   GLFWSamples* = 0x0002100D
     ## @brief Framebuffer MSAA samples hint.
     ##
     ## Framebuffer MSAA samples hint.
+const
   GLFWSrgbCapable* = 0x0002100E
     ## @brief Framebuffer sRGB hint.
     ##
     ## Framebuffer sRGB hint.
+const
   GLFWRefreshRate* = 0x0002100F
     ## @brief Monitor refresh rate hint.
     ##
     ## Monitor refresh rate hint.
+const
   GLFWDoublebuffer* = 0x00021010
     ## @brief Framebuffer double buffering hint.
     ##
     ## Framebuffer double buffering hint.
+const
   GLFWClientApi* = 0x00022001
     ## @brief Context client API hint and attribute.
     ##
     ## Context client API hint and
     ## attribute.
+const
   GLFWContextVersionMajor* = 0x00022002
     ## @brief Context client API major version hint and attribute.
     ##
     ## Context client API major version hint
     ## and attribute.
+const
   GLFWContextVersionMinor* = 0x00022003
     ## @brief Context client API minor version hint and attribute.
     ##
     ## Context client API minor version hint
     ## and attribute.
+const
   GLFWContextRevision* = 0x00022004
     ## @brief Context client API revision number hint and attribute.
     ##
     ## Context client API revision number
     ## attribute.
+const
   GLFWContextRobustness* = 0x00022005
     ## @brief Context robustness hint and attribute.
     ##
     ## Context client API revision number hint
     ## and attribute.
+const
   GLFWOpenglForwardCompat* = 0x00022006
     ## @brief OpenGL forward-compatibility hint and attribute.
     ##
     ## OpenGL forward-compatibility hint
     ## and attribute.
-  GLFWOpenglDebugContext* = 0x00022007
-    ## @brief OpenGL debug context hint and attribute.
+const
+  GLFWContextDebug* = 0x00022007
+    ## @brief Debug mode context hint and attribute.
     ##
-    ## OpenGL debug context hint and
+    ## Debug mode context hint and
     ## attribute.
+const
+  GLFWOpenglDebugContext* = GLFW_CONTEXT_DEBUG
+    ## @brief Legacy name for compatibility.
+    ##
+    ## This is an alias for compatibility with earlier versions.
+const
   GLFWOpenglProfile* = 0x00022008
     ## @brief OpenGL profile hint and attribute.
     ##
     ## OpenGL profile hint and
     ## attribute.
+const
   GLFWContextReleaseBehavior* = 0x00022009
     ## @brief Context flush-on-release hint and attribute.
     ##
     ## Context flush-on-release hint and
     ## attribute.
+const
   GLFWContextNoError* = 0x0002200A
     ## @brief Context error suppression hint and attribute.
     ##
     ## Context error suppression hint and
     ## attribute.
+const
   GLFWContextCreationApi* = 0x0002200B
     ## @brief Context creation API hint and attribute.
     ##
     ## Context creation API hint and
     ## attribute.
+const
   GLFWScaleToMonitor* = 0x0002200C
     ## @brief Window content area scaling window
     ## window hint.
+const
   GLFWCocoaRetinaFramebuffer* = 0x00023001
     ## @brief macOS specific
     ## window hint.
+const
   GLFWCocoaFrameName* = 0x00023002
     ## @brief macOS specific
     ## window hint.
+const
   GLFWCocoaGraphicsSwitching* = 0x00023003
     ## @brief macOS specific
     ## window hint.
+const
   GLFWX11ClassName* = 0x00024001
     ## @brief X11 specific
     ## window hint.
+const
   GLFWX11InstanceName* = 0x00024002
     ## @brief X11 specific
     ## window hint.
+const
   GLFWWin32KeyboardMenu* = 0x00025001
     ## @brief X11 specific
     ## window hint.
+const
   GLFWNoApi* = 0
+const
   GLFWOpenglApi* = 0x00030001
+const
   GLFWOpenglEsApi* = 0x00030002
+const
   GLFWNoRobustness* = 0
+const
   GLFWNoResetNotification* = 0x00031001
+const
   GLFWLoseContextOnReset* = 0x00031002
+const
   GLFWOpenglAnyProfile* = 0
+const
   GLFWOpenglCoreProfile* = 0x00032001
+const
   GLFWOpenglCompatProfile* = 0x00032002
+const
   GLFWCursorSpecial* = 0x00033001 ## Originally GLFW_CURSOR but conflicts with GLFWCursor type
+const
   GLFWStickyKeys* = 0x00033002
+const
   GLFWStickyMouseButtons* = 0x00033003
+const
   GLFWLockKeyMods* = 0x00033004
+const
   GLFWRawMouseMotion* = 0x00033005
+const
   GLFWCursorNormal* = 0x00034001
+const
   GLFWCursorHidden* = 0x00034002
+const
   GLFWCursorDisabled* = 0x00034003
+const
   GLFWAnyReleaseBehavior* = 0
+const
   GLFWReleaseBehaviorFlush* = 0x00035001
+const
   GLFWReleaseBehaviorNone* = 0x00035002
+const
   GLFWNativeContextApi* = 0x00036001
+const
   GLFWEglContextApi* = 0x00036002
+const
   GLFWOsmesaContextApi* = 0x00036003
+const
+  GLFWAnglePlatformTypeNone* = 0x00037001
+const
+  GLFWAnglePlatformTypeOpengl* = 0x00037002
+const
+  GLFWAnglePlatformTypeOpengles* = 0x00037003
+const
+  GLFWAnglePlatformTypeD3d9* = 0x00037004
+const
+  GLFWAnglePlatformTypeD3d11* = 0x00037005
+const
+  GLFWAnglePlatformTypeVulkan* = 0x00037007
+const
+  GLFWAnglePlatformTypeMetal* = 0x00037008
+const
   GLFWArrowCursor* = 0x00036001
     ## @brief The regular arrow cursor shape.
     ##
     ## The regular arrow cursor shape.
+const
   GLFWIbeamCursor* = 0x00036002
     ## @brief The text input I-beam cursor shape.
     ##
     ## The text input I-beam cursor shape.
+const
   GLFWCrosshairCursor* = 0x00036003
     ## @brief The crosshair cursor shape.
     ##
     ## The crosshair cursor shape.
+const
   GLFWPointingHandCursor* = 0x00036004
     ## @brief The pointing hand cursor shape.
     ##
     ## The pointing hand cursor shape.
+const
   GLFWResizeEwCursor* = 0x00036005
     ## @brief The horizontal resize/move arrow shape.
     ##
     ## The horizontal resize/move arrow shape.  This is usually a horizontal
     ## double-headed arrow.
+const
   GLFWResizeNsCursor* = 0x00036006
     ## @brief The vertical resize/move arrow shape.
     ##
     ## The vertical resize/move shape.  This is usually a vertical double-headed
     ## arrow.
+const
   GLFWResizeNwseCursor* = 0x00036007
     ## @brief The top-left to bottom-right diagonal resize/move arrow shape.
     ##
@@ -782,6 +937,7 @@ const
     ##
     ## @note @wayland This shape is provided by a newer standard not supported by
     ## all cursor themes.
+const
   GLFWResizeNeswCursor* = 0x00036008
     ## @brief The top-right to bottom-left diagonal resize/move arrow shape.
     ##
@@ -796,11 +952,13 @@ const
     ##
     ## @note @wayland This shape is provided by a newer standard not supported by
     ## all cursor themes.
+const
   GLFWResizeAllCursor* = 0x00036009
     ## @brief The omni-directional resize/move cursor shape.
     ##
     ## The omni-directional resize cursor/move shape.  This is usually either
     ## a combined horizontal and vertical double-headed arrow or a grabbing hand.
+const
   GLFWNotAllowedCursor* = 0x0003600A
     ## @brief The operation-not-allowed shape.
     ##
@@ -812,32 +970,46 @@ const
     ##
     ## @note @wayland This shape is provided by a newer standard not supported by
     ## all cursor themes.
+const
   GLFWHresizeCursor* = GLFW_RESIZE_EW_CURSOR
     ## @brief Legacy name for compatibility.
     ##
     ## This is an alias for compatibility with earlier versions.
+const
   GLFWVresizeCursor* = GLFW_RESIZE_NS_CURSOR
     ## @brief Legacy name for compatibility.
     ##
     ## This is an alias for compatibility with earlier versions.
+const
   GLFWHandCursor* = GLFW_POINTING_HAND_CURSOR
     ## @brief Legacy name for compatibility.
     ##
     ## This is an alias for compatibility with earlier versions.
+const
   GLFWConnected* = 0x00040001
+const
   GLFWDisconnected* = 0x00040002
+const
   GLFWJoystickHatButtons* = 0x00050001
     ## @brief Joystick hat buttons init hint.
     ##
     ## Joystick hat buttons init hint.
+const
+  GLFWAnglePlatformType* = 0x00050002
+    ## @brief ANGLE rendering backend init hint.
+    ##
+    ## ANGLE rendering backend init hint.
+const
   GLFWCocoaChdirResources* = 0x00051001
     ## @brief macOS specific init hint.
     ##
     ## macOS specific init hint.
+const
   GLFWCocoaMenubar* = 0x00051002
     ## @brief macOS specific init hint.
     ##
     ## macOS specific init hint.
+const
   GLFWDontCare* = -1
 
 # Type Definitions
@@ -1034,7 +1206,7 @@ type
     ## @since Added in version 3.0.
     ##
     ## @ingroup window
-  GLFWWindowmaximizeFun* = proc(window: GLFWWindow, iconified: int32): void {.cdecl.}
+  GLFWWindowmaximizeFun* = proc(window: GLFWWindow, maximized: int32): void {.cdecl.}
     ## @brief The function pointer type for window maximize callbacks.
     ##
     ## This is the function pointer type for window maximize callbacks.  A window
@@ -1044,7 +1216,7 @@ type
     ## @endcode
     ##
     ## @param[in] window The window that was maximized or restored.
-    ## @param[in] iconified `GLFW_TRUE` if the window was maximized, or
+    ## @param[in] maximized `GLFW_TRUE` if the window was maximized, or
     ## `GLFW_FALSE` if it was restored.
     ##
     ## @sa  window_maximize
@@ -1379,6 +1551,8 @@ proc glfwTerminate*(): void {.importc: "glfwTerminate".}
   ## call this function, as it is called by  glfwInit before it returns
   ## failure.
   ##
+  ## This function has no effect if GLFW is not initialized.
+  ##
   ## @errors Possible errors include  GLFW_PLATFORM_ERROR.
   ##
   ## @remark This function may be called before  glfwInit.
@@ -1553,7 +1727,7 @@ proc glfwSetErrorCallback*(callback: GLFWErrorfun): GLFWErrorfun {.importc: "glf
   ## @since Added in version 3.0.
   ##
   ## @ingroup init
-proc glfwGetMonitors*(count: ptr int32): UncheckedArray[GLFWMonitor] {.importc: "glfwGetMonitors".}
+proc glfwGetMonitors*(count: ptr int32): ptr UncheckedArray[GLFWMonitor] {.importc: "glfwGetMonitors".}
   ## @brief Returns the currently connected monitors.
   ##
   ## This function returns an array of handles for all currently connected
@@ -2309,21 +2483,21 @@ proc setWindowIcon*(window: GLFWWindow, count: int32, images: ptr GLFWImage): vo
   ## @param[in] images The images to create the icon from.  This is ignored if
   ## count is zero.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
-  ## GLFW_PLATFORM_ERROR.
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## GLFW_PLATFORM_ERROR and @ref GLFW_FEATURE_UNAVAILABLE .
   ##
   ## @pointer_lifetime The specified image data is copied before this function
   ## returns.
   ##
-  ## @remark @macos The GLFW window has no icon, as it is not a document
-  ## window, so this function does nothing.  The dock icon will be the same as
+  ## @remark @macos Regular windows do not have icons on macOS.  This function
+  ## will emit  GLFW_FEATURE_UNAVAILABLE.  The dock icon will be the same as
   ## the application bundle's icon.  For more information on bundles, see the
   ## [Bundle Programming Guide](https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/)
   ## in the Mac Developer Library.
   ##
   ## @remark @wayland There is no existing protocol to change an icon, the
   ## window will thus inherit the one defined in the application's desktop file.
-  ## This function always emits  GLFW_PLATFORM_ERROR.
+  ## This function will emit  GLFW_FEATURE_UNAVAILABLE.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2347,12 +2521,12 @@ proc getWindowPos*(window: GLFWWindow, xpos: ptr int32, ypos: ptr int32): void {
   ## @param[out] ypos Where to store the y-coordinate of the upper-left corner of
   ## the content area, or `NULL`.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
-  ## GLFW_PLATFORM_ERROR.
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## GLFW_PLATFORM_ERROR and @ref GLFW_FEATURE_UNAVAILABLE .
   ##
   ## @remark @wayland There is no way for an application to retrieve the global
-  ## position of its windows, this function will always emit
-  ## GLFW_PLATFORM_ERROR.
+  ## position of its windows.  This function will emit
+  ## GLFW_FEATURE_UNAVAILABLE.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2379,12 +2553,12 @@ proc setWindowPos*(window: GLFWWindow, xpos: int32, ypos: int32): void {.importc
   ## @param[in] xpos The x-coordinate of the upper-left corner of the content area.
   ## @param[in] ypos The y-coordinate of the upper-left corner of the content area.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
-  ## GLFW_PLATFORM_ERROR.
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## GLFW_PLATFORM_ERROR and @ref GLFW_FEATURE_UNAVAILABLE .
   ##
   ## @remark @wayland There is no way for an application to set the global
-  ## position of its windows, this function will always emit
-  ## GLFW_PLATFORM_ERROR.
+  ## position of its windows.  This function will emit
+  ## GLFW_FEATURE_UNAVAILABLE.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2678,8 +2852,11 @@ proc setWindowOpacity*(window: GLFWWindow, opacity: float32): void {.importc: "g
   ## @param[in] window The window to set the opacity for.
   ## @param[in] opacity The desired opacity of the specified window.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
-  ## GLFW_PLATFORM_ERROR.
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## GLFW_PLATFORM_ERROR and @ref GLFW_FEATURE_UNAVAILABLE .
+  ##
+  ## @remark @wayland There is no way to set an opacity factor for a window.
+  ## This function will emit  GLFW_FEATURE_UNAVAILABLE.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2834,11 +3011,11 @@ proc focusWindow*(window: GLFWWindow): void {.importc: "glfwFocusWindow".}
   ##
   ## @param[in] window The window to give input focus.
   ##
-  ## @errors Possible errors include  GLFW_NOT_INITIALIZED and
-  ## GLFW_PLATFORM_ERROR.
+  ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
+  ## GLFW_PLATFORM_ERROR and @ref GLFW_FEATURE_UNAVAILABLE .
   ##
-  ## @remark @wayland It is not possible for an application to bring its windows
-  ## to front, this function will always emit  GLFW_PLATFORM_ERROR.
+  ## @remark @wayland It is not possible for an application to set the input
+  ## focus.  This function will emit  GLFW_FEATURE_UNAVAILABLE.
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
@@ -2992,6 +3169,7 @@ proc setWindowAttrib*(window: GLFWWindow, attrib: int32, value: int32): void {.i
   ## GLFW_FLOATING,
   ## GLFW_AUTO_ICONIFY and
   ## GLFW_FOCUS_ON_SHOW.
+  ## GLFW_MOUSE_PASSTHROUGH
   ##
   ## Some of these attributes are ignored for full screen windows.  The new
   ## value will take effect if the window is later made windowed.
@@ -3546,7 +3724,7 @@ proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.import
   ## If the mode is `GLFW_RAW_MOUSE_MOTION`, the value must be either `GLFW_TRUE`
   ## to enable raw (unscaled and unaccelerated) mouse motion when the cursor is
   ## disabled, or `GLFW_FALSE` to disable it.  If raw motion is not supported,
-  ## attempting to set this will emit  GLFW_PLATFORM_ERROR.  Call
+  ## attempting to set this will emit  GLFW_FEATURE_UNAVAILABLE.  Call
   ## glfwRawMouseMotionSupported to check for support.
   ##
   ## @param[in] window The window whose input mode to set.
@@ -3556,7 +3734,8 @@ proc setInputMode*(window: GLFWWindow, mode: int32, value: int32): void {.import
   ## @param[in] value The new value of the specified input mode.
   ##
   ## @errors Possible errors include  GLFW_NOT_INITIALIZED,
-  ## GLFW_INVALID_ENUM and  GLFW_PLATFORM_ERROR.
+  ## GLFW_INVALID_ENUM,  GLFW_PLATFORM_ERROR and
+  ## GLFW_FEATURE_UNAVAILABLE (see above).
   ##
   ## @thread_safety This function must only be called from the main thread.
   ##
