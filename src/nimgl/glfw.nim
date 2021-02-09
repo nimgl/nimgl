@@ -28,8 +28,11 @@ else:
   when defined(emscripten):
     {.passL: "-s USE_GLFW=3".}
   when defined(windows):
+    when defined(vcc):
+      {.passL: "opengl32.lib gdi32.lib user32.lib shell32.lib" .}
+    else:
+      {.passL: "-lopengl32 -lgdi32" .}
     {.passC: "-D_GLFW_WIN32",
-      passL: "-lopengl32 -lgdi32",
       compile: "private/glfw/src/win32_init.c",
       compile: "private/glfw/src/win32_joystick.c",
       compile: "private/glfw/src/win32_monitor.c",
