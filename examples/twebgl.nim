@@ -1,4 +1,4 @@
-import nimgl/glfw, opengl
+import nimgl/[glfw, opengl]
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
