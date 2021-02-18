@@ -160,6 +160,7 @@ examples/tglfw
 examples/tmath
 examples/timgui
 examples/topengl
+examples/tvulkan
 imgui.ini
 docs/
 vk_layer_settings.txt
