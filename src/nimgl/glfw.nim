@@ -4047,19 +4047,6 @@ proc glfwCreateStandardCursor*(shape: int32): GLFWCursor {.importc: "glfwCreateS
   ## Most of these shapes are guaranteed to exist on every supported platform but
   ## a few may not be present.  See the table below for details.
   ##
-  ## Cursor shape                    Windows  macOS  X11     Wayland
-  ## ------------------------------  -------  -----  ------  -------
-  ##  GLFW_ARROW_CURSOR          Yes      Yes    Yes     Yes
-  ##  GLFW_IBEAM_CURSOR          Yes      Yes    Yes     Yes
-  ##  GLFW_CROSSHAIR_CURSOR      Yes      Yes    Yes     Yes
-  ##  GLFW_POINTING_HAND_CURSOR  Yes      Yes    Yes     Yes
-  ##  GLFW_RESIZE_EW_CURSOR      Yes      Yes    Yes     Yes
-  ##  GLFW_RESIZE_NS_CURSOR      Yes      Yes    Yes     Yes
-  ##  GLFW_RESIZE_NWSE_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
-  ##  GLFW_RESIZE_NESW_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
-  ##  GLFW_RESIZE_ALL_CURSOR     Yes      Yes    Yes     Yes
-  ##  GLFW_NOT_ALLOWED_CURSOR    Yes      Yes    Maybe<sup>2</sup>  Maybe<sup>2</sup>
-  ##
   ## 1) This uses a private system API and may fail in the future.
   ##
   ## 2) This uses a newer standard that not all cursor themes support.
