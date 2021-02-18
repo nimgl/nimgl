@@ -161,8 +161,12 @@ examples/tmath
 examples/timgui
 examples/topengl
 examples/tvulkan
+examples/twebgl
+examples/web/*
+!examples/web/shell_minimal.html
 imgui.ini
 docs/
+tmp/
 vk_layer_settings.txt
 
 # End of https://www.gitignore.io/api/c,osx,nim,c++,linux,macos,windows,visualstudiocode
