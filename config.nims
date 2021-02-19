@@ -7,7 +7,7 @@ when defined(emscripten):
   --nimcache:tmp # Store intermediate files close by in the ./tmp dir.
 
   --os:linux # Emscripten pretends to be linux.
-  --cpu:i386 # Emscripten is 32bits.
+  --cpu:wasm32 # Emscripten is 32bits.
   --cc:clang # Emscripten is very close to clang, so we ill replace it.
   when defined(windows):
     --clang.exe:emcc.bat  # Replace C
