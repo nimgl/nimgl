@@ -24,5 +24,7 @@ when defined(emscripten):
   --gc:arc # GC:arc is friendlier with crazy platforms.
   --exceptions:goto # Goto exceptions are friendlier with crazy platforms.
 
+  --define:useMalloc
+
   # Pass this to Emscripten linker to generate html file scaffold for us.
   switch("passL", "-o examples/web/index.html -s USE_WEBGL2=1 --shell-file examples/web/shell_minimal.html")
