@@ -94,23 +94,24 @@ when defined(vulkan):
 # Constants and Enums
 const
   GLFWVersionMajor* = 3
-    ## @brief The major version number of the GLFW library.
+    ## @brief The major version number of the GLFW header.
     ##
-    ## This is incremented when the API is changed in non-compatible ways.
+    ## The major version number of the GLFW header.  This is incremented when the
+    ## API is changed in non-compatible ways.
     ## @ingroup init
 const
   GLFWVersionMinor* = 4
-    ## @brief The minor version number of the GLFW library.
+    ## @brief The minor version number of the GLFW header.
     ##
-    ## This is incremented when features are added to the API but it remains
-    ## backward-compatible.
+    ## The minor version number of the GLFW header.  This is incremented when
+    ## features are added to the API but it remains backward-compatible.
     ## @ingroup init
 const
   GLFWVersionRevision* = 0
-    ## @brief The revision number of the GLFW library.
+    ## @brief The revision number of the GLFW header.
     ##
-    ## This is incremented when a bug fix release is made that does not contain any
-    ## API changes.
+    ## The revision number of the GLFW header.  This is incremented when a bug fix
+    ## release is made that does not contain any API changes.
     ## @ingroup init
 const
   GLFWTrue* = 1
@@ -731,9 +732,10 @@ const
     ## Monitor refresh rate hint.
 const
   GLFWDoublebuffer* = 0x00021010
-    ## @brief Framebuffer double buffering hint.
+    ## @brief Framebuffer double buffering hint and attribute.
     ##
-    ## Framebuffer double buffering hint.
+    ## Framebuffer double buffering hint and
+    ## attribute.
 const
   GLFWClientApi* = 0x00022001
     ## @brief Context client API hint and attribute.
@@ -1012,6 +1014,11 @@ const
     ## @brief macOS specific init hint.
     ##
     ## macOS specific init hint.
+const
+  GLFWX11XcbVulkanSurface* = 0x00052001
+    ## @brief X11 specific init hint.
+    ##
+    ## X11 specific init hint.
 const
   GLFWDontCare* = -1
 
@@ -1996,8 +2003,9 @@ proc getVideoModes*(monitor: GLFWMonitor, count: ptr int32): ptr GLFWVidmode {.i
   ##
   ## This function returns an array of all video modes supported by the specified
   ## monitor.  The returned array is sorted in ascending order, first by color
-  ## bit depth (the sum of all channel depths) and then by resolution area (the
-  ## product of width and height).
+  ## bit depth (the sum of all channel depths), then by resolution area (the
+  ## product of width and height), then resolution width and finally by refresh
+  ## rate.
   ##
   ## @param[in] monitor The monitor to query.
   ## @param[out] count Where to store the number of video modes in the returned
@@ -4047,6 +4055,19 @@ proc glfwCreateStandardCursor*(shape: int32): GLFWCursor {.importc: "glfwCreateS
   ## Most of these shapes are guaranteed to exist on every supported platform but
   ## a few may not be present.  See the table below for details.
   ##
+  ## Cursor shape                    Windows  macOS  X11     Wayland
+  ## ------------------------------  -------  -----  ------  -------
+  ##  GLFW_ARROW_CURSOR          Yes      Yes    Yes     Yes
+  ##  GLFW_IBEAM_CURSOR          Yes      Yes    Yes     Yes
+  ##  GLFW_CROSSHAIR_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_POINTING_HAND_CURSOR  Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_EW_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_NS_CURSOR      Yes      Yes    Yes     Yes
+  ##  GLFW_RESIZE_NWSE_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##  GLFW_RESIZE_NESW_CURSOR    Yes      Yes<sup>1</sup>  Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##  GLFW_RESIZE_ALL_CURSOR     Yes      Yes    Yes     Yes
+  ##  GLFW_NOT_ALLOWED_CURSOR    Yes      Yes    Maybe<sup>2</sup>  Maybe<sup>2</sup>
+  ##
   ## 1) This uses a private system API and may fail in the future.
   ##
   ## 2) This uses a newer standard that not all cursor themes support.
@@ -5235,9 +5256,8 @@ proc glfwGetRequiredInstanceExtensions*(count: ptr uint32): cstringArray {.impor
   ## returned array, as it is an error to specify an extension more than once in
   ## the `VkInstanceCreateInfo` struct.
   ##
-  ## @remark @macos This function currently supports either the
-  ## `VK_MVK_macos_surface` extension from MoltenVK or `VK_EXT_metal_surface`
-  ## extension.
+  ## @remark @macos GLFW currently supports both the `VK_MVK_macos_surface` and
+  ## the newer `VK_EXT_metal_surface` extensions.
   ##
   ## @pointer_lifetime The returned array is allocated and freed by GLFW.  You
   ## should not free it yourself.  It is guaranteed to be valid only until the
@@ -5317,7 +5337,7 @@ when defined(vulkan):
     ## GLFW_API_UNAVAILABLE and  GLFW_PLATFORM_ERROR.
     ##
     ## @remark @macos This function currently always returns `GLFW_TRUE`, as the
-    ## `VK_MVK_macos_surface` extension does not provide
+    ## `VK_MVK_macos_surface` and `VK_EXT_metal_surface` extensions do not provide
     ## a `vkGetPhysicalDevice*PresentationSupport` type function.
     ##
     ## @thread_safety This function may be called from any thread.  For
@@ -5379,6 +5399,12 @@ when defined(vulkan):
     ##
     ## @remark @macos This function creates and sets a `CAMetalLayer` instance for
     ## the window content view, which is required for MoltenVK to function.
+    ##
+    ## @remark @x11 GLFW by default attempts to use the `VK_KHR_xcb_surface`
+    ## extension, if available.  You can make it prefer the `VK_KHR_xlib_surface`
+    ## extension by setting the
+    ## GLFW_X11_XCB_VULKAN_SURFACE init
+    ## hint.
     ##
     ## @thread_safety This function may be called from any thread.  For
     ## synchronization details of Vulkan objects, see the Vulkan specification.

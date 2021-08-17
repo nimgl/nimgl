@@ -86,6 +86,14 @@ proc getWin32Window*(window: GLFWWindow): pointer #[HWND]# {.importc: "glfwGetWi
   ## @return The `HWND` of the specified window, or `NULL` if an
   ## error occurred.
   ##
+  ## @remark The `HDC` associated with the window can be queried with the
+  ## [GetDC](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdc)
+  ## function.
+  ## @code
+  ## HDC dc = GetDC(glfwGetWin32Window(window));
+  ## @endcode
+  ## This DC is private and does not need to be released.
+  ##
   ## @thread_safety This function may be called from any thread.  Access is not
   ## synchronized.
   ##
@@ -97,6 +105,14 @@ proc getWGLContext*(window: GLFWWindow): pointer #[HGLRC]# {.importc: "glfwGetWG
   ##
   ## @return The `HGLRC` of the specified window, or `NULL` if an
   ## error occurred.
+  ##
+  ## @remark The `HDC` associated with the window can be queried with the
+  ## [GetDC](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdc)
+  ## function.
+  ## @code
+  ## HDC dc = GetDC(glfwGetWin32Window(window));
+  ## @endcode
+  ## This DC is private and does not need to be released.
   ##
   ## @thread_safety This function may be called from any thread.  Access is not
   ## synchronized.
