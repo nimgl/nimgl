@@ -42,9 +42,10 @@ else:
   {.compile: "private/cimgui/cimgui.cpp",
     compile: "private/cimgui/imgui/imgui.cpp",
     compile: "private/cimgui/imgui/imgui_draw.cpp",
-    compile: "private/cimgui/imgui/imgui_demo.cpp",
+    compile: "private/cimgui/imgui/imgui_tables.cpp",
     compile: "private/cimgui/imgui/imgui_widgets.cpp",
-    compile: "private/cimgui/imgui/imgui_tables.cpp".}
+    compile: "private/cimgui/imgui/imgui_tables.cpp",
+    compile: "private/cimgui/imgui/imgui_demo.cpp".}
   {.pragma: imgui_header, header: "../ncimgui.h".}
 
 # Enums
@@ -290,6 +291,11 @@ type
     Keyboard = 2
     Gamepad = 3
     Nav = 4
+    Clipboard = 5
+  ImGuiInputTextFlagsPrivate* {.pure, size: int32.sizeof.} = enum
+    Multiline = 67108864
+    NoMarkEdited = 134217728
+    MergedItem = 268435456
   ImGuiInputTextFlags* {.pure, size: int32.sizeof.} = enum
     None = 0
     CharsDecimal = 1
@@ -312,8 +318,9 @@ type
     CharsScientific = 131072
     CallbackResize = 262144
     CallbackEdit = 524288
-    Multiline = 1048576
-    NoMarkEdited = 2097152
+  ImGuiItemAddFlags* {.pure, size: int32.sizeof.} = enum
+    None = 0
+    Focusable = 1
   ImGuiItemFlags* {.pure, size: int32.sizeof.} = enum
     None = 0
     NoTabStop = 1
@@ -334,6 +341,9 @@ type
     HasDeactivated = 32
     Deactivated = 64
     HoveredWindow = 128
+    FocusedByCode = 256
+    FocusedByTabbing = 512
+    Focused = 768
   ImGuiKeyModFlags* {.pure, size: int32.sizeof.} = enum
     None = 0
     Ctrl = 1
@@ -549,6 +559,7 @@ type
     FittingPolicyScroll = 128
     FittingPolicyMask = 192
   ImGuiTabItemFlagsPrivate* {.pure, size: int32.sizeof.} = enum
+    SectionMask = 192
     NoCloseButton = 1048576
     Button = 2097152
   ImGuiTabItemFlags* {.pure, size: int32.sizeof.} = enum
@@ -927,6 +938,7 @@ type
     currentWindowStack* {.importc: "CurrentWindowStack".}: ImVector[ptr ImGuiWindow]
     windowsById* {.importc: "WindowsById".}: ImGuiStorage
     windowsActiveCount* {.importc: "WindowsActiveCount".}: int32
+    windowsHoverPadding* {.importc: "WindowsHoverPadding".}: ImVec2
     currentWindow* {.importc: "CurrentWindow".}: ptr ImGuiWindow
     hoveredWindow* {.importc: "HoveredWindow".}: ptr ImGuiWindow
     hoveredWindowUnderMovingWindow* {.importc: "HoveredWindowUnderMovingWindow".}: ptr ImGuiWindow
@@ -934,6 +946,7 @@ type
     wheelingWindow* {.importc: "WheelingWindow".}: ptr ImGuiWindow
     wheelingWindowRefMousePos* {.importc: "WheelingWindowRefMousePos".}: ImVec2
     wheelingWindowTimer* {.importc: "WheelingWindowTimer".}: float32
+    currentItemFlags* {.importc: "CurrentItemFlags".}: ImGuiItemFlags
     hoveredId* {.importc: "HoveredId".}: ImGuiID
     hoveredIdPreviousFrame* {.importc: "HoveredIdPreviousFrame".}: ImGuiID
     hoveredIdAllowOverlap* {.importc: "HoveredIdAllowOverlap".}: bool
@@ -1009,9 +1022,9 @@ type
     navMoveDir* {.importc: "NavMoveDir".}: ImGuiDir
     navMoveDirLast* {.importc: "NavMoveDirLast".}: ImGuiDir
     navMoveClipDir* {.importc: "NavMoveClipDir".}: ImGuiDir
-    navMoveResultLocal* {.importc: "NavMoveResultLocal".}: ImGuiNavMoveResult
-    navMoveResultLocalVisibleSet* {.importc: "NavMoveResultLocalVisibleSet".}: ImGuiNavMoveResult
-    navMoveResultOther* {.importc: "NavMoveResultOther".}: ImGuiNavMoveResult
+    navMoveResultLocal* {.importc: "NavMoveResultLocal".}: ImGuiNavItemData
+    navMoveResultLocalVisibleSet* {.importc: "NavMoveResultLocalVisibleSet".}: ImGuiNavItemData
+    navMoveResultOther* {.importc: "NavMoveResultOther".}: ImGuiNavItemData
     navWrapRequestWindow* {.importc: "NavWrapRequestWindow".}: ptr ImGuiWindow
     navWrapRequestFlags* {.importc: "NavWrapRequestFlags".}: ImGuiNavMoveFlags
     navWindowingTarget* {.importc: "NavWindowingTarget".}: ptr ImGuiWindow
@@ -1047,8 +1060,9 @@ type
     dragDropPayloadBufHeap* {.importc: "DragDropPayloadBufHeap".}: ImVector[cuchar]
     dragDropPayloadBufLocal* {.importc: "DragDropPayloadBufLocal".}: array[16, cuchar]
     currentTable* {.importc: "CurrentTable".}: ptr ImGuiTable
+    currentTableStackIdx* {.importc: "CurrentTableStackIdx".}: int32
     tables* {.importc: "Tables".}: ImVector[ImGuiTable]
-    currentTableStack* {.importc: "CurrentTableStack".}: ImVector[ImGuiPtrOrIndex]
+    tablesTempDataStack* {.importc: "TablesTempDataStack".}: ImVector[ImGuiTableTempData]
     tablesLastTimeActive* {.importc: "TablesLastTimeActive".}: ImVector[float32]
     drawChannelsTempMergeBuffer* {.importc: "DrawChannelsTempMergeBuffer".}: ImVector[ImDrawChannel]
     currentTabBar* {.importc: "CurrentTabBar".}: ptr ImGuiTabBar
@@ -1101,6 +1115,7 @@ type
     debugMetricsConfig* {.importc: "DebugMetricsConfig".}: ImGuiMetricsConfig
     framerateSecPerFrame* {.importc: "FramerateSecPerFrame".}: array[120, float32]
     framerateSecPerFrameIdx* {.importc: "FramerateSecPerFrameIdx".}: int32
+    framerateSecPerFrameCount* {.importc: "FramerateSecPerFrameCount".}: int32
     framerateSecPerFrameAccum* {.importc: "FramerateSecPerFrameAccum".}: float32
     wantCaptureMouseNextFrame* {.importc: "WantCaptureMouseNextFrame".}: int32
     wantCaptureKeyboardNextFrame* {.importc: "WantCaptureKeyboardNextFrame".}: int32
@@ -1240,7 +1255,7 @@ type
     cursorFollow* {.importc: "CursorFollow".}: bool
     selectedAllMouseLock* {.importc: "SelectedAllMouseLock".}: bool
     edited* {.importc: "Edited".}: bool
-    userFlags* {.importc: "UserFlags".}: ImGuiInputTextFlags
+    flags* {.importc: "Flags".}: ImGuiInputTextFlags
     userCallback* {.importc: "UserCallback".}: ImGuiInputTextCallback
     userCallbackData* {.importc: "UserCallbackData".}: pointer
   ImGuiLastItemDataBackup* {.importc: "ImGuiLastItemDataBackup", imgui_header.} = object
@@ -1270,14 +1285,14 @@ type
     showDrawCmdBoundingBoxes* {.importc: "ShowDrawCmdBoundingBoxes".}: bool
     showWindowsRectsType* {.importc: "ShowWindowsRectsType".}: int32
     showTablesRectsType* {.importc: "ShowTablesRectsType".}: int32
-  ImGuiNavMoveResult* {.importc: "ImGuiNavMoveResult", imgui_header.} = object
+  ImGuiNavItemData* {.importc: "ImGuiNavItemData", imgui_header.} = object
     window* {.importc: "Window".}: ptr ImGuiWindow
     id* {.importc: "ID".}: ImGuiID
     focusScopeId* {.importc: "FocusScopeId".}: ImGuiID
+    rectRel* {.importc: "RectRel".}: ImRect
     distBox* {.importc: "DistBox".}: float32
     distCenter* {.importc: "DistCenter".}: float32
     distAxial* {.importc: "DistAxial".}: float32
-    rectRel* {.importc: "RectRel".}: ImRect
   ImGuiNextItemData* {.importc: "ImGuiNextItemData", imgui_header.} = object
     flags* {.importc: "Flags".}: ImGuiNextItemDataFlags
     width* {.importc: "Width".}: float32
@@ -1435,7 +1450,7 @@ type
     scrollingRectMinX* {.importc: "ScrollingRectMinX".}: float32
     scrollingRectMaxX* {.importc: "ScrollingRectMaxX".}: float32
     reorderRequestTabId* {.importc: "ReorderRequestTabId".}: ImGuiID
-    reorderRequestDir* {.importc: "ReorderRequestDir".}: int8
+    reorderRequestOffset* {.importc: "ReorderRequestOffset".}: int16
     beginCount* {.importc: "BeginCount".}: int8
     wantLayout* {.importc: "WantLayout".}: bool
     visibleTabWasSubmitted* {.importc: "VisibleTabWasSubmitted".}: bool
@@ -1462,6 +1477,7 @@ type
     id* {.importc: "ID".}: ImGuiID
     flags* {.importc: "Flags".}: ImGuiTableFlags
     rawData* {.importc: "RawData".}: pointer
+    tempData* {.importc: "TempData".}: ptr ImGuiTableTempData
     columns* {.importc: "Columns".}: ImVector[ImGuiTableColumn]
     displayOrderToIndex* {.importc: "DisplayOrderToIndex".}: ImVector[ImGuiTableColumnIdx]
     rowCellData* {.importc: "RowCellData".}: ImVector[ImGuiTableCellData]
@@ -1513,22 +1529,11 @@ type
     bg0ClipRectForDrawCmd* {.importc: "Bg0ClipRectForDrawCmd".}: ImRect
     bg2ClipRectForDrawCmd* {.importc: "Bg2ClipRectForDrawCmd".}: ImRect
     hostClipRect* {.importc: "HostClipRect".}: ImRect
-    hostBackupWorkRect* {.importc: "HostBackupWorkRect".}: ImRect
-    hostBackupParentWorkRect* {.importc: "HostBackupParentWorkRect".}: ImRect
     hostBackupInnerClipRect* {.importc: "HostBackupInnerClipRect".}: ImRect
-    hostBackupPrevLineSize* {.importc: "HostBackupPrevLineSize".}: ImVec2
-    hostBackupCurrLineSize* {.importc: "HostBackupCurrLineSize".}: ImVec2
-    hostBackupCursorMaxPos* {.importc: "HostBackupCursorMaxPos".}: ImVec2
-    userOuterSize* {.importc: "UserOuterSize".}: ImVec2
-    hostBackupColumnsOffset* {.importc: "HostBackupColumnsOffset".}: ImVec1
-    hostBackupItemWidth* {.importc: "HostBackupItemWidth".}: float32
-    hostBackupItemWidthStackSize* {.importc: "HostBackupItemWidthStackSize".}: int32
     outerWindow* {.importc: "OuterWindow".}: ptr ImGuiWindow
     innerWindow* {.importc: "InnerWindow".}: ptr ImGuiWindow
     columnsNames* {.importc: "ColumnsNames".}: ImGuiTextBuffer
-    drawSplitter* {.importc: "DrawSplitter".}: ImDrawListSplitter
-    sortSpecsSingle* {.importc: "SortSpecsSingle".}: ImGuiTableColumnSortSpecs
-    sortSpecsMulti* {.importc: "SortSpecsMulti".}: ImVector[ImGuiTableColumnSortSpecs]
+    drawSplitter* {.importc: "DrawSplitter".}: ptr ImDrawListSplitter
     sortSpecs* {.importc: "SortSpecs".}: ImGuiTableSortSpecs
     sortSpecsCount* {.importc: "SortSpecsCount".}: ImGuiTableColumnIdx
     columnsEnabledCount* {.importc: "ColumnsEnabledCount".}: ImGuiTableColumnIdx
@@ -1639,6 +1644,21 @@ type
     specs* {.importc: "Specs".}: ptr ImGuiTableColumnSortSpecs
     specsCount* {.importc: "SpecsCount".}: int32
     specsDirty* {.importc: "SpecsDirty".}: bool
+  ImGuiTableTempData* {.importc: "ImGuiTableTempData", imgui_header.} = object
+    tableIndex* {.importc: "TableIndex".}: int32
+    lastTimeActive* {.importc: "LastTimeActive".}: float32
+    userOuterSize* {.importc: "UserOuterSize".}: ImVec2
+    drawSplitter* {.importc: "DrawSplitter".}: ImDrawListSplitter
+    sortSpecsSingle* {.importc: "SortSpecsSingle".}: ImGuiTableColumnSortSpecs
+    sortSpecsMulti* {.importc: "SortSpecsMulti".}: ImVector[ImGuiTableColumnSortSpecs]
+    hostBackupWorkRect* {.importc: "HostBackupWorkRect".}: ImRect
+    hostBackupParentWorkRect* {.importc: "HostBackupParentWorkRect".}: ImRect
+    hostBackupPrevLineSize* {.importc: "HostBackupPrevLineSize".}: ImVec2
+    hostBackupCurrLineSize* {.importc: "HostBackupCurrLineSize".}: ImVec2
+    hostBackupCursorMaxPos* {.importc: "HostBackupCursorMaxPos".}: ImVec2
+    hostBackupColumnsOffset* {.importc: "HostBackupColumnsOffset".}: ImVec1
+    hostBackupItemWidth* {.importc: "HostBackupItemWidth".}: float32
+    hostBackupItemWidthStackSize* {.importc: "HostBackupItemWidthStackSize".}: int32
   ImGuiTextBuffer* {.importc: "ImGuiTextBuffer", imgui_header.} = object
     buf* {.importc: "Buf".}: ImVector[int8]
   ImGuiTextFilter* {.importc: "ImGuiTextFilter", imgui_header.} = object
@@ -1662,8 +1682,8 @@ type
     drawDataBuilder* {.importc: "DrawDataBuilder".}: ImDrawDataBuilder
     workOffsetMin* {.importc: "WorkOffsetMin".}: ImVec2
     workOffsetMax* {.importc: "WorkOffsetMax".}: ImVec2
-    currWorkOffsetMin* {.importc: "CurrWorkOffsetMin".}: ImVec2
-    currWorkOffsetMax* {.importc: "CurrWorkOffsetMax".}: ImVec2
+    buildWorkOffsetMin* {.importc: "BuildWorkOffsetMin".}: ImVec2
+    buildWorkOffsetMax* {.importc: "BuildWorkOffsetMax".}: ImVec2
   ImGuiWindow* {.importc: "ImGuiWindow", imgui_header.} = object
     name* {.importc: "Name".}: cstring
     id* {.importc: "ID".}: ImGuiID
@@ -1702,6 +1722,7 @@ type
     beginCount* {.importc: "BeginCount".}: int16
     beginOrderWithinParent* {.importc: "BeginOrderWithinParent".}: int16
     beginOrderWithinContext* {.importc: "BeginOrderWithinContext".}: int16
+    focusOrder* {.importc: "FocusOrder".}: int16
     popupId* {.importc: "PopupId".}: ImGuiID
     autoFitFramesX* {.importc: "AutoFitFramesX".}: int8
     autoFitFramesY* {.importc: "AutoFitFramesY".}: int8
@@ -1711,6 +1732,7 @@ type
     hiddenFramesCanSkipItems* {.importc: "HiddenFramesCanSkipItems".}: int8
     hiddenFramesCannotSkipItems* {.importc: "HiddenFramesCannotSkipItems".}: int8
     hiddenFramesForRenderOnly* {.importc: "HiddenFramesForRenderOnly".}: int8
+    disableInputsFrames* {.importc: "DisableInputsFrames".}: int8
     setWindowPosAllowFlags* {.importc: "SetWindowPosAllowFlags".}: ImGuiCond
     setWindowSizeAllowFlags* {.importc: "SetWindowSizeAllowFlags".}: ImGuiCond
     setWindowCollapsedAllowFlags* {.importc: "SetWindowCollapsedAllowFlags".}: ImGuiCond
@@ -1770,8 +1792,8 @@ type
     lastItemRect* {.importc: "LastItemRect".}: ImRect
     lastItemDisplayRect* {.importc: "LastItemDisplayRect".}: ImRect
     navLayerCurrent* {.importc: "NavLayerCurrent".}: ImGuiNavLayer
-    navLayerActiveMask* {.importc: "NavLayerActiveMask".}: int32
-    navLayerActiveMaskNext* {.importc: "NavLayerActiveMaskNext".}: int32
+    navLayersActiveMask* {.importc: "NavLayersActiveMask".}: int16
+    navLayersActiveMaskNext* {.importc: "NavLayersActiveMaskNext".}: int16
     navFocusScopeIdCurrent* {.importc: "NavFocusScopeIdCurrent".}: ImGuiID
     navHideHighlightOneFrame* {.importc: "NavHideHighlightOneFrame".}: bool
     navHasScroll* {.importc: "NavHasScroll".}: bool
@@ -1788,7 +1810,6 @@ type
     parentLayoutType* {.importc: "ParentLayoutType".}: ImGuiLayoutType
     focusCounterRegular* {.importc: "FocusCounterRegular".}: int32
     focusCounterTabStop* {.importc: "FocusCounterTabStop".}: int32
-    itemFlags* {.importc: "ItemFlags".}: ImGuiItemFlags
     itemWidth* {.importc: "ItemWidth".}: float32
     textWrapPos* {.importc: "TextWrapPos".}: float32
     itemWidthStack* {.importc: "ItemWidthStack".}: ImVector[float32]
@@ -1876,13 +1897,14 @@ proc ptr_from_offset*[T](self: ptr ImChunkStream, off: int32): ptr T {.importc: 
 proc size*(self: ptr ImChunkStream): int32 {.importc: "ImChunkStream_size".}
 proc swap*(self: ptr ImChunkStream, rhs: ptr ImChunkStream): void {.importc: "ImChunkStream_swap".}
 proc hSVNonUDT*(pOut: ptr ImColor, h: float32, s: float32, v: float32, a: float32 = 1.0f): void {.importc: "ImColor_HSV".}
-proc newImColor*(): void {.importc: "ImColor_ImColorNil".}
-proc newImColor*(r: int32, g: int32, b: int32, a: int32 = 255): void {.importc: "ImColor_ImColorInt".}
-proc newImColor*(rgba: uint32): void {.importc: "ImColor_ImColorU32".}
-proc newImColor*(r: float32, g: float32, b: float32, a: float32 = 1.0f): void {.importc: "ImColor_ImColorFloat".}
-proc newImColor*(col: ImVec4): void {.importc: "ImColor_ImColorVec4".}
+proc newImColor*(): void {.importc: "ImColor_ImColor_Nil".}
+proc newImColor*(r: int32, g: int32, b: int32, a: int32 = 255): void {.importc: "ImColor_ImColor_Int".}
+proc newImColor*(rgba: uint32): void {.importc: "ImColor_ImColor_U32".}
+proc newImColor*(r: float32, g: float32, b: float32, a: float32 = 1.0f): void {.importc: "ImColor_ImColor_Float".}
+proc newImColor*(col: ImVec4): void {.importc: "ImColor_ImColor_Vec4".}
 proc setHSV*(self: ptr ImColor, h: float32, s: float32, v: float32, a: float32 = 1.0f): void {.importc: "ImColor_SetHSV".}
 proc destroy*(self: ptr ImColor): void {.importc: "ImColor_destroy".}
+proc getTexID*(self: ptr ImDrawCmd): ImTextureID {.importc: "ImDrawCmd_GetTexID".}
 proc newImDrawCmd*(): void {.importc: "ImDrawCmd_ImDrawCmd".}
 proc destroy*(self: ptr ImDrawCmd): void {.importc: "ImDrawCmd_destroy".}
 proc clear*(self: ptr ImDrawDataBuilder): void {.importc: "ImDrawDataBuilder_Clear".}
@@ -1923,8 +1945,8 @@ proc addQuadFilled*(self: ptr ImDrawList, p1: ImVec2, p2: ImVec2, p3: ImVec2, p4
 proc addRect*(self: ptr ImDrawList, p_min: ImVec2, p_max: ImVec2, col: uint32, rounding: float32 = 0.0f, flags: ImDrawFlags = 0.ImDrawFlags, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddRect".}
 proc addRectFilled*(self: ptr ImDrawList, p_min: ImVec2, p_max: ImVec2, col: uint32, rounding: float32 = 0.0f, flags: ImDrawFlags = 0.ImDrawFlags): void {.importc: "ImDrawList_AddRectFilled".}
 proc addRectFilledMultiColor*(self: ptr ImDrawList, p_min: ImVec2, p_max: ImVec2, col_upr_left: uint32, col_upr_right: uint32, col_bot_right: uint32, col_bot_left: uint32): void {.importc: "ImDrawList_AddRectFilledMultiColor".}
-proc addText*(self: ptr ImDrawList, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil): void {.importc: "ImDrawList_AddTextVec2".}
-proc addText*(self: ptr ImDrawList, font: ptr ImFont, font_size: float32, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil, wrap_width: float32 = 0.0f, cpu_fine_clip_rect: ptr ImVec4 = nil): void {.importc: "ImDrawList_AddTextFontPtr".}
+proc addText*(self: ptr ImDrawList, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil): void {.importc: "ImDrawList_AddText_Vec2".}
+proc addText*(self: ptr ImDrawList, font: ptr ImFont, font_size: float32, pos: ImVec2, col: uint32, text_begin: cstring, text_end: cstring = nil, wrap_width: float32 = 0.0f, cpu_fine_clip_rect: ptr ImVec4 = nil): void {.importc: "ImDrawList_AddText_FontPtr".}
 proc addTriangle*(self: ptr ImDrawList, p1: ImVec2, p2: ImVec2, p3: ImVec2, col: uint32, thickness: float32 = 1.0f): void {.importc: "ImDrawList_AddTriangle".}
 proc addTriangleFilled*(self: ptr ImDrawList, p1: ImVec2, p2: ImVec2, p3: ImVec2, col: uint32): void {.importc: "ImDrawList_AddTriangleFilled".}
 proc channelsMerge*(self: ptr ImDrawList): void {.importc: "ImDrawList_ChannelsMerge".}
@@ -2075,9 +2097,9 @@ proc update*(self: ptr ImGuiMenuColumns, count: int32, spacing: float32, clear: 
 proc destroy*(self: ptr ImGuiMenuColumns): void {.importc: "ImGuiMenuColumns_destroy".}
 proc newImGuiMetricsConfig*(): void {.importc: "ImGuiMetricsConfig_ImGuiMetricsConfig".}
 proc destroy*(self: ptr ImGuiMetricsConfig): void {.importc: "ImGuiMetricsConfig_destroy".}
-proc clear*(self: ptr ImGuiNavMoveResult): void {.importc: "ImGuiNavMoveResult_Clear".}
-proc newImGuiNavMoveResult*(): void {.importc: "ImGuiNavMoveResult_ImGuiNavMoveResult".}
-proc destroy*(self: ptr ImGuiNavMoveResult): void {.importc: "ImGuiNavMoveResult_destroy".}
+proc clear*(self: ptr ImGuiNavItemData): void {.importc: "ImGuiNavItemData_Clear".}
+proc newImGuiNavItemData*(): void {.importc: "ImGuiNavItemData_ImGuiNavItemData".}
+proc destroy*(self: ptr ImGuiNavItemData): void {.importc: "ImGuiNavItemData_destroy".}
 proc clearFlags*(self: ptr ImGuiNextItemData): void {.importc: "ImGuiNextItemData_ClearFlags".}
 proc newImGuiNextItemData*(): void {.importc: "ImGuiNextItemData_ImGuiNextItemData".}
 proc destroy*(self: ptr ImGuiNextItemData): void {.importc: "ImGuiNextItemData_destroy".}
@@ -2098,8 +2120,8 @@ proc isPreview*(self: ptr ImGuiPayload): bool {.importc: "ImGuiPayload_IsPreview
 proc destroy*(self: ptr ImGuiPayload): void {.importc: "ImGuiPayload_destroy".}
 proc newImGuiPopupData*(): void {.importc: "ImGuiPopupData_ImGuiPopupData".}
 proc destroy*(self: ptr ImGuiPopupData): void {.importc: "ImGuiPopupData_destroy".}
-proc newImGuiPtrOrIndex*(`ptr`: pointer): void {.importc: "ImGuiPtrOrIndex_ImGuiPtrOrIndexPtr".}
-proc newImGuiPtrOrIndex*(index: int32): void {.importc: "ImGuiPtrOrIndex_ImGuiPtrOrIndexInt".}
+proc newImGuiPtrOrIndex*(`ptr`: pointer): void {.importc: "ImGuiPtrOrIndex_ImGuiPtrOrIndex_Ptr".}
+proc newImGuiPtrOrIndex*(index: int32): void {.importc: "ImGuiPtrOrIndex_ImGuiPtrOrIndex_Int".}
 proc destroy*(self: ptr ImGuiPtrOrIndex): void {.importc: "ImGuiPtrOrIndex_destroy".}
 proc newImGuiSettingsHandler*(): void {.importc: "ImGuiSettingsHandler_ImGuiSettingsHandler".}
 proc destroy*(self: ptr ImGuiSettingsHandler): void {.importc: "ImGuiSettingsHandler_destroy".}
@@ -2107,9 +2129,9 @@ proc compareWithCurrentState*(self: ptr ImGuiStackSizes): void {.importc: "ImGui
 proc newImGuiStackSizes*(): void {.importc: "ImGuiStackSizes_ImGuiStackSizes".}
 proc setToCurrentState*(self: ptr ImGuiStackSizes): void {.importc: "ImGuiStackSizes_SetToCurrentState".}
 proc destroy*(self: ptr ImGuiStackSizes): void {.importc: "ImGuiStackSizes_destroy".}
-proc newImGuiStoragePair*(key: ImGuiID, val_i: int32): void {.importc: "ImGuiStoragePair_ImGuiStoragePairInt".}
-proc newImGuiStoragePair*(key: ImGuiID, val_f: float32): void {.importc: "ImGuiStoragePair_ImGuiStoragePairFloat".}
-proc newImGuiStoragePair*(key: ImGuiID, val_p: pointer): void {.importc: "ImGuiStoragePair_ImGuiStoragePairPtr".}
+proc newImGuiStoragePair*(key: ImGuiID, val_i: int32): void {.importc: "ImGuiStoragePair_ImGuiStoragePair_Int".}
+proc newImGuiStoragePair*(key: ImGuiID, val_f: float32): void {.importc: "ImGuiStoragePair_ImGuiStoragePair_Float".}
+proc newImGuiStoragePair*(key: ImGuiID, val_p: pointer): void {.importc: "ImGuiStoragePair_ImGuiStoragePair_Ptr".}
 proc destroy*(self: ptr ImGuiStoragePair): void {.importc: "ImGuiStoragePair_destroy".}
 proc buildSortByKey*(self: ptr ImGuiStorage): void {.importc: "ImGuiStorage_BuildSortByKey".}
 proc clear*(self: ptr ImGuiStorage): void {.importc: "ImGuiStorage_Clear".}
@@ -2126,9 +2148,9 @@ proc setBool*(self: ptr ImGuiStorage, key: ImGuiID, val: bool): void {.importc: 
 proc setFloat*(self: ptr ImGuiStorage, key: ImGuiID, val: float32): void {.importc: "ImGuiStorage_SetFloat".}
 proc setInt*(self: ptr ImGuiStorage, key: ImGuiID, val: int32): void {.importc: "ImGuiStorage_SetInt".}
 proc setVoidPtr*(self: ptr ImGuiStorage, key: ImGuiID, val: pointer): void {.importc: "ImGuiStorage_SetVoidPtr".}
-proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: int32): void {.importc: "ImGuiStyleMod_ImGuiStyleModInt".}
-proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: float32): void {.importc: "ImGuiStyleMod_ImGuiStyleModFloat".}
-proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: ImVec2): void {.importc: "ImGuiStyleMod_ImGuiStyleModVec2".}
+proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: int32): void {.importc: "ImGuiStyleMod_ImGuiStyleMod_Int".}
+proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: float32): void {.importc: "ImGuiStyleMod_ImGuiStyleMod_Float".}
+proc newImGuiStyleMod*(idx: ImGuiStyleVar, v: ImVec2): void {.importc: "ImGuiStyleMod_ImGuiStyleMod_Vec2".}
 proc destroy*(self: ptr ImGuiStyleMod): void {.importc: "ImGuiStyleMod_destroy".}
 proc newImGuiStyle*(): void {.importc: "ImGuiStyle_ImGuiStyle".}
 proc scaleAllSizes*(self: ptr ImGuiStyle, scale_factor: float32): void {.importc: "ImGuiStyle_ScaleAllSizes".}
@@ -2150,6 +2172,8 @@ proc newImGuiTableSettings*(): void {.importc: "ImGuiTableSettings_ImGuiTableSet
 proc destroy*(self: ptr ImGuiTableSettings): void {.importc: "ImGuiTableSettings_destroy".}
 proc newImGuiTableSortSpecs*(): void {.importc: "ImGuiTableSortSpecs_ImGuiTableSortSpecs".}
 proc destroy*(self: ptr ImGuiTableSortSpecs): void {.importc: "ImGuiTableSortSpecs_destroy".}
+proc newImGuiTableTempData*(): void {.importc: "ImGuiTableTempData_ImGuiTableTempData".}
+proc destroy*(self: ptr ImGuiTableTempData): void {.importc: "ImGuiTableTempData_destroy".}
 proc newImGuiTable*(): void {.importc: "ImGuiTable_ImGuiTable".}
 proc destroy*(self: ptr ImGuiTable): void {.importc: "ImGuiTable_destroy".}
 proc newImGuiTextBuffer*(): void {.importc: "ImGuiTextBuffer_ImGuiTextBuffer".}
@@ -2171,11 +2195,14 @@ proc newImGuiTextFilter*(default_filter: cstring = ""): void {.importc: "ImGuiTe
 proc isActive*(self: ptr ImGuiTextFilter): bool {.importc: "ImGuiTextFilter_IsActive".}
 proc passFilter*(self: ptr ImGuiTextFilter, text: cstring, text_end: cstring = nil): bool {.importc: "ImGuiTextFilter_PassFilter".}
 proc destroy*(self: ptr ImGuiTextFilter): void {.importc: "ImGuiTextFilter_destroy".}
-proc newImGuiTextRange*(): void {.importc: "ImGuiTextRange_ImGuiTextRangeNil".}
-proc newImGuiTextRange*(b: cstring, e: cstring): void {.importc: "ImGuiTextRange_ImGuiTextRangeStr".}
+proc newImGuiTextRange*(): void {.importc: "ImGuiTextRange_ImGuiTextRange_Nil".}
+proc newImGuiTextRange*(b: cstring, e: cstring): void {.importc: "ImGuiTextRange_ImGuiTextRange_Str".}
 proc destroy*(self: ptr ImGuiTextRange): void {.importc: "ImGuiTextRange_destroy".}
 proc empty*(self: ptr ImGuiTextRange): bool {.importc: "ImGuiTextRange_empty".}
 proc split*(self: ptr ImGuiTextRange, separator: int8, `out`: ptr ImVector[ImGuiTextRange]): void {.importc: "ImGuiTextRange_split".}
+proc calcWorkRectPosNonUDT*(pOut: ptr ImVec2, self: ptr ImGuiViewportP, off_min: ImVec2): void {.importc: "ImGuiViewportP_CalcWorkRectPos".}
+proc calcWorkRectSizeNonUDT*(pOut: ptr ImVec2, self: ptr ImGuiViewportP, off_min: ImVec2, off_max: ImVec2): void {.importc: "ImGuiViewportP_CalcWorkRectSize".}
+proc getBuildWorkRectNonUDT*(pOut: ptr ImRect, self: ptr ImGuiViewportP): void {.importc: "ImGuiViewportP_GetBuildWorkRect".}
 proc getMainRectNonUDT*(pOut: ptr ImRect, self: ptr ImGuiViewportP): void {.importc: "ImGuiViewportP_GetMainRect".}
 proc getWorkRectNonUDT*(pOut: ptr ImRect, self: ptr ImGuiViewportP): void {.importc: "ImGuiViewportP_GetWorkRect".}
 proc newImGuiViewportP*(): void {.importc: "ImGuiViewportP_ImGuiViewportP".}
@@ -2189,13 +2216,13 @@ proc getName*(self: ptr ImGuiWindowSettings): cstring {.importc: "ImGuiWindowSet
 proc newImGuiWindowSettings*(): void {.importc: "ImGuiWindowSettings_ImGuiWindowSettings".}
 proc destroy*(self: ptr ImGuiWindowSettings): void {.importc: "ImGuiWindowSettings_destroy".}
 proc calcFontSize*(self: ptr ImGuiWindow): float32 {.importc: "ImGuiWindow_CalcFontSize".}
-proc getID*(self: ptr ImGuiWindow, str: cstring, str_end: cstring = nil): ImGuiID {.importc: "ImGuiWindow_GetIDStr".}
-proc getID*(self: ptr ImGuiWindow, `ptr`: pointer): ImGuiID {.importc: "ImGuiWindow_GetIDPtr".}
-proc getID*(self: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "ImGuiWindow_GetIDInt".}
+proc getID*(self: ptr ImGuiWindow, str: cstring, str_end: cstring = nil): ImGuiID {.importc: "ImGuiWindow_GetID_Str".}
+proc getID*(self: ptr ImGuiWindow, `ptr`: pointer): ImGuiID {.importc: "ImGuiWindow_GetID_Ptr".}
+proc getID*(self: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "ImGuiWindow_GetID_Int".}
 proc getIDFromRectangle*(self: ptr ImGuiWindow, r_abs: ImRect): ImGuiID {.importc: "ImGuiWindow_GetIDFromRectangle".}
-proc getIDNoKeepAlive*(self: ptr ImGuiWindow, str: cstring, str_end: cstring = nil): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAliveStr".}
-proc getIDNoKeepAlive*(self: ptr ImGuiWindow, `ptr`: pointer): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAlivePtr".}
-proc getIDNoKeepAlive*(self: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAliveInt".}
+proc getIDNoKeepAlive*(self: ptr ImGuiWindow, str: cstring, str_end: cstring = nil): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAlive_Str".}
+proc getIDNoKeepAlive*(self: ptr ImGuiWindow, `ptr`: pointer): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAlive_Ptr".}
+proc getIDNoKeepAlive*(self: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "ImGuiWindow_GetIDNoKeepAlive_Int".}
 proc newImGuiWindow*(context: ptr ImGuiContext, name: cstring): void {.importc: "ImGuiWindow_ImGuiWindow".}
 proc menuBarHeight*(self: ptr ImGuiWindow): float32 {.importc: "ImGuiWindow_MenuBarHeight".}
 proc menuBarRectNonUDT*(pOut: ptr ImRect, self: ptr ImGuiWindow): void {.importc: "ImGuiWindow_MenuBarRect".}
@@ -2212,18 +2239,18 @@ proc getIndex*[T](self: ptr ImPool, p: ptr T): ImPoolIdx {.importc: "ImPool_GetI
 proc getOrAddByKey*[T](self: ptr ImPool, key: ImGuiID): ptr T {.importc: "ImPool_GetOrAddByKey".}
 proc getSize*(self: ptr ImPool): int32 {.importc: "ImPool_GetSize".}
 proc newImPool*(): void {.importc: "ImPool_ImPool".}
-proc remove*[T](self: ptr ImPool, key: ImGuiID, p: ptr T): void {.importc: "ImPool_RemoveTPtr".}
-proc remove*(self: ptr ImPool, key: ImGuiID, idx: ImPoolIdx): void {.importc: "ImPool_RemovePoolIdx".}
+proc remove*[T](self: ptr ImPool, key: ImGuiID, p: ptr T): void {.importc: "ImPool_Remove_TPtr".}
+proc remove*(self: ptr ImPool, key: ImGuiID, idx: ImPoolIdx): void {.importc: "ImPool_Remove_PoolIdx".}
 proc reserve*(self: ptr ImPool, capacity: int32): void {.importc: "ImPool_Reserve".}
 proc destroy*(self: ptr ImPool): void {.importc: "ImPool_destroy".}
-proc add*(self: ptr ImRect, p: ImVec2): void {.importc: "ImRect_AddVec2".}
-proc add*(self: ptr ImRect, r: ImRect): void {.importc: "ImRect_AddRect".}
+proc add*(self: ptr ImRect, p: ImVec2): void {.importc: "ImRect_Add_Vec2".}
+proc add*(self: ptr ImRect, r: ImRect): void {.importc: "ImRect_Add_Rect".}
 proc clipWith*(self: ptr ImRect, r: ImRect): void {.importc: "ImRect_ClipWith".}
 proc clipWithFull*(self: ptr ImRect, r: ImRect): void {.importc: "ImRect_ClipWithFull".}
-proc contains*(self: ptr ImRect, p: ImVec2): bool {.importc: "ImRect_ContainsVec2".}
-proc contains*(self: ptr ImRect, r: ImRect): bool {.importc: "ImRect_ContainsRect".}
-proc expand*(self: ptr ImRect, amount: float32): void {.importc: "ImRect_ExpandFloat".}
-proc expand*(self: ptr ImRect, amount: ImVec2): void {.importc: "ImRect_ExpandVec2".}
+proc contains*(self: ptr ImRect, p: ImVec2): bool {.importc: "ImRect_Contains_Vec2".}
+proc contains*(self: ptr ImRect, r: ImRect): bool {.importc: "ImRect_Contains_Rect".}
+proc expand*(self: ptr ImRect, amount: float32): void {.importc: "ImRect_Expand_Float".}
+proc expand*(self: ptr ImRect, amount: ImVec2): void {.importc: "ImRect_Expand_Vec2".}
 proc floor*(self: ptr ImRect): void {.importc: "ImRect_Floor".}
 proc getArea*(self: ptr ImRect): float32 {.importc: "ImRect_GetArea".}
 proc getBLNonUDT*(pOut: ptr ImVec2, self: ptr ImRect): void {.importc: "ImRect_GetBL".}
@@ -2234,10 +2261,10 @@ proc getSizeNonUDT*(pOut: ptr ImVec2, self: ptr ImRect): void {.importc: "ImRect
 proc getTLNonUDT*(pOut: ptr ImVec2, self: ptr ImRect): void {.importc: "ImRect_GetTL".}
 proc getTRNonUDT*(pOut: ptr ImVec2, self: ptr ImRect): void {.importc: "ImRect_GetTR".}
 proc getWidth*(self: ptr ImRect): float32 {.importc: "ImRect_GetWidth".}
-proc newImRect*(): void {.importc: "ImRect_ImRectNil".}
-proc newImRect*(min: ImVec2, max: ImVec2): void {.importc: "ImRect_ImRectVec2".}
-proc newImRect*(v: ImVec4): void {.importc: "ImRect_ImRectVec4".}
-proc newImRect*(x1: float32, y1: float32, x2: float32, y2: float32): void {.importc: "ImRect_ImRectFloat".}
+proc newImRect*(): void {.importc: "ImRect_ImRect_Nil".}
+proc newImRect*(min: ImVec2, max: ImVec2): void {.importc: "ImRect_ImRect_Vec2".}
+proc newImRect*(v: ImVec4): void {.importc: "ImRect_ImRect_Vec4".}
+proc newImRect*(x1: float32, y1: float32, x2: float32, y2: float32): void {.importc: "ImRect_ImRect_Float".}
 proc isInverted*(self: ptr ImRect): bool {.importc: "ImRect_IsInverted".}
 proc overlaps*(self: ptr ImRect, r: ImRect): bool {.importc: "ImRect_Overlaps".}
 proc toVec4NonUDT*(pOut: ptr ImVec4, self: ptr ImRect): void {.importc: "ImRect_ToVec4".}
@@ -2252,46 +2279,46 @@ proc newImSpanAllocator*(): void {.importc: "ImSpanAllocator_ImSpanAllocator".}
 proc reserve*(self: ptr ImSpanAllocator, n: int32, sz: uint, a: int32 = 4): void {.importc: "ImSpanAllocator_Reserve".}
 proc setArenaBasePtr*(self: ptr ImSpanAllocator, base_ptr: pointer): void {.importc: "ImSpanAllocator_SetArenaBasePtr".}
 proc destroy*(self: ptr ImSpanAllocator): void {.importc: "ImSpanAllocator_destroy".}
-proc newImSpan*(): void {.importc: "ImSpan_ImSpanNil".}
-proc newImSpan*[T](data: ptr T, size: int32): void {.importc: "ImSpan_ImSpanTPtrInt".}
-proc newImSpan*[T](data: ptr T, data_end: ptr T): void {.importc: "ImSpan_ImSpanTPtrTPtr".}
-proc begin*[T](self: ptr ImSpan): ptr T {.importc: "ImSpan_beginNil".}
+proc newImSpan*(): void {.importc: "ImSpan_ImSpan_Nil".}
+proc newImSpan*[T](data: ptr T, size: int32): void {.importc: "ImSpan_ImSpan_TPtrInt".}
+proc newImSpan*[T](data: ptr T, data_end: ptr T): void {.importc: "ImSpan_ImSpan_TPtrTPtr".}
+proc begin*[T](self: ptr ImSpan): ptr T {.importc: "ImSpan_begin_Nil".}
 proc destroy*(self: ptr ImSpan): void {.importc: "ImSpan_destroy".}
-proc `end`*[T](self: ptr ImSpan): ptr T {.importc: "ImSpan_endNil".}
+proc `end`*[T](self: ptr ImSpan): ptr T {.importc: "ImSpan_end_Nil".}
 proc index_from_ptr*[T](self: ptr ImSpan, it: ptr T): int32 {.importc: "ImSpan_index_from_ptr".}
-proc set*[T](self: ptr ImSpan, data: ptr T, size: int32): void {.importc: "ImSpan_setInt".}
-proc set*[T](self: ptr ImSpan, data: ptr T, data_end: ptr T): void {.importc: "ImSpan_setTPtr".}
+proc set*[T](self: ptr ImSpan, data: ptr T, size: int32): void {.importc: "ImSpan_set_Int".}
+proc set*[T](self: ptr ImSpan, data: ptr T, data_end: ptr T): void {.importc: "ImSpan_set_TPtr".}
 proc size*(self: ptr ImSpan): int32 {.importc: "ImSpan_size".}
 proc size_in_bytes*(self: ptr ImSpan): int32 {.importc: "ImSpan_size_in_bytes".}
-proc newImVec1*(): void {.importc: "ImVec1_ImVec1Nil".}
-proc newImVec1*(x: float32): void {.importc: "ImVec1_ImVec1Float".}
+proc newImVec1*(): void {.importc: "ImVec1_ImVec1_Nil".}
+proc newImVec1*(x: float32): void {.importc: "ImVec1_ImVec1_Float".}
 proc destroy*(self: ptr ImVec1): void {.importc: "ImVec1_destroy".}
-proc newImVec2*(): void {.importc: "ImVec2_ImVec2Nil".}
-proc newImVec2*(x: float32, y: float32): void {.importc: "ImVec2_ImVec2Float".}
+proc newImVec2*(): void {.importc: "ImVec2_ImVec2_Nil".}
+proc newImVec2*(x: float32, y: float32): void {.importc: "ImVec2_ImVec2_Float".}
 proc destroy*(self: ptr ImVec2): void {.importc: "ImVec2_destroy".}
-proc newImVec2ih*(): void {.importc: "ImVec2ih_ImVec2ihNil".}
-proc newImVec2ih*(x: int16, y: int16): void {.importc: "ImVec2ih_ImVec2ihshort".}
-proc newImVec2ih*(rhs: ImVec2): void {.importc: "ImVec2ih_ImVec2ihVec2".}
+proc newImVec2ih*(): void {.importc: "ImVec2ih_ImVec2ih_Nil".}
+proc newImVec2ih*(x: int16, y: int16): void {.importc: "ImVec2ih_ImVec2ih_short".}
+proc newImVec2ih*(rhs: ImVec2): void {.importc: "ImVec2ih_ImVec2ih_Vec2".}
 proc destroy*(self: ptr ImVec2ih): void {.importc: "ImVec2ih_destroy".}
-proc newImVec4*(): void {.importc: "ImVec4_ImVec4Nil".}
-proc newImVec4*(x: float32, y: float32, z: float32, w: float32): void {.importc: "ImVec4_ImVec4Float".}
+proc newImVec4*(): void {.importc: "ImVec4_ImVec4_Nil".}
+proc newImVec4*(x: float32, y: float32, z: float32, w: float32): void {.importc: "ImVec4_ImVec4_Float".}
 proc destroy*(self: ptr ImVec4): void {.importc: "ImVec4_destroy".}
 proc grow_capacity*(self: ptr ImVector, sz: int32): int32 {.importc: "ImVector__grow_capacity".}
-proc back*[T](self: ptr ImVector): ptr T {.importc: "ImVector_backNil".}
-proc begin*[T](self: ptr ImVector): ptr T {.importc: "ImVector_beginNil".}
+proc back*[T](self: ptr ImVector): ptr T {.importc: "ImVector_back_Nil".}
+proc begin*[T](self: ptr ImVector): ptr T {.importc: "ImVector_begin_Nil".}
 proc capacity*(self: ptr ImVector): int32 {.importc: "ImVector_capacity".}
 proc clear*(self: ptr ImVector): void {.importc: "ImVector_clear".}
 proc contains*[T](self: ptr ImVector, v: T): bool {.importc: "ImVector_contains".}
 proc destroy*(self: ptr ImVector): void {.importc: "ImVector_destroy".}
 proc empty*(self: ptr ImVector): bool {.importc: "ImVector_empty".}
-proc `end`*[T](self: ptr ImVector): ptr T {.importc: "ImVector_endNil".}
-proc erase*[T](self: ptr ImVector, it: ptr T): ptr T {.importc: "ImVector_eraseNil".}
-proc erase*[T](self: ptr ImVector, it: ptr T, it_last: ptr T): ptr T {.importc: "ImVector_eraseTPtr".}
+proc `end`*[T](self: ptr ImVector): ptr T {.importc: "ImVector_end_Nil".}
+proc erase*[T](self: ptr ImVector, it: ptr T): ptr T {.importc: "ImVector_erase_Nil".}
+proc erase*[T](self: ptr ImVector, it: ptr T, it_last: ptr T): ptr T {.importc: "ImVector_erase_TPtr".}
 proc erase_unsorted*[T](self: ptr ImVector, it: ptr T): ptr T {.importc: "ImVector_erase_unsorted".}
-proc find*[T](self: ptr ImVector, v: T): ptr T {.importc: "ImVector_findNil".}
+proc find*[T](self: ptr ImVector, v: T): ptr T {.importc: "ImVector_find_Nil".}
 proc find_erase*[T](self: ptr ImVector, v: T): bool {.importc: "ImVector_find_erase".}
 proc find_erase_unsorted*[T](self: ptr ImVector, v: T): bool {.importc: "ImVector_find_erase_unsorted".}
-proc front*[T](self: ptr ImVector): ptr T {.importc: "ImVector_frontNil".}
+proc front*[T](self: ptr ImVector): ptr T {.importc: "ImVector_front_Nil".}
 proc index_from_ptr*[T](self: ptr ImVector, it: ptr T): int32 {.importc: "ImVector_index_from_ptr".}
 proc insert*[T](self: ptr ImVector, it: ptr T, v: T): ptr T {.importc: "ImVector_insert".}
 proc max_size*(self: ptr ImVector): int32 {.importc: "ImVector_max_size".}
@@ -2299,8 +2326,8 @@ proc pop_back*(self: ptr ImVector): void {.importc: "ImVector_pop_back".}
 proc push_back*[T](self: ptr ImVector, v: T): void {.importc: "ImVector_push_back".}
 proc push_front*[T](self: ptr ImVector, v: T): void {.importc: "ImVector_push_front".}
 proc reserve*(self: ptr ImVector, new_capacity: int32): void {.importc: "ImVector_reserve".}
-proc resize*(self: ptr ImVector, new_size: int32): void {.importc: "ImVector_resizeNil".}
-proc resize*[T](self: ptr ImVector, new_size: int32, v: T): void {.importc: "ImVector_resizeT".}
+proc resize*(self: ptr ImVector, new_size: int32): void {.importc: "ImVector_resize_Nil".}
+proc resize*[T](self: ptr ImVector, new_size: int32, v: T): void {.importc: "ImVector_resize_T".}
 proc shrink*(self: ptr ImVector, new_size: int32): void {.importc: "ImVector_shrink".}
 proc size*(self: ptr ImVector): int32 {.importc: "ImVector_size".}
 proc size_in_bytes*(self: ptr ImVector): int32 {.importc: "ImVector_size_in_bytes".}
@@ -2312,8 +2339,8 @@ proc igAlignTextToFramePadding*(): void {.importc: "igAlignTextToFramePadding".}
 proc igArrowButton*(str_id: cstring, dir: ImGuiDir): bool {.importc: "igArrowButton".}
 proc igArrowButtonEx*(str_id: cstring, dir: ImGuiDir, size_arg: ImVec2, flags: ImGuiButtonFlags = 0.ImGuiButtonFlags): bool {.importc: "igArrowButtonEx".}
 proc igBegin*(name: cstring, p_open: ptr bool = nil, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBegin".}
-proc igBeginChild*(str_id: cstring, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, border: bool = false, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBeginChildStr".}
-proc igBeginChild*(id: ImGuiID, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, border: bool = false, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBeginChildID".}
+proc igBeginChild*(str_id: cstring, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, border: bool = false, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBeginChild_Str".}
+proc igBeginChild*(id: ImGuiID, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, border: bool = false, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBeginChild_ID".}
 proc igBeginChildEx*(name: cstring, id: ImGuiID, size_arg: ImVec2, border: bool, flags: ImGuiWindowFlags): bool {.importc: "igBeginChildEx".}
 proc igBeginChildFrame*(id: ImGuiID, size: ImVec2, flags: ImGuiWindowFlags = 0.ImGuiWindowFlags): bool {.importc: "igBeginChildFrame".}
 proc igBeginColumns*(str_id: cstring, count: int32, flags: ImGuiOldColumnFlags = 0.ImGuiOldColumnFlags): void {.importc: "igBeginColumns".}
@@ -2339,6 +2366,7 @@ proc igBeginTable*(str_id: cstring, column: int32, flags: ImGuiTableFlags = 0.Im
 proc igBeginTableEx*(name: cstring, id: ImGuiID, columns_count: int32, flags: ImGuiTableFlags = 0.ImGuiTableFlags, outer_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, inner_width: float32 = 0.0f): bool {.importc: "igBeginTableEx".}
 proc igBeginTooltip*(): void {.importc: "igBeginTooltip".}
 proc igBeginTooltipEx*(extra_flags: ImGuiWindowFlags, tooltip_flags: ImGuiTooltipFlags): void {.importc: "igBeginTooltipEx".}
+proc igBeginViewportSideBar*(name: cstring, viewport: ptr ImGuiViewport, dir: ImGuiDir, size: float32, window_flags: ImGuiWindowFlags): bool {.importc: "igBeginViewportSideBar".}
 proc igBringWindowToDisplayBack*(window: ptr ImGuiWindow): void {.importc: "igBringWindowToDisplayBack".}
 proc igBringWindowToDisplayFront*(window: ptr ImGuiWindow): void {.importc: "igBringWindowToDisplayFront".}
 proc igBringWindowToFocusFront*(window: ptr ImGuiWindow): void {.importc: "igBringWindowToFocusFront".}
@@ -2359,10 +2387,10 @@ proc igCallContextHooks*(context: ptr ImGuiContext, `type`: ImGuiContextHookType
 proc igCaptureKeyboardFromApp*(want_capture_keyboard_value: bool = true): void {.importc: "igCaptureKeyboardFromApp".}
 proc igCaptureMouseFromApp*(want_capture_mouse_value: bool = true): void {.importc: "igCaptureMouseFromApp".}
 proc igCheckbox*(label: cstring, v: ptr bool): bool {.importc: "igCheckbox".}
-proc igCheckboxFlags*(label: cstring, flags: ptr int32, flags_value: int32): bool {.importc: "igCheckboxFlagsIntPtr".}
-proc igCheckboxFlags*(label: cstring, flags: ptr uint32, flags_value: uint32): bool {.importc: "igCheckboxFlagsUintPtr".}
-proc igCheckboxFlags*(label: cstring, flags: ptr int64, flags_value: int64): bool {.importc: "igCheckboxFlagsS64Ptr".}
-proc igCheckboxFlags*(label: cstring, flags: ptr uint64, flags_value: uint64): bool {.importc: "igCheckboxFlagsU64Ptr".}
+proc igCheckboxFlags*(label: cstring, flags: ptr int32, flags_value: int32): bool {.importc: "igCheckboxFlags_IntPtr".}
+proc igCheckboxFlags*(label: cstring, flags: ptr uint32, flags_value: uint32): bool {.importc: "igCheckboxFlags_UintPtr".}
+proc igCheckboxFlags*(label: cstring, flags: ptr int64, flags_value: int64): bool {.importc: "igCheckboxFlags_S64Ptr".}
+proc igCheckboxFlags*(label: cstring, flags: ptr uint64, flags_value: uint64): bool {.importc: "igCheckboxFlags_U64Ptr".}
 proc igClearActiveID*(): void {.importc: "igClearActiveID".}
 proc igClearDragDrop*(): void {.importc: "igClearDragDrop".}
 proc igClearIniSettings*(): void {.importc: "igClearIniSettings".}
@@ -2371,8 +2399,8 @@ proc igCloseCurrentPopup*(): void {.importc: "igCloseCurrentPopup".}
 proc igClosePopupToLevel*(remaining: int32, restore_focus_to_window_under_popup: bool): void {.importc: "igClosePopupToLevel".}
 proc igClosePopupsOverWindow*(ref_window: ptr ImGuiWindow, restore_focus_to_window_under_popup: bool): void {.importc: "igClosePopupsOverWindow".}
 proc igCollapseButton*(id: ImGuiID, pos: ImVec2): bool {.importc: "igCollapseButton".}
-proc igCollapsingHeader*(label: cstring, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igCollapsingHeaderTreeNodeFlags".}
-proc igCollapsingHeader*(label: cstring, p_visible: ptr bool, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igCollapsingHeaderBoolPtr".}
+proc igCollapsingHeader*(label: cstring, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igCollapsingHeader_TreeNodeFlags".}
+proc igCollapsingHeader*(label: cstring, p_visible: ptr bool, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igCollapsingHeader_BoolPtr".}
 proc igColorButton*(desc_id: cstring, col: ImVec4, flags: ImGuiColorEditFlags = 0.ImGuiColorEditFlags, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): bool {.importc: "igColorButton".}
 proc igColorConvertFloat4ToU32*(`in`: ImVec4): uint32 {.importc: "igColorConvertFloat4ToU32".}
 proc igColorConvertHSVtoRGB*(h: float32, s: float32, v: float32, out_r: ptr float32, out_g: ptr float32, out_b: ptr float32): void {.importc: "igColorConvertHSVtoRGB".}
@@ -2386,9 +2414,9 @@ proc igColorPicker4*(label: cstring, col: var array[4, float32], flags: ImGuiCol
 proc igColorPickerOptionsPopup*(ref_col: ptr float32, flags: ImGuiColorEditFlags): void {.importc: "igColorPickerOptionsPopup".}
 proc igColorTooltip*(text: cstring, col: ptr float32, flags: ImGuiColorEditFlags): void {.importc: "igColorTooltip".}
 proc igColumns*(count: int32 = 1, id: cstring = nil, border: bool = true): void {.importc: "igColumns".}
-proc igCombo*(label: cstring, current_item: ptr int32, items: ptr cstring, items_count: int32, popup_max_height_in_items: int32 = -1): bool {.importc: "igComboStr_arr".}
-proc igCombo*(label: cstring, current_item: ptr int32, items_separated_by_zeros: cstring, popup_max_height_in_items: int32 = -1): bool {.importc: "igComboStr".}
-proc igCombo*(label: cstring, current_item: ptr int32, items_getter: proc(data: pointer, idx: int32, out_text: ptr cstring): bool {.cdecl, varargs.}, data: pointer, items_count: int32, popup_max_height_in_items: int32 = -1): bool {.importc: "igComboFnBoolPtr".}
+proc igCombo*(label: cstring, current_item: ptr int32, items: ptr cstring, items_count: int32, popup_max_height_in_items: int32 = -1): bool {.importc: "igCombo_Str_arr".}
+proc igCombo*(label: cstring, current_item: ptr int32, items_separated_by_zeros: cstring, popup_max_height_in_items: int32 = -1): bool {.importc: "igCombo_Str".}
+proc igCombo*(label: cstring, current_item: ptr int32, items_getter: proc(data: pointer, idx: int32, out_text: ptr cstring): bool {.cdecl, varargs.}, data: pointer, items_count: int32, popup_max_height_in_items: int32 = -1): bool {.importc: "igCombo_FnBoolPtr".}
 proc igCreateContext*(shared_font_atlas: ptr ImFontAtlas = nil): ptr ImGuiContext {.importc: "igCreateContext".}
 proc igCreateNewWindowSettings*(name: cstring): ptr ImGuiWindowSettings {.importc: "igCreateNewWindowSettings".}
 proc igDataTypeApplyOp*(data_type: ImGuiDataType, op: int32, output: pointer, arg_1: pointer, arg_2: pointer): void {.importc: "igDataTypeApplyOp".}
@@ -2457,19 +2485,17 @@ proc igFindWindowByName*(name: cstring): ptr ImGuiWindow {.importc: "igFindWindo
 proc igFindWindowSettings*(id: ImGuiID): ptr ImGuiWindowSettings {.importc: "igFindWindowSettings".}
 proc igFocusTopMostWindowUnderOne*(under_this_window: ptr ImGuiWindow, ignore_window: ptr ImGuiWindow): void {.importc: "igFocusTopMostWindowUnderOne".}
 proc igFocusWindow*(window: ptr ImGuiWindow): void {.importc: "igFocusWindow".}
-proc igFocusableItemRegister*(window: ptr ImGuiWindow, id: ImGuiID): bool {.importc: "igFocusableItemRegister".}
-proc igFocusableItemUnregister*(window: ptr ImGuiWindow): void {.importc: "igFocusableItemUnregister".}
 proc igGcAwakeTransientWindowBuffers*(window: ptr ImGuiWindow): void {.importc: "igGcAwakeTransientWindowBuffers".}
 proc igGcCompactTransientMiscBuffers*(): void {.importc: "igGcCompactTransientMiscBuffers".}
 proc igGcCompactTransientWindowBuffers*(window: ptr ImGuiWindow): void {.importc: "igGcCompactTransientWindowBuffers".}
 proc igGetActiveID*(): ImGuiID {.importc: "igGetActiveID".}
 proc igGetAllocatorFunctions*(p_alloc_func: ptr ImGuiMemAllocFunc, p_free_func: ptr ImGuiMemFreeFunc, p_user_data: ptr pointer): void {.importc: "igGetAllocatorFunctions".}
-proc igGetBackgroundDrawList*(): ptr ImDrawList {.importc: "igGetBackgroundDrawListNil".}
-proc igGetBackgroundDrawList*(viewport: ptr ImGuiViewport): ptr ImDrawList {.importc: "igGetBackgroundDrawListViewportPtr".}
+proc igGetBackgroundDrawList*(): ptr ImDrawList {.importc: "igGetBackgroundDrawList_Nil".}
+proc igGetBackgroundDrawList*(viewport: ptr ImGuiViewport): ptr ImDrawList {.importc: "igGetBackgroundDrawList_ViewportPtr".}
 proc igGetClipboardText*(): cstring {.importc: "igGetClipboardText".}
-proc igGetColorU32*(idx: ImGuiCol, alpha_mul: float32 = 1.0f): uint32 {.importc: "igGetColorU32Col".}
-proc igGetColorU32*(col: ImVec4): uint32 {.importc: "igGetColorU32Vec4".}
-proc igGetColorU32*(col: uint32): uint32 {.importc: "igGetColorU32U32".}
+proc igGetColorU32*(idx: ImGuiCol, alpha_mul: float32 = 1.0f): uint32 {.importc: "igGetColorU32_Col".}
+proc igGetColorU32*(col: ImVec4): uint32 {.importc: "igGetColorU32_Vec4".}
+proc igGetColorU32*(col: uint32): uint32 {.importc: "igGetColorU32_U32".}
 proc igGetColumnIndex*(): int32 {.importc: "igGetColumnIndex".}
 proc igGetColumnNormFromOffset*(columns: ptr ImGuiOldColumns, offset: float32): float32 {.importc: "igGetColumnNormFromOffset".}
 proc igGetColumnOffset*(column_index: int32 = -1): float32 {.importc: "igGetColumnOffset".}
@@ -2499,25 +2525,25 @@ proc igGetFocusedFocusScope*(): ImGuiID {.importc: "igGetFocusedFocusScope".}
 proc igGetFont*(): ptr ImFont {.importc: "igGetFont".}
 proc igGetFontSize*(): float32 {.importc: "igGetFontSize".}
 proc igGetFontTexUvWhitePixelNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetFontTexUvWhitePixel".}
-proc igGetForegroundDrawList*(): ptr ImDrawList {.importc: "igGetForegroundDrawListNil".}
-proc igGetForegroundDrawList*(window: ptr ImGuiWindow): ptr ImDrawList {.importc: "igGetForegroundDrawListWindowPtr".}
-proc igGetForegroundDrawList*(viewport: ptr ImGuiViewport): ptr ImDrawList {.importc: "igGetForegroundDrawListViewportPtr".}
+proc igGetForegroundDrawList*(): ptr ImDrawList {.importc: "igGetForegroundDrawList_Nil".}
+proc igGetForegroundDrawList*(window: ptr ImGuiWindow): ptr ImDrawList {.importc: "igGetForegroundDrawList_WindowPtr".}
+proc igGetForegroundDrawList*(viewport: ptr ImGuiViewport): ptr ImDrawList {.importc: "igGetForegroundDrawList_ViewportPtr".}
 proc igGetFrameCount*(): int32 {.importc: "igGetFrameCount".}
 proc igGetFrameHeight*(): float32 {.importc: "igGetFrameHeight".}
 proc igGetFrameHeightWithSpacing*(): float32 {.importc: "igGetFrameHeightWithSpacing".}
 proc igGetHoveredID*(): ImGuiID {.importc: "igGetHoveredID".}
-proc igGetID*(str_id: cstring): ImGuiID {.importc: "igGetIDStr".}
-proc igGetID*(str_id_begin: cstring, str_id_end: cstring): ImGuiID {.importc: "igGetIDStrStr".}
-proc igGetID*(ptr_id: pointer): ImGuiID {.importc: "igGetIDPtr".}
+proc igGetID*(str_id: cstring): ImGuiID {.importc: "igGetID_Str".}
+proc igGetID*(str_id_begin: cstring, str_id_end: cstring): ImGuiID {.importc: "igGetID_StrStr".}
+proc igGetID*(ptr_id: pointer): ImGuiID {.importc: "igGetID_Ptr".}
 proc igGetIDWithSeed*(str_id_begin: cstring, str_id_end: cstring, seed: ImGuiID): ImGuiID {.importc: "igGetIDWithSeed".}
 proc igGetIO*(): ptr ImGuiIO {.importc: "igGetIO".}
 proc igGetInputTextState*(id: ImGuiID): ptr ImGuiInputTextState {.importc: "igGetInputTextState".}
+proc igGetItemFlags*(): ImGuiItemFlags {.importc: "igGetItemFlags".}
 proc igGetItemID*(): ImGuiID {.importc: "igGetItemID".}
 proc igGetItemRectMaxNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetItemRectMax".}
 proc igGetItemRectMinNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetItemRectMin".}
 proc igGetItemRectSizeNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetItemRectSize".}
 proc igGetItemStatusFlags*(): ImGuiItemStatusFlags {.importc: "igGetItemStatusFlags".}
-proc igGetItemsFlags*(): ImGuiItemFlags {.importc: "igGetItemsFlags".}
 proc igGetKeyIndex*(imgui_key: ImGuiKey): int32 {.importc: "igGetKeyIndex".}
 proc igGetKeyPressedAmount*(key_index: int32, repeat_delay: float32, rate: float32): int32 {.importc: "igGetKeyPressedAmount".}
 proc igGetMainViewport*(): ptr ImGuiViewport {.importc: "igGetMainViewport".}
@@ -2549,13 +2575,15 @@ proc igGetWindowContentRegionWidth*(): float32 {.importc: "igGetWindowContentReg
 proc igGetWindowDrawList*(): ptr ImDrawList {.importc: "igGetWindowDrawList".}
 proc igGetWindowHeight*(): float32 {.importc: "igGetWindowHeight".}
 proc igGetWindowPosNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetWindowPos".}
-proc igGetWindowResizeID*(window: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "igGetWindowResizeID".}
+proc igGetWindowResizeBorderID*(window: ptr ImGuiWindow, dir: ImGuiDir): ImGuiID {.importc: "igGetWindowResizeBorderID".}
+proc igGetWindowResizeCornerID*(window: ptr ImGuiWindow, n: int32): ImGuiID {.importc: "igGetWindowResizeCornerID".}
 proc igGetWindowScrollbarID*(window: ptr ImGuiWindow, axis: ImGuiAxis): ImGuiID {.importc: "igGetWindowScrollbarID".}
 proc igGetWindowScrollbarRectNonUDT*(pOut: ptr ImRect, window: ptr ImGuiWindow, axis: ImGuiAxis): void {.importc: "igGetWindowScrollbarRect".}
 proc igGetWindowSizeNonUDT*(pOut: ptr ImVec2): void {.importc: "igGetWindowSize".}
 proc igGetWindowWidth*(): float32 {.importc: "igGetWindowWidth".}
-proc igImAbs*(x: float32): float32 {.importc: "igImAbsFloat".}
-proc igImAbs*(x: float64): float64 {.importc: "igImAbsdouble".}
+proc igImAbs*(x: int32): int32 {.importc: "igImAbs_Int".}
+proc igImAbs*(x: float32): float32 {.importc: "igImAbs_Float".}
+proc igImAbs*(x: float64): float64 {.importc: "igImAbs_double".}
 proc igImAlphaBlendColors*(col_a: uint32, col_b: uint32): uint32 {.importc: "igImAlphaBlendColors".}
 proc igImBezierCubicCalcNonUDT*(pOut: ptr ImVec2, p1: ImVec2, p2: ImVec2, p3: ImVec2, p4: ImVec2, t: float32): void {.importc: "igImBezierCubicCalc".}
 proc igImBezierCubicClosestPointNonUDT*(pOut: ptr ImVec2, p1: ImVec2, p2: ImVec2, p3: ImVec2, p4: ImVec2, p: ImVec2, num_segments: int32): void {.importc: "igImBezierCubicClosestPoint".}
@@ -2575,8 +2603,9 @@ proc igImFileLoadToMemory*(filename: cstring, mode: cstring, out_file_size: ptr 
 proc igImFileOpen*(filename: cstring, mode: cstring): ImFileHandle {.importc: "igImFileOpen".}
 proc igImFileRead*(data: pointer, size: uint64, count: uint64, file: ImFileHandle): uint64 {.importc: "igImFileRead".}
 proc igImFileWrite*(data: pointer, size: uint64, count: uint64, file: ImFileHandle): uint64 {.importc: "igImFileWrite".}
-proc igImFloor*(f: float32): float32 {.importc: "igImFloorFloat".}
-proc igImFloorNonUDT*(pOut: ptr ImVec2, v: ImVec2): void {.importc: "igImFloorVec2".}
+proc igImFloor*(f: float32): float32 {.importc: "igImFloor_Float".}
+proc igImFloorNonUDT*(pOut: ptr ImVec2, v: ImVec2): void {.importc: "igImFloor_Vec2".}
+proc igImFloorSigned*(f: float32): float32 {.importc: "igImFloorSigned".}
 proc igImFontAtlasBuildFinish*(atlas: ptr ImFontAtlas): void {.importc: "igImFontAtlasBuildFinish".}
 proc igImFontAtlasBuildInit*(atlas: ptr ImFontAtlas): void {.importc: "igImFontAtlasBuildInit".}
 proc igImFontAtlasBuildMultiplyCalcLookupTable*(out_table: cuchar, in_multiply_factor: float32): void {.importc: "igImFontAtlasBuildMultiplyCalcLookupTable".}
@@ -2592,17 +2621,17 @@ proc igImGetDirQuadrantFromDelta*(dx: float32, dy: float32): ImGuiDir {.importc:
 proc igImHashData*(data: pointer, data_size: uint, seed: uint32 = 0): ImGuiID {.importc: "igImHashData".}
 proc igImHashStr*(data: cstring, data_size: uint = 0, seed: uint32 = 0): ImGuiID {.importc: "igImHashStr".}
 proc igImInvLength*(lhs: ImVec2, fail_value: float32): float32 {.importc: "igImInvLength".}
-proc igImIsPowerOfTwo*(v: int32): bool {.importc: "igImIsPowerOfTwoInt".}
-proc igImIsPowerOfTwo*(v: uint64): bool {.importc: "igImIsPowerOfTwoU64".}
-proc igImLengthSqr*(lhs: ImVec2): float32 {.importc: "igImLengthSqrVec2".}
-proc igImLengthSqr*(lhs: ImVec4): float32 {.importc: "igImLengthSqrVec4".}
-proc igImLerpNonUDT*(pOut: ptr ImVec2, a: ImVec2, b: ImVec2, t: float32): void {.importc: "igImLerpVec2Float".}
-proc igImLerpNonUDT2*(pOut: ptr ImVec2, a: ImVec2, b: ImVec2, t: ImVec2): void {.importc: "igImLerpVec2Vec2".}
-proc igImLerpNonUDT3*(pOut: ptr ImVec4, a: ImVec4, b: ImVec4, t: float32): void {.importc: "igImLerpVec4".}
+proc igImIsPowerOfTwo*(v: int32): bool {.importc: "igImIsPowerOfTwo_Int".}
+proc igImIsPowerOfTwo*(v: uint64): bool {.importc: "igImIsPowerOfTwo_U64".}
+proc igImLengthSqr*(lhs: ImVec2): float32 {.importc: "igImLengthSqr_Vec2".}
+proc igImLengthSqr*(lhs: ImVec4): float32 {.importc: "igImLengthSqr_Vec4".}
+proc igImLerpNonUDT*(pOut: ptr ImVec2, a: ImVec2, b: ImVec2, t: float32): void {.importc: "igImLerp_Vec2Float".}
+proc igImLerpNonUDT2*(pOut: ptr ImVec2, a: ImVec2, b: ImVec2, t: ImVec2): void {.importc: "igImLerp_Vec2Vec2".}
+proc igImLerpNonUDT3*(pOut: ptr ImVec4, a: ImVec4, b: ImVec4, t: float32): void {.importc: "igImLerp_Vec4".}
 proc igImLineClosestPointNonUDT*(pOut: ptr ImVec2, a: ImVec2, b: ImVec2, p: ImVec2): void {.importc: "igImLineClosestPoint".}
 proc igImLinearSweep*(current: float32, target: float32, speed: float32): float32 {.importc: "igImLinearSweep".}
-proc igImLog*(x: float32): float32 {.importc: "igImLogFloat".}
-proc igImLog*(x: float64): float64 {.importc: "igImLogdouble".}
+proc igImLog*(x: float32): float32 {.importc: "igImLog_Float".}
+proc igImLog*(x: float64): float64 {.importc: "igImLog_double".}
 proc igImMaxNonUDT*(pOut: ptr ImVec2, lhs: ImVec2, rhs: ImVec2): void {.importc: "igImMax".}
 proc igImMinNonUDT*(pOut: ptr ImVec2, lhs: ImVec2, rhs: ImVec2): void {.importc: "igImMin".}
 proc igImModPositive*(a: int32, b: int32): int32 {.importc: "igImModPositive".}
@@ -2611,12 +2640,14 @@ proc igImParseFormatFindEnd*(format: cstring): cstring {.importc: "igImParseForm
 proc igImParseFormatFindStart*(format: cstring): cstring {.importc: "igImParseFormatFindStart".}
 proc igImParseFormatPrecision*(format: cstring, default_value: int32): int32 {.importc: "igImParseFormatPrecision".}
 proc igImParseFormatTrimDecorations*(format: cstring, buf: cstring, buf_size: uint): cstring {.importc: "igImParseFormatTrimDecorations".}
-proc igImPow*(x: float32, y: float32): float32 {.importc: "igImPowFloat".}
-proc igImPow*(x: float64, y: float64): float64 {.importc: "igImPowdouble".}
+proc igImPow*(x: float32, y: float32): float32 {.importc: "igImPow_Float".}
+proc igImPow*(x: float64, y: float64): float64 {.importc: "igImPow_double".}
 proc igImRotateNonUDT*(pOut: ptr ImVec2, v: ImVec2, cos_a: float32, sin_a: float32): void {.importc: "igImRotate".}
+proc igImRsqrt*(x: float32): float32 {.importc: "igImRsqrt_Float".}
+proc igImRsqrt*(x: float64): float64 {.importc: "igImRsqrt_double".}
 proc igImSaturate*(f: float32): float32 {.importc: "igImSaturate".}
-proc igImSign*(x: float32): float32 {.importc: "igImSignFloat".}
-proc igImSign*(x: float64): float64 {.importc: "igImSigndouble".}
+proc igImSign*(x: float32): float32 {.importc: "igImSign_Float".}
+proc igImSign*(x: float64): float64 {.importc: "igImSign_double".}
 proc igImStrSkipBlank*(str: cstring): cstring {.importc: "igImStrSkipBlank".}
 proc igImStrTrimBlanks*(str: cstring): void {.importc: "igImStrTrimBlanks".}
 proc igImStrbolW*(buf_mid_line: ptr ImWchar, buf_begin: ptr ImWchar): ptr ImWchar {.importc: "igImStrbolW".}
@@ -2695,10 +2726,10 @@ proc igIsMousePosValid*(mouse_pos: ptr ImVec2 = nil): bool {.importc: "igIsMouse
 proc igIsMouseReleased*(button: ImGuiMouseButton): bool {.importc: "igIsMouseReleased".}
 proc igIsNavInputDown*(n: ImGuiNavInput): bool {.importc: "igIsNavInputDown".}
 proc igIsNavInputTest*(n: ImGuiNavInput, rm: ImGuiInputReadMode): bool {.importc: "igIsNavInputTest".}
-proc igIsPopupOpen*(str_id: cstring, flags: ImGuiPopupFlags = 0.ImGuiPopupFlags): bool {.importc: "igIsPopupOpenStr".}
-proc igIsPopupOpen*(id: ImGuiID, popup_flags: ImGuiPopupFlags): bool {.importc: "igIsPopupOpenID".}
-proc igIsRectVisible*(size: ImVec2): bool {.importc: "igIsRectVisibleNil".}
-proc igIsRectVisible*(rect_min: ImVec2, rect_max: ImVec2): bool {.importc: "igIsRectVisibleVec2".}
+proc igIsPopupOpen*(str_id: cstring, flags: ImGuiPopupFlags = 0.ImGuiPopupFlags): bool {.importc: "igIsPopupOpen_Str".}
+proc igIsPopupOpen*(id: ImGuiID, popup_flags: ImGuiPopupFlags): bool {.importc: "igIsPopupOpen_ID".}
+proc igIsRectVisible*(size: ImVec2): bool {.importc: "igIsRectVisible_Nil".}
+proc igIsRectVisible*(rect_min: ImVec2, rect_max: ImVec2): bool {.importc: "igIsRectVisible_Vec2".}
 proc igIsWindowAbove*(potential_above: ptr ImGuiWindow, potential_below: ptr ImGuiWindow): bool {.importc: "igIsWindowAbove".}
 proc igIsWindowAppearing*(): bool {.importc: "igIsWindowAppearing".}
 proc igIsWindowChildOf*(window: ptr ImGuiWindow, potential_parent: ptr ImGuiWindow): bool {.importc: "igIsWindowChildOf".}
@@ -2706,15 +2737,16 @@ proc igIsWindowCollapsed*(): bool {.importc: "igIsWindowCollapsed".}
 proc igIsWindowFocused*(flags: ImGuiFocusedFlags = 0.ImGuiFocusedFlags): bool {.importc: "igIsWindowFocused".}
 proc igIsWindowHovered*(flags: ImGuiHoveredFlags = 0.ImGuiHoveredFlags): bool {.importc: "igIsWindowHovered".}
 proc igIsWindowNavFocusable*(window: ptr ImGuiWindow): bool {.importc: "igIsWindowNavFocusable".}
-proc igItemAdd*(bb: ImRect, id: ImGuiID, nav_bb: ptr ImRect = nil): bool {.importc: "igItemAdd".}
+proc igItemAdd*(bb: ImRect, id: ImGuiID, nav_bb: ptr ImRect = nil, flags: ImGuiItemAddFlags = 0.ImGuiItemAddFlags): bool {.importc: "igItemAdd".}
+proc igItemFocusable*(window: ptr ImGuiWindow, id: ImGuiID): void {.importc: "igItemFocusable".}
 proc igItemHoverable*(bb: ImRect, id: ImGuiID): bool {.importc: "igItemHoverable".}
-proc igItemSize*(size: ImVec2, text_baseline_y: float32 = -1.0f): void {.importc: "igItemSizeVec2".}
-proc igItemSize*(bb: ImRect, text_baseline_y: float32 = -1.0f): void {.importc: "igItemSizeRect".}
+proc igItemSize*(size: ImVec2, text_baseline_y: float32 = -1.0f): void {.importc: "igItemSize_Vec2".}
+proc igItemSize*(bb: ImRect, text_baseline_y: float32 = -1.0f): void {.importc: "igItemSize_Rect".}
 proc igKeepAliveID*(id: ImGuiID): void {.importc: "igKeepAliveID".}
 proc igLabelText*(label: cstring, fmt: cstring): void {.importc: "igLabelText", varargs.}
 proc igLabelTextV*(label: cstring, fmt: cstring): void {.importc: "igLabelTextV", varargs.}
-proc igListBox*(label: cstring, current_item: ptr int32, items: ptr cstring, items_count: int32, height_in_items: int32 = -1): bool {.importc: "igListBoxStr_arr".}
-proc igListBox*(label: cstring, current_item: ptr int32, items_getter: proc(data: pointer, idx: int32, out_text: ptr cstring): bool {.cdecl, varargs.}, data: pointer, items_count: int32, height_in_items: int32 = -1): bool {.importc: "igListBoxFnBoolPtr".}
+proc igListBox*(label: cstring, current_item: ptr int32, items: ptr cstring, items_count: int32, height_in_items: int32 = -1): bool {.importc: "igListBox_Str_arr".}
+proc igListBox*(label: cstring, current_item: ptr int32, items_getter: proc(data: pointer, idx: int32, out_text: ptr cstring): bool {.cdecl, varargs.}, data: pointer, items_count: int32, height_in_items: int32 = -1): bool {.importc: "igListBox_FnBoolPtr".}
 proc igLoadIniSettingsFromDisk*(ini_filename: cstring): void {.importc: "igLoadIniSettingsFromDisk".}
 proc igLoadIniSettingsFromMemory*(ini_data: cstring, ini_size: uint = 0): void {.importc: "igLoadIniSettingsFromMemory".}
 proc igLogBegin*(`type`: ImGuiLogType, auto_open_depth: int32): void {.importc: "igLogBegin".}
@@ -2728,13 +2760,13 @@ proc igLogToBuffer*(auto_open_depth: int32 = -1): void {.importc: "igLogToBuffer
 proc igLogToClipboard*(auto_open_depth: int32 = -1): void {.importc: "igLogToClipboard".}
 proc igLogToFile*(auto_open_depth: int32 = -1, filename: cstring = nil): void {.importc: "igLogToFile".}
 proc igLogToTTY*(auto_open_depth: int32 = -1): void {.importc: "igLogToTTY".}
-proc igMarkIniSettingsDirty*(): void {.importc: "igMarkIniSettingsDirtyNil".}
-proc igMarkIniSettingsDirty*(window: ptr ImGuiWindow): void {.importc: "igMarkIniSettingsDirtyWindowPtr".}
+proc igMarkIniSettingsDirty*(): void {.importc: "igMarkIniSettingsDirty_Nil".}
+proc igMarkIniSettingsDirty*(window: ptr ImGuiWindow): void {.importc: "igMarkIniSettingsDirty_WindowPtr".}
 proc igMarkItemEdited*(id: ImGuiID): void {.importc: "igMarkItemEdited".}
 proc igMemAlloc*(size: uint): pointer {.importc: "igMemAlloc".}
 proc igMemFree*(`ptr`: pointer): void {.importc: "igMemFree".}
-proc igMenuItem*(label: cstring, shortcut: cstring = nil, selected: bool = false, enabled: bool = true): bool {.importc: "igMenuItemBool".}
-proc igMenuItem*(label: cstring, shortcut: cstring, p_selected: ptr bool, enabled: bool = true): bool {.importc: "igMenuItemBoolPtr".}
+proc igMenuItem*(label: cstring, shortcut: cstring = nil, selected: bool = false, enabled: bool = true): bool {.importc: "igMenuItem_Bool".}
+proc igMenuItem*(label: cstring, shortcut: cstring, p_selected: ptr bool, enabled: bool = true): bool {.importc: "igMenuItem_BoolPtr".}
 proc igNavInitWindow*(window: ptr ImGuiWindow, force_reinit: bool): void {.importc: "igNavInitWindow".}
 proc igNavMoveRequestButNoResultYet*(): bool {.importc: "igNavMoveRequestButNoResultYet".}
 proc igNavMoveRequestCancel*(): void {.importc: "igNavMoveRequestCancel".}
@@ -2743,14 +2775,15 @@ proc igNavMoveRequestTryWrapping*(window: ptr ImGuiWindow, move_flags: ImGuiNavM
 proc igNewFrame*(): void {.importc: "igNewFrame".}
 proc igNewLine*(): void {.importc: "igNewLine".}
 proc igNextColumn*(): void {.importc: "igNextColumn".}
-proc igOpenPopup*(str_id: cstring, popup_flags: ImGuiPopupFlags = 0.ImGuiPopupFlags): void {.importc: "igOpenPopup".}
+proc igOpenPopup*(str_id: cstring, popup_flags: ImGuiPopupFlags = 0.ImGuiPopupFlags): void {.importc: "igOpenPopup_Str".}
+proc igOpenPopup*(id: ImGuiID, popup_flags: ImGuiPopupFlags = 0.ImGuiPopupFlags): void {.importc: "igOpenPopup_ID".}
 proc igOpenPopupEx*(id: ImGuiID, popup_flags: ImGuiPopupFlags = ImGuiPopupFlags.None.ImGuiPopupFlags): void {.importc: "igOpenPopupEx".}
 proc igOpenPopupOnItemClick*(str_id: cstring = nil, popup_flags: ImGuiPopupFlags = 1.ImGuiPopupFlags): void {.importc: "igOpenPopupOnItemClick".}
 proc igPlotEx*(plot_type: ImGuiPlotType, label: cstring, values_getter: proc(data: pointer, idx: int32): float32 {.cdecl, varargs.}, data: pointer, values_count: int32, values_offset: int32, overlay_text: cstring, scale_min: float32, scale_max: float32, frame_size: ImVec2): int32 {.importc: "igPlotEx".}
-proc igPlotHistogram*(label: cstring, values: ptr float32, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, stride: int32 = sizeof(float32).int32): void {.importc: "igPlotHistogramFloatPtr".}
-proc igPlotHistogram*(label: cstring, values_getter: proc(data: pointer, idx: int32): float32 {.cdecl, varargs.}, data: pointer, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): void {.importc: "igPlotHistogramFnFloatPtr".}
-proc igPlotLines*(label: cstring, values: ptr float32, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, stride: int32 = sizeof(float32).int32): void {.importc: "igPlotLinesFloatPtr".}
-proc igPlotLines*(label: cstring, values_getter: proc(data: pointer, idx: int32): float32 {.cdecl, varargs.}, data: pointer, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): void {.importc: "igPlotLinesFnFloatPtr".}
+proc igPlotHistogram*(label: cstring, values: ptr float32, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, stride: int32 = sizeof(float32).int32): void {.importc: "igPlotHistogram_FloatPtr".}
+proc igPlotHistogram*(label: cstring, values_getter: proc(data: pointer, idx: int32): float32 {.cdecl, varargs.}, data: pointer, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): void {.importc: "igPlotHistogram_FnFloatPtr".}
+proc igPlotLines*(label: cstring, values: ptr float32, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2, stride: int32 = sizeof(float32).int32): void {.importc: "igPlotLines_FloatPtr".}
+proc igPlotLines*(label: cstring, values_getter: proc(data: pointer, idx: int32): float32 {.cdecl, varargs.}, data: pointer, values_count: int32, values_offset: int32 = 0, overlay_text: cstring = nil, scale_min: float32 = high(float32), scale_max: float32 = high(float32), graph_size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): void {.importc: "igPlotLines_FnFloatPtr".}
 proc igPopAllowKeyboardFocus*(): void {.importc: "igPopAllowKeyboardFocus".}
 proc igPopButtonRepeat*(): void {.importc: "igPopButtonRepeat".}
 proc igPopClipRect*(): void {.importc: "igPopClipRect".}
@@ -2771,21 +2804,21 @@ proc igPushColumnClipRect*(column_index: int32): void {.importc: "igPushColumnCl
 proc igPushColumnsBackground*(): void {.importc: "igPushColumnsBackground".}
 proc igPushFocusScope*(id: ImGuiID): void {.importc: "igPushFocusScope".}
 proc igPushFont*(font: ptr ImFont): void {.importc: "igPushFont".}
-proc igPushID*(str_id: cstring): void {.importc: "igPushIDStr".}
-proc igPushID*(str_id_begin: cstring, str_id_end: cstring): void {.importc: "igPushIDStrStr".}
-proc igPushID*(ptr_id: pointer): void {.importc: "igPushIDPtr".}
-proc igPushID*(int_id: int32): void {.importc: "igPushIDInt".}
+proc igPushID*(str_id: cstring): void {.importc: "igPushID_Str".}
+proc igPushID*(str_id_begin: cstring, str_id_end: cstring): void {.importc: "igPushID_StrStr".}
+proc igPushID*(ptr_id: pointer): void {.importc: "igPushID_Ptr".}
+proc igPushID*(int_id: int32): void {.importc: "igPushID_Int".}
 proc igPushItemFlag*(option: ImGuiItemFlags, enabled: bool): void {.importc: "igPushItemFlag".}
 proc igPushItemWidth*(item_width: float32): void {.importc: "igPushItemWidth".}
 proc igPushMultiItemsWidths*(components: int32, width_full: float32): void {.importc: "igPushMultiItemsWidths".}
 proc igPushOverrideID*(id: ImGuiID): void {.importc: "igPushOverrideID".}
-proc igPushStyleColor*(idx: ImGuiCol, col: uint32): void {.importc: "igPushStyleColorU32".}
-proc igPushStyleColor*(idx: ImGuiCol, col: ImVec4): void {.importc: "igPushStyleColorVec4".}
-proc igPushStyleVar*(idx: ImGuiStyleVar, val: float32): void {.importc: "igPushStyleVarFloat".}
-proc igPushStyleVar*(idx: ImGuiStyleVar, val: ImVec2): void {.importc: "igPushStyleVarVec2".}
+proc igPushStyleColor*(idx: ImGuiCol, col: uint32): void {.importc: "igPushStyleColor_U32".}
+proc igPushStyleColor*(idx: ImGuiCol, col: ImVec4): void {.importc: "igPushStyleColor_Vec4".}
+proc igPushStyleVar*(idx: ImGuiStyleVar, val: float32): void {.importc: "igPushStyleVar_Float".}
+proc igPushStyleVar*(idx: ImGuiStyleVar, val: ImVec2): void {.importc: "igPushStyleVar_Vec2".}
 proc igPushTextWrapPos*(wrap_local_pos_x: float32 = 0.0f): void {.importc: "igPushTextWrapPos".}
-proc igRadioButton*(label: cstring, active: bool): bool {.importc: "igRadioButtonBool".}
-proc igRadioButton*(label: cstring, v: ptr int32, v_button: int32): bool {.importc: "igRadioButtonIntPtr".}
+proc igRadioButton*(label: cstring, active: bool): bool {.importc: "igRadioButton_Bool".}
+proc igRadioButton*(label: cstring, v: ptr int32, v_button: int32): bool {.importc: "igRadioButton_IntPtr".}
 proc igRemoveContextHook*(context: ptr ImGuiContext, hook_to_remove: ImGuiID): void {.importc: "igRemoveContextHook".}
 proc igRender*(): void {.importc: "igRender".}
 proc igRenderArrow*(draw_list: ptr ImDrawList, pos: ImVec2, col: uint32, dir: ImGuiDir, scale: float32 = 1.0f): void {.importc: "igRenderArrow".}
@@ -2811,8 +2844,8 @@ proc igSaveIniSettingsToMemory*(out_ini_size: ptr uint = nil): cstring {.importc
 proc igScrollToBringRectIntoViewNonUDT*(pOut: ptr ImVec2, window: ptr ImGuiWindow, item_rect: ImRect): void {.importc: "igScrollToBringRectIntoView".}
 proc igScrollbar*(axis: ImGuiAxis): void {.importc: "igScrollbar".}
 proc igScrollbarEx*(bb: ImRect, id: ImGuiID, axis: ImGuiAxis, p_scroll_v: ptr float32, avail_v: float32, contents_v: float32, flags: ImDrawFlags): bool {.importc: "igScrollbarEx".}
-proc igSelectable*(label: cstring, selected: bool = false, flags: ImGuiSelectableFlags = 0.ImGuiSelectableFlags, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): bool {.importc: "igSelectableBool".}
-proc igSelectable*(label: cstring, p_selected: ptr bool, flags: ImGuiSelectableFlags = 0.ImGuiSelectableFlags, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): bool {.importc: "igSelectableBoolPtr".}
+proc igSelectable*(label: cstring, selected: bool = false, flags: ImGuiSelectableFlags = 0.ImGuiSelectableFlags, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): bool {.importc: "igSelectable_Bool".}
+proc igSelectable*(label: cstring, p_selected: ptr bool, flags: ImGuiSelectableFlags = 0.ImGuiSelectableFlags, size: ImVec2 = ImVec2(x: 0, y: 0).ImVec2): bool {.importc: "igSelectable_BoolPtr".}
 proc igSeparator*(): void {.importc: "igSeparator".}
 proc igSeparatorEx*(flags: ImGuiSeparatorFlags): void {.importc: "igSeparatorEx".}
 proc igSetActiveID*(id: ImGuiID, window: ptr ImGuiWindow): void {.importc: "igSetActiveID".}
@@ -2836,7 +2869,7 @@ proc igSetItemUsingMouseWheel*(): void {.importc: "igSetItemUsingMouseWheel".}
 proc igSetKeyboardFocusHere*(offset: int32 = 0): void {.importc: "igSetKeyboardFocusHere".}
 proc igSetLastItemData*(window: ptr ImGuiWindow, item_id: ImGuiID, status_flags: ImGuiItemStatusFlags, item_rect: ImRect): void {.importc: "igSetLastItemData".}
 proc igSetMouseCursor*(cursor_type: ImGuiMouseCursor): void {.importc: "igSetMouseCursor".}
-proc igSetNavID*(id: ImGuiID, nav_layer: int32, focus_scope_id: ImGuiID, rect_rel: ImRect): void {.importc: "igSetNavID".}
+proc igSetNavID*(id: ImGuiID, nav_layer: ImGuiNavLayer, focus_scope_id: ImGuiID, rect_rel: ImRect): void {.importc: "igSetNavID".}
 proc igSetNextItemOpen*(is_open: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetNextItemOpen".}
 proc igSetNextItemWidth*(item_width: float32): void {.importc: "igSetNextItemWidth".}
 proc igSetNextWindowBgAlpha*(alpha: float32): void {.importc: "igSetNextWindowBgAlpha".}
@@ -2847,34 +2880,34 @@ proc igSetNextWindowPos*(pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond, pivot: ImVe
 proc igSetNextWindowScroll*(scroll: ImVec2): void {.importc: "igSetNextWindowScroll".}
 proc igSetNextWindowSize*(size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetNextWindowSize".}
 proc igSetNextWindowSizeConstraints*(size_min: ImVec2, size_max: ImVec2, custom_callback: ImGuiSizeCallback = nil, custom_callback_data: pointer = nil): void {.importc: "igSetNextWindowSizeConstraints".}
-proc igSetScrollFromPosX*(local_x: float32, center_x_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosXFloat".}
-proc igSetScrollFromPosX*(window: ptr ImGuiWindow, local_x: float32, center_x_ratio: float32): void {.importc: "igSetScrollFromPosXWindowPtr".}
-proc igSetScrollFromPosY*(local_y: float32, center_y_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosYFloat".}
-proc igSetScrollFromPosY*(window: ptr ImGuiWindow, local_y: float32, center_y_ratio: float32): void {.importc: "igSetScrollFromPosYWindowPtr".}
+proc igSetScrollFromPosX*(local_x: float32, center_x_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosX_Float".}
+proc igSetScrollFromPosX*(window: ptr ImGuiWindow, local_x: float32, center_x_ratio: float32): void {.importc: "igSetScrollFromPosX_WindowPtr".}
+proc igSetScrollFromPosY*(local_y: float32, center_y_ratio: float32 = 0.5f): void {.importc: "igSetScrollFromPosY_Float".}
+proc igSetScrollFromPosY*(window: ptr ImGuiWindow, local_y: float32, center_y_ratio: float32): void {.importc: "igSetScrollFromPosY_WindowPtr".}
 proc igSetScrollHereX*(center_x_ratio: float32 = 0.5f): void {.importc: "igSetScrollHereX".}
 proc igSetScrollHereY*(center_y_ratio: float32 = 0.5f): void {.importc: "igSetScrollHereY".}
-proc igSetScrollX*(scroll_x: float32): void {.importc: "igSetScrollXFloat".}
-proc igSetScrollX*(window: ptr ImGuiWindow, scroll_x: float32): void {.importc: "igSetScrollXWindowPtr".}
-proc igSetScrollY*(scroll_y: float32): void {.importc: "igSetScrollYFloat".}
-proc igSetScrollY*(window: ptr ImGuiWindow, scroll_y: float32): void {.importc: "igSetScrollYWindowPtr".}
+proc igSetScrollX*(scroll_x: float32): void {.importc: "igSetScrollX_Float".}
+proc igSetScrollX*(window: ptr ImGuiWindow, scroll_x: float32): void {.importc: "igSetScrollX_WindowPtr".}
+proc igSetScrollY*(scroll_y: float32): void {.importc: "igSetScrollY_Float".}
+proc igSetScrollY*(window: ptr ImGuiWindow, scroll_y: float32): void {.importc: "igSetScrollY_WindowPtr".}
 proc igSetStateStorage*(storage: ptr ImGuiStorage): void {.importc: "igSetStateStorage".}
 proc igSetTabItemClosed*(tab_or_docked_window_label: cstring): void {.importc: "igSetTabItemClosed".}
 proc igSetTooltip*(fmt: cstring): void {.importc: "igSetTooltip", varargs.}
 proc igSetTooltipV*(fmt: cstring): void {.importc: "igSetTooltipV", varargs.}
 proc igSetWindowClipRectBeforeSetChannel*(window: ptr ImGuiWindow, clip_rect: ImRect): void {.importc: "igSetWindowClipRectBeforeSetChannel".}
-proc igSetWindowCollapsed*(collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsedBool".}
-proc igSetWindowCollapsed*(name: cstring, collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsedStr".}
-proc igSetWindowCollapsed*(window: ptr ImGuiWindow, collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsedWindowPtr".}
-proc igSetWindowFocus*(): void {.importc: "igSetWindowFocusNil".}
-proc igSetWindowFocus*(name: cstring): void {.importc: "igSetWindowFocusStr".}
+proc igSetWindowCollapsed*(collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsed_Bool".}
+proc igSetWindowCollapsed*(name: cstring, collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsed_Str".}
+proc igSetWindowCollapsed*(window: ptr ImGuiWindow, collapsed: bool, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowCollapsed_WindowPtr".}
+proc igSetWindowFocus*(): void {.importc: "igSetWindowFocus_Nil".}
+proc igSetWindowFocus*(name: cstring): void {.importc: "igSetWindowFocus_Str".}
 proc igSetWindowFontScale*(scale: float32): void {.importc: "igSetWindowFontScale".}
 proc igSetWindowHitTestHole*(window: ptr ImGuiWindow, pos: ImVec2, size: ImVec2): void {.importc: "igSetWindowHitTestHole".}
-proc igSetWindowPos*(pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPosVec2".}
-proc igSetWindowPos*(name: cstring, pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPosStr".}
-proc igSetWindowPos*(window: ptr ImGuiWindow, pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPosWindowPtr".}
-proc igSetWindowSize*(size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSizeVec2".}
-proc igSetWindowSize*(name: cstring, size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSizeStr".}
-proc igSetWindowSize*(window: ptr ImGuiWindow, size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSizeWindowPtr".}
+proc igSetWindowPos*(pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPos_Vec2".}
+proc igSetWindowPos*(name: cstring, pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPos_Str".}
+proc igSetWindowPos*(window: ptr ImGuiWindow, pos: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowPos_WindowPtr".}
+proc igSetWindowSize*(size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSize_Vec2".}
+proc igSetWindowSize*(name: cstring, size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSize_Str".}
+proc igSetWindowSize*(window: ptr ImGuiWindow, size: ImVec2, cond: ImGuiCond = 0.ImGuiCond): void {.importc: "igSetWindowSize_WindowPtr".}
 proc igShadeVertsLinearColorGradientKeepAlpha*(draw_list: ptr ImDrawList, vert_start_idx: int32, vert_end_idx: int32, gradient_p0: ImVec2, gradient_p1: ImVec2, col0: uint32, col1: uint32): void {.importc: "igShadeVertsLinearColorGradientKeepAlpha".}
 proc igShadeVertsLinearUV*(draw_list: ptr ImDrawList, vert_start_idx: int32, vert_end_idx: int32, a: ImVec2, b: ImVec2, uv_a: ImVec2, uv_b: ImVec2, clamp: bool): void {.importc: "igShadeVertsLinearUV".}
 proc igShowAboutWindow*(p_open: ptr bool = nil): void {.importc: "igShowAboutWindow".}
@@ -2908,7 +2941,8 @@ proc igStyleColorsLight*(dst: ptr ImGuiStyle = nil): void {.importc: "igStyleCol
 proc igTabBarCloseTab*(tab_bar: ptr ImGuiTabBar, tab: ptr ImGuiTabItem): void {.importc: "igTabBarCloseTab".}
 proc igTabBarFindTabByID*(tab_bar: ptr ImGuiTabBar, tab_id: ImGuiID): ptr ImGuiTabItem {.importc: "igTabBarFindTabByID".}
 proc igTabBarProcessReorder*(tab_bar: ptr ImGuiTabBar): bool {.importc: "igTabBarProcessReorder".}
-proc igTabBarQueueReorder*(tab_bar: ptr ImGuiTabBar, tab: ptr ImGuiTabItem, dir: int32): void {.importc: "igTabBarQueueReorder".}
+proc igTabBarQueueReorder*(tab_bar: ptr ImGuiTabBar, tab: ptr ImGuiTabItem, offset: int32): void {.importc: "igTabBarQueueReorder".}
+proc igTabBarQueueReorderFromMousePos*(tab_bar: ptr ImGuiTabBar, tab: ptr ImGuiTabItem, mouse_pos: ImVec2): void {.importc: "igTabBarQueueReorderFromMousePos".}
 proc igTabBarRemoveTab*(tab_bar: ptr ImGuiTabBar, tab_id: ImGuiID): void {.importc: "igTabBarRemoveTab".}
 proc igTabItemBackground*(draw_list: ptr ImDrawList, bb: ImRect, flags: ImGuiTabItemFlags, col: uint32): void {.importc: "igTabItemBackground".}
 proc igTabItemButton*(label: cstring, flags: ImGuiTabItemFlags = 0.ImGuiTabItemFlags): bool {.importc: "igTabItemButton".}
@@ -2926,14 +2960,15 @@ proc igTableEndRow*(table: ptr ImGuiTable): void {.importc: "igTableEndRow".}
 proc igTableFindByID*(id: ImGuiID): ptr ImGuiTable {.importc: "igTableFindByID".}
 proc igTableFixColumnSortDirection*(table: ptr ImGuiTable, column: ptr ImGuiTableColumn): void {.importc: "igTableFixColumnSortDirection".}
 proc igTableGcCompactSettings*(): void {.importc: "igTableGcCompactSettings".}
-proc igTableGcCompactTransientBuffers*(table: ptr ImGuiTable): void {.importc: "igTableGcCompactTransientBuffers".}
+proc igTableGcCompactTransientBuffers*(table: ptr ImGuiTable): void {.importc: "igTableGcCompactTransientBuffers_TablePtr".}
+proc igTableGcCompactTransientBuffers*(table: ptr ImGuiTableTempData): void {.importc: "igTableGcCompactTransientBuffers_TableTempDataPtr".}
 proc igTableGetBoundSettings*(table: ptr ImGuiTable): ptr ImGuiTableSettings {.importc: "igTableGetBoundSettings".}
 proc igTableGetCellBgRectNonUDT*(pOut: ptr ImRect, table: ptr ImGuiTable, column_n: int32): void {.importc: "igTableGetCellBgRect".}
 proc igTableGetColumnCount*(): int32 {.importc: "igTableGetColumnCount".}
 proc igTableGetColumnFlags*(column_n: int32 = -1): ImGuiTableColumnFlags {.importc: "igTableGetColumnFlags".}
 proc igTableGetColumnIndex*(): int32 {.importc: "igTableGetColumnIndex".}
-proc igTableGetColumnName*(column_n: int32 = -1): cstring {.importc: "igTableGetColumnNameInt".}
-proc igTableGetColumnName*(table: ptr ImGuiTable, column_n: int32): cstring {.importc: "igTableGetColumnNameTablePtr".}
+proc igTableGetColumnName*(column_n: int32 = -1): cstring {.importc: "igTableGetColumnName_Int".}
+proc igTableGetColumnName*(table: ptr ImGuiTable, column_n: int32): cstring {.importc: "igTableGetColumnName_TablePtr".}
 proc igTableGetColumnNextSortDirection*(column: ptr ImGuiTableColumn): ImGuiSortDirection {.importc: "igTableGetColumnNextSortDirection".}
 proc igTableGetColumnResizeID*(table: ptr ImGuiTable, column_n: int32, instance_no: int32 = 0): ImGuiID {.importc: "igTableGetColumnResizeID".}
 proc igTableGetColumnWidthAuto*(table: ptr ImGuiTable, column: ptr ImGuiTableColumn): float32 {.importc: "igTableGetColumnWidthAuto".}
@@ -2955,7 +2990,7 @@ proc igTableRemove*(table: ptr ImGuiTable): void {.importc: "igTableRemove".}
 proc igTableResetSettings*(table: ptr ImGuiTable): void {.importc: "igTableResetSettings".}
 proc igTableSaveSettings*(table: ptr ImGuiTable): void {.importc: "igTableSaveSettings".}
 proc igTableSetBgColor*(target: ImGuiTableBgTarget, color: uint32, column_n: int32 = -1): void {.importc: "igTableSetBgColor".}
-proc igTableSetColumnEnabled*(column_n: int32, enabled: bool): void {.importc: "igTableSetColumnEnabled".}
+proc igTableSetColumnEnabled*(column_n: int32, v: bool): void {.importc: "igTableSetColumnEnabled".}
 proc igTableSetColumnIndex*(column_n: int32): bool {.importc: "igTableSetColumnIndex".}
 proc igTableSetColumnSortDirection*(column_n: int32, sort_direction: ImGuiSortDirection, append_to_sort_specs: bool): void {.importc: "igTableSetColumnSortDirection".}
 proc igTableSetColumnWidth*(column_n: int32, width: float32): void {.importc: "igTableSetColumnWidth".}
@@ -2985,21 +3020,21 @@ proc igTextUnformatted*(text: cstring, text_end: cstring = nil): void {.importc:
 proc igTextV*(fmt: cstring): void {.importc: "igTextV", varargs.}
 proc igTextWrapped*(fmt: cstring): void {.importc: "igTextWrapped", varargs.}
 proc igTextWrappedV*(fmt: cstring): void {.importc: "igTextWrappedV", varargs.}
-proc igTreeNode*(label: cstring): bool {.importc: "igTreeNodeStr".}
-proc igTreeNode*(str_id: cstring, fmt: cstring): bool {.importc: "igTreeNodeStrStr", varargs.}
-proc igTreeNode*(ptr_id: pointer, fmt: cstring): bool {.importc: "igTreeNodePtr", varargs.}
+proc igTreeNode*(label: cstring): bool {.importc: "igTreeNode_Str".}
+proc igTreeNode*(str_id: cstring, fmt: cstring): bool {.importc: "igTreeNode_StrStr", varargs.}
+proc igTreeNode*(ptr_id: pointer, fmt: cstring): bool {.importc: "igTreeNode_Ptr", varargs.}
 proc igTreeNodeBehavior*(id: ImGuiID, flags: ImGuiTreeNodeFlags, label: cstring, label_end: cstring = nil): bool {.importc: "igTreeNodeBehavior".}
 proc igTreeNodeBehaviorIsOpen*(id: ImGuiID, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igTreeNodeBehaviorIsOpen".}
-proc igTreeNodeEx*(label: cstring, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igTreeNodeExStr".}
-proc igTreeNodeEx*(str_id: cstring, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExStrStr", varargs.}
-proc igTreeNodeEx*(ptr_id: pointer, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExPtr", varargs.}
-proc igTreeNodeExV*(str_id: cstring, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExVStr", varargs.}
-proc igTreeNodeExV*(ptr_id: pointer, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExVPtr", varargs.}
-proc igTreeNodeV*(str_id: cstring, fmt: cstring): bool {.importc: "igTreeNodeVStr", varargs.}
-proc igTreeNodeV*(ptr_id: pointer, fmt: cstring): bool {.importc: "igTreeNodeVPtr", varargs.}
+proc igTreeNodeEx*(label: cstring, flags: ImGuiTreeNodeFlags = 0.ImGuiTreeNodeFlags): bool {.importc: "igTreeNodeEx_Str".}
+proc igTreeNodeEx*(str_id: cstring, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeEx_StrStr", varargs.}
+proc igTreeNodeEx*(ptr_id: pointer, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeEx_Ptr", varargs.}
+proc igTreeNodeExV*(str_id: cstring, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExV_Str", varargs.}
+proc igTreeNodeExV*(ptr_id: pointer, flags: ImGuiTreeNodeFlags, fmt: cstring): bool {.importc: "igTreeNodeExV_Ptr", varargs.}
+proc igTreeNodeV*(str_id: cstring, fmt: cstring): bool {.importc: "igTreeNodeV_Str", varargs.}
+proc igTreeNodeV*(ptr_id: pointer, fmt: cstring): bool {.importc: "igTreeNodeV_Ptr", varargs.}
 proc igTreePop*(): void {.importc: "igTreePop".}
-proc igTreePush*(str_id: cstring): void {.importc: "igTreePushStr".}
-proc igTreePush*(ptr_id: pointer = nil): void {.importc: "igTreePushPtr".}
+proc igTreePush*(str_id: cstring): void {.importc: "igTreePush_Str".}
+proc igTreePush*(ptr_id: pointer = nil): void {.importc: "igTreePush_Ptr".}
 proc igTreePushOverrideID*(id: ImGuiID): void {.importc: "igTreePushOverrideID".}
 proc igUnindent*(indent_w: float32 = 0.0f): void {.importc: "igUnindent".}
 proc igUpdateHoveredWindowAndCaptureFlags*(): void {.importc: "igUpdateHoveredWindowAndCaptureFlags".}
@@ -3009,10 +3044,10 @@ proc igUpdateWindowParentAndRootLinks*(window: ptr ImGuiWindow, flags: ImGuiWind
 proc igVSliderFloat*(label: cstring, size: ImVec2, v: ptr float32, v_min: float32, v_max: float32, format: cstring = "%.3f", flags: ImGuiSliderFlags = 0.ImGuiSliderFlags): bool {.importc: "igVSliderFloat".}
 proc igVSliderInt*(label: cstring, size: ImVec2, v: ptr int32, v_min: int32, v_max: int32, format: cstring = "%d", flags: ImGuiSliderFlags = 0.ImGuiSliderFlags): bool {.importc: "igVSliderInt".}
 proc igVSliderScalar*(label: cstring, size: ImVec2, data_type: ImGuiDataType, p_data: pointer, p_min: pointer, p_max: pointer, format: cstring = nil, flags: ImGuiSliderFlags = 0.ImGuiSliderFlags): bool {.importc: "igVSliderScalar".}
-proc igValue*(prefix: cstring, b: bool): void {.importc: "igValueBool".}
-proc igValue*(prefix: cstring, v: int32): void {.importc: "igValueInt".}
-proc igValue*(prefix: cstring, v: uint32): void {.importc: "igValueUint".}
-proc igValue*(prefix: cstring, v: float32, float_format: cstring = nil): void {.importc: "igValueFloat".}
+proc igValue*(prefix: cstring, b: bool): void {.importc: "igValue_Bool".}
+proc igValue*(prefix: cstring, v: int32): void {.importc: "igValue_Int".}
+proc igValue*(prefix: cstring, v: uint32): void {.importc: "igValue_Uint".}
+proc igValue*(prefix: cstring, v: float32, float_format: cstring = nil): void {.importc: "igValue_Float".}
 
 {.pop.}
 

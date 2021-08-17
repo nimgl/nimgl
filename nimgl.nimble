@@ -1,6 +1,6 @@
 # Package
 
-version     = "1.1.10"
+version     = "1.2.0"
 author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
@@ -36,7 +36,7 @@ proc walkRecursive(dir: string) =
   for od in listDirs(dir):
     walkRecursive(od)
 
-task test, "Run files under examples dir":
+task test, "Compile files under examples dir":
   exec("nimble install -y glm")
   for file in listFiles("examples"):
     if file[9] == 't' and file.nimExt:
