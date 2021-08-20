@@ -1,6 +1,6 @@
 # Package
 
-version     = "1.3.0"
+version     = "1.3.1"
 author      = "Leonardo Mariscal"
 description = "Nim Game Library"
 license     = "MIT"
