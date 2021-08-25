@@ -39,11 +39,12 @@ proc walkRecursive(dir: string) =
 task test, "Compile files under examples dir":
   exec("nimble install -y glm")
   for file in listFiles("examples"):
-    if file[9] == 't' and file.nimExt:
-      echo "\n[info] testing " & file[6..<file.len]
-      if file == "examples/twebgl.nim":
+    let fileName = file[9..<file.len]
+    if fileName[0] == 't' and fileName.nimExt:
+      echo "\n[info] testing " & fileName
+      if fileName == "twebgl.nim":
         exec("nim c -d:emscripten " & file)
-      elif file == "examples/tvulkan.nim":
+      elif fileName == "tvulkan.nim":
         exec("nim c -d:vulkan " & file)
       else:
         exec("nim c -d:opengl_debug " & file)
