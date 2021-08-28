@@ -1,3 +1,12 @@
 [submodule "src/nimgl/private/imgui"]
 	path = src/nimgl/private/imgui
 	url = https://github.com/nimgl/imgui.git
+[submodule "src/nimgl/private/glfw"]
+	path = src/nimgl/private/glfw
+	url = https://github.com/nimgl/glfw.git
+[submodule "src/nimgl/private/opengl"]
+	path = src/nimgl/private/opengl
+	url = https://github.com/nimgl/opengl.git
+[submodule "src/nimgl/private/vulkan"]
+	path = src/nimgl/private/vulkan
+	url = https://github.com/nimgl/vulkan.git
