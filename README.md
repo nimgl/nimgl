@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://nimgl.dev/">
-    <img width="120" height="120" src="https://nimgl.dev/media/logo.png">
+    <img width="120" height="120" src="https://nimgl.github.io/media/logo.png">
   </a>
 </p>
 
